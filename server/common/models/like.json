@@ -1,0 +1,28 @@
+{
+  "name": "like",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "userId": {
+      "type": "string",
+      "required": true
+    },
+    "topicId": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "topic": {
+      "type": "belongsTo",
+      "model": "topic",
+      "foreignKey": "id"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
