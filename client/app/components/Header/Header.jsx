@@ -19,7 +19,7 @@ class Header extends Component {
     return (
       <header className={styles.header}>
           <div className={styles['header__wrap']}>
-            <h1 className={styles['header__headline']} onClick={baseHandler}>Page</h1>
+            <h1 className={styles['header__headline']} onClick={baseHandler}>Wirednews</h1>
               <div className={styles['header__auth']} onClick={submitHandler}>SUBMIT</div>
               {(loggedIn)
                 ? <div ref='button' className={styles['header__auth']} onClick={logoutHandler}>LOGOUT</div>
