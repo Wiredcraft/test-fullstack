@@ -48,6 +48,9 @@ module.exports = function(Topic) {
 			if (err) {
 				return cb(err);
 			}
+			if(!like){
+				return cb(new Error());
+			}
 			if (like.userId === currentUser.userId) {
 				like.remove(cb)
 				// cb(null, '');

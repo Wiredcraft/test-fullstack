@@ -1,17 +1,20 @@
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import createLogger from 'redux-logger';
-import promiseMiddleware from 'redux-promise';
+import thunkMiddleware from 'redux-thunk';
 import persistState from 'redux-localstorage';
-import * as Reducer from './reducer.jsx';
+import * as Auth from './reducer/Auth';
+import * as Submit from './reducer/Submit';
+import * as Topics from './reducer/Topics';
 
 let logger = createLogger();
 
 const reducer = combineReducers({
-  topics: Reducer.Topics.Reducer,
-  auth: Reducer.Auth.Reducer
+  topics: Topics.Reducer,
+  auth: Auth.Reducer,
+  submit: Submit.Reducer
 });
 
 export default compose(
   persistState('auth'),
-  applyMiddleware(promiseMiddleware, logger),
+  applyMiddleware(thunkMiddleware, logger),
 )(createStore)(reducer);

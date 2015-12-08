@@ -6,10 +6,6 @@ import TimeAgo from 'react-timeago';
 
 class Topic extends Component {
 
-  _timeTransfrom(time){
-    return new Date().toString();
-  }
-
   render() {
     const {
       props: {
@@ -50,7 +46,7 @@ class Topic extends Component {
                     [styles['topic__heart--active']]: liked
                   })} onClick={likeHandler}></div>
                 <div className={styles['topic__points']}><strong>{points}</strong> points</div>
-                <div className={styles['topic__timefrom']}><TimeAgo date={time} /> / {author}</div>
+                <div className={styles['topic__timefrom']}><TimeAgo date={new Date(time)} /> / {author}</div>
             </div>
           </div>
       </div>
@@ -62,7 +58,7 @@ Topic.defaultProps = {
   num: 10,
   title: 'Test',
   author: 'Manuel Villing',
-  time: new Date('2012.08.10').getTime() / 1000,
+  time: '2012.08.10',
   points: 100,
   liked: true,
   likeHandler: () => {
@@ -80,7 +76,7 @@ Topic.propTypes = {
   num: React.PropTypes.number,
   title: React.PropTypes.string,
   author: React.PropTypes.string,
-  time: React.PropTypes.number,
+  time: React.PropTypes.string,
   points: React.PropTypes.number,
   liked: React.PropTypes.bool,
   owned: React.PropTypes.bool,

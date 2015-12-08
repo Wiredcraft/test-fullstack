@@ -14,9 +14,6 @@
       "type": "string",
       "required": true
     },
-    "test": {
-      "type": "string"
-    },
     "createDate": {
       "type": "date",
       "required": true

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Loader, Header, Body, Topic } from '../../components/index';
-import { TopicList, HeaderContainer } from '../../container/index';
+import Body from '../../components/Body/Body';
+import HeaderContainer from '../../container/HeaderContainer/HeaderContainer';
+import TopicContainer from '../../container/TopicContainer/TopicContainer';
 import styles from '../../scss/app.scss';
 
 export default class List extends Component {
@@ -10,7 +11,7 @@ export default class List extends Component {
       <div className={styles.container}>
         <HeaderContainer />
         <Body>
-            <TopicList {...this.props} />
+            <TopicContainer />
         </Body>
       </div>
     );

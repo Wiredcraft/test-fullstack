@@ -11,14 +11,15 @@ class Header extends Component {
         loggedIn,
         loginHandler,
         logoutHandler,
-        submitHandler
+        submitHandler,
+        baseHandler
       },
     } = this;
 
     return (
       <header className={styles.header}>
           <div className={styles['header__wrap']}>
-            <h1 className={styles['header__headline']}>Wirednews</h1>
+            <h1 className={styles['header__headline']} onClick={baseHandler}>Page</h1>
               <div className={styles['header__auth']} onClick={submitHandler}>SUBMIT</div>
               {(loggedIn)
                 ? <div ref='button' className={styles['header__auth']} onClick={logoutHandler}>LOGOUT</div>
@@ -40,6 +41,9 @@ Header.defaultProps = {
   },
   submitHandler: () => {
     console.log('submit');
+  },
+  baseHandler: () => {
+    console.log('base');
   }
 };
 
@@ -47,7 +51,8 @@ Header.propTypes = {
   loggedIn: React.PropTypes.bool,
   loginHandler: React.PropTypes.func,
   logoutHandler: React.PropTypes.func,
-  submitHandler: React.PropTypes.func
+  submitHandler: React.PropTypes.func,
+  baseHandler: React.PropTypes.func
 };
 
 export default Header;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { Loader, Header, Body, Topic, Form } from '../../components/index';
-import { HeaderContainer } from '../../container/index';
+import Body from '../../components/Body/Body';
+import HeaderContainer from '../../container/HeaderContainer/HeaderContainer';
+import SubmitContainer from '../../container/SubmitContainer/SubmitContainer';
 import styles from '../../scss/app.scss';
 
 export default class Submit extends Component {
@@ -14,7 +15,7 @@ export default class Submit extends Component {
           <div className={styles.clearfix}>
               <div className={classNames(styles['col'], styles['sm-col-12'], styles['lg-col-6'], styles['md-col-6'])}>
                 <h2 className={styles['h2']}>Post Topic</h2>
-                <Form />
+                <SubmitContainer />
               </div>
           </div>
         </Body>
