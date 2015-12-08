@@ -13,7 +13,7 @@ describe('Header Logout', () => {
     <Header loggedIn={true} />
   );
   let headerElem = ReactDOM.findDOMNode(header);
-  let button = React.findDOMNode(header.refs.button);
+  let button = ReactDOM.findDOMNode(header.refs.button);
 
   it('Should render one link login or logout', () => {
     expect(button.tagName).to.equal('DIV');
@@ -30,7 +30,7 @@ describe('Header Login', () => {
     <Header loggedIn={false} />
   );
   let headerElem = ReactDOM.findDOMNode(header);
-  let button = React.findDOMNode(header.refs.button);
+  let button = ReactDOM.findDOMNode(header.refs.button);
 
   it('Should render one link login or logout', () => {
     expect(button.tagName).to.equal('DIV');
