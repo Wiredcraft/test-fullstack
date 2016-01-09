@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="./styles/index.min.css">
+</head>
+
+<body>
+  <div id="container">
+    <div v-for="(index,talk) in talks | orderBy 'rating' -1">
+      <p>
+        {{index + 1}}. {{talk.title}}
+        <button @click="vote(talk)">vote</button>
+        {{talk.rating}} points by {{talk.username}}
+      </p>
+    </div>
+    <div v-show="talks.length === 0">
+      no talks here, please submit your talks.
+    </div>
+    <div>
+      title:
+      <input type="text" v-model="title" /> description:
+      <input type="text" v-model="description" /> username:
+      <input type="text" v-model="username" />
+      <button @click="add()">add</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/vue/1.0.13/vue.min.js"></script>
+  <script type="text/javascript" src="./scripts/index.min.js"></script>
+</body>
+
+</html>
