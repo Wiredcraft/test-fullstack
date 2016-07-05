@@ -1,3 +1,28 @@
+# IDE support files
+/.classpath
+/.launch
+/.project
+/.settings
+/*.launch
+/*.tmproj
+/ivy*
+/eclipse
+# other
+*.iws
+
+# Intellij file
+*.iml
+stacktrace.log
+target
+out
+.settings
+.project
+.classpath
+.idea
+devDb.*
+.idea/workspace.xml
+activemq-data
+
 node_modules
 
 #MAC OS File
