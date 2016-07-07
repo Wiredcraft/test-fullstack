@@ -67,5 +67,5 @@ storiesOf('App Pages', module)
     ))
 
     .add('Lighting Talk List', () =>(
-        <LightingTalkList talks={fakeTalksData}/>
+        <LightingTalkList talks={fakeTalksData} onVoteTalk={action('Vote for the talk')}/>
     ))

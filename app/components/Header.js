@@ -7,7 +7,7 @@ export default function Header(props) {
             <div className={styles.logo} onClick={props.onBackToIndex}>
                 {props.logoText}
             </div>
-            <div className={styles.status} onClick={props.onSignIn}>
+            <div className={styles.status} onClick={props.onRedirect}>
                 {props.status}
             </div>
         </div>
@@ -18,10 +18,5 @@ Header.propTypes = {
     logoText: PropTypes.string,
     status: PropTypes.string,
     onBackToIndex: PropTypes.func,
-    onSignIn: PropTypes.func
-};
-
-Header.defaultProps = {
-    logoText: 'Talks',
-    status: 'Sign In'
+    onRedirect: PropTypes.func
 };

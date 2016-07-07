@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 
 // actions
@@ -7,12 +7,12 @@ import BusySpinner from '../components/common/BusySpinner';
 
 class AppContainer extends React.Component {
 
-    initializeApp() {
-        this.props.dispatch(RootActions.Actions.InitializeApp({status: 'Initializing'}));
-    }
-
     componentDidMount() {
         this.initializeApp();
+    }
+
+    initializeApp() {
+        this.props.dispatch(RootActions.Actions.initializeApp());
     }
 
     render() {
@@ -25,6 +25,12 @@ class AppContainer extends React.Component {
     }
 }
 
-let componentState = (state) => (state);
+AppContainer.propTypes = {
+    dispatch:PropTypes.func,
+    children: PropTypes.object,
+    root: PropTypes.object
+}
+
+const componentState = (state) => (state);
 
 module.exports = connect(componentState)(AppContainer);

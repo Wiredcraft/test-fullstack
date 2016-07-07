@@ -9,28 +9,29 @@ export default function LightingTalkItemRenderer(props) {
                 className={styles.cover}
                 style={{backgroundImage: 'url(' + coverURL + ')'}}
                 />
-            <div className={styles.like}>
-                {props.data.like}
+            <div className={styles.like} onClick={() => props.onSelectRow(props.data.id)}>
+                {props.data.voteCount}
             </div>
             <div className={styles.detail}>
                 <div className={styles.speaker}>
                     {props.data.speaker}
                 </div>
-                <div className={styles.title}>
+                <a className={styles.title} href={props.data.talkURL} target="_blank">
                     {props.data.title}
-                </div>
+                </a>
                 <div className={styles.description}>
                     {props.data.description}
                 </div>
             </div>
 
             <div className={styles.date}>
-                Published by {props.data.publisher}, {props.data.date}
+                Published by {props.data.publisher}, {props.data.publishDate}
             </div>
         </div>
     );
 }
 
 LightingTalkItemRenderer.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    onSelectRow: PropTypes.func
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import styles from '../less/lightingTalkList.less';
 
 import TableList from './common/TableList';
@@ -11,10 +11,15 @@ export default class LightingTalkList extends React.Component {
             <TableList
                 className={styles.table}
                 renderer={LightingTalkItemRenderer}
-                emptyMessage="No talks available, try to publish one ?"
+                emptyMessage="No talks, publish one ?"
                 rows={this.props.talks}
-                onSelectRow={null}
+                onSelectRow={this.props.onVoteTalk}
                 />
         );
     }
 }
+
+LightingTalkList.propTypes = {
+    talks: PropTypes.array,
+    onVoteTalk: PropTypes.func
+};
