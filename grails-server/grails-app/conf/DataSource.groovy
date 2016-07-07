@@ -19,7 +19,23 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            username = "flyingant"
+            driverClassName = "com.mysql.jdbc.Driver"
+            password = "flyingant"
+            dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+            url = "jdbc:mysql://flyingant.mysql.rds.aliyuncs.com:3306/demo?characterEncoding=utf8"
+            properties {
+                maxActive = 100
+                minIdle = 0
+                initialSize = 0
+                minEvictableIdleTimeMillis = 3 * 60 * 1000
+                timeBetweenEvictionRunsMillis = 60 * 1000
+                maxWait = 60000
+                testOnBorrow = true
+                testWhileIdle = false
+                testOnReturn = false
+                validationQuery = "select 1 from dual"
+            }
         }
     }
     test {
@@ -30,27 +46,23 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            username = "flyingant"
+            driverClassName = "com.mysql.jdbc.Driver"
+            password = "flyingant"
+            dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+            url = "jdbc:mysql://flyingant.mysql.rds.aliyuncs.com:3306/demo?characterEncoding=utf8"
             properties {
-               // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
-               jmxEnabled = true
-               initialSize = 5
-               maxActive = 50
-               minIdle = 5
-               maxIdle = 25
-               maxWait = 10000
-               maxAge = 10 * 60000
-               timeBetweenEvictionRunsMillis = 5000
-               minEvictableIdleTimeMillis = 60000
-               validationQuery = "SELECT 1"
-               validationQueryTimeout = 3
-               validationInterval = 15000
-               testOnBorrow = true
-               testWhileIdle = true
-               testOnReturn = false
-               jdbcInterceptors = "ConnectionState"
-               defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
+                maxActive = 100
+                minIdle = 0
+                initialSize = 0
+                minEvictableIdleTimeMillis = 3 * 60 * 1000
+                timeBetweenEvictionRunsMillis = 60 * 1000
+                maxWait = 60000
+                testOnBorrow = true
+                testWhileIdle = false
+                testOnReturn = false
+                validationQuery = "select 1 from dual"
             }
         }
     }

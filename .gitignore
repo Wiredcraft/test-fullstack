@@ -43,6 +43,7 @@ out
 .classpath
 .idea
 devDb.*
+.slcache
 .idea/workspace.xml
 activemq-data
 
