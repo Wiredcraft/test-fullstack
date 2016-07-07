@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 module.exports = {
 
-    baseURL: () => 'http://staging.flyingant.me',
+    baseURL: () => 'http://localhost:8080',
 
     baseURI: () => '/i',
 
