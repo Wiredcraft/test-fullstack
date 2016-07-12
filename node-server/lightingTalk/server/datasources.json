@@ -1,0 +1,9 @@
+{
+  "redis": {
+    "host": "114.215.172.185",
+    "port": 6379,
+    "password": "flyingant",
+    "name": "redis",
+    "connector": "redis"
+  }
+}

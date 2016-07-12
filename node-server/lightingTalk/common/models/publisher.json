@@ -1,0 +1,36 @@
+{
+  "name": "Publisher",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "username": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "password": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "talks": {
+      "type": "hasMany",
+      "model": "Talk",
+      "foreignKey": "publisherId",
+      "required": true
+    },
+    "voteHistories": {
+      "type": "hasMany",
+      "model": "VoteHistory",
+      "foreignKey": "publisherId",
+      "required": true
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
