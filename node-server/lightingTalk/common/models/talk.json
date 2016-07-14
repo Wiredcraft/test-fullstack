@@ -16,6 +16,10 @@
       "type": "string",
       "required": true
     },
+    "speaker": {
+      "type": "string",
+      "required": true
+    },
     "coverURL": {
       "type": "string",
       "required": true

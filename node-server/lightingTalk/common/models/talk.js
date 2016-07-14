@@ -1,7 +1,18 @@
-module.exports = function(Talk) {
+var disableAllMethods = require('../../utils/helper').disableAllMethods;
 
-  //create a new talk instance
-  Talk.talk = function(title, description, speaker, coverURL, talkURL, publisherId, cb) {
+module.exports = function(Talk) {
+  //disable the all methods
+  disableAllMethods(Talk, "create");
+
+  // override the talk create method
+  Talk.on('attached', function() {
+    Talk.create = function(filter, cb) {
+      var title = filter.title;
+      var description = filter.description;
+      var speaker = filter.speaker;
+      var coverURL = filter.coverURL;
+      var talkURL = filter.talkURL;
+      var publisherId = filter.publisherId;
       Talk.create({
         title: title,
         description: description,
@@ -18,46 +29,7 @@ module.exports = function(Talk) {
           });
         }
       });
-  };
-
-  Talk.remoteMethod(
-    'talk',
-    {
-      accepts: [
-        {
-          arg: 'title', type: 'string'
-        },
-        {
-          arg: 'description', type: 'string'
-        },
-        {
-          arg: 'speaker', type: 'string'
-        },
-        {
-          arg: 'coverURL', type: 'string'
-        },
-        {
-          arg: 'talkURL', type: 'string'
-        },
-        {
-          arg: 'publisherId', type: 'number'
-        }
-      ],
-      http: {path: '/talk', verb: 'post'},
-      returns: {arg: 'status', type: 'string'}
     }
-  );
-
-  Talk.disableRemoteMethod('create', true);
-  Talk.disableRemoteMethod('upsert', true);
-  Talk.disableRemoteMethod("updateAll", true);
-  Talk.disableRemoteMethod("updateAttributes", true);
-  Talk.disableRemoteMethod('findById', true);
-  Talk.disableRemoteMethod("deleteById", true);
-  Talk.disableRemoteMethod('createChangeStream', true);
-
-  Talk.disableRemoteMethod('findOne', true);
-  Talk.disableRemoteMethod('count', true);
-  Talk.disableRemoteMethod('findOne', true);
-  Talk.disableRemoteMethod('replaceOrCreate', true);
+  });
+  
 };
