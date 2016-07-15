@@ -2,7 +2,7 @@ var disableAllMethods = require('../../utils/helper').disableAllMethods;
 
 module.exports = function(Talk) {
   //disable the all methods
-  disableAllMethods(Talk, "create");
+  disableAllMethods(Talk, ["create", "find"]);
 
   // override the talk create method
   Talk.on('attached', function() {
@@ -30,6 +30,8 @@ module.exports = function(Talk) {
         }
       });
     }
+
+
   });
-  
+
 };
