@@ -2,38 +2,25 @@ var disableAllMethods = require('../../utils/helper').disableAllMethods;
 
 module.exports = function(Publisher) {
   //disable the all methods
-  disableAllMethods(Publisher, "create");
+  disableAllMethods(Publisher, ["create"]);
 
-  // override the user register method
-  Publisher.on('attached', function() {
-    Publisher.create = function(filter, cb){
-      var username = filter.username;
-      var password = filter.password;
-      Publisher.find({where: {username: username}}, function(err, publishers) {
-        if(publishers.length === 0){
-          //create a publisher instance
-          Publisher.create({
-            username: username,
-            password: password
-          }, function(err, user) {
-            cb(null, {
-              success: true,
-              username: user.username,
-              userId: user.id
-            });
-          });
+  // verify the user before create the user
+  Publisher.beforeRemote('create', function(ctx, publisher, next) {
+    var username = ctx.req.body.username;
+    Publisher.find({where: {username: username}}, function(err, publishers) {
+        if (publishers.length === 0) {
+          next();
         } else {
-          cb(null, {
+          ctx.res.send({
             success: false,
-            message: 'Username is already existed.'
-          });
+            message: "User is already existed."
+          })
         }
-      });
-    }
+    });
   });
 
-  // use for user verified
-  Publisher.verify = function(username, password, cb) {
+  // user login
+  Publisher.login = function(username, password, cb) {
     Publisher.find({where: {username: username}}, function(err, publishers) {
       if(publishers.length === 0){
         cb(null, {
@@ -56,8 +43,9 @@ module.exports = function(Publisher) {
       }
     });
   };
+
   Publisher.remoteMethod(
-    'verify',
+    'login',
     {
       accepts: [
         {
@@ -67,7 +55,7 @@ module.exports = function(Publisher) {
           arg: 'password', type: 'string'
         },
       ],
-      http: {path: '/verify', verb: 'post'},
+      http: {path: '/login', verb: 'post'},
       returns: {arg: 'status', type: 'string'}
     }
   );

@@ -27,10 +27,6 @@
     "talkURL": {
       "type": "string",
       "required": true
-    },
-    "publishDate": {
-      "type": "date",
-      "required": true
     }
   },
   "validations": [],

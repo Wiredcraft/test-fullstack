@@ -5,6 +5,11 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "RemovePassword": {
+      "from": "find"
+    }
+  },
   "properties": {
     "username": {
       "type": "string",
