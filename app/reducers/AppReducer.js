@@ -17,7 +17,7 @@ function app(state, action) {
         case RootActions.Keys.initializeAppCompleted:
             return currentState.merge(action.args);
         case RootActions.Keys.fetchTalkListCompleted:
-            const talks = _.sortBy(action.args.talks, (o) => -o.voteCount);
+            const talks = _.sortBy(action.args, (o) => -o.voteCount);
             return currentState.merge({
                 talks: talks
             });
@@ -26,7 +26,7 @@ function app(state, action) {
             return currentState;
         case RootActions.Keys.fetchMyTalkListCompleted:
             return currentState.merge({
-                myTalks: action.args.talks
+                myTalks: action.args
             });
         case RootActions.Keys.fetchMyTalkListFailed:
             alert(action.args.message);
@@ -34,7 +34,8 @@ function app(state, action) {
             alert('Create a account successfully.');
             return currentState.merge({
                 loggedStatus: 'Hi, ' + action.args.username,
-                loggedUser: action.args.username
+                loggedUser: action.args.username,
+                loggedUserId: action.args.id
             });
         case RootActions.Keys.submitRegisterDataFailed:
             alert(action.args.message);
@@ -42,7 +43,8 @@ function app(state, action) {
         case RootActions.Keys.submitLoginDataCompleted:
             return currentState.merge({
                 loggedStatus: 'Hi, ' + action.args.username,
-                loggedUser: action.args.username
+                loggedUser: action.args.username,
+                loggedUserId: action.args.id
             });
         case RootActions.Keys.submitLoginDataFailed:
             alert(action.args.message);

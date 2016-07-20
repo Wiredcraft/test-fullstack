@@ -13,7 +13,7 @@ module.exports = createActions({
         return this.dispatchMe(args)
             .then(() => this.dispatch(CommonActions.Actions.busy()))
             .then(() => {
-                NetworkUtility.get(NetworkUtility.baseURL() + '/talks', args)
+                NetworkUtility.get(NetworkUtility.baseURL() + '/api/talks', args)
                     .done((response) => {
                         return this.dispatch(this.Actions.fetchTalkListCompleted(response))
                             .then(() => this.dispatch(CommonActions.Actions.busyCompleted()));
@@ -29,7 +29,7 @@ module.exports = createActions({
         return this.dispatchMe(args)
             .then(() => this.dispatch(CommonActions.Actions.busy()))
             .then(() => {
-                NetworkUtility.get(NetworkUtility.baseURL() + '/user/' + args, {})
+                NetworkUtility.get(NetworkUtility.baseURL() + '/api/talks?filter[where][publisherId]=' + args, {})
                     .done((response) => {
                         return this.dispatch(this.Actions.fetchMyTalkListCompleted(response))
                             .then(() => this.dispatch(CommonActions.Actions.busyCompleted()));
@@ -45,15 +45,16 @@ module.exports = createActions({
         return this.dispatchMe(args)
             .then(() => this.dispatch(CommonActions.Actions.busy()))
             .then(() => {
-                NetworkUtility.post(NetworkUtility.baseURL() + '/user', args)
+                NetworkUtility.post(NetworkUtility.baseURL() + '/api/publishers', args)
                     .done((response) => {
                         if (response.success) {
                             return this.dispatch(this.Actions.submitRegisterDataCompleted(response))
                                 .then(() => this.dispatch(CommonActions.Actions.busyCompleted()))
                                 .then(() => this.dispatch(push(NetworkUtility.baseURI() + '/home')));
+                        } else {
+                            return this.dispatch(this.Actions.submitRegisterDataFailed(response))
+                                .then(() => this.dispatch(CommonActions.Actions.busyCompleted()));
                         }
-                        return this.dispatch(this.Actions.submitRegisterDataFailed(response))
-                            .then(() => this.dispatch(CommonActions.Actions.busyCompleted()));
                     })
                     .fail(() =>
                         this.dispatch(this.Actions.submitRegisterDataFailed({message: 'Server Error, Please try again.'}))
@@ -66,15 +67,16 @@ module.exports = createActions({
         return this.dispatchMe(args)
             .then(() => this.dispatch(CommonActions.Actions.busy()))
             .then(() => {
-                NetworkUtility.post(NetworkUtility.baseURL() + '/verify', args)
+                NetworkUtility.post(NetworkUtility.baseURL() + '/api/publishers/login', args)
                     .done((response) => {
-                        if (response.success) {
-                            return this.dispatch(this.Actions.submitLoginDataCompleted(response))
+                        if (response.status.success) {
+                            return this.dispatch(this.Actions.submitLoginDataCompleted(response.status))
                                 .then(() => this.dispatch(CommonActions.Actions.busyCompleted()))
                                 .then(() => this.dispatch(push(NetworkUtility.baseURI() + '/home')));
+                        } else {
+                            return this.dispatch(this.Actions.submitLoginDataFailed(response.status))
+                                .then(() => this.dispatch(CommonActions.Actions.busyCompleted()));
                         }
-                        return this.dispatch(this.Actions.submitLoginDataFailed(response))
-                            .then(() => this.dispatch(CommonActions.Actions.busyCompleted()));
                     })
                     .fail(() =>
                         this.dispatch(this.Actions.submitLoginDataFailed({message: 'Server Error, Please try again.'}))
@@ -87,7 +89,7 @@ module.exports = createActions({
         return this.dispatchMe(args)
             .then(() => this.dispatch(CommonActions.Actions.busy()))
             .then(() => {
-                NetworkUtility.post(NetworkUtility.baseURL() + '/talk', args)
+                NetworkUtility.post(NetworkUtility.baseURL() + '/api/talks', args)
                     .done((response) => {
                         if (response.success) {
                             return this.dispatch(this.Actions.submitPublishDataCompleted(response))
@@ -108,7 +110,7 @@ module.exports = createActions({
         return this.dispatchMe(args)
             .then(() => this.dispatch(CommonActions.Actions.busy()))
             .then(() => {
-                NetworkUtility.post(NetworkUtility.baseURL() + '/talk/' + args.talkId + '/vote', {username: args.username})
+                NetworkUtility.post(NetworkUtility.baseURL() + '/api/VoteHistories', {publisherId: args.publisherId, talkId: args.talkId })
                     .done((response) => {
                         if (response.success) {
                             return this.dispatch(this.Actions.voteToTalkCompleted(response))

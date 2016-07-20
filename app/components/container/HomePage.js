@@ -38,7 +38,7 @@ class HomePage extends React.Component {
     onVoteTalk(talkId) {
         if (this.props.app.loggedUser.length > 0) {
             this.props.dispatch(RootActions.Actions.voteToTalk({
-                username: this.props.app.loggedUser,
+                publisherId: this.props.app.loggedUserId,
                 talkId
             }));
         } else {

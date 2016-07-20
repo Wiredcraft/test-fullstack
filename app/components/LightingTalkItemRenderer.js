@@ -25,7 +25,7 @@ export default function LightingTalkItemRenderer(props) {
             </div>
 
             <div className={styles.date}>
-                Published by {props.data.publisher}, {props.data.publishDate}
+                Published by {props.data.publisher}
             </div>
         </div>
     );

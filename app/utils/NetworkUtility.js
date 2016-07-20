@@ -2,7 +2,7 @@ import $ from 'jquery';
 
 module.exports = {
 
-    baseURL: () => 'http://localhost:8080',
+    baseURL: () => 'http://127.0.0.1:3001',
 
     baseURI: () => '/i',
 

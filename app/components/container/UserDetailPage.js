@@ -20,7 +20,7 @@ class UserDetailPage extends React.Component {
 
     componentDidMount() {
         if (this.props.app.loggedUser.length > 0) {
-            this.props.dispatch(RootActions.Actions.fetchMyTalkList(this.props.app.loggedUser));
+            this.props.dispatch(RootActions.Actions.fetchMyTalkList(this.props.app.loggedUserId));
         } else {
             this.props.dispatch(push(NetworkUtility.baseURI() + '/signin'));
         }

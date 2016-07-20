@@ -7,6 +7,21 @@ module.exports = function(Publisher) {
   // verify the user before create the user
   Publisher.beforeRemote('create', function(ctx, publisher, next) {
     var username = ctx.req.body.username;
+    var password = ctx.req.body.password;
+    var confirmPassword = ctx.req.body.confirmPassword;
+    if(password !== confirmPassword){
+      ctx.res.send({
+        success: false,
+        message: "Password is not match."
+      })
+      return
+    }
+
+    Publisher.afterRemote('create', function(ctx, publisher, next) {
+      ctx.result.success = true;
+      next();
+    });
+
     Publisher.find({where: {username: username}}, function(err, publishers) {
         if (publishers.length === 0) {
           next();

@@ -43,8 +43,10 @@
   "files": {
     "loopback#static": {
       "paths": [
-        "/home",
-        "/signin"
+        "/i/home",
+        "/i/signin",
+        "/i/user/info",
+        "/i/publish"
       ],
       "params": "$!../client"
     }

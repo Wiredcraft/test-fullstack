@@ -37,20 +37,20 @@ class TalkPublishPage extends React.Component {
         const speaker = this.refs.speaker.value;
         const description = this.refs.description.value;
         const coverURL = this.refs.coverURL.value;
-        const url = this.refs.url.value;
+        const talkURL = this.refs.url.value;
         if (title.length === 0 || speaker.length === 0 ||
             description.length === 0 || coverURL.length === 0 ||
-            url.length === 0) {
+            talkURL.length === 0) {
             alert('Please fill the all blanks.');
             return;
         }
         this.props.dispatch(RootActions.Actions.submitPublishData({
-            username: this.props.app.loggedUser,
+            publisherId: this.props.app.loggedUserId,
             title,
             speaker,
             description,
             coverURL,
-            url
+            talkURL
         }));
     }
 
