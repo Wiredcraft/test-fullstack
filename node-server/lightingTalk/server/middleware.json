@@ -41,15 +41,21 @@
     }
   },
   "files": {
-    "loopback#static": {
-      "paths": [
-        "/i/home",
-        "/i/signin",
-        "/i/user/info",
-        "/i/publish"
-      ],
-      "params": "$!../client"
-    }
+    "loopback#static": [
+      {
+        "paths": [
+          "/i/home",
+          "/i/signin",
+          "/i/user/info",
+          "/i/publish"
+        ],
+        "params": "$!../client"
+      },
+      {
+        "paths": ["/images"],
+        "params": "$!../client/images"
+      }
+    ]
   },
   "final": {
     "loopback#urlNotFound": {}
