@@ -48,7 +48,7 @@ module.exports = function(Publisher) {
         cb(null, {
           success: true,
           username: user.username,
-          userId: user.id
+          id: user.id
         });
       } else {
         cb(null, {
