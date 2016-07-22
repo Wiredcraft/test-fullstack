@@ -1,0 +1,53 @@
+# IDE support files
+/.classpath
+/.launch
+/.project
+/.settings
+/*.launch
+/*.tmproj
+/ivy*
+/eclipse
+# other
+*.iws
+
+# default HSQL database files for production mode
+/prodDb.*
+
+# general HSQL database files
+*Db.properties
+*Db.script
+
+# logs
+/stacktrace.log
+/test/reports
+/logs
+
+# project release file
+/*.war
+
+# plugin release file
+/*.zip
+
+# older plugin install locations
+/plugins
+/web-app/plugins
+/web-app/WEB-INF/classes
+
+# Intellij file
+*.iml
+stacktrace.log
+target
+out
+.settings
+.project
+.classpath
+.idea
+devDb.*
+.slcache
+.idea/workspace.xml
+activemq-data
+
+node_modules
+
+#MAC OS File
+.DS_Store

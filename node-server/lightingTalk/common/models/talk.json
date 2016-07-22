@@ -1,0 +1,43 @@
+{
+  "name": "Talk",
+  "plural": "Talks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "index": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "speaker": {
+      "type": "string",
+      "required": true
+    },
+    "coverURL": {
+      "type": "string",
+      "required": true
+    },
+    "talkURL": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "voteHistories": {
+      "type": "hasMany",
+      "model": "VoteHistory",
+      "foreignKey": "talkId",
+      "required": true
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
