@@ -31,5 +31,17 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "AppUser": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Talk": {
+    "dataSource": "db",
+    "public": true
+  },
+  "Vote": {
+    "dataSource": "db",
+    "public": true
   }
 }
