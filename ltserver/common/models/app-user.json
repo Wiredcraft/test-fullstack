@@ -7,7 +7,26 @@
   },
   "properties": {},
   "validations": [],
-  "relations": {},
-  "acls": [],
+  "relations": {
+    "submits": {
+      "type": "hasMany",
+      "model": "Talk",
+      "foreignKey": "submitterId"
+    },
+    "votes": {
+      "type": "hasMany",
+      "model": "Talk",
+      "foreignKey": "voterId",
+      "through": "Vote"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
   "methods": {}
 }
