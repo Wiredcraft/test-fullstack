@@ -1,8 +1,10 @@
 import React from 'react';
 
+import TalkList from '../components/TalkList';
+
 const Home = () => (
-  <div>
-    This is Home page.
+  <div className="main">
+    <TalkList />
   </div>
 );
 
