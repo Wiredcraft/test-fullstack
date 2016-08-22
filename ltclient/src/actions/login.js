@@ -32,12 +32,32 @@ function receiveToken(user, json) {
   };
 }
 
+function displayError(message) {
+  return {
+    type: 'DISPLAY_ERROR',
+    message,
+  };
+}
+
+function dismissError() {
+  return {
+    type: 'DISMISS_ERROR',
+  };
+}
+
 function login(user) {
   return dispatch => {
     dispatch(requestToken());
     return commonFetch(apiEndpoint + 'AppUsers/login', 'POST', user)
       .then(res => res.json())
-      .then(json => dispatch(receiveToken(user, json)));
+      .then(json => dispatch(receiveToken(user, json)))
+      .catch(err => {
+        console.log(err);
+        dispatch(displayError('Unable to login, is your username/password correct?'));
+        setTimeout(() => {
+          dispatch(dismissError());
+        }, 3000);
+      });
   };
 }
 

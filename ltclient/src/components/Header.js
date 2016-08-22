@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import Icon from './Icon';
+import Error from './Error';
 
 const UserNav = ({ username }) => {
   if(!username) {
@@ -30,20 +31,27 @@ UserNav.propTypes = {
   username: PropTypes.string,
 };
 
-const Header = (props) => {
+const Header = ({ username, error }) => {
   return (
     <div className="header">
       <div className="header__logo">
         <Link to="/">LT</Link>
       </div>
-      <UserNav {...props} />
+      <Error message={error} />
+      <UserNav username={username} />
     </div>
   );
+};
+
+Header.propTypes = {
+  username: PropTypes.string,
+  error: PropTypes.string,
 };
 
 function mapStateToProps(state) {
   return {
     username: state.user.username,
+    error: state.error
   };
 }
 

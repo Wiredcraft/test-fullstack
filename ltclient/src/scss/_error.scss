@@ -1,0 +1,12 @@
+.error {
+  width: 400px;
+  position: fixed;
+  padding: 15px 5px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff7878;
+  opacity: 0.9;
+  color: #fff;
+  text-align: center;
+}
