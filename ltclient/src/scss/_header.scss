@@ -1,0 +1,44 @@
+$header-height: 40px;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: $header-height;
+  background-color: #eee;
+  position: relative;
+}
+
+.header__logo {
+  padding-left: 10px;
+}
+
+.header__user {
+  padding-right: 10px;
+  height: $header-height;
+  &:hover {
+    .header__userdropdown {
+      display: block;
+    }
+  }
+}
+
+.header__usernav {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.header__userdropdown {
+  display: none;
+  position: absolute;
+  top: $header-height;
+  right: 0px;
+  padding: 10px;
+  background-color: #eee;
+  z-index: 1;
+}

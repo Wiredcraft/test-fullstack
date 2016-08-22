@@ -24,9 +24,9 @@ ul {
 
 a {
   text-decoration: none;
-  color: #82F9F9;
+  color: $theme-color;
   &:hover {
-    color: #037979;
+    color: darken($theme-color, 30%);
   }
 }
 
