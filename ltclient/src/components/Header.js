@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 import Icon from './Icon';
 
-const UserNav = ({ logedin }) => {
-  if(logedin) {
+const UserNav = ({ username }) => {
+  if(!username) {
     return (
       <div className="header__user">
         <Link to="login">login</Link>
@@ -14,7 +15,7 @@ const UserNav = ({ logedin }) => {
     return (
       <div className="header__user">
         <div className="header__usernav">
-          <span>john</span>
+          <span>{username}</span>
           <Icon name="expand" />
         </div>
         <div className="header__userdropdown">
@@ -25,15 +26,25 @@ const UserNav = ({ logedin }) => {
   }
 };
 
-const Header = () => {
+UserNav.propTypes = {
+  username: PropTypes.string,
+};
+
+const Header = (props) => {
   return (
     <div className="header">
       <div className="header__logo">
         <Link to="/">LT</Link>
       </div>
-      <UserNav />
+      <UserNav {...props} />
     </div>
   );
 };
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    username: state.user.username,
+  };
+}
+
+export default connect(mapStateToProps)(Header);
