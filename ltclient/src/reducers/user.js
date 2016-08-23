@@ -13,6 +13,11 @@ function user(state = {
         username: action.username,
         userid: action.userid,
       });
+    case 'FAIL_TOKEN':
+      return Object.assign({}, state, {
+        isFetching: false,
+        username: undefined,
+      });
     default:
       return state;
   }

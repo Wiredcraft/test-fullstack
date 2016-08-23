@@ -31,8 +31,14 @@ function receiveToken(user, json) {
   return {
     type: 'RECEIVE_TOKEN',
     token: json.id,
-    username: user.username, // FIXME user may use email to login
+    username: json.user.username, // FIXME user may use email to login
     userid: json.userId,
+  };
+}
+
+function failToken() {
+  return {
+    type: 'FAIL_TOKEN',
   };
 }
 
@@ -60,11 +66,12 @@ function showError(dispatch, message, timeout) {
 function login(user) {
   return dispatch => {
     dispatch(requestToken());
-    return commonFetch(apiEndpoint + 'AppUsers/login', 'POST', user)
+    return commonFetch(apiEndpoint + 'AppUsers/login?include=user', 'POST', user)
       .then(res => res.json())
       .then(json => dispatch(receiveToken(user, json)))
       .catch(err => {
-        showError(dispatch, err.message)
+        showError(dispatch, err.message);
+        dispatch(failToken());
       });
   };
 }

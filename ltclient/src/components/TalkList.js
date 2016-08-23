@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Talk from './Talk';
 
@@ -24,16 +24,24 @@ var testData = [
 ];
 
 
-const TalkList = () => {
-  const list = testData.map((item, idx) => {
-    return <Talk key={idx} {...item} />
-  });
+class TalkList extends Component {
+  render = () => {
+    return (
+      <div>list</div>
+    );
+  }
+}
 
-  return (
-    <div>
-      {list}
-    </div>
-  );
-};
+// const TalkList = () => {
+//   const list = testData.map((item, idx) => {
+//     return <Talk key={idx} {...item} />
+//   });
+
+//   return (
+//     <div>
+//       {list}
+//     </div>
+//   );
+// };
 
 export default TalkList;

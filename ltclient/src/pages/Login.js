@@ -7,11 +7,17 @@ import { login } from '../actions';
 class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
+    let password = this.refs.password.value.trim();
+    let username = this.refs.username.value.trim();
+    let reqBody = {
+      password,
+    };
 
-    this.props.dispatch(login({
-      username: this.refs.username.value,
-      password: this.refs.password.value,
-    }));
+    // user can also login using email
+    let email = /^[\w.-]+@[\w][\w-]*?(\.[\w-]+)*$/;
+    email.test(username) ? reqBody.email = username
+                         : reqBody.username = username;
+    this.props.dispatch(login(reqBody));
   }
 
   componentWillReceiveProps = (nextProps) => {
