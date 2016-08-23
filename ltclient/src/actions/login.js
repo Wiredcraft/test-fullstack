@@ -24,6 +24,10 @@ function requestToken() {
 }
 
 function receiveToken(user, json) {
+  if (!json.id) {
+    throw new Error('Unable to login, is your username/password correct?');
+  }
+
   return {
     type: 'RECEIVE_TOKEN',
     token: json.id,
@@ -45,6 +49,14 @@ function dismissError() {
   };
 }
 
+function showError(dispatch, message, timeout) {
+  timeout = timeout || 3000;
+  dispatch(displayError(message));
+  setTimeout(() => {
+    dispatch(dismissError());
+  }, timeout);
+}
+
 function login(user) {
   return dispatch => {
     dispatch(requestToken());
@@ -52,11 +64,7 @@ function login(user) {
       .then(res => res.json())
       .then(json => dispatch(receiveToken(user, json)))
       .catch(err => {
-        console.log(err);
-        dispatch(displayError('Unable to login, is your username/password correct?'));
-        setTimeout(() => {
-          dispatch(dismissError());
-        }, 3000);
+        showError(dispatch, err.message)
       });
   };
 }
