@@ -32,16 +32,17 @@
   },
   "validations": [],
   "relations": {
-    "appUser": {
+    "submitter": {
       "type": "belongsTo",
       "model": "AppUser",
       "foreignKey": "submitterId"
     },
-    "appUsers": {
+    "voters": {
       "type": "hasMany",
       "model": "AppUser",
       "foreignKey": "talkId",
-      "through": "Vote"
+      "through": "Vote",
+      "keyThrough": "voterId"
     }
   },
   "acls": [

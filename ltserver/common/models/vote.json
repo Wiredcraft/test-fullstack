@@ -7,7 +7,18 @@
   },
   "properties": {},
   "validations": [],
-  "relations": {},
+  "relations": {
+    "appUser": {
+      "type": "belongsTo",
+      "model": "AppUser",
+      "foreignKey": "voterId"
+    },
+    "talk": {
+      "type": "belongsTo",
+      "model": "Talk",
+      "foreignKey": "talkId"
+    }
+  },
   "acls": [
     {
       "accessType": "*",
@@ -19,6 +30,12 @@
       "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$authenticated",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
       "permission": "ALLOW"
     }
   ],

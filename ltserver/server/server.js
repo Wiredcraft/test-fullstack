@@ -4,6 +4,7 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
+app.set('json spaces', 2); // TODO to remove
 
 app.start = function() {
   // start the web server

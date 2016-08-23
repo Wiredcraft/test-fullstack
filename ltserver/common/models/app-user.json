@@ -17,7 +17,8 @@
       "type": "hasMany",
       "model": "Talk",
       "foreignKey": "voterId",
-      "through": "Vote"
+      "through": "Vote",
+      "keyThrough": "talkId"
     }
   },
   "acls": [
@@ -26,6 +27,12 @@
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
     }
   ],
   "methods": {}
