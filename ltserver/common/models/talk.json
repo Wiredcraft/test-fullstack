@@ -28,6 +28,10 @@
       "type": "date",
       "required": true,
       "default": "1970-01-01T00:00:00.000Z"
+    },
+    "voteCount": {
+      "type": "number",
+      "default": 0
     }
   },
   "validations": [],

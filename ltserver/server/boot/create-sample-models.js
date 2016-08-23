@@ -95,10 +95,11 @@ module.exports = function(app) {
             talkId: talks[1].id,
             voterId: users[2].id,
           },
-          {
-            talkId: talks[1].id,
-            voterId: users[0].id,
-          },
+          // TODO race condition while populte models with sample data
+          // {
+          //   talkId: talks[1].id,
+          //   voterId: users[0].id,
+          // },
           {
             talkId: talks[2].id,
             voterId: users[1].id,

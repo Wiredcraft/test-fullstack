@@ -17,10 +17,4 @@ module.exports = function(Talk) {
       }
     }
   );
-
-  Talk.afterRemote('find', function(ctx, ins, next) {
-    console.log(ctx.req.accessToken);
-    console.log(ctx.result);
-    next();
-  });
 };
