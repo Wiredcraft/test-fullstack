@@ -1,5 +1,7 @@
 'use strict';
 
+var debug = require('debug')('lt:boot');
+
 module.exports = function(app) {
   // dataSource
   var ds = app.dataSources.db;
@@ -49,7 +51,7 @@ module.exports = function(app) {
         AppUser.create(appUsers, function(err, ret) {
           if (err) reject(err);
 
-          console.log(ret);
+          debug(ret);
           resolve(ret);
         });
       });
@@ -68,7 +70,7 @@ module.exports = function(app) {
         Talk.create(talks, function(err, ret) {
           if (err) reject(err);
 
-          console.log(ret);
+          debug(ret);
           resolve({
             users: users,
             talks: ret,
@@ -109,7 +111,7 @@ module.exports = function(app) {
         Vote.create(votes, function(err, ret) {
           if (err) reject(err);
 
-          console.log(ret);
+          debug(ret);
           resolve(ret);
         });
       });
