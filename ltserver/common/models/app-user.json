@@ -8,12 +8,12 @@
   "properties": {},
   "validations": [],
   "relations": {
-    "submits": {
+    "submitted": {
       "type": "hasMany",
       "model": "Talk",
       "foreignKey": "submitterId"
     },
-    "votes": {
+    "voted": {
       "type": "hasMany",
       "model": "Talk",
       "foreignKey": "voterId",

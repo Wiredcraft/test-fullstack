@@ -22,9 +22,39 @@ function updateTalkVoteCount(ctx, num) {
 
 module.exports = function(Vote) {
 
-  Vote.afterRemote('create', function (ctx, unused, next) {
-    debug('Vote: after create');
-    next();
+  Vote.upvote = function(talkId, voterId, cb) {
+    debug('args are ' + talkId + ' ' + voterId);
+    var data = {talkId: talkId, voterId: voterId};
+    Vote.findOrCreate({ where: data}, data, function(err, ins, created) {
+      if (err) cb(err);
+      if (created) {
+        // create
+        debug('created vote: ')
+        debug(ins);
+        cb(null, ins.talkId, ins.voterId, ins.id);
+      } else {
+        // exist
+        Vote.destroyAll({ where: data}, function(err, info) {
+          if(err) cb(err);
+          debug('destroy vote: ')
+          debug(ins)
+          cb(null, ins.talkId, ins.voterId, ins.id);
+        });
+      }
+    });
+  };
+
+  Vote.remoteMethod('upvote', {
+    accepts: [
+      {arg: 'talkId', type: 'number'},
+      {arg: 'voterId', type: 'number'}
+    ],
+    returns: [
+      {arg: 'talkId', type: 'number'},
+      {arg: 'voterId', type: 'number'},
+      {arg: 'id', type: 'number'}
+    ],
+    http: {path: '/upvote', verb: 'post'}
   });
 
   Vote.observe('before save', function (ctx, next) {

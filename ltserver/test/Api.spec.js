@@ -234,7 +234,7 @@ describe('API test', function() {
       return (
         '/api/AppUsers/' +
         userid +
-        '/votes' +
+        '/voted' +
         '?filter[order]=voteCount%20DESC' +
         '&filter[fields]=id'
       );
