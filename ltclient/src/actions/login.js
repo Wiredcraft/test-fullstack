@@ -1,21 +1,7 @@
-import fetch from 'isomorphic-fetch';
+import { commonFetch } from '../utils';
+import { showError } from './error';
 
 let apiEndpoint = 'http://localhost:3000/api/';
-
-function commonFetch(url, method, data) {
-  let opt = {};
-  opt.method = method || 'GET';
-  opt.headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  };
-
-  if (data) {
-    opt.body = JSON.stringify(data);
-  }
-
-  return fetch(url, opt);
-}
 
 function requestToken() {
   return {
@@ -42,26 +28,7 @@ function failToken() {
   };
 }
 
-function displayError(message) {
-  return {
-    type: 'DISPLAY_ERROR',
-    message,
-  };
-}
 
-function dismissError() {
-  return {
-    type: 'DISMISS_ERROR',
-  };
-}
-
-function showError(dispatch, message, timeout) {
-  timeout = timeout || 3000;
-  dispatch(displayError(message));
-  setTimeout(() => {
-    dispatch(dismissError());
-  }, timeout);
-}
 
 function login(user) {
   return dispatch => {

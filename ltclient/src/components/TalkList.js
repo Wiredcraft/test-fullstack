@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchTalks } from '../actions';
+import Loading from './Loading';
 
 import Talk from './Talk';
 
+// TODO to remove
 var testData = [
   {
     title: 'How to beat procratination',
@@ -23,25 +27,30 @@ var testData = [
   }
 ];
 
-
 class TalkList extends Component {
+
+  componentDidMount = () => {
+    this.props.dispatch(fetchTalks());
+  }
+
   render = () => {
-    return (
-      <div>list</div>
-    );
+    if (this.props.talks.isFetching) {
+      return <Loading/ >;
+    } else {
+      const list = this.props.talks.list.map((item, idx) => {
+        return <Talk key={idx} {...item} />
+      });
+      return (
+        <div>{list}</div>
+      );
+    }
   }
 }
 
-// const TalkList = () => {
-//   const list = testData.map((item, idx) => {
-//     return <Talk key={idx} {...item} />
-//   });
+function mapStateToProps(state) {
+  return {
+    talks: state.talks,
+  };
+}
 
-//   return (
-//     <div>
-//       {list}
-//     </div>
-//   );
-// };
-
-export default TalkList;
+export default connect(mapStateToProps)(TalkList);
