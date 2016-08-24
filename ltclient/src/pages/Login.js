@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, hashHistory } from 'react-router';
 import Loading from '../components/Loading';
-import { login } from '../actions';
+import { login, fetchUserVotedTalks } from '../actions';
 
 class Login extends Component {
   handleSubmit = (e) => {
@@ -22,6 +22,7 @@ class Login extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     if(nextProps.token) {
+      this.props.dispatch(fetchUserVotedTalks(nextProps.userid));
       hashHistory.push('/');
     }
   }
@@ -59,6 +60,7 @@ class Login extends Component {
 function mapStateToProps(state) {
   return {
     token: state.user.token,
+    userid: state.user.userid,
     isFetching: state.user.isFetching,
   };
 }

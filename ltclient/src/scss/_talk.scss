@@ -24,6 +24,13 @@ $vote-btn-color: #e8f5ff;
     height: $vote-btn-width;
     fill: darken($vote-btn-color, 70%);
   }
+  &.voted {
+    background: darken($vote-btn-color, 50%);
+    color: #f5f5f5;
+    svg {
+      fill: #f5f5f5;
+    }
+  }
 }
 
 .talk__wrapper {

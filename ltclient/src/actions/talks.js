@@ -14,12 +14,14 @@ function receiveTalkList(json) {
   let talks = json.map(item => {
     return {
       title: item.title,
+      id: item.id,
       speaker: item.speaker,
       cover: item.cover,
       description: item.description,
       submitter: item.submitter.username,
       createdAt: when(item.createdAt),
       upvote: item.voteCount,
+      voted: false,
     };
   });
 
