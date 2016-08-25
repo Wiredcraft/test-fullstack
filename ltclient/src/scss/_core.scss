@@ -22,6 +22,10 @@ ul {
   list-style: none;
 }
 
+button:focus {
+  outline: 0;
+}
+
 a {
   text-decoration: none;
   color: $theme-color;

@@ -1,4 +1,5 @@
 import { commonFetch } from '../utils';
+import { showError } from './error';
 
 let apiEndPoint = 'http://localhost:3000/api/';
 
@@ -42,38 +43,50 @@ function fetchUserVotedTalks(userid) {
 }
 
 /* Vote */
-function getUrlVote(userid, token) {
-  return `${apiEndPoint}Votes?access_token=${token}`;
+function getUrlVote(token) {
+  return `${apiEndPoint}Votes/upvote?access_token=${token}`;
 }
 
-function requestVote() {
+function requestVote(talkId) {
   return {
     type: 'REQUEST_VOTE',
+    talkId
   };
 }
 
-function receiveVote(json) {
-  return {
-    type: 'RECEIVE_VOTE',
-  };
-}
+// This action is not needed
+// function receiveVote(json) {
+//   return {
+//     type: 'RECEIVE_VOTE',
+//   };
+// }
 
-function failVote() {
+function failVote(talkId) {
   return {
     type: 'FAIL_VOTE',
+    talkId
   };
 }
 
-function vote(talkid, userid) {
+function vote(talkId) {
   return (dispatch, getState) => {
-    let token = getState().user.token;
-    dispatch(requestVote());
-    return commonFetch(getUrlVote(userid, token), 'POST', {voterId: userid, talkId: talkid})
+    let { token, userId } = getState().user;
+    if (!token) {
+      showError(dispatch, 'You can only vote after you logged in');
+      return;
+    }
+    dispatch(requestVote(talkId));
+    return commonFetch(getUrlVote(token), 'POST', {voterId: userId, talkId})
       .then(res => res.json())
-      .then(json => dispatch(receiveVote(json)))
+      // .then(json => dispatch(receiveVote(json))) // this is not necessary
+      .then(json => {
+        if(json.talkId !== talkId) {
+          throw new Error('Failed to vote');
+        }
+      })
       .catch(err => {
         showError(dispatch, err.message);
-        dispatch(failVote());
+        dispatch(failVote(talkId));
       });
   };
 }

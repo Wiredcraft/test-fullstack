@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchTalks } from '../actions';
+import { fetchTalks, vote } from '../actions';
 import Loading from './Loading';
 
 import Talk from './Talk';
@@ -30,14 +30,19 @@ var testData = [
 class TalkList extends Component {
 
   componentDidMount = () => {
-    this.props.dispatch(fetchTalks());
+    if(this.props.talks.shouldFetch) {
+      this.props.fetchTalks();
+    } else {
+      console.log('Talk list already there');  // TODO
+    }
   }
 
   render = () => {
     if (this.props.talks.isFetching) {
       return <Loading/ >;
     } else {
-      const list = this.props.talks.list.map((item, idx) => {
+      let list = this.props.talks.list.map((item, idx) => {
+        item.vote = this.props.vote;
         return <Talk key={idx} {...item} />
       });
       return (
@@ -47,10 +52,26 @@ class TalkList extends Component {
   }
 }
 
+TalkList.propTypes = {
+  talks: PropTypes.object.isRequired,
+  fetchTalks: PropTypes.func.isRequired,
+  vote: PropTypes.func.isRequired,
+};
+
 function mapStateToProps(state) {
   return {
     talks: state.talks,
   };
 }
 
-export default connect(mapStateToProps)(TalkList);
+function mapDispatchToProps(dispatch) {
+  return {
+    vote: talkId => dispatch(vote(talkId)),
+    fetchTalks: () => dispatch(fetchTalks())
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TalkList);

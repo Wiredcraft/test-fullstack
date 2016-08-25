@@ -11,7 +11,7 @@ function user(state = {
         isFetching: false,
         token: action.token,
         username: action.username,
-        userid: action.userid,
+        userId: action.userId,
       });
     case 'FAIL_TOKEN':
       return Object.assign({}, state, {

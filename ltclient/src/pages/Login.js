@@ -22,7 +22,7 @@ class Login extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     if(nextProps.token) {
-      this.props.dispatch(fetchUserVotedTalks(nextProps.userid));
+      this.props.dispatch(fetchUserVotedTalks(nextProps.userId));
       browserHistory.push('/');
     }
   }
@@ -59,7 +59,7 @@ class Login extends Component {
 function mapStateToProps(state) {
   return {
     token: state.user.token,
-    userid: state.user.userid,
+    userId: state.user.userId,
     isFetching: state.user.isFetching,
   };
 }

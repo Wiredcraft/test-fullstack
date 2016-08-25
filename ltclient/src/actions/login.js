@@ -18,7 +18,7 @@ function receiveToken(user, json) {
     type: 'RECEIVE_TOKEN',
     token: json.id,
     username: json.user.username, // FIXME user may use email to login
-    userid: json.userId,
+    userId: json.userId,
   };
 }
 

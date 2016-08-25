@@ -25,6 +25,7 @@ module.exports = function(app) {
       speaker: 'Jon Snow',
       cover: 'http://carlog.qiniudn.com/starry-night.jpg',
       createdAt: new Date(),
+      voteCount: 1,
     },
     {
       title: 'What happens after you click a link in your browser',
@@ -33,6 +34,7 @@ module.exports = function(app) {
       speaker: 'Arya Stark',
       cover: 'http://carlog.qiniudn.com/starry-night.jpg',
       createdAt: new Date() - DAY_IN_MILLISECONDS,
+      voteCount: 2,
     },
     {
       title: '10 thinks you did not know about React',
@@ -40,6 +42,7 @@ module.exports = function(app) {
       speaker: 'Bran Snow',
       cover: 'http://carlog.qiniudn.com/starry-night.jpg',
       createdAt: new Date() - DAY_IN_MILLISECONDS * 2,
+      voteCount: 1,
     },
   ];
 
@@ -97,11 +100,10 @@ module.exports = function(app) {
             talkId: talks[1].id,
             voterId: users[2].id,
           },
-          // TODO race condition while populte models with sample data
-          // {
-          //   talkId: talks[1].id,
-          //   voterId: users[0].id,
-          // },
+          {
+            talkId: talks[1].id,
+            voterId: users[0].id,
+          },
           {
             talkId: talks[2].id,
             voterId: users[1].id,

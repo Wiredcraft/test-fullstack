@@ -2,7 +2,10 @@ import React, { PropTypes }from 'react';
 
 import Icon from './Icon';
 
-const Talk = ({ title, cover, speaker, description, submitter, createdAt, upvote, voted }) => {
+const Talk = ({
+  vote, title, id, cover, speaker, description,
+  submitter, createdAt, upvote, voted
+}) => {
   let voteButtonClass = 'talk__vote';
   if (voted) voteButtonClass += ' voted';
   return (
@@ -25,22 +28,25 @@ const Talk = ({ title, cover, speaker, description, submitter, createdAt, upvote
       <div className="talk__footer">
         {`by ${submitter}, ${createdAt}`}
       </div>
-      <div className={voteButtonClass}>
+      <button className={voteButtonClass} onClick={() => vote(id)} >
         <Icon name="up" />
         <div>{upvote}</div>
-      </div>
+      </button>
     </div>
   );
 };
 
 Talk.propTypes = {
+  vote: PropTypes.func,
   title: PropTypes.string,
+  id: PropTypes.number,
   cover: PropTypes.string,
   speaker: PropTypes.string,
   description: PropTypes.string,
   submitter: PropTypes.string,
-  createdAt: PropTypes.string, // FIXME
+  createdAt: PropTypes.string,
   upvote: PropTypes.number,
+  voted: PropTypes.bool,
 };
 
 export default Talk;
