@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, hashHistory } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import Loading from '../components/Loading';
 import { login, fetchUserVotedTalks } from '../actions';
 
@@ -23,7 +23,7 @@ class Login extends Component {
   componentWillReceiveProps = (nextProps) => {
     if(nextProps.token) {
       this.props.dispatch(fetchUserVotedTalks(nextProps.userid));
-      hashHistory.push('/');
+      browserHistory.push('/');
     }
   }
 
@@ -37,7 +37,6 @@ class Login extends Component {
             <div className="login-form__header">
               <h3>Login</h3>
             </div>
-
             <form role="form" onSubmit={this.handleSubmit}>
               <label>Email / Username</label>
               <input type="text" ref="username" placeholder="Your Email or Username" />
