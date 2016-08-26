@@ -2,21 +2,18 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import Icon from './Icon';
 import UserNav from './UserNav';
 import Error from './Error';
 
-const Header = ({ username, error }) => {
-  return (
-    <div className="header">
-      <div className="header__logo">
-        <Link to="/">LT</Link>
-      </div>
-      <Error message={error} />
-      <UserNav username={username} />
+const Header = ({ username, error }) => (
+  <div className="header">
+    <div className="header__logo">
+      <Link to="/">LT</Link>
     </div>
-  );
-};
+    <Error message={error} />
+    <UserNav username={username} />
+  </div>
+);
 
 Header.propTypes = {
   username: PropTypes.string,
@@ -26,7 +23,7 @@ Header.propTypes = {
 function mapStateToProps(state) {
   return {
     username: state.user.username,
-    error: state.error
+    error: state.error,
   };
 }
 

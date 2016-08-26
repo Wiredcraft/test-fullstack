@@ -9,11 +9,11 @@ const Signup = () => (
       </div>
 
       <form role="form">
-        <label>Email</label>
+        <label htmlFor="email">Email</label>
         <input type="email" placeholder="john@example.com" />
-        <label>Username</label>
+        <label htmlFor="username">Username</label>
         <input type="text" placeholder="john" />
-        <label>Password</label>
+        <label htmlFor="password">Password</label>
         <input type="password" placeholder="Your password" />
         <button type="submit">Sign up</button>
       </form>

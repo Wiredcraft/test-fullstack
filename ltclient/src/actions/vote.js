@@ -1,10 +1,11 @@
 import { commonFetch } from '../utils';
 import { showError } from './error';
 
-let apiEndPoint = 'http://localhost:3000/api/';
+const apiEndPoint = 'http://localhost:3000/api/';
 
 /* User voted talks */
 function getUrlUserVotedTalks(userid, token) {
+  // eslint-disable-next-line max-len
   return `${apiEndPoint}AppUsers/${userid}/voted?filter[order]=voteCount%20DESC&filter[fields]=id&access_token=${token}`;
 }
 
@@ -15,7 +16,7 @@ function requestUserVotedTalks() {
 }
 
 function receiveUserVotedTalks(json) {
-  let votedTalks = json.map(item => item.id);
+  const votedTalks = json.map(item => item.id);
   return {
     type: 'RECEIVE_USERVOTEDTALKS',
     votedTalks,
@@ -30,7 +31,7 @@ function failUserVotedTalks() {
 
 function fetchUserVotedTalks(userid) {
   return (dispatch, getState) => {
-    let token = getState().user.token;
+    const token = getState().user.token;
     dispatch(requestUserVotedTalks());
     return commonFetch(getUrlUserVotedTalks(userid, token))
       .then(res => res.json())
@@ -50,7 +51,7 @@ function getUrlVote(token) {
 function requestVote(talkId) {
   return {
     type: 'REQUEST_VOTE',
-    talkId
+    talkId,
   };
 }
 
@@ -64,23 +65,22 @@ function requestVote(talkId) {
 function failVote(talkId) {
   return {
     type: 'FAIL_VOTE',
-    talkId
+    talkId,
   };
 }
 
 function vote(talkId) {
   return (dispatch, getState) => {
-    let { token, userId } = getState().user;
+    const { token, userId } = getState().user;
     if (!token) {
-      showError(dispatch, 'You can only vote after you logged in');
-      return;
+      return showError(dispatch, 'You can only vote after you logged in');
     }
     dispatch(requestVote(talkId));
-    return commonFetch(getUrlVote(token), 'POST', {voterId: userId, talkId})
+    return commonFetch(getUrlVote(token), 'POST', { voterId: userId, talkId })
       .then(res => res.json())
       // .then(json => dispatch(receiveVote(json))) // this is not necessary
       .then(json => {
-        if(json.talkId !== talkId) {
+        if (json.talkId !== talkId) {
           throw new Error('Failed to vote');
         }
       })

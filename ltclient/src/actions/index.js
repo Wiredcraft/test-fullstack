@@ -6,5 +6,5 @@ export {
   login,
   fetchTalks,
   fetchUserVotedTalks,
-  vote
+  vote,
 };

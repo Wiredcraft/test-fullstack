@@ -1,7 +1,7 @@
 import { when, commonFetch } from '../utils';
 import { showError } from './error';
 
-let url = 'http://localhost:3000/api/Talks?filter[order]=voteCount%20DESC&filter[include]=submitter';
+const url = 'http://localhost:3000/api/Talks?filter[order]=voteCount%20DESC&filter[include]=submitter';
 
 function requestTalkList() {
   return {
@@ -11,19 +11,17 @@ function requestTalkList() {
 
 function receiveTalkList(json) {
   // preprocessing
-  let talks = json.map(item => {
-    return {
-      title: item.title,
-      id: item.id,
-      speaker: item.speaker,
-      cover: item.cover,
-      description: item.description,
-      submitter: item.submitter.username,
-      createdAt: when(item.createdAt),
-      upvote: item.voteCount,
-      voted: false,
-    };
-  });
+  const talks = json.map(item => ({
+    title: item.title,
+    id: item.id,
+    speaker: item.speaker,
+    cover: item.cover,
+    description: item.description,
+    submitter: item.submitter.username,
+    createdAt: when(item.createdAt),
+    upvote: item.voteCount,
+    voted: false,
+  }));
 
   return {
     type: 'RECEIVE_TALKLIST',

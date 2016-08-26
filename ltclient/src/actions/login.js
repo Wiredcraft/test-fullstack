@@ -1,7 +1,7 @@
 import { commonFetch } from '../utils';
 import { showError } from './error';
 
-let apiEndpoint = 'http://localhost:3000/api/';
+const apiEndpoint = 'http://localhost:3000/api/';
 
 function requestToken() {
   return {
@@ -28,12 +28,10 @@ function failToken() {
   };
 }
 
-
-
 function login(user) {
   return dispatch => {
     dispatch(requestToken());
-    return commonFetch(apiEndpoint + 'AppUsers/login?include=user', 'POST', user)
+    return commonFetch(`${apiEndpoint}AppUsers/login?include=user`, 'POST', user)
       .then(res => res.json())
       .then(json => dispatch(receiveToken(user, json)))
       .catch(err => {

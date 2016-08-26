@@ -1,11 +1,9 @@
-import React, { PropTypes }from 'react';
+import React, { PropTypes } from 'react';
 
 import Icon from './Icon';
 
-const Talk = ({
-  vote, title, id, cover, speaker, description,
-  submitter, createdAt, upvote, voted
-}) => {
+// eslint-disable-next-line max-len
+const Talk = ({ vote, title, id, cover, speaker, description, submitter, createdAt, upvote, voted }) => {
   let voteButtonClass = 'talk__vote';
   if (voted) voteButtonClass += ' voted';
   return (

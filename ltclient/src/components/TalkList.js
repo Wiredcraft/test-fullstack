@@ -5,32 +5,10 @@ import Loading from './Loading';
 
 import Talk from './Talk';
 
-// TODO to remove
-var testData = [
-  {
-    title: 'How to beat procratination',
-    speaker: 'Jon Snow',
-    cover: 'http://carlog.qiniudn.com/starry-night.jpg',
-    description: 'Jon talks about how to beat procratination',
-    submitter: 'bob',
-    createdAt: '3 days ago',
-    upvote: 233,
-  },
-  {
-    title: 'How to beat procratination',
-    speaker: 'Jon Snow',
-    cover: 'http://carlog.qiniudn.com/starry-night.jpg',
-    description: 'Jon talks about how to beat procratination',
-    submitter: 'alice',
-    createdAt: '2 hours ago',
-    upvote: 56,
-  }
-];
-
 class TalkList extends Component {
 
   componentDidMount = () => {
-    if(this.props.talks.shouldFetch) {
+    if (this.props.talks.shouldFetch) {
       this.props.fetchTalks();
     } else {
       console.log('Talk list already there');  // TODO
@@ -39,16 +17,15 @@ class TalkList extends Component {
 
   render = () => {
     if (this.props.talks.isFetching) {
-      return <Loading/ >;
-    } else {
-      let list = this.props.talks.list.map((item, idx) => {
-        item.vote = this.props.vote;
-        return <Talk key={idx} {...item} />
-      });
-      return (
-        <div>{list}</div>
-      );
+      return <Loading />;
     }
+    let list = this.props.talks.list.map((item, idx) => {
+      item.vote = this.props.vote;
+      return <Talk key={idx} {...item} />;
+    });
+    return (
+      <div>{list}</div>
+    );
   }
 }
 
@@ -67,7 +44,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     vote: talkId => dispatch(vote(talkId)),
-    fetchTalks: () => dispatch(fetchTalks())
+    fetchTalks: () => dispatch(fetchTalks()),
   };
 }
 

@@ -10,7 +10,7 @@ import routes from './routes';
 
 import './scss/main.scss';
 
-const store = configureStore()
+const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 // TODO to use browserHistory
 ReactDOM.render(
