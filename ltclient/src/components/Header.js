@@ -2,16 +2,21 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+import Icon from './Icon';
 import UserNav from './UserNav';
 import Error from './Error';
 
 const Header = ({ username, error }) => (
   <div className="header">
-    <div className="header__logo">
-      <Link to="/">LT</Link>
+    <div className="header__inner">
+      <div className="header__logo">
+        <Link to="/">
+          <Icon name="lt" />
+        </Link>
+      </div>
+      <Error message={error} />
+      <UserNav username={username} />
     </div>
-    <Error message={error} />
-    <UserNav username={username} />
   </div>
 );
 
