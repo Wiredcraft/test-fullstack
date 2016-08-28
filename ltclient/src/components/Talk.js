@@ -24,11 +24,11 @@ const Talk = ({ vote, title, id, cover, speaker, description, submitter, created
         </div>
       </div>
       <div className="talk__footer">
-        {`by ${submitter}, ${createdAt}`}
+        {`submitted by ${submitter}, ${createdAt}`}
       </div>
       <button className={voteButtonClass} onClick={() => vote(id)} >
         <Icon name="up" />
-        <div>{upvote}</div>
+        <div className="upvote">{upvote}</div>
       </button>
     </div>
   );

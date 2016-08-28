@@ -21,9 +21,12 @@ $vote-btn-color: #e8f5ff;
   padding: 0;
   font-size: 0.7em;
   svg {
-    width: $vote-btn-width;
-    height: $vote-btn-width;
-    fill: darken($vote-btn-color, 70%);
+    width: 12px;
+    height: 6px;
+    fill: darken($vote-btn-color, 60%);
+  }
+  .upvote {
+    padding: 5px 0;
   }
   &.voted {
     background: darken($vote-btn-color, 50%);

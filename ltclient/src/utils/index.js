@@ -8,19 +8,20 @@ const DAY3 = DAY * 3;
 // return a friendly time
 // '2016-08-24T06:50:06.018Z' => '3 hours ago'
 function when(t) {
-  if (typeof t === 'string') t = new Date(t);
-  t = new Date() - t;
-  if (t > DAY3) {
-    return `on ${t.toLocaleDateString()}`;
+  let absolute = t;
+  if (typeof t === 'string') absolute = new Date(t);
+  const diff = new Date() - absolute;
+  if (diff > DAY3) {
+    return `on ${absolute.toLocaleDateString()}`;
   }
-  if (t > DAY) {
-    return `${Math.floor(t / DAY)} days ago`;
+  if (diff > DAY) {
+    return `${Math.floor(diff / DAY)} days ago`;
   }
-  if (t > HOUR) {
-    return `${Math.floor(t / HOUR)} hours ago`;
+  if (diff > HOUR) {
+    return `${Math.floor(diff / HOUR)} hours ago`;
   }
-  if (t > MIN) {
-    return `${Math.floor(t / MIN)} minutes ago`;
+  if (diff > MIN) {
+    return `${Math.floor(diff / MIN)} minutes ago`;
   }
   return 'just now';
 }

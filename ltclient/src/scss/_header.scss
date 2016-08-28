@@ -1,21 +1,37 @@
-$header-height: 40px;
+$header-height: 70px;
+$header-color: #fff;
 
 .header {
+  height: $header-height;
+  background-color: $header-color;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.header__inner {
   display: flex;
+  height: $header-height;
   justify-content: space-between;
   align-items: center;
-  height: $header-height;
-  background-color: #eee;
+  margin: 0 auto;
+  max-width: 860px;
   position: relative;
 }
 
 .header__logo {
   padding-left: 10px;
+  .lt {
+    width: 166px;
+    height: 32px;
+    fill: #F8E81C;
+    color: #FF7575;
+  }
 }
 
 .header__user {
   padding-right: 10px;
   height: $header-height;
+  display: flex;
+  align-items: center;
   &:hover {
     .header__userdropdown {
       display: block;
@@ -43,6 +59,8 @@ $header-height: 40px;
   top: $header-height;
   right: 0px;
   padding: 10px;
-  background-color: #eee;
+  background-color: $header-color;
+  border: 1px solid #e3e3e3;
+  border-top: none;
   z-index: 1;
 }

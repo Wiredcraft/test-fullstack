@@ -2,7 +2,11 @@
 @import "normalize";
 @import "core";
 
+@import "form";
+
 // components
+@import "home";
+@import "submit";
 @import "talk";
 @import "header";
 @import "login";

@@ -1,3 +1,4 @@
+// `talks` reducer will handle ALL talks related action
 function talks(state = {
   isFetching: false,
   shouldFetch: true,
@@ -5,6 +6,7 @@ function talks(state = {
 }, action) {
   switch (action.type) {
     case 'REQUEST_TALKLIST':
+    case 'REQUEST_SUBMIT':
       return Object.assign({}, state, {
         isFetching: true,
       });
@@ -47,6 +49,15 @@ function talks(state = {
       });
       return Object.assign({}, state, { list });
     }
+    case 'RECEIVE_SUBMIT': {
+      // TODO put the new one at the end?
+      const list = state.list.concat(action.talk);
+      return Object.assign({}, state, {
+        isFetching: false,
+        list
+      });
+    }
+    case 'FAIL_SUBMIT':
     case 'REQUEST_USERVOTEDTALKS':
     case 'FAIL_USERVOTEDTALKS':
     default:
