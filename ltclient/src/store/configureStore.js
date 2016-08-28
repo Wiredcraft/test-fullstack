@@ -2,11 +2,16 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
+import { loadState } from '../utils';
 
-export default function configureStore(preloadedState) {
+const user = loadState();
+
+export default function configureStore() {
   const store = createStore(
     rootReducer,
-    preloadedState,
+    {
+      user,
+    },
     applyMiddleware(thunkMiddleware, createLogger()),
   );
 

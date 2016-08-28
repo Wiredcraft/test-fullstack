@@ -1,4 +1,4 @@
-import { commonFetch } from '../utils';
+import { commonFetch, saveState } from '../utils';
 import { showError } from './error';
 
 const apiEndpoint = 'http://localhost:3000/api/';
@@ -13,6 +13,12 @@ function receiveToken(user, json) {
   if (!json.id) {
     throw new Error('Unable to login, is your username/password correct?');
   }
+
+  saveState({
+    username: json.user.username,
+    userId: json.userId,
+    token: json.id,
+  });
 
   return {
     type: 'RECEIVE_TOKEN',

@@ -41,4 +41,25 @@ function commonFetch(url, method, data) {
   return fetch(url, opt);
 }
 
-export { when, commonFetch };
+function loadState() {
+  try {
+    const serialized = localStorage.getItem('state');
+    if (serialized === null) {
+      return undefined;
+    }
+    return JSON.parse(serialized);
+  } catch (err) {
+    return undefined;
+  }
+}
+
+function saveState(state) {
+  try {
+    const serialized = JSON.stringify(state);
+    localStorage.setItem('state', serialized);
+  } catch (err) {
+    // ignore
+  }
+}
+
+export { when, commonFetch, loadState, saveState };
