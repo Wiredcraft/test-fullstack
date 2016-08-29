@@ -13,7 +13,6 @@ function requestSubmit() {
 }
 
 function receiveSubmit(json, username) {
-  console.log(json);
   const talk = json;
   talk.submitter = username;
   talk.createdAt = when(talk.createdAt);
@@ -29,6 +28,18 @@ function receiveSubmit(json, username) {
 function failSubmit() {
   return {
     type: 'FAIL_SUBMIT',
+  };
+}
+
+/**
+ * after user submit a talk
+ * we will render a 'thank you' and 'submit another one?'
+ * a button will be used to fireup 'ANOTHER_SUBMIT'
+ * this action will dismiss the aforementioned 'thank you' thing
+ */
+function submitAnother() {
+  return {
+    type: 'SUBMIT_ANOTHER',
   };
 }
 
@@ -56,4 +67,4 @@ function submit({ title, description, speaker, cover }) {
   };
 }
 
-export { submit };
+export { submit, submitAnother };

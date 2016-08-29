@@ -62,8 +62,14 @@ function talks(state = {
       return Object.assign({}, state, {
         isFetching: false,
         list,
+        justSubmitted: true,
       });
     }
+    case '@@router/LOCATION_CHANGE':
+    case 'SUBMIT_ANOTHER': // `view` will display submit form
+      return Object.assign({}, state, {
+        justSubmitted: false,
+      });
     case 'FAIL_SUBMIT':
     case 'REQUEST_USERVOTEDTALKS':
     case 'FAIL_USERVOTEDTALKS':

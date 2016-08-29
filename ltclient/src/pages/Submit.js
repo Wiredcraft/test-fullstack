@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Icon from '../components/Icon';
-import { submit } from '../actions';
+import { submit, submitAnother } from '../actions';
 
 class Submit extends Component {
 
@@ -20,8 +20,17 @@ class Submit extends Component {
     }));
   }
 
+  renderSubmitAnother = () => {
+    return (
+      <div className="submit prompt">
+        <p>Thank you for submit!</p>
+        <button onClick={() => this.props.dispatch(submitAnother())}>Submit another one?</button>
+      </div>
+    );
+  }
+
   render = () => {
-    const { isFetching, userId } = this.props;
+    const { isFetching, userId, justSubmitted } = this.props;
     if (isFetching) {
       return <Loading />;
     }
@@ -35,6 +44,9 @@ class Submit extends Component {
           </div>
         </div>
       );
+    }
+    if (justSubmitted) {
+      return this.renderSubmitAnother();
     }
     return (
       <div className="main">
@@ -81,6 +93,7 @@ Submit.propTypes = {
   dispatch: PropTypes.func,
   isFetching: PropTypes.bool,
   userId: PropTypes.number,
+  justSubmitted: PropTypes.bool
 };
 
 
@@ -88,6 +101,7 @@ function mapStateToProps(state) {
   return {
     userId: state.user.userId,
     isFetching: state.talks.isFetching,
+    justSubmitted: state.talks.justSubmitted,
   };
 }
 

@@ -1,6 +1,6 @@
 import { login, logout } from './login';
 import { fetchTalks } from './talks';
-import { submit } from './submit';
+import { submit, submitAnother } from './submit';
 import { fetchUserVotedTalks, vote } from './vote';
 
 export {
@@ -8,6 +8,7 @@ export {
   logout,
   fetchTalks,
   submit,
+  submitAnother,
   fetchUserVotedTalks,
   vote,
 };
