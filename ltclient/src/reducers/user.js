@@ -14,6 +14,7 @@ function user(state = {
         userId: action.userId,
       });
     case 'FAIL_TOKEN':
+    case 'START_LOGOUT':
       return Object.assign({}, state, {
         isFetching: false,
         username: undefined,

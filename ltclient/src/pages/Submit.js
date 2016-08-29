@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Loading from '../components/Loading';
 import Icon from '../components/Icon';
@@ -77,6 +76,13 @@ class Submit extends Component {
     );
   }
 }
+
+Submit.propTypes = {
+  dispatch: PropTypes.func,
+  isFetching: PropTypes.bool,
+  userId: PropTypes.number,
+};
+
 
 function mapStateToProps(state) {
   return {

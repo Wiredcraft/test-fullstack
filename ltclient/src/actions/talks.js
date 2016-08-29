@@ -1,7 +1,12 @@
 import { when, commonFetch } from '../utils';
 import { showError } from './error';
+import { intFetchUserVotedTalks } from './vote';
+import { apiEndpoint } from '../constants';
 
-const url = 'http://localhost:3000/api/Talks?filter[order]=voteCount%20DESC&filter[include]=submitter';
+function getTalkListUrl() {
+  // eslint-disable-next-line max-len
+  return `${apiEndpoint}Talks?filter[order]=voteCount%20DESC&filter[include]=submitter`;
+}
 
 function requestTalkList() {
   return {
@@ -36,11 +41,14 @@ function failTalkList() {
 }
 
 function fetchTalks() {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const { userId } = getState().user;
     dispatch(requestTalkList());
-    return commonFetch(url)
+    return commonFetch(getTalkListUrl())
       .then(res => res.json())
       .then(json => dispatch(receiveTalkList(json)))
+      // also refresh user vote history
+      .then(() => intFetchUserVotedTalks(dispatch, getState, userId))
       .catch(err => {
         showError(dispatch, err.message);
         dispatch(failTalkList());

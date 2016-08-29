@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import Icon from './Icon';
 
-const UserNav = ({ username }) => {
+const UserNav = ({ username, logout }) => {
   if (!username) {
     return (
       <div className="header__user">
@@ -18,7 +18,7 @@ const UserNav = ({ username }) => {
         <Icon name="expand" />
       </div>
       <div className="header__userdropdown">
-        <button>Logout</button>
+        <button onClick={logout}>Logout</button>
       </div>
     </div>
   );
@@ -26,6 +26,7 @@ const UserNav = ({ username }) => {
 
 UserNav.propTypes = {
   username: PropTypes.string,
+  logout: PropTypes.func.isRequired,
 };
 
 export default UserNav;

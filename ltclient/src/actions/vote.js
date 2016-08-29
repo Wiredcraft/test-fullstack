@@ -1,12 +1,11 @@
 import { commonFetch } from '../utils';
 import { showError } from './error';
-
-const apiEndPoint = 'http://localhost:3000/api/';
+import { apiEndpoint } from '../constants';
 
 /* User voted talks */
-function getUrlUserVotedTalks(userid, token) {
+function getUrlUserVotedTalks(userId, token) {
   // eslint-disable-next-line max-len
-  return `${apiEndPoint}AppUsers/${userid}/voted?filter[order]=voteCount%20DESC&filter[fields]=id&access_token=${token}`;
+  return `${apiEndpoint}AppUsers/${userId}/voted?filter[order]=voteCount%20DESC&filter[fields]=id&access_token=${token}`;
 }
 
 function requestUserVotedTalks() {
@@ -29,23 +28,27 @@ function failUserVotedTalks() {
   };
 }
 
-function fetchUserVotedTalks(userid) {
-  return (dispatch, getState) => {
-    const token = getState().user.token;
-    dispatch(requestUserVotedTalks());
-    return commonFetch(getUrlUserVotedTalks(userid, token))
-      .then(res => res.json())
-      .then(json => dispatch(receiveUserVotedTalks(json)))
-      .catch(err => {
-        showError(dispatch, err.message);
-        dispatch(failUserVotedTalks());
-      });
-  };
+function intFetchUserVotedTalks(dispatch, getState, userId) {
+  if (!userId) return Promise.resolve(undefined);
+
+  const token = getState().user.token;
+  dispatch(requestUserVotedTalks());
+  return commonFetch(getUrlUserVotedTalks(userId, token))
+    .then(res => res.json())
+    .then(json => dispatch(receiveUserVotedTalks(json)))
+    .catch(err => {
+      showError(dispatch, err.message);
+      dispatch(failUserVotedTalks());
+    });
+}
+
+function fetchUserVotedTalks(userId) {
+  return (dispatch, getState) => intFetchUserVotedTalks(dispatch, getState, userId);
 }
 
 /* Vote */
 function getUrlVote(token) {
-  return `${apiEndPoint}Votes/upvote?access_token=${token}`;
+  return `${apiEndpoint}Votes/upvote?access_token=${token}`;
 }
 
 function requestVote(talkId) {
@@ -91,4 +94,4 @@ function vote(talkId) {
   };
 }
 
-export { fetchUserVotedTalks, vote };
+export { fetchUserVotedTalks, intFetchUserVotedTalks, vote };

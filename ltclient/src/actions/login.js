@@ -1,7 +1,6 @@
-import { commonFetch, saveState } from '../utils';
+import { commonFetch, saveState, clearState } from '../utils';
 import { showError } from './error';
-
-const apiEndpoint = 'http://localhost:3000/api/';
+import { apiEndpoint } from '../constants';
 
 function requestToken() {
   return {
@@ -18,6 +17,8 @@ function receiveToken(user, json) {
     username: json.user.username,
     userId: json.userId,
     token: json.id,
+    loginAt: new Date(),
+    ttl: json.ttl,
   });
 
   return {
@@ -47,4 +48,31 @@ function login(user) {
   };
 }
 
-export { login };
+function startLogout() {
+  clearState();
+  return {
+    type: 'START_LOGOUT',
+  };
+}
+
+function logout() {
+  return (dispatch, getState) => {
+    const { token } = getState().user;
+    if (!token) {
+      // we should nevel run this block of code
+      return showError(dispatch, 'You are not logged-in');
+    }
+    dispatch(startLogout());
+    dispatch({
+      type: 'CLEAN_USERVOTEDTALKS',
+    });
+    return commonFetch(`${apiEndpoint}AppUsers/logout?access_token=${token}`, 'POST', {})
+      // .then(() => dispatch(doneLogout()))
+      .catch(err => {
+        showError(dispatch, err.message);
+        // dispatch(failLogout());
+      });
+  };
+}
+
+export { login, logout };

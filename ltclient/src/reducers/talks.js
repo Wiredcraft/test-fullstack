@@ -49,12 +49,19 @@ function talks(state = {
       });
       return Object.assign({}, state, { list });
     }
+    case 'CLEAN_USERVOTEDTALKS': {
+      const list = state.list.map(talk => {
+        talk.voted = false;
+        return talk;
+      });
+      return Object.assign({}, state, { list });
+    }
     case 'RECEIVE_SUBMIT': {
       // TODO put the new one at the end?
       const list = state.list.concat(action.talk);
       return Object.assign({}, state, {
         isFetching: false,
-        list
+        list,
       });
     }
     case 'FAIL_SUBMIT':

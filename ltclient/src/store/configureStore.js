@@ -4,13 +4,21 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 import { loadState } from '../utils';
 
-const user = loadState();
+function loadUserState() {
+  if (process.env.NODE_ENV !== 'production') return undefined;
+  const state = loadState();
+  const now = new Date();
+  if (state && state.loginAt && (now - state.loginAt >= state.ttl * 1000)) {
+    return undefined;
+  }
+  return state;
+}
 
 export default function configureStore() {
   const store = createStore(
     rootReducer,
     {
-      user,
+      user: loadUserState(),
     },
     applyMiddleware(thunkMiddleware, createLogger()),
   );

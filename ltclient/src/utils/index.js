@@ -62,4 +62,12 @@ function saveState(state) {
   }
 }
 
-export { when, commonFetch, loadState, saveState };
+function clearState() {
+  try {
+    localStorage.removeItem('state');
+  } catch (err) {
+    // ignore
+  }
+}
+
+export { when, commonFetch, loadState, saveState, clearState };

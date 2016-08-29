@@ -22,7 +22,7 @@ function receiveSubmit(json, username) {
 
   return {
     type: 'RECEIVE_SUBMIT',
-    talk
+    talk,
   };
 }
 
