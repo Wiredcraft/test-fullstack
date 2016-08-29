@@ -35,16 +35,52 @@ function failToken() {
   };
 }
 
+function intLogin(dispatch, user) {
+  dispatch(requestToken());
+  return commonFetch(`${apiEndpoint}AppUsers/login?include=user`, 'POST', user)
+    .then(res => res.json())
+    .then(json => dispatch(receiveToken(user, json)))
+    .catch(err => {
+      showError(dispatch, err.message);
+      dispatch(failToken());
+    });
+}
+
 function login(user) {
-  return dispatch => {
-    dispatch(requestToken());
-    return commonFetch(`${apiEndpoint}AppUsers/login?include=user`, 'POST', user)
+  return dispatch => intLogin(dispatch, user);
+}
+
+function startSignup(user) {
+  return {
+    type: 'START_SIGNUP',
+  };
+}
+
+function doneSignup(json) {
+  // REST api return value
+  // {
+  //   "username": "dave",
+  //   "email": "dave@example.com",
+  //   "id": 4
+  // }
+  return {
+    type: 'DONE_SIGNUP',
+  };
+}
+
+function signup(user) {
+  return (dispatch) => {
+    dispatch(startSignup());
+    return commonFetch(`${apiEndpoint}AppUsers`, 'POST', user)
       .then(res => res.json())
-      .then(json => dispatch(receiveToken(user, json)))
+      .then(json => dispatch(doneSignup(json)))
+      .then(() => intLogin(dispatch, {
+        username: user.username,
+        password: user.password,
+      }))
       .catch(err => {
         showError(dispatch, err.message);
-        dispatch(failToken());
-      });
+      });;
   };
 }
 
@@ -75,4 +111,4 @@ function logout() {
   };
 }
 
-export { login, logout };
+export { login, logout, signup };

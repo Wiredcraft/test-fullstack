@@ -3,6 +3,7 @@ function user(state = {
 }, action) {
   switch (action.type) {
     case 'REQUEST_TOKEN':
+    case 'START_SIGNUP':
       return Object.assign({}, state, {
         isFetching: true,
       });
@@ -12,6 +13,10 @@ function user(state = {
         token: action.token,
         username: action.username,
         userId: action.userId,
+      });
+    case 'DONE_SIGNUP':
+      return Object.assign({}, state, {
+        isFetching: false,
       });
     case 'FAIL_TOKEN':
     case 'START_LOGOUT':
