@@ -11,6 +11,12 @@ footer {
   font-size: 0.9em;
   color: #ddd;
   padding: 25px 0;
+  a {
+    color: #ddd;
+    &:hover {
+      color: #555;
+    }
+  }
 }
 
 h1 {

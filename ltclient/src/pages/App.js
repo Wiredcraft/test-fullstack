@@ -8,7 +8,9 @@ const App = ({ children }) => (
   <div>
     <Header />
     {children}
-    <footer>This is the humble footer</footer>
+    <footer>
+      By <a href="https://github.com/haishanh">haishanh</a>
+    </footer>
   </div>
 );
 

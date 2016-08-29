@@ -9,8 +9,14 @@ const Talk = ({ vote, title, id, cover, speaker, description, submitter, created
   return (
     <div className="talk">
       <div className="talk__wrapper">
-        <div className="talk__cover">
-          <img src={cover} alt="cover" />
+        <div className="cover">
+          <div className="cover__inner cover--fillin">
+            <img src={cover} alt="cover" />
+          </div>
+          <div className="cover__overlay cover--fillin">
+            <Icon name="play" />
+          </div>
+
         </div>
         <div className="talk__header">
           <span className="talk__title">{title}</span>
