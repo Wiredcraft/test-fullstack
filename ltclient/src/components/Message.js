@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
-const Error = ({ message }) => {
+const Message = ({ message }) => {
   if (message.length > 0) {
     return (
-      <div className="error">
+      <div className="message">
         {message}
       </div>
     );
@@ -11,8 +11,8 @@ const Error = ({ message }) => {
   return null;
 };
 
-Error.propTypes = {
+Message.propTypes = {
   message: PropTypes.string.isRequired,
 };
 
-export default Error;
+export default Message;

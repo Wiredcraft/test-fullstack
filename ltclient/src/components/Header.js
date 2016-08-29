@@ -5,7 +5,7 @@ import { logout } from '../actions';
 
 import Icon from './Icon';
 import UserNav from './UserNav';
-import Error from './Error';
+import Message from './Message';
 
 const Header = ({ username, error, dispatchLogout }) => (
   <div className="header">
@@ -15,12 +15,12 @@ const Header = ({ username, error, dispatchLogout }) => (
           <Icon name="lt" />
         </Link>
       </div>
-      <Error message={error} />
       <UserNav
         username={username}
         logout={dispatchLogout}
       />
     </div>
+    <Message message={error} />
   </div>
 );
 
