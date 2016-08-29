@@ -1,3 +1,13 @@
+function sortTalks(a, b) {
+  if (a.upvote > b.upvote) {
+    return -1;
+  }
+  if (a.upvote < b.upvote) {
+    return 1;
+  }
+  return 0;
+}
+
 // `talks` reducer will handle ALL talks related action
 function talks(state = {
   isFetching: false,
@@ -35,6 +45,7 @@ function talks(state = {
         }
         return talk;
       });
+      list.sort(sortTalks);
       // refresh the view before making the real network request
       return Object.assign({}, state, { list });
     }
