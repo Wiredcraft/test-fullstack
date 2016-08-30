@@ -2,12 +2,12 @@ function user(state = {
   isFetching: false,
 }, action) {
   switch (action.type) {
-    case 'REQUEST_TOKEN':
+    case 'START_LOGIN':
     case 'START_SIGNUP':
       return Object.assign({}, state, {
         isFetching: true,
       });
-    case 'RECEIVE_TOKEN':
+    case 'DONE_LOGIN':
       return Object.assign({}, state, {
         isFetching: false,
         token: action.token,
@@ -15,10 +15,11 @@ function user(state = {
         userId: action.userId,
       });
     case 'DONE_SIGNUP':
+    case 'FAIL_SIGNUP':
       return Object.assign({}, state, {
         isFetching: false,
       });
-    case 'FAIL_TOKEN':
+    case 'FAIL_LOGIN':
     case 'START_LOGOUT':
       return Object.assign({}, state, {
         isFetching: false,

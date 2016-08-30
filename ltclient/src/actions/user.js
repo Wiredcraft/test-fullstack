@@ -2,13 +2,13 @@ import { commonFetch, saveState, clearState } from '../utils';
 import { showError } from './error';
 import { apiEndpoint } from '../constants';
 
-function requestToken() {
+function startLogin() {
   return {
-    type: 'REQUEST_TOKEN',
+    type: 'START_LOGIN',
   };
 }
 
-function receiveToken(user, json) {
+function doneLogin(user, json) {
   if (!json.id) {
     throw new Error('Unable to login, is your username/password correct?');
   }
@@ -22,27 +22,27 @@ function receiveToken(user, json) {
   });
 
   return {
-    type: 'RECEIVE_TOKEN',
+    type: 'DONE_LOGIN',
     token: json.id,
     username: json.user.username, // FIXME user may use email to login
     userId: json.userId,
   };
 }
 
-function failToken() {
+function failLogin() {
   return {
-    type: 'FAIL_TOKEN',
+    type: 'FAIL_LOGIN',
   };
 }
 
 function intLogin(dispatch, user) {
-  dispatch(requestToken());
+  dispatch(startLogin());
   return commonFetch(`${apiEndpoint}AppUsers/login?include=user`, 'POST', user)
     .then(res => res.json())
-    .then(json => dispatch(receiveToken(user, json)))
+    .then(json => dispatch(doneLogin(user, json)))
     .catch(err => {
       showError(dispatch, err.message);
-      dispatch(failToken());
+      dispatch(failLogin());
     });
 }
 
@@ -50,7 +50,7 @@ function login(user) {
   return dispatch => intLogin(dispatch, user);
 }
 
-function startSignup(user) {
+function startSignup() {
   return {
     type: 'START_SIGNUP',
   };
@@ -63,8 +63,21 @@ function doneSignup(json) {
   //   "email": "dave@example.com",
   //   "id": 4
   // }
+  if (json.error) {
+    let msg = json.error.message;
+    if (json.error.name === 'ValidationError') {
+      msg = 'Username or Email already exist';
+    }
+    throw new Error(msg);
+  }
   return {
     type: 'DONE_SIGNUP',
+  };
+}
+
+function failSignup() {
+  return {
+    type: 'FAIL_SIGNUP',
   };
 }
 
@@ -80,7 +93,8 @@ function signup(user) {
       }))
       .catch(err => {
         showError(dispatch, err.message);
-      });;
+        dispatch(failSignup());
+      });
   };
 }
 

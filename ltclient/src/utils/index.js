@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
 
 const MIN = 60 * 1000;
 const HOUR = MIN * 60;

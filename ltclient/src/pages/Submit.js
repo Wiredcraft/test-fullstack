@@ -20,14 +20,12 @@ class Submit extends Component {
     }));
   }
 
-  renderSubmitAnother = () => {
-    return (
-      <div className="submit prompt">
-        <p>Thank you for submit!</p>
-        <button onClick={() => this.props.dispatch(submitAnother())}>Submit another one?</button>
-      </div>
-    );
-  }
+  renderSubmitAnother = () => (
+    <div className="submit prompt">
+      <p>Thank you for submit!</p>
+      <button onClick={() => this.props.dispatch(submitAnother())}>Submit another one?</button>
+    </div>
+  )
 
   render = () => {
     const { isFetching, userId, justSubmitted } = this.props;
@@ -93,7 +91,7 @@ Submit.propTypes = {
   dispatch: PropTypes.func,
   isFetching: PropTypes.bool,
   userId: PropTypes.number,
-  justSubmitted: PropTypes.bool
+  justSubmitted: PropTypes.bool,
 };
 
 
