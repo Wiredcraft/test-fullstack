@@ -7,16 +7,16 @@ This is a code test from [Wiredcraft](https://github.com/Wiredcraft/) for full-s
 
 ## Getting started
 ### Run and test the backend
-1. Install backend dependencies
+**(1)** Install backend dependencies
 ```shell
 $ cd test-fullstack/backend
 test-fullstack/backend$ npm install
 ```
-2. Before running the backend, make sure your OS with mongodb installed. Run the **mongod** and save the documents in your chosen directory. For example, save db docs to the **data** directory.
+**(2)** Before running the backend, make sure your OS with mongodb installed. Run the **mongod** and save the documents in your chosen directory. For example, save db docs to the **data** directory.
 ```shell
 mongod --dbpath=data
 ``` 
-3. Update backend config file with your mongodb url.
+**(3)** Update backend config file with your mongodb url.
 ```shell
 test-fullstack/backend$ vi config/main.js
 ````
@@ -28,31 +28,31 @@ module.exports = {
 };
 ```
 
-4. Run the backend
+**(4)** Run the backend
 ```shell
 test-fullstack/backend$ npm start
 ```
 
-5. Open another terminal and run the unit tests for backend APIs
+**(5)** Open another terminal and run the unit tests for backend APIs
 ```shell
 test-fullstack/backend$ npm test
 ```
 
-6. The backend now is running on http://localhost:3000 
+**(6)** The backend now is running on http://localhost:3000 
 
 ### Run the frontend
-1. Install frontend dependencies
+**(1)** Install frontend dependencies
 ```shell
 $ cd test-fullstack/frontend
 test-fullstack/frontend$ npm install
 ```
 
-2. Run a web server to host the frontend
+**(2)** Run a web server to host the frontend
 ```
 test-fullstack/frontend$ gulp watch
 ```
 
-3. Open browser. The frontend now is running on http://localhost:8000/build
+**(3)** Open browser. The frontend now is running on http://localhost:8000/build
 
 ## Implemented Features
 1. User authentication system
@@ -74,11 +74,11 @@ To simplify (and to quickly build) the project, I skipped some basic features.
 
 ## Techs
 The primary techs/libs/frameworks used in this project
-1. Express 4
-2. AngularJS 1
-3. Bootstrap 3
-4. Json-Web-Token based authentication
-5. Mongodb
+- Express 4
+- AngularJS 1
+- Bootstrap 3
+- Json-Web-Token based authentication
+- Mongodb
 
 For detailed dependencies, refer to the following files.
 ```shell
