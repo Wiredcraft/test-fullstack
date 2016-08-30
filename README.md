@@ -47,7 +47,7 @@ $ cd test-fullstack/frontend
 test-fullstack/frontend$ npm install
 ```
 
-**(2)** Run a web server to host the frontend
+**(2)** Build and run a web server to host the frontend
 ```
 test-fullstack/frontend$ gulp watch
 ```
