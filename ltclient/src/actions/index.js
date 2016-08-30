@@ -1,4 +1,4 @@
-import { login, logout, signup } from './login';
+import { login, logout, signup } from './user';
 import { fetchTalks } from './talks';
 import { submit, submitAnother } from './submit';
 import { fetchUserVotedTalks, vote } from './vote';
