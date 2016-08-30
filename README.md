@@ -81,7 +81,7 @@ The primary techs/libs/frameworks used in this project
 - Mongodb
 
 For detailed dependencies, refer to the following files.
-```shell
+```
 test-fullstack/backend/package.json
 test-fullstack/frontend/bower.json
 test-fullstack/frontend/package.json (used only for gulp build tool)
