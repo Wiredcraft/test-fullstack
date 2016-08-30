@@ -1,0 +1,6 @@
+**/.idea/
+**/.vscode/
+**/node_modules/
+**/*.log
+frontend/build/
+frontend/bower_components/

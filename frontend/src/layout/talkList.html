@@ -1,0 +1,132 @@
+<div id="talk-list-container" class="row">
+    <div class="col-md-12 top-buffer">
+        <div class="row">
+            <div class="col-md-5" ng-if="isAuthenticated">
+                <button class="btn btn-default btn-primary" ng-click="openModal('createTalk')">Create new talk</button>
+                <button class="btn btn-default" ng-click="logout()">Logout</button>
+            </div>
+
+            <div class="col-md-5" ng-if="!isAuthenticated">
+                <button class="btn btn-default btn-primary" ng-click="openModal('login')">Login</button>
+                <button class="btn btn-default" ng-click="openModal('register')">Register</button>
+
+            </div>
+        </div>
+
+        <div class="row top-buffer">
+            <div class="table-responsive">
+                <table class="table table-striped the-table" ng-if="talks.length != 0">
+                    <thead>
+                    <tr>
+                        <th class="col-md-2 center">
+                            Title
+                        </th>
+                        <th class="col-md-6 center">
+                            Description
+                        </th>
+                        <th class="col-md-1 center">
+                            By
+                        </th>
+                        <th class="col-md-1 center">
+                            Rating
+                        </th>
+                        <th class="col-md-2 center">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="talk in talks | orderBy: 'rating' : true">
+                        <td>
+                            {{ talk.title }}
+                        </td>
+                        <td>
+                            {{ talk.description }}
+                        </td>
+                        <td class="center">
+                            <p>{{ talk.postedBy.username }}</p>
+                        </td>
+                        <th class="center">
+                            {{ talk.rating }}
+                        </th>
+                        <th class="center">
+                            <button type="button" ng-click="rateTalk(talk._id, 1)"
+                                    class="btn btn-default btn-sm btn-success" ng-disabled="talk.rated">Good
+                            </button>
+                            <button type="button" ng-click="rateTalk(talk._id, -1)"
+                                    class="btn btn-default btn-sm btn-danger" ng-disabled="talk.rated">Bad
+                            </button>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+                <h2 ng-if="!isAuthenticated">Please register and login.</h2>
+                <h2 ng-if="isAuthenticated && talks.length == 0">No talk exists. Please create a new one.</h2>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/ng-template" id="loginModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Login</h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <input type="text" ng-model="user.username" class="form-control" placeholder="username">
+            </div>
+
+            <div class="form-group">
+                <input type="password" ng-model="user.password" class="form-control" placeholder="password"
+                       enter-down="login()">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="login()" class="btn btn-default" ng-disabled="!user.username && !user.password">Submit
+            </button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="registerModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Register</h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <input type="text" ng-model="user.username" class="form-control" placeholder="username">
+            </div>
+
+            <div class="form-group">
+                <input type="password" ng-model="user.password" class="form-control" placeholder="password"
+                       enter-down="register()">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="register()" class="btn btn-default" ng-disabled="!user.username && !user.password">
+                Submit
+            </button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="newTalkModal">
+        <div class="modal-header">
+            <h3 class="modal-title">Create a new talk</h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" ng-model="talk.title" class="form-control" placeholder="Title">
+            </div>
+
+            <div class="form-group">
+                <label>Titile</label>
+                <textarea class="form-control" rows="5" ng-model="talk.description"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button ng-click="createTalk()" class="btn btn-default" ng-disabled="!talk.title && !talk.description">
+                Submit
+            </button>
+        </div>
+    </script>
+
+</div>
