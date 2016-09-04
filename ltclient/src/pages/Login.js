@@ -8,7 +8,7 @@ class Login extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.token) {
-      this.props.dispatch(fetchUserVotedTalks(nextProps.userId));
+      this.props.dispatch(fetchUserVotedTalks());
       browserHistory.push('/');
     }
   }

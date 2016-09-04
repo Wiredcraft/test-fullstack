@@ -28,10 +28,10 @@ function failUserVotedTalks() {
   };
 }
 
-function intFetchUserVotedTalks(dispatch, getState, userId) {
+function intFetchUserVotedTalks(dispatch, getState) {
+  const { userId, token } = getState().user;
   if (!userId) return Promise.resolve(undefined);
 
-  const token = getState().user.token;
   dispatch(requestUserVotedTalks());
   return commonFetch(getUrlUserVotedTalks(userId, token))
     .then(res => res.json())
@@ -42,8 +42,8 @@ function intFetchUserVotedTalks(dispatch, getState, userId) {
     });
 }
 
-function fetchUserVotedTalks(userId) {
-  return (dispatch, getState) => intFetchUserVotedTalks(dispatch, getState, userId);
+function fetchUserVotedTalks() {
+  return (dispatch, getState) => intFetchUserVotedTalks(dispatch, getState);
 }
 
 /* Vote */
@@ -76,7 +76,8 @@ function vote(talkId) {
   return (dispatch, getState) => {
     const { token, userId } = getState().user;
     if (!token) {
-      return showError(dispatch, 'You can only vote after you logged in');
+      showError(dispatch, 'You can only vote after you logged in');
+      return Promise.resolve(undefined);
     }
     dispatch(requestVote(talkId));
     return commonFetch(getUrlVote(token), 'POST', { voterId: userId, talkId })

@@ -42,13 +42,12 @@ function failTalkList() {
 
 function fetchTalks() {
   return (dispatch, getState) => {
-    const { userId } = getState().user;
     dispatch(requestTalkList());
     return commonFetch(getTalkListUrl())
       .then(res => res.json())
       .then(json => dispatch(receiveTalkList(json)))
       // also refresh user vote history
-      .then(() => intFetchUserVotedTalks(dispatch, getState, userId))
+      .then(() => intFetchUserVotedTalks(dispatch, getState))
       .catch(err => {
         showError(dispatch, err.message);
         dispatch(failTalkList());
