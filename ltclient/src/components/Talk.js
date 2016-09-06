@@ -21,9 +21,7 @@ const Talk = ({ vote, title, id, cover, speaker, description, submitter, created
         <div className="talk__header">
           <span className="talk__title">{title}</span>
           <span> - </span>
-          <span className="talk__speaker">
-          {speaker}
-          </span>
+          <span className="talk__speaker">{speaker}</span>
         </div>
         <div className="talk__description">
           {description}
