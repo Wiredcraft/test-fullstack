@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button ng-click="login()" class="btn btn-default" ng-disabled="!user.username && !user.password">Submit
+            <button ng-click="login()" class="btn btn-default" ng-disabled="!user.username || !user.password">Submit
             </button>
         </div>
     </script>
@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button ng-click="register()" class="btn btn-default" ng-disabled="!user.username && !user.password">
+            <button ng-click="register()" class="btn btn-default" ng-disabled="!user.username || !user.password">
                 Submit
             </button>
         </div>
@@ -123,7 +123,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button ng-click="createTalk()" class="btn btn-default" ng-disabled="!talk.title && !talk.description">
+            <button ng-click="createTalk()" class="btn btn-default" ng-disabled="!talk.title || !talk.description">
                 Submit
             </button>
         </div>
