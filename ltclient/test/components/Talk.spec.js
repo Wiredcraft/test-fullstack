@@ -16,8 +16,7 @@ const testProps = {
   voted: false,
 };
 
-function setup(props) {
-  props = props || testProps;
+function setup(props = testProps) {
   const wrapper = shallow(<Talk {...props} />);
 
   return {

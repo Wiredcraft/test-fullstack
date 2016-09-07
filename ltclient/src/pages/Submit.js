@@ -103,4 +103,5 @@ function mapStateToProps(state) {
   };
 }
 
+export { Submit };
 export default connect(mapStateToProps)(Submit);

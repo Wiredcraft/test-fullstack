@@ -6,6 +6,12 @@ import { signup } from '../actions';
 
 class Signup extends Component {
 
+  state = {
+    email: '',
+    username: '',
+    password: '',
+  }
+
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.token) {
       browserHistory.push('/');
@@ -14,14 +20,26 @@ class Signup extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const email = this.email.value.trim();
-    const username = this.username.value.trim();
-    const password = this.password.value.trim();
+    const email = this.state.email.trim();
+    const username = this.state.username.trim();
+    const password = this.state.password.trim();
     this.props.dispatch(signup({
       email,
       username,
       password,
     }));
+  }
+
+  handleEmailChange = (e) => {
+    this.setState({ email: e.target.value });
+  }
+
+  handleUsernameChange = (e) => {
+    this.setState({ username: e.target.value });
+  }
+
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
   }
 
   render = () => {
@@ -39,20 +57,23 @@ class Signup extends Component {
             <label htmlFor="email">Email</label>
             <input
               type="email"
-              ref={c => { this.email = c; }}
               placeholder="john@example.com"
+              value={this.state.email}
+              onChange={this.handleEmailChange}
             />
             <label htmlFor="username">Username</label>
             <input
               type="text"
-              ref={c => { this.username = c; }}
               placeholder="john"
+              value={this.state.username}
+              onChange={this.handleUsernameChange}
             />
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              ref={c => { this.password = c; }}
               placeholder="Your password"
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
             />
             <button type="submit">Sign up</button>
           </form>
@@ -79,4 +100,5 @@ function mapStateToProps(state) {
   };
 }
 
+export { Signup };
 export default connect(mapStateToProps)(Signup);

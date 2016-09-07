@@ -6,6 +6,11 @@ import { login, fetchUserVotedTalks } from '../actions';
 
 class Login extends Component {
 
+  state = {
+    username: '',
+    password: '',
+  }
+
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.token) {
       this.props.dispatch(fetchUserVotedTalks());
@@ -15,8 +20,9 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const password = this.password.value.trim();
-    const username = this.username.value.trim();
+    const username = this.state.username.trim();
+    const password = this.state.password.trim();
+
     const reqBody = {
       password,
     };
@@ -26,6 +32,14 @@ class Login extends Component {
     email.test(username) ? reqBody.email = username
                          : reqBody.username = username;
     this.props.dispatch(login(reqBody));
+  }
+
+  handleUsernameChange = (e) => {
+    this.setState({ username: e.target.value });
+  }
+
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
   }
 
   render = () => {
@@ -42,14 +56,16 @@ class Login extends Component {
             <label htmlFor="username">Email / Username</label>
             <input
               type="text"
-              ref={c => { this.username = c; }}
               placeholder="Your Email or Username"
+              value={this.state.username}
+              onChange={this.handleUsernameChange}
             />
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              ref={c => { this.password = c; }}
               placeholder="Your password"
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
             />
             <button type="submit">Login</button>
           </form>
@@ -76,4 +92,5 @@ function mapStateToProps(state) {
   };
 }
 
+export { Login };
 export default connect(mapStateToProps)(Login);
