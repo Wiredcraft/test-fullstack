@@ -48,6 +48,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
+export { TalkList };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
