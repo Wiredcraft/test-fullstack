@@ -2,22 +2,8 @@
 
 var debug = require('debug')('lt');
 var app = require('../../server/server');
-
-function updateTalkVoteCount(talkId, num, cb) {
-  var Talk = app.models.Talk;
-  Talk.findById(talkId, function (err, talk) {
-    // ignore err
-    debug('update voteCount');
-    debug('before: ' + talk.voteCount);
-    // console.log(talk);
-    talk.updateAttribute('voteCount', talk.voteCount + num, function (err, talk) {
-      if (err) cb(err);
-      debug('after: ' + talk.voteCount);
-      cb();
-    });
-  });
-}
-
+var co = require('co');
+var _ = require('../../lib/queryPromisify');
 
 module.exports = function(Vote) {
   /*
@@ -28,30 +14,63 @@ module.exports = function(Vote) {
    * if it can find one, the instance will be deleted, relevant talks
    * voteCount will be decreased by 1
    * if it can not find one, a new instance will be created, relevant
-   * talks voteCount will be increased by 1 
+   * talks voteCount will be increased by 1
    */
   Vote.upvote = function(talkId, voterId, cb) {
     var data = {talkId: talkId, voterId: voterId}; // used as filter
-    Vote.findOrCreate({ where: data}, data, function(err, ins, created) {
-      if (err) cb(err);
-      if (created) {
-        // create
-        // new vote, increase corresponding talks voteCount
-        updateTalkVoteCount(talkId, 1, function(err) {
-          if(err) cb(err);
-          cb(null, ins.talkId, ins.voterId, ins.id);
-        });
-      } else {
+    var defaultError = new Error('Vote failed');
+    defaultError.statusCode = 400;
+    defaultError.code = 'VOTE_ERROR';
+
+    co(function *() {
+      var ins = undefined;
+      try {
+        ins = yield _.findOne(Vote, { where: data });
+
         // exist
-        // if exist, we delete it and decrease corresponding talks voteCount
-        Vote.destroyById(ins.id, function(err) {
-          if(err) cb(err);
-          updateTalkVoteCount(talkId, -1, function(err) {
-            if (err) cb(err);
-            cb(null, ins.talkId, ins.voterId, ins.id);
-          });
-        });
+        // if exist, we delete it and decrease corresponding talks
+        // voteCount
+
+        // delete it
+        yield _.destroyById(app.models.Vote, ins.id);
+
+        // find the talk
+        var talk = yield _.findById(app.models.Talk, talkId);
+        debug('before: ' + talk.voteCount);
+
+        // decrease `voteCount` of the talk by one
+        var newIns = yield _.updateAttribute(talk, 'voteCount', talk.voteCount - 1);
+        debug('before: ' + newIns.voteCount);
+
+        return cb(null, ins.talkId, ins.voterId, ins.id);
+      } catch (e) {
+
+        // so the vote is not exist
+        // we will create one and increase coresponding talks
+        // voteCount
+
+        // validate vote
+        // prevent trolling
+        var talkP = _.findById(app.models.Talk, talkId);
+        var voterP = _.findById(app.models.AppUser, voterId);
+        var res = yield [talkP, voterP];
+
+
+        // create a vote
+        var newVote = yield _.create(app.models.Vote, data);
+
+        var talk = res[0];
+        debug('before: ' + talk.voteCount);
+
+        // increase `voteCount` of the talk by one
+        var newIns = yield _.updateAttribute(talk, 'voteCount', talk.voteCount + 1);
+        debug('before: ' + newIns.voteCount);
+
+        return cb(null, newVote.talkId, newVote.voterId, newVote.id);
       }
+    }).catch(function (err) {
+      if(err) return cb(err);
+      return cb(defaultError);
     });
   };
 

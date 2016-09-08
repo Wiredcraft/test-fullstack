@@ -9,6 +9,7 @@
     "_posttest": "nsp check"
   },
   "dependencies": {
+    "co": "^4.6.0",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "debug": "^2.2.0",
