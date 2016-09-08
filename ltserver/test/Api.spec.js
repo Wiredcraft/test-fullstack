@@ -31,7 +31,7 @@ describe('API test', function() {
   var token;
   var user = {
     username: 'charlie',
-    password: 'quickfox',
+    password: 'charlie',
     id: 3,
   };
 
@@ -202,7 +202,7 @@ describe('API test', function() {
     .then(function () {
       return fetch({
         verb: 'post',
-        url: '/api/Votes',
+        url: '/api/Votes/upvote',
         token: token,
         data: {talkId: 3, voterId: user.id}
       })
@@ -220,6 +220,31 @@ describe('API test', function() {
     .then(function (res) {
       assert.equal(200, res.statusCode);
       assert.equal(res.body.voteCount, beforeCount + 1);
+    })
+    .then(done)
+    .catch(done);
+  });
+
+  it('should return error while vote with invalid data', function (done) {
+
+    fetch({
+      verb: 'post',
+      url: '/api/Votes/upvote',
+      token: token,
+      data: {talkId: 1000, voterId: user.id}
+    })
+    .then(function (res) {
+      assert.equal(500, res.statusCode);
+    });
+
+    fetch({
+      verb: 'post',
+      url: '/api/Votes/upvote',
+      token: token,
+      data: {talkId: 1, voterId: 1000}
+    })
+    .then(function (res) {
+      assert.equal(500, res.statusCode);
     })
     .then(done)
     .catch(done);
