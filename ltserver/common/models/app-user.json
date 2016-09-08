@@ -1,0 +1,39 @@
+{
+  "name": "AppUser",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {
+    "submitted": {
+      "type": "hasMany",
+      "model": "Talk",
+      "foreignKey": "submitterId"
+    },
+    "voted": {
+      "type": "hasMany",
+      "model": "Talk",
+      "foreignKey": "voterId",
+      "through": "Vote",
+      "keyThrough": "talkId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

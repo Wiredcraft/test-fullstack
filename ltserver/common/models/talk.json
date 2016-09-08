@@ -1,0 +1,73 @@
+{
+  "name": "Talk",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "speaker": {
+      "type": "string",
+      "required": true,
+      "default": ""
+    },
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "createdAt": {
+      "type": "date",
+      "required": true,
+      "default": "1970-01-01T00:00:00.000Z"
+    },
+    "voteCount": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {
+    "submitter": {
+      "type": "belongsTo",
+      "model": "AppUser",
+      "foreignKey": "submitterId"
+    },
+    "voters": {
+      "type": "hasMany",
+      "model": "AppUser",
+      "foreignKey": "talkId",
+      "through": "Vote",
+      "keyThrough": "voterId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    },
+    {
+      "accessType": "READ",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW"
+    },
+    {
+      "accessType": "WRITE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,46 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-base;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.9em;
+  color: #ddd;
+  padding: 25px 0;
+  a {
+    color: #ddd;
+    &:hover {
+      color: #555;
+    }
+  }
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $theme-color;
+  &:hover {
+    color: darken($theme-color, 30%);
+  }
+}
+
+.main {
+  max-width: $main-width;
+  margin: 0 auto;
+}

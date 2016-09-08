@@ -1,0 +1,31 @@
+.login-form {
+  width: 400px;
+  margin: 35px auto 0;
+  input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  button {
+    border: none;
+    height: 45px;
+    width: 100%;
+    padding: 0;
+    background: $theme-color;
+    color: #fff;
+    &:hover {
+      background: lighten($theme-color, 15%);
+    }
+  }
+}
+
+.login-form__footer {
+  padding-top: 20px;
+}
+
+.login-form__header {
+  text-align: center;
+}
