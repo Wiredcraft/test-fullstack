@@ -1,66 +1,91 @@
 Wiredcraft Full-stack Developer test
 -------------------------
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
-
-## Background
-
-Build a [Hacker News](https://news.ycombinator.com/) like app but for lighting talk polling.
-
-Sorry no mock here, please make a simple and beautiful page that get the job done. We don't mind whether it looks as great as **Hacker News**.
-
-## User Story
-
-1. User open the page and could see a list of lighting talks order by rating submitted by other user;
-2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
-3. The user could vote for the lighting talk by clicking the voter button or icon;
-4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, and `username`;
-6. The user could see his lighting talk on the list after submitting; 
-
-### Functionality
-
-* The **front-end** part should be a single page application rendered in the front-end and load data from restful api(**not** rendered from back-end);
-* There should be a **back-end** and database to store the lighting talks
+This is a simple implementation of user authentication and topic (title, description, postedBy) system.
+## About
+This is a code test from [Wiredcraft](https://github.com/Wiredcraft/) for full-stack web developer.
 
 ## Getting started
+### Run and test the backend
+**(1)** Install backend dependencies
+```shell
+$ cd test-fullstack/backend
+test-fullstack/backend$ npm install
+```
+**(2)** Before running the backend, make sure your OS with mongodb installed. Run the **mongod** and save the documents in your chosen directory. For example, save db docs to the **data** directory.
+```shell
+mongod --dbpath=data
+``` 
+**(3)** Update backend config file with your mongodb url.
+```shell
+test-fullstack/backend$ vi config/main.js
+````
+```JavaScript
+module.exports = {
+    'secret': 'Wa9Gq33yv27q6wyS77J860227vkHpcR4',
+    'database': 'mongodb://localhost:27017/simple-hacker-news',
+    'host': 'http://localhost:3000'
+};
+```
 
-There's nothing here, we leave it to you to choose the build tool, code structure, testing approach...
+**(4)** Run the backend
+```shell
+test-fullstack/backend$ npm start
+```
 
-## Requirements
+**(5)** Open another terminal and run the unit tests for backend APIs
+```shell
+test-fullstack/backend$ npm test
+```
 
-- Use [loopback](http://loopback.io/) to build the back-end(because we are using this for our back-end project and we hope you feel comfortable to work with it as well).
+**(6)** The backend now is running on http://localhost:3000 
 
-- Use any **front-end** framework as you like.
+### Run the frontend
+**(1)** Install frontend dependencies
+```shell
+$ cd test-fullstack/frontend
+test-fullstack/frontend$ npm install
+```
 
-- With clear **documentation** on how to run the code.
+**(2)** Build and run a web server to host the frontend
+```
+test-fullstack/frontend$ gulp watch
+```
 
-- Provide proper unit test.
+**(3)** Open browser. The frontend now is running on http://localhost:8000/build
 
-- Use git to manage code.
+## Implemented Features
+1. User authentication system
+   - registration
+   - login
+   - logout
+2. Talk Features
+   - Get a list of talks (title, description, by, rating)
+   - Create a new talk by a logged-in user
+   - Rate a specific talk (+1 or -1). One user cannot rate the same talk multiple times.
 
+## Missing Features
+To simplify (and to quickly build) the project, I skipped some basic features.
+- Get user info
+- Update user/talk
+- Delete user/talk
+- Pagination
+- comments for talks
 
-## What We Care About
+## Techs
+The primary techs/libs/frameworks used in this project
+- Express 4
+- AngularJS 1
+- Bootstrap 3
+- Json-Web-Token based authentication
+- Mongodb
 
-Feel free to use any libraries you would use if this were a real production app, but remember we're interested in your code & the way you solve the problem, not how well you can use a particular library.
+For detailed dependencies, refer to the following files.
+```
+test-fullstack/backend/package.json
+test-fullstack/frontend/bower.json
+test-fullstack/frontend/package.json (used only for gulp build tool)
+```
 
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
-
-Here's what you should aim for:
-
-- Good use of current HTML, CSS and JavaScript & performance best practices.
-
-- Solid testing approach
-
-- Extensible code;
-
-## Q&A
-
-* Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. We don't have deadline for the task.
-
-* What if I have question?
-
-Create a new issue in the repo and we will get back to you very quickly.
-
+## Help or Suggestion
+Open issues to this project

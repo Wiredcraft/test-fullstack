@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="newsApp" ng-strict-di>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="${BASE_PATH}">
+    <title>Simple Hacker News</title>
+
+
+    <!-- build:jsLib js/lib.js -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <!-- endbuild -->
+
+
+    <!-- build:jsApp js/app.js -->
+    <script src="script/app.js"></script>
+    <script src="script/routes.js"></script>
+    <script src="config.js"></script>
+    <script src="script/controller/*.js"></script>
+    <script src="script/service/**/*.js"></script>
+    <script src="script/directives.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:css css/app.css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bower_components/angular-bootstrap/ui-bootstrap-csp.css"/>
+    <link rel="stylesheet" href="style/**/*.less"/>
+    <!-- endbuild -->
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1" ui-view="content"></div>
+    </div>
+
+    <div class="globalNotify" global-notify></div>
+
+</div>
+
+</body>
+
+</html>
