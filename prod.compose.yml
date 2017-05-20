@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  node:
+    build:
+      context: .
+      dockerfile: node.dockerfile
+    image: test_fullstack_node
+    container_name: test_fullstack_node
+    working_dir: /client
+    volumes:
+      - ./lightning_talk/client:/client
+    ports:
+      - 8001:8001
+    command: yarn run build
+
+  python:
+    build:
+      context: .
+      dockerfile: python.dockerfile
+    container_name: test_fullstack_python
+    image: test_fullstack_python
+    working_dir: /test-fullstack
+    volumes:
+      - .:/test-fullstack
+    ports:
+      - 8000:8000
+    command: python3 manage.py runserver 0:8000
+
+  postgres:
+    container_name: test_fullstack_postgres
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: passw0rd
