@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: 'Hiragino Sans GB', 'Microsoft YaHei', SimHei, sans-serif;
+  font-size: 12px;
 }
 
 input, input:focus, textarea, textarea:focus {
@@ -8,6 +9,13 @@ input, input:focus, textarea, textarea:focus {
   border: 0;
 }
 
-.container {
+:global(#root) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.container {
+  width: 60em;
+  min-height: 40em;
 }

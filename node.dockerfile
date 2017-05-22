@@ -1,5 +1,6 @@
 FROM node:alpine
 
-ADD ./lightning_talk/client /client
+WORKDIR /static
+ADD ./lightning_talk/static /static
 
 RUN yarn

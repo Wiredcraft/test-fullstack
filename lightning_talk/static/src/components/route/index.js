@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 
 import func from 'func'
 import app from 'components/app'
+import posts from 'components/posts'
 
 const routes = [
   // func.route('path', () => el(component))
-  func.route('/lightning_talk', () => el(app))
+  func.route('/lightning_talk', () => el(posts))
 ]
 
 const titles = {

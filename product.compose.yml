@@ -7,9 +7,9 @@ services:
       dockerfile: node.dockerfile
     image: test_fullstack_node
     container_name: test_fullstack_node
-    working_dir: /client
+    working_dir: /static
     volumes:
-      - ./lightning_talk/client:/client
+      - ./lightning_talk/static:/static
     ports:
       - 8001:8001
     depends_on:
