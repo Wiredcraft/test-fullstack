@@ -12,7 +12,9 @@ services:
       - ./lightning_talk/client:/client
     ports:
       - 8001:8001
-    command: yarn run build
+    depends_on:
+      - python
+    command: yarn run serve
 
   python:
     build:
@@ -25,7 +27,9 @@ services:
       - .:/test-fullstack
     ports:
       - 8000:8000
-    command: python3 manage.py runserver 0:8000
+    depends_on:
+      - postgres
+    command: python3 manage.py runserver 0:8000 --settings=app.settings.develop
 
   postgres:
     container_name: test_fullstack_postgres
