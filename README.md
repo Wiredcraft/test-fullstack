@@ -1,14 +1,16 @@
-user list
+## Requirements
 
-- root      pwd@1234 
-- guts      ☝️
-- zodd      ☝️
-- schierke  ☝️
+- PostgreSQL
+- Node.js # `yarn`
+- Python # 3
 
-run project
+## Notes
 
-    docker-compose -f product.compose.yml up -d
+- change `app/settings.py` => `DATABASES` fits your PostgreSQL setting
+- need a *migrate* first, `python manage.py makemigrations lightning_talk` `python manage.py migrate`
 
-or running webpack-dev-server && django debuging mode
+## How to
 
-    docker-compose -f develop.compose.yml up -d
+- go `lightning_talk/static` directory and run `yarn && yarn run build` # bundle js/css file
+- `pip install -r requirements.txt` # all Django needs
+- `python manage.py runserver` # 8000 was the default port
