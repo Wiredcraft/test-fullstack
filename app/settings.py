@@ -1,5 +1,10 @@
 import os
 
+DEBUG = True
+
+# ALLOWED_HOSTS = []
+# CSRF_TRUSTED_ORIGINS = []
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = '0!3y1cx(kux!8+u=hya6-zfi^8xqva43t*_v9&5m!hv$nvtg4y'
@@ -47,10 +52,10 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'lightning_talk',
         'USER': 'postgres',
         'PASSWORD': 'passw0rd',
-        'HOST': 'postgres',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
