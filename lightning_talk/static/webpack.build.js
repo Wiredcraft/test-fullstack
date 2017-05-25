@@ -23,7 +23,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
+        options: {
           presets: [
             [
               'env',
@@ -34,25 +34,37 @@ module.exports = {
             ],
             'react'
           ],
-          plugins: ['react-hot-loader/babel']
+          plugins: [
+            'babel-plugin-transform-object-rest-spread',
+            'babel-plugin-transform-function-bind',
+            'react-hot-loader/babel'
+          ]
         }
       },
-      { test: /\.(png|jpg)$/, loader: 'file-loader', query: { name: 'img/[hash].[ext]' } },
+      { test: /\.(png|jpg)$/, loader: 'file-loader', options: { name: 'img/[hash].[ext]' } },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
+        use: ExtractTextPlugin.extract({
           use: [
             {
               loader: 'css-loader',
-              query: {
+              options: {
                 modules: true,
                 importLoaders: 1,
                 context: path.resolve(__dirname, 'src'),
-                localIdentName: '[sha1:hash:5]',
-                autoprefixer: false
+                localIdentName: '[sha1:hash:5]'
               }
             },
-            { loader: 'postcss-loader' }
+            {
+              loader: 'postcss-loader',
+              options: {
+                minimize: true,
+                debug: false,
+                plugins: loader => [
+                  cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })
+                ]
+              }
+            }
           ]
         })
       }
@@ -67,15 +79,8 @@ module.exports = {
   },
 
   plugins: [
-    new BabiliPlugin({ comments: false }),
+    new BabiliPlugin(),
     new ExtractTextPlugin({ filename: 'bundle.css', disable: false, allChunks: true }),
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-      options: {
-        postcss: [cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })]
-      }
-    })
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } })
   ]
 }

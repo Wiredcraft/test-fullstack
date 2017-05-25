@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import logger from 'redux-logger'
+import { createLogger } from 'redux-logger'
 
 import { router, History } from 'middleware/route'
 import { navigate } from 'actions/route'
@@ -11,7 +11,7 @@ export default function configureStore () {
   let store = createStore(reducers, applyMiddleware(router(History), thunk))
 
   if (process.env.NODE_ENV === 'development') {
-    store = createStore(reducers, applyMiddleware(router(History), thunk, logger({ collapsed: true })))
+    store = createStore(reducers, applyMiddleware(router(History), thunk, createLogger({ collapsed: true })))
   }
 
   if (module.hot) {

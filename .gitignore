@@ -1,6 +1,5 @@
 node_modules
 __pycache__
-log
 dist
 migrations
-static/dist
+env

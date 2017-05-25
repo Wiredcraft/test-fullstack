@@ -23,7 +23,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
-        query: {
+        options: {
           presets: [
             [
               'env',
@@ -34,25 +34,35 @@ module.exports = {
             ],
             'react'
           ],
-          plugins: ['react-hot-loader/babel']
+          plugins: [
+            'babel-plugin-transform-object-rest-spread',
+            'babel-plugin-transform-function-bind',
+            'react-hot-loader/babel'
+          ]
         }
       },
-      { test: /\.(png|jpg)$/, loader: 'file-loader', query: { name: 'img/[hash].[ext]' } },
+      { test: /\.(png|jpg)$/, loader: 'file-loader', options: { name: 'img/[hash].[ext]' } },
       {
         test: /\.css$/,
-        loader: [
-          { loader: 'style-loader', query: { singleton: true } },
+        use: [
+          { loader: 'style-loader', options: { singleton: true } },
           {
             loader: 'css-loader',
-            query: {
+            options: {
               modules: true,
               importLoaders: 1,
               context: path.resolve(__dirname, 'src'),
-              localIdentName: '[sha1:hash:5]',
-              autoprefixer: false
+              localIdentName: '[sha1:hash:5]'
             }
           },
-          { loader: 'postcss-loader' }
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: loader => [
+                cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })
+              ]
+            }
+          }
         ]
       }
     ]
@@ -65,13 +75,9 @@ module.exports = {
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('development') } }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })]
-      }
-    })
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('development') } })
   ],
 
   devtool: 'source-map',
@@ -79,11 +85,11 @@ module.exports = {
   devServer: {
     publicPath: '/lightning_talk',
     port: 8001,
-    host: '0.0.0.0',
+    host: 'localhost',
     hot: true,
     historyApiFallback: true,
     proxy: {
-      '/lightning_talk/api': 'http://python:8080'
+      '/lightning_talk/api': 'http://localhost:8000'
     }
   }
 }
