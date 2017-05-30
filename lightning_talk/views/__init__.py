@@ -1,2 +1,3 @@
-from .index import index
-from .post import post
+from .post import PostViewSet
+from .user import UserViewSet
+from .upvote import UpvoteViewSet
