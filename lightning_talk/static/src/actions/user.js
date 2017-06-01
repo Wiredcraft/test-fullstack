@@ -1,6 +1,6 @@
 import { API_AUTH_ROOT } from 'config'
 
-export function signin () {
+export function signin(callback) {
   return async (dispatch, getState) => {
     const body = getState().signin
 
@@ -8,25 +8,26 @@ export function signin () {
       const response = await fetch(API_AUTH_ROOT, {
         method: 'post',
         headers: {
-          'content-type': 'application/json',
+          'content-type': 'application/json'
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(body)
       })
       const json = await response.json()
 
       if (response.ok) {
         dispatch({ type: 'SIGNIN_SUCCESS', username: body.username, token: json.token })
         dispatch({ type: 'CLOSE_SIGNIN_MODAL' })
+        callback()
       } else {
-        dispatch({ type: 'SIGNIN_FAIL', error: json.detail })
+        dispatch({ type: 'SIGNIN_FAIL', error: 'unable sign in' })
       }
     } catch (error) {
-      dispatch({ type: 'SIGNIN_FAIL', error: error.toString() })
+      dispatch({ type: 'SIGNIN_FAIL', error: 'unable sign in' })
     }
   }
 }
 
-export function signout () {
+export function signout() {
   return async dispatch => {
     try {
       const response = await fetch(`${API_AUTH_ROOT}logout`)
@@ -35,10 +36,10 @@ export function signout () {
       if (response.ok) {
         dispatch({ type: 'SIGNOUT_SUCCESS', response: json })
       } else {
-        dispatch({ type: 'SIGNOUT_FAIL', error: json.detail })
+        dispatch({ type: 'SIGNOUT_FAIL', error: 'sign out failed' })
       }
     } catch (error) {
-      dispatch({ type: 'SIGNOUT_SUCCESS', error: error.toString() })
+      dispatch({ type: 'SIGNOUT_SUCCESS', error: 'sign out failed' })
     }
   }
 }

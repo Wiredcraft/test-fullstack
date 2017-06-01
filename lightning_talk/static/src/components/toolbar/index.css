@@ -12,10 +12,15 @@
 
 .signup, .signin, .account {
   border-bottom: 1px solid #333;
-  cursor: pointer;
   color: #333;
+}
 
+.signup, .signin {
   &:hover {
     border-bottom: 1px dashed #333;
   }
+}
+
+.account {
+  cursor: default;
 }

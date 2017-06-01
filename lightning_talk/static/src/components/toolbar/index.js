@@ -1,17 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import styles from 'index.css'
 
 class Component extends React.Component {
   render() {
-    const { username, signin } = this.props
+    const { username } = this.props
 
     return (
       <div className={styles['container']}>
         {username
           ? <div className={styles['account']}>{username}</div>
-          : <div className={styles['signin']} onClick={signin}>sign in</div>}
+          : <Link className={styles['signin']} to={{ pathname: '/signin', state: { modal: true } }}>
+              sign in
+            </Link>}
       </div>
     )
   }
@@ -19,10 +22,4 @@ class Component extends React.Component {
 
 const mapStateToProps = ({ user: { username } }) => ({ username })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    signin: () => dispatch({ type: 'OPEN_SIGNIN_MODAL' })
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Component)
+export default connect(mapStateToProps)(Component)

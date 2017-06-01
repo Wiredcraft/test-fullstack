@@ -1,19 +1,24 @@
-.container {
-  display: block;
+.layout {
   position: fixed;
-  max-width: 15em;
+  width: 15em;
+  top: 1em;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   padding-left: 1em;
   padding-right: 1em;
   line-height: 2em;
+  text-align: center;
   font-size: 1.2em;
   border-radius: 2px;
-  top: 1em;
-  left: 0;
-  right: 0;
-  margin: auto;
   color: white;
 }
 

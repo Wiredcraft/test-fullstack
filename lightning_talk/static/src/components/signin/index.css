@@ -9,6 +9,18 @@
   --radius: 0.2em;
 }
 
+.layout {
+  background-color: rgba(154, 154, 154, 0.7);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .container {
   width: 20em;
   display: flex;

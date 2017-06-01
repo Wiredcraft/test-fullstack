@@ -4,20 +4,18 @@ import { connect } from 'react-redux'
 import styles from 'index.css'
 
 class Component extends React.Component {
+  timeout = null
+
   componentWillUnmount() {
     clearTimeout(this.timeout)
   }
 
   componentWillReceiveProps({ message }) {
     if (message !== '') {
-      this.wait()
+      this.timeout = setTimeout(() => {
+        this.props.close()
+      }, 1200)
     }
-  }
-
-  wait() {
-    this.timeout = setTimeout(() => {
-      this.props.close()
-    }, 1200)
   }
 
   render() {
@@ -28,8 +26,10 @@ class Component extends React.Component {
     }
 
     return (
-      <div className={`${styles['container']} ${styles['type']}`}>
-        {message}
+      <div className={styles['layout']}>
+        <div className={`${styles['container']} ${styles[type]}`}>
+          {message}
+        </div>
       </div>
     )
   }

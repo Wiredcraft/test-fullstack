@@ -7,10 +7,16 @@ body {
 input {
   border: 0;
   font-size: inherit;
+  color: inherit;
 
   &:focus {
     outline: none;
   }
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 :global(#root) {

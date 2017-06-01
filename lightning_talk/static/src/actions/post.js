@@ -1,6 +1,6 @@
 import { API_ROOT } from 'config'
 
-export function fetchPosts () {
+export function fetchPosts() {
   return async dispatch => {
     try {
       const response = await fetch(`${API_ROOT}posts/`)
@@ -9,15 +9,15 @@ export function fetchPosts () {
       if (response.ok) {
         dispatch({ type: 'FETCH_POSTS_SUCCESS', response: json })
       } else {
-        dispatch({ type: 'FETCH_POSTS_FAIL', error: json.detail })
+        dispatch({ type: 'FETCH_POSTS_FAIL', error: 'unable get posts' })
       }
     } catch (error) {
-      dispatch({ type: 'FETCH_POSTS_FAIL', error: error.toString() })
+      dispatch({ type: 'FETCH_POSTS_FAIL', error: 'unable get posts' })
     }
   }
 }
 
-export function upvotePost (url) {
+export function upvotePost(url) {
   return async dispatch => {
     try {
       const response = await fetch(`${url}upvote/`, { method: 'put' })
@@ -26,10 +26,10 @@ export function upvotePost (url) {
       if (response.ok) {
         dispatch({ type: 'UPVOTE_POST_SUCCESS', response: json })
       } else {
-        dispatch({ type: 'UPVOTE_POST_FAIL', error: json.detail })
+        dispatch({ type: 'UPVOTE_POST_FAIL', error: 'upvote failed' })
       }
     } catch (error) {
-      dispatch({ type: 'UPVOTE_POST_FAIL', error: error.toString() })
+      dispatch({ type: 'UPVOTE_POST_FAIL', error: 'upvote failed' })
     }
   }
 }
