@@ -1,33 +1,37 @@
-import { createElement as el, Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 import styles from 'index.css'
 
-class component extends Component {
-  componentWillUnmount () {
+class Component extends React.Component {
+  componentWillUnmount() {
     clearTimeout(this.timeout)
   }
 
-  componentWillReceiveProps ({ message }) {
+  componentWillReceiveProps({ message }) {
     if (message !== '') {
       this.wait()
     }
   }
 
-  wait () {
+  wait() {
     this.timeout = setTimeout(() => {
       this.props.close()
     }, 1200)
   }
 
-  render () {
+  render() {
     const { message, type } = this.props
 
     if (message === '') {
       return null
     }
 
-    return el('div', { className: `${styles['container']} ${styles[type]}` }, message)
+    return (
+      <div className={`${styles['container']} ${styles['type']}`}>
+        {message}
+      </div>
+    )
   }
 }
 
@@ -39,4 +43,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(component)
+export default connect(mapStateToProps, mapDispatchToProps)(Component)

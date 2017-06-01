@@ -1,19 +1,21 @@
-import { createElement as el, Component } from 'react'
+import React from 'react'
 
-import toolbar from 'components/toolbar'
-import modal from 'components/modal'
-import toast from 'components/toast'
+import Toolbar from 'components/toolbar'
+import Modal from 'components/modal'
+import Toast from 'components/toast'
 import styles from 'index.css'
 
-class component extends Component {
-  render () {
-    return el('div', { className: styles['container'] },
-      el(toolbar),
-      this.props.children,
-      el(modal),
-      el(toast),
+class App extends React.Component {
+  render() {
+    return (
+      <div className={styles['container']}>
+        <Toolbar />
+        {this.props.children}
+        <Modal />
+        <Toast />
+      </div>
     )
   }
 }
 
-export default component
+export default App

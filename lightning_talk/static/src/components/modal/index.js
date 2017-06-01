@@ -1,11 +1,11 @@
-import { createElement as el, Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-import signin from 'components/signin'
+import Signin from 'components/Signin'
 import styles from 'index.css'
 
-class component extends Component {
-  close (e) {
+class Component extends React.Component {
+  close(e) {
     if (e.target !== this.container) {
       return
     }
@@ -17,16 +17,19 @@ class component extends Component {
     }
   }
 
-  render () {
+  render() {
     const { leastOneOpen, isSigninModalOpen, closeSigninModal } = this.props
 
-    return el('div',
-      {
-        className: leastOneOpen ? styles['container'] : styles['hide'],
-        ref: c => { this.container = c },
-        onClick: ::this.close,
-      },
-      isSigninModalOpen ? el(signin) : null,
+    return (
+      <div
+        className={leastOneOpen ? styles['container'] : styles['hide']}
+        ref={c => {
+          this.container = c
+        }}
+        onClick={::this.close}
+      >
+        {isSigninModalOpen ? <Signin /> : null}
+      </div>
     )
   }
 }
@@ -44,4 +47,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(component)
+export default connect(mapStateToProps, mapDispatchToProps)(Component)

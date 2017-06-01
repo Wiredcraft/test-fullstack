@@ -1,27 +1,31 @@
-import { createElement as el, Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-import upArrow from 'components/icons/upArrow'
+import UpArrow from 'components/icons/UpArrow'
 import styles from 'index.css'
 import { upvotePost } from 'actions/post'
 
-class component extends Component {
-  render () {
+class Component extends React.Component {
+  render() {
     const { title, description, user, upvotes } = this.props.data
 
-    return el('div', { className: styles['container'] },
-      el('div', { className: styles['left'], onClick: this.props.upvotePost },
-        el('div', { className: styles['icon'] }, el(upArrow)),
-        el('div', { className: styles['count'] }, upvotes.length),
-      ),
-      el('div', { className: styles['right'] },
-        el('div', { className: styles['title'] }, title),
-        el('div', { className: styles['description'] }, description),
-        el('div', { className: styles['right--bottom'] },
-          el('div', { className: styles['post-by'] }, 'post by'),
-          el('div', { className: styles['username'] }, user.username),
-        ),
-      ),
+    return (
+      <div className={styles['container']}>
+        <div className={styles['left']} onClick={this.props.upvotePost}>
+          <div className={styles['icon']}>
+            <UpArrow />
+            <div className={styles['count']}>{upvotes.length}</div>
+          </div>
+        </div>
+        <div className={styles['right']}>
+          <div className={styles['title']}>{title}</div>
+          <div className={styles['description']}>{description}</div>
+          <div className={styles['right--bottom']}>
+            <div className={styles['post-by']}>post by</div>
+            <div className={styles['username']}>{user.username}</div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
@@ -32,4 +36,4 @@ const mapDispatchToProps = (dispatch, { data: { url } }) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(component)
+export default connect(null, mapDispatchToProps)(Component)

@@ -41,7 +41,11 @@ module.exports = {
           ]
         }
       },
-      { test: /\.(png|jpg)$/, loader: 'file-loader', options: { name: 'img/[hash].[ext]' } },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader',
+        options: { name: 'img/[hash].[ext]' }
+      },
       {
         test: /\.css$/,
         use: [
@@ -77,7 +81,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('development') } })
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('development') }
+    })
   ],
 
   devtool: 'source-map',

@@ -1,14 +1,16 @@
-import { createElement as el, Component } from 'react'
+import React from 'react'
 
 import styles from 'index.css'
 
-class component extends Component {
-  render () {
-    return el('div', { className: styles['container'] }
-      el('input', { className: styles['title'] }),
-      el('input', { className: styles['description'] }),
+class Component extends React.Component {
+  render() {
+    return (
+      <div className={styles['container']}>
+        <input className={styles['title']} />
+        <input className={styles['description']} />
+      </div>
     )
   }
 }
 
-export default component
+export default Component

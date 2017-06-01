@@ -1,18 +1,30 @@
-import { createElement as el } from 'react'
+import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 
 import configureStore from 'store/configureStore'
-import app from 'components/app'
+import App from 'components/App'
 
 const store = configureStore()
 const root = document.getElementById('root')
 
-render(el(Provider, { store }, el(app)), root)
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  root
+)
 
 if (module.hot) {
-  module.hot.accept('components/app', () => {
-    render(el(AppContainer, null, el(Provider, { store }, el(app))), root)
+  module.hot.accept('components/App', () => {
+    render(
+      <AppContainer>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </AppContainer>,
+      root
+    )
   })
 }
