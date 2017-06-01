@@ -1,9 +1,9 @@
-import { API_ROOT } from 'constants/config'
+import { API_ROOT } from 'config'
 
 export function fetchPosts () {
   return async dispatch => {
     try {
-      const response = await fetch(`${API_ROOT}/posts/`)
+      const response = await fetch(`${API_ROOT}posts/`)
       const json = await response.json()
 
       if (response.ok) {

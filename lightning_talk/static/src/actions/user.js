@@ -1,4 +1,4 @@
-import { API_AUTH_ROOT } from 'constants/config'
+import { API_AUTH_ROOT } from 'config'
 
 export function signin () {
   return async (dispatch, getState) => {
@@ -29,7 +29,7 @@ export function signin () {
 export function signout () {
   return async dispatch => {
     try {
-      const response = await fetch(`${API_AUTH_ROOT}/logout`)
+      const response = await fetch(`${API_AUTH_ROOT}logout`)
       const json = await response.json()
 
       if (response.ok) {
