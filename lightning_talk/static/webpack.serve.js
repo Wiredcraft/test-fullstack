@@ -3,12 +3,7 @@ const webpack = require('webpack')
 const cssnext = require('postcss-cssnext')
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    'react-hot-loader/patch',
-    'whatwg-fetch',
-    path.join(__dirname, 'src', 'index')
-  ],
+  entry: ['babel-polyfill', 'react-hot-loader/patch', 'whatwg-fetch', path.join(__dirname, 'src', 'index')],
 
   output: {
     filename: 'bundle.js',
@@ -22,24 +17,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: [
-            [
-              'env',
-              {
-                targets: { browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] },
-                modules: false
-              }
-            ],
-            'react'
-          ],
-          plugins: [
-            'babel-plugin-transform-object-rest-spread',
-            'babel-plugin-transform-function-bind',
-            'react-hot-loader/babel'
-          ]
-        }
+        exclude: /node_modules/
       },
       {
         test: /\.(png|jpg)$/,
@@ -62,9 +40,7 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: loader => [
-                cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })
-              ]
+              plugins: loader => [cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })]
             }
           }
         ]

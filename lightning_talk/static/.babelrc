@@ -1,0 +1,18 @@
+{
+  presets: [
+    [
+      "env",
+      {
+        targets: { browsers: ["> 1%", "iOS >= 8", "Android >= 4"] },
+        modules: false
+      }
+    ],
+    "react"
+  ],
+  plugins: [
+    "transform-object-rest-spread",
+    "transform-function-bind",
+    "transform-class-properties",
+    "react-hot-loader/babel"
+  ]
+}

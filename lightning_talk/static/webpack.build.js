@@ -5,11 +5,7 @@ const cssnext = require('postcss-cssnext')
 const BabiliPlugin = require('babili-webpack-plugin')
 
 module.exports = {
-  entry: [
-    'babel-polyfill',
-    'whatwg-fetch',
-    path.resolve(__dirname, 'src', 'index')
-  ],
+  entry: ['babel-polyfill', 'whatwg-fetch', path.resolve(__dirname, 'src', 'index')],
 
   output: {
     filename: 'bundle.js',
@@ -22,24 +18,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
-        options: {
-          presets: [
-            [
-              'env',
-              {
-                targets: { browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] },
-                modules: false
-              }
-            ],
-            'react'
-          ],
-          plugins: [
-            'babel-plugin-transform-object-rest-spread',
-            'babel-plugin-transform-function-bind',
-            'react-hot-loader/babel'
-          ]
-        }
+        exclude: /node_modules/
       },
       { test: /\.(png|jpg)$/, loader: 'file-loader', options: { name: 'img/[hash].[ext]' } },
       {
@@ -60,9 +39,7 @@ module.exports = {
               options: {
                 minimize: true,
                 debug: false,
-                plugins: loader => [
-                  cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })
-                ]
+                plugins: loader => [cssnext({ browsers: ['> 1%', 'iOS >= 8', 'Android >= 4'] })]
               }
             }
           ]
