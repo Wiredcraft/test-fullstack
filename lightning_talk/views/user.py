@@ -3,10 +3,11 @@ from rest_framework import serializers, viewsets
 
 
 class UserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = ('username',)
+    class Meta:
+        model = User
+        fields = ('username', )
+
 
 class UserViewSet(viewsets.ModelViewSet):
-  queryset = User.objects.all()
-  serializer_class = UserSerializer
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -6,4 +6,4 @@ class LightningTalkConfig(AppConfig):
     verbose_name = 'Lightning Talk'
 
     def ready(self):
-      from .signals import create_auth_token
+        from .signals import create_auth_token

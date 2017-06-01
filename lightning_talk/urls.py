@@ -7,7 +7,6 @@ router = routers.DefaultRouter()
 router.register(r'posts', PostViewSet)
 router.register(r'upvotes', UpvoteViewSet)
 
-
 urlpatterns = [
     url(r'^$', index),
     url(r'^api/', include(router.urls)),

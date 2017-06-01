@@ -5,15 +5,16 @@ from .user import UserSerializer
 
 
 class UpvoteSerializer(serializers.HyperlinkedModelSerializer):
-  user = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
 
-  class Meta:
-    model = Upvote
-    fields = ('url', 'user')
+    class Meta:
+        model = Upvote
+        fields = ('url', 'user')
+
 
 class UpvoteViewSet(viewsets.ModelViewSet):
-  queryset = Upvote.objects.all()
-  serializer_class = UpvoteSerializer
+    queryset = Upvote.objects.all()
+    serializer_class = UpvoteSerializer
 
-  def perform_create(self, serializer):
-    serializer.save(user=self.request.user)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
