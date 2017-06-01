@@ -1,3 +1,6 @@
 .container {
+  width: 60em;
+  min-height: 40em;
   display: flex;
+  flex-direction: column;
 }

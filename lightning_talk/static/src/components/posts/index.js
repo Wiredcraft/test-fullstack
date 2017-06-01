@@ -1,25 +1,27 @@
 import { createElement as el, Component } from 'react'
 import { connect } from 'react-redux'
 
+import { fetchPosts } from 'actions/post'
+import post from 'post'
 import styles from 'index.css'
 
 class component extends Component {
-  render () {
-    return el('div', { className: styles['container'] }
+  componentDidMount () {
+    this.props.load()
+  }
 
+  render () {
+    return el('div', { className: styles['container'] },
+      this.props.posts.all.map((data, index) => el(post, { key: index, data }))
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = ({ posts }) => ({ posts })
+
+const mapDispatchToProps = (dispatch) => {
   return {
-
-  }
-}
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-
+    load: () => dispatch(fetchPosts())
   }
 }
 

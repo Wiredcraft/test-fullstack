@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+.signup, .signin {
+  margin-right: 1em;
+}
+
+.signup, .signin, .account {
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  color: #333;
+
+  &:hover {
+    border-bottom: 1px dashed #333;
+  }
+}

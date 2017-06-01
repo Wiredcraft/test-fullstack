@@ -1,0 +1,34 @@
+.container {
+  display: block;
+  position: fixed;
+  max-width: 15em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 1em;
+  padding-right: 1em;
+  line-height: 2em;
+  font-size: 1.2em;
+  border-radius: 2px;
+  top: 1em;
+  left: 0;
+  right: 0;
+  margin: auto;
+  color: white;
+}
+
+.error {
+  background-color: rgb(255, 69, 69);
+}
+
+.success {
+  background-color: rgb(106, 165, 106);
+}
+
+.info {
+  background-color: rgb(75, 153, 236);
+}
+
+.warning {
+  background-color: rgb(251, 139, 70);
+}

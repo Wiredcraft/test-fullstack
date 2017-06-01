@@ -1,8 +1,6 @@
-const init = {
-  
-}
+const init = {}
 
-export default function reducer (state = {}, action) {
+export default function (state = init, action) {
   switch (action.type) {
     default:
       return state

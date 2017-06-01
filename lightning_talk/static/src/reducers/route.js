@@ -1,6 +1,6 @@
 import { NAVIGATE, REPLACE } from 'constants/route'
 
-export default function reducer (route = {}, action) {
+export default function (route = {}, action) {
   switch (action.type) {
     case NAVIGATE:
     case REPLACE:

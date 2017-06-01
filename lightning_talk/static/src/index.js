@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 
 import configureStore from 'store/configureStore'
-import route from 'components/route'
+import route from 'route'
 
 const store = configureStore()
 const root = document.getElementById('root')
@@ -12,7 +12,7 @@ const root = document.getElementById('root')
 render(el(Provider, { store }, el(route)), root)
 
 if (module.hot) {
-  module.hot.accept('components/route', () => {
+  module.hot.accept('route', () => {
     render(el(AppContainer, null, el(Provider, { store }, el(route))), root)
   })
 }
