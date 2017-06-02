@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.db.models import Count
 from rest_framework import serializers, viewsets
 from rest_framework.decorators import detail_route
@@ -23,15 +24,28 @@ class PostViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    @detail_route(url_path='upvote')
-    def upvote(self):
+    @detail_route(url_path='upvote', methods=['PUT', 'DELETE'])
+    def upvote(self, request, pk=None):
         post = self.get_object()
+        exists = post.upvotes.filter(user=self.request.user).exists()
 
-        if self.request.method == 'put':
-            u = Upvote(user=self.request.user)
-            post.upvotes.add(u)
-        elif self.request.method == 'delete':
-            u = post.upvotes.all().filter(user=self.request.user)[0]
-            post.upvotes.remove(u)
+        if self.request.method == 'PUT':
+            if exists:
+                return JsonResponse(
+                    data={'detail': 'already upvoted'}, status='500')
+            else:
+                u = Upvote(user=self.request.user)
+                u.save()
+                post.upvotes.add(u)
+
+        elif self.request.method == 'DELETE':
+            if exists:
+                u = post.upvotes.get(user=self.request.user)
+                post.upvotes.remove(u)
+            else:
+                return JsonResponse(
+                    data={'detail': 'haven\'t upvote'}, status='500')
 
         post.save()
+
+        return JsonResponse(data={'detail': 'upvoted'})
