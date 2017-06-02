@@ -1,6 +1,5 @@
 from django.db.models import Count
 from rest_framework import serializers, viewsets
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import detail_route
 from ..models.post import Post, Upvote
 from .user import UserSerializer
@@ -30,7 +29,6 @@ class PostViewSet(viewsets.ModelViewSet):
 
         if self.request.method == 'put':
             u = Upvote(user=self.request.user)
-            print(self.request.user)
             post.upvotes.add(u)
         elif self.request.method == 'delete':
             u = post.upvotes.all().filter(user=self.request.user)[0]
