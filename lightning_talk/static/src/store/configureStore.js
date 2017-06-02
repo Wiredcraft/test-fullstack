@@ -6,7 +6,7 @@ import { createLogger } from 'redux-logger'
 import reducers from 'reducers'
 
 export default function configureStore() {
-  let store = createStore(reducers, applyMiddleware(thunk))
+  let store = createStore(reducers, undefined, compose(applyMiddleware(thunk), autoRehydrate()))
 
   if (process.env.NODE_ENV === 'development') {
     store = createStore(
