@@ -6,16 +6,18 @@
   right: 1em;
 }
 
-.signup, .signin {
-  margin-right: 1em;
+.signout {
+  margin-left: 1em;
 }
 
-.signup, .signin, .account {
+.signout, .signin, .account {
   border-bottom: 1px solid #333;
   color: #333;
 }
 
-.signup, .signin {
+.signout, .signin {
+  cursor: pointer;
+
   &:hover {
     border-bottom: 1px dashed #333;
   }

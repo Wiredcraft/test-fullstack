@@ -22,7 +22,7 @@ class Component extends React.Component {
           <div className={styles['description']}>{description}</div>
           <div className={styles['right--bottom']}>
             <div className={styles['post-by']}>post by</div>
-            <div className={styles['username']}>{user.username}</div>
+            <div className={styles['username']}>{user === null ? 'deleted' : user.username}</div>
           </div>
         </div>
       </div>

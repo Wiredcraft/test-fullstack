@@ -26,20 +26,3 @@ export function signin(callback) {
     }
   }
 }
-
-export function signout() {
-  return async dispatch => {
-    try {
-      const response = await fetch(`${API_AUTH_ROOT}logout`)
-      const json = await response.json()
-
-      if (response.ok) {
-        dispatch({ type: 'SIGNOUT_SUCCESS', response: json })
-      } else {
-        dispatch({ type: 'SIGNOUT_FAIL', error: 'sign out failed' })
-      }
-    } catch (error) {
-      dispatch({ type: 'SIGNOUT_SUCCESS', error: 'sign out failed' })
-    }
-  }
-}

@@ -18,9 +18,14 @@ export function fetchPosts() {
 }
 
 export function upvotePost(url) {
-  return async dispatch => {
+  return async (dispatch, getState) => {
+    const { user } = getState()
+
     try {
-      const response = await fetch(`${url}upvote/`, { method: 'put' })
+      const response = await fetch(`${url}upvote/`, {
+        method: 'put',
+        headers: { authorization: `JWT ${user.token}` }
+      })
       const json = await response.json()
 
       if (response.ok) {
