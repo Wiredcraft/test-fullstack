@@ -16,7 +16,6 @@ export function signin(callback) {
 
       if (response.ok) {
         dispatch({ type: 'SIGNIN_SUCCESS', username: body.username, token: json.token })
-        dispatch({ type: 'CLOSE_SIGNIN_MODAL' })
         callback()
       } else {
         dispatch({ type: 'SIGNIN_FAIL', error: 'unable sign in' })

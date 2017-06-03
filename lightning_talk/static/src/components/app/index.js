@@ -7,6 +7,7 @@ import Toolbar from 'components/Toolbar'
 import Toast from 'components/Toast'
 import Posts from 'components/Posts'
 import Signin from 'components/Signin'
+import CreatePost from 'components/CreatePost'
 
 class ModalSwitch extends React.Component {
   previousLocation = this.props.location
@@ -29,6 +30,7 @@ class ModalSwitch extends React.Component {
           <Route exact path={ROOT} component={Posts} />
         </Switch>
         {isModal ? <Route path="/signin" component={Signin} /> : null}
+        {isModal ? <Route path="/new" component={CreatePost} /> : null}
       </div>
     )
   }

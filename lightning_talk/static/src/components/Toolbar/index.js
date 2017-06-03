@@ -10,6 +10,9 @@ class Component extends React.Component {
 
     return (
       <div className={styles['container']}>
+        {username !== ''
+          ? <Link className={styles['create-post']} to={{ pathname: '/new', state: { modal: true } }}>new</Link>
+          : null}
         {username !== '' ? <div className={styles['account']}>{username}</div> : null}
         {username === ''
           ? <Link className={styles['signin']} to={{ pathname: '/signin', state: { modal: true } }}>

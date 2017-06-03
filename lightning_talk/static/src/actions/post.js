@@ -38,3 +38,31 @@ export function upvotePost(url) {
     }
   }
 }
+
+export function createPost(callback) {
+  return async (dispatch, getState) => {
+    const { createPost, user } = getState()
+    try {
+      const response = await fetch(`${API_ROOT}posts/`, {
+        method: 'post',
+        headers: { 'content-type': 'application/json', authorization: `JWT ${user.token}` },
+        body: JSON.stringify(createPost)
+      })
+      const json = await response.json()
+
+      if (response.ok) {
+        dispatch({ type: 'CREATE_POST_SUCCESS' })
+        // append new post to posts-reducer
+        dispatch({ type: 'APPEND_POST', post: json })
+        // highlight new post DOM element
+        dispatch({ type: 'HIGHLIGHT_POST_SET_URL', url: json.url })
+
+        callback()
+      } else {
+        dispatch({ type: 'CREATE_POST_FAIL', error: 'nope' })
+      }
+    } catch (error) {
+      dispatch({ type: 'CREATE_POST_SUCCESS', error: 'nope' })
+    }
+  }
+}

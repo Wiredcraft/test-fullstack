@@ -3,18 +3,18 @@ const init = {
   next: null,
   previous: null,
   results: [],
-  all: [],
+  all: []
 }
 
-export default function (state = init, action) {
-  const { type, response } = action
+export default function(state = init, action) {
+  const { type, response, post } = action
 
   switch (type) {
     case 'FETCH_POSTS_SUCCESS':
-      if (response.next === state.next && (response.next !== null && state.next !== null)) {
-        return state
-      }
-      return { ...response, all: [...state.all, ...response.results] }
+      return { ...response, all: [...response.results] }
+
+    case 'APPEND_POST':
+      return { ...state, all: [post, ...state.all] }
 
     default:
       return state

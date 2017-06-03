@@ -7,10 +7,10 @@ import { upvotePost } from 'actions/post'
 
 class Component extends React.Component {
   render() {
-    const { title, description, user, upvotes } = this.props.data
+    const { highlight, data: { title, description, user, upvotes } } = this.props
 
     return (
-      <div className={styles['container']}>
+      <div className={`${styles['container']} ${highlight ? styles['highlight'] : ''}`}>
         <div className={styles['left']} onClick={this.props.upvotePost}>
           <div className={styles['icon']}>
             <UpArrow />
@@ -30,10 +30,14 @@ class Component extends React.Component {
   }
 }
 
+const mapStateToProps = ({ highlightPost: { url } }, ownProps) => ({
+  highlight: url === ownProps.data.url
+})
+
 const mapDispatchToProps = (dispatch, { data: { url } }) => {
   return {
     upvotePost: () => dispatch(upvotePost(url))
   }
 }
 
-export default connect(null, mapDispatchToProps)(Component)
+export default connect(mapStateToProps, mapDispatchToProps)(Component)

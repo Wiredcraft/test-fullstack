@@ -13,7 +13,7 @@ class Component extends React.Component {
   render() {
     return (
       <div className={styles['container']}>
-        {this.props.posts.all.map((data, index) => <Post key={index} data={data} />)}
+        {this.props.posts.all.map(data => <Post key={data.url} data={data} />)}
       </div>
     )
   }
