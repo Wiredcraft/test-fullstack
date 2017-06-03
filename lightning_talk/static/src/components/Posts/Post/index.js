@@ -6,6 +6,14 @@ import styles from 'index.css'
 import { upvotePost } from 'actions/post'
 
 class Component extends React.Component {
+  componentWillUnmount() {
+    const { highlight, resetHighlightUrl } = this.props
+
+    if (highlight) {
+      resetHighlightUrl()
+    }
+  }
+
   render() {
     const { highlight, data: { title, description, user, upvotes } } = this.props
 
@@ -34,10 +42,9 @@ const mapStateToProps = ({ highlightPost: { url } }, ownProps) => ({
   highlight: url === ownProps.data.url
 })
 
-const mapDispatchToProps = (dispatch, { data: { url } }) => {
-  return {
-    upvotePost: () => dispatch(upvotePost(url))
-  }
-}
+const mapDispatchToProps = (dispatch, { data: { url } }) => ({
+  resetHighlightUrl: () => dispatch({ type: 'HIGHLIGHT_POST_RESET_URL' }),
+  upvotePost: () => dispatch(upvotePost(url))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)

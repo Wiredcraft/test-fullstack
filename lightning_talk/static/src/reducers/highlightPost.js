@@ -9,6 +9,9 @@ export default function(state = init, action) {
     case 'HIGHLIGHT_POST_SET_URL':
       return { url }
 
+    case 'HIGHLIGHT_POST_RESET_URL':
+      return { ...init }
+
     default:
       return state
   }
