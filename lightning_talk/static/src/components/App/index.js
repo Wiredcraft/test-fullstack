@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { ROOT } from 'config'
 import styles from 'index.css'
+import ProgressBar from 'components/ProgressBar'
 import Toolbar from 'components/Toolbar'
 import Toast from 'components/Toast'
 import Posts from 'components/Posts'
@@ -44,6 +45,7 @@ class Component extends React.Component {
           <Toolbar />
           <Route component={ModalSwitch} />
           <Toast />
+          <ProgressBar />
         </div>
       </Router>
     )

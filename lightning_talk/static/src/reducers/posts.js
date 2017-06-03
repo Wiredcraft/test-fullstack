@@ -1,9 +1,9 @@
 const init = {
   count: null,
+  current: null,
   next: null,
   previous: null,
-  results: [],
-  all: []
+  results: []
 }
 
 export default function(state = init, action) {
@@ -11,10 +11,10 @@ export default function(state = init, action) {
 
   switch (type) {
     case 'FETCH_POSTS_SUCCESS':
-      return { ...response, all: [...response.results] }
+      return { ...response }
 
     case 'APPEND_POST':
-      return { ...state, all: [post, ...state.all] }
+      return { ...state, results: [post, ...state.results] }
 
     default:
       return state

@@ -5,6 +5,7 @@ import user from 'user'
 import toast from 'toast'
 import createPost from 'createPost'
 import highlightPost from 'highlightPost'
+import progressBar from 'progressBar'
 
 export default combineReducers({
   posts,
@@ -12,5 +13,6 @@ export default combineReducers({
   user,
   toast,
   createPost,
-  highlightPost
+  highlightPost,
+  progressBar
 })

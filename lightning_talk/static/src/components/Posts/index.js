@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { fetchPosts } from 'actions/post'
@@ -11,9 +12,23 @@ class Component extends React.Component {
   }
 
   render() {
+    const { posts: { results, next, previous }, load } = this.props
+
     return (
       <div className={styles['container']}>
-        {this.props.posts.all.map(data => <Post key={data.url} data={data} />)}
+        <div className={styles['list']}>
+          {results.map(data => <Post key={data.url} data={data} />)}
+          {results.length === 0 ? <div className={styles['empty']}>Nothing yet.</div> : null}
+          {results.length === 0
+            ? <Link className={styles['be-the-first']} to={{ pathname: '/new', state: { modal: true } }}>
+                Create One!
+              </Link>
+            : null}
+        </div>
+        <div className={styles['page']}>
+          {previous ? <div className={styles['prev']} onClick={() => load(previous)}>prev</div> : null}
+          {next ? <div className={styles['next']} onClick={() => load(next)}>next</div> : null}
+        </div>
       </div>
     )
   }
@@ -23,7 +38,7 @@ const mapStateToProps = ({ posts }) => ({ posts })
 
 const mapDispatchToProps = dispatch => {
   return {
-    load: () => dispatch(fetchPosts())
+    load: url => dispatch(fetchPosts(url))
   }
 }
 

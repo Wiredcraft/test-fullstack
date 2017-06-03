@@ -12,6 +12,9 @@ export default function(state = init, action) {
     case 'UPVOTE_POST_FAIL':
       return { message: error, type: 'error' }
 
+    case 'UPVOTE_POST_SUCCESS':
+      return { message: 'upvoted', type: 'success' }
+
     case 'SIGNIN_SUCCESS':
       return { message: `Welcome ${username}`, type: 'success' }
 

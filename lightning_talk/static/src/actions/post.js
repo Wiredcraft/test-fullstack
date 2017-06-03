@@ -1,13 +1,13 @@
 import { API_ROOT } from 'config'
 
-export function fetchPosts() {
+export function fetchPosts(url = `${window.location.protocol}//${window.location.host}${API_ROOT}posts/`) {
   return async dispatch => {
     try {
-      const response = await fetch(`${API_ROOT}posts/`)
+      const response = await fetch(url)
       const json = await response.json()
 
       if (response.ok) {
-        dispatch({ type: 'FETCH_POSTS_SUCCESS', response: json })
+        dispatch({ type: 'FETCH_POSTS_SUCCESS', response: { ...json, current: url } })
       } else {
         dispatch({ type: 'FETCH_POSTS_FAIL', error: 'unable get posts' })
       }
@@ -19,7 +19,7 @@ export function fetchPosts() {
 
 export function upvotePost(url) {
   return async (dispatch, getState) => {
-    const { user } = getState()
+    const { user, posts: { current } } = getState()
 
     try {
       const response = await fetch(`${url}upvote/`, {
@@ -29,12 +29,16 @@ export function upvotePost(url) {
       const json = await response.json()
 
       if (response.ok) {
-        dispatch({ type: 'UPVOTE_POST_SUCCESS', response: json })
+        dispatch({ type: 'UPVOTE_POST_SUCCESS' })
+        // then fresh current page
+        dispatch(fetchPosts(current))
+        // loading animation & progress bar component
+        dispatch({ type: 'LOADING' })
       } else {
-        dispatch({ type: 'UPVOTE_POST_FAIL', error: 'upvote failed' })
+        dispatch({ type: 'UPVOTE_POST_FAIL', error: json.detail || 'upvote failed' })
       }
     } catch (error) {
-      dispatch({ type: 'UPVOTE_POST_FAIL', error: 'upvote failed' })
+      dispatch({ type: 'UPVOTE_POST_FAIL', error: error.toString() || 'upvote failed' })
     }
   }
 }
