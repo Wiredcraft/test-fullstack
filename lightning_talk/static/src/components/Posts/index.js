@@ -12,14 +12,14 @@ class Component extends React.Component {
   }
 
   render() {
-    const { posts: { results, next, previous }, load } = this.props
+    const { posts: { results, next, previous, current }, user: { token }, load } = this.props
 
     return (
       <div className={styles['container']}>
         <div className={styles['list']}>
           {results.map(data => <Post key={data.url} data={data} />)}
-          {results.length === 0 ? <div className={styles['empty']}>Nothing yet.</div> : null}
-          {results.length === 0
+          {current && results.length === 0 ? <div className={styles['empty']}>Nothing yet.</div> : null}
+          {token && current && results.length === 0
             ? <Link className={styles['be-the-first']} to={{ pathname: '/new', state: { modal: true } }}>
                 Create One!
               </Link>
@@ -34,7 +34,7 @@ class Component extends React.Component {
   }
 }
 
-const mapStateToProps = ({ posts }) => ({ posts })
+const mapStateToProps = ({ posts, user }) => ({ posts, user })
 
 const mapDispatchToProps = dispatch => {
   return {
