@@ -1,4 +1,4 @@
-import os
+import os, datetime
 
 DEBUG = True
 
@@ -28,6 +28,10 @@ REST_FRAMEWORK = {
     'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE':
     10
+}
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
 }
 
 MIDDLEWARE = [
