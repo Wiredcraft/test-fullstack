@@ -23,6 +23,11 @@
   flex-direction: column;
   justify-content: center;
   width: 40em;
+  pointer-events: none;
+}
+
+.title, .description, .button {
+  pointer-events: auto;
 }
 
 .title, .description {
