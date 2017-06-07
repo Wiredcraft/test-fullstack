@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.db.models import Count
 from rest_framework import serializers, viewsets
 from rest_framework.decorators import detail_route
-from ..models.post import Post, Upvote
+from ..models import Post, Upvote
 from .user import UserSerializer
 from .upvote import UpvoteSerializer
 
