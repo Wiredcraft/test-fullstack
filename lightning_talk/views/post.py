@@ -32,7 +32,7 @@ class PostViewSet(viewsets.ModelViewSet):
         if self.request.method == 'PUT':
             if exists:
                 return JsonResponse(
-                    data={'detail': 'already upvoted'}, status='500')
+                    data={'detail': 'already upvoted'}, status='403')
             else:
                 u = Upvote(user=self.request.user)
                 u.save()
@@ -44,7 +44,7 @@ class PostViewSet(viewsets.ModelViewSet):
                 post.upvotes.remove(u)
             else:
                 return JsonResponse(
-                    data={'detail': 'haven\'t upvote'}, status='500')
+                    data={'detail': 'haven\'t upvote'}, status='403')
 
         post.save()
 
