@@ -69,7 +69,7 @@ class PostTest(APITestCase):
         """
         post = Post.objects.create(
             title='yo', description='hei', user=self.user)
-        upvote = Upvote.objects.create(user=self.user)
+        upvote = Upvote.objects.create(user=self.user, post=post)
         post.upvotes.add(upvote)
 
         url = '/lightning_talk/api/posts/%s/upvote/' % post.pk

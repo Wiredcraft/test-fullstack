@@ -34,18 +34,15 @@ class PostViewSet(viewsets.ModelViewSet):
                 return JsonResponse(
                     data={'detail': 'already upvoted'}, status='403')
             else:
-                u = Upvote(user=self.request.user)
+                u = Upvote(user=self.request.user, post=post)
                 u.save()
-                post.upvotes.add(u)
 
         elif self.request.method == 'DELETE':
             if exists:
                 u = post.upvotes.get(user=self.request.user)
-                post.upvotes.remove(u)
+                u.delete()
             else:
                 return JsonResponse(
                     data={'detail': 'haven\'t upvote'}, status='403')
-
-        post.save()
 
         return JsonResponse(data={'detail': 'upvoted'})
