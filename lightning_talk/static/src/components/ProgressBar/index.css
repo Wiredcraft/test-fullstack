@@ -1,0 +1,25 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.bar {
+  height: 3px;
+  background-color: rgb(89, 145, 230);
+  box-shadow: 0px 1px 4px rgba(89, 145, 230, .8);
+  animation-name: progress;
+  animation-duration: 0.6s;
+}
+
+@keyframes progress {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}

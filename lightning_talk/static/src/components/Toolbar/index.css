@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+.signout, .signin, .account, .create-post {
+  color: #333;
+}
+
+.account, .signout {
+  margin-left: 1em;
+}
+
+.create-post, .signout, .signin {
+  cursor: pointer;
+}
+
+.account {
+  cursor: default;
+}
+
+.create-post {
+  border-bottom: 1px solid #333;
+
+  &:hover {
+    border-bottom: 1px dashed #333;
+  }
+}

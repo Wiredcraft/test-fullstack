@@ -1,0 +1,10 @@
+{
+  "libs": [
+    "browser"
+  ],
+  "plugins": {
+    "webpack": {
+      "configPath": "webpack.serve.js"
+    }
+  }
+}

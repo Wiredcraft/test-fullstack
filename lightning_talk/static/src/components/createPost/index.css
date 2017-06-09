@@ -1,0 +1,65 @@
+:root {
+  --color-light-grey: rgb(238, 238, 238);
+  --color-grey: rgb(180, 180, 180);
+  --color-blue: rgb(45, 114, 217);
+  --color-red: #e66355;
+  --radius: 0.2em;
+}
+
+.layout {
+  background-color: rgba(154, 154, 154, 0.7);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 40em;
+  pointer-events: none;
+}
+
+.title, .description, .button {
+  pointer-events: auto;
+}
+
+.title, .description {
+  font-size: 1.3em;
+  margin-bottom: 1em;
+  border: var(--radius) solid var(--color-light-grey);
+  border-radius: 0.2em;
+
+  &::placeholder {
+    color: var(--color-grey);
+  }
+}
+
+.title {
+  text-indent: 0.5em;
+  line-height: 2.5em;
+}
+
+.description {
+  padding: 0.3em 0.5em;
+  resize: none;
+  height: 10em;
+}
+
+.button {
+  align-self: flex-start;
+  width: 6em;
+  background-color: var(--color-blue);
+  border-radius: var(--radius);
+  text-align: center;
+  line-height: 3em;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

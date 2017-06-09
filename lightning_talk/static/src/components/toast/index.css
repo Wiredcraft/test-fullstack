@@ -1,0 +1,39 @@
+.layout {
+  position: fixed;
+  width: 15em;
+  top: 1em;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 1em;
+  padding-right: 1em;
+  line-height: 2em;
+  text-align: center;
+  font-size: 1.2em;
+  border-radius: 2px;
+  color: white;
+}
+
+.error {
+  background-color: rgb(255, 69, 69);
+}
+
+.success {
+  background-color: rgb(106, 165, 106);
+}
+
+.info {
+  background-color: rgb(75, 153, 236);
+}
+
+.warning {
+  background-color: rgb(251, 139, 70);
+}
