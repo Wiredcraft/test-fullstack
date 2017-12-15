@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux'
+import { getPageData } from './actions'
+import Container from './Container'
 
-class App extends Component {
-  render() {
+class App extends Container {
+  componentWillMount () {
+    const page = this.props.match.params.page
+    this.props.dispatch(getPageData('news', page))
+  }
+
+  componentWillReceiveProps (nextProps, nextState, context) {
+    const newPage = nextProps.match.params.page
+    const page = this.props.match.params.page
+    if (newPage !== page) {
+      this.props.dispatch(getPageData('news', newPage))
+    }
+  }
+
+  render () {
+    const { news } = this.props
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        { this.renderList(news) }
+        { this.renderPage() }
       </div>
-    );
+    )
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state);
+  return state.comment
+}
+
+export default connect(mapStateToProps)(App);
