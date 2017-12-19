@@ -1,0 +1,106 @@
+.App{
+  border: 1px solid #1baf0f;
+  padding: 10px;
+}
+
+h1.title {
+  background: #0f5d08;
+  color: #fff;
+  padding-left: 20px;
+}
+
+
+.flex {
+  display: flex;
+}
+
+.verticle-center {
+  align-items: center;
+}
+
+.horizontal-justfy{
+  justify-content: space-between;
+}
+
+.new-btn{
+  border: none;
+  box-shadow: 0px 0px 1px 0px #265408;
+  margin-bottom: 10px;
+  height: 40px;
+  background: #f9fbf9;
+  line-height: 40px;
+  text-align: center;
+}
+
+.new-btn a{
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.new-btn:hover{
+  cursor: pointer;
+  background: rgba(64, 138, 14, 0.62);
+  color: #ffffff;
+}
+
+.lighting-talk-item {
+  background: #def3e8;
+  padding: 10px 20px;
+  border-radius: 3px;
+  color: #444444;
+  cursor: pointer;
+  margin-bottom: 2px;
+}
+
+.lighting-talk-item .username{
+  font-size: 13px;
+  color: #2f6f629e;
+}
+
+.field{
+  margin-bottom: 20px;
+}
+
+.field label{
+  margin-right: 20px;
+  width: 100px;
+  text-align: right;
+}
+
+.field input, .field textarea{
+  flex-grow: 1;
+  height: 30px;
+}
+
+.field textarea{
+  height: 100px;
+}
+
+.submit-btn {
+  flex-direction: row-reverse;
+}
+
+.submit-btn button{
+  width: 150px;
+  height: 40px;
+  background: #366d0d;
+  border-radius: 3px;
+  margin-left: 10px;
+  color: #ffffff;
+}
+
+.submit-btn .cancel{
+  background: #ccc;
+}
+
+.font-red{
+  color: red;
+}
+
+.placeholder{
+  height: 100px;
+  background: #fdfcfc;
+  line-height: 100px;
+  text-align: center;
+}

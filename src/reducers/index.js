@@ -1,10 +1,25 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import { NEW_TALK, VOTE } from '../actions/'
 
-const myReducer = (state = {}, action) => {
+const LightingTalks = (state = [], action) => {
   switch (action.type) {
-    case '':
-      return Object.assign({}, state, {features: action.test})
+    case NEW_TALK:
+      const newTalk = action.data
+      newTalk.id = state && state.length ? state.length + 1 : 1
+      newTalk.voteCount = parseInt(Math.random()*100)
+      newTalk.isVoted = false
+      return state ? [... state, action.data] : []
+
+    case VOTE:
+      const talk = state[action.index]
+      const talks = [...state]
+      talk.voteCount = talk.isVoted
+      ? talk.voteCount - 1
+      : talk.voteCount + 1
+      talk.isVoted = !talk.isVoted
+      talks[action.index] = talk
+      return talks
     default:
       return state
   }
@@ -12,7 +27,7 @@ const myReducer = (state = {}, action) => {
 
 const reducers = combineReducers({
   routerReducer,
-  myReducer
+  LightingTalks
 })
 
 export default reducers
