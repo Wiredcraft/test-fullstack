@@ -12,7 +12,7 @@ export const LightingTalks = (state = [], action) => {
       return state ? [... state, newTalk] : []
 
     case VOTE:
-      const talk = state[action.index]
+      const talk = Object.assign({}, state[action.index])
       const talks = [...state]
       talk.voteCount = talk.isVoted
       ? talk.voteCount - 1
