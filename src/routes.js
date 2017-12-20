@@ -4,7 +4,6 @@ import List from './pages/List'
 import Header from './pages/Header'
 import NewLightingTalk from './pages/NewLightingTalkForm'
 
-
 class App extends Component {
   render () {
     return (

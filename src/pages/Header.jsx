@@ -24,17 +24,17 @@ class Home extends Component {
   }
 
   voteHandler (id) {
-    const formData = new FormData()
-    formData.append('id', id)
-    console.log(formData)
-    fetch('/api/vote', { method: 'PUT', body: {"id": id}})
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ data })
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    // const formData = new FormData()
+    // formData.append('id', id)
+    // console.log(formData)
+    // fetch('/api/vote', { method: 'PUT', body: {"id": id}})
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.setState({ data })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
   }
 
   render() {

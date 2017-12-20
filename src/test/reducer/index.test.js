@@ -27,12 +27,10 @@ describe('/reducer', () => {
         username: 'username'
       }
     }
-
     const voteAction = {
       type: VOTE,
       index: 0
     }
-
     const newState1 = LightingTalks([], newTalkAction)
     const newState2 = LightingTalks(newState1, voteAction)
     expect(newState1[0].id).toBe(newState2[0].id)

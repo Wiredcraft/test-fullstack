@@ -98,6 +98,20 @@ h1.title {
   color: red;
 }
 
+.vote-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 12.5px 15px 12.5px;
+  border-color: transparent transparent #ffffff transparent;
+  margin-right: 5px;
+}
+
+.font-red .vote-icon{
+  border-color: transparent transparent red transparent;
+}
+
 .placeholder{
   height: 100px;
   background: #fdfcfc;
