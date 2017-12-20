@@ -50,7 +50,7 @@ class List extends Component {
         <div className='new-btn'><Link to='/new'>Submit a lighting talk</Link></div>
         {
           LightingTalks.length
-            ? LightingTalks.map((talk, index)=> <LightingTalkItem index={index} voteHandler={this.voteHandler} key={talk.id} data={talk} />)
+            ? LightingTalks.map((talk, index) => <LightingTalkItem index={index} voteHandler={this.voteHandler} key={talk.id} data={talk} />)
             : <div className='placeholder'>Click the button to submit a lighting talk</div>
         }
       </div>

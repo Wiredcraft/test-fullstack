@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import LightingTalkItem from '../components/LightingTalkItem'
 import '../assets/css/index.css'
 
@@ -12,14 +13,14 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/lightingTalks', { method: 'GET' })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ data })
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    // fetch('/api/lightingTalks', { method: 'GET' })
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     this.setState({ data })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
   }
 
   voteHandler (id) {
@@ -40,9 +41,7 @@ class Home extends Component {
     return (
       <div>
         <h1 className='title'>lighting talks</h1>
-        {
-          this.props.children
-        }
+        <Redirect to='/list' />
       </div>
     )
   }
