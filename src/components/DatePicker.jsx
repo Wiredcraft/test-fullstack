@@ -28,7 +28,9 @@ class DatePicker extends React.Component {
 }
 
 DatePicker.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  label: PropTypes.string
 }
 
 export default DatePicker
