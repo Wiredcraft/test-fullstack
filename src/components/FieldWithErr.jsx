@@ -35,7 +35,6 @@ const FieldWithErr = (props) => {
 }
 
 FieldWithErr.propTypes = {
-  name: PropTypes.string.isRequired,
   fieldType: PropTypes.string.isRequired,
   label: PropTypes.string
 }

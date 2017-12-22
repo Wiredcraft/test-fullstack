@@ -11,3 +11,10 @@ export const canNotBeEmpty = (obj, properties) => {
   })
   return err
 }
+
+
+export const dangerousHTML = (data) => {
+  return {
+    __html: data
+  }
+}
