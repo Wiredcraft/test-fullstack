@@ -66,15 +66,23 @@ h1.title {
   margin-right: 20px;
   width: 100px;
   text-align: right;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-.field input, .field textarea{
+.field .field-with-err{
   flex-grow: 1;
-  height: 30px;
 }
 
-.field textarea{
+.field .field-with-err input{
+  height: 30px;
+  width: 100%;
+  padding-left: 3px;
+}
+
+.field .field-with-err textarea{
   height: 100px;
+  width: 100%;
 }
 
 .submit-btn {
@@ -94,8 +102,18 @@ h1.title {
   background: #ccc;
 }
 
+.submit-btn .cancel a{
+  text-decoration: none;
+  color: #444444;
+}
+
 .font-red{
   color: red;
+}
+
+.font-err{
+  color: #a94442;
+  font-size: 13px;
 }
 
 .vote-icon {

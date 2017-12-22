@@ -41,7 +41,6 @@ class Home extends Component {
     return (
       <div>
         <h1 className='title'>lighting talks</h1>
-        <Redirect to='/list' />
       </div>
     )
   }
