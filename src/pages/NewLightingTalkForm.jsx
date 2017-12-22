@@ -1,52 +1,61 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { createBrowserHistory } from 'react-router-dom'
+import { Field, reduxForm } from 'redux-form'
 import { submitNewTalk } from '../actions/'
+import { canNotBeEmpty } from '../helper'
+import FieldWithErr from '../components/FieldWithErr'
+import DatePicker from '../components/DatePicker'
 
 class NewLightingTalkForm extends Component {
 
-  handleSubmit (e) {
-    e.preventDefault()
-    const title = this.refs.title.value
-    const username = this.refs.username.value
-    const description = this.refs.description.value
-    this.props.submitNewTalk({title, username, description})
-    alert('success')
-    this.props.history.push('/list')
+  handleSubmit (values) {
+    console.log(values)
+    this.props.submitNewTalk({...values})
+    this.props.history.push('/')
   }
 
   render() {
     const { data, voteHandler } = this.props
     return (
-      <form >
-        <div className='field flex'>
-          <label>title</label>
-          <input type="text" ref='title'/>
-        </div>
-        <div className='field flex'>
-          <label>username</label>
-          <input type="text" ref='username'/>
-        </div>
-        <div className='field flex'>
-          <label>description</label>
-          <textarea ref='description'/>
-        </div>
+      <form onSubmit={this.props.handleSubmit(this.handleSubmit.bind(this))}>
+        <Field name='title' label='Title' component={FieldWithErr} fieldType='input' type='text' />
+        <Field name='author' label='Author' component={FieldWithErr} fieldType='input' type='text' />
+        <Field name='publishDate' label='Publish Date' id='publishDate' component={DatePicker} />
+        <Field name='description' label='Description' component={FieldWithErr} fieldType='textarea' type='text' />
+        <Field name='public' label='Public' component={FieldWithErr} fieldType='checkbox' type='text' />
         <div className='submit-btn flex'>
-          <button onClick={this.handleSubmit.bind(this)}>Submit</button>
-          <button className='cancel'><Link to='/list'>cancel</Link></button>
+          <button type='submit'>Submit</button>
+          <button className='cancel'><Link to='/'>cancel</Link></button>
         </div>
       </form>
-    );
+    )
   }
 }
-
 
 const mapDispatchToProps = dispatch => ({
   submitNewTalk: data => dispatch(submitNewTalk(data)),
 })
 
+const validate = (values) => {
+  let errors = canNotBeEmpty(values, ['title', 'author', 'description', 'publishDate'])
+  if (values.title && values.title.length > 60) {
+    errors.title = 'title to long'
+  }
+  if (values.author && values.author.length > 20) {
+    errors.author = 'author to long'
+  }
+  if (values.description && values.description.length > 600) {
+    errors.description = 'description to long'
+  }
+  return errors
+}
+
+
 export default connect(
   null,
   mapDispatchToProps
-)(NewLightingTalkForm)
+)(reduxForm({
+  form: 'NewLightingTalkForm',
+  validate
+})(NewLightingTalkForm))
