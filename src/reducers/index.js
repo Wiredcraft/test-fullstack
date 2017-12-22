@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import { reducer as formReducer } from 'redux-form'
 import { NEW_TALK, VOTE } from '../actions/'
 
 export const LightingTalks = (state = [], action) => {
@@ -26,7 +27,8 @@ export const LightingTalks = (state = [], action) => {
 
 const reducers = combineReducers({
   routerReducer,
-  LightingTalks
+  LightingTalks,
+  form: formReducer
 })
 
 export default reducers

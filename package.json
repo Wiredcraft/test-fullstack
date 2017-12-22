@@ -15,6 +15,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
+    "flatpickr": "^4.1.4",
     "morgan": "~1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -24,6 +25,7 @@
     "react-router-redux": "^4.0.8",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
+    "redux-form": "^7.2.0",
     "serve-favicon": "~2.4.5"
   },
   "proxy": "http://localhost:3001",
