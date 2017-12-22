@@ -19,7 +19,7 @@ class DatePicker extends React.Component {
       <div className='field flex'>
         <label>{label}</label>
         <div className='field-with-err'>
-          <input ref={id} readOnly className='flatpickr form-control' type='text' placeholder={name} />
+          <input ref={id} readOnly className='flatpickr form-control' type='text' placeholder='Select' />
           <div className='font-err'>{touched && error ? <div>{error}</div> : null}</div>
         </div>
       </div>

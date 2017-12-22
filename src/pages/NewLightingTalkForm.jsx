@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm, SubmissionError } from 'redux-form'
 import { submitNewTalk } from '../actions/'
 import { canNotBeEmpty } from '../helper'
 import FieldWithErr from '../components/FieldWithErr'
@@ -10,9 +10,19 @@ import DatePicker from '../components/DatePicker'
 class NewLightingTalkForm extends Component {
 
   handleSubmit (values) {
-    console.log(values)
-    this.props.submitNewTalk({...values})
-    this.props.history.push('/')
+    const { LightingTalks } = this.props
+    return new Promise((resolve, reject) => {
+      const exist = LightingTalks.some((i) => {
+        return i.title === values.title
+      })
+      if (exist) {
+        reject(new SubmissionError({title: 'This title already exists'}))
+      } else {
+        this.props.submitNewTalk({...values})
+        this.props.history.push('/')
+        resolve()
+      }
+    })
   }
 
   render() {
@@ -32,6 +42,11 @@ class NewLightingTalkForm extends Component {
     )
   }
 }
+
+
+const mapStateToProps = state => ({
+  LightingTalks: state.LightingTalks,
+})
 
 const mapDispatchToProps = dispatch => ({
   submitNewTalk: data => dispatch(submitNewTalk(data)),
@@ -53,7 +68,7 @@ const validate = (values) => {
 
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(reduxForm({
   form: 'NewLightingTalkForm',
