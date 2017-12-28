@@ -17,13 +17,14 @@ For the functional specification and requirement of this app, please refer to th
 2. MongoDB
 
 ## How to run
-1. Navigate to /lighting-talk/server/datasources.json and update MongoDB your conenction details
-2. Navigate to /lighting-talk/react_src and run **npm run build**
+1. Navigate to /lighting-talk and run **npm install** to install all dependencies
+2. Navigate to /lighting-talk/server/datasources.json and update MongoDB your conenction details
+3. Navigate to /lighting-talk/react_src and run **npm run build**
     - Modify/Update the react source code in this folder if needed
     - React will compile and the files will be copied to /lighting-talk/client
-3. Navigate to /lighting-talk and run **node .**
+4. Navigate to /lighting-talk and run **node .**
     - Server will start
-4. Browse http://localhost:3000/
+5. Browse http://localhost:3000/
 
 ## How to use
 1. To add a new talk, click on the **Add** button and fill in the details and submit
