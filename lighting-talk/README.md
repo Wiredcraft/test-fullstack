@@ -2,7 +2,7 @@
 
 For the functional specification and requirement of this app, please refer to the [here](https://github.com/clho40/test-fullstack)
 
-##Demo
+## Demo
 https://lighting-talk.appspot.com/
 
 ## Tech Stack
