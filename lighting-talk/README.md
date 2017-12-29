@@ -2,9 +2,12 @@
 
 For the functional specification and requirement of this app, please refer to the [here](https://github.com/clho40/test-fullstack)
 
+<<<<<<< HEAD
 ## Demo
 https://lighting-talk.appspot.com/
 
+=======
+>>>>>>> parent of 396c926... Include demo link
 ## Tech Stack
 - Frontend
     - ReactJS

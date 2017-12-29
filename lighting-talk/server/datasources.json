@@ -1,6 +1,12 @@
 {
   "db": {
-    "url": "mongodb://admin:admin@ds135537.mlab.com:35537/lighting-talk",
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "lighting-talk",
+    "password": "",
+    "name": "db",
+    "user": "",
     "connector": "mongodb"
   }
 }
