@@ -1,0 +1,50 @@
+{
+  "name": "talk",
+  "plural": "talks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "default-title"
+    },
+    "description": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string",
+      "required": true,
+      "default": "default-user"
+    },
+    "voteScore": {
+      "type": "number",
+      "default": 0
+    },
+    "voteCount": {
+      "type": "number",
+      "default": 0
+    },
+    "voteAverage": {
+      "type": "number",
+      "default": 0
+    },
+    "created": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now"
+    },
+    "updated": {
+      "type": "date",
+      "required": true,
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
