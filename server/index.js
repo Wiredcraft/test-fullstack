@@ -1,10 +1,12 @@
+const path = require('path')
+
 // Env init
 require('dotenv').config()
 const {
     DATABASE,
+    ENV,
     SERVER_PORT,
 } = process.env
-
 
 // DB init
 const mongoose = require('mongoose')
@@ -16,6 +18,15 @@ mongoose.Promise = global.Promise
 const express = require('express')
 const api = require('./api')
 const app = express()
+
+if (ENV === 'prod') {
+    app.get('*.js', function (req, res, next) {
+        req.url = req.url + '.gz'
+        res.set('Content-Encoding', 'gzip')
+        next()
+    })
+    app.use(express.static(path.join(__dirname, '../client/dist')))
+}
 
 app.use(require('body-parser').json())
 
