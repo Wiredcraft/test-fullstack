@@ -4,10 +4,10 @@
   "description": "Make sure you read **all** of this document carefully, and follow the guidelines in it.",
   "main": "index.js",
   "scripts": {
-    "dev:client": "nodemon --watch client/webpack --exec \"webpack-dev-server --hot --host 0.0.0.0 --config client/webpack --env dev\"",
-    "dev:server": "ENV=dev nodemon --watch server server",
+    "dev:client": "nodemon --watch client/webpack --exec \"WEBPACK_PORT=8080 SERVER_PORT=3000 webpack-dev-server --hot --host 0.0.0.0 --config client/webpack --env dev\"",
+    "dev:server": "NODE_ENV=development SERVER_PORT=3000 nodemon --watch server server",
     "prod:client": "webpack --config client/webpack --env prod",
-    "prod:server": "ENV=prod node server",
+    "prod:server": "NODE_ENV=production SERVER_PORT=8080 node server",
     "start": "concurrently \"npm run dev:client\" \"npm run dev:server\" --names \"📦,🖥\" --prefix name",
     "prod": "npm run prod:client && npm run prod:server"
   },

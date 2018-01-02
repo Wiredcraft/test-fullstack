@@ -4,8 +4,6 @@ const path = require('path')
 require('dotenv').config()
 const {
     DATABASE,
-    ENV,
-    SERVER_PORT,
 } = process.env
 
 // DB init
@@ -19,7 +17,7 @@ const express = require('express')
 const api = require('./api')
 const app = express()
 
-if (ENV === 'prod') {
+if (process.env.NODE_ENV === 'production') {
     app.get('*.js', function (req, res, next) {
         req.url = req.url + '.gz'
         res.set('Content-Encoding', 'gzip')
@@ -37,6 +35,6 @@ app.use((err, req, res, next) => {
     res.end()
 })
 
-app.listen(SERVER_PORT, () =>
-    console.log(`Server listen on port ${SERVER_PORT}`)
+app.listen(process.env.SERVER_PORT, () =>
+    console.log(`Server listen on port ${process.env.SERVER_PORT}`)
 )

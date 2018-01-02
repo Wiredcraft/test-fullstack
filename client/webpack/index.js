@@ -4,12 +4,6 @@ const webpackMerge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const parts = require('./parts')
 
-require('dotenv').config(path.resolve(__dirname, '../../.env'))
-const {
-    SERVER_PORT,
-    WEBPACK_PORT,
-} = process.env
-
 const paths = {
     src: path.resolve(__dirname, '../src'),
     dist: path.resolve(__dirname, '../dist'),
@@ -30,9 +24,9 @@ const commonConfig = webpackMerge([
 
 const devConfig = webpackMerge([
     parts.devServer({
-        port: WEBPACK_PORT,
+        port: process.env.WEBPACK_PORT,
         proxy: {
-            '/api': `http://localhost:${SERVER_PORT}`,
+            '/api': `http://localhost:${process.env.SERVER_PORT}`,
         },
     }),
     parts.sassLoader({ include: paths.src }),
