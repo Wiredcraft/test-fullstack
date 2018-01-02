@@ -14,8 +14,12 @@ const initState = {
 }
 Object.freeze(initState)
 
+const mapDispatchToProps = {
+    createTalk,
+}
 
-class SubmitForm extends Component {
+@connect(null, mapDispatchToProps)
+export default class SubmitForm extends Component {
 
     static propTypes = {
         visible: PropTypes.bool,
@@ -96,9 +100,3 @@ class SubmitForm extends Component {
         )
     }
 }
-
-const mapDispatchToProps = {
-    createTalk,
-}
-
-export default connect(null, mapDispatchToProps)(SubmitForm)

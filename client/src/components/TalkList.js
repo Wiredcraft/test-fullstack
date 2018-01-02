@@ -8,7 +8,19 @@ import {
     upvoteTalk,
 } from '@store/action-creators'
 
-class TalkList extends Component {
+const mapStateToProps = ({ talks: { list } } = {}) => {
+    return {
+        list,
+    }
+}
+
+const mapDispatchToProps = {
+    fetchTalks,
+    upvoteTalk,
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
+export default class TalkList extends Component {
 
     static propTypes = {
         list: PropTypes.array,
@@ -45,16 +57,3 @@ class TalkList extends Component {
         )
     }
 }
-
-const mapStateToProps = ({ talks: { list } } = {}) => {
-    return {
-        list,
-    }
-}
-
-const mapDispatchToProps = {
-    fetchTalks,
-    upvoteTalk,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TalkList)

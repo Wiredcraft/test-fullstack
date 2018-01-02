@@ -6,8 +6,14 @@ import TalkList from '@components/TalkList'
 import SubmitForm from '@components/SubmitForm'
 import Loading from '@components/Loading'
 
+const mapStateToProps = ({ talks: { loading } }) => {
+    return {
+        loading,
+    }
+}
 
-class App extends Component {
+@connect(mapStateToProps)
+export default class App extends Component {
 
     static propTypes = {
         loading: PropTypes.bool,
@@ -31,11 +37,3 @@ class App extends Component {
         )
     }
 }
-
-const mapStateToProps = ({ talks: { loading } }) => {
-    return {
-        loading,
-    }
-}
-
-export default connect(mapStateToProps)(App)
