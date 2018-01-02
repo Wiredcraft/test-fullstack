@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { createTalk } from '@store/action-creators'
 
 const initState = {
@@ -15,6 +16,12 @@ Object.freeze(initState)
 
 
 class SubmitForm extends Component {
+
+    static propTypes = {
+        visible: PropTypes.bool,
+        onRequestClose: PropTypes.func,
+        createTalk: PropTypes.func,
+    }
 
     state = { ...initState }
 

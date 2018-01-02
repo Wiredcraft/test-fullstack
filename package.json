@@ -31,6 +31,7 @@
     "lodash": "^4.17.4",
     "material-ui": "^0.20.0",
     "mongoose": "^5.0.0-rc0",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-flip-move": "^2.10.0",

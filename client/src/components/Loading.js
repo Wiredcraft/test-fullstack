@@ -1,5 +1,6 @@
 import React from 'react'
 import CircularProgress from 'material-ui/CircularProgress'
+import PropTypes from 'prop-types'
 
 const Loading = ({ size = 150 } = {}) => {
     return (
@@ -26,6 +27,10 @@ const Loading = ({ size = 150 } = {}) => {
             />
         </div>
     )
+}
+
+Loading.propTypes = {
+    size: PropTypes.number,
 }
 
 export default Loading

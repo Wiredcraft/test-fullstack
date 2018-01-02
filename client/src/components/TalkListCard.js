@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
     Card,
     CardText,
@@ -41,6 +42,15 @@ const Content = ({ description } = {}) => (
 )
 
 class TalkListCard extends Component {
+
+    static propTypes = {
+        title: PropTypes.string,
+        username: PropTypes.string,
+        description: PropTypes.string,
+        vote: PropTypes.number,
+        onUpvote: PropTypes.func,
+    }
+
     render() {
         const {
             title,

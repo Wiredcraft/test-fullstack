@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Title = ({ title = 'Lightning Talks', onOpenModal} = {}) => (
     <div
@@ -22,5 +23,10 @@ const Title = ({ title = 'Lightning Talks', onOpenModal} = {}) => (
         />
     </div>
 )
+
+Title.propTypes = {
+    title: PropTypes.string,
+    onOpenModal: PropTypes.func,
+}
 
 export default Title

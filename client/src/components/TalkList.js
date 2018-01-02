@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FlipMove from 'react-flip-move'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import TalkListCard from './TalkListCard'
 import {
     fetchTalks,
@@ -8,6 +9,13 @@ import {
 } from '@store/action-creators'
 
 class TalkList extends Component {
+
+    static propTypes = {
+        list: PropTypes.array,
+        fetchTalks: PropTypes.func,
+        upvoteTalk: PropTypes.func,
+    }
+
     componentWillMount() {
         this.props.fetchTalks()
     }
@@ -19,8 +27,8 @@ class TalkList extends Component {
                 leaveAnimation='fade'
             >
                 {
-                    this.props.talks.list &&
-                    [...this.props.talks.list]
+                    this.props.list &&
+                    [...this.props.list]
                         .sort((a, b) => a.vote <= b.vote)
                         .map((data) =>
                             <TalkListCard
@@ -38,9 +46,9 @@ class TalkList extends Component {
     }
 }
 
-const mapStateToProps = ({ talks } = {}) => {
+const mapStateToProps = ({ talks: { list } } = {}) => {
     return {
-        talks,
+        list,
     }
 }
 
