@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import FlipMove from 'react-flip-move'
 import { connect } from 'react-redux'
 import TalkListCard from './TalkListCard'
 import {
@@ -13,11 +14,14 @@ class TalkList extends Component {
 
     render() {
         return (
-            <div>
+            <FlipMove
+                enterAnimation='fade'
+                leaveAnimation='fade'
+            >
                 {
                     this.props.talks.list &&
                     [...this.props.talks.list]
-                        .sort((a, b) => a.vote < b.vote)
+                        .sort((a, b) => a.vote <= b.vote)
                         .map((data) =>
                             <TalkListCard
                                 key={data._id}
@@ -29,7 +33,7 @@ class TalkList extends Component {
                             />
                         )
                 }
-            </div>
+            </FlipMove>
         )
     }
 }
