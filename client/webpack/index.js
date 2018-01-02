@@ -53,6 +53,7 @@ const prodConfig = webpackMerge([
             }),
         ],
     },
+    parts.faviconGenerator(path.resolve(__dirname, 'favicon.png')),
     parts.dirCleaner({
         path: paths.dist,
         root: path.resolve(__dirname, '..'),

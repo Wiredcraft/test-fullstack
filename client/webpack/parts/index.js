@@ -6,6 +6,7 @@ const bundleExtractor = require('./bundle-extractor')
 const cssMinifier = require('./css-minifier')
 const devServer = require('./dev-server')
 const dirCleaner = require('./dir-cleaner')
+const faviconGenerator = require('./favicon-generator')
 const htmlGenerator = require('./html-generator')
 const htmlMinifier = require('./html-minifier')
 const jsMinifier = require('./js-minifier')
@@ -22,6 +23,7 @@ module.exports = {
     cssMinifier,
     devServer,
     dirCleaner,
+    faviconGenerator,
     htmlGenerator,
     htmlMinifier,
     jsMinifier,
