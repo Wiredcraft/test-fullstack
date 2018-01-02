@@ -1,7 +1,9 @@
+import { unionBy } from 'lodash/array'
 import {
     FETCH_TALKS,
     FETCH_TALKS_SUCCESS,
     FETCH_TALKS_FAIL,
+    UPVOTE_TALK,
 } from '../action-types'
 
 const initialState = {
@@ -20,6 +22,8 @@ export default (state = initialState, action) => {
             return { ...initialState, list: action.payload }
         case FETCH_TALKS_FAIL:
             return { ...state, loading: false, error: true }
+        case UPVOTE_TALK:
+            return { ...state, list: unionBy([action.payload], state.list, '_id') }
         default:
             return state
     }

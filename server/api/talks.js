@@ -39,4 +39,4 @@ const upvoteTalk = async (req, res) => {
 
 router.get('/', catchErrors(fetchTalks))
 router.post('/', catchErrors(createTalk))
-router.put('/:id', catchErrors(upvoteTalk))
+router.put('/:id/upvote', catchErrors(upvoteTalk))

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TalkListCard from './TalkListCard'
-import { fetchTalks } from '@store/action-creators'
+import {
+    fetchTalks,
+    upvoteTalk,
+} from '@store/action-creators'
 
 class TalkList extends Component {
     componentWillMount() {
@@ -22,6 +25,7 @@ class TalkList extends Component {
                                 title={data.title}
                                 username={data.username}
                                 description={data.description}
+                                onUpvote={() => this.props.upvoteTalk(data._id)}
                             />
                         )
                 }
@@ -38,6 +42,7 @@ const mapStateToProps = ({ talks } = {}) => {
 
 const mapDispatchToProps = {
     fetchTalks,
+    upvoteTalk,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TalkList)

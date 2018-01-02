@@ -1,3 +1,5 @@
 export const FETCH_TALKS = 'FETCH_TALKS'
 export const FETCH_TALKS_SUCCESS = 'FETCH_TALKS_SUCCESS'
 export const FETCH_TALKS_FAIL = 'FETCH_TALKS_FAIL'
+
+export const UPVOTE_TALK = 'UPVOTE_TALK'
