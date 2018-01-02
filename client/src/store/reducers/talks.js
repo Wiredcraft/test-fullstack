@@ -22,9 +22,10 @@ Object.freeze(initialState)
 export default (state = initialState, action) => {
     switch (action.type) {
         case FETCH_TALKS:
-        case UPVOTE_TALK:
-        case CREATE_TALK:
             return { ...state, loading: true, error: false }
+        case CREATE_TALK:
+        case UPVOTE_TALK:
+            return { ...state, error: false }
         case FETCH_TALKS_FAIL:
         case UPVOTE_TALK_FAIL:
         case CREATE_TALK_FAIL:
@@ -32,9 +33,9 @@ export default (state = initialState, action) => {
         case FETCH_TALKS_SUCCESS:
             return { ...initialState, list: action.payload }
         case UPVOTE_TALK_SUCCESS:
-            return { ...state, list: unionBy([action.payload], state.list, '_id') }
+            return {  ...initialState, list: unionBy([action.payload], state.list, '_id') }
         case CREATE_TALK_SUCCESS:
-            return { ...state, list: [...state.list, action.payload] }
+            return {  ...initialState, list: [...state.list, action.payload] }
         default:
             return state
     }

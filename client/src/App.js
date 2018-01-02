@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Title from '@components/Title'
 import TalkList from '@components/TalkList'
 import SubmitForm from '@components/SubmitForm'
+import Loading from '@components/Loading'
 
-export default class extends Component {
+
+class App extends Component {
     state = {
         modalVisible: false,
     }
@@ -17,7 +20,16 @@ export default class extends Component {
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setState({ modalVisible: false })}
                 />
+                {this.props.loading && <Loading />}
             </div>
         )
     }
 }
+
+const mapStateToProps = ({ talks: { loading } }) => {
+    return {
+        loading,
+    }
+}
+
+export default connect(mapStateToProps)(App)
