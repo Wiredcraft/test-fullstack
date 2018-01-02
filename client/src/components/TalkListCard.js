@@ -12,8 +12,8 @@ import {
 const Title = ({ title, onUpvote } = {}) => (
     <div>
         <i
-            className="fa fa-thumbs-o-up"
-            aria-hidden="true"
+            className='fa fa-thumbs-o-up'
+            aria-hidden='true'
             style={{
                 color: indigo500,
                 cursor: 'pointer',

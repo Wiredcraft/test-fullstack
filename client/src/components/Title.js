@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Title  = ({ title = 'Lightning Talks'} = {}) => (
+const Title = ({ title = 'Lightning Talks', onOpenModal} = {}) => (
     <div
         style={{
             fontFamily: 'Gabriela, sans-serif',
@@ -11,6 +11,15 @@ const Title  = ({ title = 'Lightning Talks'} = {}) => (
         }}
     >
         {title}
+        <i
+            className='fa fa-plus'
+            aria-hidden='true'
+            style={{
+                cursor: 'pointer',
+                marginLeft: '1em',
+            }}
+            onClick={onOpenModal}
+        />
     </div>
 )
 
