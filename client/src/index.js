@@ -1,17 +1,19 @@
 import '@styles/index.sass'
-import 'es6-promise/auto'
+import 'babel-polyfill'
 
 import React from 'react'
 import { render } from 'react-dom'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import { Provider } from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import App from './App'
+import store from '@store'
 
-const ComponentToRender = () => (
-    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <App />
+const Root = () => (
+    <MuiThemeProvider>
+        <Provider store={store}>
+            <App />
+        </Provider>
     </MuiThemeProvider>
 )
 
-render(<ComponentToRender />, document.getElementById('app'))
+render(<Root />, document.getElementById('app'))

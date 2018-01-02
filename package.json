@@ -24,14 +24,15 @@
   "homepage": "https://github.com/shuaibird/test-fullstack#readme",
   "dependencies": {
     "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
-    "es6-promise": "^4.2.2",
     "express": "^4.16.2",
     "material-ui": "^0.20.0",
     "mongoose": "^5.0.0-rc0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TalkList from '@components/TalkList'
 
 export default class extends Component {
     state = {
@@ -7,7 +8,9 @@ export default class extends Component {
 
     render() {
         return (
-            <div>{this.state.text}</div>
+            <div>
+                <TalkList />
+            </div>
         )
     }
 }

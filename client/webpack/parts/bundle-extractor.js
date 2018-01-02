@@ -8,7 +8,7 @@ module.exports = ({ vendor = [] } = {}) => ({
             'redux',
             'redux-thunk',
             'axios',
-            'es6-promise/auto',
+            'babel-polyfill',
             ...vendor
         ],
     },
