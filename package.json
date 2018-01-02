@@ -4,7 +4,7 @@
   "description": "Make sure you read **all** of this document carefully, and follow the guidelines in it.",
   "main": "index.js",
   "scripts": {
-    "dev:client": "nodemon --watch client/webpack --exec \"webpack-dev-server --hot --config client/webpack --env dev\"",
+    "dev:client": "nodemon --watch client/webpack --exec \"webpack-dev-server --hot --host 0.0.0.0 --config client/webpack --env dev\"",
     "dev:server": "ENV=dev nodemon --watch server server",
     "prod:client": "webpack --config client/webpack --env prod",
     "prod:server": "ENV=prod node server",
