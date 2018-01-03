@@ -1,0 +1,75 @@
+{
+  "name": "test-fullstack",
+  "version": "1.0.0",
+  "description": "Make sure you read **all** of this document carefully, and follow the guidelines in it.",
+  "main": "index.js",
+  "scripts": {
+    "dev:client": "nodemon --watch client/webpack --exec \"WEBPACK_PORT=8080 SERVER_PORT=3000 webpack-dev-server --hot --host 0.0.0.0 --config client/webpack --env dev\"",
+    "dev:server": "NODE_ENV=development SERVER_PORT=3000 nodemon --watch server server",
+    "prod:client": "webpack --config client/webpack --env prod",
+    "prod:server": "NODE_ENV=production SERVER_PORT=8080 node server",
+    "start": "concurrently \"npm run dev:client\" \"npm run dev:server\" --names \"📦,🖥\" --prefix name",
+    "prod": "npm run prod:client && npm run prod:server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shuaibird/test-fullstack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shuaibird/test-fullstack/issues"
+  },
+  "homepage": "https://github.com/shuaibird/test-fullstack#readme",
+  "engines": {
+    "node": ">= 8.9.0",
+    "npm": ">= 5.5.1"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "material-ui": "^0.20.0",
+    "mongoose": "^5.0.0-rc0",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-flip-move": "^2.10.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.36",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.36",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.36",
+    "@babel/preset-env": "^7.0.0-beta.36",
+    "@babel/preset-react": "^7.0.0-beta.36",
+    "@babel/preset-stage-0": "^7.0.0-beta.36",
+    "autoprefixer": "^7.2.3",
+    "babel-loader": "^8.0.0-beta.0",
+    "babili-webpack-plugin": "^0.1.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "compression-webpack-plugin": "^1.1.3",
+    "concurrently": "^3.5.1",
+    "css-loader": "^0.28.7",
+    "cssnano": "^3.10.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "favicons-webpack-plugin": "0.0.7",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.14.6",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^2.0.9",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7",
+    "webpack-merge": "^4.1.1"
+  }
+}

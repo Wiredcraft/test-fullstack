@@ -1,0 +1,40 @@
+$mobile-breakpoint: 500px
+$grey900: #212121
+$lightBlue500: #03A9F4
+$gabriela-font: 'Gabriela', sans-serif
+
+html
+    box-sizing: border-box
+    height: 100%
+    padding: 2em 3em
+    margin: 0 auto
+    background: $grey900
+    background-image: url('https://source.unsplash.com/random/1280x800')
+    background-repeat: no-repeat
+    background-size: cover
+    @media screen and (max-width: $mobile-breakpoint)
+        padding: 1em 1em
+
+#app
+    max-width: 960px
+    margin: 2em auto
+    @media screen and (max-width: $mobile-breakpoint)
+        margin: 1em auto
+
+.app-title
+    font-family: $gabriela-font
+    text-align: center
+    color: white
+    font-size: 3.5em
+    margin-bottom: 1em
+    @media screen and (max-width: $mobile-breakpoint)
+        font-size: 2em
+    i
+        cursor: pointer
+        margin-left: 1em
+        transition: color .3s
+        @media screen and (max-width: $mobile-breakpoint)
+            margin-left: .5em
+    &:hover
+        i
+            color: $lightBlue500
