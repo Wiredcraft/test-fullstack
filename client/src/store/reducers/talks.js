@@ -22,10 +22,9 @@ Object.freeze(initialState)
 export default (state = initialState, action) => {
     switch (action.type) {
         case FETCH_TALKS:
-            return { ...state, loading: true, error: false }
         case CREATE_TALK:
         case UPVOTE_TALK:
-            return { ...state, error: false }
+            return { ...state, loading: true, error: false }
         case FETCH_TALKS_FAIL:
         case UPVOTE_TALK_FAIL:
         case CREATE_TALK_FAIL:
