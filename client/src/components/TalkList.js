@@ -41,7 +41,7 @@ export default class TalkList extends Component {
                 {
                     this.props.list &&
                     [...this.props.list]
-                        .sort((a, b) => a.vote <= b.vote)
+                        .sort((a, b) => a.vote < b.vote)
                         .map((data) =>
                             <TalkListCard
                                 key={data._id}
