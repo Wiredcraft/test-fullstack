@@ -26,6 +26,7 @@ window.app = {
 		app.state.isInitialized = false;
 		app.render();
 		app.services.getTalks(function(data) {
+			app.state.data.talks = data;
 			app.state.isInitialized = true;
 			app.render();
 		});

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lmahistre/test-fullstack#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "jsx-loader": "^0.13.2",
     "less": "^2.7.3",
