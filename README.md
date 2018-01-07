@@ -15,7 +15,7 @@ Sorry no mock here, please make a simple and beautiful page that get the job don
 3. The user could vote for the lighting talk by clicking the vote button or icon;
 4. After voting the user will get an updated version of the lighting talk list(order by rating);
 5. User could always submit a lighting talk with `title`, `description`, and `username`;
-6. The user could see his lighting talk on the list after submitting; 
+6. The user could see his lighting talk on the list after submitting;
 
 ## Requirements
 
@@ -73,3 +73,8 @@ Fork this repo and send us a pull request when you think you are done. We don't 
 > What if I have a question?
 
 Create a new issue in the repo and we will get back to you very quickly.
+
+### TODO
+
+- PostCSS
+- Pagination / Infinite scrolling

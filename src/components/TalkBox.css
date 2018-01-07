@@ -1,0 +1,22 @@
+.TalkBox {
+  margin-top: 1em;
+  width: 500px;
+}
+
+.TalkBox-field {
+  margin-bottom: .5em;
+  display: flex;
+  align-items: center;
+}
+
+.TalkBox-label {
+  width: 88px;
+}
+
+.TalkBox-input {
+  flex: 1;
+}
+
+.TalkBox-submit {
+  margin-left: 88px;
+}

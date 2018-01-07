@@ -1,0 +1,34 @@
+.TalkItem {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  border-bottom: 1px dotted;
+}
+
+.TalkItem-title {
+  margin: 0 .5em 0 0;
+  display: inline;
+  font-size: 16px;
+}
+
+.TalkItem-description {
+  margin: 1em 0;
+}
+
+.TalkItem-footer {
+  font-size: 14px;
+}
+
+.TalkItem-vote {
+  margin-right: 12px;
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+  color: #175199;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.TalkItem-vote:hover {
+  text-decoration: underline;
+}
