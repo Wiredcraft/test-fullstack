@@ -12,6 +12,9 @@ window.app = {
 
 	apiEndpoint : '/',
 
+	/**
+	 * services manage the communication with backend
+	 */
 	services : require('./services.jsx'),
 
 	/**
@@ -27,8 +30,24 @@ window.app = {
 		app.render();
 		app.services.getTalks(function(data) {
 			app.state.data.talks = data;
-			app.state.isInitialized = true;
-			app.render();
+			app.services.getVotes(function(data) {
+				app.state.data.votes = data;
+				if (app.userIsConnected()) {
+
+					// Check if the user connected actually exists
+					app.services.checkUser(window.localStorage.currentUsername, function(response) {
+						if (!response) {
+							delete window.localStorage.currentUsername;
+						}
+						app.state.isInitialized = true;
+						app.render();
+					})
+				}
+				else {
+					app.state.isInitialized = true;
+					app.render();
+				}
+			});
 		});
 	},
 
@@ -51,15 +70,22 @@ window.app = {
 			return response.text();
 		})
 		.then(function(responseText) {
-			try {
-				const responseData = JSON.parse(responseText);
-				app.render();
-				if (callback && typeof callback === 'function') {
-					callback(responseData);
+			if (responseText != '') {
+				try {
+					const responseData = JSON.parse(responseText);
+					// app.render();
+					if (callback && typeof callback === 'function') {
+						callback(responseData);
+					}
+				}
+				catch (error) {
+					console.error(error);
 				}
 			}
-			catch (error) {
-				console.error(error);
+			else {
+				if (callback && typeof callback === 'function') {
+					callback();
+				}
 			}
 		})
 		.catch(function(error) {
@@ -86,6 +112,13 @@ window.app = {
 	 */
 	render : function() {
 		ReactDOM.render(<AppRouter />, document.getElementById('react-root'));
+	},
+
+
+	userIsConnected : function() {
+		return window.localStorage.currentUsername 
+			&& typeof window.localStorage.currentUsername === 'string'
+			&& window.localStorage.currentUsername.length > 0;
 	},
 };
 

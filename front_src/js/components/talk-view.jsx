@@ -4,6 +4,7 @@ const ReactRouterDom = require('react-router-dom');
 const Link = ReactRouterDom.Link;
 
 const AppPage = require('./app-page.jsx');
+const AppButton = require('./app-button.jsx');
 
 class TalkView extends React.Component {
 
@@ -25,10 +26,11 @@ class TalkView extends React.Component {
 				&& app.state.data.currentTalk.id 
 				&& app.state.data.currentTalk.id == id) {
 			const talk = app.state.data.currentTalk;
+			delete app.state.data.currentTalk;
 			return (
 				<AppPage>
 					<div className="buttons">
-						<Link className="button" to="/">Back to list</Link>
+						<AppButton to="/">Back to list</AppButton>
 					</div>
 					<h1>{talk.title}</h1>
 					<div className="description">{talk.description}</div>

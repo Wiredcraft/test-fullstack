@@ -4,6 +4,8 @@ const React = require("react");
 const ReactRouterDom = require('react-router-dom');
 const Link = ReactRouterDom.Link;
 
+const AppButton = require('./app-button.jsx');
+
 class LoginPage extends React.Component {
 	login() {
 		const user = {
@@ -11,7 +13,14 @@ class LoginPage extends React.Component {
 			password : document.forms['login'].password.value,
 		}
 		app.services.login(user, function(res) {
-			app.state.currentUser = res;
+			if (res) {
+				app.state.currentUser = res;
+			}
+
+			/* To store the user logged in.
+			 * Store only the username is obviously not secure, a real application
+			 * would require for instance to store a session token. */
+			window.localStorage.currentUsername = res.username
 			window.location.href = '#';
 		});
 	}
@@ -31,8 +40,8 @@ class LoginPage extends React.Component {
 			<div>
 				<h1>Login</h1>
 				<div className="buttons">
-					<Link className="button" to="/">Cancel</Link>
-					<a className="button" onClick={this.login}>Login</a>
+					<AppButton to="/">Cancel</AppButton>
+					<AppButton onClick={this.login}>Login</AppButton>
 				</div>
 				<form name="login" onSubmit={this.formFakeSubmit}>
 					<table>

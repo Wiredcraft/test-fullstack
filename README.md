@@ -24,11 +24,15 @@ This has been developed under this environment:
 
 `npm install`
 
-2. Start the server: 
+2. If is possible to add some test data by running:
 
-`nodejs index.js`
+`nodejs addtestdata.js`
 
-3. Server listens on port 3001. Visit `http://localhost:3001`
+3. Start the server: 
+
+`nodejs server.js`
+
+4. Server listens on port 3001. Visit `http://localhost:3001`
 
 ## Development
 

@@ -4,6 +4,8 @@ const React = require("react");
 const ReactRouterDom = require('react-router-dom');
 const Link = ReactRouterDom.Link;
 
+const AppButton = require('./app-button.jsx');
+
 class RegisterPage extends React.Component {
 
 	/**
@@ -16,6 +18,7 @@ class RegisterPage extends React.Component {
 		}
 		app.services.createUser(user, function(res) {
 			app.state.currentUser = res;
+			window.localStorage.currentUsername = res.username
 			window.location.href = '#';
 		});
 	}
@@ -35,8 +38,8 @@ class RegisterPage extends React.Component {
 			<div>
 				<h1>Login</h1>
 				<div className="buttons">
-					<Link className="button" to="/">Cancel</Link>
-					<a className="button" onClick={this.register}>Register</a>
+					<AppButton to="/">Cancel</AppButton>
+					<AppButton onClick={this.register}>Register</AppButton>
 				</div>
 				<form name="register" onSubmit={this.formFakeSubmit}>
 					<table>

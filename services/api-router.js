@@ -61,11 +61,11 @@ router.get('/getTalk/:id', function(req, res) {
 		}
 		else if (talks.length) {
 			res.send({
-					id : talks[0]._id,
-					title : talks[0].title,
-					description : talks[0].description,
-					username : talks[0].username,
-				});
+				id : talks[0]._id, // the id of talk is required on the front
+				title : talks[0].title,
+				description : talks[0].description,
+				username : talks[0].username,
+			});
 		}
 		else {
 			res.send('');
@@ -111,6 +111,29 @@ router.post('/createUser', function(req, res) {
 
 
 /**
+ * Get user by username
+ */
+router.get('/checkUser/:username', function(req, res) {
+	const username = req.params.username;
+	repo.User.find({username:username}, function(err, users) {
+		if (err) {
+			res.send(err);
+		}
+		else if (users.length) {
+			res.send({
+				id : users[0]._id,
+				title : users[0].title,
+				description : users[0].description,
+				username : users[0].username,
+			});
+		}
+		else {
+			res.send('');
+		}
+	});
+});
+
+/**
  * Login of user
  */
 router.post('/login', function(req, res) {
@@ -129,5 +152,45 @@ router.post('/login', function(req, res) {
 	});
 });
 
+
+/**
+ * Returns the list of votes
+ */
+router.get('/getVotes', function(req, res) {
+	repo.Vote.find(function(err, votes) {
+		if (err) {
+			res.send(err);
+		}
+		else {
+			const nVotes = [];
+			for (var i = 0; i < votes.length; i++) {
+				nVotes.push({
+					// id : votes[i]._id,
+					talkId : votes[i].talkId,
+					username : votes[i].username,
+				});
+			}
+			res.json(nVotes);
+		}
+	});
+});
+
+
+/**
+ * Creates a new vote
+ */
+router.post('/createVote', function(req, res) {
+	reqToPost(req, res, function(post) {
+		const vote = new repo.Vote(post);
+		vote.save(function(err, saved) {
+			if (err) {
+				res.send(err);
+			}
+			else {
+				res.json(saved);
+			}
+		});
+	});
+});
 
 module.exports = router;

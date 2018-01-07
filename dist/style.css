@@ -1,0 +1,23 @@
+html body {
+  font-family: Helvetica, sans-serif, Arial;
+}
+html body a.button {
+  text-decoration: none;
+  color: #000;
+  background-color: #CCC;
+  padding: 4px 8px;
+  display: inline-block;
+  border-radius: 2px;
+  margin: 3px 6px;
+}
+html body a.button:hover {
+  background-color: #AAA;
+}
+html body div.description {
+  white-space: pre-line;
+  margin-bottom: 1em;
+}
+html body div.username {
+  color: #008;
+  font-style: italic;
+}
