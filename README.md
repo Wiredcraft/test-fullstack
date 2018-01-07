@@ -1,63 +1,41 @@
 # Wiredcraft Full-stack Developer test
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+## Old README
 
-## Context
+Old [README is there](SUBJECT.md) with an additional entry for this specific test.
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+## Specific notes
 
-Sorry no mock here, please make a simple and beautiful page that get the job done. We don't mind whether it looks as great as **Hacker News**.
+* Use React for frontend.
+* Use any Node.js framework for backend, and any NoSQL DB.
+* Please fork and send us a Pull Request.
+* For any question please ask on Github or send an email.
 
-## User Story
+## Environment
 
-1. User opens the page and could see a list of lighting talks order by rating submitted by other users;
-2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
-3. The user could vote for the lighting talk by clicking the vote button or icon;
-4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, and `username`;
-6. The user could see his lighting talk on the list after submitting; 
+This has been developed under this environment:
+* OS: Linux Mint 16
+* NodeJS: v6.10.2
+* MongoDB: v3.6.1
 
-## Requirements
+## Installation
 
-### Functionality
+1. After checkout of the sources, install dependencies using npm: 
 
-- The **frontend** part should be a single page application rendered in the frontend and load data from restful API (**not** rendered from backend).
-- There should be a **backend** and database to store the lightning talks.
+`npm install`
 
-### Tech stack
+2. If is possible to add some test data by running:
 
-- Backend oriented
-    - Use [Loopback](http://loopback.io/) for the backend.
-    - Use any **frontend** framework as you like.
-- Frontend oriented
-    - Use any **backend** framework as you like, even a static JSON file storage would do it.
-    - Use React for the frontend.
+`nodejs addtestdata.js`
 
-### Bonus
+3. Start the server: 
 
-- Write clear **documentation** on how it's designed and how to run the code.
-- Provide proper unit test.
-- Write good commit messages.
-- An online demo is always welcome.
+`nodejs server.js`
 
-## What We Care About
+4. Server listens on port 3001. Visit `http://localhost:3001`
 
-Feel free to use any libraries you would use if this were a real production App, but remember we're interested in your code & the way you solve the problem, not how well you can use a particular library.
+## Development
 
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
+Frontend is developed in LESS and JSX. To update the assets (Javascript and CSS), run:
 
-Here's what you should aim for:
-
-- Good use of current HTML, CSS, and JavaScript & performance best practices.
-- Solid testing approach.
-- Extensible code.
-
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. We don't have a deadline for the task.
-
-> What if I have a question?
-
-Create a new issue in the repo and we will get back to you very quickly.
+`nodejs compile.js`
