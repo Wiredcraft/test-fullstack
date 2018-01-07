@@ -2,33 +2,33 @@ import {combineReducers} from 'redux'
 
 const talks = (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_TALK':
-      return [
-        {
-          author: 'Jonathan Blow',
-          title: 'Braid',
-          description: 'Braid is a puzzle-platformer, drawn in a painterly style, where you can manipulate the flow of time in strange and unusual ways. From a house in the city, journey to a series of worlds and solve puzzles to rescue an abducted princess.',
-          id: Date.now(),
-          created: Date.now(),
-          votes: 0,
-        },
-      ]
-    case 'ADD_TALK':
-      const {data} = action
+    case 'FETCH_TALK_SUCCESS':
+      return action.data
+    case 'ADD_TALK_START':
       return [
         ...state,
-        {
-          ...data,
-          id: Date.now(),
-          created: Date.now(),
-          votes: 0,
-        }
+        action.data,
       ]
-    case 'VOTE_FOR_TALK':
-      const {id} = action
+    case 'ADD_TALK_SUCCESS':
       return state.map(talk =>
-        (talk.id === id)
+        (talk.id === action.data.id)
+          ? {...talk, ...action.data}
+          : talk
+      )
+    case 'ADD_TALK_FAIL':
+      return state.filter(talk =>
+        (talk.id !== action.data.id)
+      )
+    case 'VOTE_FOR_TALK_START':
+      return state.map(talk =>
+        (talk.id === action.id)
           ? {...talk, votes: talk.votes + 1}
+          : talk
+      )
+    case 'VOTE_FOR_TALK_FAIL':
+      return state.map(talk =>
+        (talk.id === action.id)
+          ? {...talk, votes: talk.votes - 1}
           : talk
       )
     default:

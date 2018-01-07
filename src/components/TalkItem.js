@@ -2,7 +2,7 @@ import React from 'react'
 import './TalkItem.css'
 
 const TalkItem = ({talk, onVote}) => {
-  const {author, title, description, votes} = talk
+  const {author, title, description, votes, created} = talk
   return (
     <div className="TalkItem">
       <div className="TalkItem-header">
@@ -18,7 +18,8 @@ const TalkItem = ({talk, onVote}) => {
         >
           vote for it!
         </button>
-        <span>{votes} votes</span>
+        <span>{votes} votes,&nbsp;</span>
+        <span>created at {new Date(created).toLocaleString()}</span>
       </div>
     </div>
   )
