@@ -1,13 +1,13 @@
-const express = require("express")
+const express = require('express')
 const faker = require('faker')
 
 const app = express()
 
-app.set("port", process.env.PORT || 3001)
+app.set('port', process.env.PORT || 3001)
 
 // Express only serves static assets in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"))
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
 }
 
 app.use(express.json())
@@ -24,7 +24,7 @@ const makeTalk = () => {
   }
 }
 
-app.get("/talks", (req, res) => {
+app.get('/api/talks', (req, res) => {
   const talkList = []
   let i = Math.random() * 20
   while (i > 0) {
@@ -34,7 +34,7 @@ app.get("/talks", (req, res) => {
   res.json(talkList)
 })
 
-app.post("/talks", (req, res) => {
+app.post('/api/talks', (req, res) => {
   if (Math.random() > 0.1) {
     res.status(201).json(req.body)
   } else {
@@ -42,7 +42,7 @@ app.post("/talks", (req, res) => {
   }
 })
 
-app.post("/talks/:id/vote", (req, res) => {
+app.post('/api/talks/:id/vote', (req, res) => {
   if (Math.random() > 0.1) {
     res.status(204).send()
   } else {
@@ -50,6 +50,6 @@ app.post("/talks/:id/vote", (req, res) => {
   }
 })
 
-app.listen(app.get("port"), () => {
-  console.log(`Find the server at: http://localhost:${app.get("port")}/`) // eslint-disable-line no-console
+app.listen(app.get('port'), () => {
+  console.log(`Find the server at: http://localhost:${app.get('port')}/`) // eslint-disable-line no-console
 })

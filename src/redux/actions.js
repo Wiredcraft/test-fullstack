@@ -1,6 +1,8 @@
+const API_ROOT = '/api'
+
 export const fetchTalks = () => {
   return dispatch => {
-    fetch('/talks')
+    fetch(`${API_ROOT}/talks`)
     .then(response => response.json())
     .then(data => {
       dispatch({
@@ -26,7 +28,7 @@ export const addTalk = data => {
       data: finalData,
     })
 
-    fetch('/talks', {
+    fetch(`${API_ROOT}/talks`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -62,7 +64,7 @@ export const voteForTalk = id => {
       id,
     })
 
-    fetch(`/talks/${id}/vote`, {
+    fetch(`${API_ROOT}/talks/${id}/vote`, {
       method: 'POST', // maybe PATCH, but I think it as posting a vote instead of patching the talk
     })
     .then(response => {
