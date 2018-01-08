@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import './TalkBox.css'
 
 const emptyState = {
@@ -107,6 +108,10 @@ class TalkBox extends Component {
       </form>
     )
   }
+}
+
+TalkBox.propTypes = {
+  onAddTalk: PropTypes.func.isRequired,
 }
 
 export default TalkBox

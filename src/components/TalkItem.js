@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import moment from 'moment'
 import './TalkItem.css'
 
@@ -27,6 +28,11 @@ const TalkItem = ({talk, onVote}) => {
       </div>
     </div>
   )
+}
+
+TalkItem.propTypes = {
+  talk: PropTypes.object.isRequired,
+  onVote: PropTypes.func.isRequired,
 }
 
 export default TalkItem

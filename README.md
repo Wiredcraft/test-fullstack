@@ -1,84 +1,44 @@
-# Wiredcraft Full-stack Developer test
+## Live demo
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+http://news.jzf.life/index.html
 
-## Context
+I'm not familiar with Node.js and Loopback, and I haven't finished a real back-end service yet. So far the live demo is served by static files built by webpack which interacts with a mock express server.
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+## Scripts
 
-Sorry no mock here, please make a simple and beautiful page that get the job done. We don't mind whether it looks as great as **Hacker News**.
+### Run
 
-## User Story
+```shell
+npm install
+npm start
+```
 
-1. User opens the page and could see a list of lighting talks order by rating submitted by other users;
-2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
-3. The user could vote for the lighting talk by clicking the vote button or icon;
-4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, and `username`;
-6. The user could see his lighting talk on the list after submitting;
+### Build
 
-## Requirements
+```shell
+npm install
+npm run build
+```
 
-### Functionality
+### Test
 
-- The **frontend** part should be a single page application rendered in the frontend and load data from restful API (**not** rendered from backend).
-- There should be a **backend** and database to store the lightning talks.
+## Document
 
-### Tech stack
+### Code Structure
 
-- Backend oriented
-    - Use [Loopback](http://loopback.io/) for the backend.
-    - Use any **frontend** framework as you like.
-- Frontend oriented
-    - Use any **backend** framework as you like, even a static JSON file storage would do it.
-    - Use React for the frontend.
+I believe a well-designed code structure itself could be a good document and for React component, `propTypes` may tell most of the things you would want to know about the component.
 
-### Bonus
+### Libraries and Tools
 
-- Write clear **documentation** on how it's designed and how to run the code.
-- Provide proper unit test.
-- Write good commit messages.
-- An online demo is always welcome.
-
-### Advanced requirements
-
-These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.
-
-- **Backend**:
-    - Use [Seneca](http://senecajs.org/) to build the core feature and use a different framework (such as Express or Loopback) to handle HTTP requests.
-    - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
-    - Provide a complete logging (when/how/etc) strategy.
-    - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
-- **Frontend**:
-    - *TODO*
-
-## What We Care About
-
-Feel free to use any libraries you would use if this were a real production App, but remember we're interested in your code & the way you solve the problem, not how well you can use a particular library.
-
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
-
-Here's what you should aim for:
-
-- Good use of current HTML, CSS, and JavaScript & performance best practices.
-- Solid testing approach.
-- Extensible code.
-
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. We don't have a deadline for the task.
-
-> What if I have a question?
-
-Create a new issue in the repo and we will get back to you very quickly.
+- create-react-app: fast bootstrap the project
+- Redux + redux-thunk: manage state and async actions
+- Express + faker.js: provide a mock server
 
 ## TODO
 
 - PostCSS
+- ESLint
 - Pagination / Infinite scrolling
 - Redux middleware
-- document
-- test
-- demo
+
+Stuffs like above may be added or abstracted when the project becomes larger or needs better cross-browser compatibility, but I prefer to keep it simple for now.

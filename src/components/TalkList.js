@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import TalkItem from './TalkItem'
 import './TalkList.css'
 
@@ -20,6 +21,11 @@ const TalkList = ({talks, onVoteForTalk}) => {
       }
     </div>
   )
+}
+
+TalkList.propTypes = {
+  talks: PropTypes.array.isRequired,
+  onVoteForTalk: PropTypes.func.isRequired,
 }
 
 export default TalkList
