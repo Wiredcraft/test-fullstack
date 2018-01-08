@@ -79,3 +79,6 @@ Create a new issue in the repo and we will get back to you very quickly.
 - PostCSS
 - Pagination / Infinite scrolling
 - Redux middleware
+- document
+- test
+- demo

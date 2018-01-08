@@ -1,8 +1,9 @@
 import React from 'react'
+import moment from 'moment'
 import './TalkItem.css'
 
 const TalkItem = ({talk, onVote}) => {
-  const {author, title, description, votes, created} = talk
+  const {author, title, description, votes, voted, created} = talk
   return (
     <div className="TalkItem">
       <div className="TalkItem-header">
@@ -11,15 +12,18 @@ const TalkItem = ({talk, onVote}) => {
       </div>
       <p className="TalkItem-description">{description}</p>
       <div className="TalkItem-footer">
-        <button
-          className="TalkItem-vote"
-          type="button"
-          onClick={onVote}
-        >
-          vote for it!
-        </button>
+        {voted ?
+          'voted, ' :
+          <button
+            className="TalkItem-vote"
+            type="button"
+            onClick={onVote}
+          >
+            vote for it!
+          </button>
+        }
         <span>{votes} votes,&nbsp;</span>
-        <span>created at {new Date(created).toLocaleString()}</span>
+        <span>created {moment(created).fromNow()}</span>
       </div>
     </div>
   )

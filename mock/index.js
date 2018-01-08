@@ -20,6 +20,7 @@ const makeTalk = () => {
     id: faker.random.uuid(),
     created: new Date(faker.date.past()).getTime(),
     votes: faker.random.number(1000),
+    voted: faker.random.boolean(),
   }
 }
 

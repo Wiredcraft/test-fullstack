@@ -22,13 +22,13 @@ const talks = (state = [], action) => {
     case 'VOTE_FOR_TALK_START':
       return state.map(talk =>
         (talk.id === action.id)
-          ? {...talk, votes: talk.votes + 1}
+          ? {...talk, votes: talk.votes + 1, voted: true}
           : talk
       )
     case 'VOTE_FOR_TALK_FAIL':
       return state.map(talk =>
         (talk.id === action.id)
-          ? {...talk, votes: talk.votes - 1}
+          ? {...talk, votes: talk.votes - 1, voted: false}
           : talk
       )
     default:

@@ -17,6 +17,7 @@ export const addTalk = data => {
     id: Date.now(), // FIXME: should not be generated at client side
     created: Date.now(),
     votes: 0,
+    voted: false,
   }
 
   return dispatch => {
