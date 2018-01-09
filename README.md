@@ -40,6 +40,18 @@ Sorry no mock here, please make a simple and beautiful page that get the job don
 - Write good commit messages.
 - An online demo is always welcome.
 
+### Advanced requirements
+
+These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.
+
+- **Backend**:
+    - Use [Seneca](http://senecajs.org/) to build the core feature and use a different framework (such as Express or Loopback) to handle HTTP requests.
+    - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
+    - Provide a complete logging (when/how/etc) strategy.
+    - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
+- **Frontend**:
+    - *TODO*
+
 ## What We Care About
 
 Feel free to use any libraries you would use if this were a real production App, but remember we're interested in your code & the way you solve the problem, not how well you can use a particular library.
