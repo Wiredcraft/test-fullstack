@@ -2,7 +2,7 @@
 
 http://news.jzf.life/index.html
 
-I'm not familiar with Node.js and Loopback, and I haven't finished a real back-end service yet. So far the live demo is served by static files built by Webpack which interacts with a mock express server.
+So far the live demo is served by static files built by Webpack which interacts with a mock express server.
 
 ## Scripts
 
@@ -12,7 +12,7 @@ I'm not familiar with Node.js and Loopback, and I haven't finished a real back-e
 npm install
 npm start
 ```
-Run Webpack dev server and Express mock server concurrently. Notice that Webpack dev server receives all requests and proxys API requests to mock server.
+This runs Webpack dev server and Express mock server concurrently. Notice that Webpack dev server receives all requests and proxys API requests to mock server.
 
 ### Build
 
@@ -28,7 +28,7 @@ Build static assets to `build/` dir.
 npm install
 npm run test
 ```
-Test with Jest. Errors may be related to https://github.com/facebook/jest/issues/3436.
+Test with Jest. There are basic unit tests for components and reducers. (When running this command, an error related to https://github.com/facebook/jest/issues/3436 may occur and I solved it by `brew install watchman`.)
 
 ## Document
 
@@ -54,9 +54,9 @@ Returns all talks. Success would be status code 200 with a JSON array. For examp
 ```
 POST api/talks
 ```
-Create a new talk, receives the created talk and returns it. Success would be status code 201 with a JSON object. Error may be status code 400 due to invalid or incomplete post body.
+Creates a new talk, receives the created talk and returns it. Success would be status code 201 with a JSON object. Error may be status code 400 due to invalid or incomplete post body.
 
-Require a JSON object including the following fields:
+Requires a JSON object including the following fields:
 - author: string
 - title: string
 - description: string
@@ -86,12 +86,7 @@ Return for example:
 ```
 POST api/talks/:id/vote
 ```
-Vote for a talk. Success would be status code 204 with no content.
-
-
-### Code Structure
-
-I believe a well-designed code structure itself could be a good document and for React component, `propTypes` may tell most of the things you would want to know about certain component.
+Votes for a talk. Success would be status code 204 with no content.
 
 ## Libraries and Tools
 
@@ -102,8 +97,7 @@ I believe a well-designed code structure itself could be a good document and for
 ## TODO
 
 - PostCSS
-- ESLint
-- Redux middleware
+- Advanced Redux middleware, high-order reducers and normalizr
 - Pagination / Infinite scrolling
 
-Stuffs like above may be added or abstracted when the project becomes larger or needs better cross-browser compatibility, but I prefer to keep it simple for now.
+Stuffs like above may be added or abstracted when the project becomes larger or for better cross-browser compatibility, but I prefer to keep it simple for now.

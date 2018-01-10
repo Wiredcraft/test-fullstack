@@ -1,19 +1,16 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import TalkBox from './components/TalkBox'
-import TalkList from './components/TalkList'
-import * as actions from './redux/actions'
+import TalkBox from '../components/TalkBox'
+import TalkList from '../components/TalkList'
+import * as actions from '../redux/actions'
 
 const mapStateToProps = state => {
   return {
-    talks: state.talks.sort((talkA, talkB) => talkB.votes - talkA.votes),
+    talks: state.sort((talkA, talkB) => talkB.votes - talkA.votes),
   }
 }
 
 class Talks extends Component {
-  state = {
-  }
-
   componentDidMount() {
     this.fetchTalks()
   }

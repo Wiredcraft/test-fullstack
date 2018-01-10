@@ -24,7 +24,7 @@ const TalkItem = ({talk, onVote}) => {
           </button>
         }
         <span>{votes} votes,&nbsp;</span>
-        <span>created {moment(created).fromNow()}</span>
+        <span className="TalkItem-created">created {moment(created).fromNow()}</span>
       </div>
     </div>
   )

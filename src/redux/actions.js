@@ -1,4 +1,13 @@
+import fetch from 'isomorphic-fetch'
+
 const API_ROOT = '/api'
+export const FETCH_TALK_SUCCESS = 'FETCH_TALK_SUCCESS'
+export const ADD_TALK_START = 'ADD_TALK_START'
+export const ADD_TALK_SUCCESS = 'ADD_TALK_SUCCESS'
+export const ADD_TALK_FAIL = 'ADD_TALK_FAIL'
+export const VOTE_FOR_TALK_START = 'VOTE_FOR_TALK_START'
+export const VOTE_FOR_TALK_FAIL = 'VOTE_FOR_TALK_FAIL'
+
 
 export const fetchTalks = () => {
   return dispatch => {
@@ -6,7 +15,7 @@ export const fetchTalks = () => {
     .then(response => response.json())
     .then(data => {
       dispatch({
-        type: 'FETCH_TALK_SUCCESS',
+        type: FETCH_TALK_SUCCESS,
         data,
       })
     })
@@ -24,7 +33,7 @@ export const addTalk = data => {
 
   return dispatch => {
     dispatch({
-      type: 'ADD_TALK_START',
+      type: ADD_TALK_START,
       data: finalData,
     })
 
@@ -43,13 +52,13 @@ export const addTalk = data => {
     })
     .then(data => {
       dispatch({
-        type: 'ADD_TALK_SUCCESS',
+        type: ADD_TALK_SUCCESS,
         data,
       })
     })
     .catch(error => {
       dispatch({
-        type: 'ADD_TALK_FAIL',
+        type: ADD_TALK_FAIL,
         data: finalData,
         error,
       })
@@ -60,7 +69,7 @@ export const addTalk = data => {
 export const voteForTalk = id => {
   return dispatch => {
     dispatch({
-      type: 'VOTE_FOR_TALK_START',
+      type: VOTE_FOR_TALK_START,
       id,
     })
 
@@ -70,7 +79,7 @@ export const voteForTalk = id => {
     .then(response => {
       if (response.status >= 300) {
         dispatch({
-          type: 'VOTE_FOR_TALK_FAIL',
+          type: VOTE_FOR_TALK_FAIL,
           id,
           error: response.statusText,
         })

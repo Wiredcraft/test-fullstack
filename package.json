@@ -15,8 +15,11 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.16.2",
-    "faker": "^4.1.0"
+    "faker": "^4.1.0",
+    "react-test-renderer": "^16.2.0"
   },
   "proxy": "http://localhost:3001/",
   "scripts": {
