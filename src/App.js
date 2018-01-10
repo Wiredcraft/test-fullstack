@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import reducer from './redux/reducers'
 import Talks from './pages/Talks'
+import reducer from './redux/reducers'
 import './App.css'
 
 let store = createStore(

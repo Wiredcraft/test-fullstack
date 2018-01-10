@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch'
+import 'isomorphic-fetch'
 
 const API_ROOT = '/api'
 export const FETCH_TALK_SUCCESS = 'FETCH_TALK_SUCCESS'
@@ -7,7 +7,6 @@ export const ADD_TALK_SUCCESS = 'ADD_TALK_SUCCESS'
 export const ADD_TALK_FAIL = 'ADD_TALK_FAIL'
 export const VOTE_FOR_TALK_START = 'VOTE_FOR_TALK_START'
 export const VOTE_FOR_TALK_FAIL = 'VOTE_FOR_TALK_FAIL'
-
 
 export const fetchTalks = () => {
   return dispatch => {
