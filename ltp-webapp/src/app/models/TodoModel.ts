@@ -5,8 +5,11 @@ export class TodoModel {
 
   readonly id: number
 
-  @observable public text: string
-  @observable public completed: boolean
+  @observable
+  public text: string
+
+  @observable
+  public completed: boolean
 
   constructor (text: string, completed: boolean = false) {
     this.id = TodoModel.generateId()
