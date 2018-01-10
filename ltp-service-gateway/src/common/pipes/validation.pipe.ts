@@ -1,13 +1,13 @@
-import { Pipe, ArgumentMetadata, HttpException, HttpStatus, BadRequestException } from "@nestjs/common";
-import { PipeTransform } from "@nestjs/common/interfaces";
+import { Pipe, ArgumentMetadata, HttpException, HttpStatus, BadRequestException } from '@nestjs/common'
+import { PipeTransform } from '@nestjs/common/interfaces'
 import { plainToClass } from 'class-transformer'
 import { validate } from 'class-validator'
 
 @Pipe()
 export class ValidationPipe implements PipeTransform<any> {
 
-  async transform(value: any, metadata: ArgumentMetadata) {
-    const {metatype} = metadata
+  async transform (value: any, metadata: ArgumentMetadata) {
+    const { metatype } = metadata
     if (!metatype || !this.toValidate(metatype)) {
       return value
     }
@@ -19,9 +19,8 @@ export class ValidationPipe implements PipeTransform<any> {
     return value
   }
 
-  private toValidate(metatype): boolean {
+  private toValidate (metatype): boolean {
     const types = [String, Boolean, Number, Array, Object]
     return !types.find(type => metatype === type)
   }
-  
 }
