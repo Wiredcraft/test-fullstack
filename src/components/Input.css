@@ -1,0 +1,15 @@
+.Input-wrapper {
+  position: relative;
+}
+
+.Input {
+  width: 100%;
+}
+
+.Input-violation {
+  position: absolute;
+  top: 100%;
+  margin-top: 2px;
+  font-size: 14px;
+  color: #f75659;
+}

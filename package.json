@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.20.1",
     "prop-types": "^15.6.0",
