@@ -1,0 +1,56 @@
+.Calendar {
+  position: absolute;
+  z-index: 200;
+  bottom: 100%;
+  margin-bottom: 6px;
+  width: 260px;
+  padding: .5em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #fff;
+  line-height: normal;
+  cursor: default; }
+  .Calendar::selection {
+    background-color: transparent; }
+
+.Calendar-header {
+  margin-bottom: .5em;
+  text-align: center; }
+  .Calendar-header::selection {
+    background-color: transparent; }
+
+.Calendar-prev, .Calendar-next {
+  cursor: pointer; }
+  .Calendar-prev::selection, .Calendar-next::selection {
+    background-color: transparent; }
+
+.Calendar-prev {
+  float: left; }
+
+.Calendar-next {
+  float: right; }
+
+.Calendar-week {
+  display: flex; }
+  .Calendar-week::selection {
+    background-color: transparent; }
+  .Calendar-week.Calendar-week-header .Calendar-day {
+    cursor: default; }
+    .Calendar-week.Calendar-week-header .Calendar-day:hover {
+      border-color: #fff; }
+
+.Calendar-day {
+  flex: 1;
+  padding: .2em;
+  border: 1px solid transparent;
+  text-align: center;
+  cursor: pointer; }
+  .Calendar-day.Calendar-day-selected {
+    border-color: #ccc; }
+  .Calendar-day.Calendar-day-disabled {
+    background: #f4f4f4;
+    cursor: not-allowed; }
+  .Calendar-day:hover {
+    border-color: #129fea; }
+  .Calendar-day::selection {
+    background-color: transparent; }

@@ -1,0 +1,9 @@
+.Datepicker {
+  position: relative;
+  display: inline-block; }
+
+.Datepicker-input {
+  cursor: pointer; }
+
+.Datepicker-placeholder::selection {
+  background-color: transparent; }
