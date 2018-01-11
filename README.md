@@ -58,13 +58,17 @@ Requires a JSON object including the following fields:
 - author: string
 - title: string
 - description: string
+- isPublic: boolean
+- publishDate: number
 
 For example:
 ```
 {
   "author": "j",
   "title": "Hello world!",
-  "description": "Hello world!"  
+  "description": "Hello world!",
+  "isPublic": false,
+  "publishDate": 1515670520437
 }
 ```
 
@@ -77,7 +81,9 @@ Success return for example:
   "id": 12345,
   "created": 1515419178895,
   "votes": 0,
-  "voted": false
+  "voted": false,
+  "isPublic": false,
+  "publishDate": 1515670520437
 }
 ```
 
@@ -100,6 +106,8 @@ Votes for a talk. Success would be status code 204 with no content.
 - create-react-app: fast bootstrap the project
 - Redux + redux-thunk: manage state and async actions
 - Express + faker.js: provide a mock server
+- Sass + Autoprefixer: process CSS
+- Jest + enzyme: unit test
 
 ## TODO
 

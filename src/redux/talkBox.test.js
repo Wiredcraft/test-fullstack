@@ -94,7 +94,7 @@ describe('submit form', () => {
         isPublic: {
           value: true,
           violation: '',
-        }
+        },
       }, {
         type: ADD_TALK_SUCCESS,
       })

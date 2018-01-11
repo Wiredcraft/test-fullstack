@@ -57,7 +57,7 @@ const validate = (field, value) => {
 
   if (required && (value === '')) {
     violation = 'Please fill out the field.'
-  } else if (maxLength < value.length) {
+  } else if (maxLength && (maxLength < value.length)) {
     violation = `Exceed words limit by ${value.length - maxLength}.`
   }
 

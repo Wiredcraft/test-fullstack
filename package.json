@@ -34,7 +34,7 @@
     "client": "react-scripts start",
     "build": "concurrently \"npm run build-css\" \"npm run build-js\"",
     "build-js": "react-scripts build",
-    "test": "CI=1 react-scripts test --env=jsdom --color",
+    "test": "npm run build-css && CI=1 react-scripts test --env=jsdom --color",
     "eject": "react-scripts eject"
   }
 }

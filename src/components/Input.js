@@ -5,7 +5,7 @@ import Datepicker from './Datepicker'
 import './Input.css'
 
 const componentMap = {
-  'Datepicker': Datepicker,
+  Datepicker,
 }
 
 class Input extends Component {
