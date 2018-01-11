@@ -8,7 +8,7 @@ export interface TalkListState {
 
 }
 
-export class TalkList extends React.Component<TalkListProps, TalkListState> {
+export class TalkListContainer extends React.Component<TalkListProps, TalkListState> {
   render () {
     return (<h1>Talks</h1>)
   }

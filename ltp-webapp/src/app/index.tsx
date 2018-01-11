@@ -9,7 +9,7 @@ import { TodoApp } from './containers/TodoApp'
 import { TodoModel } from './models/TodoModel'
 import { TodoStore, RouterStore } from './stores'
 import { STORE_TODO, STORE_ROUTER } from './constants/stores'
-import { TalkList } from './containers/TalkList/index'
+import { TalkListContainer } from './containers/TalkList/index'
 
 // enable MobX strict mode
 useStrict(true)
@@ -36,7 +36,7 @@ ReactDOM.render(
       <Router history={history} >
         <Switch>
           <Route path='/todo-app' component={TodoApp} />
-          <Route path='/' component={TalkList} />
+          <Route path='/' component={TalkListContainer} />
         </Switch>
       </Router>
     </Root>
