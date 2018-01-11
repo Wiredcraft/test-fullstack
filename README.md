@@ -28,7 +28,7 @@ Build static assets to `build/` dir.
 npm install
 npm run test
 ```
-Test with Jest. There are basic unit tests for components and reducers. (When running this command, an error related to https://github.com/facebook/jest/issues/3436 may occur and I solved it by `brew install watchman`.)
+Test with Jest. There are basic unit tests for components and reducers.
 
 ## API
 
@@ -105,6 +105,5 @@ Votes for a talk. Success would be status code 204 with no content.
 
 - Advanced Redux middleware, high-order reducers and normalizr
 - Pagination / Infinite scrolling
-- datepicker and select
 
 Stuffs like above may be added or abstracted when the project becomes larger or for better cross-browser compatibility, but I prefer to keep it simple for now.

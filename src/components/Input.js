@@ -1,7 +1,12 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import cx from 'classnames'
+import Datepicker from './Datepicker'
 import './Input.css'
+
+const componentMap = {
+  'Datepicker': Datepicker,
+}
 
 class Input extends Component {
   render() {
@@ -11,10 +16,11 @@ class Input extends Component {
       ...rest,
       className: 'Input',
     }
+    const component = componentMap[tag] || tag
 
     return (
       <div className={cx('Input-wrapper', className)}>
-        {React.createElement(tag, props, children)}
+        {React.createElement(component, props, children)}
         {violation &&
           <div className="Input-violation">
             {violation}
@@ -26,7 +32,7 @@ class Input extends Component {
 }
 
 Input.propTypes = {
-  tag: PropTypes.oneOf(['input', 'textarea', 'select']),
+  tag: PropTypes.oneOf(['input', 'textarea', 'select', 'Datepicker']),
   className: PropTypes.string,
   violation: PropTypes.string,
   children: PropTypes.node,

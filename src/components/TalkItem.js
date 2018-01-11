@@ -4,7 +4,7 @@ import moment from 'moment'
 import './TalkItem.css'
 
 const TalkItem = ({talk, onVote}) => {
-  const {author, title, description, votes, voted, created} = talk
+  const {author, title, description, votes, voted, publishDate, isPublic} = talk
   return (
     <div className="TalkItem">
       <div className="TalkItem-header">
@@ -24,7 +24,8 @@ const TalkItem = ({talk, onVote}) => {
           </button>
         }
         <span>{votes} votes,&nbsp;</span>
-        <span className="TalkItem-created">created {moment(created).fromNow()}</span>
+        <span className="TalkItem-created">publish {moment(publishDate).fromNow()}</span>
+        <span>, {isPublic ? 'public' : 'private'}</span>
       </div>
     </div>
   )

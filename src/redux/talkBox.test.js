@@ -1,5 +1,5 @@
 import {ADD_TALK_SUCCESS, ADD_TALK_FAIL} from './talks'
-import talkBox, {CHANGE_FIELD} from './talkBox'
+import talkBox, {CHANGE_FIELD, initialState} from './talkBox'
 
 describe('automatic basic validation', () => {
   it('gives violation when change a required field to empty', () => {
@@ -98,24 +98,7 @@ describe('submit form', () => {
       }, {
         type: ADD_TALK_SUCCESS,
       })
-    ).toEqual({
-      author: {
-        value: '',
-        violation: '',
-      },
-      title: {
-        value: '',
-        violation: '',
-      },
-      description: {
-        value: '',
-        violation: '',
-      },
-      isPublic: {
-        value: '',
-        violation: '',
-      },
-    })
+    ).toEqual(initialState)
   })
 
   it('merges violations when adding a talk fails', () => {

@@ -20,6 +20,7 @@ export const submitBox = () => {
         title: talkBox.title.value,
         description: talkBox.description.value,
         isPublic: talkBox.isPublic.value,
+        publishDate: talkBox.publishDate.value,
       }))
     } else {
       dispatch({
@@ -44,6 +45,9 @@ const validationRules = {
     maxLength: 599,
   },
   isPublic: {
+    required: true,
+  },
+  publishDate: {
     required: true,
   },
 }
@@ -74,7 +78,7 @@ const validateAll = (state) => {
   return violations
 }
 
-const initialState = {
+export const initialState = {
   author: {
     value: '',
     violation: '',
@@ -90,7 +94,11 @@ const initialState = {
   isPublic: {
     value: '',
     violation: '',
-  }
+  },
+  publishDate: {
+    value: Date.now(),
+    violation: '',
+  },
 }
 const talkBox = (state = initialState, action) => {
   switch (action.type) {

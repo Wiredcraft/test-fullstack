@@ -38,7 +38,7 @@ describe('<TalkItem />', () => {
   })
 
   it('renders created time relatively', () => {
-    const talkItem = setup({created: Date.now()})
-    expect(talkItem.find('.TalkItem-created').text()).toEqual('created a few seconds ago')
+    const talkItem = setup({publishDate: Date.now()})
+    expect(talkItem.find('.TalkItem-created').text()).toEqual('publish a few seconds ago')
   })
 })

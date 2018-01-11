@@ -21,7 +21,11 @@ const setup = () => {
         isPublic: {
           value: '',
           violation: '',
-        }
+        },
+        publishDate: {
+          value: Date.now(),
+          violation: '',
+        },
       }}
       onChangeField={jest.fn()}
       onSubmitBox={jest.fn()}

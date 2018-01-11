@@ -16,6 +16,8 @@ const makeTalk = () => {
     created: new Date(faker.date.past()).getTime(),
     votes: faker.random.number(1000),
     voted: faker.random.boolean(),
+    isPublic: faker.random.boolean(),
+    publishDate: new Date(faker.date.past()).getTime(),
   }
 }
 

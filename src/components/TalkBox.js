@@ -20,26 +20,18 @@ class TalkBox extends Component {
     this.props.onChangeField('isPublic', event.target.value === 'true')
   }
 
+  onChangePublishDate = (value) => {
+    this.props.onChangeField('publishDate', value)
+  }
+
   onSubmit = (event) => {
     event.preventDefault()
-
-    const {talkBox: {
-      author: {value: author},
-      title: {value: title},
-      description: {value: description},
-      isPublic: {value: isPublic},
-    }} = this.props
-
-    this.props.onSubmitBox({
-      author,
-      title,
-      description,
-      isPublic,
-    })
+    
+    this.props.onSubmitBox()
   }
 
   render() {
-    const {talkBox: {author, title, description, isPublic}} = this.props
+    const {talkBox: {author, title, description, isPublic, publishDate}} = this.props
 
     return (
       <form
@@ -116,6 +108,23 @@ class TalkBox extends Component {
             <option value="true">Yes</option>
             <option value="false">No</option>
           </Input>
+        </div>
+
+        <div className="TalkBox-field">
+          <label
+            className="TalkBox-label"
+            htmlFor="TalkBox-publishDate"
+          >
+            publish date:
+          </label>
+          <Input
+            tag="Datepicker"
+            id="TalkBox-publishDate"
+            className="TalkBox-input"
+            value={publishDate.value}
+            violation={publishDate.violation}
+            onChange={this.onChangePublishDate}
+          />
         </div>
 
         <div>
