@@ -5,7 +5,7 @@ import './Input.css'
 
 class Input extends Component {
   render() {
-    const {className, tag, violation, ...rest} = this.props
+    const {className, tag, violation, children, ...rest} = this.props
 
     const props = {
       ...rest,
@@ -14,7 +14,7 @@ class Input extends Component {
 
     return (
       <div className={cx('Input-wrapper', className)}>
-        {React.createElement(tag, props)}
+        {React.createElement(tag, props, children)}
         {violation &&
           <div className="Input-violation">
             {violation}
@@ -26,9 +26,10 @@ class Input extends Component {
 }
 
 Input.propTypes = {
-  tag: PropTypes.oneOf(['input', 'textarea']),
+  tag: PropTypes.oneOf(['input', 'textarea', 'select']),
   className: PropTypes.string,
   violation: PropTypes.string,
+  children: PropTypes.node,
 }
 
 Input.defaultProps = {

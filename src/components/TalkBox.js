@@ -16,6 +16,10 @@ class TalkBox extends Component {
     this.props.onChangeField('description', event.target.value)
   }
 
+  onChangePublic = (event) => {
+    this.props.onChangeField('isPublic', event.target.value === 'true')
+  }
+
   onSubmit = (event) => {
     event.preventDefault()
 
@@ -23,17 +27,19 @@ class TalkBox extends Component {
       author: {value: author},
       title: {value: title},
       description: {value: description},
+      isPublic: {value: isPublic},
     }} = this.props
 
     this.props.onSubmitBox({
       author,
       title,
       description,
+      isPublic,
     })
   }
 
   render() {
-    const {talkBox: {author, title, description}} = this.props
+    const {talkBox: {author, title, description, isPublic}} = this.props
 
     return (
       <form
@@ -89,6 +95,27 @@ class TalkBox extends Component {
             violation={description.violation}
             onChange={this.onChangeDescription}
           />
+        </div>
+
+        <div className="TalkBox-field">
+          <label
+            className="TalkBox-label"
+            htmlFor="TalkBox-isPublic"
+          >
+            public:
+          </label>
+          <Input
+            tag="select"
+            id="TalkBox-isPublic"
+            className="TalkBox-input"
+            value={isPublic.value}
+            violation={isPublic.violation}
+            onChange={this.onChangePublic}
+          >
+            <option value="" disabled> -- select an option -- </option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+          </Input>
         </div>
 
         <div>

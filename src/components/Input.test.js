@@ -32,4 +32,9 @@ describe('<Input />', () => {
     const input = setup({className: 'test'})
     expect(input.find('.Input-wrapper.test').exists()).toBe(true)
   })
+
+  it('supports children', () => {
+    const input = setup({tag: 'select', children: <option>123</option>})
+    expect(input.find('option').exists()).toBe(true)
+  })
 })

@@ -90,6 +90,10 @@ describe('submit form', () => {
         description: {
           value: 'asd',
           violation: '',
+        },
+        isPublic: {
+          value: true,
+          violation: '',
         }
       }, {
         type: ADD_TALK_SUCCESS,
@@ -106,7 +110,11 @@ describe('submit form', () => {
       description: {
         value: '',
         violation: '',
-      }
+      },
+      isPublic: {
+        value: '',
+        violation: '',
+      },
     })
   })
 

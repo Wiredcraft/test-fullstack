@@ -19,6 +19,7 @@ export const submitBox = () => {
         author: talkBox.author.value,
         title: talkBox.title.value,
         description: talkBox.description.value,
+        isPublic: talkBox.isPublic.value,
       }))
     } else {
       dispatch({
@@ -42,12 +43,15 @@ const validationRules = {
     required: true,
     maxLength: 599,
   },
+  isPublic: {
+    required: true,
+  },
 }
 const validate = (field, value) => {
   const {required, maxLength} = validationRules[field]
   let violation = ''
 
-  if (required && !value) {
+  if (required && (value === '')) {
     violation = 'Please fill out the field.'
   } else if (maxLength < value.length) {
     violation = `Exceed words limit by ${value.length - maxLength}.`
@@ -80,6 +84,10 @@ const initialState = {
     violation: '',
   },
   description: {
+    value: '',
+    violation: '',
+  },
+  isPublic: {
     value: '',
     violation: '',
   }

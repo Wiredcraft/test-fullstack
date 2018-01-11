@@ -17,6 +17,10 @@ const setup = () => {
         description: {
           value: '',
           violation: '',
+        },
+        isPublic: {
+          value: '',
+          violation: '',
         }
       }}
       onChangeField={jest.fn()}

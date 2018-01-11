@@ -103,10 +103,8 @@ Votes for a talk. Success would be status code 204 with no content.
 
 ## TODO
 
-- PostCSS
 - Advanced Redux middleware, high-order reducers and normalizr
 - Pagination / Infinite scrolling
-- fix test
 - datepicker and select
 
 Stuffs like above may be added or abstracted when the project becomes larger or for better cross-browser compatibility, but I prefer to keep it simple for now.
