@@ -30,10 +30,14 @@ app.get('/api/talks', (req, res) => {
 })
 
 app.post('/api/talks', (req, res) => {
-  if (Math.random() > 0.1) {
+  if (Math.random() > 0.5) {
     res.status(201).json(req.body)
   } else {
-    res.status(400).send()
+    res.status(400).json({
+      violations: {
+        title: 'Title exists.',
+      },
+    })
   }
 })
 

@@ -1,12 +1,10 @@
-import {FETCH_TALK_SUCCESS, ADD_TALK_START, ADD_TALK_SUCCESS, ADD_TALK_FAIL, VOTE_FOR_TALK_START,
-  VOTE_FOR_TALK_FAIL} from './actions'
-import reducer from './reducers'
-
+import talks, {FETCH_TALK_SUCCESS, ADD_TALK_START, ADD_TALK_SUCCESS, ADD_TALK_FAIL,
+  VOTE_FOR_TALK_START, VOTE_FOR_TALK_FAIL} from './talks'
 
 describe('add a talk', () => {
   it('adds a talk immediately after user submits a new talk', () => {
     expect(
-      reducer([], {
+      talks([], {
         type: ADD_TALK_START,
         data: {
           author: 'author',
@@ -25,7 +23,7 @@ describe('add a talk', () => {
 
   it('merges current talk with the object server returns when adding a talk succeeds', () => {
     expect(
-      reducer([
+      talks([
         {
           id: 1,
           author: 'author',
@@ -52,7 +50,7 @@ describe('add a talk', () => {
 
   it('removes current talk when adding a talk fails', () => {
     expect(
-      reducer([
+      talks([
         {
           id: 1,
           author: 'author',
@@ -67,12 +65,34 @@ describe('add a talk', () => {
       })
     ).toEqual([])
   })
+
+  it('does nothing if adding a talk fails without data which contains a specified id', () => {
+    expect(
+      talks([
+        {
+          id: 1,
+          author: 'author',
+          title: 'title',
+          description: '',
+        }
+      ], {
+        type: ADD_TALK_FAIL,
+      })
+    ).toEqual([
+      {
+        id: 1,
+        author: 'author',
+        title: 'title',
+        description: '',
+      }
+    ])
+  })
 })
 
 describe('vote for a talk', () => {
   it('update state of the voted talk immediately after user votes for a talk', () => {
     expect(
-      reducer([
+      talks([
         {
           id: 1,
           votes: 0,
@@ -93,7 +113,7 @@ describe('vote for a talk', () => {
 
   it('reverts the state change when voting for a talk fails', () => {
     expect(
-      reducer([
+      talks([
         {
           id: 1,
           votes: 1,

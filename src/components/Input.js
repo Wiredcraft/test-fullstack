@@ -27,7 +27,7 @@ class Input extends Component {
 
 Input.propTypes = {
   tag: PropTypes.oneOf(['input', 'textarea']),
-  value: PropTypes.string,
+  className: PropTypes.string,
   violation: PropTypes.string,
 }
 

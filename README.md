@@ -52,7 +52,7 @@ Returns all talks. Success would be status code 200 with a JSON array. For examp
 ```
 POST api/talks
 ```
-Creates a new talk, receives the created talk and returns it. Success would be status code 201 with a JSON object. Error may be status code 400 due to invalid or incomplete post body.
+Creates a new talk, receives the created talk and returns it. Success would be status code 201 with a JSON object. Error may be status code 400 with a `violation` field pointing out which part is invalid in the post body.
 
 Requires a JSON object including the following fields:
 - author: string
@@ -68,7 +68,7 @@ For example:
 }
 ```
 
-Return for example:
+Success return for example:
 ```
 {
   "author": "j",
@@ -78,6 +78,15 @@ Return for example:
   "created": 1515419178895,
   "votes": 0,
   "voted": false
+}
+```
+
+Failure return for example:
+```
+{
+  "violation": {
+    "title": "title exists"
+  }
 }
 ```
 
@@ -97,5 +106,7 @@ Votes for a talk. Success would be status code 204 with no content.
 - PostCSS
 - Advanced Redux middleware, high-order reducers and normalizr
 - Pagination / Infinite scrolling
+- fix test
+- datepicker and select
 
 Stuffs like above may be added or abstracted when the project becomes larger or for better cross-browser compatibility, but I prefer to keep it simple for now.

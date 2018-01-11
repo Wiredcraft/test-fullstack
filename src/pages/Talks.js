@@ -2,44 +2,43 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import TalkBox from '../components/TalkBox'
 import TalkList from '../components/TalkList'
-import * as actions from '../redux/actions'
+import {fetchTalks, voteForTalk} from '../redux/talks'
+import {changeField, submitBox} from '../redux/talkBox'
 
 const mapStateToProps = state => {
   return {
-    talks: state.sort((talkA, talkB) => talkB.votes - talkA.votes),
+    talks: state.talks.sort((talkA, talkB) => talkB.votes - talkA.votes),
+    talkBox: state.talkBox,
   }
 }
 
 class Talks extends Component {
   componentDidMount() {
-    this.fetchTalks()
-  }
-
-  fetchTalks = () => {
     this.props.fetchTalks()
   }
 
-  addTalk = data => {
-    this.props.addTalk(data)
-  }
-
-  voteForTalk = talkId => {
-    this.props.voteForTalk(talkId)
-  }
-
   render() {
-    const {talks} = this.props
+    const {talks, talkBox, voteForTalk, submitBox, changeField} = this.props
 
     return (
       <div className="Talks">
         <TalkList
           talks={talks}
-          onVoteForTalk={this.voteForTalk}
+          onVoteForTalk={voteForTalk}
         />
-        <TalkBox onAddTalk={this.addTalk} />
+        <TalkBox
+          talkBox={talkBox}
+          onChangeField={changeField}
+          onSubmitBox={submitBox}
+        />
       </div>
     )
   }
 }
 
-export default connect(mapStateToProps, actions)(Talks)
+export default connect(mapStateToProps, {
+  fetchTalks,
+  voteForTalk,
+  submitBox,
+  changeField,
+})(Talks)

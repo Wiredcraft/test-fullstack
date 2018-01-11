@@ -3,121 +3,37 @@ import PropTypes from 'prop-types'
 import Input from './Input'
 import './TalkBox.css'
 
-const violationTypes = {
-  REQUIRED_EMPTY: {
-    value: 'REQUIRED_EMPTY',
-    text: () => 'Please fill out the field.',
-  },
-  LENGTH_TOO_LONG: {
-    value: 'LENGTH_TOO_LONG',
-    text: (data) => `Exceed words limit by ${data.exceedBy}`,
-  },
-}
-
-const validationRules = {
-  author: {
-    required: true,
-    maxLength: 19,
-  },
-  title: {
-    required: true,
-    maxLength: 59,
-  },
-  description: {
-    required: true,
-    maxLength: 599,
-  },
-}
-
-const emptyState = {
-  author: '',
-  authorViolation: null,
-  title: '',
-  titleViolation: null,
-  description: '',
-  descriptionViolation: null,
-}
-
 class TalkBox extends Component {
-  state = emptyState
-
   onChangeAuthor = (event) => {
-    this.setState({
-      author: event.target.value,
-    }, () => {
-      this.validate('author')
-    })
+    this.props.onChangeField('author', event.target.value)
   }
 
   onChangeTitle = (event) => {
-    this.setState({
-      title: event.target.value,
-    }, () => {
-      this.validate('title')
-    })
+    this.props.onChangeField('title', event.target.value)
   }
 
   onChangeDescription = (event) => {
-    this.setState({
-      description: event.target.value,
-    }, () => {
-      this.validate('description')
-    })
-  }
-
-  validate = (fieldName) => {
-    const {required, maxLength} = validationRules[fieldName]
-    const value = this.state[fieldName]
-    const violationKey = `${fieldName}Violation`
-    let violation = null
-
-    if (required && !value) {
-      violation = {
-        type: violationTypes.REQUIRED_EMPTY.value,
-      }
-    } else if (maxLength < value.length) {
-      violation = {
-        type: violationTypes.LENGTH_TOO_LONG.value,
-        data: {
-          exceedBy: value.length - maxLength,
-        },
-      }
-    }
-
-    this.setState({
-      [violationKey]: violation,
-    })
-
-    return !violation
-  }
-
-  validateAll = () => {
-    return Object.keys(validationRules).reduce((result, field) => {
-      return this.validate(field) && result
-    }, true)
+    this.props.onChangeField('description', event.target.value)
   }
 
   onSubmit = (event) => {
     event.preventDefault()
 
-    if (this.validateAll()) {
-      this.props.onAddTalk({
-        ...this.state
-      })
+    const {talkBox: {
+      author: {value: author},
+      title: {value: title},
+      description: {value: description},
+    }} = this.props
 
-      this.setState(emptyState)
-    }
+    this.props.onSubmitBox({
+      author,
+      title,
+      description,
+    })
   }
 
   render() {
-    const {author, authorViolation, title, titleViolation, description, descriptionViolation}
-      = this.state
-    const authorViolationText = authorViolation &&
-      violationTypes[authorViolation.type].text(authorViolation.data)
-    const titleViolationText = titleViolation &&
-      violationTypes[titleViolation.type].text(titleViolation.data)
-    const descriptionViolationText = descriptionViolation &&
-      violationTypes[descriptionViolation.type].text(descriptionViolation.data)
+    const {talkBox: {author, title, description}} = this.props
 
     return (
       <form
@@ -135,8 +51,8 @@ class TalkBox extends Component {
           <Input
             id="TalkBox-author"
             className="TalkBox-input"
-            value={author}
-            violation={authorViolationText}
+            value={author.value}
+            violation={author.violation}
             onChange={this.onChangeAuthor}
           />
         </div>
@@ -151,8 +67,8 @@ class TalkBox extends Component {
           <Input
             id="TalkBox-title"
             className="TalkBox-input"
-            value={title}
-            violation={titleViolationText}
+            value={title.value}
+            violation={title.violation}
             onChange={this.onChangeTitle}
           />
         </div>
@@ -169,8 +85,8 @@ class TalkBox extends Component {
             id="TalkBox-text"
             className="TalkBox-input"
             rows={8}
-            value={description}
-            violation={descriptionViolationText}
+            value={description.value}
+            violation={description.violation}
             onChange={this.onChangeDescription}
           />
         </div>
@@ -189,7 +105,9 @@ class TalkBox extends Component {
 }
 
 TalkBox.propTypes = {
-  onAddTalk: PropTypes.func.isRequired,
+  talkBox: PropTypes.object.isRequired,
+  onChangeField: PropTypes.func.isRequired,
+  onSubmitBox: PropTypes.func.isRequired,
 }
 
 export default TalkBox
