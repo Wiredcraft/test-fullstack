@@ -1,75 +1,117 @@
-# Wiredcraft Full-stack Developer test
+## Live Demo
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+http://news.jzf.life/index.html
 
-## Context
+So far the live demo is served by static files built by Webpack which interacts with a mock express server.
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+## Scripts
 
-Sorry no mock here, please make a simple and beautiful page that get the job done. We don't mind whether it looks as great as **Hacker News**.
+### Run
 
-## User Story
+```
+npm install
+npm start
+```
+This runs Webpack dev server and Express mock server concurrently. Notice that Webpack dev server receives all requests and proxys API requests to mock server.
 
-1. User opens the page and could see a list of lighting talks order by rating submitted by other users;
-2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
-3. The user could vote for the lighting talk by clicking the vote button or icon;
-4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, and `username`;
-6. The user could see his lighting talk on the list after submitting; 
+### Build
 
-## Requirements
+```
+npm install
+npm run build
+```
+Build static assets to `build/` dir.
 
-### Functionality
+### Test
 
-- The **frontend** part should be a single page application rendered in the frontend and load data from restful API (**not** rendered from backend).
-- There should be a **backend** and database to store the lightning talks.
+```
+npm install
+npm run test
+```
+Test with Jest. There are basic unit tests for components and reducers.
 
-### Tech stack
+## API
 
-- Backend oriented
-    - Use [Loopback](http://loopback.io/) for the backend.
-    - Use any **frontend** framework as you like.
-- Frontend oriented
-    - Use any **backend** framework as you like, even a static JSON file storage would do it.
-    - Use React for the frontend.
+```
+GET api/talks
+```
+Returns all talks. Success would be status code 200 with a JSON array. For example:
 
-### Bonus
+```
+[{
+  "author": "j",
+  "title": "Hello world!",
+  "description": "Hello world!",
+  "id": 12345,
+  "created": 1515419178895,
+  "votes": 2333,
+  "voted": true
+}]
+```
 
-- Write clear **documentation** on how it's designed and how to run the code.
-- Provide proper unit test.
-- Write good commit messages.
-- An online demo is always welcome.
+```
+POST api/talks
+```
+Creates a new talk, receives the created talk and returns it. Success would be status code 201 with a JSON object. Error may be status code 400 with a `violation` field pointing out which part is invalid in the post body.
 
-### Advanced requirements
+Requires a JSON object including the following fields:
+- author: string
+- title: string
+- description: string
+- isPublic: boolean
+- publishDate: number
 
-These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.
+For example:
+```
+{
+  "author": "j",
+  "title": "Hello world!",
+  "description": "Hello world!",
+  "isPublic": false,
+  "publishDate": 1515670520437
+}
+```
 
-- **Backend**:
-    - Use [Seneca](http://senecajs.org/) to build the core feature and use a different framework (such as Express or Loopback) to handle HTTP requests.
-    - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
-    - Provide a complete logging (when/how/etc) strategy.
-    - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
-- **Frontend**:
-    - *TODO*
+Success return for example:
+```
+{
+  "author": "j",
+  "title": "Hello world!",
+  "description": "Hello world!",
+  "id": 12345,
+  "created": 1515419178895,
+  "votes": 0,
+  "voted": false,
+  "isPublic": false,
+  "publishDate": 1515670520437
+}
+```
 
-## What We Care About
+Failure return for example:
+```
+{
+  "violation": {
+    "title": "title exists"
+  }
+}
+```
 
-Feel free to use any libraries you would use if this were a real production App, but remember we're interested in your code & the way you solve the problem, not how well you can use a particular library.
+```
+POST api/talks/:id/vote
+```
+Votes for a talk. Success would be status code 204 with no content.
 
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
+## Libraries and Tools
 
-Here's what you should aim for:
+- create-react-app: fast bootstrap the project
+- Redux + redux-thunk: manage state and async actions
+- Express + faker.js: provide a mock server
+- Sass + Autoprefixer: process CSS
+- Jest + enzyme: unit test
 
-- Good use of current HTML, CSS, and JavaScript & performance best practices.
-- Solid testing approach.
-- Extensible code.
+## TODO
 
-## Q&A
+- Advanced Redux middleware, high-order reducers and normalizr
+- Pagination / Infinite scrolling
 
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. We don't have a deadline for the task.
-
-> What if I have a question?
-
-Create a new issue in the repo and we will get back to you very quickly.
+Stuffs like above may be added or abstracted when the project becomes larger or for better cross-browser compatibility, but I prefer to keep it simple for now.
