@@ -19,9 +19,7 @@
     "ordered-imports": [
       false
     ],
-    "max-line-length": [
-      150
-    ],
+    "max-line-length": [true, 150],
     "member-ordering": [
       false
     ],

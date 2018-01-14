@@ -1,5 +1,6 @@
 import { Test } from '@nestjs/testing'
 import { AuthService } from './auth.service'
+import {} from 'jest'
 
 describe('createToken works', () => {
   let authService: AuthService
