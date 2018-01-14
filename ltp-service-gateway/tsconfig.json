@@ -11,8 +11,8 @@
     "sourceMap": true,
     "allowJs": true,
     "outDir": "./dist",
-    "types": [
-      "jest"
+    "lib": [
+      "es2017", "dom"
     ]
   },
   "include": [
