@@ -9,7 +9,8 @@
     "start": "node index.js",
     "start:watch": "nodemon",
     "prestart:prod": "tsc",
-    "start:prod": "node dist/main.js"
+    "start:prod": "node dist/main.js",
+    "test": "jest"
   },
   "dependencies": {
     "@nestjs/common": "^4.4.0",
@@ -26,14 +27,34 @@
     "redis": "^2.7.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.0",
-    "typescript": "^2.5.2"
-  },
-  "devDependencies": {
-    "@types/mongoose": "^4.7.32",
-    "@types/node": "^8.0.28",
+    "typescript": "^2.5.2",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
     "nodemon": "^1.12.1",
+    "ts-jest": "^20.0.14",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.4",
+    "@types/mongoose": "^4.7.32",
+    "@types/node": "^8.0.28"
+  },
+  "jest": {
+    "transform": {
+      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/src/.*\\.spec.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
   }
 }
