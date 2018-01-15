@@ -15,11 +15,30 @@ class App extends Component {
         console.log(error);
       });
   }
+
+  handleAddClick = () => {
+    this.addNewTalk()
+  }
+
+  addNewTalk = () => {
+    axios.post('/api', {
+      title: 'What you do in tech that people forget is needed',
+      desc: 'Worth checking out',
+      user: 'nelson_wu'
+    })
+      .then(response => {
+        console.log('response', response)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
     
   render() {
     return (
       <div className="c-App">
         <h1>Hacker Talks</h1>
+        <button onClick={this.handleAddClick}>add talk</button>
         {this.state.talks && this.state.talks.map((talk, i) =>
           <div key={i}>
             <p>{talk.title}</p>

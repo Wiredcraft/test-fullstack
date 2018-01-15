@@ -1,11 +1,1 @@
-{
-  "talks": [
-    {
-      "id": 1,
-      "title": "What it's like to not be technical in the industry",
-      "desc": "Inspiring",
-      "user": "natvet",
-      "rating": 0
-    }
-  ]
-}
+{"talks":[{"id":1,"title":"What it's like to not be technical in the industry","desc":"Inspiring","user":"natvet","rating":0}]}
