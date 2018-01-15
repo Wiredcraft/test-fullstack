@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Header from './components/Header'
+import TalksList from './components/TalksList'
 import './assets/sass/App.css';
 
 class App extends Component {
@@ -40,7 +42,6 @@ class App extends Component {
   }
 
   handleUpvoteClick = (id) => {
-    console.log(id)
     this.upvoteTalk(id)
   }
 
@@ -59,17 +60,11 @@ class App extends Component {
   render() {
     return (
       <div className="c-App">
-        <h1>Hacker Talks</h1>
-        <button onClick={this.handleAddClick}>add talk</button>
-        {this.state.talks && this.state.talks.map((talk, i) =>
-          <div key={i}>
-            <p>{talk.title}</p>
-            <p>{talk.desc}</p>
-            <p>{talk.user}</p>
-            <p>{talk.rating}</p>
-            <button onClick={this.handleUpvoteClick.bind(this, talk.id)}>Upvote</button>
-          </div>
-        )}
+        <Header onAddClick={this.handleAddClick}/>
+        <TalksList
+          talks={this.state.talks}
+          onUpvoteClick={this.handleUpvoteClick}
+        />
       </div>
     );
   }
