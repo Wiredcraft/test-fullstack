@@ -1,21 +1,15 @@
 {
   "name": "test-fullstack",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "node-sass-chokidar": "0.0.3",
-    "npm-run-all": "^4.1.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
-  },
+  "version": "1.0.0",
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/assets/sass --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "client": "cd client && npm start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
   }
 }
