@@ -1,7 +1,18 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400");
 .c-Talk {
   padding: 10px 5px;
-  display: flex; }
+  display: flex;
+  align-items: center; }
   .c-Talk__rating {
     display: flex;
     flex-direction: column;
-    align-items: center; }
+    align-items: center;
+    margin-right: 10px; }
+  .c-Talk__desc, .c-Talk__user {
+    color: #7C7A7A;
+    font-weight: 300;
+    font-style: italic; }
+  .c-Talk__desc {
+    padding: 0 10px; }
+  .c-Talk__user {
+    font-size: .8em; }

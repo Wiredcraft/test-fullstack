@@ -13,8 +13,8 @@ const Talk = (props) =>
     </div>
     <div>
       <span>{props.talk.title}</span>
-      <span>{props.talk.desc}</span>
-      <span>{props.talk.user}</span>
+      <span className='c-Talk__desc'>{props.talk.desc}</span>
+      <span className='c-Talk__user'>by {props.talk.user}</span>
     </div>
   </div>
     
