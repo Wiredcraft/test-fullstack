@@ -1,0 +1,27 @@
+@import './_variables.sass';
+
+.c-Form
+  padding: 10px
+  &__title
+    font-size: 1rem
+    margin: 0
+  &__input
+    display: block
+    width: 100%
+    box-sizing: border-box
+    border: 1px solid $text-color
+    resize: none
+    font-family: "Roboto Condensed", sans-serif
+    font-size: .8rem
+    padding: 3px
+    &:focus
+      outline-color: lighten($text-color-light, 20%)
+  &__label
+    display: block
+    margin-top: 5px
+    color: $text-color-light
+  &__btn-container
+    text-align: right
+  &__btn
+    margin-top: 10px
+    padding: 5px 7px

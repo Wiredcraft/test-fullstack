@@ -5,7 +5,7 @@ const Header = (props) =>
   <div className='c-Header'> 
     <h1 className='c-Header__title'>Hacker Talks</h1>
     <button
-      className='c-Header__add-btn'
+      className='c-btn'
       onClick={props.onAddClick}
     >
       &#10133; add

@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "express": "^4.16.2",
-    "react-router-dom": "^4.2.2"
+    "express": "^4.16.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.1"
