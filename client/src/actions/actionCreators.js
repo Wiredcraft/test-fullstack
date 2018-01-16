@@ -1,4 +1,4 @@
-import { FETCH_TALKS, ADD_TALK } from './actionTypes'
+import { FETCH_TALKS, ADD_TALK, UPVOTE } from './actionTypes'
 import axios from 'axios'
 
 export function fetchTalks() {
@@ -25,5 +25,20 @@ export function addTalk(allTalks, talk) {
   return {
     type: ADD_TALK,
     allTalks: [...allTalks, newTalk]
+  }
+}
+
+export function upvote(allTalks, id) {
+  const requestedIndex = allTalks.findIndex(t => t.id === id)
+  const upvotedTalk = {...allTalks[requestedIndex], rating: allTalks[requestedIndex].rating + 1}
+  const updatedTalks = [...allTalks]
+  updatedTalks[requestedIndex] = upvotedTalk
+  axios.post('/api/upvote', {id: id})
+    .catch(error => {
+      console.log(error);
+    });
+  return {
+    type: UPVOTE,
+    allTalks: updatedTalks
   }
 }

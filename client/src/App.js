@@ -4,7 +4,7 @@ import Header from './components/Header'
 import TalksList from './components/TalksList'
 import FormContainer from './components/FormContainer'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { fetchTalks } from './actions/actionCreators'
+import { fetchTalks, upvote } from './actions/actionCreators'
 import { connect } from 'react-redux'
 import './assets/sass/App.css'
 
@@ -13,32 +13,18 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchTalks: () => dispatch(fetchTalks())
+    fetchTalks: () => dispatch(fetchTalks()),
+    upvote: (allTalks, id) => dispatch(upvote(allTalks, id))
 })
 
 class App extends Component {
-  state = {}
 
   componentWillMount = () => {
     this.props.fetchTalks()
   }
 
-  handleUpvoteClick = (id) => {
-    this.upvoteTalk(id)
-  }
-
-  upvoteTalk = (id) => {
-    axios.post('/api/upvote', {
-      id: id
-    })
-      .then(response => {
-        console.log('response', response)
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-    
+  handleUpvoteClick = (id) => this.props.upvote(this.props.talks, id)
+ 
   render() {
     return (
       <BrowserRouter>
