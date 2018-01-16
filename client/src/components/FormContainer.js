@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Form from './Form'
 import { addTalk } from '../actions/actionCreators'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
     talksToUpdate: state && state.talks
@@ -13,28 +14,47 @@ const mapDispatchToProps = (dispatch) => ({
 
 class FormContainer extends Component {
   state = {
-    title: '',
-    desc: '',
-    user: ''
+    isSubmitClicked: false,
+    newTalk: {
+      title: '',
+      desc: '',
+      user: ''
+    }
+  }
+
+  handleSubmitClick = () => {
+    this.setState({isSubmitClicked: true})
+    if(this.isFormValid()) {
+      this.handleAddTalk()
+      this.props.history.push('/')
+    } else {
+      this.setState({error: true})
+    }
+  }
+
+  isFormValid = () => {
+    return this.state.newTalk.title && this.state.newTalk.desc && this.state.newTalk.user
   }
 
   handleAddTalk = () => {
-    console.log(this.props.talksToUpdate)
-    this.props.addTalk(this.props.talksToUpdate, this.state)
+    this.props.addTalk(this.props.talksToUpdate, this.state.newTalk)
   }
 
   handleInputChange = (field, e) => {
-    this.setState({[field]: e.target.value})
+    const newTalk = {...this.state.newTalk, [field]: e.target.value}
+    this.setState({newTalk})
   }
     
   render() {
     return (
       <Form
         onChange={this.handleInputChange}
-        onSubmit={this.handleAddTalk}
+        onSubmit={this.handleSubmitClick}
+        values={this.state.newTalk}
+        error={this.state.error}
       />
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FormContainer));

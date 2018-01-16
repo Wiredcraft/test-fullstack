@@ -16,6 +16,10 @@
     padding: 3px
     &:focus
       outline-color: lighten($text-color-light, 20%)
+    &_error,
+    &_error:focus
+      outline: $error-color auto 5px
+      outline-offset: -2px
   &__label
     display: block
     margin-top: 5px
@@ -24,3 +28,7 @@
     text-align: right
   &__btn
     margin-top: 10px
+  &__error-msg
+    color: $error-color
+    font-size: .7rem
+    margin: 0 0 4px
