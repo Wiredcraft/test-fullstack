@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react'
+import axios from 'axios'
 import Header from './components/Header'
 import TalksList from './components/TalksList'
-import './assets/sass/App.css';
+import FormContainer from './components/FormContainer'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import './assets/sass/App.css'
 
 class App extends Component {
   state = {}
@@ -61,10 +63,17 @@ class App extends Component {
     return (
       <div className="c-App">
         <Header onAddClick={this.handleAddClick}/>
-        <TalksList
-          talks={this.state.talks}
-          onUpvoteClick={this.handleUpvoteClick}
-        />
+        <BrowserRouter>
+          <Switch>
+            <Route path="/add" component={FormContainer}/>
+            <Route path="/" render={() =>
+              <TalksList
+                talks={this.state.talks}
+                onUpvoteClick={this.handleUpvoteClick}
+              />
+            }/>
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
