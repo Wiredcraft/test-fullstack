@@ -13,10 +13,6 @@ class App extends Component {
     this.getTalks();
   }
 
-  handleAddClick = () => {
-    this.addNewTalk()
-  }
-
   getTalks = () => {
     axios.get('/api/talks')
       .then(response => {
@@ -61,9 +57,9 @@ class App extends Component {
     
   render() {
     return (
-      <div className="c-App">
-        <Header onAddClick={this.handleAddClick}/>
-        <BrowserRouter>
+      <BrowserRouter>
+        <div className="c-App">
+          <Header/>
           <Switch>
             <Route path="/add" component={FormContainer}/>
             <Route path="/" render={() =>
@@ -73,8 +69,8 @@ class App extends Component {
               />
             }/>
           </Switch>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     );
   }
 }

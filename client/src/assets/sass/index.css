@@ -4,11 +4,19 @@ body {
   padding: 0;
   font-family: "Roboto Condensed", sans-serif; }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit; }
+
 .c-btn {
   background-color: transparent;
   font-size: 1rem;
   border: 1px solid #000000;
-  font-family: "Roboto Condensed", sans-serif; }
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 3px 5px; }
   .c-btn:focus {
     outline: 0;
+    background-color: transparent; }
+  .c-btn:hover {
     background-color: rgba(0, 0, 0, 0.2); }

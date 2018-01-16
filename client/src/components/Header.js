@@ -1,15 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import '../assets/sass/Header.css'
 
 const Header = (props) =>
   <div className='c-Header'> 
-    <h1 className='c-Header__title'>Hacker Talks</h1>
-    <button
+    <h1 className='c-Header__title'>
+      <Link to='/'>Hacker Talks</Link>
+    </h1>
+    <Link
       className='c-btn'
-      onClick={props.onAddClick}
+      to='/add'
     >
       &#10133; add
-    </button>
+    </Link>
   </div>
 
 export default Header;
