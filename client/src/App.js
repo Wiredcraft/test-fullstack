@@ -4,39 +4,23 @@ import Header from './components/Header'
 import TalksList from './components/TalksList'
 import FormContainer from './components/FormContainer'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { fetchTalks } from './actions/actionCreators'
+import { connect } from 'react-redux'
 import './assets/sass/App.css'
+
+const mapStateToProps = (state) => ({
+    talks: state && state.talks
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    fetchTalks: () => dispatch(fetchTalks())
+})
 
 class App extends Component {
   state = {}
 
   componentWillMount = () => {
-    this.getTalks();
-  }
-
-  getTalks = () => {
-    axios.get('/api/talks')
-      .then(response => {
-        const talks = response.data.talks
-        this.setState({talks})
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  addNewTalk = () => {
-    axios.post('/api', {
-      id: 2,
-      title: 'What you do in tech that people forget is needed',
-      desc: 'Worth checking out',
-      user: 'nelson_wu'
-    })
-      .then(response => {
-        console.log('response', response)
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.props.fetchTalks()
   }
 
   handleUpvoteClick = (id) => {
@@ -64,7 +48,7 @@ class App extends Component {
             <Route path="/add" component={FormContainer}/>
             <Route path="/" render={() =>
               <TalksList
-                talks={this.state.talks}
+                talks={this.props.talks}
                 onUpvoteClick={this.handleUpvoteClick}
               />
             }/>
@@ -75,4 +59,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

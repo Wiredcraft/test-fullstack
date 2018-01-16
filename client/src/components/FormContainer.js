@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Form from './Form'
-import {addTalk} from '../actions/actionCreators'
-import {connect} from 'react-redux'
+import { addTalk } from '../actions/actionCreators'
+import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
     talksToUpdate: state && state.talks
@@ -19,8 +19,8 @@ class FormContainer extends Component {
   }
 
   handleAddTalk = () => {
-    console.log('updateStore', this.props.talksToUpdate)
-    this.props.addTalk([], this.state)
+    console.log(this.props.talksToUpdate)
+    this.props.addTalk(this.props.talksToUpdate, this.state)
   }
 
   handleInputChange = (field, e) => {
