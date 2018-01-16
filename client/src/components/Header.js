@@ -1,9 +1,15 @@
 import React from 'react';
+import '../assets/sass/Header.css'
 
 const Header = (props) =>
   <div className='c-Header'> 
-    <h1>Hacker Talks</h1>
-    <button onClick={props.onAddClick}>add talk</button>
+    <h1 className='c-Header__title'>Hacker Talks</h1>
+    <button
+      className='c-Header__add-btn'
+      onClick={props.onAddClick}
+    >
+      &#10133; add
+    </button>
   </div>
 
 export default Header;

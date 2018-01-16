@@ -1,0 +1,16 @@
+.c-Header {
+  background-color: #FF5D73;
+  padding: 10px;
+  display: flex;
+  line-height: 1.5;
+  justify-content: space-between; }
+  .c-Header__title {
+    margin: 0;
+    font-size: 1.3rem; }
+  .c-Header__add-btn {
+    background-color: transparent;
+    font-size: 1rem;
+    border: 1px solid #000000; }
+    .c-Header__add-btn:focus {
+      outline: 0;
+      background-color: #ff2a47; }

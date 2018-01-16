@@ -1,0 +1,7 @@
+.c-Talk {
+  padding: 10px 5px;
+  display: flex; }
+  .c-Talk__rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
