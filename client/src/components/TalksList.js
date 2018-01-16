@@ -12,7 +12,8 @@ const TalksList = (props) =>
           onUpvoteClick={props.onUpvoteClick}
         />
       )
-    ) : null}
+    ) :
+    <p>There is no talk yet! Add one!</p>}
   </div>
 
 export default TalksList;
