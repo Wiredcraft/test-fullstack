@@ -18,7 +18,7 @@ export function fetchTalks() {
 
 export function addTalk(allTalks, talk) {
   const newTalk = {...talk, rating: 0, id: Math.max(...allTalks.map(t => t.id)) + 1}
-  axios.post('/api', newTalk)
+  axios.post('/api/new', newTalk)
     .catch(error => {
       console.log(error);
     });

@@ -28,7 +28,7 @@ app.post('/api/upvote', (req, res) => {
   res.send(updatedData);
 });
 
-app.post('/api', (req, res) => {
+app.post('/api/new', (req, res) => {
   const newTalk = {
     id: req.body.id,
     title: req.body.title,
