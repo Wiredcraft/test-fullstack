@@ -14,7 +14,7 @@ const TalksList = (props) =>
         />
       )
     ) :
-    <p>There is no talk yet! Add one!</p>}
+    <p className='c-TalksList__placeholder'>There is no talk yet! Add one!</p>}
   </div>
 
 export default TalksList;
