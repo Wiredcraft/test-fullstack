@@ -1,32 +1,40 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400");
-.c-Form {
+.c-Form__container {
+  max-width: 720px;
+  margin: 0 auto;
   padding: 10px; }
-  .c-Form__title {
-    font-size: 1rem;
-    margin: 0; }
-  .c-Form__input {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid #000000;
-    resize: none;
-    font-family: "Roboto Condensed", sans-serif;
-    font-size: .8rem;
-    padding: 3px; }
-    .c-Form__input:focus {
-      outline-color: #afadad; }
-    .c-Form__input_error, .c-Form__input_error:focus {
-      outline: #FF0000 auto 5px;
-      outline-offset: -2px; }
-  .c-Form__label {
-    display: block;
-    margin-top: 5px;
-    color: #7C7A7A; }
-  .c-Form__btn-container {
-    text-align: right; }
-  .c-Form__btn {
-    margin-top: 10px; }
-  .c-Form__error-msg {
-    color: #FF0000;
-    font-size: .7rem;
-    margin: 0 0 4px; }
+
+.c-Form__title {
+  font-size: 1rem;
+  margin: 0; }
+
+.c-Form__input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #000000;
+  resize: none;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: .8rem;
+  padding: 3px; }
+  .c-Form__input:focus {
+    outline-color: #afadad; }
+  .c-Form__input_error, .c-Form__input_error:focus {
+    outline: #FF0000 auto 5px;
+    outline-offset: -2px; }
+
+.c-Form__label {
+  display: block;
+  margin-top: 5px;
+  color: #7C7A7A; }
+
+.c-Form__btn-container {
+  text-align: right; }
+
+.c-Form__btn {
+  margin-top: 10px; }
+
+.c-Form__error-msg {
+  color: #FF0000;
+  font-size: .7rem;
+  margin: 0 0 4px; }

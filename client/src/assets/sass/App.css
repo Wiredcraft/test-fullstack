@@ -1,2 +1,10 @@
 .c-App {
   font-size: .9rem; }
+  .c-App__container {
+    margin: 0 auto; }
+    @media all and (min-width: 48em) {
+      .c-App__container {
+        max-width: 720px; } }
+    @media all and (min-width: 75em) {
+      .c-App__container {
+        max-width: 1140px; } }

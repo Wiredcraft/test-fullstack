@@ -1,7 +1,4 @@
 import {
-  FETCH_TALKS,
-  ADD_TALK,
-  UPVOTE,
   HIDE_UPVOTE
 } from '../actions/actionTypes'
 

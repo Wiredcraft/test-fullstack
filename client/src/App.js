@@ -32,18 +32,20 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="c-App">
-          <Header/>
-          <Switch>
-            <Route path="/add" component={FormContainer}/>
-            <Route path="/" render={() =>
-              <TalksList
-                talks={this.props.talks}
-                onUpvoteClick={this.handleUpvoteClick}
-                upvoted={this.props.upvoted}
-              />
-            }/>
-          </Switch>
+        <div className='c-App'>
+          <div className='c-App__container'>
+            <Header/>
+            <Switch>
+              <Route path="/add" component={FormContainer}/>
+              <Route path="/" render={() =>
+                <TalksList
+                  talks={this.props.talks}
+                  onUpvoteClick={this.handleUpvoteClick}
+                  upvoted={this.props.upvoted}
+                />
+              }/>
+            </Switch>
+          </div>
         </div>
       </BrowserRouter>
     );
