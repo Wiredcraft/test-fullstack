@@ -1,6 +1,6 @@
 # Hacker Talks
 
-Simple app enabling viewing list of talks, adding to it and upvoting talks
+Simple app enabling viewing a list of lightning talks, adding to it and upvoting talks
 
 Online demo: https://hacker-talks.herokuapp.com/ //TODO: enable data update
 
@@ -13,7 +13,7 @@ To get your copy of the project and have it up and running follow the installing
 Clone the repository
 
 ```
-git clone https://github.com/Wiredcraft/test-fullstack.git
+git clone https://github.com/natvet/test-fullstack.git
 ```
 
 In the root directory install dependencies
@@ -62,9 +62,6 @@ POST /api/upvote
 * Express
 * Axios
 * Sass
-
-## Bootsraped with
-
-[Create React App](https://github.com/facebookincubator/create-react-app)
+* Bootstraped with [Create React App](https://github.com/facebookincubator/create-react-app)
 
 Enjoy!
