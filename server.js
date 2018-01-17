@@ -34,7 +34,8 @@ app.post('/api/new', (req, res) => {
     title: req.body.title,
     desc: req.body.desc,
     user: req.body.user,
-    rating: 0
+    rating: 0,
+    date: req.body.date
   }
   const updatedTalks = [...data.talks, newTalk]
   const updatedData = {talks: updatedTalks}

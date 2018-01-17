@@ -1,5 +1,6 @@
 import { FETCH_TALKS, ADD_TALK, UPVOTE, HIDE_UPVOTE } from './actionTypes'
 import axios from 'axios'
+import moment from 'moment'
 
 export function fetchTalks() {
   return (dispatch) => 
@@ -18,7 +19,7 @@ export function fetchTalks() {
 
 export function addTalk(allTalks, talk) {
   const id = allTalks.length === 0 ? 1 : Math.max(...allTalks.map(t => t.id)) + 1
-  const newTalk = {...talk, rating: 0, id: id}
+  const newTalk = {...talk, rating: 0, id: id, date: moment().format('L')}
   axios.post('/api/new', newTalk)
     .catch(error => {
       console.log(error);

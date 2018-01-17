@@ -16,7 +16,7 @@ const Talk = (props) =>
     <div>
       <span>{props.talk.title}</span>
       <span className='c-Talk__desc'>{props.talk.desc}</span>
-      <span className='c-Talk__user'>by {props.talk.user}</span>
+      <span className='c-Talk__user'>by {props.talk.user} on {props.talk.date}</span>
     </div>
   </div>
     
