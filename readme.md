@@ -2,6 +2,8 @@
 
 Simple app enabling viewing list of talks, adding to it and upvoting talks
 
+Online demo: https://hacker-talks.herokuapp.com/ //TODO: enable data update
+
 ## Getting Started
 
 To get your copy of the project and have it up and running follow the installing instruction
