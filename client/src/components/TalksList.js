@@ -10,6 +10,7 @@ const TalksList = (props) =>
           key={i}
           talk={talk}
           onUpvoteClick={props.onUpvoteClick}
+          upvoted={props.upvoted}
         />
       )
     ) :

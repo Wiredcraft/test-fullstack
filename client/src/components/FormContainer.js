@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state) => ({
-    talksToUpdate: state && state.talks
+    talksToUpdate: state && state.talks.talks
 })
 
 const mapDispatchToProps = (dispatch) => ({
