@@ -5,7 +5,8 @@ const configs = {
     jwtRS256PrivKey: fs.readFileSync('./keys/jwtRS256.key'),
     jwtRS256PubKey: fs.readFileSync('./keys/jwtRS256.key.pub'),
     mongodbUrl: 'mongodb://localhost/lighting_talk_polling',
-    passwordSalt: 'P@ssW0rd' // generate a longer one in production
+    passwordSalt: 'P@ssW0rd', // generate a longer one in production
+    rabbitmqUri: 'localhost:5672'
   },
   development: {
 

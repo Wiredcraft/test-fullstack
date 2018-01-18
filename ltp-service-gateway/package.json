@@ -18,6 +18,7 @@
     "@nestjs/microservices": "^4.4.0",
     "@nestjs/testing": "^4.4.0",
     "@nestjs/websockets": "^4.4.0",
+    "bluebird": "^3.5.1",
     "class-transformer": "^0.1.8",
     "class-validator": "^0.7.3",
     "jest": "^20.0.4",
@@ -31,6 +32,9 @@
     "redis": "^2.7.1",
     "reflect-metadata": "^0.1.10",
     "rxjs": "^5.4.0",
+    "seneca": "^3.4.3",
+    "seneca-amqp-transport": "^2.2.0",
+    "seneca-entity": "^2.0.2",
     "ts-jest": "^20.0.14",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
@@ -38,9 +42,11 @@
     "typescript": "^2.5.2"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.19",
     "@types/jest": "^20.0.4",
     "@types/mongoose": "^4.7.32",
-    "@types/node": "^8.0.28"
+    "@types/node": "^8.0.28",
+    "@types/seneca": "^2.1.8"
   },
   "jest": {
     "transform": {
