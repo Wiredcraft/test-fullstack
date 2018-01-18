@@ -1,20 +1,28 @@
-const Promise = require('bluebird')
-const seneca = require('seneca')()
-const actAsync = Promise.promisify(seneca.act, {context: seneca})
+const Seneca = require('seneca')
+const config = require('./configs')
 
-// services
-seneca.add({role: 'math', cmd: 'sum'}, (msg, reply) => {
-  reply(null, {answer: (msg.left + msg.right)})
-})
+var seneca = Seneca({ legacy: { logging: false }, 'logstash-logger': config.logstash })
+seneca
+  .use('amqp-transport')
+  .use('logstash-logger')
+  .use('mongo-store', config.mongodb)
+  .use('entity', {mem_store: false})
 
-seneca.add({role: 'math', cmd: 'product', integer: true}, (msg, reply) => {
-  reply(null, {answer: (msg.left * msg.right)})
-})
+seneca
+  .use('./services/talk')
 
-// call services
-seneca.act({role: 'math', cmd: 'sum'}, {left: 1, right: 2});
-
-(async () => {
-  const result = await actAsync({role: 'math', cmd: 'product', integer: true}, {left: 5.5, right: 5})
-  console.log('await result', result)
-})()
+seneca
+  .listen({
+    type: 'amqp',
+    pin: 'service:talks,cmd:*',
+    url: config.rabbitmqUri
+  })
+  .ready(function () {
+    var apple = seneca.make$('fruit')
+    apple.name = 'Pink Lady'
+    apple.price = 0.99
+    apple.save$(function (err, apple) {
+      if (err) throw err
+      console.log('apple.id = ' + apple.id)
+    })
+  })

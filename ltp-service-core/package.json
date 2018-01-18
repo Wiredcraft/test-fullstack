@@ -4,20 +4,29 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
+    "start:watch": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bluebird": "^3.5.1",
-    "seneca": "^3.4.3"
+    "logstash-client": "^1.1.1",
+    "seneca": "^3.4.3",
+    "seneca-amqp-transport": "^2.2.0",
+    "seneca-entity": "^2.0.2",
+    "seneca-logstash-logger": "^1.0.0",
+    "seneca-mongo-store": "^1.1.0"
   },
   "devDependencies": {
+    "@types/seneca": "^2.1.8",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "nodemon": "^1.14.11"
   }
 }
