@@ -28,6 +28,9 @@
     outline: #FF0000 auto 5px;
     outline-offset: -2px; }
 
+.c-Form__empty-option {
+  display: none; }
+
 .c-Form__label {
   display: block;
   margin-top: 5px;

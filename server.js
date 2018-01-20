@@ -4,9 +4,12 @@ const dataFilePath = './data/data.json';
 const data = require(dataFilePath);
 var fs = require('fs');
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
+var sanitizeHtml = require('sanitize-html');
 
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(helmet());
 
 app.get('/api/talks', (req, res) => {
   res.send(data);
@@ -30,13 +33,13 @@ app.post('/api/upvote', (req, res) => {
 
 app.post('/api/new', (req, res) => {
   const newTalk = {
-    id: req.body.id,
-    title: req.body.title,
-    desc: req.body.desc,
-    user: req.body.user,
+    id: sanitizeHtml(req.body.id),
+    title: sanitizeHtml(req.body.title),
+    desc: sanitizeHtml(req.body.desc),
+    user: sanitizeHtml(req.body.user),
     rating: 0,
-    publish: req.body.publish,
-    public: req.body.public
+    publish: sanitizeHtml(req.body.publish),
+    public: sanitizeHtml(req.body.public)
   }
   const updatedTalks = [...data.talks, newTalk]
   const updatedData = {talks: updatedTalks}

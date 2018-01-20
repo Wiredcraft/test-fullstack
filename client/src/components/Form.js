@@ -63,7 +63,7 @@ const Form = (props) => {
                 value={props.values.public}
                 onChange={props.onChange.bind(this, 'public')}
               >
-                <option disabled value=''></option>
+                <option className='c-Form__empty-option' disabled value=''></option>
                 <option value='public'>public</option>
                 <option value='private'>private</option>
               </select>
