@@ -1,6 +1,6 @@
 import { FETCH_TALKS, ADD_TALK, UPVOTE, HIDE_UPVOTE } from './actionTypes'
-import axios from 'axios'
 import moment from 'moment'
+import axios from 'axios'
 
 export function fetchTalks() {
   return (dispatch) => 
@@ -23,7 +23,7 @@ export function addTalk(allTalks, talk) {
     ...talk,
     rating: 0,
     id: id,
-    publish: moment(talk.publish).format()
+    publish: talk.publish
   }
   axios.post('/api/new', newTalk)
     .catch(error => {
@@ -31,7 +31,9 @@ export function addTalk(allTalks, talk) {
     });
   return {
     type: ADD_TALK,
-    allTalks: [...allTalks, newTalk]
+    allTalks: moment(newTalk.publish).isSameOrBefore(moment()) ?
+      [...allTalks, newTalk] :
+      [...allTalks]
   }
 }
 

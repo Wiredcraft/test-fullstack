@@ -1,5 +1,6 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
+import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
 import '../assets/sass/Form.css'
 
@@ -36,6 +37,8 @@ const Form = (props) => {
             <div>
               <DatePicker
                 className={inputClass('publish')}
+                readOnly
+                minDate={moment()}
                 selected={props.values.publish}
                 onChange={props.onDateChange}
               />

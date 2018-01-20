@@ -6,13 +6,15 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var helmet = require('helmet');
 var sanitizeHtml = require('sanitize-html');
+var moment =require('moment');
 
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(helmet());
 
 app.get('/api/talks', (req, res) => {
-  res.send(data);
+  const dataToSend = {talks: data.talks.filter(el => moment(el.publish).isSameOrBefore(moment()))}
+  res.send(dataToSend);
 });
 
 app.post('/api/upvote', (req, res) => {
