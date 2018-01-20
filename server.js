@@ -33,13 +33,13 @@ app.post('/api/upvote', (req, res) => {
 
 app.post('/api/new', (req, res) => {
   const newTalk = {
-    id: sanitizeHtml(req.body.id),
+    id: req.body.id,
     title: sanitizeHtml(req.body.title),
     desc: sanitizeHtml(req.body.desc),
     user: sanitizeHtml(req.body.user),
     rating: 0,
-    publish: sanitizeHtml(req.body.publish),
-    public: sanitizeHtml(req.body.public)
+    publish: req.body.publish,
+    public: req.body.public
   }
   const updatedTalks = [...data.talks, newTalk]
   const updatedData = {talks: updatedTalks}

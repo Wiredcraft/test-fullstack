@@ -23,6 +23,7 @@ const Form = (props) => {
             <div>
               <input
                 className={inputClass('title')}
+                maxLength='60'
                 value={props.values.title}
                 onChange={props.onChange.bind(this, 'title')}
               />
@@ -41,6 +42,7 @@ const Form = (props) => {
             <div>
               <textarea
                 className={inputClass('desc')}
+                maxLength='600'
                 rows='3'
                 value={props.values.desc}
                 onChange={props.onChange.bind(this, 'desc')}
@@ -51,6 +53,7 @@ const Form = (props) => {
             <div>
               <input
                 className={inputClass('user')}
+                maxLength='20'
                 value={props.values.user}
                 onChange={props.onChange.bind(this, 'user')}
               />
