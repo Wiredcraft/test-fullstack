@@ -7,13 +7,13 @@ import '../assets/sass/Form.css'
 const Form = (props) => {
   const error = (field) => {
     return (
-      !props.values[field] && props.error ?
+      props.errors.filter(e => e === field).length > 0 ?
       <p className='c-Form__error-msg'>This field is required</p> :
       null
     )
   }
   const inputClass = (field) => 
-    `c-Form__input${!props.values[field] && props.error ? ' c-Form__input_error' : ''}`
+    `c-Form__input${props.errors.filter(e => e === field).length > 0 ? ' c-Form__input_error' : ''}`
 
   return (
       <div className='c-Form'>
@@ -30,6 +30,7 @@ const Form = (props) => {
                 maxLength='60'
                 value={props.values.title}
                 onChange={props.onChange.bind(this, 'title')}
+                onBlur={props.onBlur.bind(this, 'title')}
               />
             </div>
             {error('title')}
@@ -41,6 +42,7 @@ const Form = (props) => {
                 minDate={moment()}
                 selected={props.values.publish}
                 onChange={props.onDateChange}
+                onBlur={props.onBlur.bind(this, 'publish')}
               />
             </div>
             {error('publish')}
@@ -55,6 +57,7 @@ const Form = (props) => {
                 rows='3'
                 value={props.values.desc}
                 onChange={props.onChange.bind(this, 'desc')}
+                onBlur={props.onBlur.bind(this, 'desc')}
               />
             </div>
             {error('desc')}
@@ -68,6 +71,7 @@ const Form = (props) => {
                 maxLength='20'
                 value={props.values.user}
                 onChange={props.onChange.bind(this, 'user')}
+                onBlur={props.onBlur.bind(this, 'user')}
               />
             </div>
             {error('user')}
@@ -77,6 +81,7 @@ const Form = (props) => {
                 className={inputClass('public')}
                 value={props.values.public}
                 onChange={props.onChange.bind(this, 'public')}
+                onBlur={props.onBlur.bind(this, 'public')}
               >
                 <option className='c-Form__empty-option' disabled value=''></option>
                 <option value='public'>public</option>

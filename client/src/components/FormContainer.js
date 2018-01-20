@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class FormContainer extends Component {
   state = {
-    isSubmitClicked: false,
+    errors: [],
     newTalk: {
       title: '',
       desc: '',
@@ -24,16 +24,15 @@ class FormContainer extends Component {
   }
 
   handleSubmitClick = () => {
-    this.setState({isSubmitClicked: true})
     if(this.isFormValid()) {
       this.handleAddTalk()
       this.props.history.push('/')
-    } else {
-      this.setState({error: true})
     }
   }
 
   isFormValid = () => {
+    const fieldsToValidate = ['title', 'desc', 'user', 'publish', 'public']
+    this.displayError(fieldsToValidate)
     return (
       this.state.newTalk.title &&
       this.state.newTalk.desc &&
@@ -43,18 +42,46 @@ class FormContainer extends Component {
     )
   }
 
+  handleBlur = (field) => {
+    this.displayError([field])
+  }
+
+  displayError = (fields) => {
+    let errors = [...this.state.errors]
+    fields.map(field => {
+      if(!this.state.newTalk[field]) {
+        errors = errors.filter(e => e ===field).length > 0 ?
+        [...errors] :
+        [...errors, field]
+      }
+      return true
+    })
+    this.setState({errors})
+  }
+
   handleAddTalk = () => {
     this.props.addTalk(this.props.talksToUpdate, this.state.newTalk)
   }
 
   handleInputChange = (field, e) => {
     const newTalk = {...this.state.newTalk, [field]: e.target.value}
+    this.removeFromErrors(field)
     this.setState({newTalk})
   }
 
   handleDateChange = (date) => {
     const newTalk = {...this.state.newTalk, publish: date}
+    this.removeFromErrors('publish')
     this.setState({newTalk})
+  }
+
+  removeFromErrors = (field) => {
+    const indexInErrors = this.state.errors.indexOf(field)
+    if(indexInErrors > -1) {
+      let errors = [...this.state.errors]
+      errors.splice(indexInErrors, 1)
+      this.setState({errors})
+    }
   }
     
   render() {
@@ -63,8 +90,9 @@ class FormContainer extends Component {
         onChange={this.handleInputChange}
         onDateChange={this.handleDateChange}
         onSubmit={this.handleSubmitClick}
+        onBlur={this.handleBlur}
         values={this.state.newTalk}
-        error={this.state.error}
+        errors={this.state.errors}
       />
     );
   }
