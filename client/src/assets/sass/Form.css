@@ -8,6 +8,9 @@
   font-size: 1rem;
   margin: 0; }
 
+.c-Form__input-container {
+  position: relative; }
+
 .c-Form__input {
   display: block;
   width: 100%;
@@ -16,7 +19,9 @@
   resize: none;
   font-family: "Roboto Condensed", sans-serif;
   font-size: .8rem;
-  padding: 3px; }
+  padding: 3px;
+  border-radius: 0;
+  -webkit-appearance: none; }
   .c-Form__input:focus {
     outline-color: #afadad; }
   .c-Form__input_error, .c-Form__input_error:focus {
@@ -28,6 +33,13 @@
   margin-top: 5px;
   color: #7C7A7A; }
 
+.c-Form__arrow {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translate(0, -50%);
+  pointer-events: none; }
+
 .c-Form__btn-container {
   text-align: right; }
 
@@ -37,4 +49,4 @@
 .c-Form__error-msg {
   color: #FF0000;
   font-size: .7rem;
-  margin: 0 0 4px; }
+  margin: 4px 0 0; }

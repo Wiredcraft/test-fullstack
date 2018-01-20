@@ -8,6 +8,8 @@
   &__title
     font-size: 1rem
     margin: 0
+  &__input-container
+    position: relative
   &__input
     display: block
     width: 100%
@@ -17,6 +19,8 @@
     font-family: "Roboto Condensed", sans-serif
     font-size: .8rem
     padding: 3px
+    border-radius: 0
+    -webkit-appearance: none
     &:focus
       outline-color: lighten($text-color-light, 20%)
     &_error,
@@ -27,6 +31,12 @@
     display: block
     margin-top: 5px
     color: $text-color-light
+  &__arrow
+    position: absolute
+    right: 10px
+    top: 50%
+    transform: translate(0, -50%)
+    pointer-events: none
   &__btn-container
     text-align: right
   &__btn
@@ -34,4 +44,4 @@
   &__error-msg
     color: $error-color
     font-size: .7rem
-    margin: 0 0 4px
+    margin: 4px 0 0

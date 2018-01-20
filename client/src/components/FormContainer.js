@@ -18,7 +18,8 @@ class FormContainer extends Component {
     newTalk: {
       title: '',
       desc: '',
-      user: ''
+      user: '',
+      public: ''
     }
   }
 
@@ -33,7 +34,13 @@ class FormContainer extends Component {
   }
 
   isFormValid = () => {
-    return this.state.newTalk.title && this.state.newTalk.desc && this.state.newTalk.user
+    return (
+      this.state.newTalk.title &&
+      this.state.newTalk.desc &&
+      this.state.newTalk.user &&
+      this.state.newTalk.publish &&
+      this.state.newTalk.public
+    )
   }
 
   handleAddTalk = () => {
@@ -44,11 +51,17 @@ class FormContainer extends Component {
     const newTalk = {...this.state.newTalk, [field]: e.target.value}
     this.setState({newTalk})
   }
+
+  handleDateChange = (date) => {
+    const newTalk = {...this.state.newTalk, publish: date}
+    this.setState({newTalk})
+  }
     
   render() {
     return (
       <Form
         onChange={this.handleInputChange}
+        onDateChange={this.handleDateChange}
         onSubmit={this.handleSubmitClick}
         values={this.state.newTalk}
         error={this.state.error}

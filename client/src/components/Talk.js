@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import '../assets/sass/Talk.css'
 
 const Talk = (props) =>
@@ -15,8 +16,9 @@ const Talk = (props) =>
     </div>
     <div>
       <span>{props.talk.title}</span>
-      <span className='c-Talk__desc'>{props.talk.desc}</span>
-      <span className='c-Talk__user'>by {props.talk.user} on {props.talk.date}</span>
+      <span className='c-Talk__user'>by {props.talk.user} on {moment(props.talk.publish).format('L')}</span>
+      <p className='c-Talk__desc'>{props.talk.desc}</p>
+      <p className='c-Talk__public'>{props.talk.public}</p>
     </div>
   </div>
     

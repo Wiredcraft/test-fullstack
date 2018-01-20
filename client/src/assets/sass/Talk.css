@@ -10,14 +10,19 @@
     margin-right: 10px;
     padding: 0 5px;
     min-width: 26px; }
-  .c-Talk__desc, .c-Talk__user {
+  .c-Talk__desc, .c-Talk__user, .c-Talk__public {
     color: #7C7A7A;
-    font-weight: 300;
+    font-weight: 300; }
+  .c-Talk__public, .c-Talk__user {
     font-style: italic; }
   .c-Talk__desc {
-    padding: 0 10px; }
-  .c-Talk__user {
+    margin: 0; }
+  .c-Talk__user, .c-Talk__public {
     font-size: .8em; }
+  .c-Talk__user {
+    padding-left: 10px; }
+  .c-Talk__public {
+    margin: 0; }
   .c-Talk__btn {
     height: 16px;
     width: 16px;
