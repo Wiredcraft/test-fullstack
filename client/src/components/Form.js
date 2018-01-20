@@ -19,7 +19,10 @@ const Form = (props) => {
         <div className='c-Form__container'>
           <h2 className='c-Form__title'>Add a new talk!</h2>
           <form>
-            <label className='c-Form__label'>talk title</label>
+            <div className='c-Form__label-container'>
+              <label className='c-Form__label'>talk title</label>
+              <span className='c-Form__max-length'>{60 - props.values.title.length} characters left</span>
+            </div>
             <div>
               <input
                 className={inputClass('title')}
@@ -38,7 +41,10 @@ const Form = (props) => {
               />
             </div>
             {error('publish')}
-            <label className='c-Form__label'>talk description</label>
+            <div className='c-Form__label-container'>
+              <label className='c-Form__label'>talk description</label>
+              <span className='c-Form__max-length'>{600 - props.values.desc.length} characters left</span>
+            </div>
             <div>
               <textarea
                 className={inputClass('desc')}
@@ -49,7 +55,10 @@ const Form = (props) => {
               />
             </div>
             {error('desc')}
-            <label className='c-Form__label'>author</label>
+            <div className='c-Form__label-container'>
+              <label className='c-Form__label'>author</label>
+              <span className='c-Form__max-length'>{20 - props.values.user.length} characters left</span>
+            </div>
             <div>
               <input
                 className={inputClass('user')}

@@ -31,9 +31,16 @@
 .c-Form__empty-option {
   display: none; }
 
-.c-Form__label {
-  display: block;
+.c-Form__label-container {
   margin-top: 5px;
+  display: flex;
+  justify-content: space-between; }
+
+.c-Form__max-length {
+  color: #FF5D73;
+  font-size: .7rem; }
+
+.c-Form__label {
   color: #7C7A7A; }
 
 .c-Form__arrow {
