@@ -1,0 +1,39 @@
+@import './_variables.sass';
+
+.c-Talk
+  padding: 10px 5px
+  display: flex
+  align-items: center
+  &__rating
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-right: 10px
+    padding: 0 5px
+    min-width: 26px
+  &__desc,
+  &__user,
+  &__public
+    color: $text-color-light
+    font-weight: 300
+  &__public,
+  &__user
+    font-style: italic
+  &__desc
+    margin: 0
+  &__user,
+  &__public
+    font-size: .8em
+  &__user
+    padding-left: 10px
+  &__public
+    margin: 0
+  &__btn
+    height: 16px
+    width: 16px
+    background: url('../icons/like.svg') no-repeat center
+    background-size: contain
+    border: 0
+    cursor: pointer
+    &:focus
+      outline: 0

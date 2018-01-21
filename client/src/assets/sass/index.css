@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", sans-serif; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: inherit; }
+
+.c-btn {
+  background-color: transparent;
+  font-size: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 3px 10px;
+  cursor: pointer;
+  color: #ffffff; }
+  .c-btn:focus {
+    outline: 0; }
+  .c-btn:hover {
+    background-color: #ff7789; }
