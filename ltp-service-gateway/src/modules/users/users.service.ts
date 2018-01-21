@@ -24,6 +24,12 @@ export class UsersService {
     }
   }
 
+  async findByIds (ids: string[]) {
+    if (ids.length === 0) return []
+    const users = await this.userModel.find({ _id: { $in: ids } })
+    return users
+  }
+
   async findByLogin (loginDto: LoginDto): Promise<User> {
     const userFound = await this.userModel.findOne({ email: loginDto.email })
     if (!userFound) {

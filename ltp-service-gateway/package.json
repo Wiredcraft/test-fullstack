@@ -21,6 +21,7 @@
     "bluebird": "^3.5.1",
     "class-transformer": "^0.1.8",
     "class-validator": "^0.7.3",
+    "cors": "^2.8.4",
     "jest": "^20.0.4",
     "jest-cli": "^20.0.4",
     "jsonwebtoken": "^8.1.0",

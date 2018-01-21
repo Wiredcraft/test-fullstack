@@ -13,6 +13,7 @@ import { AuthService } from '../auth/auth.service'
     UsersService,
     AuthService,
     ...usersProviders
-  ]
+  ],
+  exports: [UsersService]
 })
 export class UsersModule {}

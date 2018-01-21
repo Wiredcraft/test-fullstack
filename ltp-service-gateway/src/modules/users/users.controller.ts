@@ -32,6 +32,6 @@ export class UserApiController {
   @Get('/refresh-token')
   async refreshToken (@Request() req: Request) {
     // TODO: should disable the previous token
-    return this.authService.createToken({ id: (req as any).payload.id })
+    return this.authService.createToken({ id: (req as any).user.id })
   }
 }
