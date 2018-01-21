@@ -5,7 +5,7 @@ module.exports = function () {
 
   this.add('service:talks,cmd:findAll', function (data, reply) {
     const talk = this.make$(talkModelName)
-    talk.list$(reply)
+    talk.list$({sort$: {score: -1}}, reply)
   })
 
   this.add('service:talks,cmd:getUserLiked', function (data, reply) {
