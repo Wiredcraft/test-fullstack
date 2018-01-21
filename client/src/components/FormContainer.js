@@ -92,7 +92,7 @@ class FormContainer extends Component {
   }
 
   handleInputFocus = (field) => {
-    this.setState({focused: field})
+    this.props.updateFocused(field)
   }
     
   render() {
