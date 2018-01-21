@@ -1,0 +1,25 @@
+.desc {
+  flex: 6;
+}
+
+.other_holder {
+  display: block;
+  flex: 4;
+  padding-left: 0.5rem;  
+}
+
+.author {
+  
+}
+
+.created_at {
+  
+}
+
+.score {
+  flex: 4
+}
+
+.title {
+  flex: 6
+}

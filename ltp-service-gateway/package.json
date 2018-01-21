@@ -1,0 +1,71 @@
+{
+  "name": "ltp-service-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "node index.js",
+    "start:watch": "nodemon",
+    "prestart:prod": "tsc",
+    "start:prod": "node dist/main.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nestjs/common": "^4.4.0",
+    "@nestjs/core": "^4.4.0",
+    "@nestjs/microservices": "^4.4.0",
+    "@nestjs/testing": "^4.4.0",
+    "@nestjs/websockets": "^4.4.0",
+    "bluebird": "^3.5.1",
+    "class-transformer": "^0.1.8",
+    "class-validator": "^0.7.3",
+    "cors": "^2.8.4",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "jsonwebtoken": "^8.1.0",
+    "logstash-client": "^1.1.1",
+    "md5": "^2.2.1",
+    "mongoose": "^4.11.13",
+    "nodemon": "^1.12.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.1",
+    "redis": "^2.7.1",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.4.0",
+    "seneca": "^3.4.3",
+    "seneca-amqp-transport": "^2.2.0",
+    "seneca-entity": "^2.0.2",
+    "ts-jest": "^20.0.14",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "tslint-config-standard": "^7.0.0",
+    "typescript": "^2.5.2",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.19",
+    "@types/jest": "^20.0.4",
+    "@types/mongoose": "^4.7.32",
+    "@types/node": "^8.0.28",
+    "@types/seneca": "^2.1.8",
+    "supertest": "^3.0.0"
+  },
+  "jest": {
+    "transform": {
+      ".ts": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/src/.*\\.test.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ]
+  }
+}

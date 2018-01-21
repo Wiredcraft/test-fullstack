@@ -1,0 +1,28 @@
+{
+  "name": "test-fullstack",
+  "version": "1.0.0",
+  "description": "Make sure you read **all** of this document carefully, and follow the guidelines in it.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgdsh/test-fullstack.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bgdsh/test-fullstack/issues"
+  },
+  "homepage": "https://github.com/bgdsh/test-fullstack#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

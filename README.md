@@ -1,5 +1,32 @@
 # Wiredcraft Full-stack Developer test
 
+## How to start
+
+```bash
+#step1
+docker-compose up
+#step2
+cd ltp-service-core && npm run start:watch
+#step3
+cd ../ltp-service-gateway && npm run start:watch
+#step4
+cd ../ltp-webapp && npm run start
+```
+
+## Features & tech used
+
+* Webapp: React + Mobx + TS + MaterialUI
+* Gateway: Nest.js + PassportJWTStrategy + Seneca Client + TS + Class Validator
+* Service core: Senaca + AMQP Transporter
+* Log Collection: LogStash
+
+## Aspects not good
+
+* Different kinds of logs should be distributed to different ElasticSearch indices
+* Test code is not enough. Only one Unit test and E2E test provided.
+* Guard for WebSocket is not implemnted yet, now it is totally open.
+* Frontend architecture is not designed by myself, it comes from a bolierplate. Not quite familar with PostCSS.
+
 Make sure you read **all** of this document carefully, and follow the guidelines in it.
 
 ## Context
@@ -11,11 +38,11 @@ Sorry no mock here, please make a simple and beautiful page that get the job don
 ## User Story
 
 1. User opens the page and could see a list of lighting talks order by rating submitted by other users;
-2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
-3. The user could vote for the lighting talk by clicking the vote button or icon;
-4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, and `username`;
-6. The user could see his lighting talk on the list after submitting; 
+1. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
+1. The user could vote for the lighting talk by clicking the vote button or icon;
+1. After voting the user will get an updated version of the lighting talk list(order by rating);
+1. User could always submit a lighting talk with `title`, `description`, and `username`;
+1. The user could see his lighting talk on the list after submitting;
 
 ## Requirements
 
@@ -27,8 +54,8 @@ Sorry no mock here, please make a simple and beautiful page that get the job don
 ### Tech stack
 
 - Backend oriented
-    - Use [Loopback](http://loopback.io/) for the backend.
-    - Use any **frontend** framework as you like.
+  - Use [Loopback](http://loopback.io/) for the backend.
+  - Use any **frontend** framework as you like.
 - Frontend oriented
     - Use any **backend** framework as you like, even a static JSON file storage would do it.
     - Use React for the frontend.
@@ -45,10 +72,10 @@ Sorry no mock here, please make a simple and beautiful page that get the job don
 These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.
 
 - **Backend**:
-    - Use [Seneca](http://senecajs.org/) to build the core feature and use a different framework (such as Express or Loopback) to handle HTTP requests.
-    - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
-    - Provide a complete logging (when/how/etc) strategy.
-    - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
+  - Use [Seneca](http://senecajs.org/) to build the core feature and use a different framework (such as Express or Loopback) to handle HTTP requests.
+  - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
+  - Provide a complete logging (when/how/etc) strategy.
+  - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
 - **Frontend**:
     - *TODO*
 
