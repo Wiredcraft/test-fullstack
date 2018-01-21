@@ -17,7 +17,6 @@ export class AppController {
 
   @Get(':id')
   findOne (@Param() params) {
-    console.log(params.id)
     return {}
   }
 

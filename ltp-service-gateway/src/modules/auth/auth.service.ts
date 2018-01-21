@@ -15,7 +15,6 @@ export class AuthService {
   }
 
   async validateUser (payload) {
-    console.log('payload in validateUser', payload)
     // TODO: implement the real logic
     return true
   }

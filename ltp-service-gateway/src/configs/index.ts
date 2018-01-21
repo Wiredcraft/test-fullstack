@@ -1,6 +1,11 @@
 import * as fs from 'fs'
 const configs = {
   default: {
+    logstash: {
+      host: 'localhost',
+      port: 7132,
+      type: 'tcp'
+    },
     jwtExpiresIn: 60 * 60,
     jwtRS256PrivKey: fs.readFileSync('./keys/jwtRS256.key'),
     jwtRS256PubKey: fs.readFileSync('./keys/jwtRS256.key.pub'),

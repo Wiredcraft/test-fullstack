@@ -17,12 +17,12 @@ import { UsersModule } from './modules/users/users.module'
 })
 export class ApplicationModule implements NestModule {
   configure (consumer: MiddlewaresConsumer): void {
-    consumer
-      .apply(LoggerMiddleware).with('APP')
-      .forRoutes(AppController)
-    consumer
-      .apply(LoggerMiddleware).with('talks')
-      .forRoutes(TalksController)
+    // consumer
+    //   .apply(LoggerMiddleware).with('APP')
+    //   .forRoutes(AppController)
+    // consumer
+    //   .apply(LoggerMiddleware).with('talks')
+    //   .forRoutes(TalksController)
     consumer
       .apply(passport.authenticate('jwt', { session: false }))
       .forRoutes({ path: '/api/*', method: RequestMethod.ALL })

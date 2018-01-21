@@ -17,11 +17,4 @@ export class EventsGatewayTalks implements OnGatewayInit {
       that.server.emit('talkChanged')
     })
   }
-
-  @SubscribeMessage('hi')
-  onEvent (client, data): Observable<WsResponse<any>> {
-    const event = 'talkChanged'
-    console.log('data received in scoreChange event:', data)
-    return Observable.from([1,2,3]).map(res => ({ event, data: res }))
-  }
 }

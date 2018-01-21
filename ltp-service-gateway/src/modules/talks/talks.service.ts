@@ -47,7 +47,6 @@ export class TalksService {
       return prev
     }, {})) // unique the userIds
     const users = await this.usersService.findByIds(userIds)
-    console.log(users)
     const usersDict = users.reduce((prev, cur) => {
       prev[cur.id] = cur; return prev
     }, {})

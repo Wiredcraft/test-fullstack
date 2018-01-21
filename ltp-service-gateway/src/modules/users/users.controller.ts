@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Request } from '@nestjs/common'
+import { Controller, Post, Body, Get, Request, HttpCode } from '@nestjs/common'
 import { LoginDto } from './login.dto'
 import { RegisterDto } from './register.dto'
 import { UsersService } from './users.service'
@@ -11,6 +11,7 @@ export class UserPublicController {
     private readonly authService: AuthService
   ) {}
   @Post('/login')
+  @HttpCode(200)
   async login (@Body() loginDto: LoginDto) {
     const userFound = await this.userService.findByLogin(loginDto)
     const token = await this.authService.createToken({ id: userFound.id })
