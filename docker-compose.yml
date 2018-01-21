@@ -1,0 +1,35 @@
+version: '3'
+services:
+  elasticsearch: 
+    image: elasticsearch:2.4.2 
+    ports: 
+      - 9200:9200 
+      - 9300:9300 
+    environment: 
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g" 
+  kibana: 
+    image: kibana:4.6.3 
+    ports: 
+      - 5601:5601 
+    environment: 
+      - ELASTICSEARCH_URL=http://elasticsearch:9200 
+    links: 
+      - elasticsearch 
+  logstash: 
+    image: logstash 
+    command: -f /etc/logstash/conf.d/ 
+    ports: 
+      - 7132:7132 
+    volumes: 
+      - ./logstash.conf:/etc/logstash/conf.d/logstash.conf 
+    links: 
+      - elasticsearch
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - 15672:15672
+      - 5672:5672
