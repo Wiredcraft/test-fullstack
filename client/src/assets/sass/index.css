@@ -18,7 +18,6 @@ a {
   cursor: pointer;
   color: #ffffff; }
   .c-btn:focus {
-    outline: 0;
-    background-color: transparent; }
+    outline: 0; }
   .c-btn:hover {
     background-color: #ff7789; }
