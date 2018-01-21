@@ -1,4 +1,13 @@
-import { FETCH_TALKS, ADD_TALK, UPVOTE, HIDE_UPVOTE } from './actionTypes'
+import { 
+  FETCH_TALKS,
+  ADD_TALK,
+  UPVOTE,
+  HIDE_UPVOTE,
+  UPDATE_INPUT_VALUE,
+  UPDATE_ERRORS,
+  UPDATE_FOCUSED,
+  CLEAR_TALK
+} from './actionTypes'
 import moment from 'moment'
 import axios from 'axios'
 
@@ -56,5 +65,32 @@ export function hideUpvoted(upvoted, id) {
   return {
     type: HIDE_UPVOTE,
     upvoted: [...upvoted, id]
+  }
+}
+
+export function updateInputValue(newTalk) {  
+  return {
+    type: UPDATE_INPUT_VALUE,
+    newTalk: newTalk
+  }
+}
+
+export function updateErrors(errors) {
+  return {
+    type: UPDATE_ERRORS,
+    errors: errors
+  }
+}
+
+export function updateFocused(field) {
+  return {
+    type: UPDATE_FOCUSED,
+    field: field
+  }
+}
+
+export function clearTalk() {
+  return {
+    type: CLEAR_TALK
   }
 }
