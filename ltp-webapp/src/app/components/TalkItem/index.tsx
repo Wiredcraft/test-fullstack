@@ -47,7 +47,7 @@ export class TalkItem extends React.Component<TalkProps, TalkState> {
         <div className={styles.desc} dangerouslySetInnerHTML={{ __html: marked(this.props.talk.description) }}></div>
         <div className={styles.other_holder}>
           <div><Typography>{authorName}</Typography></div>
-          <div><Typography>{this.props.talk.createdAt || 'None'}</Typography></div>
+          <div><Typography>{this.props.talk.createdAt ? new Date(this.props.talk.createdAt).toString() : 'None'}</Typography></div>
         </div>
       </ExpansionPanelDetails>
       <ExpansionPanelActions>

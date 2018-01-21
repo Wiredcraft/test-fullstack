@@ -15,7 +15,11 @@ export class TalkModel {
 
   public author: UserModel
   public createdAt: string
+
+  @observable
   public likedByCurrentUser = false
+
+  public userId: string
 
   constructor (id: string, title: string, description: string, author?: UserModel, createdAt?: string, score = 0) {
     this.id = id
