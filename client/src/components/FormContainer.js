@@ -50,7 +50,7 @@ class FormContainer extends Component {
 
   handleBlur = (field) => {
     this.displayError([field])
-    this.props.updateFocused(field)
+    this.props.updateFocused('')
   }
 
   displayError = (fields) => {
