@@ -1,5 +1,32 @@
 # Wiredcraft Full-stack Developer test
 
+## How to start
+
+```bash
+#step1
+docker-compose up
+#step2
+cd ltp-service-core && npm run start:watch
+#step3
+cd ../ltp-service-gateway && npm run start:watch
+#step4
+cd ../ltp-webapp && npm run start
+```
+
+## Features & tech used
+
+* Webapp: React + Mobx + TS + MaterialUI
+* Gateway: Nest.js + PassportJWTStrategy + Seneca Client + TS + Class Validator
+* Service core: Senaca + AMQP Transporter
+* Log Collection: LogStash
+
+## Aspects not good
+
+* Different kinds of logs should be distributed to different ElasticSearch indices
+* Test code is not enough. Only one Unit test and E2E test provided.
+* Guard for WebSocket is not implemnted yet, now it is totally open.
+* Frontend architecture is not designed by myself, it comes from a bolierplate. Not quite familar with PostCSS.
+
 Make sure you read **all** of this document carefully, and follow the guidelines in it.
 
 ## Context
