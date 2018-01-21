@@ -87,5 +87,15 @@
   position: absolute;
   bottom: -17px; }
 
+.c-Form__success-msg {
+  text-align: center;
+  color: #008148;
+  margin-top: 0;
+  font-size: 1rem; }
+
+.c-Form__link {
+  margin-left: 10px;
+  text-decoration: underline; }
+
 .c-Form .react-datepicker-popper {
   z-index: 2; }

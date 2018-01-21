@@ -5,7 +5,7 @@ import {
   updateInputValue,
   updateErrors,
   updateFocused,
-  clearTalk
+  hideSuccessMsg
 } from '../actions/actionCreators'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -14,7 +14,9 @@ const mapStateToProps = (state) => ({
     talksToUpdate: state && state.talks.talks,
     newTalk: state && state.talks.newTalk,
     errors: state && state.talks.errors,
-    focused: state && state.talks.focused
+    focused: state && state.talks.focused,
+    isMessageVisible: state && state.talks.isMessageVisible,
+    dateToDisplay: state && state.talks.dateToDisplay
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -22,17 +24,16 @@ const mapDispatchToProps = (dispatch) => ({
     updateInputValue: (newTalk) => dispatch(updateInputValue(newTalk)),
     updateErrors: (errors) => dispatch(updateErrors(errors)),
     updateFocused: (field) => dispatch(updateFocused(field)),
-    clearTalk: () => dispatch(clearTalk())
+    hideSuccessMsg: () => dispatch(hideSuccessMsg())
 })
 
 class FormContainer extends Component {
 
-  componentWillMount = () => this.props.clearTalk()
+  componentWillMount = () => this.props.hideSuccessMsg()
 
   handleSubmitClick = () => {
     if(this.isFormValid()) {
       this.handleAddTalk()
-      this.props.history.push('/')
     }
   }
 
@@ -106,6 +107,8 @@ class FormContainer extends Component {
         focused={this.props.focused}
         values={this.props.newTalk}
         errors={this.props.errors}
+        isMessageVisible={this.props.isMessageVisible}
+        dateToDisplay={this.props.dateToDisplay}
       />
     );
   }

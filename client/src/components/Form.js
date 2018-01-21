@@ -1,6 +1,7 @@
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import { Link } from 'react-router-dom'
 import 'react-datepicker/dist/react-datepicker.css'
 import '../assets/sass/Form.css'
 
@@ -20,6 +21,17 @@ const Form = (props) => {
   return (
       <div className='c-Form'>
         <div className='c-Form__container'>
+          {props.isMessageVisible ?
+          <p className='c-Form__success-msg'>
+            <span>Thanks for submitting! Your talk will be published on {moment(props.dateToDisplay).format('L')}</span>
+            <Link
+              className='c-Form__link'
+              to='/'
+            >
+              Back to the list of talks ›
+            </Link>
+          </p> :
+          null }
           <h2 className='c-Form__title'>Add a new talk!</h2>
           <form>
             <div className='c-Form__label-container'>

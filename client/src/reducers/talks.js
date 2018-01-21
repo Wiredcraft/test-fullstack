@@ -5,7 +5,9 @@ import {
   UPDATE_INPUT_VALUE,
   UPDATE_ERRORS,
   UPDATE_FOCUSED,
-  CLEAR_TALK
+  CLEAR_TALK,
+  SHOW_SUCCESS_MSG,
+  HIDE_SUCCESS_MSG
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -16,7 +18,8 @@ const initialState = {
     user: '',
     public: ''
   },
-  focused: ''
+  focused: '',
+  isMessageVisible: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -40,6 +43,10 @@ const reducer = (state = initialState, action) => {
         newTalk: initialState.newTalk,
         focused: initialState.focused
       }
+    case SHOW_SUCCESS_MSG:
+      return {...state, isMessageVisible: true, dateToDisplay: action.date}
+    case HIDE_SUCCESS_MSG:
+      return {...state, isMessageVisible: false}
     default:
       return state
   }

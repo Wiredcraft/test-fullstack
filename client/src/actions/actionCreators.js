@@ -6,7 +6,9 @@ import {
   UPDATE_INPUT_VALUE,
   UPDATE_ERRORS,
   UPDATE_FOCUSED,
-  CLEAR_TALK
+  CLEAR_TALK,
+  SHOW_SUCCESS_MSG,
+  HIDE_SUCCESS_MSG
 } from './actionTypes'
 import moment from 'moment'
 import axios from 'axios'
@@ -34,16 +36,22 @@ export function addTalk(allTalks, talk) {
     id: id,
     publish: talk.publish
   }
-  axios.post('/api/new', newTalk)
-    .catch(error => {
-      console.log(error);
-    });
-  return {
-    type: ADD_TALK,
-    allTalks: moment(newTalk.publish).isSameOrBefore(moment()) ?
-      [...allTalks, newTalk] :
-      [...allTalks]
-  }
+  return (dispatch) => 
+    axios.post('/api/new', newTalk)
+      .then(response =>
+        dispatch({
+          type: ADD_TALK,
+          allTalks: moment(newTalk.publish).isSameOrBefore(moment()) ?
+            [...allTalks, newTalk] :
+            [...allTalks],
+          isMessageVisible: true
+        }),
+        dispatch((showSuccessMsg(talk.publish))),
+        dispatch((clearTalk()))
+      ) 
+      .catch(error => {
+        console.log(error);
+      });
 }
 
 export function upvote(allTalks, id, upvoted) {
@@ -92,5 +100,19 @@ export function updateFocused(field) {
 export function clearTalk() {
   return {
     type: CLEAR_TALK
+  }
+}
+
+export function showSuccessMsg(date) {
+  window.scrollTo(0,0)
+  return {
+    type: SHOW_SUCCESS_MSG,
+    date: date
+  }
+}
+
+export function hideSuccessMsg() {
+  return {
+    type: HIDE_SUCCESS_MSG
   }
 }
