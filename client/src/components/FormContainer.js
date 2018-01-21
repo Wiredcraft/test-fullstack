@@ -44,6 +44,7 @@ class FormContainer extends Component {
 
   handleBlur = (field) => {
     this.displayError([field])
+    this.setState({focused: ''})
   }
 
   displayError = (fields) => {
@@ -83,6 +84,10 @@ class FormContainer extends Component {
       this.setState({errors})
     }
   }
+
+  handleInputFocus = (field) => {
+    this.setState({focused: field})
+  }
     
   render() {
     return (
@@ -91,6 +96,8 @@ class FormContainer extends Component {
         onDateChange={this.handleDateChange}
         onSubmit={this.handleSubmitClick}
         onBlur={this.handleBlur}
+        onFocus={this.handleInputFocus}
+        focused={this.state.focused}
         values={this.state.newTalk}
         errors={this.state.errors}
       />

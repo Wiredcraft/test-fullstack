@@ -14,11 +14,11 @@
     display: block
     width: 100%
     box-sizing: border-box
-    border: 1px solid $text-color
+    border: 1px solid $text-color-light
     resize: none
     font-family: "Roboto Condensed", sans-serif
-    font-size: .8rem
-    padding: 3px
+    font-size: .9rem
+    padding: 10px 5px
     border-radius: 0
     -webkit-appearance: none
     &:focus
@@ -30,14 +30,27 @@
   &__empty-option
     display: none
   &__label-container
-    margin-top: 5px
+    margin: 5px 0
     display: flex
     justify-content: space-between
+    align-items: center
   &__max-length
     color: $primary-color
     font-size: .7rem
+    font-style: italic
   &__label
     color: $text-color-light
+    position: relative
+    bottom: -33px
+    left: 5px
+    z-index: 1
+    font-size: .9rem
+    transition: all .3s
+    pointer-events: none
+    &_floated
+      bottom: 0
+      left: 0
+      font-size: .8rem
   &__arrow
     position: absolute
     right: 10px
@@ -47,8 +60,11 @@
   &__btn-container
     text-align: right
   &__btn
-    margin-top: 10px
+    margin-top: 17px
+    padding: 7px 5px
   &__error-msg
     color: $error-color
     font-size: .7rem
     margin: 4px 0 0
+  .react-datepicker-popper
+    z-index: 2
