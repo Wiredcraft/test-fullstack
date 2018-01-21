@@ -2,7 +2,7 @@
 .c-Form__container {
   max-width: 720px;
   margin: 0 auto;
-  padding: 10px; }
+  padding: 25px 10px; }
 
 .c-Form__title {
   font-size: 1rem;
@@ -15,46 +15,51 @@
   display: block;
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #7C7A7A;
+  border: 1px solid #afadad;
   resize: none;
   font-family: "Roboto Condensed", sans-serif;
   font-size: .9rem;
   padding: 10px 5px;
   border-radius: 0;
-  -webkit-appearance: none; }
+  -webkit-appearance: none;
+  line-height: 1.2; }
   .c-Form__input:focus {
     outline-color: #afadad; }
   .c-Form__input_error, .c-Form__input_error:focus {
-    outline: #FF0000 auto 5px;
-    outline-offset: -2px; }
+    outline: #ff6666 auto 5px;
+    outline-offset: -2px;
+    border-color: #FF0000; }
 
 .c-Form__empty-option {
   display: none; }
 
 .c-Form__label-container {
-  margin: 5px 0;
+  margin: 20px 0 3px;
   display: flex;
   justify-content: space-between;
-  align-items: center; }
+  align-items: flex-end; }
 
 .c-Form__max-length {
   color: #FF5D73;
-  font-size: .7rem;
+  font-size: .9rem;
   font-style: italic; }
 
 .c-Form__label {
-  color: #7C7A7A;
+  color: #c8c7c7;
   position: relative;
-  bottom: -33px;
+  bottom: -32px;
   left: 5px;
   z-index: 1;
-  font-size: .9rem;
+  font-size: 1rem;
   transition: all .3s;
-  pointer-events: none; }
+  pointer-events: none;
+  font-weight: 300; }
   .c-Form__label_floated {
     bottom: 0;
     left: 0;
-    font-size: .8rem; }
+    font-size: .8rem;
+    font-weight: 400;
+    color: #7C7A7A; }
 
 .c-Form__arrow {
   position: absolute;
@@ -68,12 +73,16 @@
 
 .c-Form__btn {
   margin-top: 17px;
-  padding: 7px 5px; }
+  padding: 10px;
+  background-color: #FF5D73;
+  border: 0; }
 
 .c-Form__error-msg {
   color: #FF0000;
   font-size: .7rem;
-  margin: 4px 0 0; }
+  margin: 4px 0 0;
+  position: absolute;
+  bottom: -17px; }
 
 .c-Form .react-datepicker-popper {
   z-index: 2; }

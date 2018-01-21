@@ -4,14 +4,14 @@
   padding: 10px;
   display: flex;
   line-height: 1.5;
-  justify-content: space-between; }
+  justify-content: space-between;
+  color: #ffffff; }
   .c-Header__title {
     margin: 0;
     font-size: 1.3rem; }
   .c-Header__add-btn {
     background-color: transparent;
     font-size: 1rem;
-    border: 1px solid #000000;
     font-family: "Roboto Condensed", sans-serif; }
     .c-Header__add-btn:focus {
       outline: 0;

@@ -11,7 +11,7 @@ const Header = (props) =>
       className='c-btn'
       to='/add'
     >
-      <span role='img' aria-label='plus icon'>&#10133;</span> add
+      <span role='img' aria-label='plus icon'>+</span> add
     </Link>
   </div>
 

@@ -26,7 +26,7 @@ const Form = (props) => {
               <label className={labelClass('title')}>talk title</label>
               <span className='c-Form__max-length'>{60 - props.values.title.length} characters left</span>
             </div>
-            <div>
+            <div className='c-Form__input-container'>
               <input
                 className={inputClass('title')}
                 maxLength='60'
@@ -35,12 +35,12 @@ const Form = (props) => {
                 onFocus={props.onFocus.bind(this, 'title')}
                 onBlur={props.onBlur.bind(this, 'title')}
               />
+              {error('title')}
             </div>
-            {error('title')}
             <div className='c-Form__label-container'>
               <label className={labelClass('publish')}>publish date</label>
             </div>
-            <div>
+            <div className='c-Form__input-container'>
               <DatePicker
                 className={inputClass('publish')}
                 readOnly
@@ -50,13 +50,13 @@ const Form = (props) => {
                 onFocus={props.onFocus.bind(this, 'publish')}
                 onBlur={props.onBlur.bind(this, 'publish')}
               />
+              {error('publish')}
             </div>
-            {error('publish')}
             <div className='c-Form__label-container'>
               <label className={labelClass('desc')}>talk description</label>
               <span className='c-Form__max-length'>{600 - props.values.desc.length} characters left</span>
             </div>
-            <div>
+            <div className='c-Form__input-container'>
               <textarea
                 className={inputClass('desc')}
                 maxLength='600'
@@ -66,13 +66,13 @@ const Form = (props) => {
                 onFocus={props.onFocus.bind(this, 'desc')}
                 onBlur={props.onBlur.bind(this, 'desc')}
               />
+              {error('desc')}
             </div>
-            {error('desc')}
             <div className='c-Form__label-container'>
               <label className={labelClass('user')}>author</label>
               <span className='c-Form__max-length'>{20 - props.values.user.length} characters left</span>
             </div>
-            <div>
+            <div className='c-Form__input-container'>
               <input
                 className={inputClass('user')}
                 maxLength='20'
@@ -81,10 +81,10 @@ const Form = (props) => {
                 onFocus={props.onFocus.bind(this, 'user')}
                 onBlur={props.onBlur.bind(this, 'user')}
               />
+              {error('user')}
             </div>
-            {error('user')}
             <div className='c-Form__label-container'>
-              <label className={labelClass('public')}>public</label>
+              <label className={labelClass('public')}>is the talk public or private?</label>
             </div>
             <div className='c-Form__input-container'>
               <select
@@ -99,8 +99,8 @@ const Form = (props) => {
                 <option value='private'>private</option>
               </select>
               <span className='c-Form__arrow' role='img'>▾</span>
+              {error('public')}
             </div>
-            {error('public')}
           </form>
           <div className='c-Form__btn-container'>
             <button
