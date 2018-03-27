@@ -50,13 +50,11 @@ These are used for some further challenges. You can safely skip them if you are 
     - Provide a complete logging (when/how/etc) strategy.
     - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
 - **Frontend**:
-    - Trying not to use any tool to build the app. e.g `create-react-app`
-    - Use module bundler tool (webpack/Parcel etc.) to manage the CSS, JS, and assets files
-    - Use React-Router to manage the pages
-    - Provide a strategy for error message handling.（Request failed. Network error. etc.）
-    - Provide a strategy to validate the form field before submit the data to backend.
-    - Decorate the page with CSS but not from the framework.
-    - Make the web page responsive from mobile devices.
+    - Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, 
+        - but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
+    - Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
+    - Provide a form validation strategy.
+    - Make it responsive.
 
 ## What We Care About
 
