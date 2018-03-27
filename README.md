@@ -14,7 +14,7 @@ Sorry no mock here, please make a simple and beautiful page that get the job don
 2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
 3. The user could vote for the lighting talk by clicking the vote button or icon;
 4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, and `username`;
+5. User could always submit a lighting talk with `title`, `description`, `publishDate`, and `username`;
 6. The user could see his lighting talk on the list after submitting; 
 
 ## Requirements
@@ -50,7 +50,11 @@ These are used for some further challenges. You can safely skip them if you are 
     - Provide a complete logging (when/how/etc) strategy.
     - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
 - **Frontend**:
-    - *TODO*
+    - Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, 
+        - but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
+    - Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
+    - Provide a form validation strategy.
+    - Make it responsive.
 
 ## What We Care About
 
