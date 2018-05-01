@@ -1,32 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchNews } from '../../actions';
-import { getDateDiff } from "./date.util";
+import renderNewsRow from './render-news-row';
 import './news.css';
 
 class News extends Component {
     componentDidMount() {
         this.props.fetchNews();
-    }
-
-    renderNewsRow(newsItem, index) {
-        const { hours, minutes } = getDateDiff(newsItem.publishDate);
-        const timeText = hours > 0 ? `${hours} hours ago` : `${minutes} minutes ago`;
-        return (
-            <tr key={newsItem.id}>
-                <td>{`${index + 1}.`}</td>
-                <td>
-                    <div className="news-item">
-                        <div>
-                            <span className="upvote"></span>
-                            <span className="title">{newsItem.title}</span>
-                            {newsItem.url && newsItem.url.length && <span>{newsItem.url}</span>}
-                        </div>
-                        <div>{`${newsItem.rating} points by ${newsItem.username} ${timeText}`}</div>
-                    </div>
-                </td>
-            </tr>
-        );
     }
 
     render() {
@@ -39,7 +19,7 @@ class News extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.news.map(this.renderNewsRow.bind(this))}
+                        {this.props.news.map(renderNewsRow.bind(this))}
                     </tbody>
                 </table>
             </div>
