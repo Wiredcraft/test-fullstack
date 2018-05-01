@@ -1,0 +1,12 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "hacker-news-clone",
+    "password": "",
+    "name": "db",
+    "user": "",
+    "connector": "mongodb"
+  }
+}
