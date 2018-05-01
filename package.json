@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
+    "dev": "concurrently --kill-others-on-fail \"node .\" \"cd client && npm start\"",
     "posttest": "npm run lint && nsp check"
   },
   "dependencies": {
@@ -22,6 +23,7 @@
     "strong-error-handler": "^2.0.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "eslint": "^3.17.1",
     "eslint-config-loopback": "^8.0.0",
     "nsp": "^2.1.0"
