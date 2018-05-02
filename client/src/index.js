@@ -11,6 +11,7 @@ import './index.css';
 import reducers from './reducers';
 import Talks from './components/talks/talks.component';
 import Login from './components/login/login.component';
+import PrivateRoute from './components/private-route/private-route.component';
 import Submit from './components/submit/submit.component';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
@@ -21,7 +22,7 @@ ReactDOM.render(
             <Switch>
                 <Route path="/talks" component={Talks}/>
                 <Route path="/login" component={Login}/>
-                <Route path="/submit" component={Submit}/>
+                <PrivateRoute path="/submit" component={Submit}/>
                 <Redirect from="/" exact to="/talks"/>
             </Switch>
         </BrowserRouter>
