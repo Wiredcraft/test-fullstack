@@ -9,8 +9,9 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 import reducers from './reducers';
-import News from './components/news/news.component';
+import Talks from './components/talks/talks.component';
 import Login from './components/login/login.component';
+import Submit from './components/submit/submit.component';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
@@ -18,9 +19,10 @@ ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>
         <BrowserRouter>
             <Switch>
-                <Route path="/news" component={News}/>
+                <Route path="/talks" component={Talks}/>
                 <Route path="/login" component={Login}/>
-                <Redirect from="/" exact to="/news"/>
+                <Route path="/submit" component={Submit}/>
+                <Redirect from="/" exact to="/talks"/>
             </Switch>
         </BrowserRouter>
     </Provider>,

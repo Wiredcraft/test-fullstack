@@ -1,0 +1,44 @@
+@import './colors.scss';
+
+.table {
+    .column {
+        display: inline-block;
+    }
+    .header {
+        background-color: $headerColor;
+
+        .column {
+            padding: 3px;
+            vertical-align: middle;
+
+            a {
+                padding-right: 5px;
+                text-decoration: none;
+                color: $titleColor;
+            }
+        }
+        .title-column {
+            width: 90%;
+            .title {
+                font-weight: bold;
+            }
+        }
+        .auth-column {
+            float: right;
+        }
+        .icon {
+            width: 16px;
+        }
+    }
+    .row {
+        background-color: $tableBackground;
+
+        .column {
+            padding: 5px;
+            vertical-align: text-top;
+        }
+        .first-column {
+            min-width: 30px;
+        }
+    }
+}

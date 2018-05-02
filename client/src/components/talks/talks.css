@@ -26,3 +26,13 @@
     vertical-align: text-top; }
   .table .row .first-column {
     min-width: 30px; }
+
+.talks .talks-item .inline {
+  display: inline-block;
+  padding-right: 5px;
+  vertical-align: text-top; }
+  .talks .talks-item .inline .upvote {
+    width: 10px; }
+
+.talks .talks-item .small-text {
+  font-size: 7pt; }
