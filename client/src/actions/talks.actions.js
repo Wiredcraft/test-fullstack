@@ -1,4 +1,4 @@
-import { FETCH_TALKS, CREATE_TALK } from './types';
+import { FETCH_TALKS, CREATE_TALK, UPDATE_TALK } from './types';
 import api from './api.helper';
 
 export const fetchTalks = () => {
@@ -15,6 +15,15 @@ export const createTalk = (talk, callback) => {
 
     return {
         type: CREATE_TALK,
+        payload: response
+    }
+};
+
+export const updateTalk = (talk, callback) => {
+    const response = api.put('talks', talk).then(callback());
+
+    return {
+        type: UPDATE_TALK,
         payload: response
     }
 };

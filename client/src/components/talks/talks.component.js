@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchTalks } from '../../actions/talks.actions';
 import { logout } from '../../actions/auth.actions';
-import renderTalksRow from './render-talks-row';
+import TalkRow from './talk-row/talk-row.component';
 import './talks.css';
 import Icon from '../../assets/icon.png';
 
@@ -38,7 +38,7 @@ class Talks extends Component {
                             )}
                         </div>
                     </div>
-                    {this.props.talks.map(renderTalksRow.bind(this))}
+                    {this.props.talks.map((talk, index) => <TalkRow talk={talk} index={index} />)}
                 </div>
             </div>
         );
