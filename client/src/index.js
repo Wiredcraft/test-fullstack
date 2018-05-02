@@ -10,6 +10,7 @@ import './index.css';
 
 import reducers from './reducers';
 import News from './components/news/news.component';
+import Login from './components/login/login.component';
 
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
@@ -18,6 +19,7 @@ ReactDOM.render(
         <BrowserRouter>
             <Switch>
                 <Route path="/news" component={News}/>
+                <Route path="/login" component={Login}/>
                 <Redirect from="/" exact to="/news"/>
             </Switch>
         </BrowserRouter>

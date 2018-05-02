@@ -11,7 +11,7 @@ export default (newsItem, index) => {
             <div className="column">
                 <div className="news-item">
                     <div className="inline">
-                        <img src={GrayArrow} alt="Upvote" width="10px"/>
+                        <img className="upvote" src={GrayArrow} alt="Upvote" />
                     </div>
                     <div className="inline">
                         <div>

@@ -7,6 +7,7 @@
         }
         .header {
             background-color: $headerColor;
+
             .column {
                 padding: 3px;
                 vertical-align: middle;
@@ -17,14 +18,22 @@
                     color: $titleColor;
                 }
             }
-            .title {
-                font-weight: bold;
+            .title-column {
+                width: 90%;
+                .title {
+                    font-weight: bold;
+                }
+            }
+            .auth-column {
+                float: right;
             }
             .icon {
                 width: 16px;
             }
         }
         .row {
+            background-color: $tableBackground;
+
             .column {
                 padding: 5px;
                 vertical-align: text-top;
@@ -34,6 +43,10 @@
                         display: inline-block;
                         padding-right: 5px;
                         vertical-align: text-top;
+
+                        .upvote {
+                            width: 10px;
+                        }
                     }
                     .small-text {
                         font-size: 7pt;

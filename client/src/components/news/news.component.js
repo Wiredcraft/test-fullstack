@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchNews } from '../../actions';
+import { fetchNews } from '../../actions/news.actions';
 import renderNewsRow from './render-news-row';
 import './news.css';
-import 'bootstrap/scss/bootstrap.scss';
 import Icon from '../../assets/icon.png';
 
 class News extends Component {
@@ -20,9 +19,12 @@ class News extends Component {
                         <div className="column number-column">
                             <img className="icon" src={Icon} alt="Icon" />
                         </div>
-                        <div className="column">
+                        <div className="column title-column">
                             <Link className="title" to="/news">Hacker News</Link>
                             <Link to="/submit">submit</Link>
+                        </div>
+                        <div className="column auth-column">
+                            login
                         </div>
                     </div>
                     <div>
@@ -33,8 +35,8 @@ class News extends Component {
         );
     }
 }
-const mapStateToProps = ({ news }) => {
-    return { news };
+const mapStateToProps = ({ news, auth }) => {
+    return { news, auth };
 };
 
 export default connect(mapStateToProps, { fetchNews })(News);
