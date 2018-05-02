@@ -17,6 +17,7 @@ export default (talk, index) => {
                         <div>
                             <span className="title">{talk.title}</span>
                         </div>
+                        <div>{talk.description}</div>
                         <div className="small-text">{`${talk.rating} points by ${talk.username} ${timeText}`}</div>
                     </div>
                 </div>

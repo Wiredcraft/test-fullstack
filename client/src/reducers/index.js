@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import NewsReducer from './news.reducer';
+import TalksReducer from './talks.reducer';
 import AuthReducer from './auth.reducer';
 
 const rootReducer = combineReducers({
-    news: NewsReducer,
+    talks: TalksReducer,
     auth: AuthReducer
 });
 

@@ -15,7 +15,8 @@
     .table .header .title-column .title {
       font-weight: bold; }
   .table .header .auth-column {
-    float: right; }
+    float: right;
+    font-weight: bold; }
   .table .header .icon {
     width: 16px; }
 

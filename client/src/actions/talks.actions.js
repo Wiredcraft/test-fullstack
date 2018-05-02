@@ -1,11 +1,11 @@
-import { FETCH_NEWS } from './types';
+import { FETCH_TALKS } from './types';
 import api from './api.helper';
 
-export const fetchNews = () => {
+export const fetchTalks = () => {
     const payload = api.get('talks?filter[order]=rating DESC');
 
     return {
-        type: FETCH_NEWS,
+        type: FETCH_TALKS,
         payload
     };
 };

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchNews } from '../../actions/news.actions';
-import renderNewsRow from './render-talks-row';
+import { fetchTalks } from '../../actions/talks.actions';
+import renderTalksRow from './render-talks-row';
 import './talks.css';
 import Icon from '../../assets/icon.png';
 
 class Talks extends Component {
     componentDidMount() {
-        this.props.fetchNews();
+        this.props.fetchTalks();
     }
 
     render() {
@@ -24,17 +24,18 @@ class Talks extends Component {
                             <Link to="/submit">submit</Link>
                         </div>
                         <div className="column auth-column">
-                            login
+                            {!this.props.auth.user && <Link to="/login">login</Link>}
+                            {this.props.auth.user && <span>{this.props.auth.user.username}</span>}
                         </div>
                     </div>
-                    {this.props.news.map(renderNewsRow.bind(this))}
+                    {this.props.talks.map(renderTalksRow.bind(this))}
                 </div>
             </div>
         );
     }
 }
-const mapStateToProps = ({ news, auth }) => {
-    return { news, auth };
+const mapStateToProps = ({ talks, auth }) => {
+    return { talks, auth };
 };
 
-export default connect(mapStateToProps, { fetchNews })(Talks);
+export default connect(mapStateToProps, { fetchTalks })(Talks);

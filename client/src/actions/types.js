@@ -1,4 +1,4 @@
-export const FETCH_NEWS = 'fetch_news';
+export const FETCH_TALKS = 'fetch_talks';
 export const LOGIN = 'login';
 export const LOGOUT = 'logout';
 

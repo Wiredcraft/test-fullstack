@@ -1,0 +1,35 @@
+.table .column {
+  display: inline-block; }
+
+.table .header {
+  background-color: #ff6600; }
+  .table .header .column {
+    padding: 3px;
+    vertical-align: middle; }
+    .table .header .column a {
+      padding-right: 5px;
+      text-decoration: none;
+      color: #000000; }
+  .table .header .title-column {
+    width: 90%; }
+    .table .header .title-column .title {
+      font-weight: bold; }
+  .table .header .auth-column {
+    float: right;
+    font-weight: bold; }
+  .table .header .icon {
+    width: 16px; }
+
+.table .row {
+  background-color: #f6f6ef; }
+  .table .row .column {
+    padding: 5px;
+    vertical-align: text-top; }
+  .table .row .first-column {
+    min-width: 30px; }
+
+.submit .first-column {
+  width: 100px; }
+
+.submit .first-column-offset {
+  margin-left: 110px; }

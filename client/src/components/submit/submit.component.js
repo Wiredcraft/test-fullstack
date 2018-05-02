@@ -36,11 +36,6 @@ class Submit extends Component {
                             <button>Submit</button>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="column first-column-offset">
-                            Leave url blank to submit a question for discussion. If there is no url, the text (if any) will appear at the top of the thread.
-                        </div>
-                    </div>
                 </div>
             </div>
         );
