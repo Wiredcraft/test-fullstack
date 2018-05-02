@@ -1,2 +1,26 @@
-.news .news-table thead {
-  background-color: orangered; }
+.news .news-table .column {
+  display: inline-block; }
+
+.news .news-table .header {
+  background-color: #ff6600; }
+  .news .news-table .header .column {
+    padding: 3px;
+    vertical-align: middle; }
+    .news .news-table .header .column a {
+      padding-right: 5px;
+      text-decoration: none;
+      color: #000000; }
+  .news .news-table .header .title {
+    font-weight: bold; }
+  .news .news-table .header .icon {
+    width: 16px; }
+
+.news .news-table .row .column {
+  padding: 5px;
+  vertical-align: text-top; }
+  .news .news-table .row .column .news-item .inline {
+    display: inline-block;
+    padding-right: 5px;
+    vertical-align: text-top; }
+  .news .news-table .row .column .news-item .small-text {
+    font-size: 7pt; }

@@ -1,22 +1,27 @@
 import React from 'react';
-import {getDateDiff} from "./date.util";
+import { getDateDiff } from './date.util';
+import GrayArrow from '../../assets/grayarrow.png';
 
 export default (newsItem, index) => {
     const { hours, minutes } = getDateDiff(newsItem.publishDate);
     const timeText = hours > 0 ? `${hours} hours ago` : `${minutes} minutes ago`;
     return (
-        <tr key={newsItem.id}>
-            <td>{`${index + 1}.`}</td>
-            <td>
+        <div className="row" key={newsItem.id}>
+            <div className="column first-column">{`${index + 1}.`}</div>
+            <div className="column">
                 <div className="news-item">
-                    <div>
-                        <span className="upvote"></span>
-                        <span className="title">{newsItem.title}</span>
-                        {newsItem.url && newsItem.url.length && <span>{newsItem.url}</span>}
+                    <div className="inline">
+                        <img src={GrayArrow} alt="Upvote" width="10px"/>
                     </div>
-                    <div>{`${newsItem.rating} points by ${newsItem.username} ${timeText}`}</div>
+                    <div className="inline">
+                        <div>
+                            <span className="title">{newsItem.title}</span>
+                            {newsItem.url && newsItem.url.length && <span>{newsItem.url}</span>}
+                        </div>
+                        <div className="small-text">{`${newsItem.rating} points by ${newsItem.username} ${timeText}`}</div>
+                    </div>
                 </div>
-            </td>
-        </tr>
+            </div>
+        </div>
     );
 };

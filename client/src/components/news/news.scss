@@ -1,9 +1,45 @@
-.news {
+@import '../../common/common.scss';
 
+.news {
     .news-table {
-        thead {
-            background-color: orangered;
+        .column {
+            display: inline-block;
+        }
+        .header {
+            background-color: $headerColor;
+            .column {
+                padding: 3px;
+                vertical-align: middle;
+
+                a {
+                    padding-right: 5px;
+                    text-decoration: none;
+                    color: $titleColor;
+                }
+            }
+            .title {
+                font-weight: bold;
+            }
+            .icon {
+                width: 16px;
+            }
+        }
+        .row {
+            .column {
+                padding: 5px;
+                vertical-align: text-top;
+
+                .news-item {
+                    .inline {
+                        display: inline-block;
+                        padding-right: 5px;
+                        vertical-align: text-top;
+                    }
+                    .small-text {
+                        font-size: 7pt;
+                    }
+                }
+            }
         }
     }
-
 }

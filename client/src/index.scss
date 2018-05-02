@@ -1,5 +1,11 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
+@import './common/common.scss';
+
+.container {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 10pt;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto;
+    width: 90%
 }
