@@ -25,8 +25,6 @@
   .table .row .column {
     padding: 5px;
     vertical-align: text-top; }
-  .table .row .first-column {
-    min-width: 30px; }
 
 .submit .first-column {
   width: 100px; }

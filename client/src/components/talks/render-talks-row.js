@@ -7,7 +7,7 @@ export default (talk, index) => {
     const timeText = hours > 0 ? `${hours} hours ago` : `${minutes} minutes ago`;
     return (
         <div className="row" key={talk.id}>
-            <div className="column first-column">{`${index + 1}.`}</div>
+            <div className="column">{`${index + 1}.`}</div>
             <div className="column">
                 <div className="talks-item">
                     <div className="inline">
@@ -16,8 +16,8 @@ export default (talk, index) => {
                     <div className="inline">
                         <div>
                             <span className="title">{talk.title}</span>
+                            {talk.description && <span className="description"> - {talk.description}</span>}
                         </div>
-                        <div>{talk.description}</div>
                         <div className="small-text">{`${talk.rating} points by ${talk.username} ${timeText}`}</div>
                     </div>
                 </div>

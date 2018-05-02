@@ -6,5 +6,9 @@ export default {
     get(endpoint) {
         const url = `${API_URL}/${endpoint}`;
         return axios.get(url);
+    },
+    post(endpoint, value) {
+        const url = `${API_URL}/${endpoint}`;
+        return axios.post(url, value);
     }
 };
