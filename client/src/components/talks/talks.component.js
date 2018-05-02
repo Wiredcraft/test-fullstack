@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchTalks } from '../../actions/talks.actions';
+import { logout } from '../../actions/auth.actions';
 import renderTalksRow from './render-talks-row';
 import './talks.css';
 import Icon from '../../assets/icon.png';
@@ -9,6 +10,10 @@ import Icon from '../../assets/icon.png';
 class Talks extends Component {
     componentDidMount() {
         this.props.fetchTalks();
+    }
+
+    handleLogout() {
+        this.props.logout();
     }
 
     render() {
@@ -25,7 +30,12 @@ class Talks extends Component {
                         </div>
                         <div className="column auth-column">
                             {!this.props.auth.user && <Link to="/login">login</Link>}
-                            {this.props.auth.user && <span>{this.props.auth.user.username}</span>}
+                            {this.props.auth.user && (
+                                <div>
+                                    <span className="username">{this.props.auth.user.username}</span>
+                                    <a className="logout" onClick={this.handleLogout.bind(this)}>logout</a>
+                                </div>
+                            )}
                         </div>
                     </div>
                     {this.props.talks.map(renderTalksRow.bind(this))}
@@ -38,4 +48,4 @@ const mapStateToProps = ({ talks, auth }) => {
     return { talks, auth };
 };
 
-export default connect(mapStateToProps, { fetchTalks })(Talks);
+export default connect(mapStateToProps, { fetchTalks, logout })(Talks);

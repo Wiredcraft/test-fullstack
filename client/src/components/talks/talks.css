@@ -37,3 +37,9 @@
 
 .talks .talks-item .small-text {
   font-size: 7pt; }
+
+.talks .username {
+  padding-right: 5px; }
+
+.talks .logout {
+  cursor: pointer; }

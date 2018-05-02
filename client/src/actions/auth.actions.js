@@ -1,8 +1,7 @@
-import { LOGIN, LOGOUT } from './types';
+import { LOGIN, LOGOUT, CHECK_SESSION } from './types';
 
 export const login = (username, password) => {
     localStorage.setItem('username', username);
-    console.log('login', { username } )
     return {
         type: LOGIN,
         payload: { username }
@@ -16,4 +15,13 @@ export const logout = () => {
         type: LOGOUT,
         payload: null
     }
+};
+
+export const checkSession = () => {
+    const username = localStorage.getItem('username');
+
+    return {
+        type: CHECK_SESSION,
+        payload: { username }
+    };
 };
