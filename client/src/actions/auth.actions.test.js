@@ -1,14 +1,25 @@
-import { expect } from '../test-helper';
 import {LOGIN, LOGOUT, CHECK_SESSION} from './types';
 import { login, logout, checkSession } from './auth.actions';
 
 describe('Auth actions', () => {
+    const username = 'User 1', password = 'Password 1';
+
+    let getItem, setItem, removeItem;
+    beforeEach(() => {
+        global.localStorage.getItem = jest.fn(() => username);
+        global.localStorage.getItem = jest.fn(() => username);
+        getItem = jest.spyOn(global.localStorage, 'getItem');
+        setItem = jest.spyOn(global.localStorage, 'setItem');
+        removeItem = jest.spyOn(global.localStorage, 'removeItem');
+    });
+
     describe('login', () => {
         it('has the correct type and payload', () => {
-            const username = 'User 1', password = 'Password 1';
             const action = login(username, password);
-            expect(action.type).to.equal(LOGIN);
-            expect(action.payload).to.equal({username})
+
+            expect(action.type).toEqual(LOGIN);
+            expect(action.payload).toEqual({username});
+            expect(setItem).toHaveBeenCalled();
         });
     });
 
@@ -16,15 +27,18 @@ describe('Auth actions', () => {
         it('has the correct type and payload', () => {
             const action = logout();
 
-            expect(action.type).to.equal(LOGOUT);
-            expect(action.payload).to.eql(null);
+            expect(action.type).toEqual(LOGOUT);
+            expect(action.payload).toEqual(null);
+            expect(removeItem).toHaveBeenCalled();
         });
     });
 
     describe('checkSession', () => {
         it('has the correct type and payload', () => {
-            const action = checkSession(mode);
-            expect(action.type).to.equal(CHECK_SESSION);
+            const action = checkSession();
+            expect(action.type).toEqual(CHECK_SESSION);
+            expect(action.payload).toEqual({username});
+            expect(getItem).toHaveBeenCalled();
         });
     });
 });

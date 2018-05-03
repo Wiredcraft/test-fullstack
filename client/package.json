@@ -4,9 +4,6 @@
     "private": true,
     "dependencies": {
         "axios": "^0.18.0",
-        "chai": "^4.1.2",
-        "enzyme": "^3.3.0",
-        "enzyme-adapter-react-16": "^1.1.1",
         "node-sass-chokidar": "^1.2.2",
         "npm-run-all": "^4.1.2",
         "react": "^16.3.2",
@@ -28,5 +25,8 @@
         "build": "npm-run-all build-css build-js && cp -r build/* ../build/",
         "test": "react-scripts test --env=jsdom",
         "eject": "react-scripts eject"
+    },
+    "devDependencies": {
+        "jest-mock-axios": "^2.1.11"
     }
 }
