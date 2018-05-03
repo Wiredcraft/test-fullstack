@@ -10,10 +10,8 @@
       padding-right: 5px;
       text-decoration: none;
       color: #000000; }
-  .table .header .title-column {
-    width: 90%; }
-    .table .header .title-column .title {
-      font-weight: bold; }
+  .table .header .title-column .title {
+    font-weight: bold; }
   .table .header .auth-column {
     float: right;
     font-weight: bold; }

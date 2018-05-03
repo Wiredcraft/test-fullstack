@@ -25,8 +25,8 @@ class Talks extends Component {
                             <img className="icon" src={Icon} alt="Icon" />
                         </div>
                         <div className="column title-column">
-                            <Link className="title" to="/news">Hacker Talks</Link>
-                            <Link to="/submit">submit</Link>
+                            <Link className="title title-link" to="/talks">Hacker Talks</Link>
+                            <Link className="submit-link" to="/submit">submit</Link>
                         </div>
                         <div className="column auth-column">
                             {!this.props.auth.user && <Link to="/login">login</Link>}

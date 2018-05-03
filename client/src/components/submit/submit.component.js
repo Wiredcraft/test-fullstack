@@ -10,7 +10,6 @@ import {createTalk, fetchTalks} from '../../actions/talks.actions';
 class Submit extends Component {
     submitTalk(values) {
         const talk = {...values, username: this.props.auth.user.username, publishDate: new Date()};
-        console.log(talk);
         this.props.createTalk(talk, () => {
             this.props.fetchTalks();
             this.props.history.push('/talks');
