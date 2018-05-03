@@ -31,3 +31,6 @@
 
 .submit .first-column-offset {
   margin-left: 110px; }
+
+.submit .form-field {
+  width: 300px; }

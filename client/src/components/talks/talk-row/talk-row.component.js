@@ -24,6 +24,7 @@ class TalkRow extends Component {
         let talk = {...this.props.talk};
         talk.rating -= 1;
         talk.votes.splice(talk.votes.indexOf(this.props.auth.user.username), 1);
+
         this.props.updateTalk(talk, () => this.props.fetchTalks());
     }
 
@@ -39,7 +40,7 @@ class TalkRow extends Component {
         const { hours, minutes } = getDateDiff(this.props.talk.publishDate);
         const timeText = hours > 0 ? `${hours} hours ago` : `${minutes} minutes ago`;
         return (
-            <div className="row" key={this.props.talk.id}>
+            <div className="row">
                 <div className="column">{`${this.props.index + 1}.`}</div>
                 <div className="column">
                     <div className="talks-item">
