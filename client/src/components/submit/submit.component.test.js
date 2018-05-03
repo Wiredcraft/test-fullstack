@@ -1,9 +1,10 @@
 import React from 'react';
-import { mount, shallow } from '../../test.helper';
+import { mount } from '../../test.helper';
 import configureStore from 'redux-mock-store';
 import ReduxPromise from "redux-promise";
 import { Provider } from 'react-redux';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+
 
 import Submit from './submit.component';
 
@@ -17,5 +18,9 @@ describe('Submit component', () => {
         component = mount(<Provider store={store}><BrowserRouter><Submit {...authState}/></BrowserRouter></Provider>).find(Submit);
     });
 
-
+    it('has rendered the correct fields', () => {
+        expect(component.find('input.input-title').length).toBe(1);
+        expect(component.find('textarea.input-description').length).toBe(1);
+        expect(component.find('button').length).toBe(1);
+    });
 });

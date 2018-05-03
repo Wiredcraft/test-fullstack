@@ -36,13 +36,13 @@ class Submit extends Component {
                         <div className="row">
                             <div className="column first-column">title</div>
                             <div className="column">
-                                <Field className="form-field" name="title" component="input" type="text" />
+                                <Field className="form-field input-title" name="title" component="input" type="text" />
                             </div>
                         </div>
                         <div className="row">
                             <div className="column first-column">description</div>
                             <div className="column">
-                                <Field className="form-field" name="description" component="textarea" rows="10" type="text" />
+                                <Field className="form-field input-description" name="description" component="textarea" rows="10" type="text" />
                             </div>
                         </div>
                         <div className="row">
