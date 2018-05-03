@@ -39,7 +39,7 @@ class Talks extends Component {
                             )}
                         </div>
                     </div>
-                    {this.props.talks.map((talk, index) => <TalkRow talk={talk} index={index} key={talk.id}/>)}
+                    {this.props.talks.map((talk, index) => <TalkRow talk={talk} index={index} key={talk.id} history={this.props.history}/>)}
                 </div>
             </div>
         );
