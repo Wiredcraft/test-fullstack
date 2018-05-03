@@ -48,4 +48,23 @@ describe('Talks component', () => {
         expect(component.find('div.empty-content').length).toBe(1);
         expect(component.find('div.empty-content').contains('No talks here! Why not add one yourself?')).toBe(true);
     });
+
+    it('renders username and logout link in header when user is logged in', () => {
+        const auth = component.find('.auth-column');
+        expect(auth.find('.username').contains(state.auth.user.username)).toBe(true);
+        expect(auth.find('a.logout').length).toBe(1);
+        expect(auth.find('Link').length).toBe(0);
+    });
+
+    it('renders login link when user is logged out', () => {
+        state = { auth: { user: null}, talks: [], history: {}};
+        store = mockStore(state);
+
+        component = mount(<Provider store={store}><BrowserRouter><Talks {...state}/></BrowserRouter></Provider>).find(Talks);
+
+        const auth = component.find('.auth-column');
+        expect(auth.find('Link').props().to).toEqual('/login');
+        expect(auth.find('.username').length).toBe(0);
+        expect(auth.find('a.logout').length).toBe(0);
+    });
 });
