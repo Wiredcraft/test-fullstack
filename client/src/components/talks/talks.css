@@ -47,3 +47,8 @@
 
 .talks a {
   cursor: pointer; }
+
+.talks .empty-content {
+  text-align: center;
+  vert-align: middle;
+  height: 30px; }

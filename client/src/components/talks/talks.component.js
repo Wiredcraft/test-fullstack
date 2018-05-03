@@ -40,6 +40,7 @@ class Talks extends Component {
                         </div>
                     </div>
                     {this.props.talks.map((talk, index) => <TalkRow talk={talk} index={index} key={talk.id} history={this.props.history}/>)}
+                    {this.props.talks.length === 0 && <div className="row empty-content"><h4>No talks here! Why not add one yourself?</h4></div>}
                 </div>
             </div>
         );
