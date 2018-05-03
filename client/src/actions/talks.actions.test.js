@@ -14,7 +14,7 @@ describe('Talk actions', () => {
     });
 
     describe('fetchTalks', () => {
-        
+
         it('has the correct type and payload', () => {
             const action = fetchTalks();
 
