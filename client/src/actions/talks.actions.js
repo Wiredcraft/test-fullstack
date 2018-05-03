@@ -11,7 +11,7 @@ export const fetchTalks = () => {
 };
 
 export const createTalk = (talk, callback) => {
-    const response = api.post('talks', talk).then(callback());
+    const response = api.post('talks', talk).then(() => callback());
 
     return {
         type: CREATE_TALK,
@@ -20,7 +20,7 @@ export const createTalk = (talk, callback) => {
 };
 
 export const updateTalk = (talk, callback) => {
-    const response = api.put('talks', talk).then(callback());
+    const response = api.put('talks', talk).then(() => callback());
 
     return {
         type: UPDATE_TALK,

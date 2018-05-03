@@ -8,10 +8,11 @@ import { createTalk, fetchTalks } from '../../actions/talks.actions';
 class Submit extends Component {
     constructor(props) {
         super(props);
-        this.state = { title: '', description: ''}
+        this.state = { title: '', description: '' }
     }
 
     handleSubmit() {
+        console.log('submit');
         const talk = {...this.state, username: this.props.auth.user.username, publishDate: new Date()};
         console.log(talk, this.props);
         this.props.createTalk(talk, () => {
@@ -53,7 +54,7 @@ class Submit extends Component {
                         </div>
                         <div className="row">
                             <div className="column first-column-offset">
-                                <button>Submit</button>
+                                <button type="submit">Submit</button>
                             </div>
                         </div>
                     </div>

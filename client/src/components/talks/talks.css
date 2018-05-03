@@ -33,6 +33,9 @@
   .talks .talks-item .inline .upvote {
     width: 10px; }
 
+.talks .talks-item .upvote-column {
+  width: 10px; }
+
 .talks .talks-item .small-text {
   font-size: 7pt; }
 
@@ -40,4 +43,7 @@
   padding-right: 5px; }
 
 .talks .logout {
+  cursor: pointer; }
+
+.talks a {
   cursor: pointer; }

@@ -33,6 +33,7 @@ class Talks extends Component {
                             {this.props.auth.user && (
                                 <div>
                                     <span className="username">{this.props.auth.user.username}</span>
+                                    <span>| </span>
                                     <a className="logout" onClick={this.handleLogout.bind(this)}>logout</a>
                                 </div>
                             )}

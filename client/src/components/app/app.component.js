@@ -10,7 +10,7 @@ import Submit from '../submit/submit.component';
 import { checkSession } from "../../actions/auth.actions";
 
 class App extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.checkSession();
     }
 

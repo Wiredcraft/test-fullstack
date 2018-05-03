@@ -1,34 +1,39 @@
 {
-  "name": "talks",
-  "base": "PersistedModel",
-  "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
-  "properties": {
-    "title": {
-      "type": "string",
-      "required": true
+    "name": "talks",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "options": {
+        "validateUpsert": true
     },
-    "description": {
-      "type": "string"
+    "properties": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "description": {
+            "type": "string"
+        },
+        "publishDate": {
+            "type": "date",
+            "required": true
+        },
+        "username": {
+            "type": "string",
+            "required": true
+        },
+        "rating": {
+            "type": "number",
+            "required": true,
+            "default": 0
+        },
+        "votes": {
+            "type": ["string"],
+            "required": false,
+            "default": []
+        }
     },
-    "publishDate": {
-      "type": "date",
-      "required": true
-    },
-    "username": {
-      "type": "string",
-      "required": true
-    },
-    "rating": {
-      "type": "number",
-      "required": true,
-      "default": 0
-    }
-  },
-  "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": {}
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
 }

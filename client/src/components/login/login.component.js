@@ -18,6 +18,11 @@ class Login extends Component {
         if(redirectTo) {
             this.setState({redirectTo: `/${redirectTo}`});
         }
+
+        console.log(this.props.auth);
+        if(this.props.auth.user) {
+            this.props.history.push(this.state.redirectTo);
+        }
     }
 
     handleLogin(event) {
