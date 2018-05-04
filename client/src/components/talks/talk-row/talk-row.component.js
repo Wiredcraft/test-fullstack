@@ -4,7 +4,7 @@ import { getDateDiff } from './date.util';
 import GrayArrow from '../../../assets/grayarrow.png';
 import { updateTalk, fetchTalks } from "../../../actions/talks.actions";
 
-class TalkRow extends Component {
+export class TalkRow extends Component {
     handleVote(event) {
         event.stopPropagation();
         if(!this.props.auth.user) {
@@ -41,12 +41,12 @@ class TalkRow extends Component {
         const timeText = hours > 0 ? `${hours} hours ago` : `${minutes} minutes ago`;
         return (
             <div className="row">
-                <div className="column">{`${this.props.index + 1}.`}</div>
+                <div className="column row-number">{`${this.props.index + 1}.`}</div>
                 <div className="column">
                     <div className="talks-item">
                         <div className="inline upvote-column">
                             {!this.didUserVote(this.props.talk.votes) &&
-                            <a onClick={this.handleVote.bind(this)}>
+                            <a className="upvote-link" onClick={this.handleVote.bind(this)}>
                                 <img className="upvote" src={GrayArrow} alt="Upvote"/>
                             </a>}
                         </div>
@@ -57,7 +57,7 @@ class TalkRow extends Component {
                             </div>
                             <div className="small-text">
                                 {`${this.props.talk.rating} points by ${this.props.talk.username} ${timeText}`}
-                                {this.didUserVote(this.props.talk.votes) && (<span> | <a onClick={this.handleUnvote.bind(this)}>unvote</a></span>)}
+                                {this.didUserVote(this.props.talk.votes) && (<span className="unvote"> | <a onClick={this.handleUnvote.bind(this)}>unvote</a></span>)}
                             </div>
                         </div>
                     </div>
