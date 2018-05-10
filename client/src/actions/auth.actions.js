@@ -19,9 +19,14 @@ export const logout = () => {
 
 export const checkSession = () => {
     const username = localStorage.getItem('username');
+    let payload = null;
+
+    if(username) {
+        payload = { username };
+    }
 
     return {
         type: CHECK_SESSION,
-        payload: { username }
+        payload
     };
 };
