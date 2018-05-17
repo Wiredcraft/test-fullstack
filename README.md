@@ -1,5 +1,3 @@
-# Test git repo read/write access?
-
 # Wiredcraft Full-stack Developer test
 
 Make sure you read **all** of this document carefully, and follow the guidelines in it.
