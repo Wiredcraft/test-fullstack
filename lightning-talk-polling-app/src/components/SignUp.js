@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Auth} from 'aws-amplify';
-import AuxiliaryComponent from '../hoc/AuxiliaryComponent';
 
 class SignUp extends Component {
     state = {
@@ -40,7 +39,62 @@ class SignUp extends Component {
     render() {
         return (
             <div>
-
+                <div className="form-group">
+                    <label>Username</label>
+                    <input
+                        type="username"
+                        className="form-control"
+                        placeholder="Username"
+                        onChange={event => this.onChange('username', event.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        placeholder="Password"
+                        onChange={event => this.onChange('password', event.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Email address</label>
+                    <input type="email"
+                           className="form-control"
+                           placeholder="you@email.com"
+                           onChange={event => this.onChange('email', event.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Phone Number</label>
+                    <input
+                        type="tel"
+                        className="form-control"
+                        placeholder="+8613022121892"
+                        onChange={event => this.onChange('phone_number', event.target.value)}
+                    />
+                </div>
+                <button
+                    className="btn btn-primary"
+                    onClick={this.signUp}
+                >
+                    Sign Up
+                </button>
+                <div className="form-group">
+                    <label>Authentication Code</label>
+                    <input
+                        type="number"
+                        className="form-control"
+                        placeholder="000111"
+                        onChange={event => this.onChange('authCode', event.target.value)}
+                    />
+                </div>
+                <button
+                    className="btn btn-primary"
+                    onClick={this.confirmSignUp}
+                >
+                    Confirm Sing Up
+                </button>
             </div>
         );
     }
