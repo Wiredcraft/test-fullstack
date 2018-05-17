@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Auth} from 'aws-amplify';
+import AuxiliaryComponent from '../hoc/AuxiliaryComponent';
 
 class SignUp extends Component {
     state = {
@@ -39,7 +40,7 @@ class SignUp extends Component {
     render() {
         return (
             <div>
-                <h2>Sign up</h2>
+
             </div>
         );
     }
