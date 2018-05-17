@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
-import SignUp from './components/SignUp';
+import Navbar from './components/Navbar';
+import Router from './components/Router';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-          <SignUp/>
+          <Navbar/>
+          <Router/>
       </div>
     );
   }
 }
-
 export default App;
