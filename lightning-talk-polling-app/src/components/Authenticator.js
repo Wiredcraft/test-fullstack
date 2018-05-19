@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import ForgotPassword from './ForgotPassword';
 
 class Authenticator extends Component {
     state = {
-        shouldSingUp: false
+        shouldSingUp: 0
     }
 
     setSignUpState = (shouldSignUp) => {
@@ -14,16 +15,30 @@ class Authenticator extends Component {
         });
     }
 
+    renderSwitch(param) {
+        switch (param) {
+            case 0:
+                return <SignIn/>;
+                break;
+            case 1:
+                return <SignUp/>;
+                break;
+            case 2:
+                return <ForgotPassword/>;
+                break;
+            default:
+                return <SignIn/>;
+        }
+    }
+
     render() {
         const {shouldSignUp} = this.state;
 
         return (
-            <div>
-                {
-                    shouldSignUp ? <SignUp/> : <SignIn/>
-                }
-                <p onClick={() => this.setSignUpState(true)}>Sign Up</p>
-                <p onClick={() => this.setSignUpState(false)}>Sign In</p>
+            <div>{this.renderSwitch(shouldSignUp)}
+                <p onClick={() => this.setSignUpState(0)}>Sign In</p>
+                <p onClick={() => this.setSignUpState(1)}>Sign Up</p>
+                <p onClick={() => this.setSignUpState(2)}>Forgot Password</p>
             </div>
         );
     }
