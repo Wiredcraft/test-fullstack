@@ -44,5 +44,26 @@ features:
             tableName: ___DYNAMIC_PREFIX___-lightning-talk-polling
             tablePrivacy: public
             indexes: []
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      lightning-talk-pollingCRUD: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: lightning-talk-pollingCRUD
+          requires-signin: true
+        paths:
+          /lightning-talk-polling: !com.amazonaws.mobilehub.v0.Function 
+            name: lightningtalkpolling
+            codeFilename: uploads/lightningtalkpolling.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
+          '/lightning-talk-polling/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            name: lightningtalkpolling
+            codeFilename: uploads/lightningtalkpolling.zip
+            handler: lambda.handler
+            enableCORS: true
+            runtime: nodejs6.10
+            environment: {}
 name: lightning-talk-polling-app-2018-05-17-16-10-48
 region: us-east-1
