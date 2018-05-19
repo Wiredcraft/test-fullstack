@@ -38,6 +38,12 @@ class SignUp extends Component {
             .catch(error => console.log('Error confirming signing up: ', error))
     }
 
+    resendSignUp = () => {
+        Auth.resendSignUp(this.state.username)
+            .then(() => console.log('Verification code resent to user\'s phone'))
+            .catch(error => console.log('Error resending verification code for signing up: ', error))
+    }
+
     render() {
         const { showConfirmation } = this.state;
         return (
@@ -86,6 +92,12 @@ class SignUp extends Component {
                             >
                                 Sign Up
                             </button>
+                            <button
+                                className="btn btn-danger"
+                                onClick={() => {this.setState({showConfirmation : true})}}
+                            >
+                                Already Signed Up!
+                            </button>
                         </div>
 
                     )
@@ -107,6 +119,12 @@ class SignUp extends Component {
                                 onClick={this.confirmSignUp}
                             >
                                 Confirm Sing Up
+                            </button>
+                            <button
+                                className="btn btn-danger"
+                                onClick={this.resendSignUp}
+                            >
+                                Resend Verification Code
                             </button>
                         </div>
                     )
