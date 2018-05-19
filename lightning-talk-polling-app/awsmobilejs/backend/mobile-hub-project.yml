@@ -27,5 +27,22 @@ features:
             require-numbers: true
             require-symbols: true
             require-upper-case: true
+  database: !com.amazonaws.mobilehub.v0.Database 
+    components:
+      database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
+        tables:
+          - !com.amazonaws.mobilehub.v0.NoSQLTable 
+            attributes:
+              url: S
+              title: S
+              description: S
+              points: N
+            hashKeyName: username
+            hashKeyType: S
+            rangeKeyName: publishDate
+            rangeKeyType: N
+            tableName: ___DYNAMIC_PREFIX___-lightning-talk-polling
+            tablePrivacy: public
+            indexes: []
 name: lightning-talk-polling-app-2018-05-17-16-10-48
 region: us-east-1
