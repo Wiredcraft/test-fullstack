@@ -47,55 +47,52 @@ class SubmitLightningTalk extends Component {
             .catch(error => console.log('Error submitting: ', error));
     }
 
-
     render() {
         return (
-            <div>
-                <h1>Submit a lightning talk</h1>
-                <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                        Auth.signOut()
-                            .then(() => {this.props.history.push('/authenticate')})
-                            .catch(error => console.log('Error signing out: ', error));
-                    }}
-                >
-                    Sign out
-                </button>
-
-                <div className="form-group">
-                    <label>Title</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Title"
-                        onChange={event => this.onChange('title', event.target.value)}
-                    />
+            <section className="form-elegant mt-5 container">
+                <div className="card">
+                    <div className="card-body mx-4">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-md-6 text-left">
+                                <p className="h4 text-center mb-4">Submit a Lightning Talk</p>
+                                <label for="defaultFormLoginEmailEx" className="grey-text ">Title</label>
+                                <input
+                                    id="defaultFormLoginEmailEx"
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Title"
+                                    onChange={event => this.onChange('title', event.target.value)}
+                                />
+                                <br/>
+                                <label for="defaultFormLoginPasswordEx" className="grey-text">Video's Link</label>
+                                <input
+                                    id="defaultFormLoginPasswordEx"
+                                    type="url"
+                                    className="form-control"
+                                    placeholder="http://www.youtube.com/video"
+                                    onChange={event => this.onChange('url', event.target.value)}
+                                />
+                                <br/>
+                                <label for="defaultFormContactMessageEx" className="grey-text">Description</label>
+                                <textarea
+                                    id="defaultFormContactMessageEx"
+                                    className="form-control"
+                                    rows="3"
+                                    onChange={event => this.onChange('description', event.target.value)}
+                                />
+                                <div className="text-center mt-4">
+                                    <button
+                                        className="btn btn-cyan"
+                                        onClick={this.submitNewLightningTalk}
+                                    >
+                                        Submit Video
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="form-group">
-                    <label>Video Link</label>
-                    <input
-                        type="url"
-                        className="form-control"
-                        placeholder="http://www.website.com/video"
-                        onChange={event => this.onChange('url', event.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Description</label>
-                    <input type="text"
-                           className="form-control"
-                           placeholder="What does the video talks about?"
-                           onChange={event => this.onChange('description', event.target.value)}
-                    />
-                </div>
-                <button
-                    className="btn btn-success"
-                    onClick={this.submitNewLightningTalk}
-                >
-                    Submit Talk
-                </button>
-            </div>
+            </section>
         );
     }
 }
