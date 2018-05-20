@@ -6,6 +6,47 @@ import config from '../aws-exports';
 Amplify.configure(config);
 
 class SubmitLightningTalk extends Component {
+    state = {
+        username: 'bilal',
+        publishDate: 33333,
+        title: 'first submit',
+        url: 'http://localhost:3000/authenticate',
+        description: 'must watch video'
+    }
+
+    componentDidMount() {
+        // Get use's info
+        Auth.currentAuthenticatedUser().then(user => this.setState({user}));
+        Auth.currentUserInfo()
+            .then(user => {
+                this.setState({username: user.username});
+            })
+            .catch(error => console.log('Error retrieving user\' info: ', error));
+    }
+
+    onChange = (key, value) => {
+        this.setState({
+            [key]: value
+        });
+    }
+
+    submitNewLightningTalk = async() => {
+        // Todo: Bug, sate of publishDate is not update before post is submitted
+        const publishDate = Date.now();
+        this.setState({publishDate: publishDate});
+        let apiName = 'lightning-talk-pollingCRUD';
+        let path = '/lightning-talk-polling';
+        let talkData = {
+            body: {
+                ...this.state
+            }
+        }
+        API.post(apiName, path, talkData)
+            .then(msg => {console.log('Submitted successfully: ', msg)})
+            .catch(error => console.log('Error submitting: ', error));
+    }
+
+
     render() {
         return (
             <div>
@@ -19,6 +60,39 @@ class SubmitLightningTalk extends Component {
                     }}
                 >
                     Sign out
+                </button>
+
+                <div className="form-group">
+                    <label>Title</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Title"
+                        onChange={event => this.onChange('title', event.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Video Link</label>
+                    <input
+                        type="url"
+                        className="form-control"
+                        placeholder="http://www.website.com/video"
+                        onChange={event => this.onChange('url', event.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Description</label>
+                    <input type="text"
+                           className="form-control"
+                           placeholder="What does the video talks about?"
+                           onChange={event => this.onChange('description', event.target.value)}
+                    />
+                </div>
+                <button
+                    className="btn btn-success"
+                    onClick={this.submitNewLightningTalk}
+                >
+                    Submit Talk
                 </button>
             </div>
         );
