@@ -49,11 +49,12 @@ class Home extends Component {
           <div>
               <h3>Home page</h3>
               <h5>Welcome {this.state.username}</h5>
+              <h5>List of lightning talks</h5>
               <Link
-                  to={'/lightning-talks'}
-                  label={'lightning-talks'}
+                  to={'/submit-lightning-talk'}
+                  label={'submit-lightning-talk'}
               >
-                  List of lightning talks
+                  Submit a lightning talk
               </Link>
               <button
                   onClick={this.fetch}
@@ -70,11 +71,11 @@ class Home extends Component {
     }
 }
 
-class LightningTalks extends Component {
+class SubmitLightningTalk extends Component {
     render() {
         return (
             <div>
-                <h1>List of lightning talks</h1>
+                <h1>Submit a lightning talk</h1>
                 <button
                     className="btn btn-primary"
                     onClick={() => {
@@ -91,9 +92,9 @@ class LightningTalks extends Component {
 }
 
 Home = withRouter(Home);
-LightningTalks = withRouter(LightningTalks);
+SubmitLightningTalk = withRouter(SubmitLightningTalk);
 
 export {
     Home,
-    LightningTalks
+    SubmitLightningTalk
 }

@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import {
     Home,
-    LightningTalks
+    SubmitLightningTalk
 } from "./Home";
 
 class PrivateRoute extends Component {
@@ -74,8 +74,8 @@ const Routes = () => (
                 component={Authenticator}
             />
             <PrivateRoute
-                path={'/lightning-talks'}
-                component={LightningTalks}
+                path={'/submit-lightning-talk'}
+                component={SubmitLightningTalk}
             />
             <PrivateRoute
                 path={'/'}
