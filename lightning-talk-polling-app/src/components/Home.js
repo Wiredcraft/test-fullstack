@@ -46,7 +46,7 @@ class Home extends Component {
         });
 
         return (
-          <div>
+          <div  className="container">
               <h3>Home page</h3>
               <h5>Welcome {this.state.username}</h5>
               <h5>List of lightning talks</h5>
