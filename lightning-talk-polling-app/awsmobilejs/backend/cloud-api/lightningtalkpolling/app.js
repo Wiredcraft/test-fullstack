@@ -176,6 +176,8 @@ app.post(path, function(req, res) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   }
 
+  req.body['publishDate'] = Date.now();
+
   let putItemParams = {
     TableName: tableName,
     Item: req.body

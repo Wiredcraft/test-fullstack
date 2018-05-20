@@ -7,11 +7,10 @@ Amplify.configure(config);
 
 class SubmitLightningTalk extends Component {
     state = {
-        username: 'bilal',
-        publishDate: 44444,
-        title: 'first submit',
-        url: 'http://localhost:3000/authenticate',
-        description: 'must watch video'
+        username: '',
+        title: '',
+        url: '',
+        description: ''
     }
 
     componentDidMount() {
@@ -31,9 +30,7 @@ class SubmitLightningTalk extends Component {
     }
 
     submitNewLightningTalk = async() => {
-        // Todo: Bug, sate of publishDate is not update before post is submitted
-        const publishDate = Date.now();
-        this.setState({publishDate: publishDate});
+        // todo: Validate input
         let apiName = 'lightning-talk-pollingCRUD';
         let path = '/lightning-talk-polling';
         let talkData = {
