@@ -10,7 +10,8 @@ class SubmitLightningTalk extends Component {
         username: '',
         title: '',
         url: '',
-        description: ''
+        description: '',
+        points: 0
     }
 
     componentDidMount() {
