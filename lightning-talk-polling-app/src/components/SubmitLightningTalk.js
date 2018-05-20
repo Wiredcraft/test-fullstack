@@ -8,7 +8,7 @@ Amplify.configure(config);
 class SubmitLightningTalk extends Component {
     state = {
         username: 'bilal',
-        publishDate: 33333,
+        publishDate: 44444,
         title: 'first submit',
         url: 'http://localhost:3000/authenticate',
         description: 'must watch video'
@@ -42,7 +42,10 @@ class SubmitLightningTalk extends Component {
             }
         }
         API.post(apiName, path, talkData)
-            .then(msg => {console.log('Submitted successfully: ', msg)})
+            .then(msg => {
+                this.props.history.push('/');
+                console.log('Submitted successfully: ', msg);
+            })
             .catch(error => console.log('Error submitting: ', error));
     }
 
