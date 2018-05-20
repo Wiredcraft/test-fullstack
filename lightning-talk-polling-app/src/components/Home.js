@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import Amplify, {Auth, API} from 'aws-amplify';
 import config from '../aws-exports';
+import Iframe from 'react-iframe';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 Amplify.configure(config);
 
@@ -42,32 +45,48 @@ class Home extends Component {
 
     render() {
         let talks = this.state.data.map((item) => {
-            return <li key={item.publishDate}>{item.username}</li>
+            // A fix for 'X-Frame-Options' to 'SAMEORIGIN' error
+            // so the video can show
+            let url = item.url.replace("watch?v=", "embed/");
+            return (
+                <div
+                    key={item.publishDate}
+                    className="card col-sm-4 p-0">
+                    <div className="view overlay">
+                        <div className="embed-responsive embed-responsive-16by9">
+                            <iframe className="embed-responsive-item" src={url}  allowFullScreen/>
+                        </div>
+                    </div>
+                    <div className="card-body text-left">
+                        <h4 className="card-title">{item.title}</h4>
+                        <hr/>
+                            <p className="card-text">{item.description}</p>
+
+                    </div>
+                    <div className="rounded-bottom mdb-color lighten-3 py-3 d-flex justify-content-between">
+                        <i className="fa fa-clock-o pl-1"> <Moment format="LL" unix>{item.publishDate}</Moment></i>
+                        <i className="fa fa-plus white-text"> {item.points}</i>
+                        <i className="fa fa-user pr-1"> {item.username}</i>
+                    </div>
+
+                </div>
+            )
         });
 
         return (
-          <div  className="container">
-              <h3>Home page</h3>
-              <h5>Welcome {this.state.username}</h5>
-              <h5>List of lightning talks</h5>
-              <Link
-                  to={'/submit-lightning-talk'}
-                  label={'submit-lightning-talk'}
-              >
-                  Submit a lightning talk
-              </Link>
-              <button
-                  onClick={this.fetch}
-              >
-                  get talks
-              </button>
-              <div>
-                <ul>
-                    {talks}
-                </ul>
+          <div  className="container mt-5">
+              <div className="row d-flex justify-content-between">
+                  {talks}
               </div>
+              {/*<Link*/}
+                  {/*to={'/submit-lightning-talk'}*/}
+                  {/*label={'submit-lightning-talk'}*/}
+              {/*>*/}
+                  {/*Submit a lightning talk*/}
+              {/*</Link>*/}
           </div>
-        );
+        )
+
     }
 }
 
