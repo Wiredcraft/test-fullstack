@@ -28,34 +28,42 @@ class SignIn extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input
-                            type="username"
-                            className="form-control"
-                            placeholder="Username"
-                            onChange={event => this.onChange('username', event.target.value)}
-                        />
+            <section className="form-elegant mt-5">
+                <div className="card">
+                    <div className="card-body mx-4">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-md-6 text-left">
+                                <p className="h4 text-center mb-4">{this.props.title}</p>
+                                <label for="defaultFormLoginEmailEx" className="grey-text ">Username</label>
+                                <input
+                                    id="defaultFormLoginEmailEx"
+                                    type="username"
+                                    className="form-control"
+                                    placeholder="Username"
+                                    onChange={event => this.onChange('username', event.target.value)}
+                                />
+                                <br/>
+                                <label for="defaultFormLoginPasswordEx" className="grey-text">Your password</label>
+                                <input
+                                    id="defaultFormLoginPasswordEx"
+                                    type="password"
+                                    className="form-control"
+                                    placeholder="Password"
+                                    onChange={event => this.onChange('password', event.target.value)}
+                                />
+                                <div className="text-center mt-4">
+                                    <button
+                                        className="btn btn-cyan"
+                                        onClick={this.signIn}
+                                    >
+                                        Login
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            placeholder="Password"
-                            onChange={event => this.onChange('password', event.target.value)}
-                        />
-                    </div>
-                    <button
-                        className="btn btn-primary"
-                        onClick={this.signIn}
-                    >
-                        Sign In
-                    </button>
                 </div>
-            </div>
+            </section>
         );
     }
 }

@@ -18,7 +18,7 @@ class Authenticator extends Component {
     renderSwitch(param) {
         switch (param) {
             case 0:
-                return <SignIn/>;
+                return <SignIn title="Sign In"/>;
                 break;
             case 1:
                 return <SignUp/>;
@@ -35,7 +35,7 @@ class Authenticator extends Component {
         const {shouldSignUp} = this.state;
 
         return (
-            <div>{this.renderSwitch(shouldSignUp)}
+            <div className="container">{this.renderSwitch(shouldSignUp)}
                 <p onClick={() => this.setSignUpState(0)}>Sign In</p>
                 <p onClick={() => this.setSignUpState(1)}>Sign Up</p>
                 <p onClick={() => this.setSignUpState(2)}>Forgot Password</p>

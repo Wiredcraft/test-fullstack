@@ -37,69 +37,77 @@ class ForgotPassword extends Component {
     render() {
         const { showConfirmation } = this.state;
         return (
-            <div>
-                {
-                    !showConfirmation && (
-                        <div>
-                            <div className="form-group">
-                                <label>Username</label>
-                                <input
-                                    type="username"
-                                    className="form-control"
-                                    placeholder="Username"
-                                    onChange={event => this.onChange('username', event.target.value)}
-                                />
+            <section className="form-elegant mt-5">
+                <div className="card">
+                    <div className="card-body mx-4">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-md-6 text-left">
+                                <p className="h4 text-center mb-4">Forgot Password</p>
+                                {
+                                    !showConfirmation && (
+                                        <div>
+                                            <label for="defaultFormLoginEmailEx" className="grey-text ">Username</label>
+                                            <input
+                                                id="defaultFormLoginEmailEx"
+                                                type="username"
+                                                className="form-control"
+                                                placeholder="Username"
+                                                onChange={event => this.onChange('username', event.target.value)}
+                                            />
+                                            <div className="text-center mt-4">
+                                                <button
+                                                    className="btn btn-cyan"
+                                                    onClick={this.forgotPassword}
+                                                >
+                                                    Get New Password
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )
+                                }
+                                {
+                                    showConfirmation && (
+                                        <div>
+                                            <label for="defaultFormLoginEmailEx" className="grey-text ">*Username</label>
+                                            <input
+                                                id="defaultFormLoginEmailEx"
+                                                type="username"
+                                                className="form-control"
+                                                placeholder="Username"
+                                                onChange={event => this.onChange('username', event.target.value)}
+                                            />
+                                            <label for="defaultFormLoginPasswordEx" className="grey-text">*New password</label>
+                                            <input
+                                                id="defaultFormLoginPasswordEx"
+                                                type="password"
+                                                className="form-control"
+                                                placeholder="New Password"
+                                                onChange={event => this.onChange('password', event.target.value)}
+                                            />
+                                            <label for="confirmRegistration" className="grey-text">*Confirmation Code (You'll receive 6-digits number on you phone)</label>
+                                            <input
+                                                id="confirmRegistration"
+                                                type="number"
+                                                className="form-control"
+                                                placeholder="123456"
+                                                onChange={event => this.onChange('authCode', event.target.value)}
+                                            />
+                                            <div className="text-center mt-4">
+                                                <button
+                                                    className="btn btn-cyan"
+                                                    onClick={this.forgotPasswordSubmit}
+                                                >
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )
+                                }
                             </div>
-                            <button
-                                className="btn btn-primary"
-                                onClick={this.forgotPassword}
-                            >
-                                Forgot Password
-                            </button>
                         </div>
-
-                    )
-                }
-                {
-                    showConfirmation && (
-                        <div>
-                            <div className="form-group">
-                                <label>Username</label>
-                                <input
-                                    type="username"
-                                    className="form-control"
-                                    placeholder="Username"
-                                    onChange={event => this.onChange('username', event.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Password</label>
-                                <input
-                                    type="password"
-                                    className="form-control"
-                                    placeholder="Password"
-                                    onChange={event => this.onChange('password', event.target.value)}
-                                />
-                            </div>
-                            <div className="form-group">
-                                <label>Confirmation Code</label>
-                                <input
-                                    type="number"
-                                    className="form-control"
-                                    placeholder="000111"
-                                    onChange={event => this.onChange('authCode', event.target.value)}
-                                />
-                            </div>
-                            <button
-                                className="btn btn-primary"
-                                onClick={this.forgotPasswordSubmit}
-                            >
-                                Confirm Sing Up
-                            </button>
-                        </div>
-                    )
-                }
-            </div>
+                    </div>
+                </div>
+            </section>
         );
     }
 }
