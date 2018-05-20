@@ -1,11 +1,63 @@
 --- !com.amazonaws.mobilehub.v0.Project 
 features:
+  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
+    components:
+      lightning-talk-pollingCRUD: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: lightning-talk-pollingCRUD
+          requires-signin: true
+          sdk-generation-stage-name: Development
+        paths:
+          /lightning-talk-polling: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/lightningtalkpolling-20180520153743.zip
+            description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: WODHrMKxTqSzdsCKXNvyA4PemfdGFzR9Ji/v+/JncsM=
+            memorySize: '128'
+            modified: '2018-05-20T07:38:15.070+0000'
+            name: lightningtalkpolling
+            runtime: nodejs6.10
+            timeout: '3'
+            version: NKQANQUvUs0WVx9m8pWrykaukOVe435x
+          '/lightning-talk-polling/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/lightningtalkpolling-20180520153743.zip
+            description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: WODHrMKxTqSzdsCKXNvyA4PemfdGFzR9Ji/v+/JncsM=
+            memorySize: '128'
+            modified: '2018-05-20T07:38:15.070+0000'
+            name: lightningtalkpolling
+            runtime: nodejs6.10
+            timeout: '3'
+            version: 0v8AAviTr8bqjWhF_eZVnocAiwXX0.V1
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
       visibility: public-global
     components:
       release: !com.amazonaws.mobilehub.v0.Bucket {}
+  database: !com.amazonaws.mobilehub.v0.Database 
+    components:
+      database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
+        tables:
+          - !com.amazonaws.mobilehub.v0.NoSQLTable 
+            attributes:
+              description: S
+              points: N
+              publishDate: N
+              title: S
+              url: S
+              username: S
+            hashKeyName: username
+            hashKeyType: S
+            rangeKeyName: publishDate
+            rangeKeyType: N
+            tableName: ___DYNAMIC_PREFIX___-lightning-talk-polling
+            tablePrivacy: public
   mobile-analytics: !com.amazonaws.mobilehub.v0.Pinpoint 
     components:
       analytics: !com.amazonaws.mobilehub.v0.PinpointAnalytics {}
@@ -27,43 +79,5 @@ features:
             require-numbers: true
             require-symbols: true
             require-upper-case: true
-  database: !com.amazonaws.mobilehub.v0.Database 
-    components:
-      database-nosql: !com.amazonaws.mobilehub.v0.NoSQLDatabase 
-        tables:
-          - !com.amazonaws.mobilehub.v0.NoSQLTable 
-            attributes:
-              url: S
-              title: S
-              description: S
-              points: N
-            hashKeyName: username
-            hashKeyType: S
-            rangeKeyName: publishDate
-            rangeKeyType: N
-            tableName: ___DYNAMIC_PREFIX___-lightning-talk-polling
-            tablePrivacy: public
-            indexes: []
-  cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
-    components:
-      lightning-talk-pollingCRUD: !com.amazonaws.mobilehub.v0.API 
-        attributes:
-          name: lightning-talk-pollingCRUD
-          requires-signin: true
-        paths:
-          /lightning-talk-polling: !com.amazonaws.mobilehub.v0.Function 
-            name: lightningtalkpolling
-            codeFilename: uploads/lightningtalkpolling.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
-          '/lightning-talk-polling/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            name: lightningtalkpolling
-            codeFilename: uploads/lightningtalkpolling.zip
-            handler: lambda.handler
-            enableCORS: true
-            runtime: nodejs6.10
-            environment: {}
 name: lightning-talk-polling-app-2018-05-17-16-10-48
 region: us-east-1

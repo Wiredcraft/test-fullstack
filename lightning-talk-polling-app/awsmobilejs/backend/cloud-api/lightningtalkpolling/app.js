@@ -56,6 +56,20 @@ const convertUrlType = (param, type) => {
  * HTTP Get method for list objects *
  ********************************/
 
+app.get('/lightning-talk-polling/all', function(req, res) {
+    // performs a DynamoDB Scan operation to extract all of the records in the table
+    dynamodb.scan({ TableName: tableName }, function(err, data) {
+        if (err) {
+            console.log(err)
+            res.status(500).json({
+                message: "Could not load all talk"
+            }).end()
+        } else {
+            res.json(data['Items'])
+        }
+    })
+})
+
 app.get('/lightning-talk-polling/:username', function(req, res) {
   var condition = {}
   condition[partitionKeyName] = {
