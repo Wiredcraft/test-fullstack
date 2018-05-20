@@ -8,10 +8,8 @@ import {
     Redirect,
     BrowserRouter as Router
 } from 'react-router-dom';
-import {
-    Home,
-    SubmitLightningTalk
-} from "./Home";
+import Home from './Home';
+import SubmitLightningTalk from './SubmitLightningTalk';
 
 class PrivateRoute extends Component {
     state = {

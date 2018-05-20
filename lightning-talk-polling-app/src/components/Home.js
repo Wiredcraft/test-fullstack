@@ -71,30 +71,4 @@ class Home extends Component {
     }
 }
 
-class SubmitLightningTalk extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Submit a lightning talk</h1>
-                <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                        Auth.signOut()
-                            .then(() => {this.props.history.push('/authenticate')})
-                            .catch(error => console.log('Error signing out: ', error));
-                    }}
-                >
-                    Sign out
-                </button>
-            </div>
-        );
-    }
-}
-
-Home = withRouter(Home);
-SubmitLightningTalk = withRouter(SubmitLightningTalk);
-
-export {
-    Home,
-    SubmitLightningTalk
-}
+export default withRouter(Home);
