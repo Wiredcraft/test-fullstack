@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import Home from '../Home/Home';
 import SubmitLightningTalk from '../LightningTalk/SubmitLightningTalk';
+import Profile from "../Profile/Profile";
 
 class PrivateRoute extends Component {
     state = {
@@ -70,6 +71,10 @@ const Routes = () => (
             <Route
                 path={'/authenticate'}
                 component={Authenticator}
+            />
+            <PrivateRoute
+                path={'/profile'}
+                component={Profile}
             />
             <PrivateRoute
                 path={'/submit-lightning-talk'}
