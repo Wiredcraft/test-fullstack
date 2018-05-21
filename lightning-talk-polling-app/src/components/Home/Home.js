@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {withRouter, Link} from 'react-router-dom';
 import Amplify, {Auth, API} from 'aws-amplify';
-import config from '../aws-exports';
+import config from '../../aws-exports';
 import Iframe from 'react-iframe';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import VideoCard from '../UI/VideoCard/VideoCard';
 
 Amplify.configure(config);
 
@@ -44,39 +45,28 @@ class Home extends Component {
     }
 
     render() {
-        let talks = this.state.data.map((item) => {
+        let lightningTalks = this.state.data.map((item) => {
+            // todo: format time to readable date format
             // A fix for 'X-Frame-Options' to 'SAMEORIGIN' error
-            // so the video can show
+            // so the video can be shown
             let url = item.url.replace("watch?v=", "embed/");
             return (
-                <div
+                <VideoCard
                     key={item.publishDate}
-                    className="card col-sm-4 p-0">
-                    <div className="view overlay">
-                        <div className="embed-responsive embed-responsive-16by9">
-                            <iframe className="embed-responsive-item" src={url}  allowFullScreen/>
-                        </div>
-                    </div>
-                    <div className="card-body text-left">
-                        <h4 className="card-title">{item.title}</h4>
-                        <hr/>
-                            <p className="card-text">{item.description}</p>
-
-                    </div>
-                    <div className="rounded-bottom mdb-color lighten-3 py-3 d-flex justify-content-between">
-                        <i className="fa fa-clock-o pl-1"> <Moment format="LL" unix>{item.publishDate}</Moment></i>
-                        <i className="fa fa-plus white-text"> {item.points}</i>
-                        <i className="fa fa-user pr-1"> {item.username}</i>
-                    </div>
-
-                </div>
+                    title={item.title}
+                    url={url}
+                    description={item.description}
+                    publishDate={item.publishDate}
+                    username={item.username}
+                    points={item.points}
+                />
             )
         });
 
         return (
           <div  className="container mt-5">
               <div className="row d-flex justify-content-between">
-                  {talks}
+                  {lightningTalks}
               </div>
               {/*<Link*/}
                   {/*to={'/submit-lightning-talk'}*/}
@@ -86,7 +76,6 @@ class Home extends Component {
               {/*</Link>*/}
           </div>
         )
-
     }
 }
 

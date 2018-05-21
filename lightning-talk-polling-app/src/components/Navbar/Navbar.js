@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import AuxiliaryComponent from '../hoc/AuxiliaryComponent';
+import AuxiliaryComponent from '../../hoc/AuxiliaryComponent';
 import cssClass from './Navbar.css';
 import {Auth} from "aws-amplify/lib/index";
 

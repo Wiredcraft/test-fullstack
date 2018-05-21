@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import Router from './components/Router';
+import Navbar from './components/Navbar/Navbar';
+import Router from './components/Router/Router';
 
 class App extends Component {
   render() {

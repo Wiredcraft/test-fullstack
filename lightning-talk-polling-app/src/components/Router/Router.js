@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Auth} from 'aws-amplify';
-import Authenticator from './Authenticator';
+import Authenticator from '../Auth/Authenticator';
 import {
     withRouter,
     Switch,
@@ -8,8 +8,8 @@ import {
     Redirect,
     BrowserRouter as Router
 } from 'react-router-dom';
-import Home from './Home';
-import SubmitLightningTalk from './SubmitLightningTalk';
+import Home from '../Home/Home';
+import SubmitLightningTalk from '../LightningTalk/SubmitLightningTalk';
 
 class PrivateRoute extends Component {
     state = {
