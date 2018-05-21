@@ -51,7 +51,7 @@ class Navbar extends Component {
                                     className="nav-link"
                                     href="/submit-lightning-talk"
                                 >
-                                    <i className="fas fa-upload fa-2x mx-1"></i>
+                                    <i className="fas fa-video fa-2x mx-1"></i>
                                 </a>
                             </li>
                             <li className="nav-item dropdown">
