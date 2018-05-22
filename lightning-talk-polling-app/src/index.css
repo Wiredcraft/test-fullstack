@@ -2,29 +2,7 @@ html,
 body {
   height: 100%;
   position: relative;
-}
-
-body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
-
-#root {
-  min-height: 100vh;
-  overflow: hidden;
-  display: block;
-  position: relative;
-  padding-bottom: 100px;
-}
-
-.card-text {
-  overflow: auto;
-  height: 80px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }

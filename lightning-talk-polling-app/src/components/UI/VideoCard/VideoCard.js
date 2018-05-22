@@ -12,7 +12,7 @@ const videoCard = (props) => (
             <div className="card-body text-left">
                 <h5 className="card-title">{props.title}</h5>
                 <hr/>
-                <p className="card-text">{props.description}</p>
+                <p className={`${cssClass["card-text"]} card-text`}>{props.description}</p>
             </div>
             <div className="rounded-bottom mdb-color lighten-3 py-3 d-flex justify-content-between">
                 <i className="fa fa-clock-o pl-1">{props.publishDate}</i>

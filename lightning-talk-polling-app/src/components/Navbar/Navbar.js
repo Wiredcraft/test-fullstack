@@ -28,7 +28,7 @@ class Navbar extends Component {
                 <nav className="navbar sticky-top navbar-expand-lg navbar-dark orange darken-4">
                     <a
                         href={'/'}
-                        className="navbar-brand"
+                        className={`${cssClass["navbar-brand"]} "navbar-brand"`}
                     >
                         Lightning.Talk
                     </a>
