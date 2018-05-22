@@ -1,4 +1,5 @@
 import React from 'react';
+import Moment from 'react-moment';
 import cssClass from './VideoCard.css';
 
 const videoCard = (props) => (
@@ -6,7 +7,11 @@ const videoCard = (props) => (
         <div className="card p-0">
             <div className="view overlay">
                 <div className="embed-responsive embed-responsive-16by9">
-                    <iframe className="embed-responsive-item" src={props.url} allowFullScreen/>
+                    <iframe
+                        className="embed-responsive-item"
+                        src={props.url}
+                        allowFullScreen
+                    />
                 </div>
             </div>
             <div className="card-body text-left">
@@ -15,9 +20,15 @@ const videoCard = (props) => (
                 <p className={`${cssClass["card-text"]} card-text`}>{props.description}</p>
             </div>
             <div className="rounded-bottom mdb-color lighten-3 py-3 d-flex justify-content-between">
-                <i className="fa fa-clock-o pl-1">{props.publishDate}</i>
-                <i className="fa fa-plus white-text"> {props.points}</i>
-                <i className="fa fa-user pr-1"> {props.username}</i>
+                <Moment
+                    className="pl-1"
+                    unix
+                    fromNow
+                >
+                    {props.publishDate/1000}
+                </Moment>
+                <i className="fas fa-arrow-alt-circle-up fa-2x white-text"> {props.points}</i>
+                <span className="pr-1">{props.username}</span>
             </div>
         </div>
     </div>

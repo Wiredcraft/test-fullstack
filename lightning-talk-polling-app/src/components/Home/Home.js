@@ -46,7 +46,6 @@ class Home extends Component {
 
     render() {
         let lightningTalks = this.state.data.map((item) => {
-            // todo: format time to readable date format
             // A fix for 'X-Frame-Options' to 'SAMEORIGIN' error
             // so the video can be shown
             let url = item.url.replace("watch?v=", "embed/");
