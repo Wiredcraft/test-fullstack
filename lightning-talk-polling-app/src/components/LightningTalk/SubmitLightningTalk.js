@@ -74,7 +74,7 @@ class SubmitLightningTalk extends Component {
                 />
                 <Button
                     text='Submit Video'
-                    cssClass='btn btn-cyan'
+                    cssClass='btn lime darken-4'
                     clicked={this.submitNewLightningTalk}
                 />
             </Form>

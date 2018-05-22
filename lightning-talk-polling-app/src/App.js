@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Router from './components/Router/Router';
+import FooterCustom from './components/Footer/FooterCustom';
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
       <div className="App">
           <Navbar/>
           <Router/>
+          <FooterCustom/>
       </div>
     );
   }

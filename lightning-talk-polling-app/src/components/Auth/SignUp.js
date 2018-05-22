@@ -80,12 +80,12 @@ class SignUp extends Component {
                     />
                     <Button
                         text='Register'
-                        cssClass='btn btn-cyan'
+                        cssClass='btn lime darken-4'
                         clicked={this.signUp}
                     />
                     <Button
                         text='Already Registered!'
-                        cssClass='btn btn-danger'
+                        cssClass='btn green darken-4'
                         clicked={() => {this.setState({showConfirmation : true})}}
                     />
 

@@ -25,7 +25,7 @@ class Navbar extends Component {
     render() {
         return(
             <AuxiliaryComponent>
-                <nav className="navbar sticky-top navbar-expand-lg navbar-dark stylish-color-dark">
+                <nav className="navbar sticky-top navbar-expand-lg navbar-dark orange darken-4">
                     <a
                         href={'/'}
                         className="navbar-brand"

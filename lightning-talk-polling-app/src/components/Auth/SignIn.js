@@ -39,7 +39,7 @@ class SignIn extends Component {
                 />
                 <Button
                     text='Login'
-                    cssClass='btn btn-cyan'
+                    cssClass='btn lime darken-4'
                     clicked={this.signIn}
                 />
             </AuxiliaryComponent>

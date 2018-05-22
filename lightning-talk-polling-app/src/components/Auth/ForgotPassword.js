@@ -50,7 +50,7 @@ class ForgotPassword extends Component {
                     />
                     <Button
                         text='Get New Password'
-                        cssClass='btn btn-cyan'
+                        cssClass='btn lime darken-4'
                         clicked={this.forgotPassword}
                     />
                 </AuxiliaryComponent>
@@ -82,7 +82,7 @@ class ForgotPassword extends Component {
                     />
                     <Button
                         text='Submit'
-                        cssClass='btn btn-cyan'
+                        cssClass='btn lime darken-4'
                         clicked={this.forgotPasswordSubmit}
                     />
                 </AuxiliaryComponent>
