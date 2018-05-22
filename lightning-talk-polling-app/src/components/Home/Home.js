@@ -65,7 +65,7 @@ class Home extends Component {
 
         return (
           <div  className="container mt-5">
-              <div className="row d-flex justify-content-between">
+              <div className="row d-flex justify-content-start">
                   {lightningTalks}
               </div>
               {/*<Link*/}

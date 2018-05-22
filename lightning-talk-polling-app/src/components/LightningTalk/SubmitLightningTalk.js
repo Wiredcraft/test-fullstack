@@ -14,7 +14,7 @@ class SubmitLightningTalk extends Component {
         username: '',
         title: '',
         url: '',
-        description: '',
+        description: 'No description was provided for the video',
         points: 1
     }
 
@@ -58,6 +58,8 @@ class SubmitLightningTalk extends Component {
                     label='Title'
                     type='text'
                     placeholder='Title'
+                    maxLength='34'
+                    required={true}
                     onChange={event => this.onChange('title', event.target.value)}
                 />
                 <Input

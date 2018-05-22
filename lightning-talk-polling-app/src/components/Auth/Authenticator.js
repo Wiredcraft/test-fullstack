@@ -4,7 +4,6 @@ import SignUp from './SignUp';
 import SignIn from './SignIn';
 import ForgotPassword from './ForgotPassword';
 import Form from '../UI/Form/Form';
-import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
 
 class Authenticator extends Component {
     state = {

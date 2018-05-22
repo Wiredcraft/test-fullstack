@@ -8,6 +8,7 @@ const input = (props) => (
             type={props.type}
             className="form-control"
             placeholder={props.placeholder}
+            maxLength={props.maxLength || 100}
             onChange={props.onChange}
         />
     </AuxiliaryComponent>
