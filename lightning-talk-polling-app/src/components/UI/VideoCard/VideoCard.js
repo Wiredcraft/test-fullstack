@@ -6,7 +6,8 @@ const videoCard = (props) => {
     let upVoteButton;
 
     if (props.hasUserVoted) {
-        upVoteButton = <i class="fas fa-check"></i>;
+        upVoteButton =
+            <button className={cssClass.invisibleUpVoteButton}><i className="fas fa-check"></i></button>;
     } else {
         upVoteButton =
             <button
@@ -18,7 +19,7 @@ const videoCard = (props) => {
     }
 
     return (
-        <div className='col-md-4'>
+        <div className='col-12 col-sm-6 col-xl-4 mb-2'>
             <div className="card p-0">
                 <div className="view overlay">
                     <div className="embed-responsive embed-responsive-16by9">
@@ -30,7 +31,7 @@ const videoCard = (props) => {
                     </div>
                 </div>
                 <div className="card-body text-left">
-                    <h5 className="card-title">{props.title}</h5>
+                    <h5 className={`${cssClass["card-title"]} card-title`}>{props.title}</h5>
                     <hr/>
                     <p className={`${cssClass["card-text"]} card-text`}>{props.description}</p>
                 </div>
@@ -42,7 +43,7 @@ const videoCard = (props) => {
                     >
                         {props.publishDate/1000}
                     </Moment>
-                    <div className="h5 orange darken-4 white-text">
+                    <div className="h6 orange darken-4 white-text">
                         <span className="pr-2">{props.points}</span>
                         {upVoteButton}
                     </div>
