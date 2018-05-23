@@ -6,6 +6,7 @@ import Iframe from 'react-iframe';
 import Moment from 'react-moment';
 import 'moment-timezone';
 import VideoCard from '../UI/VideoCard/VideoCard';
+import cssClass from './Home.css';
 
 Amplify.configure(config);
 
@@ -90,7 +91,7 @@ class Home extends Component {
         });
 
         return (
-          <div className="container mt-5">
+          <div className={cssClass.videoCardsContainer + " container mt-5"}>
               <div className="row d-flex justify-content-start">{lightningTalks}</div>
           </div>
         )

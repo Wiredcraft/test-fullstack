@@ -10,7 +10,7 @@ class App extends Component {
       <div className={cssClass}>
           <Navbar/>
           <Router/>
-          {/*<Footer/>*/}
+          <Footer/>
       </div>
     );
   }
