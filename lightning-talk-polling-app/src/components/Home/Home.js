@@ -13,8 +13,12 @@ class Home extends Component {
     state = {
         username: '',
         user: {},
-        data: []
+        data: [],
+        isVote: false
     }
+
+    apiPath = 'lightning-talk-pollingCRUD';
+    path = '/lightning-talk-polling';
 
     componentDidMount() {
         // Get use's info
@@ -34,7 +38,7 @@ class Home extends Component {
             }
         });
 
-        API.get('lightning-talk-pollingCRUD', '/lightning-talk-polling/all')
+        API.get(this.apiPath, `${this.path}/all`)
             .then(resp => {
                 this.setState({
                     data: resp
@@ -44,35 +48,50 @@ class Home extends Component {
             .catch (err => console.log(err));
     }
 
+    upVote = (lightningTalkVideo) => {
+        lightningTalkVideo.points += 1;
+        const {username, publishDate, points} = lightningTalkVideo;
+        const body = {username, publishDate, points};
+
+        API.put(this.apiPath, `${this.path}/vote`, {body: body})
+            .then(() => {
+                // Update UI
+                lightningTalkVideo.hasUserVoted = [this.state.username];
+                this.setState({isVote: true});
+            })
+            .catch(error => console.log('Put Failed: ', error));
+    }
+
     render() {
-        let lightningTalks = this.state.data.map((item) => {
-            // A fix for 'X-Frame-Options' to 'SAMEORIGIN' error
-            // so the video can be shown
-            let url = item.url.replace("watch?v=", "embed/");
+        let sortedTalks = this.state.data.sort((a,b) => (a.points > b.points) ? -1 : ((b.points > a.points) ? 1 : 0));
+        let lightningTalks = sortedTalks.map((lightningTalkVideo) => {
+            // A fix for 'X-Frame-Options' to 'SAMEORIGIN' error so the video can be shown
+            let url = lightningTalkVideo.url.replace("watch?v=", "embed/");
+
+            // Since this is a schemaless db, the property hasUserVoted is added to a lightning talk on
+            // the db when the first user up vote the video
+            let hasUserVoted = false;
+            if (lightningTalkVideo.hasOwnProperty('hasUserVoted')) {
+                hasUserVoted = lightningTalkVideo.hasUserVoted.includes(this.state.username);
+            }
             return (
                 <VideoCard
-                    key={item.publishDate}
-                    title={item.title}
+                    key={lightningTalkVideo.publishDate} // unix time in milliseconds
+                    title={lightningTalkVideo.title}
                     url={url}
-                    description={item.description}
-                    publishDate={item.publishDate}
-                    username={item.username}
-                    points={item.points}
+                    description={lightningTalkVideo.description}
+                    publishDate={lightningTalkVideo.publishDate}
+                    username={lightningTalkVideo.username}
+                    points={lightningTalkVideo.points}
+                    hasUserVoted={hasUserVoted}
+                    onUpVote={() => this.upVote(lightningTalkVideo)}
                 />
             )
         });
 
         return (
-          <div  className="container mt-5">
-              <div className="row d-flex justify-content-start">
-                  {lightningTalks}
-              </div>
-              {/*<Link*/}
-                  {/*to={'/submit-lightning-talk'}*/}
-                  {/*label={'submit-lightning-talk'}*/}
-              {/*>*/}
-                  {/*Submit a lightning talk*/}
-              {/*</Link>*/}
+          <div className="container mt-5">
+              <div className="row d-flex justify-content-start">{lightningTalks}</div>
           </div>
         )
     }

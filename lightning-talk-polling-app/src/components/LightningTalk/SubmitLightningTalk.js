@@ -15,7 +15,7 @@ class SubmitLightningTalk extends Component {
         title: '',
         url: '',
         description: 'No description was provided for the video',
-        points: 1
+        points: 0,
     }
 
     componentDidMount() {
@@ -23,7 +23,9 @@ class SubmitLightningTalk extends Component {
         Auth.currentAuthenticatedUser().then(user => this.setState({user}));
         Auth.currentUserInfo()
             .then(user => {
-                this.setState({username: user.username});
+                this.setState({
+                    username: user.username,
+                });
             })
             .catch(error => console.log('Error retrieving user\' info: ', error));
     }
@@ -36,6 +38,7 @@ class SubmitLightningTalk extends Component {
 
     submitNewLightningTalk = async() => {
         // todo: Validate input
+        // todo: check if setState dose update hasUserVoted before send it to the server
         let apiName = 'lightning-talk-pollingCRUD';
         let path = '/lightning-talk-polling';
         let talkData = {

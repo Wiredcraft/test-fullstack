@@ -9,31 +9,31 @@ features:
           sdk-generation-stage-name: Development
         paths:
           /lightning-talk-polling: !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/lightningtalkpolling-20180521184356.zip
+            codeFilename: uploads/lightningtalkpolling-20180523093707.zip
             description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: iGRYOxdAiXMxUn1cMkBOr8vX1Rq1CbX5cfvQ11j4ZF0=
+            hashcode: yRcezc+BLHZpImPkPbAeThq2YVe7cXRz0osNy3/mo3M=
             memorySize: '128'
-            modified: '2018-05-22T05:19:01.995+0000'
+            modified: '2018-05-23T01:37:45.369+0000'
             name: lightningtalkpolling
             runtime: nodejs6.10
             timeout: '3'
-            version: utTvaQLXwMgDqg7s05.bJwJmmrAFUKvN
+            version: 2bqPJSgxWQewmDmcwjWpE9i1DAY3_Ll9
           '/lightning-talk-polling/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/lightningtalkpolling-20180521184356.zip
+            codeFilename: uploads/lightningtalkpolling-20180523093707.zip
             description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: iGRYOxdAiXMxUn1cMkBOr8vX1Rq1CbX5cfvQ11j4ZF0=
+            hashcode: yRcezc+BLHZpImPkPbAeThq2YVe7cXRz0osNy3/mo3M=
             memorySize: '128'
-            modified: '2018-05-22T05:19:01.995+0000'
+            modified: '2018-05-23T01:37:45.369+0000'
             name: lightningtalkpolling
             runtime: nodejs6.10
             timeout: '3'
-            version: GW7dqkCj0cqjuFUG2iNpwukRn6KrSW05
+            version: Pvcs_Vb8F_k_k.IxROXpdVdhKJQJUr8d
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -47,6 +47,7 @@ features:
           - !com.amazonaws.mobilehub.v0.NoSQLTable 
             attributes:
               description: S
+              hasUserVoted: SS
               points: N
               publishDate: N
               title: S

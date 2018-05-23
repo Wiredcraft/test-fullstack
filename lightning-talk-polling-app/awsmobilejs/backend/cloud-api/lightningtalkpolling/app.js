@@ -166,6 +166,39 @@ app.put(path, function(req, res) {
   });
 });
 
+app.put(`${path}/vote`, function (req, res) {
+    if (userIdPresent) {
+        req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
+    }
+
+    var params = {
+      TableName: tableName,
+      Key: {
+        'username': req.body['username'],
+        'publishDate': req.body['publishDate'],
+      },
+      AttributeUpdates: {
+        'hasUserVoted': {
+          Action: 'ADD',
+          Value: [req.body['username']]
+        },
+        'points': {
+          Action: 'PUT',
+          Value: req.body['points']
+        },
+      },
+    };
+
+    dynamodb.update(params, (err, data) => {
+      if(err) {
+        res.json({error: err, url: req.url, body: req.body});
+      } else {
+        res.json({success: 'Update item call succeed!', url: req.url, data: data})
+      }
+    });
+});
+
+
 /************************************
 * HTTP post method for insert object *
 *************************************/
@@ -176,11 +209,12 @@ app.post(path, function(req, res) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
   }
 
+  // Set the time of posting a lightning talk
   req.body['publishDate'] = Date.now();
 
   let putItemParams = {
     TableName: tableName,
-    Item: req.body
+    Item: req.body,
   }
   dynamodb.put(putItemParams, (err, data) => {
     if(err) {
