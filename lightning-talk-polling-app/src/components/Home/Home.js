@@ -7,6 +7,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 import VideoCard from '../UI/VideoCard/VideoCard';
 import cssClass from './Home.css';
+import getYouTubeID from 'get-youtube-id';
 
 Amplify.configure(config);
 
@@ -67,10 +68,10 @@ class Home extends Component {
         let sortedTalks = this.state.data.sort((a,b) => (a.points > b.points) ? -1 : ((b.points > a.points) ? 1 : 0));
         let lightningTalks = sortedTalks.map((lightningTalkVideo) => {
             // A fix for 'X-Frame-Options' to 'SAMEORIGIN' error so the video can be shown
-            let url = lightningTalkVideo.url.replace("watch?v=", "embed/");
+            let videoID = getYouTubeID(lightningTalkVideo.url);
 
             // Since this is a schemaless db, the property hasUserVoted is added to a lightning talk on
-            // the db when the first user up vote the video
+            // the db when the first user up votes the video
             let hasUserVoted = false;
             if (lightningTalkVideo.hasOwnProperty('hasUserVoted')) {
                 hasUserVoted = lightningTalkVideo.hasUserVoted.includes(this.state.username);
@@ -79,7 +80,7 @@ class Home extends Component {
                 <VideoCard
                     key={lightningTalkVideo.publishDate} // unix time in milliseconds
                     title={lightningTalkVideo.title}
-                    url={url}
+                    videoID={videoID}
                     description={lightningTalkVideo.description}
                     publishDate={lightningTalkVideo.publishDate}
                     username={lightningTalkVideo.username}
