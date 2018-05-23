@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Amplify, {Auth, API} from 'aws-amplify';
 import config from '../../aws-exports';
 import Form from '../UI/Form/Form';
@@ -37,8 +37,6 @@ class SubmitLightningTalk extends Component {
     }
 
     submitNewLightningTalk = async() => {
-        // todo: Validate input
-        // todo: check if setState dose update hasUserVoted before send it to the server
         let apiName = 'lightning-talk-pollingCRUD';
         let path = '/lightning-talk-polling';
         let talkData = {

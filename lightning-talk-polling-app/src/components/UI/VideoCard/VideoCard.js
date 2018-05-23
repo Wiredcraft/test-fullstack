@@ -7,14 +7,14 @@ const videoCard = (props) => {
 
     if (props.hasUserVoted) {
         upVoteButton =
-            <button className={cssClass.invisibleUpVoteButton}><i className="fas fa-check"></i></button>;
+            <button className={cssClass.invisibleUpVoteButton}><i className="fas fa-check"/></button>;
     } else {
         upVoteButton =
             <button
                 className={cssClass.upVote}
                 onClick={props.onUpVote}
             >
-                <i className="fas fa-plus"></i>
+                <i className="fas fa-plus"/>
             </button>;
     }
 

@@ -40,7 +40,7 @@ class Navbar extends Component {
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <span className="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"/>
                     </button>
                     <div
                         className="collapse navbar-collapse justify-content-end"
@@ -51,7 +51,7 @@ class Navbar extends Component {
                                     className="nav-link"
                                     href="/submit-lightning-talk"
                                 >
-                                    <i className="fas fa-video fa-2x mx-1"></i>
+                                    <i className="fas fa-video fa-2x mx-1"/>
                                 </a>
                             </li>
                             <li className="nav-item dropdown">
@@ -62,7 +62,7 @@ class Navbar extends Component {
                                     aria-haspopup="true"
                                     aria-expanded="false"
                                 >
-                                    <i className="fas fa-user fa-2x mx-1"></i>
+                                    <i className="fas fa-user fa-2x mx-1"/>
                                 </a>
                                 {
                                     !this.state.isAuthenticated && (
@@ -95,7 +95,6 @@ class Navbar extends Component {
                                 }
 
                             </li>
-
                         </ul>
                     </div>
                 </nav>

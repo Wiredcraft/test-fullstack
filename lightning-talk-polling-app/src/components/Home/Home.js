@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import {withRouter, Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Amplify, {Auth, API} from 'aws-amplify';
 import config from '../../aws-exports';
-import Iframe from 'react-iframe';
-import Moment from 'react-moment';
-import 'moment-timezone';
 import VideoCard from '../UI/VideoCard/VideoCard';
 import cssClass from './Home.css';
 import getYouTubeID from 'get-youtube-id';
