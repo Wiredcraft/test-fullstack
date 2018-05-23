@@ -3,6 +3,14 @@ import AuxiliaryComponent from '../../hoc/AuxiliaryComponent';
 import cssClass from './Navbar.css';
 import {Auth} from "aws-amplify/lib/index";
 
+
+// todo: consider converting nav bar to UI
+// todo: don't update setState in componentDidMount (it causes rerender)
+// maybe it is good to keep it like this, because having state in app, will cause the whole App to rerender every time something
+// ???
+/// it is ok react has virtual dom vs real dom and update diffrences 094
+// changes (but it solve the problem of loging state)
+// we accses props from parent via this.props
 class Navbar extends Component {
     state = {
         username: '',
