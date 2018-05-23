@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
+import Navbar from '../Navbar/Navbar';
 
 class SignIn extends Component {
     state = {

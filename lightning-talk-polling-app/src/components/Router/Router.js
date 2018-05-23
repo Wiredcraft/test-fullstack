@@ -24,6 +24,7 @@ class PrivateRoute extends Component {
             Auth.currentAuthenticatedUser()
                 .then(user => console.log('Current authenticated user: ', user))
                 .catch(() => {
+                    // Force the user to log out
                     if (this.state.isAuthenticated) {
                         this.setState({isAuthenticated: false});
                     }
@@ -65,27 +66,27 @@ class PrivateRoute extends Component {
 
 PrivateRoute = withRouter(PrivateRoute);
 
-const Routes = () => (
-    <Router>
-        <Switch>
-            <Route
-                path={'/authenticate'}
-                component={Authenticator}
-            />
-            <PrivateRoute
-                path={'/profile'}
-                component={Profile}
-            />
-            <PrivateRoute
-                path={'/submit-lightning-talk'}
-                component={SubmitLightningTalk}
-            />
-            <PrivateRoute
-                path={'/'}
-                component={Home}
-            />
-        </Switch>
-    </Router>
-);
+// const Routes = () => (
+//     <Router>
+//         <Switch>
+//             <Route
+//                 path={'/authenticate'}
+//                 component={Authenticator}
+//             />
+//             <PrivateRoute
+//                 path={'/profile'}
+//                 component={Profile}
+//             />
+//             <PrivateRoute
+//                 path={'/submit-lightning-talk'}
+//                 component={SubmitLightningTalk}
+//             />
+//             <PrivateRoute
+//                 path={'/'}
+//                 component={Home}
+//             />
+//         </Switch>
+//     </Router>
+// );
 
-export default Routes;
+export default PrivateRoute;
