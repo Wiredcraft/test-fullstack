@@ -5,6 +5,7 @@ import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
 import * as reduxAction from "../../store/actions/actions";
 import {connect} from "react-redux";
 import config from '../../aws-exports';
+import apiGateway from "../../api-gateway-config";
 
 class Profile extends Component {
     state = {
@@ -40,7 +41,7 @@ class Profile extends Component {
     }
 
     fetchUsersVideos = () => {
-        API.get(config.api_gateway_path, `/${config.sub_api_gateway_path}/${this.state.username}`)
+        API.get(apiGateway.api_path, `/${apiGateway.path}/${this.state.username}`)
             .then(usersVideos => this.setState(() => {return{usersVideos: usersVideos}}))
             .catch (err => console.log(err));
     }

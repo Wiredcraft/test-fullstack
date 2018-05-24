@@ -9,6 +9,7 @@ import Form from '../UI/Form/Form';
 import Input from '../UI/Input/Input';
 import Textarea from '../UI/Textarea/Textarea';
 import Button from '../UI/Button/Button';
+import apiGateway from "../../api-gateway-config";
 
 Amplify.configure(config);
 
@@ -32,7 +33,7 @@ class SubmitLightningTalk extends Component {
             }
         }
 
-        API.post(config.api_gateway_path, `/${config.sub_api_gateway_path}`, lightningTalkVideo)
+        API.post(apiGateway.api_path, `/${apiGateway.path}`, lightningTalkVideo)
             .then(() => this.props.history.push('/'))
             .catch(error => console.log('Error submitting: ', error));
     }

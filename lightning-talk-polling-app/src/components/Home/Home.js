@@ -6,6 +6,8 @@ import Amplify, {Auth, API} from 'aws-amplify';
 
 import * as reduxAction from "../../store/actions/actions";
 import config from '../../aws-exports';
+import apiGateway from '../../api-gateway-config';
+
 import VideoCard from '../UI/VideoCard/VideoCard';
 import cssClass from './Home.css';
 
@@ -19,7 +21,7 @@ class Home extends Component {
     componentDidMount() {
         // Scan db and get all videos
         // Since the data is small we get all video. For large db, better user DynamoDB streams
-        API.get(config.api_gateway_path, `/${config.sub_api_gateway_path}/all`)
+        API.get(apiGateway.api_path, `/${apiGateway.path}/all`)
             .then(response => this.setState(() => {return {lightningTalkVideos: response}}))
             .catch (error => console.log(error));
     }
