@@ -51,7 +51,7 @@ class SignUp extends Component {
             !showConfirmation ?
                 <AuxiliaryComponent>
                     <Input
-                        label='*Usernam'
+                        label='*Username'
                         type='text'
                         placeholder='Username'
                         onChange={event => this.onChange('username', event.target.value)}
@@ -115,11 +115,4 @@ class SignUp extends Component {
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         onDisconnect: () => dispatch({type: 'DISCONNECT'})
-//     }
-// }
-
 export default withRouter(SignUp);
-// export default withRouter(connect(null, mapDispatchToProps())(SignUp));

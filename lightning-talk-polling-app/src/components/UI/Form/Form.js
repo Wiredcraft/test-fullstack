@@ -1,7 +1,7 @@
 import React from 'react';
 
 const form = (props) => (
-    <section className="form-elegant mt-5 container">
+    <section className="form-elegant mt-3 container">
         <div className="card">
             <div className="card-body mx-4">
                 <div className="row d-flex justify-content-center">
@@ -14,6 +14,7 @@ const form = (props) => (
                 </div>
             </div>
         </div>
+        <div className='py-5'/>
     </section>
 );
 
