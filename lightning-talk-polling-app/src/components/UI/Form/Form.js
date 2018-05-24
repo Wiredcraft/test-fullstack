@@ -6,7 +6,9 @@ const form = (props) => (
             <div className="card-body mx-4">
                 <div className="row d-flex justify-content-center">
                     <div className="col-md-6 text-left">
-                        <p className="h4 text-center mb-4">{props.title}</p>
+                        <p className="h3 text-center mb-2">{props.messageToUser}</p>
+                        <br/>
+                        <p className="h5 text-center mb-4">{props.toDo}</p>
 
                         {props.children}
 

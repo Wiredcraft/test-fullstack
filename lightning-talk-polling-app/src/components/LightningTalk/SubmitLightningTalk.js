@@ -54,7 +54,7 @@ class SubmitLightningTalk extends Component {
 
     render() {
         return (
-            <Form title='Submit a Lightning Talk'>
+            <Form messageToUser='Share amazing talks with the world' toDo='Submit a Lightning Talk'>
                 <Input
                     label='Title'
                     type='text'
