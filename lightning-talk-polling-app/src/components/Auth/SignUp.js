@@ -85,12 +85,12 @@ class SignUp extends Component {
                     <div className="text-center mt-4">
                         <Button
                             text='Register'
-                            cssClass='btn lime darken-4'
+                            cssClass='btn orange darken-4'
                             clicked={this.signUp}
                         />
                         <Button
                             text='Already Registered!'
-                            cssClass='btn green darken-4'
+                            cssClass='btn orange darken-2'
                             clicked={() => {this.setState({showConfirmation : true})}}
                         />
                     </div>
@@ -106,12 +106,12 @@ class SignUp extends Component {
                     <div className="text-center mt-4">
                         <Button
                             text='Confirm Registration'
-                            cssClass='btn btn-cyan'
+                            cssClass='btn orange darken-4'
                             clicked={this.confirmSignUp}
                         />
                         <Button
                             text='Resend Code'
-                            cssClass='btn btn-danger'
+                            cssClass='btn orange darken-2'
                             clicked={this.resendSignUp}
                         />
                     </div>

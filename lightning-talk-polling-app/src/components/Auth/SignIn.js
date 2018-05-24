@@ -46,7 +46,7 @@ class SignIn extends Component {
                 <div className="text-center mt-4">
                     <Button
                         text='Login'
-                        cssClass='text-center mt-4 btn lime darken-4'
+                        cssClass='text-center mt-4 btn orange darken-4'
                         clicked={this.signIn}
                     />
                 </div>

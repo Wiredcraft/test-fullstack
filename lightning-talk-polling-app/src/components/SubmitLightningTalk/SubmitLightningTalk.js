@@ -63,7 +63,7 @@ class SubmitLightningTalk extends Component {
                 <div className="text-center mt-4">
                     <Button
                         text='Submit Video'
-                        cssClass='btn lime darken-4'
+                        cssClass='btn orange darken-4'
                         clicked={this.submitNewLightningTalk}
                     />
                 </div>
