@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import Amplify, {Auth, API} from 'aws-amplify';
+import {connect} from "react-redux";
+import Amplify, {API} from 'aws-amplify';
+
+import * as reduxAction from "../../store/actions/actions";
 import config from '../../aws-exports';
 import Form from '../UI/Form/Form';
 import Input from '../UI/Input/Input';
@@ -11,44 +14,26 @@ Amplify.configure(config);
 
 class SubmitLightningTalk extends Component {
     state = {
-        username: '',
         title: '',
         url: '',
         description: 'No description was provided for the video',
         points: 0,
     }
 
-    componentDidMount() {
-        // Get use's info
-        Auth.currentAuthenticatedUser().then(user => this.setState({user}));
-        Auth.currentUserInfo()
-            .then(user => {
-                this.setState({
-                    username: user.username,
-                });
-            })
-            .catch(error => console.log('Error retrieving user\' info: ', error));
-    }
+    // Listen to input fields changes
+    onChange = (key, value) => this.setState(() => {return {[key]: value}});
 
-    onChange = (key, value) => {
-        this.setState({
-            [key]: value
-        });
-    }
-
-    submitNewLightningTalk = async() => {
-        let apiName = 'lightning-talk-pollingCRUD';
-        let path = '/lightning-talk-polling';
-        let talkData = {
+    // Submit new video
+    submitNewLightningTalk = () => {
+        let lightningTalkVideo = {
             body: {
-                ...this.state
+                ...this.state,
+                username: this.props.username
             }
         }
-        API.post(apiName, path, talkData)
-            .then(msg => {
-                this.props.history.push('/');
-                console.log('Submitted successfully: ', msg);
-            })
+
+        API.post(config.api_gateway_path, `/${config.sub_api_gateway_path}`, lightningTalkVideo)
+            .then(() => this.props.history.push('/'))
             .catch(error => console.log('Error submitting: ', error));
     }
 
@@ -75,14 +60,16 @@ class SubmitLightningTalk extends Component {
                     rows='4'
                     onChange={event => this.onChange('description', event.target.value)}
                 />
-                <Button
-                    text='Submit Video'
-                    cssClass='btn lime darken-4'
-                    clicked={this.submitNewLightningTalk}
-                />
+                <div className="text-center mt-4">
+                    <Button
+                        text='Submit Video'
+                        cssClass='btn lime darken-4'
+                        clicked={this.submitNewLightningTalk}
+                    />
+                </div>
             </Form>
         );
     }
 }
 
-export default withRouter(SubmitLightningTalk);
+export default withRouter(connect(reduxAction.mapStateToProps)(SubmitLightningTalk));

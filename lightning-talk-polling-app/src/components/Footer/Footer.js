@@ -2,7 +2,7 @@ import React from 'react';
 import cssClass from './Footer.css'
 
 const footer = () => (
-    <footer className={cssClass["footer-bottom-stick"] + " page-footer font-small orange lighten-4"}>
+    <footer className={cssClass.footerBottomStick + " page-footer font-small orange lighten-4"}>
         <div className="footer-copyright pt-2 text-center">
             © 2018 Copyright <a href="https://wiredcraft.com/" target='_blank'>Wiredcraft</a> Full-stack Developer Test
         </div>

@@ -1,9 +1,9 @@
-.card-text {
+.cardText {
     overflow: auto;
     height: 80px;
 }
 
-.card-title {
+.cardTitle {
     overflow: auto;
     height: 40px;
 }

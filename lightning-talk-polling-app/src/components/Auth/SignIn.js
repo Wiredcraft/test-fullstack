@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {Auth} from 'aws-amplify';
 import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Auth} from 'aws-amplify';
+
+import * as reduxAction from '../../store/actions/actions';
+import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
-import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
-import Navbar from '../Navbar/Navbar';
-import {connect} from 'react-redux';
-import * as reduxActionTypes from '../../store/actions';
+
 
 class SignIn extends Component {
     state = {
@@ -14,18 +15,17 @@ class SignIn extends Component {
         password: '',
     };
 
+    // Listen to input fields changes
     onChange = (key, value) => this.setState(() => {return {[key]: value}});
 
     signIn = () => {
-        // const {history} = this.props;
         Auth.signIn(this.state.username, this.state.password)
             .then((response) => {
+                // Update state in redux store
                 this.props.onAuthenticate(response.username);
                 this.props.history.push('/');
             })
             .catch(error => console.log('Error sing in: ', error));
-
-
     };
 
     render() {
@@ -43,24 +43,16 @@ class SignIn extends Component {
                     placeholder='Password'
                     onChange={event => this.onChange('password', event.target.value)}
                 />
-                <Button
-                    text='Login'
-                    cssClass='btn lime darken-4'
-                    clicked={this.signIn}
-                />
+                <div className="text-center mt-4">
+                    <Button
+                        text='Login'
+                        cssClass='text-center mt-4 btn lime darken-4'
+                        clicked={this.signIn}
+                    />
+                </div>
             </AuxiliaryComponent>
         );
     }
 }
 
-// Dispatch action
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuthenticate: (username) => dispatch({
-            type: reduxActionTypes.AUTHENTICATE,
-            username: username
-        })
-    }
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(SignIn))
+export default withRouter(connect(null, reduxAction.mapDispatchToProps)(SignIn))

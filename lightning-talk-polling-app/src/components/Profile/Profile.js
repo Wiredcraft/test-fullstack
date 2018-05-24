@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {API, Auth} from "aws-amplify/lib/index";
 import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
+import * as reduxAction from "../../store/actions/actions";
+import {connect} from "react-redux";
+import config from '../../aws-exports';
 
 class Profile extends Component {
     state = {
@@ -16,39 +19,34 @@ class Profile extends Component {
 
     componentDidMount() {
         // Get use's info
-        // todo: check difference between  currentAuthenticatedUser and currentUserInfo
-        // Auth.currentAuthenticatedUser().then(user => this.setState({user}));
         Auth.currentUserInfo()
             .then(user => {
-                this.setState({
+                this.setState(() => {return {
                     username: user.username,
                     email: user.attributes.email,
                     email_verified: user.attributes.email_verified,
                     phone_number: user.attributes.phone_number,
                     phone_number_verified: user.attributes.phone_number_verified,
                     id: user.id,
-                });
-                this.fetch();
+                }});
+                this.fetchUsersVideos();
             })
-            .catch(error => console.log('Error retrieving user\' info: ', error));
-
+            .catch(error => {
+                // Force the user to log out
+                this.props.onSignOut();
+                this.props.history.push('/authenticate');
+                console.log('Error retrieving user\'s info. Force user to log out: ', error);
+            });
     }
 
-    fetch = async () => {
-        this.setState(() => {
-            return {
-                loading: true
-            }
-        });
-
-        API.get('lightning-talk-pollingCRUD', `/lightning-talk-polling/${this.state.username}`)
-            .then(usersVideos => this.setState({usersVideos: usersVideos}))
+    fetchUsersVideos = () => {
+        API.get(config.api_gateway_path, `/${config.sub_api_gateway_path}/${this.state.username}`)
+            .then(usersVideos => this.setState(() => {return{usersVideos: usersVideos}}))
             .catch (err => console.log(err));
     }
 
     render() {
         let usersVideo = this.state.usersVideos.map((video) => {
-            console.log('video ', video);
            return (
                <a
                    key={video.publishDate}
@@ -58,8 +56,7 @@ class Profile extends Component {
                >
                    {video.title}
                </a>
-               )
-        });
+           )});
 
         return (
             <AuxiliaryComponent>
@@ -80,4 +77,4 @@ class Profile extends Component {
     }
 }
 
-export default withRouter(Profile);
+export default withRouter(connect(null, reduxAction.mapDispatchToProps)(Profile));

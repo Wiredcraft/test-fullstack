@@ -1,8 +1,8 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actions';
 
 const initialState = {
     isUserAuthenticated: false,
-    username: 'Guest'
+    username: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isUserAuthenticated: false,
-                username: 'Guest'
+                username: ''
             };
     }
 

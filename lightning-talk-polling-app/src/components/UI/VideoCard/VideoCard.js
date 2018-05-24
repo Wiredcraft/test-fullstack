@@ -1,21 +1,24 @@
 import React from 'react';
 import Moment from 'react-moment';
 import cssClass from './VideoCard.css';
+import Button from '../Button/Button';
 
 const videoCard = (props) => {
     let upVoteButton;
 
     if (props.hasUserVoted) {
         upVoteButton =
-            <button className={cssClass.invisibleUpVoteButton}><i className="fas fa-check"/></button>;
+            <Button
+                cssClass={cssClass.invisibleUpVoteButton}
+                text={<i className="fas fa-check"/>}
+            />;
     } else {
         upVoteButton =
-            <button
-                className={cssClass.upVote}
-                onClick={props.onUpVote}
-            >
-                <i className="fas fa-plus"/>
-            </button>;
+            <Button
+                cssClass={cssClass.upVote}
+                clicked={props.onUpVote}
+                text={<i className="fas fa-plus"/>}
+            />;
     }
 
     return (
@@ -31,9 +34,9 @@ const videoCard = (props) => {
                     </div>
                 </div>
                 <div className="card-body text-left">
-                    <h5 className={`${cssClass["card-title"]} card-title`}>{props.title}</h5>
+                    <h5 className={`${cssClass.cardTitle} card-title`}>{props.title}</h5>
                     <hr/>
-                    <p className={`${cssClass["card-text"]} card-text`}>{props.description}</p>
+                    <p className={`${cssClass.cardText} card-text`}>{props.description}</p>
                 </div>
                 <div className="rounded-bottom white-text orange darken-4 py-3 d-flex justify-content-between align-items-center">
                     <Moment
@@ -51,7 +54,7 @@ const videoCard = (props) => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default videoCard;

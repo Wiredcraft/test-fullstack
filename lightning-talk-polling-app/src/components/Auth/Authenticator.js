@@ -1,27 +1,26 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
+
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 import ForgotPassword from './ForgotPassword';
 import Form from '../UI/Form/Form';
-import {connect} from 'react-redux';
 
 class Authenticator extends Component {
     state = {
         shouldSingUp: 0
     }
 
+    // Toggle UI between login, register and forgot password
     setSignUpState = (shouldSignUp) => {
-        this.setState({
-           shouldSignUp: shouldSignUp
-        });
+        this.setState(() => {return {shouldSignUp: shouldSignUp}});
     }
 
     renderSwitch(param) {
         switch (param) {
             case 0:
                 return (
-                    <Form messageToUser='Welcome :)' toDo='Sign In'>
+                    <Form messageToUser="Welcome :)" toDo="Sign In">
                         <SignIn/>
                         <hr className='mt-5' width="100%"/>
                         <div className='d-flex justify-content-between'>

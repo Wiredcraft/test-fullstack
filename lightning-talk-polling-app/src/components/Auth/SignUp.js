@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
 import {Auth} from 'aws-amplify';
+
+import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
-import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
-import {connect} from 'react-redux';
+
 
 
 class SignUp extends Component {
@@ -17,6 +18,7 @@ class SignUp extends Component {
         showConfirmation: false
     }
 
+    // Listen to input fields changes
     onChange = (key, value) => this.setState({[key]: value});
 
     signUp = () => {
@@ -80,17 +82,18 @@ class SignUp extends Component {
                         placeholder='+8613022121892'
                         onChange={event => this.onChange('phone_number', event.target.value)}
                     />
-                    <Button
-                        text='Register'
-                        cssClass='btn lime darken-4'
-                        clicked={this.signUp}
-                    />
-                    <Button
-                        text='Already Registered!'
-                        cssClass='btn green darken-4'
-                        clicked={() => {this.setState({showConfirmation : true})}}
-                    />
-
+                    <div className="text-center mt-4">
+                        <Button
+                            text='Register'
+                            cssClass='btn lime darken-4'
+                            clicked={this.signUp}
+                        />
+                        <Button
+                            text='Already Registered!'
+                            cssClass='btn green darken-4'
+                            clicked={() => {this.setState({showConfirmation : true})}}
+                        />
+                    </div>
                 </AuxiliaryComponent>
                 :
                 <AuxiliaryComponent>
@@ -100,16 +103,18 @@ class SignUp extends Component {
                         placeholder='123456'
                         onChange={event => this.onChange('authCode', event.target.value)}
                     />
-                    <Button
-                        text='Confirm Registration'
-                        cssClass='btn btn-cyan'
-                        clicked={this.confirmSignUp}
-                    />
-                    <Button
-                        text='Resend Code'
-                        cssClass='btn btn-danger'
-                        clicked={this.resendSignUp}
-                    />
+                    <div className="text-center mt-4">
+                        <Button
+                            text='Confirm Registration'
+                            cssClass='btn btn-cyan'
+                            clicked={this.confirmSignUp}
+                        />
+                        <Button
+                            text='Resend Code'
+                            cssClass='btn btn-danger'
+                            clicked={this.resendSignUp}
+                        />
+                    </div>
                 </AuxiliaryComponent>
         );
     }

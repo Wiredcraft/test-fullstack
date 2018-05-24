@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
 import {Auth} from 'aws-amplify';
+
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
@@ -21,24 +22,18 @@ class ForgotPassword extends Component {
 
     forgotPassword = () => {
         Auth.forgotPassword(this.state.username)
-            .then(() => {
-                this.setState({ showConfirmation: true });
-                console.log('Successfully send code to user\'s phone for password forgotten');
-            })
+            .then(() => {this.setState(() => {return {showConfirmation: true}})})
             .catch(error => console.log('Error forgot password: ', error));
     }
 
     forgotPasswordSubmit = () => {
         Auth.forgotPasswordSubmit(this.state.username, this.state.authCode, this.state.password)
-            .then(() => {
-                this.props.history.push('/');
-                console.log('Successfully set new password')
-            })
+            .then(() => this.props.history.push('/'))
             .catch(error => console.log('Error setting new password: ', error))
     }
 
     render() {
-        const { showConfirmation } = this.state;
+        const {showConfirmation} = this.state;
         return (
             !showConfirmation ?
                 <AuxiliaryComponent>

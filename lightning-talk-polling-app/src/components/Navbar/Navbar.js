@@ -1,35 +1,18 @@
 import React, {Component} from 'react';
-import {Route, Link, Switch} from 'react-router-dom';
-import Home from '../Home/Home';
-import SubmitLightningTalk from '../LightningTalk/SubmitLightningTalk';
-import AuxiliaryComponent from '../../hoc/AuxiliaryComponent';
-import cssClass from './Navbar.css';
-import {Auth} from "aws-amplify/lib/index";
-import Authenticator from "../Auth/Authenticator";
-import Profile from "../Profile/Profile";
-import PrivateRoute from '../Router/Router';
+import {withRouter, Route, Link, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {Auth} from "aws-amplify/lib/index";
 
-import { withRouter } from 'react-router-dom'
-import * as reduxActionTypes from "../../store/actions";
-
+import * as reduxAction from "../../store/actions/actions";
+import AuxiliaryComponent from '../../hoc/AuxiliaryComponent';
+import PrivateRoute from '../Router/Router';
+import SubmitLightningTalk from '../SubmitLightningTalk/SubmitLightningTalk';
+import Authenticator from "../Auth/Authenticator";
+import Home from '../Home/Home';
+import Profile from "../Profile/Profile";
+import cssClass from './Navbar.css';
 
 class Navbar extends Component {
-
-    componentWillMount() {
-        // Get use's info
-        Auth.currentAuthenticatedUser()
-            .then(response => {
-                this.props.onAuthenticate();
-                this.setState(() => {return {username: response.username}});
-            })
-            .catch(error => {
-                // Force the user to log out
-                this.props.onSignOut();
-                this.props.history.push('/authenticate');
-                console.log('Error retrieving user\'s info. Force user to log out: ', error);
-            });
-    }
 
     signOut = () => {
         Auth.signOut()
@@ -96,7 +79,7 @@ class Navbar extends Component {
                                             aria-labelledby="navbarDropdownMenuLink"
                                         >
                                             <span className="dropdown-item">Hi! {this.props.username}</span>
-                                            <div className="dropdown-divider"></div>
+                                            <div className="dropdown-divider"/>
                                             <Link className="dropdown-item" to="/profile">Profile</Link>
                                             <Link
                                                 to="/authenticate"
@@ -134,23 +117,4 @@ class Navbar extends Component {
     }
 }
 
-// Receive state
-const mapStateToProps = state => {
-    return {
-        isUserAuthenticated: state.isUserAuthenticated,
-        username: state.username
-    }
-}
-
-// Dispatch action
-const mapDispatchToProps = dispatch => {
-    return {
-        onAuthenticate: (username) => dispatch({
-            type: reduxActionTypes.AUTHENTICATE,
-            username: username
-        }),
-        onSignOut: () => dispatch({type: reduxActionTypes.SIGN_OUT})
-    }
-}
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
+export default withRouter(connect(reduxAction.mapStateToProps, reduxAction.mapDispatchToProps)(Navbar));
