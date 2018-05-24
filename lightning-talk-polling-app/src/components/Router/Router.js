@@ -11,23 +11,23 @@ import {
 import Home from '../Home/Home';
 import SubmitLightningTalk from '../LightningTalk/SubmitLightningTalk';
 import Profile from "../Profile/Profile";
+import {connect} from 'react-redux';
+import * as reduxActionTypes from '../../store/actions';
+
 
 class PrivateRoute extends Component {
-    state = {
-        loaded: false,
-        isAuthenticated: false
-    }
 
     componentDidMount() {
-        this.authenticate();
         this.unlisten = this.props.history.listen(() => {
             Auth.currentAuthenticatedUser()
-                .then(user => console.log('Current authenticated user: ', user))
-                .catch(() => {
+                .then((response) => {
+                    this.props.onAuthenticate(response.username);
+                })
+                .catch(error => {
                     // Force the user to log out
-                    if (this.state.isAuthenticated) {
-                        this.setState({isAuthenticated: false});
-                    }
+                    this.props.onSignOut();
+                    this.props.history.push('/authenticate');
+                    console.log('Error retrieving user\'s info. Force user to log out: ', error);
                 });
         })
     }
@@ -36,57 +36,37 @@ class PrivateRoute extends Component {
         this.unlisten();
     }
 
-    authenticate() {
-        Auth.currentAuthenticatedUser()
-            .then(() => {
-                this.setState({
-                    loaded: true,
-                    isAuthenticated: true
-                })
-            })
-            .catch(() => this.props.history.push('/authenticate'));
-    }
-
     render() {
         const {component: Component, ...rest} = this.props;
-        const {loaded, isAuthenticated} = this.state;
-
-        if (!loaded) return null;
 
         return (
             <Route
                 {...rest}
                 render={props => {
-                    return isAuthenticated ? (<Component {...props}/>) : (<Redirect to={{pathname: "/authenticate"}}/>)
+                    return this.props.isUserAuthenticated ? (<Component {...props}/>) : (<Redirect to={{pathname: "/authenticate"}}/>)
                 }}
             />
         );
     }
 }
 
-PrivateRoute = withRouter(PrivateRoute);
+// Receive state
+const mapStateToProps = state => {
+    return {
+        isUserAuthenticated: state.isUserAuthenticated,
+        username: state.username
+    }
+}
 
-// const Routes = () => (
-//     <Router>
-//         <Switch>
-//             <Route
-//                 path={'/authenticate'}
-//                 component={Authenticator}
-//             />
-//             <PrivateRoute
-//                 path={'/profile'}
-//                 component={Profile}
-//             />
-//             <PrivateRoute
-//                 path={'/submit-lightning-talk'}
-//                 component={SubmitLightningTalk}
-//             />
-//             <PrivateRoute
-//                 path={'/'}
-//                 component={Home}
-//             />
-//         </Switch>
-//     </Router>
-// );
+// Dispatch action
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuthenticate: (username) => dispatch({
+            type: reduxActionTypes.AUTHENTICATE,
+            username: username
+        }),
+        onSignOut: () => dispatch({type: reduxActionTypes.SIGN_OUT})
+    }
+}
 
-export default PrivateRoute;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PrivateRoute));

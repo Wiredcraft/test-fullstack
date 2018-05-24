@@ -4,6 +4,8 @@ import {Auth} from 'aws-amplify';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
+import {connect} from 'react-redux';
+
 
 class SignUp extends Component {
     state = {
@@ -113,4 +115,11 @@ class SignUp extends Component {
     }
 }
 
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         onDisconnect: () => dispatch({type: 'DISCONNECT'})
+//     }
+// }
+
 export default withRouter(SignUp);
+// export default withRouter(connect(null, mapDispatchToProps())(SignUp));

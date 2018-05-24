@@ -5,7 +5,6 @@ import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
 
 class Profile extends Component {
     state = {
-        user: {},
         username: '',
         email: '',
         email_verified: false,

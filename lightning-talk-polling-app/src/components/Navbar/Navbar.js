@@ -8,23 +8,36 @@ import {Auth} from "aws-amplify/lib/index";
 import Authenticator from "../Auth/Authenticator";
 import Profile from "../Profile/Profile";
 import PrivateRoute from '../Router/Router';
+import {connect} from 'react-redux';
+
+import { withRouter } from 'react-router-dom'
+import * as reduxActionTypes from "../../store/actions";
+
 
 class Navbar extends Component {
-    state = {
-        username: '',
-        isAuthenticated: false
-    }
 
-    componentDidMount() {
+    componentWillMount() {
         // Get use's info
         Auth.currentAuthenticatedUser()
-            .then(response => this.setState(() => {
-                return {
-                    username: response.username,
-                    isAuthenticated: true
-                }}))
-            .catch(error => console.log('Error retrieving user\' info: ', error));
+            .then(response => {
+                this.props.onAuthenticate();
+                this.setState(() => {return {username: response.username}});
+            })
+            .catch(error => {
+                // Force the user to log out
+                this.props.onSignOut();
+                this.props.history.push('/authenticate');
+                console.log('Error retrieving user\'s info. Force user to log out: ', error);
+            });
+    }
 
+    signOut = () => {
+        Auth.signOut()
+            .then(() => {
+                this.props.onSignOut();
+                this.props.history.push('/authenticate');
+            })
+            .catch(error => console.log('Error signing out: ', error));
     }
 
     render() {
@@ -70,34 +83,29 @@ class Navbar extends Component {
                                     <i className="fas fa-user fa-2x mx-1"/>
                                 </a>
                                 {
-                                    !this.state.isAuthenticated && (
+                                    !this.props.isUserAuthenticated ?
                                         <div
                                             className="dropdown-menu dropdown-primary dropdown-menu-right"
                                             aria-labelledby="navbarDropdownMenuLink"
                                         >
                                             <Link className="dropdown-item" to="/authenticate">Sign In</Link>
                                         </div>
-                                    )
-                                }
-                                {
-                                    this.state.isAuthenticated && (
+                                    :
                                         <div
                                             className="dropdown-menu dropdown-primary dropdown-menu-right"
                                             aria-labelledby="navbarDropdownMenuLink"
                                         >
-                                            <span className="dropdown-item">Hi! {this.state.username}</span>
+                                            <span className="dropdown-item">Hi! {this.props.username}</span>
                                             <div className="dropdown-divider"></div>
                                             <Link className="dropdown-item" to="/profile">Profile</Link>
                                             <Link
                                                 to="/authenticate"
                                                 className="dropdown-item"
-                                                onClick={() => {
-                                                Auth.signOut()
-                                                    .then(() => {this.props.history.push('/authenticate')})
-                                                    .catch(error => console.log('Error signing out: ', error));
-                                            }}>Sign Out</Link>
+                                                onClick={this.signOut}
+                                            >
+                                                Sign Out
+                                            </Link>
                                         </div>
-                                    )
                                 }
                             </li>
                         </ul>
@@ -126,4 +134,23 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+// Receive state
+const mapStateToProps = state => {
+    return {
+        isUserAuthenticated: state.isUserAuthenticated,
+        username: state.username
+    }
+}
+
+// Dispatch action
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuthenticate: (username) => dispatch({
+            type: reduxActionTypes.AUTHENTICATE,
+            username: username
+        }),
+        onSignOut: () => dispatch({type: reduxActionTypes.SIGN_OUT})
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
