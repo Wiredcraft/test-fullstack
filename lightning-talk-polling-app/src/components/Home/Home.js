@@ -32,7 +32,7 @@ class Home extends Component {
         const {username, publishDate, points} = lightningTalkVideo;
         const body = {username, publishDate, points};
 
-        API.put(config.api_gateway_path, `/${config.sub_api_gateway_path}/vote`, {body: body})
+        API.put(apiGateway.api_path, `/${apiGateway.path}/vote`, {body: body})
             .then(() => {
                 // Get the name of the current user who up voted this video
                 // Add username to the list of users who up voted this video

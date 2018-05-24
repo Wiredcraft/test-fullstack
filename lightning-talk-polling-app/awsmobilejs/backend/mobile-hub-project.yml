@@ -9,31 +9,31 @@ features:
           sdk-generation-stage-name: Development
         paths:
           /lightning-talk-polling: !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/lightningtalkpolling-20180525021535.zip
+            codeFilename: uploads/lightningtalkpolling-20180525025114.zip
             description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: OMFnYbfnfp5kjV7US7zOVBQ9iSBbP4jSWEfROhkZx9Q=
+            hashcode: 9HSKworI0tU1vimzd2IWPIErm7lnUGqnCiYkbd6AIyY=
             memorySize: '128'
-            modified: '2018-05-24T18:16:11.336+0000'
+            modified: '2018-05-24T18:51:48.536+0000'
             name: lightningtalkpolling
             runtime: nodejs6.10
             timeout: '3'
-            version: c4aLGdYtU6uK.2ZcoskHhPudcS71P2JP
+            version: VzqLJsAzLyQNCoL0kG_sjxBl31xpJRxo
           '/lightning-talk-polling/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/lightningtalkpolling-20180525021535.zip
+            codeFilename: uploads/lightningtalkpolling-20180525025114.zip
             description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: OMFnYbfnfp5kjV7US7zOVBQ9iSBbP4jSWEfROhkZx9Q=
+            hashcode: 9HSKworI0tU1vimzd2IWPIErm7lnUGqnCiYkbd6AIyY=
             memorySize: '128'
-            modified: '2018-05-24T18:16:11.336+0000'
+            modified: '2018-05-24T18:51:48.536+0000'
             name: lightningtalkpolling
             runtime: nodejs6.10
             timeout: '3'
-            version: LVVKzn3ZW4FOyho95RHnAMf450P4ztux
+            version: s7wE02vzQPtpxIKxG3VZk3IvALQ6oXLj
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
