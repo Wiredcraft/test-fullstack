@@ -9,6 +9,8 @@ http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.am
 ```
 **Distributed through aws CloudFront:**
 
+***Why am I sharing a link to CloudFront? overkill for the test! true. It came as a default feature with AWS Mobile Hub sevice, I'm just sharing with you my experiencce with the test :)***
+
 CloudFront caches resources, it takes time to reflect latest update, as of now it is still serving the old version of the app :(
 ```sh
 https://d2qmxa1ncc37w3.cloudfront.net
