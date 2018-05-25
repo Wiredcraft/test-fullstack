@@ -3,7 +3,7 @@
 # Quick start
 - Try the app online. You can watch videos on the app's page. Please note the app is optimized for Youtube videos only, please use VPN.
 
-**Hosted at:**
+**Hosted at:** (up to date)
 ```sh
 http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/submit-lightning-talk
 ```
