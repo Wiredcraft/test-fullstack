@@ -49,11 +49,12 @@ When I read Wiredcraft’s README test file I understood that you don’t just w
 
 Serverless applications app running on AWS, using AWS Mobile Hub service. the serverless app 
 comes with the following services:
-Amazon Cognito User Pools and Federated Identities
-Amazon API Gateway, AWS Lambda, and Amazon DynamoDB
-Cross-origin resource sharing (CORS) for the API
-IAM roles and policy for the Lambda execution role
-IAM roles and policy for the user roles that access API routes after authentication
+
+Amazon Cognito User Pools and Federated Identities  
+Amazon API Gateway, AWS Lambda, and Amazon DynamoDB  
+Cross-origin resource sharing (CORS) for the API  
+IAM roles and policy for the Lambda execution role  
+IAM roles and policy for the user roles that access API routes after authentication  
 
 - **Why I used it**
 
@@ -68,7 +69,7 @@ I’m a lazy programmer! I like to use tools to build apps fast AND work good. A
 **Business reason**
 - Cheap! Using serverless app, you pay per request you make to the API not for a server running 24/7
 - Very, very, very fast starting. Using AWS Mobile CLI you could launch Cognito, DaynamoDB, S3, Cloudfront and API Gateway, all working together in harmony
-- Very fast to publish new version of the app to your users. Simply run the command one command from terminal
+- Very fast to publish new version of the app to your users. Simply run one command from terminal
 - Fast development. Amplify a very nice new API. AWS launched a new API called Amplify. What you needed to do in 10 lines of code before you can do it in one line of code using Amplify API
 - Scalability made easy via console
 - Backup made easy via aws console
