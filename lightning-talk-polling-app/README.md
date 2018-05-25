@@ -1,20 +1,32 @@
 # Hello Wiredcraft!
 
 # Quick start
-- Try the app online here (You can watch videos on the app's page. Please note the app is optimized for Youtube videos only)
+- Try the app online. You can watch videos on the app's page. Please note the app is optimized for Youtube videos only, please use VPN.
+
+**Hosted at:**
+```sh
+http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/submit-lightning-talk
+```
+**Distributed through aws CloudFront:**
+
+CloudFront caches resources, it takes time to reflect latest update, as of now it is still serving the old version of the app :(
 ```sh
 https://d2qmxa1ncc37w3.cloudfront.net
 ```
 - Check frontend source code
+
 ```sh
 $ cd lightning-talk-polling-app/src
 ```
 - Check backend source code
+
 ```sh
 $ cd lightning-talk-polling-app/awsmobilejs/backend
 ```
 - Run the app locally on your machine
-You can’t! this is a serverless app running on AWS, uses AWS Mobile Hub service. to run it you’ll need AWS account and launch the app under your AWS account. For more details please check this link about [awsmobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html)
+
+This is a serverless app running on AWS, uses AWS Mobile Hub service. To run it you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [awsmobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html) (I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github)
+
 # More details
 When I read Wiredcraft’s README test file I understood that you don’t just want me to finish the app but also show you how I think, why I did what I did and how I did it. This is why I’m writing this details section.
 
@@ -27,6 +39,7 @@ When I read Wiredcraft’s README test file I understood that you don’t just w
 - As I build, I learn, as I learn new techniques and best practices I refactor my code to apply new techniques. If I learn something new to improve my code I don’t mind to rewrite it - especially if it is going to save time in the future update or will be easier for the team to use
 - I keep a list open, whenever I have and idea about the code to improve or to do I write it down so I don’t forgot it. I use the same list to track bugs I find during development. Later I come back to the list to check tasks or bugs
 - I use Git branch to test new things before adding it to master
+- I like to do major code refactoring whenever I finish a major step or task (sometimes it is hard to come up with a perfect plan when you don't have enough knowledge/experience about a framework you'are using) 
 
 # The tech stack used to build the app
 ## Backend
@@ -87,11 +100,17 @@ This is the first time I use React (I worked with ReactNative for a short time a
 - Use modals to communicate with the user
 - Try AWS CodePipeline in the project (I’ve never used it before, I liked what I read about it)
 
-## Why I didn’t user third party form validation library
+## Why I didn’t use third party form validation library
 Learning and having fun with RegExp 
 
 # Last word
 The interview was about a month ago. These are the last two months of my school, I’m very busy, I couldn’t find the time to work on the test. It took me about 8 days to finish the app you are using right now.
+
+I took so long to submit the test. I truly didn't have time to do it
+
+I'm taking the job and the test you gave me very seriously
+
+I did the best I could with the amount of time and knowledge I had
 
 Thank you for the opportunity!
 
@@ -100,6 +119,5 @@ I hope you will like the app!
 If you find any bugs, just say to them shooow, shoooow shoooow and they will go away! Trust me it works!
 
 A business feedback is never personal, your feedback and comments are very welcome
-
 
 **Have a great day Wiredcraft team :)**
