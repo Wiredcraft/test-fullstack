@@ -56,6 +56,7 @@ class ForgotPassword extends Component {
                         isValidInput={this.state.username}
                         validMessage='Username'
                         invalidMessage='Username: should contain only letters, number or both'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('username', event.target.value)}
                     />
                     <Button
@@ -73,6 +74,7 @@ class ForgotPassword extends Component {
                         isValidInput={this.state.username}
                         validMessage='Username'
                         invalidMessage='Username: should contain only letters, number or both'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('username', event.target.value)}
                     />
                     <Input
@@ -82,6 +84,7 @@ class ForgotPassword extends Component {
                         isValidInput={this.state.password}
                         validMessage='Password'
                         invalidMessage='Password: should contain lowercase, uppercase, number, character, and at least length of 8'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('password', event.target.value)}
                     />
                     <Input
@@ -91,6 +94,7 @@ class ForgotPassword extends Component {
                         isValidInput={this.state.authCode}
                         validMessage='Confirmation code'
                         invalidMessage='Confirmation code: should be 6-digits. check your phone messages'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('authCode', event.target.value)}
                     />
                     <Button

@@ -72,6 +72,7 @@ class SignUp extends Component {
                         isValidInput={this.state.username}
                         validMessage='Username'
                         invalidMessage='Username: should contain only letters, number or both'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('username', event.target.value)}
                     />
                     <Input
@@ -81,6 +82,7 @@ class SignUp extends Component {
                         isValidInput={this.state.password}
                         validMessage='Password'
                         invalidMessage='Password: should contain lowercase, uppercase, number, character, and at least length of 8'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('password', event.target.value)}
                     />
                     <Input
@@ -90,6 +92,7 @@ class SignUp extends Component {
                         isValidInput={this.state.phone_number}
                         validMessage='Phone number'
                         invalidMessage='Phone number: should have + sign, plus 13 digits, example, +8613022121892'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('phone_number', event.target.value)}
                     />
                     <div className="text-center mt-4">
@@ -114,6 +117,7 @@ class SignUp extends Component {
                         isValidInput={this.state.authCode}
                         validMessage='Confirmation code'
                         invalidMessage='Confirmation code: should be 6-digits. check your phone messages'
+                        isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('authCode', event.target.value)}
                     />
                     <div className="text-center mt-4">

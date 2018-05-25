@@ -18,9 +18,10 @@ class SubmitLightningTalk extends Component {
     state = {
         title: '',
         url: '',
-        description: 'No description was provided for the video',
+        description: '',
         points: 0,
-        isFormInitialState: true
+        isFormInitialState: true,
+        isAllInputSet: false
     }
 
     // Listen to input fields changes
@@ -37,6 +38,14 @@ class SubmitLightningTalk extends Component {
         } else {
             this.setState(() => {return {[key]: ''}});
         }
+
+        // Check whether the user has input all the required fields
+        if (this.state.title && this.state.title && this.state.description) {
+            this.setState(() => {return {isAllInputSet: true}});
+        } else {
+            this.setState(() => {return {isAllInputSet: false}});
+        }
+
     };
 
     // Submit new video
@@ -48,9 +57,11 @@ class SubmitLightningTalk extends Component {
             }
         }
 
-        API.post(apiGateway.api_path, `/${apiGateway.path}`, lightningTalkVideo)
-            .then(() => this.props.history.push('/'))
-            .catch(error => console.log('Error submitting: ', error));
+        if (this.state.isAllInputSet) {
+            API.post(apiGateway.api_path, `/${apiGateway.path}`, lightningTalkVideo)
+                .then(() => this.props.history.push('/'))
+                .catch(error => console.log('Error submitting: ', error));
+        }
     }
 
     render() {
@@ -64,7 +75,8 @@ class SubmitLightningTalk extends Component {
                     required={true}
                     isValidInput={this.state.title}
                     validMessage='Title'
-                    invalidMessage='Title'
+                    invalidMessage='Title: at least one letter, no more than 34 letters'
+                    isFormInitialState={this.state.isFormInitialState}
                     onChange={event => this.onChange('title', event.target.value)}
                 />
                 <Input
@@ -74,12 +86,17 @@ class SubmitLightningTalk extends Component {
                     isValidInput={this.state.url}
                     validMessage='Youtube link'
                     invalidMessage='Youtube link'
+                    isFormInitialState={this.state.isFormInitialState}
                     onChange={event => this.onChange('url', event.target.value)}
                 />
                 <Textarea
                     label='Description'
                     placeholder='What is special about the video'
                     rows='4'
+                    isValidInput={this.state.description}
+                    validMessage='Description'
+                    invalidMessage='Description: at least one letter, no more than 300'
+                    isFormInitialState={this.state.isFormInitialState}
                     onChange={event => this.onChange('description', event.target.value)}
                 />
                 <div className="text-center mt-4">

@@ -35,6 +35,10 @@ const validate = (key, value) => {
             const isValidURL =  value.match(YOUTUBE_LINK);
             return (isValidURL ? true : false);
             break;
+        case 'description':
+            const isValidDescription =  value.match(VIDEO_TITLE);
+            return (isValidDescription ? true : false);
+            break;
         default:
             return false;
     }
