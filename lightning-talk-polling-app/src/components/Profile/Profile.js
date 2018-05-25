@@ -4,7 +4,6 @@ import {API, Auth} from "aws-amplify/lib/index";
 import AuxiliaryComponent from "../../hoc/AuxiliaryComponent";
 import * as reduxAction from "../../store/actions/actions";
 import {connect} from "react-redux";
-import config from '../../aws-exports';
 import apiGateway from "../../api-gateway-config";
 
 class Profile extends Component {

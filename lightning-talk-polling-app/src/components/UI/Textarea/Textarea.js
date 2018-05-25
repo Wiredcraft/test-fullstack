@@ -9,6 +9,7 @@ const textarea = (props) => (
             className="form-control"
             placeholder={props.placeholder}
             rows={props.rows}
+            maxLength={300}
             onChange={props.onChange}
         />
     </AuxiliaryComponent>
