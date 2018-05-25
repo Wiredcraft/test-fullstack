@@ -1,7 +1,7 @@
 # Hello Wiredcraft!
 
 # Quick start
-- Try the app online here
+- Try the app online here (You can watch videos on the app's page. Please note the app is optimized for Youtube videos only)
 ```sh
 https://d2qmxa1ncc37w3.cloudfront.net
 ```
