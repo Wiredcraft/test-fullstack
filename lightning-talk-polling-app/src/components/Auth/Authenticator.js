@@ -20,7 +20,7 @@ class Authenticator extends Component {
         switch (param) {
             case 0:
                 return (
-                    <Form messageToUser="Welcome :)" toDo="Sign In">
+                    <Form title='Sign In'>
                         <SignIn/>
                         <hr className='mt-5' width="100%"/>
                         <div className='d-flex justify-content-between'>
@@ -32,7 +32,7 @@ class Authenticator extends Component {
                 break;
             case 1:
                 return (
-                    <Form messageToUser='Welcome :)' toDo='Register'>
+                    <Form title='Register'>
                         <SignUp/>
                         <hr className='mt-5' width="100%"/>
                         <div className='d-flex justify-content-between'>
@@ -44,7 +44,7 @@ class Authenticator extends Component {
                 break;
             case 2:
                 return (
-                    <Form messageToUser='We will give a new password' toDo='Forgot Password'>
+                    <Form title='Forgot Password'>
                         <ForgotPassword/>
                         <hr className='mt-5' width="100%"/>
                         <div className='d-flex justify-content-between'>
