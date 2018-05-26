@@ -77,7 +77,7 @@ class Home extends Component {
         });
 
         return (
-          <div className={cssClass.videoCardsContainer + " container mt-5"}>
+          <div className={cssClass.videoCardsContainer + " container mt-3"}>
               <div className="row d-flex justify-content-start">{lightningTalkVideosVideoCards}</div>
           </div>
         )

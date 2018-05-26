@@ -6,6 +6,8 @@ import Button from '../Button/Button';
 const videoCard = (props) => {
     let upVoteButton;
 
+    // If the user's name is in the list of users who had voted for this video
+    // then don't show him the upvoting button
     if (props.hasUserVoted) {
         upVoteButton =
             <Button
