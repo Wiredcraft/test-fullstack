@@ -1,38 +1,44 @@
-# Hello Wiredcraft!
+# Wiredcraft Full-stack Developer Test
 
-# Quick start
-- Try the app online. You can watch videos on the app's page. Please note the app is optimized for Youtube videos only, please use VPN.
+## Quick Start
+
+- Try the app online 
+ 
+You can watch videos on the app's page. Please note the app is optimized for Youtube videos only, please use VPN.
 
 **Hosted at:** (up to date)
-```sh
-http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/submit-lightning-talk
-```
+
+[http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/](http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/)
+
 **Distributed through aws CloudFront:**
 
-***Why am I sharing a link to CloudFront? overkill for the test! true. It came as a default feature with AWS Mobile Hub sevice, I'm just sharing with you my experiencce with the test :)***
+***Why am I sharing a link to CloudFront? overkill for the test you might say! true. It came as a default feature with AWS Mobile Hub service that I'm using. I'm just sharing with you my experiencce with the test :)***
 
-CloudFront caches resources, it takes time to reflect latest update, as of now it is still serving the old version of the app :(
-```sh
-https://d2qmxa1ncc37w3.cloudfront.net
-```
-- Check frontend source code
+CloudFront caches resources, it takes time to reflect latest update, you may or may not see the up to date version :(  
+
+[https://d2qmxa1ncc37w3.cloudfront.net](https://d2qmxa1ncc37w3.cloudfront.net)
+
+
+- Check frontend source code folder here
 
 ```sh
 $ cd lightning-talk-polling-app/src
 ```
-- Check backend source code
 
+- Check backend source code folder here
 ```sh
 $ cd lightning-talk-polling-app/awsmobilejs/backend
 ```
-- Run the app locally on your machine
+- Run the app locally on your machine 
+ 
+This is a serverless app running on AWS, uses AWS Mobile Hub service. To run it you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [AWS Mobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html). **I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github. It is up to you :)**
 
-This is a serverless app running on AWS, uses AWS Mobile Hub service. To run it you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [awsmobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html) (I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github)
+## More Details
 
-# More details
-When I read Wiredcraft’s README test file I understood that you don’t just want me to finish the app but also show you how I think, why I did what I did and how I did it. This is why I’m writing this details section.
+In the interview with Maraka and from Wiredcraft’s README test file I understood that you don’t just want me to finish the app but also show you how I think, why I did what I did and how I did it. This is why I’m writing this details section.
 
-# How I approach a new project
+### How I approach a new project
+
 - I do research to check the latest trends
 - Pick frameworks, services to use
 - Learn as much as I can about the frameworks and services I’ve picked, depending on the time I have
@@ -43,9 +49,9 @@ When I read Wiredcraft’s README test file I understood that you don’t just w
 - I use Git branch to test new things before adding it to master
 - I like to do major code refactoring whenever I finish a major step or task (sometimes it is hard to come up with a perfect plan when you don't have enough knowledge/experience about a framework you'are using) 
 
-# The tech stack used to build the app
-## Backend
-- **What I used**
+### The tech stack used to build the app
+
+- **Backend: What I used**
 
 Serverless applications app running on AWS, using AWS Mobile Hub service. the serverless app 
 comes with the following services:
@@ -56,58 +62,64 @@ Cross-origin resource sharing (CORS) for the API
 IAM roles and policy for the Lambda execution role  
 IAM roles and policy for the user roles that access API routes after authentication  
 
-- **Why I used it**
+- **Backend: Why I used it**
 
-**Wiredcraft reason**
+**1- Wiredcraft reason**
 
 In the Wiredcraft’s README test file you wrote “Feel free to use any libraries you would use if this were a real production App” and also in the interview, Makara told me I’m free to use any libraries as long as I **give a good explanation about my decision**.
 
-**Personal reason**
+**2- Personal reason**
 
-I’m a lazy programmer! I like to use tools to build apps fast AND work good. As long as I achieve the client's goal. I care about joy and time more than how much money it will cost, If the client want to pay for it. If there is an easy, fast, and good way to do something I always go for it first before checking the long way.
+I’m a lazy programmer type! I like to use tools to build apps fast AND work good. As long as I achieve what the client's wants. I care about joy and time more than how much money it will cost, If the client want to pay for it. If there is an easy, fast, and good way to do something I always go for it first before checking the long way.
 
-**Business reason**
+**3- Business reason**
 - Cheap! Using serverless app, you pay per request you make to the API not for a server running 24/7
-- Very, very, very fast starting. Using AWS Mobile CLI you could launch Cognito, DaynamoDB, S3, Cloudfront and API Gateway, all working together in harmony
-- Very fast to publish new version of the app to your users. Simply run one command from terminal
+- Very, very, very fast starting. Saves time. Using AWS Mobile CLI you could launch Cognito, DaynamoDB, S3, Cloudfront and API Gateway, all working together in harmony
+- Very fast to publish new version of the app to your users. Simply run the command `awsmobile publish` from terminal
 - Fast development. Amplify a very nice new API. AWS launched a new API called Amplify. What you needed to do in 10 lines of code before you can do it in one line of code using Amplify API
 - Scalability made easy via console
 - Backup made easy via aws console
 - YOU CAN GO HOME AND SLEEP PEACEFULLY, DON’T HAVE TO WORRY ABOUT THE SERVERS, BECAUSE THERE ARE NONE!
 
-**Why I didn’t use LoopBack**
+**4- Why I didn’t use LoopBack**
 
-I never used it (except I followed a demo before to test and play with it), but I read about it time to time, and I like it. Last year I advised a friend of mine to use it for his business project. I think it is one of the best framework out there today. Especially after IBM bought StrongLoop. Plus there is a dedicated team maintaining LoopBack.
+I never used it (except I followed a demo before to test and play with it), but I read about it time to time, and I like it. I think it is one of the best frameworks out there today. Especially after IBM bought StrongLoop. Plus there is a dedicated team maintaining LoopBack. 
+Since Wiredcraft give me the freedom to choose, I chose a serverless app, otherwise, I would 
+have used LoopBack for sure.
 
-## Frontend
-- **What I used**
 
-React, Redux, bootstrap, mdbootstrap
+- **Frontend: What I used**
 
-- **Why I used it**
+React, Redux, Bootstrap, and MDBootstrap
+
+- **Frontend: Why I used it**
 
 This is the first time I use React (I worked with ReactNative for a short time a long time ago, almost forgot all of it) I chose it because  Wiredcraft uses it, and you advice me to use it, hopefully if I get the job I can use my new learning about React at Wiredcraft. (first MVVC framework I worked with was Angular 4)
 
-# Lightning talk app 
-## Features
+## Lightning talk app 
 
-- All the requirement written in README’S User Story section
-- registration/authentication (a Chinese phone number is needed to confirm registration)
-- User profile page
-- A simple custom made form validation, on the frontend. No third party library was used
-- Screen size responsive. Mobile, tablet, and large screen
+- **Features**
 
-## Thing I didn’t do but wish I had time to do
-- Unit testing
-- Validate user’s input in the backend too
-- Use modals to communicate with the user
-- Try AWS CodePipeline in the project (I’ve never used it before, I liked what I read about it)
+    - All the requirement written in Wiredcraft's README User Story section
+    - registration/authentication (a Chinese phone number is needed to confirm registration)
+    - User profile page
+    - A simple custom made form validation, on the frontend. No third party library was used
+    - Screen size responsive. Mobile, tablet, and large screen
 
-## Why I didn’t use third party form validation library
-Learning and having fun with RegExp 
+- **ThingS I didn’t do but wish I had the time to do**
 
-# Last word
-The interview was about a month ago. These are the last two months of my school, I’m very busy, I couldn’t find the time to work on the test. It took me about 8 days to finish the app you are using right now.
+    - Unit testing
+    - Validate user’s input in the backend too
+    - Use modals to communicate with the user
+    - Try AWS CodePipeline in the project (I’ve never used it before, I liked what I read about it)
+
+- **Why I didn’t use third party form validation library**
+
+    - Learning and having fun with RegExp 
+
+## Last word
+
+The interview was about a month ago. These are the last two months of my school, I’m very busy, I couldn’t find the time to work on the test. It took me about 8 days to finish the app you are using right now
 
 I took so long to submit the test. I truly didn't have time to do it
 
@@ -119,7 +131,7 @@ Thank you for the opportunity!
 
 I hope you will like the app!
 
-If you find any bugs, just say to them shooow, shoooow shoooow and they will go away! Trust me it works!
+If you find any bugs, just say to them shooow, shoooow shoooow and they will go away! Trust me, it works!
 
 A business feedback is never personal, your feedback and comments are very welcome
 
