@@ -69,7 +69,6 @@ class SignIn extends Component {
                     <Button
                         text='Login'
                         cssClass='text-center mt-4 btn orange darken-4'
-                        disabled={this.state.enableSubmit}
                         clicked={this.signIn}
                     />
                 </div>
