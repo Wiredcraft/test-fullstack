@@ -2,7 +2,6 @@
 
 # dependencies
 /node_modules
-/../node_modules
 
 # testing
 /coverage
@@ -29,6 +28,3 @@ aws-exports.*
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
 ~awsmobilejs-*/
-
-#IDE
-/../.idea/
