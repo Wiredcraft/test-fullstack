@@ -1,0 +1,6 @@
+# Dependency directories
+node_modules/
+
+#IDE
+**/.idea/workspace.xml
+**/.idea/tasks.xml
