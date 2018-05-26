@@ -106,7 +106,7 @@ This is the first time I use React (I worked with ReactNative for a short time a
     - A simple custom made form validation, on the frontend. No third party library was used
     - Screen size responsive. Mobile, tablet, and large screen
 
-- **ThingS I didn’t do but wish I had the time to do**
+- **Things I didn’t do but wish I had the time to do**
 
     - Unit testing
     - Validate user’s input in the backend too
