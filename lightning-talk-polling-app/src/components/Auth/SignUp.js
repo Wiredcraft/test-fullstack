@@ -111,7 +111,17 @@ class SignUp extends Component {
                 :
                 <AuxiliaryComponent>
                     <Input
-                        label='Confirmation Code (You will receive a 6-digits SMS message number on your phone)'
+                        label='Username *'
+                        type='text'
+                        placeholder='Username'
+                        isValidInput={this.state.username}
+                        validMessage='Username'
+                        invalidMessage='Username: should contain only letters, number or both'
+                        isFormInitialState={this.state.isFormInitialState}
+                        onChange={event => this.onChange('username', event.target.value)}
+                    />
+                    <Input
+                        label='Confirmation Code * (You will receive a 6-digits SMS message number on your phone)'
                         type='number'
                         placeholder='123456'
                         isValidInput={this.state.authCode}
