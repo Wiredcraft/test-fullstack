@@ -41,15 +41,28 @@ class SubmitLightningTalk extends Component {
 
     // Submit new video
     submitNewLightningTalk = () => {
-        let lightningTalkVideo = {
+        const publishDate = Date.now();
+        const lightningTalkVideo = {
             body: {
                 ...this.state,
-                username: this.props.username
+                username: this.props.username,
+                publishDate: publishDate
             }
         }
 
         API.post(apiGateway.api_path, `/${apiGateway.path}`, lightningTalkVideo)
-            .then(() => this.props.history.push('/'))
+            .then(response => {
+                if (!response.error) {
+                    console.log('Error submitting video, check attributes: ', response);
+                } else {
+                    // Unix time is set as sorting key on DynamoDB
+                    // used to identify and look up for the video
+                    // we pass it to Home component so we can download the video
+                    // user has just submitted
+                    this.props.onNewVideoPublished(publishDate);
+                    this.props.history.push('/')
+                }
+            })
             .catch(error => console.log('Error submitting: ', error));
     }
 
@@ -100,4 +113,4 @@ class SubmitLightningTalk extends Component {
     }
 }
 
-export default withRouter(connect(reduxAction.mapStateToProps)(SubmitLightningTalk));
+export default withRouter(connect(reduxAction.mapStateToProps, reduxAction.mapDispatchToProps)(SubmitLightningTalk));

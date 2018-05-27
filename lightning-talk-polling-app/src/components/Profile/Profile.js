@@ -68,7 +68,7 @@ class Profile extends Component {
                     <li className="list-group-item"><span className="font-weight-bold">Is phone number verified:</span> {this.state.phone_number_verified.toString()}</li>
                     <li className="list-group-item"><span className="font-weight-bold">Unique ID:</span> {this.state.id}</li>
                 </ul>
-                <div className="list-group text-left pt-5">
+                <div className="list-group text-left py-5">
                     <span className="list-group-item white-text grey darken-4">Your Videos</span>
                     {usersVideo}
                 </div>

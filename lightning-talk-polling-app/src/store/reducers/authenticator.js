@@ -2,7 +2,9 @@ import * as actionTypes from '../actions/actions';
 
 const initialState = {
     isUserAuthenticated: false,
-    username: ''
+    username: '',
+    lightningTalkVideos: [],
+    newPublishDate: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,6 +21,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isUserAuthenticated: false,
                 username: ''
+            };
+        case actionTypes.LIGHTNING_TALK_VIDEOS:
+            return {
+                ...state,
+                newPublishDate: action.newPublishDate
             };
     }
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from "react-redux";
 import getYouTubeID from 'get-youtube-id';
-import Amplify, {Auth, API} from 'aws-amplify';
+import Amplify, {API} from 'aws-amplify';
 
 import * as reduxAction from "../../store/actions/actions";
 import config from '../../aws-exports';
@@ -19,11 +19,23 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        // Scan db and get all videos
-        // Since the data is small we get all video. For large db, better user DynamoDB streams
-        API.get(apiGateway.api_path, `/${apiGateway.path}/all`)
-            .then(response => this.setState(() => {return {lightningTalkVideos: response}}))
-            .catch (error => console.log(error));
+
+        console.log('published video: ', this.props.newPublishDate);
+        if (this.props.publishDate !== 0) {
+            // Scan db and get all videos
+            // Since the data is small we get all video. For large db, better user DynamoDB streams
+            API.get(apiGateway.api_path, `/${apiGateway.path}/all`)
+                .then(response => this.setState(() => {return {lightningTalkVideos: response}}))
+                .catch (error => console.log(error));
+        } else {
+            API.get(apiGateway.api_path, `/${apiGateway.path}/object/${this.props.username}/${this.props.newPublishDate}`)
+                .then(response => {
+                    console.log('New video: ', response);
+
+                })
+                .catch(error => console.log(error));
+        }
+
     }
 
     // Submit a vote
@@ -84,4 +96,4 @@ class Home extends Component {
     }
 }
 
-export default withRouter(connect(reduxAction.mapStateToProps)(Home));
+export default withRouter(connect(reduxAction.mapStateToProps, reduxAction.mapDispatchToProps)(Home));
