@@ -6,18 +6,25 @@
  
 You can watch videos on the app's page. Please note the app is optimized for Youtube videos only, please use VPN.
 
-**Hosted at:** (up to date)
+**Hosted at:**
 
 [http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/](http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/)
 
-**Distributed through aws CloudFront:**
+- Run the app locally on your machine 
 
-***Why am I sharing a link to CloudFront? overkill for the test you might say! true. It came as a default feature with AWS Mobile Hub service that I'm using. I'm just sharing with you my experiencce with the test :)***
+```sh
+$ cd lightning-talk-polling-app
+```
 
-CloudFront caches resources, it takes time to reflect latest update, you may or may not see the up to date version :(  
+```sh
+$ cd npm install
+```
 
-[https://d2qmxa1ncc37w3.cloudfront.net](https://d2qmxa1ncc37w3.cloudfront.net)
-
+```sh
+$ cd npm start
+```
+ 
+Please note that this is a serverless app running on AWS, uses AWS Mobile Hub service. To run the backend part you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [AWS Mobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html). **I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github. It is up to you :)**
 
 - Check frontend source code folder here
 
@@ -29,9 +36,6 @@ $ cd lightning-talk-polling-app/src
 ```sh
 $ cd lightning-talk-polling-app/awsmobilejs/backend
 ```
-- Run the app locally on your machine 
- 
-This is a serverless app running on AWS, uses AWS Mobile Hub service. To run it you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [AWS Mobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html). **I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github. It is up to you :)**
 
 ## More Details
 
