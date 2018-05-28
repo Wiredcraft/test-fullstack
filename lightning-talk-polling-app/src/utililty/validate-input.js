@@ -2,7 +2,7 @@ const validate = (key, value) => {
     const USERNAME_REGEXP = /^[a-zA-Z0-9].{4,15}$/;
     const PASSWORD_REGEXP = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,20}$/;
     const EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const CHINESE_PHONE_NUMBER_REGEXP = /^[+]\d.{12,12}$/;
+    const CHINESE_PHONE_NUMBER_REGEXP = /^[+]\d.{5,20}$/;
     const SIX_DIGITS_AUTHCODE_REGEXP = /^[0-9].{5,5}$/;
     const VIDEO_TITLE = /.+/;
     const YOUTUBE_LINK = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;

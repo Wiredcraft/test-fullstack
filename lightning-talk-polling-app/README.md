@@ -91,7 +91,6 @@ I never used it (except I followed a demo before to test and play with it), but 
 Since Wiredcraft give me the freedom to choose, I chose a serverless app, otherwise, I would 
 have used LoopBack for sure.
 
-
 - **Frontend: What I used**
 
 React, Redux, Bootstrap, and MDBootstrap
@@ -105,7 +104,7 @@ This is the first time I use React (I worked with ReactNative for a short time a
 - **Features**
 
     - All the requirement written in Wiredcraft's README User Story section
-    - registration/authentication (a Chinese phone number is needed to confirm registration)
+    - registration/authentication (a phone number is required to confirm registration)
     - User profile page
     - A simple custom made form validation, on the frontend. No third party library was used
     - Screen size responsive. Mobile, tablet, and large screen

@@ -96,12 +96,13 @@ class SignUp extends Component {
                         onChange={event => this.onChange('email', event.target.value)}
                     />
                     <Input
-                        label='Phone Number * (Format should be: +8613022121892. You will receive a message on your phone to finish registration)'
+                        // todo: update message to accept any international number
+                        label='Phone Number * (Format should be: +[country code][phone number]. You will receive a message on your phone to finish registration)'
                         type='tel'
                         placeholder='+8613022121892'
                         isValidInput={this.state.phone_number}
                         validMessage='Phone number'
-                        invalidMessage='Phone number: should have + sign, plus 13 digits, example, +8613022121892'
+                        invalidMessage='Phone number: should have + sign, plus country code, plus phone number. Example, +8613022121892'
                         isFormInitialState={this.state.isFormInitialState}
                         onChange={event => this.onChange('phone_number', event.target.value)}
                     />
