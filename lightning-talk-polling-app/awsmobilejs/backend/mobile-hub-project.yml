@@ -2,38 +2,70 @@
 features:
   cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
     components:
-      lightning-talk-pollingCRUD: !com.amazonaws.mobilehub.v0.API 
+      lightning-talk-polling-appCRUD: !com.amazonaws.mobilehub.v0.API 
         attributes:
-          name: lightning-talk-pollingCRUD
+          name: lightning-talk-polling-appCRUD
           requires-signin: true
           sdk-generation-stage-name: Development
         paths:
-          /lightning-talk-polling: !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/lightningtalkpolling-20180525171241.zip
-            description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
+          /lightning-talk-polling-app: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/htningtalkpollingapp-20180528105652.zip
+            description: 'Handler for calls to resource path : /lightning-talk-polling-app/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: 0fq4J3TKyV/issLVQgvUvl9rmuEVMtpFbXvwqdRtwJs=
+            hashcode: qhdTr96YafIK0a0bVFf/oTEAbpplEz6vg/9LfVBrJAQ=
             memorySize: '128'
-            modified: '2018-05-25T09:13:17.168+0000'
-            name: lightningtalkpolling
+            modified: '2018-05-28T02:57:38.783+0000'
+            name: htningtalkpollingapp
             runtime: nodejs6.10
             timeout: '3'
-            version: H_AqVmOchqwJivVMQ7gc2sEtGdWmr2Fl
-          '/lightning-talk-polling/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
-            codeFilename: uploads/lightningtalkpolling-20180525171241.zip
-            description: 'Handler for calls to resource path : /lightning-talk-polling/{proxy+}'
+            version: XLWacctbuz9AS6vz_rI9AtOdnF7oUAYN
+          '/lightning-talk-polling-app/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/htningtalkpollingapp-20180528105652.zip
+            description: 'Handler for calls to resource path : /lightning-talk-polling-app/{proxy+}'
             enableCORS: true
             environment: {}
             handler: lambda.handler
-            hashcode: 0fq4J3TKyV/issLVQgvUvl9rmuEVMtpFbXvwqdRtwJs=
+            hashcode: qhdTr96YafIK0a0bVFf/oTEAbpplEz6vg/9LfVBrJAQ=
             memorySize: '128'
-            modified: '2018-05-25T09:13:17.168+0000'
-            name: lightningtalkpolling
+            modified: '2018-05-28T02:57:38.783+0000'
+            name: htningtalkpollingapp
             runtime: nodejs6.10
             timeout: '3'
-            version: wssTCgRJXwt302_M0Gf7.EHxSTJRBiwL
+            version: Ic9bz4As9509XSq0GvtcjE9S4d2Ae56Q
+      sampleCloudApi: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          name: sampleCloudApi
+          requires-signin: false
+          sdk-generation-stage-name: Development
+        paths:
+          /items: !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/sampleLambda-20180528105652.zip
+            description: 'Handler for calls to resource path : /items/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: lmTEcLlSjM08UpIsJcl0VBmGATlOPYH/JcMfsBP/bj0=
+            memorySize: '128'
+            modified: '2018-05-28T02:57:38.248+0000'
+            name: sampleLambda
+            runtime: nodejs6.10
+            timeout: '3'
+            version: XQgG18Kv_a2.K3V.1W7bLjuod3OrJTgk
+          '/items/{proxy+}': !com.amazonaws.mobilehub.v0.Function 
+            codeFilename: uploads/sampleLambda-20180528105652.zip
+            description: 'Handler for calls to resource path : /items/{proxy+}'
+            enableCORS: true
+            environment: {}
+            handler: lambda.handler
+            hashcode: lmTEcLlSjM08UpIsJcl0VBmGATlOPYH/JcMfsBP/bj0=
+            memorySize: '128'
+            modified: '2018-05-28T02:57:38.248+0000'
+            name: sampleLambda
+            runtime: nodejs6.10
+            timeout: '3'
+            version: G300FxaRrlMgkNBzuKdLgZ.dk.mMQOS2
   content-delivery: !com.amazonaws.mobilehub.v0.ContentDelivery 
     attributes:
       enabled: true
@@ -46,9 +78,29 @@ features:
         tables:
           - !com.amazonaws.mobilehub.v0.NoSQLTable 
             attributes:
+              email: S
+              personId: S
+              personName: S
+              phone: S
+              teamId: S
+            hashKeyName: teamId
+            hashKeyType: S
+            indexes:
+              - !com.amazonaws.mobilehub.v0.NoSQLIndex 
+                hashKeyName: teamId
+                hashKeyType: S
+                indexName: personName-index
+                rangeKeyName: personName
+                rangeKeyType: S
+            rangeKeyName: personId
+            rangeKeyType: S
+            tableName: ___DYNAMIC_PREFIX___-AWSMobileTable
+            tablePrivacy: public
+          - !com.amazonaws.mobilehub.v0.NoSQLTable 
+            attributes:
               description: S
-              hasUserVoted: SS
-              points: N
+              hasUserVoted: L
+              points: S
               publishDate: N
               title: S
               url: S
@@ -57,7 +109,7 @@ features:
             hashKeyType: S
             rangeKeyName: publishDate
             rangeKeyType: N
-            tableName: ___DYNAMIC_PREFIX___-lightning-talk-polling
+            tableName: ___DYNAMIC_PREFIX___-lightning-talk-polling-app
             tablePrivacy: public
   mobile-analytics: !com.amazonaws.mobilehub.v0.Pinpoint 
     components:
@@ -80,5 +132,5 @@ features:
             require-numbers: true
             require-symbols: true
             require-upper-case: true
-name: lightning-talk-polling-app-2018-05-17-16-10-48
+name: lightning-talking-polling-app
 region: us-east-1

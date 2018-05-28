@@ -7,7 +7,7 @@ import Amplify from 'aws-amplify';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import config from './aws-exports';
-import reducer from './store/reducers/authenticator';
+import reducer from './store/reducers/reducer';
 import './index.css';
 
 const store = createStore(reducer);

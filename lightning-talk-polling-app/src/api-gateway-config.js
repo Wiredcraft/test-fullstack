@@ -1,6 +1,6 @@
 const apiGateway = {
-    'api_path': 'lightning-talk-pollingCRUD',
-    'path': 'lightning-talk-polling'
+    'api_path': 'lightning-talk-polling-appCRUD',
+    'path': 'lightning-talk-polling-app'
 }
 
 export default apiGateway;

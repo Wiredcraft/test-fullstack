@@ -52,7 +52,7 @@ class SubmitLightningTalk extends Component {
 
         API.post(apiGateway.api_path, `/${apiGateway.path}`, lightningTalkVideo)
             .then(response => {
-                if (!response.error) {
+                if (response.error) {
                     console.log('Error submitting video, check attributes: ', response);
                 } else {
                     // Unix time is set as sorting key on DynamoDB

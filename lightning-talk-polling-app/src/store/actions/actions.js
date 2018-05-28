@@ -2,6 +2,8 @@
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const SIGN_OUT = 'SIGN_OUT';
 export const LIGHTNING_TALK_VIDEOS = 'LIGHTNING_TALK_VIDEOS';
+export const NEW_VIDEO_PUBLISH_DATE = 'NEW_VIDEO_PUBLISH_DATE';
+
 
 // Component receive state
 export const mapStateToProps = state => {
@@ -9,7 +11,7 @@ export const mapStateToProps = state => {
         isUserAuthenticated: state.isUserAuthenticated,
         username: state.username,
         lightningTalkVideos: state.lightningTalkVideos,
-        newPublishDate: state.newPublishDate
+        newVideoPublishDate: state.newVideoPublishDate
     }
 }
 
@@ -23,9 +25,13 @@ export const mapDispatchToProps = dispatch => {
         onSignOut: () => dispatch({
             type: SIGN_OUT
         }),
-        onNewVideoPublished: (newPublishDate) => dispatch({
+        onNewVideoPublished: (newVideoPublishDate) => dispatch({
+            type: NEW_VIDEO_PUBLISH_DATE,
+            newVideoPublishDate: newVideoPublishDate
+        }),
+        onNewVideoDownloaded: (lightningTalkVideos) => dispatch({
             type: LIGHTNING_TALK_VIDEOS,
-            newPublishDate: newPublishDate
+            lightningTalkVideos: lightningTalkVideos
         }),
     }
 }

@@ -86,6 +86,16 @@ class SignUp extends Component {
                         onChange={event => this.onChange('password', event.target.value)}
                     />
                     <Input
+                        label='Email *'
+                        type='email'
+                        placeholder='Email'
+                        isValidInput={this.state.email}
+                        validMessage='Email'
+                        invalidMessage='Email'
+                        isFormInitialState={this.state.isFormInitialState}
+                        onChange={event => this.onChange('email', event.target.value)}
+                    />
+                    <Input
                         label='Phone Number * (Format should be: +8613022121892. You will receive a message on your phone to finish registration)'
                         type='tel'
                         placeholder='+8613022121892'
