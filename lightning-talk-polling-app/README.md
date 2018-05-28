@@ -24,7 +24,7 @@ $ cd npm install
 $ cd npm start
 ```
  
-Please note that this is a serverless app running on AWS, uses AWS Mobile Hub service. To run the backend part you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [AWS Mobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html). **I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github. It is up to you :)**
+Please note that all you need is to run the React app, the backend is already running online. This is a serverless app running on AWS, uses AWS Mobile Hub service. To run the backend part you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [AWS Mobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html). **I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github. It is up to you :)**
 
 - Check frontend source code folder here
 
