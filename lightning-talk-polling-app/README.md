@@ -4,11 +4,11 @@
 
 - Try the app online 
  
-You can watch videos on the app's page. Please note the app is optimized for Youtube videos only, please use VPN.
+You can watch videos on the app's page. Please note the app is optimized for Youtube videos only, please use VPN. The app works without VPN, but to watch Youtube videos you'll need a VPN.
 
-**Hosted at:**
+**Hosted at:** (new link)
 
-[http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/](http://lightningtalkpolling-hosting-mobilehub-1468884110.s3-website.us-east-1.amazonaws.com/)
+[http://lightningtalkingpoll-hosting-mobilehub-657233735.s3-website.us-east-1.amazonaws.com/](http://lightningtalkingpoll-hosting-mobilehub-657233735.s3-website.us-east-1.amazonaws.com/)
 
 - Run the app locally on your machine 
 
