@@ -122,7 +122,7 @@ This is the first time I use React (I worked with ReactNative for a short time a
 
 ## Last word
 
-The interview was about a month ago. These are the last two months of my school, I’m very busy, I couldn’t find the time to work on the test. It took me about 8 days to finish the app you are using right now
+The interview was about a month ago. These are the last two months of my school, I’m very busy, I couldn’t find the time to work on the test
 
 I took so long to submit the test. I truly didn't have time to do it
 
