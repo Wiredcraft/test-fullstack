@@ -24,7 +24,7 @@ $ cd npm install
 $ cd npm start
 ```
  
-Please note that all you need is to run the React app, the backend is already running online. This is a serverless app running on AWS, uses AWS Mobile Hub service. To run the backend part you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [AWS Mobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html). **I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github. It is up to you :)**
+Please note that all you need is to run the React app, the backend is already running online. This is a serverless app running on AWS, uses [AWS Mobile Hub](https://aws.amazon.com/mobile/) service. To run the backend part you’ll need AWS account and launch the app under your AWS account to create a serverless app on AWS servers. For more details please check this link about [AWS Mobile CLI](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/aws-mobile-cli-reference.html). **I think it is not necessary to launch your own app on AWS, you can examine the state of the app via the link I provided and examine my code via Github. It is up to you :)**
 
 - Check frontend source code folder here
 
@@ -57,7 +57,7 @@ In the interview with Maraka and from Wiredcraft’s README test file I understo
 
 - **Backend: What I used**
 
-Serverless applications app running on AWS, using AWS Mobile Hub service. the serverless app 
+Serverless applications app running on AWS, using [AWS Mobile Hub](https://aws.amazon.com/mobile/) service. the serverless app 
 comes with the following services:
 
 Amazon Cognito User Pools - for user registration and authentication  
@@ -80,7 +80,7 @@ I’m a lazy programmer type! I like to use tools to build apps fast AND work go
 - Cheap! Using serverless app, you pay per request you make to the API not for a server running 24/7
 - Very, very, very fast starting. Saves time. Using AWS Mobile CLI you could launch Cognito, DaynamoDB, S3, Cloudfront and API Gateway, all working together in harmony
 - Very fast to publish new version of the app to your users. Simply run the command `awsmobile publish` from terminal
-- Fast development. Amplify a very nice new API. AWS launched a new API called Amplify. What you needed to do in 10 lines of code before you can do it in one line of code using Amplify API
+- Fast development. [Amplify API a very nice new API](https://aws.github.io/aws-amplify/). AWS launched a new API called Amplify. What you needed to do in 10 lines of code before you can do it in one line of code using Amplify API
 - Scalability made easy via console
 - Backup made easy via aws console
 - YOU CAN GO HOME AND SLEEP PEACEFULLY, DON’T HAVE TO WORRY ABOUT THE SERVERS, BECAUSE THERE ARE NONE!
