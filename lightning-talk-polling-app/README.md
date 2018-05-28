@@ -46,7 +46,7 @@ In the interview with Maraka and from Wiredcraft’s README test file I understo
 - I do research to check the latest trends
 - Pick frameworks, services to use
 - Learn as much as I can about the frameworks and services I’ve picked, depending on the time I have
-- Write down a plan (a basic road map), on a paper, whiteboard, Google doc. The plan usually contains a list of tasks, a list of app's features, a simple class diagram, a mockup for the UI (I’m not a designer so I user draw.io to draw one)
+- Write down a plan ([here is my software requirement document for the test](https://github.com/bilal-korir/test-fullstack/blob/master/software-requirement-document.pdf)), on a paper, whiteboard, Google doc. The plan usually contains a list of tasks, a list of app's features, a simple class diagram, a mockup for the UI (I’m not a designer, so I use draw.io to draw one)
 - Start building
 - As I build, I learn, as I learn new techniques and best practices I refactor my code to apply new techniques. If I learn something new to improve my code I don’t mind to rewrite it - especially if it is going to save time in the future update or will be easier for the team to use
 - I keep a list open, whenever I have and idea about the code to improve or to do I write it down so I don’t forgot it. I use the same list to track bugs I find during development. Later I come back to the list to check tasks or bugs
@@ -60,11 +60,11 @@ In the interview with Maraka and from Wiredcraft’s README test file I understo
 Serverless applications app running on AWS, using AWS Mobile Hub service. the serverless app 
 comes with the following services:
 
-Amazon Cognito User Pools and Federated Identities  
-Amazon API Gateway, AWS Lambda, and Amazon DynamoDB  
-Cross-origin resource sharing (CORS) for the API  
-IAM roles and policy for the Lambda execution role  
-IAM roles and policy for the user roles that access API routes after authentication  
+Amazon Cognito User Pools - for user registration and authentication  
+Amazon API Gateway - for handing in request from user to AWS Lambda  
+AWS Lambda - for logic   
+Amazon DynamoDB - for user data storage  
+Amazon S3 - for hosting the React app  
 
 - **Backend: Why I used it**
 
@@ -74,7 +74,7 @@ In the Wiredcraft’s README test file you wrote “Feel free to use any librari
 
 **2- Personal reason**
 
-I’m a lazy programmer type! I like to use tools to build apps fast AND work good. As long as I achieve what the client's wants. I care about joy and time more than how much money it will cost, If the client want to pay for it. If there is an easy, fast, and good way to do something I always go for it first before checking the long way.
+I’m a lazy programmer type! I like to use tools to build apps fast AND work good. As long as I achieve what the client wants. I care about joy and time more than how much money it will cost, If the client want to pay for it. If there is an easy, fast, and good way to do something I always go for it first before checking the long way.
 
 **3- Business reason**
 - Cheap! Using serverless app, you pay per request you make to the API not for a server running 24/7
