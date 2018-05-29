@@ -1,0 +1,46 @@
+.cardText {
+    overflow: auto;
+    height: 80px;
+}
+
+.cardTitle {
+    overflow: auto;
+    height: 40px;
+}
+
+.upVote {
+    border: none;
+    cursor: pointer;
+    color: white;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .4);
+    background: #f57c00;
+}
+
+.upVote:hover {
+    background-color: #e65100;
+}
+
+.upVote:focus {
+    outline: 0;
+}
+.upVote:active {
+    background-color: #f57c00;
+    transform: translateY(1px);
+}
+
+/*
+This is added so the height of the video cards look identical
+for both, videos user upvoted and videos user didn't upvote
+*/
+.invisibleUpVoteButton, .invisibleUpVoteButton:hover, .invisibleUpVoteButton:focus, .invisibleUpVoteButton:active {
+    border: none;
+    cursor: unset;
+    color: #ffffff;
+    height: 2rem;
+    width: 2rem;
+    background: rgba(0, 0, 0, 0);
+    outline: 0;
+}
