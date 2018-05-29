@@ -99,7 +99,7 @@ React, Redux, Bootstrap, and MDBootstrap
 
 This is the first time I use React (I worked with ReactNative for a short time a long time ago, almost forgot all of it) I chose it because  Wiredcraft uses it, and you advice me to use it, hopefully if I get the job I can use my new learning about React at Wiredcraft. (first MVVC framework I worked with was Angular 4)
 
-## Lightning talk app 
+## Lightning Talk App 
 
 - **Features**
 
@@ -120,7 +120,7 @@ This is the first time I use React (I worked with ReactNative for a short time a
 
     - Learning and having fun with RegExp 
 
-## Last word
+## Last Word
 
 The interview was about a month ago. These are the last two months of my school, I’m very busy, I couldn’t find the time to work on the test
 
