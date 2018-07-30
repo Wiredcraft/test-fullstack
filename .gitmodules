@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = git@github.com:johncalvinroberts/lightning-talks-backend.git
+[submodule "lightning-talks-frontend"]
+	path = lightning-talks-frontend
+	url = git@github.com:johncalvinroberts/lightning-talks-frontend.git
