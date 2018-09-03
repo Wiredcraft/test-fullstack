@@ -66,8 +66,8 @@ class Topic extends Component {
         <div>
           <div className="topic-title">
             {voteIcon}
-            {/* <a className="topic-link" href={url}>{title}</a> */}
-            <Link to={url}>{title}</Link>
+            {/* url title need to follow the link, non-url title need to let <Link> handle the redirect */}
+            { t.get("isURL") ? <a href={url}>{title}</a> : <Link to={url}>{title}</Link> }
             {!domain ? null : <span className="topic-domain">({domain})</span>}
           </div>
           <ul className="subtext">
