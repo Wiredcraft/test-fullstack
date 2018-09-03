@@ -29,8 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let server = http.createServer(app);
 app.use('/HN/public', express.static(path.join(__dirname, 'public')));
-server.listen(8080);
-console.log('server started on port 8080');
+server.listen(3030);
+console.log('server started on port 3030');
 
 app.use('/HN', routes);
 app.use('/HN/users', users);
