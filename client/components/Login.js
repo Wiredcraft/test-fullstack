@@ -46,7 +46,7 @@ class Login extends Component {
 
   onSubmit = () => {
     let {username, password} = this.state;
-    axios.post('/login', {username, password})
+    axios.post('/HN/login', {username, password})
         .then(res => {
           localStorage.setItem('token', res.data.token);
           this.props.updateProfile({username: res.data.username});

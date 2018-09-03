@@ -47,7 +47,7 @@ class NewTopic extends Component {
       isURL = true;
     }
 
-    axios.post('/topic', {title, url, text, isURL}, {
+    axios.post('/HN/topic', {title, url, text, isURL}, {
       headers: {'Authorization': "Bearer " + localStorage.getItem("token")}
     })
         .then(res => {
@@ -71,7 +71,7 @@ class NewTopic extends Component {
   render() {
     let submitEnabled = this.state.title !== "" && (this.state.url !== "" || this.state.text !== "");
     if (this.state.redirectToNewRoute){
-      return <Redirect to="/newest"/>
+      return <Redirect to="/HN/newest"/>
     }
     return (
           <div className="content-wrapper">{/* todo: apply this wrapper on every route */}

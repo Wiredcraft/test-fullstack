@@ -16,7 +16,7 @@ class Topic extends Component {
     }
 
     let topicID = this.props.t.get("_id");
-    axios.post('/topic/vote', {topicID}, {
+    axios.post('/HN/topic/vote', {topicID}, {
       headers: {'Authorization': "Bearer " + localStorage.getItem("token")}
     })
         .then(res => {
@@ -33,7 +33,7 @@ class Topic extends Component {
 
   render() {
     let {t, profile, showText} = this.props;
-    let url = "/topic/" + t.get("_id");
+    let url = "/HN/item/" + t.get("_id");
     let domain = "";
     if (t.get("isURL")){
       url = t.get("url");
@@ -51,7 +51,7 @@ class Topic extends Component {
 
     let pointPlural = points > 1 ? "s" : "";
     let publishByWhen = `${points} point${pointPlural} by ${publishBy} ${timeAgo(publishDate)} ago`;
-    let discussLink ="/item/" + t.get("_id");
+    let discussLink ="/HN/item/" + t.get("_id");
 
     let voteIcon;
     let username = profile.username;
@@ -64,9 +64,10 @@ class Topic extends Component {
     }
     return (
         <div>
-          <div>
+          <div className="topic-title">
             {voteIcon}
-            <a className="topic-link" href={url}>{title}</a>
+            {/* <a className="topic-link" href={url}>{title}</a> */}
+            <Link to={url}>{title}</Link>
             {!domain ? null : <span className="topic-domain">({domain})</span>}
           </div>
           <ul className="subtext">

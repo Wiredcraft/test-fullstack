@@ -61,7 +61,7 @@ class App extends Component {
     if (!token) {
       return
     }
-    axios.get('/topic')
+    axios.get('/HN/topic')
         .then(res => {
           console.log("topic list in App.js: ", res);
           res.data.forEach(t => {
@@ -72,7 +72,7 @@ class App extends Component {
         })
         .catch(err => console.log("err getting topic: ", err));
 
-    axios.post('/checkAuth', null, {
+    axios.post('/HN/checkAuth', null, {
       headers: {'Authorization': "Bearer " + localStorage.getItem("token")}
     })
         .then(res => this.updateProfile({username: res.data.username}))
@@ -86,17 +86,17 @@ class App extends Component {
           <div>
 
             <ul className="nav">
-              <li><img src="/public/images/y18.gif" style={{display: "inline-block", border: '1px solid #FFF', position: "relative", top: '1px'}}/></li>
+              <li><img src="/HN/public/images/y18.gif" style={{display: "inline-block", border: '1px solid #FFF', position: "relative", top: '1px'}}/></li>
 
               <li style={{fontWeight: "bold"}}>
-                <NavLink to='/' exact>Hacker News</NavLink>
+                <NavLink to='/HN/' exact>Hacker News</NavLink>
               </li>
-              <li><NavLink to='/newest' activeClassName="active-route">new</NavLink></li>
-              <li><NavLink to='/comments' activeClassName="active-route">comments</NavLink></li>
-              <li><NavLink to='/show' activeClassName="active-route">show</NavLink></li>
-              <li><NavLink to='/ask' activeClassName="active-route">ask</NavLink></li>
-              <li><NavLink to='/jobs' activeClassName="active-route">jobs</NavLink></li>
-              <li><NavLink to='/submit' activeClassName="active-route">submit</NavLink></li>
+              <li><NavLink to='/HN/newest' activeClassName="active-route">new</NavLink></li>
+              <li><NavLink to='/HN/comments' activeClassName="active-route">comments</NavLink></li>
+              <li><NavLink to='/HN/show' activeClassName="active-route">show</NavLink></li>
+              <li><NavLink to='/HN/ask' activeClassName="active-route">ask</NavLink></li>
+              <li><NavLink to='/HN/jobs' activeClassName="active-route">jobs</NavLink></li>
+              <li><NavLink to='/HN/submit' activeClassName="active-route">submit</NavLink></li>
               {<AuthAction profile={this.state.profile} openAuthModal={this.toggleModal} logout={this.logout} />}
             </ul>
 
@@ -105,14 +105,14 @@ class App extends Component {
             </div>
 
             {/* todo: wrap openAuthModal, updateProfile, profile into a single obj */}
-            <Route path="/" exact={true} render={props => <Main {...props} orderBy="points" topics={this.state.topics} voteTopic={this.voteTopic} openAuthModal={this.toggleModal} updateProfile={this.updateProfile} profile={this.state.profile}/>}/>
-            <Route path="/newest" render={props => <Main {...props} orderBy="publishDate" topics={this.state.topics} voteTopic={this.voteTopic} openAuthModal={this.toggleModal} updateProfile={this.updateProfile} profile={this.state.profile}/>}/>
-            <Route path="/item/:id" render={ props => <TopicDetail {...props} addComment={this.addComment} updateProfile={this.updateProfile} profile={this.state.profile} voteTopic={this.voteTopic} openAuthModal={this.toggleModal} />} />
-            <Route path="/comments" component={Comments} />
-            <Route path="/show" component={Show} />
-            <Route path="/ask" component={Ask} />
-            <Route path="/jobs" component={Jobs} />
-            <Route path="/submit" render={props => <NewTopic {...props} createTopic={this.createTopic} openAuthModal={this.toggleModal} updateProfile={this.updateProfile} profile={this.state.profile}/>}/>
+            <Route path="/HN" exact={true} render={props => <Main {...props} orderBy="points" topics={this.state.topics} voteTopic={this.voteTopic} openAuthModal={this.toggleModal} updateProfile={this.updateProfile} profile={this.state.profile}/>}/>
+            <Route path="/HN/newest" render={props => <Main {...props} orderBy="publishDate" topics={this.state.topics} voteTopic={this.voteTopic} openAuthModal={this.toggleModal} updateProfile={this.updateProfile} profile={this.state.profile}/>}/>
+            <Route path="/HN/item/:id" render={ props => <TopicDetail {...props} addComment={this.addComment} updateProfile={this.updateProfile} profile={this.state.profile} voteTopic={this.voteTopic} openAuthModal={this.toggleModal} />} />
+            <Route path="/HN/comments" component={Comments} />
+            <Route path="/HN/show" component={Show} />
+            <Route path="/HN/ask" component={Ask} />
+            <Route path="/HN/jobs" component={Jobs} />
+            <Route path="/HN/submit" render={props => <NewTopic {...props} createTopic={this.createTopic} openAuthModal={this.toggleModal} updateProfile={this.updateProfile} profile={this.state.profile}/>}/>
           </div>
         </Router>
     )

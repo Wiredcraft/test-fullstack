@@ -21,7 +21,7 @@ class Comment extends Component {
 
     let ancestorId = this.props.ancestorId;
     let parentId = this.props.c.get("_id");
-    axios.post('/topic/comment', {ancestorId, parentId, text: this.replyBoxRef.current.value}, {
+    axios.post('/HN/topic/comment', {ancestorId, parentId, text: this.replyBoxRef.current.value}, {
       headers: {'Authorization': "Bearer " + localStorage.getItem("token")}
     })
         .then(res => {
@@ -49,7 +49,7 @@ class Comment extends Component {
     }
 
     let topicID = this.props.c.get("_id");
-    axios.post('/topic/vote', {topicID}, {
+    axios.post('/HN/topic/vote', {topicID}, {
       headers: {'Authorization': "Bearer " + localStorage.getItem("token")}
     })
         .then(res => {

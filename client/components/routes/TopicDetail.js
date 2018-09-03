@@ -71,7 +71,7 @@ class TopicDetail extends Component {
   }
 
   componentDidMount = () => {
-    axios.get('/topic/' + this.topicID)
+    axios.get('/HN/topic/' + this.topicID)
         .then(res => {
           let topicIdx = res.data.findIndex(t => t._id === this.topicID);
           if (topicIdx === -1){
@@ -132,7 +132,7 @@ class TopicDetail extends Component {
 
     let ancestorId = this.topicID;
     let parentId = this.topicID;
-    axios.post('/topic/comment', {ancestorId, parentId, text: this.commentBoxRef.current.value}, {
+    axios.post('/HN/topic/comment', {ancestorId, parentId, text: this.commentBoxRef.current.value}, {
       headers: {'Authorization': "Bearer " + localStorage.getItem("token")}
     })
         // .then(res => this.props.addComment(res.data)) // no need to call addComment, all data are in current state. Or just let addComment add comment counts which is used in index component

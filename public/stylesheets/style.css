@@ -82,6 +82,8 @@ button:focus{
     padding-top: 10px;
     color: #828282;
 }
+
+/*
 .content-wrapper .topic-link:link {
     color: #000;
     text-decoration: none;
@@ -90,6 +92,8 @@ button:focus{
     color: #828282;
     text-decoration: none;
 }
+*/
+
 .content-wrapper .topic-domain {
     font-size: 12px;
     color: #828282;
@@ -104,6 +108,15 @@ button:focus{
 .content-wrapper .topic-text {
     margin-left: 12px;
     color: #828282;
+}
+
+.topic-title a:link{
+    color: #000;
+    text-decoration: none;
+}
+.topic-title a:visited{
+    color: #828282;
+    text-decoration: none;
 }
 
 .vote-arrow {
