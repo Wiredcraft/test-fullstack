@@ -39,7 +39,7 @@ app.use('/HN/login', login);
 app.use('/HN/checkAuth', checkAuth);
 app.use('/HN/topic', topic);
 
-// app.use('/HN/*', routes);
+app.use('/HN/*', routes); // catch-all routes
 
 app.get('*', (req, res) => {
   console.log("catch all handler: ", req.url);
