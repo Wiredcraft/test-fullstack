@@ -12,10 +12,26 @@ Which seems good at glance, but for most simple and heavy projects, it just does
 
 Above things in mind and tech constraints(with Loopback), using:
  
-* Vue, Vue-Router for frontend   
+* Vue, Vue-Router for frontend
 * Loopback, MongoDB for backend
 
 
 ## How to run
 * reading server/README.md, run backend service
 * reading client/README.md, run client service
+
+
+## Screenshot
+![Screenshot](../screenshot.png)
+
+
+## TODO
+#### Frontend
+* Robust logging method for FE other than just alert  
+* For libs/api should be managed by npm like system, and need test coverage
+
+#### Backend
+* Restful API, not just using built-in so called REST like exposed API  
+* Unit test coverage  
+* Deployment related settings and tool suite
+
