@@ -1,0 +1,66 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "MongoDB",
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "create": true,
+          "login": true,
+          "logout": true
+        }
+      }
+    }
+  },
+  "AccessToken": {
+    "dataSource": "MongoDB",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "MongoDB",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "MongoDB",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "MongoDB",
+    "public": false
+  },
+  "LightningTalk": {
+    "dataSource": "MongoDB",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "create": true,
+          "find": true,
+          "findById": true,
+          "up": true,
+          "down": true
+        }
+      }
+    }
+  },
+  "UpRecord": {
+    "dataSource": "MongoDB",
+    "public": false
+  }
+}
