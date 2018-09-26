@@ -1,0 +1,92 @@
+{
+  "name": "LightningTalk",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "strictObjectIDCoercion": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "upCounts": {
+      "type": "number",
+      "required": true
+    },
+    "createdAt": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [{
+    "accessType": "*",
+    "principalType": "ROLE",
+    "principalId": "$everyone",
+    "permission": "DENY"
+  }, {
+    "accessType": "READ",
+    "principalType": "ROLE",
+    "principalId": "$everyone",
+    "permission": "ALLOW"
+  }, {
+    "accessType": "EXECUTE",
+    "principalType": "ROLE",
+    "principalId": "$authenticated",
+    "permission": "ALLOW",
+    "property": ["create", "up", "down"]
+  }],
+  "methods": {
+    "up": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": {
+        "arg": "lts",
+        "type": "array"
+      },
+      "http": {
+        "path": "/:id/up",
+        "verb": "post"
+      }
+    },
+    "down": {
+      "accepts": [
+        {
+          "arg": "id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "arg": "options",
+          "type": "object",
+          "http": "optionsFromRequest"
+        }
+      ],
+      "returns": {
+        "arg": "lts",
+        "type": "array"
+      },
+      "http": {
+        "path": "/:id/up",
+        "verb": "del"
+      }
+    }
+  }
+}
