@@ -1,0 +1,34 @@
+.load {
+  color: var(--lighter-font-color);
+}
+
+.load_error {
+  padding: 0 var(--padding);
+  color: var(--light-font-color);
+}
+
+.load-loading {
+  opacity: 0;
+  animation: 0.2s ease-in 0.4s forwards load-fade;
+}
+
+@keyframes load-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.load-text {
+  padding-top: 6px;
+  font-size: 10px;
+}
+
+.load-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  vertical-align: -2px;
+}

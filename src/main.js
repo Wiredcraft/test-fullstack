@@ -3,6 +3,6 @@ import ReactDOM from "react-dom";
 import App from "./components/app";
 
 ReactDOM.render(
-  <App />,
+  <App initialState={window.__PRELOADED_STATE__} />,
   document.getElementById("root")
 );

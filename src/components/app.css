@@ -1,0 +1,111 @@
+:root {
+  --small-font-size: 13px;
+  --font-size: 15px;
+  --large-font-size: 18px;
+  --very-large-font-size: 28px;
+
+  --padding: 16px;
+  --less-padding: 8px;
+
+  --font-color: rgb(51, 51, 51);
+  --light-font-color: rgb(130, 130, 130);
+  --lighter-font-color: rgb(189, 189, 189);
+  --interactive-font-color: rgb(47, 128, 237);
+
+  --light-gray: rgb(247, 247, 247);
+  --gray: rgb(242, 242, 242);
+  --dark-gray: rgb(210, 210, 210);
+
+  --background: var(--gray);
+  --content-background: #fff;
+
+  --main-max-width: 600px;
+
+  --focused-outline: 3px solid rgba(131, 192, 253, 0.5);
+  --border: 1px solid var(--gray);
+}
+
+body {
+  margin: 0;
+  color: var(--font-color);
+  font-family: "PingFang SC";
+  font-size: var(--font-size);
+  line-height: 1.4;
+  background: var(--background);
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus {
+  outline: var(--focused-outline);
+  outline-offset: 1px;
+}
+
+a::-moz-focus-inner {
+  border: none;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button,
+input,
+textarea,
+select {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  appearance: none;
+  -webkit-appearance: none;
+  pointer-events: auto;
+}
+
+button {
+  text-align: left;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/**
+ * Generic styles.
+ */
+
+.box {
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.box_main {
+  max-width: var(--main-max-width);
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--content-background);
+}
+
+.box_center {
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4vh;
+}

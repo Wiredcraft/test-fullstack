@@ -13,9 +13,9 @@ const fields = [
   "username"
 ];
 
-export const create = async (req, res, form) => {
+export const create = async (req, res, query, form) => {
   const entries = Object.entries(form)
-    .filter((name, value) => fields.includes(name));
+    .filter(([name, value]) => fields.includes(name));
   const keys = entries.map(v => v[0]);
   const values = entries.map(v => v[1]);
 
@@ -25,6 +25,8 @@ export const create = async (req, res, form) => {
         ` values ${toRow(keys.map((v, i) => `$${i + 1}`))} returning *`,
       values
     );
+
+    return result.rows[0];
   } catch (err) {
     res.statusCode = 400;
     return { name: err.message };
@@ -42,7 +44,7 @@ export const list = async (req, res, query) => {
   return rows;
 }
 
-export const read = async (req, res, id) => {
+export const read = async (req, res, query, id) => {
   const { rows } = await db.query("select * from talks where id = $1", [id]);
 
   if (!rows.length) {

@@ -1,0 +1,25 @@
+.talk-header {
+  padding: var(--padding);
+  border-bottom: 1px solid var(--gray);
+}
+
+.talk-h1 {
+  font-size: var(--very-large-font-size);
+  font-weight: 500;
+}
+
+.talk-meta {
+  margin-top: var(--less-padding);
+  color: var(--light-font-color);
+}
+
+.talk-content {
+  padding: var(--padding);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.talk-actions {
+  padding: 0 var(--padding);
+}

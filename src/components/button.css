@@ -1,0 +1,35 @@
+.button {
+  box-sizing: border-box;
+  height: 32px;
+  padding: 0 14px;
+  color: rgb(107, 124, 147);
+  font-size: 15px;
+  letter-spacing: 0.025em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.button:active {
+  background-color: rgb(245, 245, 245);
+  transform: translateY(1px);
+}
+
+.button[disabled] {
+  pointer-events: none;
+  cursor: default;
+  color: rgb(196, 203, 212);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.button:focus {
+  outline: var(--focused-outline);
+  outline-offset: 1px;
+}
+
+.button::-moz-focus-inner {
+  border: none;
+}

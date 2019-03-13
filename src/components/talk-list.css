@@ -1,0 +1,30 @@
+.talklist-header {
+  display: flex;
+  align-items: center;
+  padding: var(--padding);
+  border-bottom: var(--border);
+}
+
+.talklist-h {
+  flex: 1;
+  font-size: var(--very-large-font-size);
+  font-weight: 500;
+}
+
+.talklist-link {
+  color: var(--interactive-font-color);
+}
+
+.talklist-item {
+  border-bottom: var(--border);
+}
+
+.talklist-main {
+  display: block;
+  padding: var(--padding);
+}
+
+.talklist-title {
+  font-size: var(--large-font-size);
+  font-weight: 500;
+}
