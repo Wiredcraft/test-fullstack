@@ -14,17 +14,3 @@
 .talklist-link {
   color: var(--interactive-font-color);
 }
-
-.talklist-item {
-  border-bottom: var(--border);
-}
-
-.talklist-main {
-  display: block;
-  padding: var(--padding);
-}
-
-.talklist-title {
-  font-size: var(--large-font-size);
-  font-weight: 500;
-}

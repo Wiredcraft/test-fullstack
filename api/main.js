@@ -29,5 +29,7 @@ app.use(next => async (req, res) => {
 app.json("post", "/talks", talks.create);
 app.json("get", "/talks", talks.list);
 app.json("get", "/talks/:id", talks.read);
+app.json("put", "/talks/:id/vote", talks.vote);
+app.json("delete", "/talks/:id/vote", talks.unvote);
 
 app.listen(process.env.PORT || 4000);

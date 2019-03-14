@@ -23,7 +23,7 @@ const Talk = ({ item }) => {
         {item.description}
       </section>
       <section className="talk-actions">
-        <VoteButton id={item.id} />
+        <VoteButton id={item.id} active={item.voted} />
       </section>
     </article>
   )

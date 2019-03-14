@@ -1,10 +1,70 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { merge, completeUrl } from "./util";
+import useAppState, { useDispatch } from "./use-app-state";
+import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
 import "./button.css";
 
-export default ({ id, active }) => {
-  return (
-    <button className="button">
-      Vote
-    </button>
-  )
+function sortTalkList(listState, talks, updates) {
+  const map = merge(talks, updates, 2);
+
+  return listState.items
+    .map(id => map[id])
+    .sort(
+      (a, b) =>
+        b.rating - a.rating ||
+        new Date(b.time_created) - new Date(a.time_created)
+    )
+    .map(v => v.id);
 }
+
+export default ({ id, active }) => {
+  const reqKey = `vote-${id}`;
+  const {
+    entities: {
+      talks,
+      talks: { [id]: talk }
+    },
+    lists: { talks: list },
+    reqs: { [reqKey]: [loading, error] = [false, null] }
+  } = useAppState();
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    dispatch({ reqs: { [reqKey]: [true, null] } });
+
+    fetch(completeUrl(`/talks/${id}/vote`), {
+      method: active ? "DELETE" : "PUT"
+    })
+      .then(onPatchSucceeded, onFetchFailed)
+      .then(
+        () => {
+          const rating = active ? talk.rating - 1 : talk.rating + 1;
+          const voted = active ? false : true;
+          const talksUpdates = { [id]: { rating, voted } };
+          const action = {
+            entities: { talks: talksUpdates },
+            reqs: { [reqKey]: [false, null] }
+          };
+
+          if (list) {
+            const items = sortTalkList(list, talks, talksUpdates);
+            action.lists = { talks: { items } };
+          }
+
+          dispatch(action);
+        },
+        error => {
+          dispatch({ reqs: { [reqKey]: [false, error] } });
+        }
+      );
+  };
+
+  return (
+    <Fragment>
+      <button className="button" disabled={loading} onClick={onClick}>
+        {active ? "Voted" : "Vote"}
+      </button>
+      <FetchState loading={loading} error={error} />
+    </Fragment>
+  );
+};

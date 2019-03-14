@@ -1,0 +1,24 @@
+.talkitem {
+  display: flex;
+  padding: var(--padding);
+  border-bottom: var(--border);
+}
+
+.talkitem-main {
+  flex: 1;
+}
+
+.talkitem-aside {
+  display: flex;
+  align-items: center;
+}
+
+.talkitem-title {
+  font-size: var(--large-font-size);
+  font-weight: 500;
+}
+
+.talkitem-meta {
+  margin-top: var(--less-padding);
+  color: var(--light-font-color);
+}

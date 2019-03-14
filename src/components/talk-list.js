@@ -4,18 +4,9 @@ import { talk as schema } from "../schema";
 import useList from "./use-list";
 import useTitle from "./use-title";
 import Load from "./load";
+import TalkItem from "./talk-item";
 import "./talk-list.css";
 import "./app.css";
-
-const TalkItem = ({ item }) => {
-  return (
-    <div className="talklist-item">
-      <Link className="talklist-main" to={`/talks/${item.id}`}>
-        <h2 className="talklist-title">{item.title}</h2>
-      </Link>
-    </div>
-  )
-}
 
 export default () => {
   const [items, loading, error] = useList(schema);
