@@ -64,17 +64,14 @@ const render = ({ factory, params, inner }, props) =>
 export default ({ routes, ...props }) => {
   const { location } = useRouterState();
 
-  const result = React.useMemo(
-    () => {
-      const segments = location.pathname.slice(1).split("/");
-      let result = {};
+  const result = React.useMemo(() => {
+    const segments = location.pathname.slice(1).split("/");
+    let result = {};
 
-      match(routes, segments, result);
+    match(routes, segments, result);
 
-      return result;
-    },
-    [location, routes]
-  );
+    return result;
+  }, [location, routes]);
 
   if (!result.factory) return null;
 

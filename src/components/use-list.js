@@ -21,13 +21,10 @@ export default (schema, parentSchema, id, name) => {
 
   const list = key in lists ? lists[key].items : null;
 
-  const data = useMemo(
-    () => {
-      if (!list) return null;
-      return denormalize(list, schema, entities);
-    },
-    [list]
-  );
+  const data = useMemo(() => {
+    if (!list) return null;
+    return denormalize(list, schema, entities);
+  }, [list]);
 
   useFetch((dispatch, fetch, reload) => {
     if (loadingRef.current) return;

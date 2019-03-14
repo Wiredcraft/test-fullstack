@@ -7,15 +7,12 @@ const wrapParens = str => `(${str})`;
 
 const toRow = arr => wrapParens(join(arr));
 
-const fields = [
-  "title",
-  "description",
-  "username"
-];
+const fields = ["title", "description", "username"];
 
 export const create = async (req, res, query, form) => {
-  const entries = Object.entries(form)
-    .filter(([name, value]) => fields.includes(name));
+  const entries = Object.entries(form).filter(([name, value]) =>
+    fields.includes(name)
+  );
   const keys = entries.map(v => v[0]);
   const values = entries.map(v => v[1]);
 
@@ -31,7 +28,7 @@ export const create = async (req, res, query, form) => {
     res.statusCode = 400;
     return { name: err.message };
   }
-}
+};
 
 export const list = async (req, res, query) => {
   const { after_id = 0, limit = 20 } = qs.parse(query);
@@ -53,7 +50,7 @@ export const list = async (req, res, query) => {
   });
 
   return rows;
-}
+};
 
 export const read = async (req, res, query, id) => {
   const user = "magjckang";
@@ -73,7 +70,7 @@ export const read = async (req, res, query, id) => {
   }
 
   return rows[0];
-}
+};
 
 export const vote = async (req, res, query, id) => {
   const client = await db.connect();

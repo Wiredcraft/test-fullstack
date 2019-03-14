@@ -25,11 +25,13 @@ export default () => {
               </span>
             </header>
             <section>
-              {items.map(item => <TalkItem key={item.id} item={item} />)}
+              {items.map(item => (
+                <TalkItem key={item.id} item={item} />
+              ))}
             </section>
           </Fragment>
         )}
       </Load>
     </main>
-  )
-}
+  );
+};

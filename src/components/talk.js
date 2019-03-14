@@ -19,15 +19,13 @@ const Talk = ({ item }) => {
           {formatTime(item.time_created, true)}
         </div>
       </header>
-      <section className="talk-content">
-        {item.description}
-      </section>
+      <section className="talk-content">{item.description}</section>
       <section className="talk-actions">
         <VoteButton id={item.id} active={item.voted} />
       </section>
     </article>
-  )
-}
+  );
+};
 
 export default ({ params: [id] }) => {
   const [item, loading, error] = useItem(schema, id);
@@ -37,5 +35,5 @@ export default ({ params: [id] }) => {
         {Talk}
       </Load>
     </main>
-  )
-}
+  );
+};

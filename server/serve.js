@@ -24,7 +24,7 @@ export default (urlPrefix, filePathPrefix) => {
         return;
       }
       res.end();
-    })
+    });
 
     let contentType;
     switch (path.extname(filePath)) {
@@ -48,5 +48,5 @@ export default (urlPrefix, filePathPrefix) => {
       res.on("finish", resolve);
       res.on("error", reject);
     });
-  }
-}
+  };
+};

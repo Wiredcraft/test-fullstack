@@ -17,13 +17,10 @@ export default (schema, id) => {
 
   const entity = schema.key in entities ? entities[schema.key][id] : null;
 
-  const data = useMemo(
-    () => {
-      if (!entity) return null;
-      return denormalize(entity, schema, entities);
-    },
-    [entity]
-  );
+  const data = useMemo(() => {
+    if (!entity) return null;
+    return denormalize(entity, schema, entities);
+  }, [entity]);
 
   useFetch((dispatch, fetch, reload) => {
     if (loadingRef.current) return;

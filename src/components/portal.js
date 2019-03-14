@@ -17,8 +17,8 @@ export default ({ children }) => {
     modalRoot.appendChild(containerRef.current);
     return () => {
       modalRoot.removeChild(containerRef.current);
-    }
-  }, [])
+    };
+  }, []);
 
   return createPortal(children, containerRef.current);
-}
+};

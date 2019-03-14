@@ -30,20 +30,23 @@ export const reducer = (state, action) => {
   }
 
   return state;
-}
+};
 
 const routes = [
   ["", TalkList],
   ["talks/compose", TalkCompose],
   ["talks/:id", Talk],
-  [null, () => (
-    <main
-      className="box box_main box_center"
-      style={{ color: "var(--light-font-color)" }}
-    >
-      Nothing is here
-    </main>
-  )]
+  [
+    null,
+    () => (
+      <main
+        className="box box_main box_center"
+        style={{ color: "var(--light-font-color)" }}
+      >
+        Nothing is here
+      </main>
+    )
+  ]
 ];
 
 export default ({ initialState, serverLocation }) => {
@@ -63,5 +66,5 @@ export default ({ initialState, serverLocation }) => {
         </Dispatch.Provider>
       </AppState.Provider>
     </Router>
-  )
-}
+  );
+};

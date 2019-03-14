@@ -11,13 +11,10 @@ function unfreezeScreen() {
 }
 
 export default ({ title, onClose, children }) => {
-  useEffect(
-    () => {
-      freezeScreen();
-      return () => unfreezeScreen();
-    },
-    []
-  );
+  useEffect(() => {
+    freezeScreen();
+    return () => unfreezeScreen();
+  }, []);
 
   return (
     <Portal>

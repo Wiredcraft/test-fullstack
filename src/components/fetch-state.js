@@ -20,7 +20,7 @@ export const onTryGetSucceeded = res => {
   if (res.ok) return res.json();
   if (res.status === 404) throw [NotFound];
   throw [Service];
-}
+};
 
 export const onPatchSucceeded = res => {
   if (res.ok) {
@@ -66,14 +66,11 @@ export const ErrorMessage = ({ error: [name] }) => {
 export default ({ immediate, loading, error, children }) => {
   const [open, setOpen] = React.useState(false);
 
-  React.useEffect(
-    () => {
-      if (error) {
-        setOpen(true);
-      }
-    },
-    [error]
-  );
+  React.useEffect(() => {
+    if (error) {
+      setOpen(true);
+    }
+  }, [error]);
 
   let message;
 

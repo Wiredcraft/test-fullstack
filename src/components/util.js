@@ -48,7 +48,10 @@ export function formatTime(value, relative) {
   const month = EnMonths[then.getMonth()];
   const day = then.getDate();
   const hour = then.getHours();
-  const minute = then.getMinutes().toString().padStart(2, "0");
+  const minute = then
+    .getMinutes()
+    .toString()
+    .padStart(2, "0");
 
   return `${month} ${day} ${year} ${hour}:${minute}`;
 }

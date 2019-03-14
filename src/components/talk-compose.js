@@ -12,8 +12,9 @@ import "./talk-compose.css";
 export default () => {
   const [form, setForm] = useState(() => ({ title: "", description: "" }));
   const state = useAppState();
-  console.log(state);
-  const { reqs: { compose: [loading, error] = [false, null] } } = state;
+  const {
+    reqs: { compose: [loading, error] = [false, null] }
+  } = state;
   const push = usePush();
   const dispatch = useDispatch();
 
@@ -34,14 +35,14 @@ export default () => {
           dispatch({
             entities,
             reqs: { compose: [false, null] }
-          })
-          push({ pathname: `/talks/${body.id}` })
+          });
+          push({ pathname: `/talks/${body.id}` });
         },
         error => {
           dispatch({ reqs: { compose: [false, error] } });
         }
-      )
-  }
+      );
+  };
 
   return (
     <main className="box box_main">
@@ -56,7 +57,7 @@ export default () => {
               className="tc-input"
               value={form.title}
               onChange={event => {
-                setForm({ ...form, title: event.target.value })
+                setForm({ ...form, title: event.target.value });
               }}
             />
           </div>
@@ -68,7 +69,7 @@ export default () => {
               className="tc-textarea"
               value={form.description}
               onChange={event => {
-                setForm({ ...form, description: event.target.value })
+                setForm({ ...form, description: event.target.value });
               }}
             />
           </div>
@@ -81,5 +82,5 @@ export default () => {
       </section>
       <FetchState loading={loading} error={error} />
     </main>
-  )
-}
+  );
+};

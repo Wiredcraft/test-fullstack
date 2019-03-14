@@ -72,28 +72,25 @@ export default ({ immediate, loading }) => {
     speedRef.current = 0.5;
   };
 
-  useEffect(
-    () => {
-      if (loading) {
-        if (immediate) {
-          start();
-        } else {
-          timeoutRef.current = setTimeout(start, 800);
-          return () => clearTimeout(timeoutRef.current);
-        }
+  useEffect(() => {
+    if (loading) {
+      if (immediate) {
+        start();
       } else {
-        finish();
+        timeoutRef.current = setTimeout(start, 800);
+        return () => clearTimeout(timeoutRef.current);
       }
-    },
-    [loading]
-  );
+    } else {
+      finish();
+    }
+  }, [loading]);
 
   useEffect(() => {
     return () => {
       if (animationFrameRef.current) {
         window.cancelAnimationFrame(animationFrameRef.current);
       }
-    }
+    };
   }, []);
 
   if (!active) return null;
