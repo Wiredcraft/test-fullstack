@@ -1,14 +1,19 @@
 import React, { useReducer, useEffect } from "react";
 import Router from "../lib/router";
 import Routes from "../lib/routes";
-import { merge, getTimeString } from "./util";
+import { merge, getTimeString, completeUrl } from "./util";
 import { AppState, Dispatch } from "./use-app-state";
+import useFetch from "./use-fetch";
+import { onGetSucceeded, onFetchFailed } from "./fetch-state";
 import TalkList from "./talk-list";
+import CreateAccount from "./create-account";
+import Login from "./login";
 import TalkCompose from "./talk-compose";
 import Talk from "./talk";
 import "./app.css";
 
 export const initialState = {
+  user: null,
   entities: {},
   lists: {},
   reqs: {}
@@ -34,6 +39,8 @@ export const reducer = (state, action) => {
 
 const routes = [
   ["", TalkList],
+  ["create-account", CreateAccount],
+  ["login", Login],
   ["talks/compose", TalkCompose],
   ["talks/:id", Talk],
   [
@@ -49,6 +56,25 @@ const routes = [
   ]
 ];
 
+const FetchUser = ({ state }) => {
+  const {
+    user,
+    reqs: { user: [, error] = [false, null] }
+  } = state;
+
+  useFetch((dispatch, fetch) => {
+    if (user || error) return;
+    return fetch(completeUrl("/user"), { credentials: "include" })
+      .then(onGetSucceeded, onFetchFailed)
+      .then(
+        user => dispatch({ user: user.name }),
+        error => dispatch({ reqs: { user: [false, error] } })
+      );
+  });
+
+  return null;
+};
+
 export default ({ initialState, serverLocation }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -63,6 +89,7 @@ export default ({ initialState, serverLocation }) => {
       <AppState.Provider value={state}>
         <Dispatch.Provider value={dispatch}>
           <Routes routes={routes} />
+          <FetchUser state={state} />
         </Dispatch.Provider>
       </AppState.Provider>
     </Router>

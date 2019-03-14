@@ -29,7 +29,9 @@ export default (schema, id) => {
     loadingRef.current = true;
     dispatch({ reqs: { [key]: [true, null] } });
 
-    return fetch(completeUrl(`/${schema.key}/${encodeURIComponent(id)}`))
+    return fetch(completeUrl(`/${schema.key}/${encodeURIComponent(id)}`), {
+      credentials: "include"
+    })
       .then(onTryGetSucceeded, onFetchFailed)
       .then(
         payload => {

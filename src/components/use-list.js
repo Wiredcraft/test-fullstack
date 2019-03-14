@@ -37,7 +37,7 @@ export default (schema, parentSchema, id, name) => {
     loadingRef.current = true;
     dispatch({ reqs: { [key]: [true, null] } });
 
-    return fetch(completeUrl(url))
+    return fetch(completeUrl(url), { credentials: "include" })
       .then(onGetSucceeded, onFetchFailed)
       .then(
         payload => {

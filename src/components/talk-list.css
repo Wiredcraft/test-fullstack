@@ -14,3 +14,15 @@
 .talklist-link {
   color: var(--interactive-font-color);
 }
+
+.talklist-user {
+  position: sticky;
+  bottom: 0px;
+  padding: var(--padding);
+  font-size: (--large-font-size);
+  background: var(--content-background);
+}
+
+.talklist-user > a {
+  color: var(--interactive-font-color);
+}

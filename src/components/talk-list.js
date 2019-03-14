@@ -1,15 +1,18 @@
 import React, { Fragment } from "react";
 import { Link } from "../lib/router";
 import { talk as schema } from "../schema";
+import useAppState from "./use-app-state";
 import useList from "./use-list";
 import useTitle from "./use-title";
 import Load from "./load";
 import TalkItem from "./talk-item";
 import "./talk-list.css";
+import "./button.css";
 import "./app.css";
 
 export default () => {
   const [items, loading, error] = useList(schema);
+  const { user } = useAppState();
 
   useTitle("All Talks");
 
@@ -29,6 +32,14 @@ export default () => {
                 <TalkItem key={item.id} item={item} />
               ))}
             </section>
+            {!user && (
+              <section className="talklist-user">
+                {"New to Lightning Talks? "}
+                <Link to="/create-account">Create Account</Link>
+                {" or "}
+                <Link to="/login">Login</Link>
+              </section>
+            )}
           </Fragment>
         )}
       </Load>

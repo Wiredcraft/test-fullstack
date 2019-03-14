@@ -20,13 +20,16 @@ export default next => async (req, res) => {
     state = reducer(state, action);
   };
 
+  const { cookie } = req.headers;
+  const fetchWithCookie = url => fetch(url, { headers: { cookie } });
+
   ReactDOM.renderToStaticMarkup(
     <App initialState={state} serverLocation={location} />
   );
 
   const title = rewindTitle();
 
-  await Promise.all(rewind().map(fn => fn(dispatch, fetch)));
+  await Promise.all(rewind().map(fn => fn(dispatch, fetchWithCookie)));
 
   const body = `<!doctype html>
 <html lang="zh-CN">

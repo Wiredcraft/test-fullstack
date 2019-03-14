@@ -4,6 +4,7 @@ import Modal from "./modal";
 
 const NotFound = "NotFound";
 const Network = "Network";
+const Auth = "Auth";
 const Service = "Service";
 
 const isJsonResponse = res => {
@@ -13,6 +14,7 @@ const isJsonResponse = res => {
 
 export const onGetSucceeded = res => {
   if (res.ok) return res.json();
+  if (res.status === 401) throw [Auth];
   throw [Service];
 };
 
@@ -29,7 +31,7 @@ export const onPatchSucceeded = res => {
   }
 
   if (isJsonResponse(res)) {
-    return res.json().then(({ error }) => {
+    return res.json().then(error => {
       throw [error.name, error.data];
     });
   }

@@ -1,38 +1,32 @@
 import * as qs from "querystring";
 import db from "../db";
 
-const join = arr => arr.join(", ");
-
-const wrapParens = str => `(${str})`;
-
-const toRow = arr => wrapParens(join(arr));
-
-const fields = ["title", "description", "username"];
-
 export const create = async (req, res, query, form) => {
-  const entries = Object.entries(form).filter(([name, value]) =>
-    fields.includes(name)
-  );
-  const keys = entries.map(v => v[0]);
-  const values = entries.map(v => v[1]);
+  const { user } = req;
 
-  try {
-    const result = await db.query(
-      `insert into talks ${toRow(keys)}` +
-        ` values ${toRow(keys.map((v, i) => `$${i + 1}`))} returning *`,
-      values
-    );
-
-    return result.rows[0];
-  } catch (err) {
-    res.statusCode = 400;
-    return { name: err.message };
+  if (!user) {
+    res.statusCode = 401;
+    return;
   }
+
+  const { title, description } = form;
+
+  if (!title || !description) {
+    res.statusCode = 400;
+    return { name: title ? "Content Required" : "Title Required" };
+  }
+
+  const result = await db.query(
+    `insert into talks` +
+      ` (title, description, username) values ($1, $2, $3) returning *`,
+    [title, description, user]
+  );
+
+  return result.rows[0];
 };
 
 export const list = async (req, res, query) => {
   const { after_id = 0, limit = 20 } = qs.parse(query);
-  const user = "magjckang";
 
   const { rows } = await db.query(
     "select" +
@@ -40,7 +34,7 @@ export const list = async (req, res, query) => {
       ", cast(talk_id as boolean) as voted" +
       " from talks left join votes on id = talk_id and votes.username = $1" +
       " where id > $2 order by rating desc, time_created desc limit $3",
-    [user, after_id, limit]
+    [req.user || null, after_id, limit]
   );
 
   rows.forEach(row => {
@@ -53,15 +47,13 @@ export const list = async (req, res, query) => {
 };
 
 export const read = async (req, res, query, id) => {
-  const user = "magjckang";
-
   const { rows } = await db.query(
     "select" +
       " id, title, time_created, talks.username, rating, description" +
       ", cast(talk_id as boolean) as voted" +
       " from talks left join votes on id = talk_id and votes.username = $1" +
       " where id = $2",
-    [user, id]
+    [req.user || null, id]
   );
 
   if (!rows.length) {
@@ -73,8 +65,14 @@ export const read = async (req, res, query, id) => {
 };
 
 export const vote = async (req, res, query, id) => {
+  const { user } = req;
+
+  if (!user) {
+    res.statusCode = 401;
+    return;
+  }
+
   const client = await db.connect();
-  const user = "magjckang";
   let result;
 
   await client.query("begin");
@@ -108,8 +106,14 @@ export const vote = async (req, res, query, id) => {
 };
 
 export const unvote = async (req, res, query, id) => {
+  const { user } = req;
+
+  if (!user) {
+    res.statusCode = 401;
+    return;
+  }
+
   const client = await db.connect();
-  const user = "magjckang";
   let result;
 
   await client.query("begin");

@@ -1,6 +1,7 @@
 create table users (
   name            text primary key,
-  time_created    timestamp with time zone default CURRENT_TIMESTAMP
+  time_created    timestamp with time zone default CURRENT_TIMESTAMP,
+  password        text not null
 );
 
 create table talks (

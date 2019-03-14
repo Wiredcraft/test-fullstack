@@ -1,4 +1,5 @@
 import App from "../lib/application";
+import * as auth from "./resource/auth";
 import * as talks from "./resource/talks";
 
 const app = new App();
@@ -25,6 +26,13 @@ app.use(next => async (req, res) => {
   }
   await next(req, res);
 });
+
+app.json("post", "/login", auth.login);
+app.json("post", "/users", auth.createUser);
+
+app.use(auth.parseReqUser);
+
+app.json("get", "/user", auth.read);
 
 app.json("post", "/talks", talks.create);
 app.json("get", "/talks", talks.list);

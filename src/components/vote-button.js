@@ -33,7 +33,8 @@ export default ({ id, active }) => {
     dispatch({ reqs: { [reqKey]: [true, null] } });
 
     fetch(completeUrl(`/talks/${id}/vote`), {
-      method: active ? "DELETE" : "PUT"
+      method: active ? "DELETE" : "PUT",
+      credentials: "include"
     })
       .then(onPatchSucceeded, onFetchFailed)
       .then(
@@ -64,7 +65,13 @@ export default ({ id, active }) => {
       <button className="button" disabled={loading} onClick={onClick}>
         {active ? "Voted" : "Vote"}
       </button>
-      <FetchState loading={loading} error={error} />
+      <FetchState loading={loading} error={error}>
+        {name => {
+          if (name === "Unauthorized") {
+            return "Only an authorized user can vote.";
+          }
+        }}
+      </FetchState>
     </Fragment>
   );
 };

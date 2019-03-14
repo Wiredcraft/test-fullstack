@@ -19,11 +19,12 @@ export default () => {
   const dispatch = useDispatch();
 
   const submit = () => {
-    const body = { ...form, username: "magjckang" };
+    const body = { ...form };
 
     dispatch({ reqs: { compose: [true, null] } });
 
     fetch(completeUrl("/talks"), {
+      credentials: "include",
       method: "POST",
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" }
@@ -80,7 +81,18 @@ export default () => {
           Submit
         </button>
       </section>
-      <FetchState loading={loading} error={error} />
+      <FetchState loading={loading} error={error}>
+        {name => {
+          switch (name) {
+            case "Unauthorized":
+              return "Only an authorized user can create talks.";
+            case "Title Required":
+              return "Please give your talk a title."
+            case "Content Required":
+              return "Please write your talk with some content."
+          }
+        }}
+      </FetchState>
     </main>
   );
 };
