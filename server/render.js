@@ -5,6 +5,7 @@ import fetch from "node-fetch";
 import App, { reducer, initialState } from "../src/components/app";
 import { rewind } from "../src/components/use-fetch";
 import { rewind as rewindTitle } from "../src/components/use-title";
+import { getAssetName } from "./serve";
 
 function serializeState(state) {
   return JSON.stringify(state).replace(/</g, "\\u003c");
@@ -38,17 +39,17 @@ export default next => async (req, res) => {
     <title>${title}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <link rel="icon" href="data:image/png;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="/dist/main.css">
+    <link rel="stylesheet" href="/dist/${getAssetName("main.css")}">
   </head>
   <body>
     <div id="root"></div>
     <div id="modal-root"></div>
-    <script src="/dist/react.development.js"></script>
-    <script src="/dist/react-dom.development.js"></script>
+    <script src="/dist/${getAssetName("react.js")}"></script>
+    <script src="/dist/${getAssetName("react-dom.js")}"></script>
     <script>
       window.__PRELOADED_STATE__=${serializeState(state)}
     </script>
-    <script src="/dist/main.js"></script>
+    <script src="/dist/${getAssetName("main.js")}"></script>
   </body>
 </html>`;
 

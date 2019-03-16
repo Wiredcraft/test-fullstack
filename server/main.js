@@ -8,7 +8,7 @@ const app = new App();
 
 app.useLogger();
 
-app.use(serve("/dist/", "dist/"));
+app.use(serve("/dist/", "dist"));
 
 if (process.env.NODE_ENV !== "production") {
   fs.watch("src", { recursive: true }, (eventType, filename) => {
