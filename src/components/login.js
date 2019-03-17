@@ -3,8 +3,8 @@ import { usePush, Link } from "../lib/router";
 import { completeUrl } from "./util";
 import useAppState, { useDispatch } from "./use-app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
-import "./talk-compose.css";
 import "./button.css";
+import "./form.css";
 import "./app.css";
 
 export default () => {
@@ -16,13 +16,13 @@ export default () => {
   const dispatch = useDispatch();
   const push = usePush();
 
-  const submit = () => {
+  const submit = event => {
+    event.preventDefault();
     dispatch({ reqs: { login: [true, null] } });
 
     fetch(completeUrl("/login"), {
-      credentials: "include",
       method: "POST",
-      body: JSON.stringify({ ...form }),
+      body: JSON.stringify(form),
       headers: { "Content-Type": "application/json" }
     })
       .then(onPatchSucceeded, onFetchFailed)
@@ -39,44 +39,37 @@ export default () => {
 
   return (
     <main className="box box_main">
-      <header className="tc-header">
+      <header className="header header_center">
         <h1>{user ? "Login As Another User" : "Login"}</h1>
       </header>
-      <section>
-        <div className="tc-field">
-          <div className="tc-line">
-            <div className="tc-name">Name</div>
-            <input
-              className="tc-input"
-              value={form.name}
-              onChange={event => {
-                setForm({ ...form, name: event.target.value });
-              }}
-            />
-          </div>
+      <form onSubmit={submit}>
+        <div className="form-field">
+          <input
+            required
+            value={form.name}
+            data-hasvalue={form.name ? "true" : ""}
+            onChange={event => {
+              setForm({ ...form, name: event.target.value });
+            }}
+          />
+          <label>Name</label>
         </div>
-        <div className="tc-field">
-          <div className="tc-line">
-            <div className="tc-name">Password</div>
-            <input
-              className="tc-input"
-              type="password"
-              value={form.password}
-              onKeyDown={event => {
-                if (event.which === 13) submit();
-              }}
-              onChange={event => {
-                setForm({ ...form, password: event.target.value });
-              }}
-            />
-          </div>
+        <div className="form-field">
+          <input
+            required
+            type="password"
+            value={form.password}
+            data-hasvalue={form.password ? "true" : ""}
+            onChange={event => {
+              setForm({ ...form, password: event.target.value });
+            }}
+          />
+          <label>Password</label>
         </div>
-      </section>
-      <section className="tc-action">
-        <button className="button" onClick={submit}>
-          Submit
-        </button>
-      </section>
+        <div className="form-action">
+          <button className="button">Submit</button>
+        </div>
+      </form>
       <FetchState
         loading={loading}
         error={error}

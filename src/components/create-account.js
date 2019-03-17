@@ -3,8 +3,8 @@ import { usePush, Link } from "../lib/router";
 import { completeUrl } from "./util";
 import useAppState, { useDispatch } from "./use-app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
-import "./talk-compose.css";
 import "./button.css";
+import "./form.css";
 import "./app.css";
 
 export default () => {
@@ -20,7 +20,9 @@ export default () => {
   const dispatch = useDispatch();
   const push = usePush();
 
-  const submit = () => {
+  const submit = event => {
+    event.preventDefault();
+
     if (form.password !== form.confirm) {
       const error = ["Inconsistent Password"];
       dispatch({ reqs: { createAccount: [false, error] } });
@@ -48,57 +50,51 @@ export default () => {
 
   return (
     <main className="box box_main">
-      <header className="tc-header">
+      <header className="header header_center">
         <h1>{user ? "Create Another Account" : "Create Account"}</h1>
       </header>
-      <section>
-        <div className="tc-field">
-          <div className="tc-line">
-            <div className="tc-name">Name</div>
-            <input
-              className="tc-input"
-              value={form.name}
-              onChange={event => {
-                setForm({ ...form, name: event.target.value });
-              }}
-            />
-          </div>
+      <form onSubmit={submit}>
+        <div className="form-field">
+          <input
+            required
+            className="tc-input"
+            value={form.name}
+            data-hasvalue={form.name ? "true" : ""}
+            onChange={event => {
+              setForm({ ...form, name: event.target.value });
+            }}
+          />
+          <label className="form-label">Name</label>
         </div>
-        <div className="tc-field">
-          <div className="tc-line">
-            <div className="tc-name">Password</div>
-            <input
-              className="tc-input"
-              type="password"
-              value={form.password}
-              onChange={event => {
-                setForm({ ...form, password: event.target.value });
-              }}
-            />
-          </div>
+        <div className="form-field">
+          <input
+            required
+            className="form-input"
+            type="password"
+            value={form.password}
+            data-hasvalue={form.password ? "true" : ""}
+            onChange={event => {
+              setForm({ ...form, password: event.target.value });
+            }}
+          />
+          <label className="form-label">Password</label>
         </div>
-        <div className="tc-field">
-          <div className="tc-line">
-            <div className="tc-name">Confirm</div>
-            <input
-              className="tc-input"
-              type="password"
-              value={form.confirm}
-              onKeyDown={event => {
-                if (event.which === 13) submit();
-              }}
-              onChange={event => {
-                setForm({ ...form, confirm: event.target.value });
-              }}
-            />
-          </div>
+        <div className="form-field">
+          <input
+            className="form-input"
+            type="password"
+            value={form.confirm}
+            data-hasvalue={form.confirm ? "true" : ""}
+            onChange={event => {
+              setForm({ ...form, confirm: event.target.value });
+            }}
+          />
+          <label className="form-label">Confirm</label>
         </div>
-      </section>
-      <section className="tc-action">
-        <button className="button" onClick={submit}>
-          Submit
-        </button>
-      </section>
+        <div className="form-action">
+          <button className="button">Submit</button>
+        </div>
+      </form>
       <FetchState
         loading={loading}
         error={error}

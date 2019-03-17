@@ -4,6 +4,7 @@
   --large-font-size: 18px;
   --very-large-font-size: 28px;
 
+  --more-padding: 32px;
   --padding: 16px;
   --less-padding: 8px;
 
@@ -19,7 +20,7 @@
   --background: var(--gray);
   --content-background: #fff;
 
-  --main-max-width: 600px;
+  --main-max-width: 640px;
 
   --focused-outline: 3px solid rgba(131, 192, 253, 0.5);
   --border: 1px solid var(--gray);
@@ -86,6 +87,11 @@ button {
   -webkit-user-select: none;
 }
 
+textarea {
+  /* Firefox apply a red box-shadow on textarea[required] */
+  box-shadow: none;
+}
+
 /**
  * Generic styles.
  */
@@ -108,4 +114,15 @@ button {
   align-items: center;
   justify-content: center;
   padding-bottom: 4vh;
+}
+
+.header {
+  padding: var(--padding);
+  font-size: var(--very-large-font-size);
+  font-weight: 500;
+  border-bottom: var(--border);
+}
+
+.header_center {
+  text-align: center;
 }

@@ -6,8 +6,8 @@ import { completeUrl } from "./util";
 import useAppState, { useDispatch } from "./use-app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
 import "./button.css";
+import "./form.css";
 import "./app.css";
-import "./talk-compose.css";
 
 export default () => {
   const [form, setForm] = useState(() => ({ title: "", description: "" }));
@@ -18,15 +18,14 @@ export default () => {
   const push = usePush();
   const dispatch = useDispatch();
 
-  const submit = () => {
-    const body = { ...form };
-
+  const submit = event => {
+    event.preventDefault();
     dispatch({ reqs: { compose: [true, null] } });
 
     fetch(completeUrl("/talks"), {
       credentials: "include",
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify(form),
       headers: { "Content-Type": "application/json" }
     })
       .then(onPatchSucceeded, onFetchFailed)
@@ -47,40 +46,36 @@ export default () => {
 
   return (
     <main className="box box_main">
-      <header className="tc-header">
+      <header className="header header_center">
         <h1>Compose New Talk</h1>
       </header>
-      <section>
-        <div className="tc-field">
-          <div className="tc-line">
-            <div className="tc-name">Title</div>
-            <input
-              className="tc-input"
-              value={form.title}
-              onChange={event => {
-                setForm({ ...form, title: event.target.value });
-              }}
-            />
-          </div>
+      <form onSubmit={submit}>
+        <div className="form-field">
+          <input
+            required
+            value={form.title}
+            data-hasvalue={form.title ? "true" : ""}
+            onChange={event => {
+              setForm({ ...form, title: event.target.value });
+            }}
+          />
+          <label>Title</label>
         </div>
-        <div className="tc-field">
-          <div className="tc-line">
-            <div className="tc-name">Description</div>
-            <textarea
-              className="tc-textarea"
-              value={form.description}
-              onChange={event => {
-                setForm({ ...form, description: event.target.value });
-              }}
-            />
-          </div>
+        <div className="form-field">
+          <textarea
+            required
+            value={form.description}
+            data-hasvalue={form.description ? "true" : ""}
+            onChange={event => {
+              setForm({ ...form, description: event.target.value });
+            }}
+          />
+          <label>Description</label>
         </div>
-      </section>
-      <section className="tc-action">
-        <button className="button" onClick={submit}>
-          Submit
-        </button>
-      </section>
+        <div className="form-action">
+          <button className="button">Submit</button>
+        </div>
+      </form>
       <FetchState
         loading={loading}
         error={error}
@@ -93,9 +88,9 @@ export default () => {
             case "Unauthorized":
               return "Only an authorized user can create talks.";
             case "Title Required":
-              return "Please give your talk a title."
+              return "Please give your talk a title.";
             case "Content Required":
-              return "Please write your talk with some content."
+              return "Please write your talk with some content.";
           }
         }}
       </FetchState>
