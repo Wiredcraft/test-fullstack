@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import normalize from "../lib/normalize";
-import { usePush, Link } from "../lib/router";
+import { useReplace, Link } from "../lib/router";
 import { talk as schema } from "../schema";
 import { completeUrl } from "./util";
 import useAppState, { useDispatch } from "./use-app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
 import useTitle from "./use-title";
+import { sortTalkList } from "./vote-button";
 import "./button.css";
 import "./form.css";
 import "./app.css";
@@ -14,9 +15,11 @@ export default () => {
   const [form, setForm] = useState(() => ({ title: "", description: "" }));
   const state = useAppState();
   const {
+    entities: { talks },
+    lists: { talks: list },
     reqs: { compose: [loading, error] = [false, null] }
   } = state;
-  const push = usePush();
+  const replace = useReplace();
   const dispatch = useDispatch();
 
   const submit = event => {
@@ -33,11 +36,18 @@ export default () => {
       .then(
         body => {
           const { entities } = normalize(body, schema);
-          dispatch({
+          const action = {
             entities,
             reqs: { compose: [false, null] }
-          });
-          push({ pathname: `/talks/${body.id}` });
+          };
+
+          if (list) {
+            const items = sortTalkList(list, talks, entities.talks);
+            action.lists = { talks: { items } };
+          }
+
+          dispatch(action);
+          replace({ pathname: `/talks/${body.id}` });
         },
         error => {
           dispatch({ reqs: { compose: [false, error] } });
@@ -94,6 +104,8 @@ export default () => {
               return "Please give your talk a title.";
             case "Content Required":
               return "Please write your talk with some content.";
+            case "Title Length":
+              return "Please make sure title is less than 200 characters long.";
           }
         }}
       </FetchState>

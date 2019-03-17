@@ -9,11 +9,18 @@ export const create = async (req, res, query, form) => {
     return;
   }
 
-  const { title, description } = form;
+  let { title, description } = form;
+  title = title.trim();
+  description = description.trim();
 
   if (!title || !description) {
     res.statusCode = 400;
     return { name: title ? "Content Required" : "Title Required" };
+  }
+
+  if (title.length > 200) {
+    res.statusCode = 400;
+    return { name: "Title Length" };
   }
 
   const result = await db.query(
@@ -25,16 +32,14 @@ export const create = async (req, res, query, form) => {
   return result.rows[0];
 };
 
-export const list = async (req, res, query) => {
-  const { after_id = 0, limit = 20 } = qs.parse(query);
-
+export const list = async (req, res) => {
   const { rows } = await db.query(
     "select" +
       " id, title, time_created, talks.username, rating" +
       ", cast(talk_id as boolean) as voted" +
       " from talks left join votes on id = talk_id and votes.username = $1" +
-      " where id > $2 order by rating desc, time_created desc limit $3",
-    [req.user || null, after_id, limit]
+      " order by rating desc, time_created desc",
+    [req.user || null]
   );
 
   rows.forEach(row => {

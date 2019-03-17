@@ -5,11 +5,10 @@ import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
 import { ChevronUp as Icon } from "./icon";
 import "./button.css";
 
-function sortTalkList(listState, talks, updates) {
+export function sortTalkList(listState, talks, updates) {
   const map = merge(talks, updates, 2);
 
-  return listState.items
-    .map(id => map[id])
+  return Object.values(map)
     .sort(
       (a, b) =>
         b.rating - a.rating ||
