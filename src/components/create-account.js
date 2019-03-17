@@ -56,7 +56,7 @@ export default () => {
       <header className="header header_center">
         <h1>{user ? "Create Another Account" : "Create Account"}</h1>
       </header>
-      <form onSubmit={submit}>
+      <form className="form_narrow" onSubmit={submit}>
         <div className="form-field">
           <input
             required

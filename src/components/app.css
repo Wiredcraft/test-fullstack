@@ -20,7 +20,7 @@
   --background: var(--gray);
   --content-background: #fff;
 
-  --main-max-width: 640px;
+  --main-max-width: 1024px;
 
   --focused-outline: 3px solid rgba(131, 192, 253, 0.5);
   --border: 1px solid var(--gray);
