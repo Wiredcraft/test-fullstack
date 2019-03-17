@@ -99,7 +99,13 @@ export default () => {
           Submit
         </button>
       </section>
-      <FetchState loading={loading} error={error}>
+      <FetchState
+        loading={loading}
+        error={error}
+        onDismissError={() => {
+          dispatch({ reqs: { createAccount: [false, null] } });
+        }}
+      >
         {name => {
           switch (name) {
             case "Inconsistent Password":

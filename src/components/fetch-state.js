@@ -65,18 +65,10 @@ export const ErrorMessage = ({ error: [name] }) => {
   }
 };
 
-export default ({ immediate, loading, error, children }) => {
-  const [open, setOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    if (error) {
-      setOpen(true);
-    }
-  }, [error]);
-
+export default ({ immediate, loading, error, onDismissError, children }) => {
   let message;
 
-  if (open) {
+  if (error) {
     const [name, data] = error;
 
     if (name === Network) {
@@ -93,7 +85,7 @@ export default ({ immediate, loading, error, children }) => {
   return (
     <React.Fragment>
       <LoadingBar immediate={immediate} loading={loading} />
-      {open && <Modal onClose={() => setOpen(false)}>{message}</Modal>}
+      {error && <Modal onClose={onDismissError}>{message}</Modal>}
     </React.Fragment>
   );
 };

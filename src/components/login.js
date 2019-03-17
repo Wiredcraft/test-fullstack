@@ -77,7 +77,13 @@ export default () => {
           Submit
         </button>
       </section>
-      <FetchState loading={loading} error={error}>
+      <FetchState
+        loading={loading}
+        error={error}
+        onDismissError={() => {
+          dispatch({ reqs: { login: [false, null] } });
+        }}
+      >
         {name => {
           if (name === "Bad Request") {
             return "Incorrect name or password.";

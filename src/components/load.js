@@ -1,6 +1,7 @@
 import React from "react";
 import { reload } from "./use-fetch";
-import FetchState, { ErrorMessage } from "./fetch-state";
+import LoadingBar from "./loading-bar";
+import { ErrorMessage } from "./fetch-state";
 import Spinner from "./spinner";
 import "./button.css";
 import "./load.css";
@@ -23,7 +24,7 @@ export default ({ deps, nonDeps, loading, error, children }) => {
     return (
       <React.Fragment>
         {content}
-        <FetchState immediate loading={loading} error={error} />
+        <LoadingBar immediate loading={loading} />
       </React.Fragment>
     );
   }

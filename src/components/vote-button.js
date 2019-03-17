@@ -65,7 +65,13 @@ export default ({ id, active }) => {
       <button className="button" disabled={loading} onClick={onClick}>
         {active ? "Voted" : "Vote"}
       </button>
-      <FetchState loading={loading} error={error}>
+      <FetchState
+        loading={loading}
+        error={error}
+        onDismissError={() => {
+          dispatch({ reqs: { [reqKey]: [false, null] } });
+        }}
+      >
         {name => {
           if (name === "Unauthorized") {
             return "Only an authorized user can vote.";
