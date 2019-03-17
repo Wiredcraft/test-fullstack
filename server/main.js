@@ -11,24 +11,43 @@ app.useLogger();
 app.use(serve("/dist/", "dist"));
 
 if (process.env.NODE_ENV !== "production") {
-  fs.watch("src", { recursive: true }, (eventType, filename) => {
-    if (eventType !== "change") return;
+  const rollup = require("rollup");
+  const config = require("../rollup.config").default;
 
-    console.log(`[${getTimeString()}] reloading ${filename}...`);
+  const watcher = rollup.watch(config);
+  const stdout = (...args) => console.log(...args);
+  let started = false;
 
-    delete require.cache[`${process.cwd()}/server/render.js`];
+  watcher.on("event", event => {
+    switch (event.code) {
+      case "START":
+        if (!started) {
+          started = true;
+          return;
+        }
 
-    Object.keys(require.cache).forEach(key => {
-      if (key.startsWith(`${process.cwd()}/src`)) {
-        delete require.cache[key];
-      }
-    });
+        delete require.cache[`${process.cwd()}/server/render.js`];
 
-    try {
-      require("./render");
-      console.log(`[${getTimeString()}] reloaded successfully.`);
-    } catch (err) {
-      console.log(err);
+        Object.keys(require.cache).forEach(key => {
+          if (key.startsWith(`${process.cwd()}/src`)) delete require.cache[key];
+        });
+
+        try {
+          require("./render");
+          stdout(`[${getTimeString()}] reloaded successfully.`);
+        } catch (error) {
+          stdout(`[${getTimeString()}] failed to reload:`);
+          if (error.code === "BABEL_PARSE_ERROR") {
+            stdout(error.message);
+          } else {
+            stdout(error);
+          }
+        }
+        break;
+
+      case "BUNDLE_END":
+        stdout(`[${getTimeString()}] bundle built in ${event.duration}ms`);
+        break;
     }
   });
 
