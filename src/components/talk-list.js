@@ -30,7 +30,11 @@ export default () => {
             {items.length ? (
               <section>
                 {items.map(item => (
-                  <TalkItem key={item.id} item={item} />
+                  <TalkItem
+                    key={item.id}
+                    disableVote={user === item.username}
+                    item={item}
+                  />
                 ))}
                 <div className="talklist-end">END</div>
               </section>

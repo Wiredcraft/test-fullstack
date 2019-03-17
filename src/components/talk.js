@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { formatTime } from "./util";
 import { talk as schema } from "../schema";
+import useAppState from "./use-app-state";
 import useItem from "./use-item";
 import useTitle from "./use-title";
 import Load from "./load";
@@ -10,7 +11,10 @@ import "./app.css";
 import "./talk.css";
 
 const Talk = ({ item }) => {
+  const { user } = useAppState();
+
   useTitle(item.title);
+
   return (
     <article>
       <header className="talk-header">
@@ -23,9 +27,11 @@ const Talk = ({ item }) => {
       {item.description && (
         <Fragment>
           <section className="talk-content">{item.description}</section>
-          <section className="talk-actions">
-            <VoteButton id={item.id} active={item.voted} />
-          </section>
+          {user !== item.username && (
+            <section className="talk-actions">
+              <VoteButton id={item.id} active={item.voted} />
+            </section>
+          )}
         </Fragment>
       )}
     </article>

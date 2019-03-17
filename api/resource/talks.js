@@ -72,6 +72,20 @@ export const vote = async (req, res, query, id) => {
     return;
   }
 
+  const {
+    rows: [talk]
+  } = await db.query("select username from talks where id = $1", [id]);
+
+  if (!talk) {
+    res.statusCode = 404;
+    return;
+  }
+
+  if (talk.username === user) {
+    res.statusCode = 400;
+    return;
+  }
+
   const client = await db.connect();
   let result;
 
@@ -84,6 +98,7 @@ export const vote = async (req, res, query, id) => {
     );
   } catch (err) {
     await client.query("rollback");
+    client.release();
     throw err;
   }
 
@@ -94,15 +109,18 @@ export const vote = async (req, res, query, id) => {
       );
     } catch (err) {
       await client.query("rollback");
+      client.release();
       throw err;
     }
 
     if (!result.rowCount) {
       await client.query("rollback");
+      client.release();
     }
   }
 
   await client.query("commit");
+  client.release();
 };
 
 export const unvote = async (req, res, query, id) => {
@@ -110,6 +128,13 @@ export const unvote = async (req, res, query, id) => {
 
   if (!user) {
     res.statusCode = 401;
+    return;
+  }
+
+  const r = await db.query("select 1 from talks where id = $1", [id]);
+
+  if (!r.rowCount) {
+    res.statusCode = 404;
     return;
   }
 
@@ -125,6 +150,7 @@ export const unvote = async (req, res, query, id) => {
     );
   } catch (err) {
     await client.query("rollback");
+    client.release();
     throw err;
   }
 
@@ -135,13 +161,16 @@ export const unvote = async (req, res, query, id) => {
       );
     } catch (err) {
       await client.query("rollback");
+      client.release();
       throw err;
     }
 
     if (!result.rowCount) {
       await client.query("rollback");
+      client.release();
     }
   }
 
   await client.query("commit");
+  client.release();
 };

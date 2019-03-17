@@ -4,16 +4,18 @@ import { formatTime } from "./util";
 import VoteButton from "./vote-button";
 import "./talk-item.css";
 
-export default ({ item }) => {
+export default ({ disableVote, item }) => {
   return (
     <div className="talkitem">
       <h2 className="talkitem-title">
-        <VoteButton
-          icon
-          id={item.id}
-          active={item.voted}
-          className="talkitem-button"
-        />
+        {disableVote || (
+          <VoteButton
+            icon
+            id={item.id}
+            active={item.voted}
+            className="talkitem-button"
+          />
+        )}
         <Link to={`/talks/${item.id}`}>{item.title}</Link>
       </h2>
       <div className="talkitem-meta">
