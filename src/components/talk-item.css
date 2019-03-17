@@ -1,24 +1,33 @@
 .talkitem {
-  display: flex;
   padding: var(--padding);
   border-bottom: var(--border);
-}
-
-.talkitem-main {
-  flex: 1;
-}
-
-.talkitem-aside {
-  display: flex;
-  align-items: center;
 }
 
 .talkitem-title {
   font-size: var(--large-font-size);
   font-weight: 500;
+  overflow-wrap: break-word;
 }
 
 .talkitem-meta {
   margin-top: var(--less-padding);
   color: var(--light-font-color);
+}
+
+.talkitem-button {
+  width: 24px;
+  height: 24px;
+  margin: 0 var(--less-padding) 0 -2px;
+  color: var(--light-font-color);
+  background: var(--light-gray);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.talkitem-button.active {
+  color: var(--interactive-font-color);
+}
+
+.talkitem-button > svg {
+  vertical-align: top;
 }

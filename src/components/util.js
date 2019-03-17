@@ -80,3 +80,13 @@ export const completeUrl = path => {
 
   return `http://localhost:4000${path}`;
 };
+
+export const cx = (...args) => {
+  let classNames = [];
+
+  args.forEach(arg => {
+    if (arg) classNames.push(arg);
+  });
+
+  return classNames.join(" ");
+};

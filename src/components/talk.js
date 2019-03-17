@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { formatTime } from "./util";
 import { talk as schema } from "../schema";
 import useItem from "./use-item";
@@ -10,19 +10,24 @@ import "./app.css";
 import "./talk.css";
 
 const Talk = ({ item }) => {
+  useTitle(item.title);
   return (
     <article>
       <header className="talk-header">
         <h1 className="talk-h1">{item.title}</h1>
         <div className="talk-meta">
-          {`created by ${item.username} at `}
           {formatTime(item.time_created, true)}
+          {` by ${item.username}`}
         </div>
       </header>
-      <section className="talk-content">{item.description}</section>
-      <section className="talk-actions">
-        <VoteButton id={item.id} active={item.voted} />
-      </section>
+      {item.description && (
+        <Fragment>
+          <section className="talk-content">{item.description}</section>
+          <section className="talk-actions">
+            <VoteButton id={item.id} active={item.voted} />
+          </section>
+        </Fragment>
+      )}
     </article>
   );
 };

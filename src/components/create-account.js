@@ -3,6 +3,7 @@ import { usePush, Link } from "../lib/router";
 import { completeUrl } from "./util";
 import useAppState, { useDispatch } from "./use-app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
+import useTitle from "./use-title";
 import "./button.css";
 import "./form.css";
 import "./app.css";
@@ -47,6 +48,8 @@ export default () => {
         }
       );
   };
+
+  useTitle("Create Account");
 
   return (
     <main className="box box_main">

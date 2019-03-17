@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
-import { merge, completeUrl } from "./util";
+import { merge, completeUrl, cx } from "./util";
 import useAppState, { useDispatch } from "./use-app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
+import { ChevronUp as Icon } from "./icon";
 import "./button.css";
 
 function sortTalkList(listState, talks, updates) {
@@ -17,7 +18,7 @@ function sortTalkList(listState, talks, updates) {
     .map(v => v.id);
 }
 
-export default ({ id, active }) => {
+export default ({ icon, id, active, className }) => {
   const reqKey = `vote-${id}`;
   const {
     entities: {
@@ -62,9 +63,23 @@ export default ({ id, active }) => {
 
   return (
     <Fragment>
-      <button className="button" disabled={loading} onClick={onClick}>
-        {active ? "Voted" : "Vote"}
-      </button>
+      {icon ? (
+        <button
+          disabled={loading}
+          className={cx(className, active && "active")}
+          onClick={onClick}
+        >
+          <Icon />
+        </button>
+      ) : (
+        <button
+          className={cx("button", className)}
+          disabled={loading}
+          onClick={onClick}
+        >
+          {active ? "Voted" : "Vote"}
+        </button>
+      )}
       <FetchState
         loading={loading}
         error={error}

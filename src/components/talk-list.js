@@ -14,7 +14,7 @@ export default () => {
   const [items, loading, error] = useList(schema);
   const { user } = useAppState();
 
-  useTitle("All Talks");
+  useTitle("Hacker Talks");
 
   return (
     <main className="box box_main">
@@ -22,19 +22,26 @@ export default () => {
         {({ items }) => (
           <Fragment>
             <header className="talklist-header">
-              <h1 className="talklist-h">Talks</h1>
+              <h1 className="talklist-h">Hacker Talks</h1>
               <span className="talklist-link">
                 <Link to="/talks/compose">Compose New Talk</Link>
               </span>
             </header>
-            <section>
-              {items.map(item => (
-                <TalkItem key={item.id} item={item} />
-              ))}
-            </section>
+            {items.length ? (
+              <section>
+                {items.map(item => (
+                  <TalkItem key={item.id} item={item} />
+                ))}
+                <div className="talklist-end">END</div>
+              </section>
+            ) : (
+              <section className="box box_center talklist-empty">
+                No talks yet, become the first to compose.
+              </section>
+            )}
             {!user && (
               <section className="talklist-user">
-                {"New to Lightning Talks? "}
+                {"New to Hacker Talks? "}
                 <Link to="/create-account">Create Account</Link>
                 {" or "}
                 <Link to="/login">Login</Link>

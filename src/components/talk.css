@@ -6,6 +6,7 @@
 .talk-h1 {
   font-size: var(--very-large-font-size);
   font-weight: 500;
+  overflow-wrap: break-word;
 }
 
 .talk-meta {

@@ -15,6 +15,27 @@
   color: var(--interactive-font-color);
 }
 
+.talklist-empty {
+  color: var(--light-font-color);
+}
+
+.talklist-end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding);
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.talklist-end::before,
+.talklist-end::after {
+  content: "";
+  display: block;
+  width: 42px;
+  margin: 0 var(--less-padding);
+  border-top: 1px solid currentColor;
+}
+
 .talklist-user {
   position: sticky;
   bottom: 0px;

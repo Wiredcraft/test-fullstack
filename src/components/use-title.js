@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const COMMON_TITLE = "Lightning Talks";
+const COMMON_TITLE = "Hacker Talks";
 
 let serverTitle = COMMON_TITLE;
 
