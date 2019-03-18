@@ -19,7 +19,13 @@ const sha256Sum = str =>
     .digest("hex");
 
 const setAuthCookie = (res, username) => {
-  res.setHeader("Set-Cookie", serialize("user", sign(username, SECRET)));
+  res.setHeader(
+    "Set-Cookie",
+    serialize("user", sign(username, SECRET), {
+      httpOnly: true,
+      maxAge: 3600 * 24 * 30
+    })
+  );
 };
 
 export const createUser = async (req, res, query, form) => {
@@ -75,6 +81,10 @@ export const login = async (req, res, query, form) => {
   }
 
   setAuthCookie(res, name);
+};
+
+export const logout = (req, res) => {
+  res.setHeader("Set-Cookie", "user=");
 };
 
 export const parseReqUser = next => async (req, res) => {

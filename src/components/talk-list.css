@@ -38,12 +38,22 @@
 
 .talklist-user {
   position: sticky;
+  position: -webkit-sticky;
   bottom: 0px;
   padding: var(--padding);
   font-size: (--large-font-size);
   background: var(--content-background);
+  border-top: 1px solid var(--gray);
 }
 
 .talklist-user > a {
   color: var(--interactive-font-color);
+}
+
+.talklist-username {
+  font-weight: 500;
+}
+
+.talklist-user > button {
+  margin-left: var(--padding);
 }

@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Link } from "../lib/router";
 import { talk as schema } from "../schema";
+import { completeUrl } from "./util";
 import useAppState from "./use-app-state";
 import useList from "./use-list";
 import useTitle from "./use-title";
@@ -43,12 +44,28 @@ export default () => {
                 No talks yet, become the first to compose.
               </section>
             )}
-            {!user && (
+            {!user ? (
               <section className="talklist-user">
                 {"New to Hacker Talks? "}
                 <Link to="/create-account">Create Account</Link>
                 {" or "}
                 <Link to="/login">Login</Link>
+              </section>
+            ) : (
+              <section className="talklist-user">
+                {"You've logged in as "}
+                <span className="talklist-username">{user}</span>
+                <button
+                  className="button"
+                  onClick={() => {
+                    fetch(completeUrl("/logout"), {
+                      credentials: "include",
+                      method: "PUT"
+                    }).then(() => window.location.reload());
+                  }}
+                >
+                  Logout
+                </button>
               </section>
             )}
           </Fragment>

@@ -33,6 +33,7 @@ export default () => {
     dispatch({ reqs: { createAccount: [true, null] } });
 
     fetch(completeUrl("/users"), {
+      credentials: "include",
       method: "POST",
       body: JSON.stringify({ name: form.name, password: form.password }),
       headers: { "Content-Type": "application/json" }

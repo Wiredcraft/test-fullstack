@@ -29,6 +29,7 @@ app.use(next => async (req, res) => {
 
 app.json("post", "/login", auth.login);
 app.json("post", "/users", auth.createUser);
+app.json("put", "/logout", auth.logout);
 
 app.use(auth.parseReqUser);
 
