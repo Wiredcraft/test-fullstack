@@ -24,6 +24,9 @@ export default () => {
 
   const submit = event => {
     event.preventDefault();
+
+    if (loading) return;
+
     dispatch({ reqs: { compose: [true, null] } });
 
     fetch(completeUrl("/talks"), {
@@ -86,7 +89,9 @@ export default () => {
           <label>Description</label>
         </div>
         <div className="form-action">
-          <button className="button">Submit</button>
+          <button disabled={loading} className="button">
+            Submit
+          </button>
         </div>
       </form>
       <FetchState

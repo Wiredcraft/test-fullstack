@@ -19,6 +19,9 @@ export default () => {
 
   const submit = event => {
     event.preventDefault();
+
+    if (loading) return;
+
     dispatch({ reqs: { login: [true, null] } });
 
     fetch(completeUrl("/login"), {
@@ -71,7 +74,9 @@ export default () => {
           <label>Password</label>
         </div>
         <div className="form-action">
-          <button className="button">Submit</button>
+          <button disabled={loading} className="button">
+            Submit
+          </button>
         </div>
       </form>
       <FetchState

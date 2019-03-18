@@ -24,6 +24,8 @@ export default () => {
   const submit = event => {
     event.preventDefault();
 
+    if (loading) return;
+
     if (form.password !== form.confirm) {
       const error = ["Inconsistent Password"];
       dispatch({ reqs: { createAccount: [false, error] } });
@@ -96,7 +98,9 @@ export default () => {
           <label className="form-label">Confirm</label>
         </div>
         <div className="form-action">
-          <button className="button">Submit</button>
+          <button disabled={loading} className="button">
+            Submit
+          </button>
         </div>
       </form>
       <FetchState
