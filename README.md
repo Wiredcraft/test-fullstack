@@ -1,79 +1,59 @@
-# Wiredcraft Full-stack Developer test
+# Contrived Web Application for Wiredcraft Full-stack Developer Test
 
-Make sure you read **all** of this document carefully, and follow the guidelines in it.
+Live demo available at [45.76.253.20](http://45.76.253.20).
 
-## Context
+## Install on Local Machine
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+### Prerequisites
 
-Sorry no mock here, please make a simple and beautiful page that get the job done. We don't mind whether it looks as great as **Hacker News**.
+- Not a too old version of Node.js which already implemented the `Object Rest/Spread Properties` proposal;
+- PostgreSQL version >= 9, installation guide see below;
+- Of course clone the repo and run `npm install` first.
 
-## User Story
+### Init Database
 
-1. User opens the page and could see a list of lighting talks order by rating submitted by other users;
-2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
-3. The user could vote for the lighting talk by clicking the vote button or icon;
-4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, `publishDate`, and `username`;
-6. The user could see his lighting talk on the list after submitting; 
+```
+$ psql -f api/definition.sql
+```
 
-## Requirements
+### Run API Server
 
-### Functionality
+```
+$ node api
+```
 
-- The **frontend** part should be a single page application rendered in the frontend and load data from restful API (**not** rendered from backend).
-- There should be a **backend** and database to store the lightning talks.
+It will print information about how to access it.
 
-### Tech stack
+### Run Development Web Server
 
-- Backend oriented
-    - Use [Loopback](http://loopback.io/) for the backend.
-    - Use any **frontend** framework as you like.
-- Frontend oriented
-    - Use any **backend** framework as you like, even a static JSON file storage would do it.
-    - Use React for the frontend.
+```
+$ make dev
+```
 
-### Bonus
+It will:
+- Copy required vendor scripts to `dist/` directory;
+- Start a Node.js server for server side rendering (React SSR) which can hot reload itself when any dependencies in `src` directory changes;
+- Start `rollup.watch` to build assets required by client to `dist/` dir and auto rebuild them.
 
-- Write clear **documentation** on how it's designed and how to run the code.
-- Provide proper unit test.
-- Write good commit messages.
-- An online demo is always welcome.
+Pay attention to its stdout for better use of it.
 
-### Advanced requirements
+## PostgreSQL Installation Guide
 
-These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.
+On latest MacOS:
 
-- **Backend**:
-    - Use [Seneca](http://senecajs.org/) to build the core feature and use a different framework (such as Express or Loopback) to handle HTTP requests.
-    - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
-    - Provide a complete logging (when/how/etc) strategy.
-    - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
-- **Frontend**:
-    - Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, 
-        - but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-    - Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
-    - Provide a form validation strategy.
-    - Make it responsive.
+```
+$ brew update
+$ brew install postgresql
+```
 
-## What We Care About
+You will have a `postgres` command to start the PostgreSQL server. It must know where to find the data directory it is supposed to use. This is done with the -D option:
 
-Feel free to use any libraries you would use if this were a real production App, but remember we're interested in your code & the way you solve the problem, not how well you can use a particular library.
+```
+$ postgres -D /usr/local/var/postgres
+```
 
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
+which is the default path where Homebrew has automatically created the data directory for you.
 
-Here's what you should aim for:
+You can then use `psql` interactive tool to access and manage your database.
 
-- Good use of current HTML, CSS, and JavaScript & performance best practices.
-- Solid testing approach.
-- Extensible code.
-
-## Q&A
-
-> Where should I send back the result when I'm done?
-
-Fork this repo and send us a pull request when you think you are done. We don't have a deadline for the task.
-
-> What if I have a question?
-
-Create a new issue in the repo and we will get back to you very quickly.
+NOTE: All default values including those the Node.js PostgreSQL driver (npm: `pg`) is using should **just work** when nothing is changed. If you have more specific requirements (e.g. your machine already have a PostgreSQL database in other use), you have to resolve them on your own.
