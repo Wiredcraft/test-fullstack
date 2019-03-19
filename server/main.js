@@ -14,6 +14,7 @@ if (process.env.NODE_ENV !== "production") {
   const rollup = require("rollup");
   const config = require("../rollup.config").default;
 
+  process.env.BABEL_ENV = "client";
   const watcher = rollup.watch(config);
   const stdout = (...args) => console.log(...args);
   let started = false;
@@ -33,7 +34,9 @@ if (process.env.NODE_ENV !== "production") {
         });
 
         try {
+          process.env.BABEL_ENV = "server";
           require("./render");
+          process.env.BABEL_ENV = "client";
           stdout(`[${getTimeString()}] reloaded successfully.`);
         } catch (error) {
           stdout(`[${getTimeString()}] failed to reload:`);
@@ -48,6 +51,15 @@ if (process.env.NODE_ENV !== "production") {
       case "BUNDLE_END":
         stdout(`[${getTimeString()}] bundle built in ${event.duration}ms`);
         break;
+
+      case "ERROR":
+        if (event.error.pluginCode !== "BABEL_PARSE_ERROR") {
+          stdout(event.error);
+        }
+        break;
+
+      case "FATAL":
+        stdout(event.error);
     }
   });
 

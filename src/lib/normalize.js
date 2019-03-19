@@ -6,10 +6,12 @@ export default (input, schema) => {
       return input.map(value => visit(value, schema, entities));
     }
 
+    const entity = { ...input };
+
     if (schema.nestedString)
       for (let key in schema.nestedString)
-        if (key in input) {
-          const value = input[key];
+        if (key in entity) {
+          const value = entity[key];
           const valueSchema = schema.nestedString[key];
 
           if (!(valueSchema.key in entities)) {
@@ -34,14 +36,12 @@ export default (input, schema) => {
 
     if (schema.nested)
       for (let key in schema.nested)
-        if (key in input) {
-          const nested = input[key];
-          input[key] = visit(nested, schema.nested[key], entities);
+        if (key in entity) {
+          const nested = entity[key];
+          entity[key] = visit(nested, schema.nested[key], entities);
         }
 
     if (schema.key) {
-      const entity = { ...input };
-
       if (!(schema.key in entities)) {
         entities[schema.key] = {};
       }
@@ -59,9 +59,9 @@ export default (input, schema) => {
       }
     }
 
-    if (!schema.key) return input;
+    if (!schema.key) return entity;
 
-    return input[schema.idName || "id"];
+    return entity[schema.idName || "id"];
   };
 
   return { result: visit(input, schema, entities), entities };

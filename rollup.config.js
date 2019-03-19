@@ -10,12 +10,7 @@ export default {
   input: "src/main.js",
   plugins: [
     css({ output: "dist/main.css" }),
-    babel({
-      plugins: [
-        "@babel/plugin-transform-react-jsx",
-        ["@babel/plugin-proposal-object-rest-spread", { useBuiltIns: true }]
-      ]
-    }),
+    babel(),
     replace({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
     }),
