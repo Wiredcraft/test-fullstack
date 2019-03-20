@@ -10,8 +10,8 @@ export const create = async (req, res, query, form) => {
   }
 
   let { title, description } = form;
-  title = title.trim();
-  description = description.trim();
+  if (title) title = title.trim();
+  if (description) description = description.trim();
 
   if (!title || !description) {
     res.statusCode = 400;
@@ -29,6 +29,7 @@ export const create = async (req, res, query, form) => {
     [title, description, user]
   );
 
+  res.statusCode = 201;
   return result.rows[0];
 };
 

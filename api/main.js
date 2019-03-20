@@ -2,9 +2,10 @@ import App from "../lib/application";
 import * as auth from "./resource/auth";
 import * as talks from "./resource/talks";
 
-const app = new App();
+const { NODE_ENV, PORT = 4000 } = process.env;
+export const app = new App();
 
-app.useLogger();
+if (NODE_ENV !== "test") app.useLogger();
 
 app.use(next => async (req, res) => {
   if (req.headers.origin) {
@@ -41,4 +42,8 @@ app.json("get", "/talks/:id", talks.read);
 app.json("put", "/talks/:id/vote", talks.vote);
 app.json("delete", "/talks/:id/vote", talks.unvote);
 
-app.listen(process.env.PORT || 4000);
+if (NODE_ENV !== "test") app.listen(PORT);
+
+export default async () => {
+  await app.listen(PORT);
+};

@@ -14,7 +14,7 @@ create table talks (
 );
 
 create table votes (
-  username        text references users (name),
-  talk_id         int references talks (id),
+  username        text references users (name) on delete cascade,
+  talk_id         int references talks (id) on delete cascade,
   unique          (username, talk_id)
 );

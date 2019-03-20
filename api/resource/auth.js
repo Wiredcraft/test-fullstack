@@ -29,7 +29,9 @@ const setAuthCookie = (res, username) => {
 };
 
 export const createUser = async (req, res, query, form) => {
-  const { name, password } = form;
+  let { name, password } = form;
+  if (name) name = name.trim();
+  if (password) password = password.trim();
 
   if (!name || !password) {
     res.statusCode = 400;
