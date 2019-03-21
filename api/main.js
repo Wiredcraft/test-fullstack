@@ -42,7 +42,9 @@ app.json("get", "/talks/:id", talks.read);
 app.json("put", "/talks/:id/vote", talks.vote);
 app.json("delete", "/talks/:id/vote", talks.unvote);
 
-if (NODE_ENV !== "test") app.listen(PORT);
+if (NODE_ENV !== "test") {
+  app.listen(PORT, () => App.log(`listening on port ${PORT}`));
+}
 
 export default async () => {
   await app.listen(PORT);

@@ -1,22 +1,22 @@
 import * as fs from "fs";
 import * as path from "path";
-import App, { getTimeString } from "../lib/application";
+import App from "../lib/application";
 import serve from "./serve";
 import render from "./render";
 
+const { NODE_ENV, PORT = 3000 } = process.env;
 const app = new App();
 
 app.useLogger();
 
 app.use(serve("/dist/", "dist"));
 
-if (process.env.NODE_ENV !== "production") {
+if (NODE_ENV !== "production") {
   const rollup = require("rollup");
   const config = require("../rollup.config").default;
 
   process.env.BABEL_ENV = "client";
   const watcher = rollup.watch(config);
-  const stdout = (...args) => console.log(...args);
   let started = false;
 
   watcher.on("event", event => {
@@ -37,29 +37,29 @@ if (process.env.NODE_ENV !== "production") {
           process.env.BABEL_ENV = "server";
           require("./render");
           process.env.BABEL_ENV = "client";
-          stdout(`[${getTimeString()}] reloaded successfully.`);
+          App.log("reloaded successfully.");
         } catch (error) {
-          stdout(`[${getTimeString()}] failed to reload:`);
+          App.log("failed to reload:");
           if (error.code === "BABEL_PARSE_ERROR") {
-            stdout(error.message);
+            console.log(error.message);
           } else {
-            stdout(error);
+            console.log(error);
           }
         }
         break;
 
       case "BUNDLE_END":
-        stdout(`[${getTimeString()}] bundle built in ${event.duration}ms`);
+        App.log(`bundle built in ${event.duration}ms`);
         break;
 
       case "ERROR":
         if (event.error.pluginCode !== "BABEL_PARSE_ERROR") {
-          stdout(event.error);
+          console.log(event.error);
         }
         break;
 
       case "FATAL":
-        stdout(event.error);
+        console.log(event.error);
     }
   });
 
@@ -70,4 +70,4 @@ if (process.env.NODE_ENV !== "production") {
   app.use(render);
 }
 
-app.listen(process.env.PORT || 3000);
+app.listen(PORT, () => App.log(`listening on port ${PORT}`));
