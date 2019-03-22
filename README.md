@@ -8,6 +8,7 @@ Live demo available at [45.76.253.20](http://45.76.253.20).
 
 - Not a too old version of Node.js which already implemented the `Object Rest/Spread Properties` proposal;
 - PostgreSQL version >= 9, installation guide see below;
+- Globally installed `jest` if you want to run tests;
 - Of course clone the repo and run `npm install` first.
 
 ### Init Database
@@ -82,12 +83,12 @@ const Component = id => {
   if (error) {
     return "Item failed to load.";
   }
- 
+
   if (loading) {
     return `Item ${id} is loading...`;
   }
-	
-  return `Got item ${item.title}`;	
+
+  return `Got item ${item.title}`;
 }
 ```
 
