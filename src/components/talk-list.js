@@ -2,8 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "../lib/router";
 import { talk as schema } from "../schema";
 import { completeUrl } from "./util";
-import useAppState from "./use-app-state";
-import useList from "./use-list";
+import { useList, useUser } from "./use-resource";
 import useTitle from "./use-title";
 import Load from "./load";
 import TalkItem from "./talk-item";
@@ -12,14 +11,14 @@ import "./button.css";
 import "./app.css";
 
 export default () => {
+  const [user, userError] = useUser();
   const [items, loading, error] = useList(schema);
-  const { user } = useAppState();
 
   useTitle("Hacker Talks");
 
   return (
     <main className="box box_main">
-      <Load deps={{ items }} loading={loading} error={error}>
+      <Load deps={{ user, items }} loading={loading} error={userError || error}>
         {({ items }) => (
           <Fragment>
             <header className="talklist-header">

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "./use-app-state";
+import { Dispatch } from "./app-state";
 
 let serverRunners = [];
 
@@ -16,7 +16,7 @@ export function reload() {
 }
 
 export default (fn, values = []) => {
-  const dispatch = useDispatch();
+  const dispatch = React.useContext(Dispatch);
 
   if (typeof window === "undefined") {
     serverRunners.push(fn);

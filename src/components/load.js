@@ -1,13 +1,15 @@
 import React from "react";
 import { reload } from "./use-fetch";
 import LoadingBar from "./loading-bar";
-import { ErrorMessage } from "./fetch-state";
+import { NotFound, ErrorMessage } from "./fetch-state";
 import Spinner from "./spinner";
 import "./button.css";
 import "./load.css";
 
 export default ({ deps, nonDeps, loading, error, children }) => {
-  const ready = Object.values(deps).every(value => value);
+  const ready = Object.values(deps).every(
+    value => value !== null && value !== undefined
+  );
 
   if (ready) {
     const props = { ...deps, ...nonDeps };
@@ -33,7 +35,7 @@ export default ({ deps, nonDeps, loading, error, children }) => {
     return (
       <div className="box box_center load load_error">
         <ErrorMessage error={error} />
-        {error[0] !== "NotFound" && (
+        {error[0] !== NotFound && (
           <div style={{ marginTop: "var(--padding)" }}>
             <button className="button" onClick={reload}>
               Retry

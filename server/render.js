@@ -2,7 +2,8 @@ import * as url from "url";
 import React from "react";
 import ReactDOM from "react-dom/server";
 import fetch from "node-fetch";
-import App, { reducer, initialState } from "../src/components/app";
+import { getServerStore } from "../src/components/app-state";
+import App from "../src/components/app";
 import { rewind } from "../src/components/use-fetch";
 import { rewind as rewindTitle } from "../src/components/use-title";
 import { getAssetName } from "./serve";
@@ -14,23 +15,18 @@ function serializeState(state) {
 export default next => async (req, res) => {
   const { pathname, search, hash } = url.parse(req.url);
   const location = { pathname, search, hash };
-
-  let state = initialState;
-
-  const dispatch = action => {
-    state = reducer(state, action);
-  };
-
   const { cookie } = req.headers;
+  const store = getServerStore();
+
   const fetchWithCookie = url => fetch(url, { headers: { cookie } });
 
   ReactDOM.renderToStaticMarkup(
-    <App initialState={state} serverLocation={location} />
+    <App initialState={store.state} serverLocation={location} />
   );
 
   const title = rewindTitle();
 
-  await Promise.all(rewind().map(fn => fn(dispatch, fetchWithCookie)));
+  await Promise.all(rewind().map(fn => fn(store.dispatch, fetchWithCookie)));
 
   const body = `<!doctype html>
 <html lang="zh-CN">
@@ -47,7 +43,7 @@ export default next => async (req, res) => {
     <script src="/dist/${getAssetName("react.js")}"></script>
     <script src="/dist/${getAssetName("react-dom.js")}"></script>
     <script>
-      window.__PRELOADED_STATE__=${serializeState(state)}
+      window.__PRELOADED_STATE__=${serializeState(store.state)}
     </script>
     <script src="/dist/${getAssetName("main.js")}"></script>
   </body>

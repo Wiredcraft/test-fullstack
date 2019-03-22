@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React, { useContext, Fragment } from "react";
 import { merge, completeUrl, cx } from "./util";
-import useAppState, { useDispatch } from "./use-app-state";
+import { State, Dispatch } from "./app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
 import { ChevronUp as Icon } from "./icon";
 import "./button.css";
@@ -26,8 +26,8 @@ export default ({ icon, id, active, className }) => {
     },
     lists: { talks: list },
     reqs: { [reqKey]: [loading, error] = [false, null] }
-  } = useAppState();
-  const dispatch = useDispatch();
+  } = useContext(State);
+  const dispatch = useContext(Dispatch);
 
   const onClick = () => {
     dispatch({ reqs: { [reqKey]: [true, null] } });

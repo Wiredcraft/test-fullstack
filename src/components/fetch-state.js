@@ -2,10 +2,10 @@ import React from "react";
 import LoadingBar from "./loading-bar";
 import Modal from "./modal";
 
-const NotFound = "NotFound";
-const Network = "Network";
-const Auth = "Auth";
-const Service = "Service";
+export const NotFound = "NotFound";
+export const Network = "Network";
+export const Auth = "Auth";
+export const Service = "Service";
 
 const isJsonResponse = res => {
   const type = res.headers.get("content-type");

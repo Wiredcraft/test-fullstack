@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import normalize from "../lib/normalize";
 import { useReplace, Link } from "../lib/router";
 import { talk as schema } from "../schema";
 import { completeUrl } from "./util";
-import useAppState, { useDispatch } from "./use-app-state";
+import { State, Dispatch } from "./app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
+import { useUser } from "./use-resource";
 import useTitle from "./use-title";
 import { sortTalkList } from "./vote-button";
 import "./button.css";
@@ -13,14 +14,13 @@ import "./app.css";
 
 export default () => {
   const [form, setForm] = useState(() => ({ title: "", description: "" }));
-  const state = useAppState();
   const {
     entities: { talks },
     lists: { talks: list },
     reqs: { compose: [loading, error] = [false, null] }
-  } = state;
+  } = useContext(State);
   const replace = useReplace();
-  const dispatch = useDispatch();
+  const dispatch = useContext(Dispatch);
 
   const submit = event => {
     event.preventDefault();
@@ -58,6 +58,7 @@ export default () => {
       );
   };
 
+  useUser();
   useTitle("Compose New Talk");
 
   return (

@@ -1,8 +1,7 @@
-import React, { Fragment } from "react";
+import React, { useContext, Fragment } from "react";
 import { formatTime } from "./util";
 import { talk as schema } from "../schema";
-import useAppState from "./use-app-state";
-import useItem from "./use-item";
+import { useUser, useItem } from "./use-resource";
 import useTitle from "./use-title";
 import Load from "./load";
 import VoteButton from "./vote-button";
@@ -10,9 +9,7 @@ import "./button.css";
 import "./app.css";
 import "./talk.css";
 
-const Talk = ({ item }) => {
-  const { user } = useAppState();
-
+const Talk = ({ user, item }) => {
   useTitle(item.title);
 
   return (
@@ -39,10 +36,11 @@ const Talk = ({ item }) => {
 };
 
 export default ({ params: [id] }) => {
+  const [user, userError] = useUser();
   const [item, loading, error] = useItem(schema, id);
   return (
     <main className="box box_main">
-      <Load deps={{ item }} loading={loading} error={error}>
+      <Load deps={{ user, item }} loading={loading} error={userError || error}>
         {Talk}
       </Load>
     </main>

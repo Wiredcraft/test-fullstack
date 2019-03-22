@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { usePush, Link } from "../lib/router";
 import { completeUrl } from "./util";
-import useAppState, { useDispatch } from "./use-app-state";
+import { State, Dispatch } from "./app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
+import { useUser } from "./use-resource";
 import useTitle from "./use-title";
 import "./button.css";
 import "./form.css";
@@ -11,10 +12,10 @@ import "./app.css";
 export default () => {
   const [form, setForm] = useState(() => ({ name: "", password: "" }));
   const {
-    user,
     reqs: { login: [loading, error] = [false, null] }
-  } = useAppState();
-  const dispatch = useDispatch();
+  } = useContext(State);
+  const [user] = useUser();
+  const dispatch = useContext(Dispatch);
   const push = usePush();
 
   const submit = event => {
