@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import normalize from "../lib/normalize";
-import { useReplace, Link } from "../lib/router";
+import { Actions } from "../lib/router";
 import { talk as schema } from "../schema";
 import { completeUrl } from "./util";
 import { State, Dispatch } from "./app-state";
@@ -19,8 +19,8 @@ export default () => {
     lists: { talks: list },
     reqs: { compose: [loading, error] = [false, null] }
   } = useContext(State);
-  const replace = useReplace();
   const dispatch = useContext(Dispatch);
+  const { replace } = useContext(Actions);
 
   const submit = event => {
     event.preventDefault();

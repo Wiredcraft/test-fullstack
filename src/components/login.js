@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { usePush, Link } from "../lib/router";
+import { Actions } from "../lib/router";
 import { completeUrl } from "./util";
 import { State, Dispatch } from "./app-state";
 import FetchState, { onPatchSucceeded, onFetchFailed } from "./fetch-state";
@@ -16,7 +16,7 @@ export default () => {
   } = useContext(State);
   const [user] = useUser();
   const dispatch = useContext(Dispatch);
-  const push = usePush();
+  const { push } = useContext(Actions);
 
   const submit = event => {
     event.preventDefault();

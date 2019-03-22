@@ -1,6 +1,6 @@
 import { useContext, useRef, useMemo } from "react";
 import normalize, { denormalize } from "../lib/normalize";
-import { useRouterState } from "../lib/router";
+import { State as RouterState } from "../lib/router";
 import { completeUrl } from "./util";
 import { State } from "./app-state";
 import useFetch from "./use-fetch";
@@ -36,7 +36,7 @@ export const useItem = (schema, id) => {
     entities,
     reqs: { [key]: [loading, error] = [false, null] }
   } = useContext(State);
-  const { lastHistoryAction } = useRouterState();
+  const { lastHistoryAction } = useContext(RouterState);
   const loadingRef = useRef(false);
 
   const entity = schema.key in entities ? entities[schema.key][id] : null;
@@ -83,7 +83,7 @@ export const useList = (schema, parentSchema, id, name) => {
     lists,
     reqs: { [key]: [loading, error] = [false, null] }
   } = useContext(State);
-  const { lastHistoryAction } = useRouterState();
+  const { lastHistoryAction } = useContext(RouterState);
   const loadingRef = useRef(false);
 
   const list = key in lists ? lists[key].items : null;

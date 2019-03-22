@@ -1,6 +1,5 @@
 import React from "react";
-import Router from "../lib/router";
-import Routes from "../lib/routes";
+import Router, { Routes } from "../lib/router";
 import TalkList from "./talk-list";
 import CreateAccount from "./create-account";
 import Login from "./login";
