@@ -3,6 +3,8 @@ import { formatTime } from "./util";
 import { talk as schema } from "../schema";
 import { useUser, useItem } from "./use-resource";
 import useTitle from "./use-title";
+import NotFoundPage from "./not-found";
+import { NotFound } from "./fetch-state";
 import Load from "./load";
 import VoteButton from "./vote-button";
 import "./button.css";
@@ -38,6 +40,9 @@ const Talk = ({ user, item }) => {
 export default ({ params: [id] }) => {
   const [user, userError] = useUser();
   const [item, loading, error] = useItem(schema, id);
+
+  if (error && error[0] === NotFound) return <NotFoundPage />;
+
   return (
     <main className="box box_main">
       <Load deps={{ user, item }} loading={loading} error={userError || error}>

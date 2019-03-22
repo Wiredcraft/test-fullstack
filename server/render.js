@@ -6,6 +6,7 @@ import { getServerStore } from "../src/components/app-state";
 import App from "../src/components/app";
 import { rewind } from "../src/components/use-fetch";
 import { rewind as rewindTitle } from "../src/components/use-title";
+import { rewind as rewindMatchResult } from "../src/lib/router";
 import { getAssetName } from "./serve";
 
 function serializeState(state) {
@@ -27,6 +28,10 @@ export default next => async (req, res) => {
   const title = rewindTitle();
 
   await Promise.all(rewind().map(fn => fn(store.dispatch, fetchWithCookie)));
+
+  const matchResult = rewindMatchResult();
+
+  if (!matchResult.factory) res.statusCode = 404;
 
   const body = `<!doctype html>
 <html lang="zh-CN">

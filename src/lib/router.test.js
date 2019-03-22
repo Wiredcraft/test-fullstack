@@ -34,8 +34,7 @@ const App = ({ location }) => {
         "/users",
         AllUsers,
         [":id", User, ["articles", ArticleList], ["articles/:id", Article]]
-      ],
-      [null, NotFound]
+      ]
     ],
     []
   );
@@ -43,7 +42,7 @@ const App = ({ location }) => {
   return (
     <Router serverLocation={location}>
       <main>
-        <Routes routes={routes} />
+        <Routes routes={routes} notFound={NotFound} />
       </main>
     </Router>
   );
@@ -133,7 +132,7 @@ test("sub routes matches at level 3 with parameters", () => {
 `);
 });
 
-test("route path is `null`", () => {
+test("render `notFound` prop if none matched", () => {
   const renderer = create(<App location={{ pathname: "/do/not/exist" }} />);
   expect(renderer.toJSON()).toMatchInlineSnapshot(`
 <main>

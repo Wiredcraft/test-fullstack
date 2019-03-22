@@ -6,6 +6,7 @@ import Login from "./login";
 import TalkCompose from "./talk-compose";
 import Talk from "./talk";
 import AppState from "./app-state";
+import NotFound from "./not-found";
 import "./app.css";
 
 const routes = [
@@ -13,24 +14,13 @@ const routes = [
   ["create-account", CreateAccount],
   ["login", Login],
   ["talks/compose", TalkCompose],
-  ["talks/:id", Talk],
-  [
-    null,
-    () => (
-      <main
-        className="box box_main box_center"
-        style={{ color: "var(--light-font-color)" }}
-      >
-        Nothing is here
-      </main>
-    )
-  ]
+  ["talks/:id", Talk]
 ];
 
 export default ({ initialState, serverLocation }) => (
   <Router serverLocation={serverLocation}>
     <AppState initialState={initialState}>
-      <Routes routes={routes} />
+      <Routes routes={routes} notFound={NotFound} />
     </AppState>
   </Router>
 );

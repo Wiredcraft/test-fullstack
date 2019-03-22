@@ -56,11 +56,6 @@ const match = (routes, segments, result) => {
   outer: for (let i = 0; i < routes.length; i++) {
     const [pathname, factory, ...subRoutes] = routes[i];
 
-    if (pathname === null) {
-      result.factory = factory;
-      break;
-    }
-
     const rules = pathname.split("/").filter(v => v);
     let params = [];
 
@@ -110,7 +105,15 @@ const render = ({ factory, params, inner }, props) =>
     children: inner && inner.factory ? render(inner, props) : null
   });
 
-export const Routes = ({ routes, ...props }) => {
+let serverResult;
+
+export const rewind = () => {
+  const recorded = serverResult;
+  serverResult = null;
+  return recorded;
+};
+
+export const Routes = ({ routes, notFound, ...props }) => {
   const { location } = useContext(State);
 
   const result = useMemo(() => {
@@ -122,7 +125,14 @@ export const Routes = ({ routes, ...props }) => {
     return result;
   }, [location, routes]);
 
-  if (!result.factory) return null;
+  if (typeof window === "undefined") {
+    serverResult = result;
+  }
+
+  if (!result.factory) {
+    if (notFound) return createElement(notFound);
+    return null;
+  }
 
   return render(result, props);
 };

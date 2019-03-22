@@ -45,7 +45,6 @@ export const onFetchFailed = () => {
   throw [Network];
 };
 
-const NotFoundCopy = "Nothing is here";
 const NetworkCopy = "Please check your network connection.";
 const ServiceCopy =
   "We are having an issue when processing your request, " +
@@ -53,9 +52,6 @@ const ServiceCopy =
 
 export const ErrorMessage = ({ error: [name] }) => {
   switch (name) {
-    case NotFound:
-      return NotFoundCopy;
-
     case Network:
       return NetworkCopy;
 

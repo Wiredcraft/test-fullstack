@@ -52,7 +52,14 @@ export const list = async (req, res) => {
   return rows;
 };
 
+const isValidId = /^[1-9]\d*$/;
+
 export const read = async (req, res, query, id) => {
+  if (!isValidId.test(id)) {
+    res.statusCode = 404;
+    return;
+  }
+
   const { rows } = await db.query(
     "select" +
       " id, title, time_created, talks.username, rating, description" +
@@ -71,6 +78,11 @@ export const read = async (req, res, query, id) => {
 };
 
 export const vote = async (req, res, query, id) => {
+  if (!isValidId.test(id)) {
+    res.statusCode = 404;
+    return;
+  }
+
   const { user } = req;
 
   if (!user) {
@@ -130,6 +142,11 @@ export const vote = async (req, res, query, id) => {
 };
 
 export const unvote = async (req, res, query, id) => {
+  if (!isValidId.test(id)) {
+    res.statusCode = 404;
+    return;
+  }
+
   const { user } = req;
 
   if (!user) {
