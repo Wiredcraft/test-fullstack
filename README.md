@@ -6,46 +6,48 @@ Make sure you read **all** of this document carefully, and follow the guidelines
 
 Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
 
-Sorry no mock here, please make a simple and beautiful page that get the job done. We don't mind whether it looks as great as **Hacker News**.
+A lightning talk is a very short presentation lasting only a few minutes, given at a conference or a meetup etc.
 
-## User Story
-
-1. User opens the page and could see a list of lighting talks order by rating submitted by other users;
-2. If there's no lighting talk, simply put a placeholder text and encourage user to submit their own talks;
-3. The user could vote for the lighting talk by clicking the vote button or icon;
-4. After voting the user will get an updated version of the lighting talk list(order by rating);
-5. User could always submit a lighting talk with `title`, `description`, `publishDate`, and `username`;
-6. The user could see his lighting talk on the list after submitting; 
+Polling is often needed for the organizers to understand what is more interesting, or for people to decide what should go on stage.
 
 ## Requirements
 
+### User Stories
+
+1. When a user opens the page, he/she should see a list of lighting talks submitted by the users, ordered by rating (poll amount).
+2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
+3. For each of the talks in the list, the user could vote it by clicking a button.
+4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
+5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
+6. After submitting a topic, the user should see an updated version of the list.
+
 ### Functionality
 
-- The **frontend** part should be a single page application rendered in the frontend and load data from restful API (**not** rendered from backend).
-- There should be a **backend** and database to store the lightning talks.
+- The **frontend** part should be a single page application rendered in the frontend and load data from a RESTful API (**not** rendered from backend).
+- The API should follow typical RESTful API design pattern.
+- Provide proper unit test.
 
 ### Tech stack
 
 - Backend oriented
-    - Use [Loopback](http://loopback.io/) for the backend.
+    - Use [Loopback](http://loopback.io/) for the backend. Use any DB for storing the data.
     - Use any **frontend** framework as you like.
 - Frontend oriented
-    - Use any **backend** framework as you like, even a static JSON file storage would do it.
+    - Use any **backend** framework as you like. Use any DB for storing the data, or if you prefer, only using the memory (with no permanent storage) could just work.
     - Use React for the frontend.
 
 ### Bonus
 
 - Write clear **documentation** on how it's designed and how to run the code.
-- Provide proper unit test.
+- Write good in-code comments.
 - Write good commit messages.
 - An online demo is always welcome.
 
 ### Advanced requirements
 
-These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.
+*These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.*
 
 - **Backend**:
-    - Use [Seneca](http://senecajs.org/) to build the core feature and use a different framework (such as Express or Loopback) to handle HTTP requests.
     - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
     - Provide a complete logging (when/how/etc) strategy.
     - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
@@ -58,22 +60,20 @@ These are used for some further challenges. You can safely skip them if you are 
 
 ## What We Care About
 
-Feel free to use any libraries you would use if this were a real production App, but remember we're interested in your code & the way you solve the problem, not how well you can use a particular library.
-
-We're interested in your method and how you approach the problem just as much as we're interested in the end result.
+Feel free to use any open-source library if you see a good fit, but also remember that we're more interested in finding out your code skill and problem solving skill.
 
 Here's what you should aim for:
 
-- Good use of current HTML, CSS, and JavaScript & performance best practices.
+- Good use of current HTML, CSS, and JavaScript best practices.
 - Solid testing approach.
 - Extensible code.
 
-## Q&A
+## FAQ
 
 > Where should I send back the result when I'm done?
 
-Fork this repo and send us a pull request when you think you are done. We don't have a deadline for the task.
+Fork this repo and send us a pull request when you think it's ready for review. You don't have to finish everything prior and you can continue work on it. We don't have a deadline for the task.
 
 > What if I have a question?
 
-Create a new issue in the repo and we will get back to you very quickly.
+Create a new issue in the repo and we will get back to you quickly.
