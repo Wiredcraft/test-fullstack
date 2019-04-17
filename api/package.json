@@ -1,0 +1,26 @@
+{
+  "name": "talk-lightning-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test",
+    "deploy": "cwd=$(pwd) && gitroot=$(git rev-parse --show-toplevel) && cd $gitroot && git subtree push --prefix api heroku master && cd $pwd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lionel-rowe/test-fullstack.git"
+  },
+  "author": "lionel.rowe@gmail.com",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/lionel-rowe/test-fullstack/issues"
+  },
+  "homepage": "https://github.com/lionel-rowe/test-fullstack#readme",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "firebase": "^5.9.4"
+  }
+}
