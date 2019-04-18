@@ -1,0 +1,66 @@
+@mixin glow-and-spin($delay) {
+  animation: glow 3s linear infinite alternate, spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite #{$delay}s;
+}
+
+$secondary: red;
+$tertiary: blue;
+
+.spinner-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+
+  .lds-ring-inner {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    border-color: $tertiary transparent transparent transparent;
+  }
+
+  .first {
+    @include glow-and-spin(-0.45);
+  }
+
+  .second {
+    @include glow-and-spin(-0.3);
+  }
+
+  .third {
+    @include glow-and-spin(-0.15);
+  }
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes glow {
+  0% {
+    border-color: $secondary transparent transparent transparent;
+  }
+  100% {
+    border-color: $tertiary transparent transparent transparent;
+  }
+}

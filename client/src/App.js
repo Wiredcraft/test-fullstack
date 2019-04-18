@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import Layout from './Layout';
 import Talks from './Talks';
+import NewTalk from './NewTalk';
 import UserContext from './UserContext';
 import { Router } from '@reach/router';
 
@@ -12,7 +13,7 @@ const App = (props) => {
       <Layout>
         <Router>
           <Talks path='/' />
-          {/*<EditTalk path='/talks/:id' />*/}
+          <NewTalk path='/talks/new' />
         </Router>
       </Layout>
     </UserContext.Provider>

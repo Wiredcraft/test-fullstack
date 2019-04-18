@@ -1,31 +1,53 @@
+@import './Spinner';
+
+$header-height: 150px;
+
 body {
   background: #eee;
 }
 
-header, main, footer {
+main, footer, .header-content {
   padding: 0 10px;
 }
 
-.header-content, main {
+.body-container {
   max-width: 700px;
-  // display: flex;
   margin: 0 auto;
 }
 
 header {
   background: #fff;
   box-shadow: 0px -5px 10px 10px rgba(0, 0, 0, 0.2);
-  position: relative;
+  position: fixed;
   z-index: 1;
+  transition: 0.1s height;
+  height: $header-height;
+  width: 100%;
+  top: 0;
+
+  &.minimized {
+    height: 50px;
+
+    .title-and-logo {
+      zoom: 50%;
+    }
+  }
+}
+
+main {
+  padding-top: $header-height;
+  padding-bottom: 1.5em;
 }
 
 .header-content {
   display: flex;
-  height: 150px;
+  height: 100%;
   align-items: center;
   justify-content: space-between;
 
   .title-and-logo {
+    color: inherit;
+    text-decoration: inherit;
     height: 100%;
     display: flex;
     align-items: center;
@@ -34,6 +56,31 @@ header {
       padding-right: 20px;
       // width: 100px;
     }
+  }
+}
+
+.talks-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.new-talk-btn {
+  font-size: 1.2em;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 1.2em;
+  height: 1.2em;
+  box-sizing: content-box;
+  padding: 0.15em;
+  cursor: pointer;
+
+  &:hover {
+    border-radius: 50%;
+    background: #080;
+    color: #fff;
   }
 }
 
@@ -49,7 +96,7 @@ header {
 
   &.active {
     .header-row .votes {
-      flex: 0 0 7em;
+      flex: 0 0 8em;
       display: flex;
       justify-content: space-between;
 
@@ -83,5 +130,31 @@ header {
       text-align: right;
       padding-left: 20px;
     }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 20px 0;
+
+  label {
+    font-weight: bold;
+  }
+
+  textarea {
+    height: 5em;
+    font-family: inherit;
+    resize: none;
+  }
+
+  button {
+    height: 3em;
+    max-width: 10em;
   }
 }
