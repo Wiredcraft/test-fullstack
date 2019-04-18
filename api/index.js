@@ -18,9 +18,9 @@ app.get('/talks', async (req, res) => {
   const after = +req.query.after || 0;
 
   const query = db.ref('talks')
-    .orderByChild('createdAt')
-    .limitToFirst(limit)
-    .startAt(after + 1);
+    // .orderByChild('createdAt')
+    // .limitToFirst(limit)
+    // .startAt(after + 1);
 
   const snapshot = await query.once('value');
 
