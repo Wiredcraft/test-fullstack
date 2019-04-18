@@ -4,14 +4,14 @@ const config = require('./config');
 
 const { db, writeTalk } = require('./db');
 
-writeTalk({
-  title: 'aaa',
-  abstract: 'bbbbbbbbbb',
-  userId: '0001'
-});
-
 const express = require('express');
 const app = express();
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/talks', async (req, res) => {
   const limit = +req.query.limit || config.DEFAULT_PAGE_LENGTH;
@@ -41,14 +41,17 @@ app.get('/talks/:id', async (req, res) => {
 });
 
 app.post('/talks', async (req, res) => {
+  // const { title, abstract } = req.body;
+  // const userId = '';
+  // writeTalk({ title, abstract, userId });
+  // res.sendCode(200);
+});
+
+app.post('/talks/:id/upvote', async (req, res) => {
 
 });
 
-app.post('/talks/:id/+1', async (req, res) => {
-
-});
-
-app.post('/talks/:id/-1', async (req, res) => {
+app.post('/talks/:id/downvote', async (req, res) => {
 
 });
 
