@@ -1,0 +1,87 @@
+body {
+  background: #eee;
+}
+
+header, main, footer {
+  padding: 0 10px;
+}
+
+.header-content, main {
+  max-width: 700px;
+  // display: flex;
+  margin: 0 auto;
+}
+
+header {
+  background: #fff;
+  box-shadow: 0px -5px 10px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.header-content {
+  display: flex;
+  height: 150px;
+  align-items: center;
+  justify-content: space-between;
+
+  .title-and-logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    .logo {
+      height: 70px;
+      padding-right: 20px;
+      // width: 100px;
+    }
+  }
+}
+
+.talk {
+  background: #fff;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin: 10px 0;
+  padding: 0 20px 5px 20px;
+
+  &:not(.active) {
+    cursor: pointer;
+  }
+
+  &.active {
+    .header-row .votes {
+      flex: 0 0 7em;
+      display: flex;
+      justify-content: space-between;
+
+      .vote-btn {
+        cursor: pointer;
+
+        &.upvote {
+          color: #080;
+        }
+        &.downvote {
+          color: #d00;
+        }
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+
+    h3 {
+      flex: 0 1 100%;
+    }
+
+    .votes {
+      flex: 0 0 5em;
+      text-align: right;
+      padding-left: 20px;
+    }
+  }
+}
