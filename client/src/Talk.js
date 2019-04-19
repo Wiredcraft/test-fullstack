@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import swal from 'sweetalert';
+
+import UserContext from './UserContext';
 
 const Talk = ({ clickHandler, votes, title, abstract, id, active }) => {
+
+  const { user } = useContext(UserContext);
+
+  const vote = async val => {
+    if (!user) {
+      swal({
+        title: 'Not logged in',
+        text: 'You must be logged in to vote.',
+        icon: 'error'
+      });
+    } else {
+      try {
+        const res = await fetch('aa');
+        console.log(val)
+      } catch(e) {
+        swal({
+          title: 'Network error',
+          text: 'A network error occurred. Please try again later.',
+          icon: 'error'
+        });
+      }
+    }
+  }
 
   return (
     <div className={active ? 'active talk' : 'talk'} onClick={clickHandler}>
@@ -19,6 +45,7 @@ const Talk = ({ clickHandler, votes, title, abstract, id, active }) => {
                     role='button'
                     aria-label='upvote'
                     title='upvote'
+                    onClick={() => vote(+1)}
                   />
                   <FontAwesomeIcon
                     className='vote-btn downvote'
@@ -26,6 +53,7 @@ const Talk = ({ clickHandler, votes, title, abstract, id, active }) => {
                     role='button'
                     aria-label='downvote'
                     title='downvote'
+                    onClick={() => vote(-1)}
                   />
                 </React.Fragment>
               )

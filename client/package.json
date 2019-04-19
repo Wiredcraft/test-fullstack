@@ -1,17 +1,21 @@
 {
-  "name": "client",
+  "name": "talk-lightning",
+  "homepage": "https://lionel-rowe.github.io/test-fullstack/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.12",
+    "@fortawesome/free-brands-svg-icons": "^5.6.3",
+    "@fortawesome/free-solid-svg-icons": "^5.6.3",
+    "@fortawesome/react-fontawesome": "^0.1.3",
     "@reach/router": "^1.2.1",
+    "firebase": "^5.9.4",
+    "firebaseui": "^3.5.2",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
-    "@fortawesome/fontawesome-svg-core": "^1.2.12",
-    "@fortawesome/free-brands-svg-icons": "^5.6.3",
-    "@fortawesome/free-solid-svg-icons": "^5.6.3",
-    "@fortawesome/react-fontawesome": "^0.1.3"
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1"

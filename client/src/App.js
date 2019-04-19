@@ -1,22 +1,23 @@
 import React from 'react';
 import './App.scss';
+import { Router } from '@reach/router';
+
 import Layout from './Layout';
 import Talks from './Talks';
 import NewTalk from './NewTalk';
-import UserContext from './UserContext';
-import { Router } from '@reach/router';
+import FirebaseAuth from './FirebaseAuth';
 
 const App = (props) => {
 
   return (
-    <UserContext.Provider value="User">
+    <FirebaseAuth>
       <Layout>
-        <Router>
+        <Router basepath={process.env.PUBLIC_URL}>
           <Talks path='/' />
           <NewTalk path='/talks/new' />
         </Router>
       </Layout>
-    </UserContext.Provider>
+    </FirebaseAuth>
   );
 };
 

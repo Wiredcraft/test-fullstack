@@ -7,6 +7,8 @@ import Title from './Title';
 import Spinner from './Spinner';
 // import Pagination from './Pagination';
 
+import config from './config';
+
 const Talks = (props) => {
   const [ talks, setTalks ] = useState([]);
   const [ loaded, setLoaded ] = useState(false);
@@ -17,7 +19,7 @@ const Talks = (props) => {
   useEffect(() => {
     setLoaded(false);
 
-    fetch('http://localhost:5000/talks')
+    fetch(`${config.apiHost}/talks`)
     .then(async res => {
       const json = await res.json();
 
@@ -48,7 +50,7 @@ const Talks = (props) => {
           <div className='talks-inner body-container'>
             <div className='talks-header'>
               <h2>All Talks</h2>
-              <Link to='/talks/new' className='new-talk-btn'>
+              <Link to={`${process.env.PUBLIC_URL}/talks/new`} className='new-talk-btn'>
                 <FontAwesomeIcon
                   icon='plus'
                   role='button'
@@ -73,7 +75,7 @@ const Talks = (props) => {
                   })
                   : <p>
                     No talks yet.
-                    <Link to='/talks/new'>
+                    <Link to={`${process.env.PUBLIC_URL}/talks/new`}>
                       Add one!
                     </Link>
                   </p>

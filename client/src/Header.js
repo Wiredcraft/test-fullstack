@@ -1,10 +1,9 @@
-import React, { useContext, useState, useEffect } from 'react';
-import UserContext from './UserContext';
+import React, { useState, useEffect } from 'react';
 import { Link } from '@reach/router';
 import logo from './logo.png';
+import LogInOrOut from './LogInOrOut';
 
 const Header = ({ children }) => {
-  const user = useContext(UserContext);
 
   const [ top, setTop ] = useState(document.body.scrollTop);
 
@@ -24,11 +23,11 @@ const Header = ({ children }) => {
   return (
     <header className={`${top > 100 ? 'minimized' : ''}`}>
       <div className='header-content body-container'>
-        <Link to='/' className='title-and-logo'>
+        <Link to={`${process.env.PUBLIC_URL}/`} className='title-and-logo'>
           <img className='logo' src={logo} alt='' />
           <h1>Talk Lightning</h1>
         </Link>
-        <div>Hello {user}</div>
+        <LogInOrOut />
       </div>
     </header>
   );

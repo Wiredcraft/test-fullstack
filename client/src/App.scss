@@ -1,4 +1,7 @@
+@import './globals';
 @import './Spinner';
+@import './vendor/firebaseui.css';
+@import './overrides';
 
 $header-height: 150px;
 
@@ -54,7 +57,6 @@ main {
     .logo {
       height: 70px;
       padding-right: 20px;
-      // width: 100px;
     }
   }
 }
@@ -153,8 +155,8 @@ main {
     resize: none;
   }
 
-  button {
-    height: 3em;
-    max-width: 10em;
-  }
+}
+
+.log-in-or-out {
+  padding: 0 0 0 20px;
 }
