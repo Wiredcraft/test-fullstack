@@ -5,7 +5,8 @@ import { Link } from '@reach/router';
 import Talk from './Talk';
 import Title from './Title';
 import Spinner from './Spinner';
-// import Pagination from './Pagination';
+import UserContext from './UserContext';
+import fireModal from './fireModal';
 
 import config from './config';
 
@@ -14,7 +15,7 @@ const Talks = (props) => {
   const [ loaded, setLoaded ] = useState(false);
   const [ active, setActive ] = useState(null);
 
-  // const [ length, setLength ] = useState(0);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     setLoaded(false);
@@ -41,6 +42,13 @@ const Talks = (props) => {
 
   }, []);
 
+  const checkUser = e => {
+    if (!user) {
+      e.preventDefault();
+      fireModal('notLoggedIn', {actionName: 'create a new talk'});
+    }
+  }
+
   return (
     <React.Fragment>
       <Title text='Home' />
@@ -50,7 +58,11 @@ const Talks = (props) => {
           <div className='talks-inner body-container'>
             <div className='talks-header'>
               <h2>All Talks</h2>
-              <Link to={`${process.env.PUBLIC_URL}/talks/new`} className='new-talk-btn'>
+              <Link
+                to={`${process.env.PUBLIC_URL}/talks/new`}
+                className='new-talk-btn'
+                onClick={checkUser}
+              >
                 <FontAwesomeIcon
                   icon='plus'
                   role='button'

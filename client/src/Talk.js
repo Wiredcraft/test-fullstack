@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import swal from 'sweetalert';
 
 import UserContext from './UserContext';
+import fireModal from './fireModal';
 
 const Talk = ({ clickHandler, votes, title, abstract, id, active }) => {
 
@@ -10,21 +10,13 @@ const Talk = ({ clickHandler, votes, title, abstract, id, active }) => {
 
   const vote = async val => {
     if (!user) {
-      swal({
-        title: 'Not logged in',
-        text: 'You must be logged in to vote.',
-        icon: 'error'
-      });
+      fireModal('notLoggedIn', {actionName: 'vote'});
     } else {
       try {
-        const res = await fetch('aa');
-        console.log(val)
+        const res = await fetch('https://fake-url');
+        console.log(val);
       } catch(e) {
-        swal({
-          title: 'Network error',
-          text: 'A network error occurred. Please try again later.',
-          icon: 'error'
-        });
+        fireModal('networkError');
       }
     }
   }
