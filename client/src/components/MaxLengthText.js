@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const MaxLengthText = ({ label, maxLength, multiline, getSet }) => {
   const id = `form-field-${label.toLowerCase().replace(/[^a-z]/g, '-')}`;

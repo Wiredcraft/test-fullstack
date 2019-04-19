@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from '@reach/router';
-import logo from './logo.png';
-import LogInOrOut from './LogInOrOut';
+import logo from '../assets/logo.png';
+import LogInOrOut from '../components/LogInOrOut';
 
 const Header = ({ children }) => {
 
@@ -9,7 +9,6 @@ const Header = ({ children }) => {
 
   const calcScrollTop = () => {
     setTop(document.body.scrollTop || document.documentElement.scrollTop);
-    // console.log(top)
   };
 
   useEffect(() => {

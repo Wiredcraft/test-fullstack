@@ -1,4 +1,5 @@
 @import './globals';
+@import './index';
 @import './Spinner';
 @import './vendor/firebaseui.css';
 @import './overrides';
@@ -69,7 +70,7 @@ main {
 
 .new-talk-btn {
   font-size: 1.2em;
-  color: inherit;
+  color: $brand-primary;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,8 +82,8 @@ main {
 
   &:hover {
     border-radius: 50%;
-    background: #080;
-    color: #fff;
+    background: $brand-primary;
+    color: $brand-highlight;
   }
 }
 
@@ -155,8 +156,39 @@ main {
     resize: none;
   }
 
+  button {
+    margin: 0 auto;
+    min-width: 10em;
+  }
+
 }
 
 .log-in-or-out {
   padding: 0 0 0 20px;
+}
+
+.styled-link:not([hidden]) {
+  background: none;
+  border: none;
+  display: inline;
+  font-size: inherit;
+  color: $brand-primary;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 2px 5px;
+  margin: -2px -3px;
+
+  &:hover, &:active {
+    background: $brand-primary;
+    color: $brand-highlight;
+  }
+}
+
+.unstyled {
+  background: none;
+  border: none;
+  display: inline;
+  font-size: inherit;
+  text-decoration: underline;
+  padding: 0;
 }

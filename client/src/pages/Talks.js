@@ -1,19 +1,30 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from '@reach/router';
 
-import Talk from './Talk';
-import Title from './Title';
-import Spinner from './Spinner';
-import UserContext from './UserContext';
-import fireModal from './fireModal';
+import TalkCard from '../components/TalkCard';
+import Title from '../components/Title';
+import Spinner from '../components/Spinner';
+import UserContext from '../components/UserContext';
 
-import config from './config';
+import fireModal from '../utils/fireModal';
+import config from '../utils/config';
 
 const Talks = (props) => {
   const [ talks, setTalks ] = useState([]);
   const [ loaded, setLoaded ] = useState(false);
   const [ active, setActive ] = useState(null);
+
+  const shouldFocus = useRef(null);
+
+  const setVotes = (talkId, newVotes) => {
+    const talk = talks.find(talk => talk.id === talkId);
+    talk.votes = newVotes;
+    setTalks(talks);
+    setActive(null);
+    shouldFocus.current.focus();
+    setActive(talkId);
+  };
 
   const { user } = useContext(UserContext);
 
@@ -24,18 +35,16 @@ const Talks = (props) => {
     .then(async res => {
       const json = await res.json();
 
-      const { talks, length } = json;
+      const { talks } = json;
 
       const newTalks = Object.keys(talks)
         .map(k => {
           const t = talks[k];
-          t.key = k;
-          t.votes = t.votes || [];
+          t.id = k;
           return t;
         });
 
       setTalks(newTalks);
-      // setLength(length);
 
       setLoaded(true);
     });
@@ -47,7 +56,9 @@ const Talks = (props) => {
       e.preventDefault();
       fireModal('notLoggedIn', {actionName: 'create a new talk'});
     }
-  }
+  };
+
+  const orderByVotes = talks => talks.sort((a, b) => b.votes - a.votes);
 
   return (
     <React.Fragment>
@@ -74,20 +85,25 @@ const Talks = (props) => {
             <div>
               {
                 talks.length
-                  ? talks.map(({ key, ...talk}) => {
-                    return (
-                      <Talk
-                        active={active === key}
-                        key={key}
-                        id={key}
-                        clickHandler={() => setActive(key)}
-                        {...talk}
-                      />
-                    );
-                  })
+                  ? orderByVotes(talks)
+                    .map(({ id, ...talk }) => {
+                      return (
+                        <TalkCard
+                          updateVotes={newVotes => {
+                            setVotes(id, newVotes);
+                          }}
+                          shouldFocus={shouldFocus}
+                          active={active === id}
+                          key={id}
+                          id={id}
+                          clickHandler={val => setActive(val)}
+                          {...talk}
+                        />
+                      );
+                    })
                   : <p>
-                    No talks yet.
-                    <Link to={`${process.env.PUBLIC_URL}/talks/new`}>
+                    {'No talks yet. '}
+                    <Link className='styled-link' to={`${process.env.PUBLIC_URL}/talks/new`}>
                       Add one!
                     </Link>
                   </p>
@@ -97,10 +113,6 @@ const Talks = (props) => {
         </div>)
         : <Spinner />
       }
-      {/*<Pagination
-        prev={length}
-        next={length}
-      />*/}
     </React.Fragment>
   );
 }

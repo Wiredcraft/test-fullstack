@@ -1,6 +1,8 @@
 require('dotenv').config();
 const admin = require('firebase-admin');
 
+const { sumVotes } = require('./utils');
+
 const serviceAccountKey = JSON.parse(new Buffer(process.env.FIREBASE_SERVICE_ACCOUNT_KEY, 'base64'));
 
 admin.initializeApp({
@@ -9,8 +11,6 @@ admin.initializeApp({
 });
 
 const db = admin.database();
-
-// const provider = new firebase.auth.GithubAuthProvider();
 
 const writeTalk = ({ talkId, title, abstract, userId }) => {
   const isNew = !talkId;
@@ -34,7 +34,41 @@ const writeTalk = ({ talkId, title, abstract, userId }) => {
   ref.set(talk);
 };
 
+const addVote = async ({ talkId, userId, val }) => {
+  const ref = db.ref('talks/' + talkId);
+
+  const snapshot = await ref.once('value');
+
+  const talk = snapshot.val();
+
+  talk.votes = talk.votes || [];
+
+  const voteFromThisUser = talk.votes.find(vote => vote.userId === userId);
+
+  if (voteFromThisUser) {
+    voteFromThisUser.val = val;
+  } else {
+    talk.votes.push({ userId, val });
+  }
+
+  ref.set(talk);
+
+  return sumVotes(talk.votes);
+};
+
+const auth = idToken => {
+  try {
+    const decodedToken = admin.auth().verifyIdToken(idToken);
+    const uid = decodedToken.uid;
+    return decodedToken;
+  } catch(e) {
+    console.log(e);
+  }
+}
+
 module.exports = {
   db,
-  writeTalk
+  writeTalk,
+  addVote,
+  auth
 };

@@ -41,28 +41,27 @@
 
 // all vendor and other buttons, for consistency
 
-button {
+button:not(.styled-link):not(.unstyled) {
   border-radius: 2px !important;
   border: none !important;
   font-weight: bold !important;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !important;
 
-  height: 3em;
-  max-width: 10em;
   padding: 10px 20px;
 
   cursor: pointer;
 
   &.swal-button, &:not([class]) {
     color: #fff;
-    background: #000035;
+    background: $brand-primary;
 
     &:hover {
-      background: #000035 !important;
+      background: $brand-primary !important;
       opacity: 0.9;
     }
 
   }
+
   &:focus {
     box-shadow: 0 0 0 1px #fff, 0 0 0 3px rgba(43,114,165,.29) !important;
     outline: none !important;

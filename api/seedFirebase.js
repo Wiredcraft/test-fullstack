@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 
 const { db, writeTalk } = require('./db');
 
-fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=100&rnnamespace=0')
+fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&rnlimit=20&rnnamespace=0')
 .then(async res => {
 
   const json = await res.json();
@@ -14,8 +14,6 @@ fetch('https://en.wikipedia.org/w/api.php?action=query&format=json&list=random&r
     const json2 = await res2.json();
 
     const { title, extract: abstract } = json2.query.pages[`${id}`];
-
-    console.log(title.slice(0, 50), abstract.slice(0, 250));
 
     writeTalk({
       title: title.slice(0, 50),

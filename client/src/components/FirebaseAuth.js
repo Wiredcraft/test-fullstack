@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserContext from './UserContext';
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import firebaseui from 'firebaseui';
 
 const config = {
@@ -17,7 +17,7 @@ firebase.initializeApp(config);
 
 const uiConfig = {
   callbacks: {
-    signInSuccess: () => {}
+    signInSuccessWithAuthResult: () => {}
   },
   signInOptions: [
     firebase.auth.GithubAuthProvider.PROVIDER_ID
@@ -27,28 +27,23 @@ const uiConfig = {
 
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-const initialUser = window.localStorage.user
-  ? JSON.parse(window.localStorage.user)
-  : null;
+const initialUser = window.localStorage.user || null;
 
 const FirebaseAuth = ({ children }) => {
 
   const [ user, setUser ] = useState(initialUser);
 
-  const signInSuccess = (user, credential, _redirectUrl) => {
-    const { email } = user;
-    const { accessToken } = credential;
+  const signInSuccessWithAuthResult = (authResult) => {
+    const idToken = authResult.user.ra; // jwt
 
-    const u = { email, accessToken };
+    window.localStorage.user = idToken;
 
-    window.localStorage.user = JSON.stringify(u);
-
-    setUser(u);
+    setUser(idToken);
 
     return false;
   };
 
-  uiConfig.callbacks.signInSuccess = signInSuccess;
+  uiConfig.callbacks.signInSuccessWithAuthResult = signInSuccessWithAuthResult;
 
   useEffect(() => {
     if (!user) ui.start('#firebaseui-auth-container', uiConfig);

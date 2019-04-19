@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.scss';
+import './styles/App.scss';
 import { Router } from '@reach/router';
 
 import Layout from './Layout';
-import Talks from './Talks';
-import NewTalk from './NewTalk';
-import FirebaseAuth from './FirebaseAuth';
+import Talks from './pages/Talks';
+import NewTalk from './pages/NewTalk';
+import FirebaseAuth from './components/FirebaseAuth';
 
 const App = (props) => {
 
