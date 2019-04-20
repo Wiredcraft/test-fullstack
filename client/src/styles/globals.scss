@@ -8,5 +8,14 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
+@mixin brand-hover {
+  cursor: pointer;
+
+  &:hover {
+    background: $brand-primary;
+    color: $brand-highlight;
+  }
+}
+
 $brand-primary: #000035;
 $brand-highlight: #f0ff03;

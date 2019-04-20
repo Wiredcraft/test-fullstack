@@ -51,15 +51,23 @@ button:not(.styled-link):not(.unstyled) {
 
   cursor: pointer;
 
-  &.swal-button, &:not([class]) {
+  &.swal-button, &:not([class]), &.submit-btn {
     color: #fff;
     background: $brand-primary;
 
     &:hover {
       background: $brand-primary !important;
-      opacity: 0.9;
+      opacity: 0.85;
     }
+  }
 
+  &.cancel-btn {
+    background: #ddd;
+    color: #000;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   &:focus {

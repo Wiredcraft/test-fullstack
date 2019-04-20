@@ -78,13 +78,8 @@ main {
   height: 1.2em;
   box-sizing: content-box;
   padding: 0.15em;
-  cursor: pointer;
 
-  &:hover {
-    border-radius: 50%;
-    background: $brand-primary;
-    color: $brand-highlight;
-  }
+  @include brand-hover;
 }
 
 .talk {
@@ -94,7 +89,8 @@ main {
   padding: 0 20px 5px 20px;
 
   &:not(.active) {
-    cursor: pointer;
+    transition: 0.05s all;
+    @include brand-hover;
   }
 
   &.active {
@@ -136,14 +132,23 @@ main {
   }
 }
 
-.pagination {
+.button-group {
   display: flex;
-  justify-content: space-evenly;
+
+  justify-content: space-between;
+
+  @media screen and (min-width: 350px) {
+
+    button {
+      min-width: 10em;
+    }
+  }
 }
 
 .field-group {
   display: flex;
   flex-direction: column;
+
   padding: 0 0 20px 0;
 
   label {
@@ -154,11 +159,6 @@ main {
     height: 5em;
     font-family: inherit;
     resize: none;
-  }
-
-  button {
-    margin: 0 auto;
-    min-width: 10em;
   }
 
 }
@@ -174,14 +174,10 @@ main {
   font-size: inherit;
   color: $brand-primary;
   text-decoration: underline;
-  cursor: pointer;
   padding: 2px 5px;
   margin: -2px -3px;
 
-  &:hover, &:active {
-    background: $brand-primary;
-    color: $brand-highlight;
-  }
+  @include brand-hover;
 }
 
 .unstyled {
@@ -191,4 +187,17 @@ main {
   font-size: inherit;
   text-decoration: underline;
   padding: 0;
+}
+
+.medal {
+  margin-right: 10px;
+  &.gold {
+    color: #ffbf33;
+  }
+  &.silver {
+    color: #a9bac1;
+  }
+  &.bronze {
+    color: #b78c60;
+  }
 }
