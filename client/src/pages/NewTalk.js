@@ -31,13 +31,16 @@ const NewTalk = () => {
     navigate(`${process.env.PUBLIC_URL}/`);
   };
 
+  const cancel = () => navigate(`${process.env.PUBLIC_URL}/`);
+
   return (
     <form action='#' onSubmit={submit} className='body-container'>
       <h2>New Talk</h2>
       <MaxLengthText getSet={[ title, setTitle ]} label='Title' maxLength={50} />
       <MaxLengthText getSet={[ abstract, setAbstract ]} label='Abstract' maxLength={250} multiline />
-      <div className='field-group'>
-        <button type='submit'>Create</button>
+      <div className='button-group'>
+        <button className='submit-btn' type='submit'>Create</button>
+        <button onClick={cancel} className='cancel-btn' type='button'>Cancel</button>
       </div>
     </form>
   );
