@@ -68,7 +68,7 @@ const Talks = (props) => {
         ? (<div className='talks' onClickCapture={() => setActive(null)}>
           <div className='talks-inner body-container'>
             <div className='talks-header'>
-              <h2>All Talks</h2>
+              <h2>Upcoming Talk Proposals</h2>
               <Link
                 to={`${process.env.PUBLIC_URL}/talks/new`}
                 className='new-talk-btn'
@@ -86,9 +86,10 @@ const Talks = (props) => {
               {
                 talks.length
                   ? orderByVotes(talks)
-                    .map(({ id, ...talk }) => {
+                    .map(({ id, ...talk }, idx) => {
                       return (
                         <TalkCard
+                          idx={idx}
                           updateVotes={newVotes => {
                             setVotes(id, newVotes);
                           }}

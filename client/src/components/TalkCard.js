@@ -5,7 +5,7 @@ import UserContext from '../components/UserContext';
 import config from '../utils/config';
 import fireModal from '../utils/fireModal';
 
-const Talk = ({ shouldFocus, clickHandler, votes, updateVotes, title, abstract, id, active }) => {
+const Talk = ({ idx, shouldFocus, clickHandler, votes, updateVotes, title, abstract, id, active }) => {
 
   const { user } = useContext(UserContext);
 
@@ -27,7 +27,9 @@ const Talk = ({ shouldFocus, clickHandler, votes, updateVotes, title, abstract, 
         fireModal('networkError');
       }
     }
-  }
+  };
+
+  const medal = [ 'gold', 'silver', 'bronze' ][idx];
 
   const toggle = () => active ? clickHandler(null) : clickHandler(id);
 
@@ -48,6 +50,15 @@ const Talk = ({ shouldFocus, clickHandler, votes, updateVotes, title, abstract, 
     >
       <div>
         <div className='header-row'>
+          {medal && (
+            <FontAwesomeIcon
+              className={`medal ${medal}`}
+              icon='medal'
+              aria-label={`${medal} medal`}
+              title={`${medal} medal`}
+            />
+          )}
+
           <h3>{title}</h3>
           <div className='votes'>
             Votes: {votes}

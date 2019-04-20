@@ -4,9 +4,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faThumbsUp, faThumbsDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp, faThumbsDown, faPlus, faMedal } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faThumbsUp, faThumbsDown, faPlus);
+library.add(faThumbsUp, faThumbsDown, faPlus, faMedal);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
