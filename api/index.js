@@ -11,7 +11,11 @@ const bodyParser = require('body-parser')
 const app = express();
 
 const authHeaderToUserId = async authHeader => {
-  const idToken = authHeader.match(/Bearer (.+)/)[1];
+  const m = authHeader && authHeader.match(/Bearer (.+)/);
+
+  if (!m) throw new Error('Request missing ID token');
+
+  const idToken = m[1];
   const decodedToken = await auth(idToken);
 
   return decodedToken.user_id;
@@ -76,6 +80,7 @@ app.post('/talks/:id/:vote', async (req, res) => {
   if (!val) return;
 
   const userId = await authHeaderToUserId(req.header('Authorization'));
+
   const talkId = req.params.id;
 
   const newVal = await addVote({ userId, talkId, val });
