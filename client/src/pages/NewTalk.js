@@ -4,6 +4,7 @@ import { navigate } from "@reach/router"
 import MaxLengthText from '../components/MaxLengthText';
 import config from '../utils/config';
 import UserContext from '../components/UserContext';
+import Title from '../components/Title';
 
 const NewTalk = () => {
 
@@ -35,6 +36,7 @@ const NewTalk = () => {
 
   return (
     <form action='#' onSubmit={submit} className='body-container'>
+      <Title text='New Talk' />
       <h2>New Talk</h2>
       <MaxLengthText getSet={[ title, setTitle ]} label='Title' maxLength={50} />
       <MaxLengthText getSet={[ abstract, setAbstract ]} label='Abstract' maxLength={250} multiline />
