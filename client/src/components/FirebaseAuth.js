@@ -17,7 +17,8 @@ firebase.initializeApp(config);
 
 const uiConfig = {
   callbacks: {
-    signInSuccessWithAuthResult: () => {}
+    signInSuccessWithAuthResult: () => {} // reassigned on component mount
+    // with access to component state
   },
   signInOptions: [
     firebase.auth.GithubAuthProvider.PROVIDER_ID

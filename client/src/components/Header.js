@@ -20,7 +20,7 @@ const Header = ({ children }) => {
   }, []);
 
   return (
-    <header className={`${top > 100 ? 'minimized' : ''}`}>
+    <header className={top > 100 ? 'minimized' : null}>
       <div className='header-content body-container'>
         <Link to={`${process.env.PUBLIC_URL}/`} className='title-and-logo'>
           <img className='logo' src={logo} alt='' />
