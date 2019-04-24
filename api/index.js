@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-const config = require('./config');
-
 const { sumVotes } = require('./utils');
 
 const { db, writeTalk, addVote, auth } = require('./db');
@@ -9,17 +7,6 @@ const { db, writeTalk, addVote, auth } = require('./db');
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
-
-const authHeaderToUserId = async authHeader => {
-  const m = authHeader && authHeader.match(/Bearer (.+)/);
-
-  if (!m) throw new Error('Request missing ID token');
-
-  const idToken = m[1];
-  const decodedToken = await auth(idToken);
-
-  return decodedToken.user_id;
-};
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -30,9 +17,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.get('/talks', async (req, res) => {
-  const limit = +req.query.limit || config.DEFAULT_PAGE_LENGTH;
-  const after = +req.query.after || 0;
-
   const query = db.ref('talks');
 
   const snapshot = await query.once('value');
@@ -55,12 +39,39 @@ app.get('/talks/:id', async (req, res) => {
   res.json(talk);
 });
 
-app.post('/talks', async (req, res) => {
+
+
+app.use(async (req, res, next) => {
+  if (req.method === 'OPTIONS') return next();
+
+  const authHeader = req.header('Authorization');
+
+  const m = authHeader && authHeader.match(/Bearer (.+)/);
+
+  if (!m) {
+    return res.sendStatus(401);
+  }
+
+  try {
+    const idToken = m[1];
+    const decodedToken = await auth(idToken);
+
+    req.userId = decodedToken.user_id;
+
+    return next();
+  } catch(e) {
+    return res.sendStatus(401);
+  }
+});
+
+app.post('/talks', (req, res) => {
   const { title, abstract } = req.body;
 
-  if (title.length > 50 || abstract.length > 250) return;
+  if (title.length > 50 || abstract.length > 250) {
+    return res.sendStatus(400);
+  }
 
-  const userId = await authHeaderToUserId(req.header('Authorization'));
+  const userId = req.userId;
 
   const talk = { title, abstract, userId };
 
@@ -77,9 +88,11 @@ app.post('/talks/:id/:vote', async (req, res) => {
 
   const val = vals[req.params.vote];
 
-  if (!val) return;
+  if (!val) {
+    return res.sendStatus(400);
+  }
 
-  const userId = await authHeaderToUserId(req.header('Authorization'));
+  const userId = req.userId;
 
   const talkId = req.params.id;
 
