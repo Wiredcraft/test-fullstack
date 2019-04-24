@@ -26,25 +26,47 @@ const uiConfig = {
   signInFlow: 'popup'
 };
 
-const ui = new firebaseui.auth.AuthUI(firebase.auth());
+window.firebase = firebase
 
-const initialUser = window.localStorage.user || null;
+const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 const FirebaseAuth = ({ children }) => {
 
-  const [ user, setUser ] = useState(initialUser);
+  const [ user, _setUser ] = useState(null);
 
-  const signInSuccessWithAuthResult = (authResult) => {
-    const idToken = authResult.user.ra; // jwt
+  const setUser = user => {
+    if (!user) {
+      firebase.auth().signOut();
+    }
 
-    window.localStorage.user = idToken;
+    _setUser(user);
+  };
+
+  const setIdToken = async () => {
+    const idToken = await firebase.auth().currentUser.getIdToken(/* forceRefresh */ true);
 
     setUser(idToken);
+  };
+
+  const signInSuccessWithAuthResult = () => {
+    setIdToken();
 
     return false;
   };
 
   uiConfig.callbacks.signInSuccessWithAuthResult = signInSuccessWithAuthResult;
+
+  useEffect(() => {
+
+    firebase.auth().onAuthStateChanged(user => {
+      if(user) {
+        setIdToken();
+      } else {
+        setUser(null);
+      }
+    });
+
+  }, []);
 
   useEffect(() => {
     if (!user) ui.start('#firebaseui-auth-container', uiConfig);
