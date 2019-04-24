@@ -7,7 +7,7 @@ import Talks from './pages/Talks';
 import NewTalk from './pages/NewTalk';
 import FirebaseAuth from './components/FirebaseAuth';
 
-const App = (props) => {
+const App = () => {
 
   return (
     <FirebaseAuth>
