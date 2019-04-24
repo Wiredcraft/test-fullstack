@@ -1,13 +1,16 @@
 import swal from 'sweetalert';
 
+const NOT_LOGGED_IN = 'notLoggedIn';
+const NETWORK_ERROR = 'networkError';
+
 const fireModal = (id, { actionName='perform this action' }={}) => {
   const options = {
-    notLoggedIn: {
+    [NOT_LOGGED_IN]: {
       title: 'Not logged in',
       text: `You must be logged in to ${actionName}.`,
       icon: 'error'
     },
-    networkError: {
+    [NETWORK_ERROR]: {
       title: 'Network error',
       text: 'A network error occurred. Please try again later.',
       icon: 'error'
@@ -17,4 +20,8 @@ const fireModal = (id, { actionName='perform this action' }={}) => {
   swal(options[id]);
 }
 
-export default fireModal;
+export {
+  fireModal,
+  NOT_LOGGED_IN,
+  NETWORK_ERROR
+};
