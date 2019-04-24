@@ -3,15 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import UserContext from '../components/UserContext';
 import config from '../utils/config';
-import fireModal from '../utils/fireModal';
+import ordinalize from '../utils/ordinalize';
+import { fireModal, NOT_LOGGED_IN, NETWORK_ERROR } from '../utils/fireModal';
 
-const Talk = ({ idx, shouldFocus, clickHandler, votes, updateVotes, title, abstract, id, active }) => {
-
+const TalkCard = ({ idx, setActive, votes, updateVotes, title, abstract, id, active }, ref) => {
   const { user } = useContext(UserContext);
 
   const vote = async val => {
     if (!user) {
-      fireModal('notLoggedIn', {actionName: 'vote'});
+      fireModal(NOT_LOGGED_IN, {actionName: 'vote'});
     } else {
       try {
         const res = await fetch(`${config.apiHost}/talks/${id}/${val}`, {
@@ -24,40 +24,46 @@ const Talk = ({ idx, shouldFocus, clickHandler, votes, updateVotes, title, abstr
 
         updateVotes(json.newVal);
       } catch(e) {
-        fireModal('networkError');
+        fireModal(NETWORK_ERROR);
       }
     }
   };
 
   const medal = [ 'gold', 'silver', 'bronze' ][idx];
 
-  const toggle = () => active ? clickHandler(null) : clickHandler(id);
+  const toggle = () => active ? setActive(null) : setActive(id);
 
   const toggleOnEnter = e => {
     if (e.target === e.currentTarget // only fire for outer div, not inner controls
       && e.key === 'Enter') {
       toggle();
     }
-  }
+  };
 
   return (
     <div
       className={active ? 'active talk' : 'talk'}
       tabIndex={0}
-      onClick={() => clickHandler(id)}
+      onClick={() => setActive(id)}
       onKeyPress={toggleOnEnter}
-      ref={active ? null : shouldFocus}
+      ref={active ? ref : null}
     >
       <div>
         <div className='header-row'>
-          {medal && (
+          {medal ? (
             <FontAwesomeIcon
               className={`medal ${medal}`}
               icon='medal'
-              aria-label={`${medal} medal`}
-              title={`${medal} medal`}
+              aria-label={`${ordinalize(idx + 1)} place`}
+              title={`${ordinalize(idx + 1)} place`}
             />
-          )}
+          ) : <span
+              className='place'
+              aria-label={`${ordinalize(idx + 1)} place`}
+              title={`${ordinalize(idx + 1)} place`}
+            >
+              {idx + 1}
+            </span>}
 
           <h3>{title}</h3>
           <div className='votes'>
@@ -87,9 +93,15 @@ const Talk = ({ idx, shouldFocus, clickHandler, votes, updateVotes, title, abstr
           </div>
         </div>
       </div>
-      {active && <p>{abstract}</p>}
+      {active && (
+        <React.Fragment>{
+          abstract
+            .split(/\n\s*\n/)
+            .map((para, idx) => <p key={idx}>{para}</p>)
+        }</React.Fragment>
+      )}
     </div>
   );
-}
+};
 
-export default Talk;
+export default React.forwardRef(TalkCard);
