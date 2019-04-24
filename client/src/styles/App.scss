@@ -122,6 +122,9 @@ main {
 
     h3 {
       flex: 0 1 100%;
+      min-width: 35%;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .votes {
@@ -129,6 +132,12 @@ main {
       text-align: right;
       padding-left: 20px;
     }
+  }
+
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
   }
 }
 
@@ -189,8 +198,18 @@ main {
   padding: 0;
 }
 
+.place {
+  font-weight: bold;
+  color: #ccc;
+}
+
+.medal, .place {
+  margin-right: 1em;
+  width: 1em !important;
+  text-align: center;
+}
+
 .medal {
-  margin-right: 10px;
   &.gold {
     color: #ffbf33;
   }
@@ -200,4 +219,31 @@ main {
   &.bronze {
     color: #b78c60;
   }
+}
+
+.form {
+  &.loading * {
+    cursor: not-allowed !important;
+
+    button {
+      background: #ddd !important;
+      color: #aaa !important;
+      box-shadow: none !important;
+
+      &:hover {
+        background: #ddd !important;
+        color: #aaa !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+      }
+    }
+
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
 }
