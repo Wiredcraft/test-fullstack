@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import UserContext from '../components/UserContext';
-import config from '../utils/config';
+import { apiHost } from '../utils/config';
 import ordinalize from '../utils/ordinalize';
 import { fireModal, NOT_LOGGED_IN, NETWORK_ERROR } from '../utils/fireModal';
 
@@ -14,7 +14,7 @@ const TalkCard = ({ idx, setActive, votes, updateVotes, title, abstract, id, act
       fireModal(NOT_LOGGED_IN, {actionName: 'vote'});
     } else {
       try {
-        const res = await fetch(`${config.apiHost}/talks/${id}/${val}`, {
+        const res = await fetch(`${apiHost}/talks/${id}/${val}`, {
           method: 'POST',
           headers: {
             'Authorization': 'Bearer ' + user

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { navigate } from "@reach/router"
 
 import MaxLengthText from '../components/MaxLengthText';
-import config from '../utils/config';
+import { apiHost } from '../utils/config';
 import UserContext from '../components/UserContext';
 import Title from '../components/Title';
 
@@ -23,7 +23,7 @@ const NewTalk = () => {
     try {
       setStatus(LOADING);
 
-      const res = await fetch(`${config.apiHost}/talks`, {
+      const res = await fetch(`${apiHost}/talks`, {
         method: 'POST',
         headers: {
           'Authorization': 'Bearer ' + user,

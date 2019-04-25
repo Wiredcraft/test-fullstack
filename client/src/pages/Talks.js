@@ -8,7 +8,7 @@ import Spinner from '../components/Spinner';
 import UserContext from '../components/UserContext';
 
 import { fireModal, NOT_LOGGED_IN, NETWORK_ERROR } from '../utils/fireModal';
-import config from '../utils/config';
+import { apiHost } from '../utils/config';
 
 import  { LOADING, LOADED, ERROR } from '../utils/loadingStatuses';
 
@@ -37,7 +37,7 @@ const Talks = () => {
     (async () => {
 
       try {
-        const res = await fetch(`${config.apiHost}/talks`);
+        const res = await fetch(`${apiHost}/talks`);
         const json = await res.json();
 
         const { talks } = json;
