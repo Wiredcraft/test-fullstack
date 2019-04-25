@@ -9,6 +9,15 @@ const bodyParser = require('body-parser')
 const app = express();
 
 app.use((req, res, next) => {
+  res.setTimeout(10000, () => {
+    console.log('Request timed out.');
+    res.sendStatus(408);
+  });
+
+  next();
+});
+
+app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
