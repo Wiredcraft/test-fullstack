@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
 import UserContext from './UserContext';
+import Spinner from './Spinner';
+
+import { LOADING, LOADED } from '../utils/loadingStatuses';
 
 const LogInOrOut = () => {
 
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, firebaseLoadStatus } = useContext(UserContext);
 
   const logout = e => {
     e.preventDefault();
@@ -12,10 +15,13 @@ const LogInOrOut = () => {
     setUser(null);
   };
 
+  const notLoaded = firebaseLoadStatus !== LOADED;
+
   return (
     <div className='log-in-or-out'>
-      <button className='styled-link' onClick={logout} hidden={!user}>Logout</button>
-      <div id='firebaseui-auth-container' hidden={!!user} />
+      {firebaseLoadStatus === LOADING && <Spinner scale={0.5} />}
+      <button className='styled-link' onClick={logout} hidden={!user || notLoaded}>Logout</button>
+      <div id='firebaseui-auth-container' hidden={!!user || notLoaded} />
     </div>
   );
 }

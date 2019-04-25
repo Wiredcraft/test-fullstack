@@ -4,16 +4,10 @@ import UserContext from './UserContext';
 import firebase from 'firebase/app';
 import firebaseui from 'firebaseui';
 
-const config = {
-  apiKey: 'AIzaSyCpquT9jfeyqrXlQ4s-zIZKtymnxwlBF9A',
-  authDomain: 'talk-lightning.firebaseapp.com',
-  databaseURL: 'https://talk-lightning.firebaseio.com',
-  projectId: 'talk-lightning',
-  storageBucket: 'talk-lightning.appspot.com',
-  messagingSenderId: '12336253804'
-};
+import { firebaseConfig } from '../utils/config';
+import { LOADING, LOADED } from '../utils/loadingStatuses';
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 const uiConfig = {
   callbacks: {
@@ -26,13 +20,13 @@ const uiConfig = {
   signInFlow: 'popup'
 };
 
-window.firebase = firebase
-
 const ui = new firebaseui.auth.AuthUI(firebase.auth());
+
 
 const FirebaseAuth = ({ children }) => {
 
   const [ user, _setUser ] = useState(null);
+  const [ firebaseLoadStatus, setFirebaseLoadStatus ] = useState(LOADING);
 
   const setUser = user => {
     if (!user) {
@@ -43,9 +37,18 @@ const FirebaseAuth = ({ children }) => {
   };
 
   const setIdToken = async () => {
-    const idToken = await firebase.auth().currentUser.getIdToken(/* forceRefresh */ true);
+    let idToken;
+    try {
+      idToken = await firebase.auth().currentUser.getIdToken(/* forceRefresh */ true);
+    } catch(e) {
+      console.error(e);
+      // if firebase UI errors out, user will be null,
+      // and firebase UI displays its own error message
+    }
 
     setUser(idToken);
+
+    return idToken;
   };
 
   const signInSuccessWithAuthResult = () => {
@@ -58,26 +61,26 @@ const FirebaseAuth = ({ children }) => {
 
   useEffect(() => {
 
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async user => {
+
       if(user) {
-        setIdToken();
+        await setIdToken();
       } else {
+        ui.start('#firebaseui-auth-container', uiConfig)
         setUser(null);
       }
+
+      setFirebaseLoadStatus(LOADED);
+
     });
 
   }, []);
 
-  useEffect(() => {
-    if (!user) ui.start('#firebaseui-auth-container', uiConfig);
-  }, [user]);
-
   return (
-      <UserContext.Provider value={{ user, setUser }}>
+      <UserContext.Provider value={{ user, setUser, firebaseLoadStatus }}>
         {children}
       </UserContext.Provider>
   );
-
 };
 
 export default FirebaseAuth;

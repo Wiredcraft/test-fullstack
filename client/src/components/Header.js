@@ -5,10 +5,12 @@ import LogInOrOut from '../components/LogInOrOut';
 
 const Header = ({ children }) => {
 
-  const [ top, setTop ] = useState(document.body.scrollTop);
+  const [ minimized, setMinimized ] = useState(false);
 
   const calcScrollTop = () => {
-    setTop(document.body.scrollTop || document.documentElement.scrollTop);
+    setMinimized(
+      (document.body.scrollTop || document.documentElement.scrollTop) > 100
+    );
   };
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const Header = ({ children }) => {
   }, []);
 
   return (
-    <header className={top > 100 ? 'minimized' : null}>
+    <header className={minimized ? 'minimized' : null}>
       <div className='header-content body-container'>
         <Link to={`${process.env.PUBLIC_URL}/`} className='title-and-logo'>
           <img className='logo' src={logo} alt='' />
