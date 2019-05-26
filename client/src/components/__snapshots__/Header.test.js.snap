@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Header correctly 1`] = `
+<DocumentFragment>
+  <header>
+    <div
+      class="header-content body-container"
+    >
+      <a
+        aria-current="page"
+        class="title-and-logo"
+        href="/"
+      >
+        <img
+          alt=""
+          class="logo"
+          src="logo.png"
+        />
+        <h1>
+          Talk Lightning
+        </h1>
+      </a>
+      <div
+        class="log-in-or-out"
+      >
+        <button
+          class="styled-link"
+          hidden=""
+        >
+          Logout
+        </button>
+        <div
+          id="firebaseui-auth-container"
+        />
+      </div>
+    </div>
+  </header>
+</DocumentFragment>
+`;

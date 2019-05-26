@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders TalkCard correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="talk"
+    tabindex="0"
+  >
+    <div>
+      <div
+        class="header-row"
+      >
+        <h3 />
+        <div
+          class="votes"
+        >
+          Votes: 
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

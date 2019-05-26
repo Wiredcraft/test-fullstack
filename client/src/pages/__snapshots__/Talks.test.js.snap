@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Talks correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="spinner-container"
+    >
+      <div
+        aria-label="Loading..."
+        class="lds-ring"
+        title="Loading..."
+      >
+        <div
+          class="lds-ring-inner first"
+        />
+        <div
+          class="lds-ring-inner second"
+        />
+        <div
+          class="lds-ring-inner third"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
