@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.js\"",
+    "eslint-fix": "eslint --fix \"src/**/*.js\"",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,16 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.1.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "prettier": "1.18.2",
+    "react-hot-loader": "^4.12.8",
+    "style-loader": "^0.23.1",
     "webpack": "^4.36.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2"
