@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/ugglr/test-fullstack#readme",
   "dependencies": {
+    "graphql-tag": "^2.10.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router": "^5.0.1",
