@@ -4,6 +4,7 @@
   "description": "Make sure you read **all** of this document carefully, and follow the guidelines in it.",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
