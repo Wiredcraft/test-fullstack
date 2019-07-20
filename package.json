@@ -22,7 +22,10 @@
   },
   "homepage": "https://github.com/ugglr/test-fullstack#readme",
   "dependencies": {
+    "apollo-boost": "^0.4.3",
+    "graphql": "^14.4.2",
     "react": "^16.8.6",
+    "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
