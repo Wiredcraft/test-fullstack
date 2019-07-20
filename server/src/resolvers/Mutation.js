@@ -51,8 +51,29 @@ function post(parent, args, context, info) {
   });
 }
 
+async function vote(parent, args, context, info) {
+  // validate JWT
+  const userId = getUserId(context);
+
+  // verify if user has not yet voted
+  const linkExists = await context.prisma.$exists.vote({
+    user: { id: userId },
+    link: { id: args.linkId }
+  });
+  if (linkExists) {
+    throw new Error(`Already voted for link: ${args.linkId}`);
+  }
+
+  // if false, createVote method will be user to create a new vote
+  return context.prisma.createVote({
+    user: { connect: { id: userId } },
+    link: { connect: { id: args.linkId } }
+  });
+}
+
 module.exports = {
   signup,
   login,
-  post
+  post,
+  vote
 };
