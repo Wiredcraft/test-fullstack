@@ -15,28 +15,29 @@
     "url": "git+https://github.com/ugglr/test-fullstack.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "@ugglr",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ugglr/test-fullstack/issues"
   },
   "homepage": "https://github.com/ugglr/test-fullstack#readme",
   "dependencies": {
-    "apollo-boost": "^0.4.3",
-    "graphql": "^14.4.2",
     "react": "^16.8.6",
-    "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "apollo-boost": "^0.4.3",
+    "apollo-client": "^2.6.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.1.0",
+    "graphql": "^14.4.2",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "prettier": "1.18.2",
+    "react-apollo": "^2.5.8",
     "react-hot-loader": "^4.12.8",
     "style-loader": "^0.23.1",
     "webpack": "^4.36.1",
