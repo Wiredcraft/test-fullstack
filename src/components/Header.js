@@ -14,7 +14,6 @@ class Header extends Component {
           <Link to="/" className="ml1 no-underline black">
             new
           </Link>
-          <div className="ml1">|</div>
           {/* Hide submit button if no authToken */}
           {authToken && (
             <div className="flex">
