@@ -40,14 +40,14 @@ class CreateLink extends Component {
         <div className="flex flex-column mt3">
           <input
             name="description"
-            placeholder="A description for the talk"
+            placeholder="The title of the talk"
             className="mb2"
             type="text"
             onChange={this.handleChange}
           />
           <input
             name="url"
-            placeholder="The URL for the Talk"
+            placeholder="Description of the talk"
             className="mb2"
             type="text"
             onChange={this.handleChange}
