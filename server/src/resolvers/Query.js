@@ -23,3 +23,7 @@ async function feed(parent, args, context) {
     count
   };
 }
+
+module.exports = {
+  feed
+};
