@@ -49,7 +49,12 @@ class CreateLink extends Component {
             onChange={this.handleChange}
           />
         </div>
-        <Mutation mutation={POST_MUTATION} variables={{ description, url }}>
+        <Mutation
+          mutation={POST_MUTATION}
+          variables={{ description, url }}
+          // After completed mutation, RRD will navigate back to the LinkList component.
+          onCompleted={() => this.props.history.push('/')}
+        >
           {postMutation => <button onClick={postMutation}>Submit</button>}
         </Mutation>
       </div>
