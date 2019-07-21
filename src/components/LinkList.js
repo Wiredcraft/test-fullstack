@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import Link from './Link';
 
 export const FEED_QUERY = gql`
-  {
-    feed {
+  query FeedQuery($orderBy: LinkOrderByInput) {
+    feed(orderBy: $orderBy) {
       links {
         id
         createdAt
@@ -23,11 +23,45 @@ export const FEED_QUERY = gql`
           }
         }
       }
+      count
     }
   }
 `;
 
 class LinkList extends Component {
+  _updateCacheAfterVote = (store, createVote, linkId) => {
+    const isNewPage = this.props.location.pathname.includes('new');
+    const page = parseInt(this.props.match.params.page, 10);
+
+    const orderBy = isNewPage ? 'createdAt_DESC' : null;
+    const data = store.readQuery({
+      query: FEED_QUERY,
+      variables: { orderBy }
+    });
+
+    const votedLink = data.feed.links.find(link => link.id === linkId);
+    votedLink.votes = createVote.link.votes;
+    store.writeQuery({ query: FEED_QUERY, data });
+  };
+
+  _getQueryVariables = () => {
+    const isNewPage = this.props.location.pathname.includes('new');
+    const page = parseInt(this.props.match.params.page, 10);
+
+    const orderBy = isNewPage ? 'createdAt_DESC' : null;
+    return { orderBy };
+  };
+
+  _getLinksToRender = data => {
+    const isNewPage = this.props.location.pathname.includes('new');
+    if (isNewPage) {
+      return data.feed.links;
+    }
+    const rankedLinks = data.feed.links.slice();
+    rankedLinks.sort((l1, l2) => l2.votes.length - l1.votes.length);
+    return rankedLinks;
+  };
+
   render() {
     return (
       <Query query={FEED_QUERY}>
@@ -35,19 +69,23 @@ class LinkList extends Component {
           if (loading) return <div>Fetching</div>;
           if (error) return <div>Error</div>;
 
-          const linksToRender = data.feed.links;
+          const linksToRender = this._getLinksToRender(data);
+          const isNewPage = this.props.location.pathname.includes('new');
+          const pageIndex = this.props.match.params.page
+            ? (this.props.match.params.page - 1) * LINKS_PER_PAGE
+            : 0;
 
           return (
-            <div>
+            <Fragment>
               {linksToRender.map((link, index) => (
                 <Link
                   key={link.id}
                   link={link}
-                  index={index}
+                  index={index + pageIndex}
                   updateStoreAfterVote={this._updateCacheAfterVote}
                 />
               ))}
-            </div>
+            </Fragment>
           );
         }}
       </Query>
