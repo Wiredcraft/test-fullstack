@@ -1,21 +1,33 @@
 import React, { Component } from 'react';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+
+const POST_MUTATION = gql`
+  mutation PostMutation($description: String!, $url: String!) {
+    post(description: $description, url: $url) {
+      id
+      createdAt
+      url
+      description
+    }
+  }
+`;
 
 class CreateLink extends Component {
-  state = {
-    description: '',
-    url: ''
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      description: '',
+      url: ''
+    };
+  }
 
   //Add the input values to the state.
   handleChange = e => {
     e.preventDefault();
     let { name, value } = e.target;
     this.setState({ [name]: value });
-  };
-
-  //TODO: Implement the submit button
-  handleSubmit = e => {
-    console.log('Submitted');
   };
 
   render() {
@@ -28,18 +40,18 @@ class CreateLink extends Component {
             placeholder="A description for the talk"
             className="mb2"
             type="text"
-            value={description}
             onChange={this.handleChange}
           />
           <input
             placeholder="The URL for the Talk"
             className="mb2"
             type="text"
-            value={url}
             onChange={this.handleChange}
           />
         </div>
-        <button onClick={this.handleSubmit}>Submit</button>
+        <Mutation mutation={POST_MUTATION} variables={{ description, url }}>
+          {postMutation => <button onClick={postMutation}>Submit</button>}
+        </Mutation>
       </div>
     );
   }
