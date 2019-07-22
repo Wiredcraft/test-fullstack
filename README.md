@@ -4,29 +4,73 @@ How to use:
 
 1. clone repo
    ```sh
-   git clone https://github.com/ugglr/test-fullstack/tree/carl-w-application-code
+   git clone https://github.com/ugglr/test-fullstack/
    ```
+   move into the folder
+   
    ```sh
-   cd into the folder
+   cd test-fullstack
    ```
+   
+   confirm that you see my working branch: 
+   
+   
+   ```sh
+   git branch -a
+   ```
+   
+   you should see something similar to: 
+   
+      ```sh
+   C:\Code\docs\test-fullstack>git branch -a
+   * master
+    remotes/origin/HEAD -> origin/master
+   remotes/origin/carl-w-application-code
+   remotes/origin/master
+      ```
+   
+   Checkout the branch "carl-w-application-code" by running
+   
+```sh
+git checkout carl-w-application-code
+```
+       
+confirm that you want to work on that branch:
+       
+```sh
+git branch
+```
+             
+You should see something like this: 
+
+```sh
+C:\Code\docs\test-fullstack>git branch
+* carl-w-application-code
+  master
+```
+
+Since you are now on the right branch, you can start installing dependencies. Make sure you have a new version of Node+npm installed. 
+   
+   
 2. Install dependencies:
    Let's start with the backend, so change folder into /server:
    
-   ```sh
-   cd /server && npm install   
-   ```
+```sh
+cd /server && npm install   
+```
    
 3. deploy prisma database API
    Install prisma globally on machine: 
-   ```sh
-   npm i -g prisma
-   ```
    
-   still inside of /server run: 
+```sh
+npm i -g prisma
+```
    
-   ```sh
-   prisma deploy
-   ```
+still inside of /server run: 
+   
+```sh
+prisma deploy
+```
    
 Then, follow these steps in the interactive CLI wizard:
 
@@ -82,7 +126,7 @@ Polling is often needed for the organizers to understand what is more interestin
 - OK!
 
 2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
-- TODO
+- OK! Added motivational text!
 
 3. For each of the talks in the list, the user could vote it by clicking a button.
 - OK!
