@@ -160,7 +160,7 @@ Polling is often needed for the organizers to understand what is more interestin
 - OK!
 
 4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
-- Kind of OK, the user needs to reload the page to see the updated vote number. Known Bug. 
+- Kind of OK, I have implemeted an uggly page reload fix function for this. There's a bug in the apollo cache/prisma server response thing that I need to figure out for it to be a better solution. 
 
 5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
 - OK, logged in users can submit new talks at any time, and the required information is the title and description. Time and user is saved into the post. 
