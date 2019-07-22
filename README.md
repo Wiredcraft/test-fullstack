@@ -126,7 +126,7 @@ Polling is often needed for the organizers to understand what is more interestin
 - OK!
 
 2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
-- TODO
+- OK! Added motivational text!
 
 3. For each of the talks in the list, the user could vote it by clicking a button.
 - OK!
