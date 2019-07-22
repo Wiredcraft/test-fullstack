@@ -3,26 +3,42 @@
 How to use:
 
 1. clone repo
+   ```sh
    git clone https://github.com/ugglr/test-fullstack/tree/carl-w-application-code
-
-- cd into the folder
-
+   ```
+   ```sh
+   cd into the folder
+   ```
 2. Install dependencies:
-   in the root directory:
-   cd server
-   cd npm install
-
+   Let's start with the backend, so change folder into /server:
+   
+   ```sh
+   cd /server && npm install   
+   ```
+   
 3. deploy prisma database API
-   Install prisma globally on machine: npm i -g prisma
-   still inside of /server run: prisma deploy
-
+   Install prisma globally on machine: 
+   ```sh
+   npm i -g prisma
+   ```
+   
+   still inside of /server run: 
+   
+   ```sh
+   prisma deploy
+   ```
+   
 Then, follow these steps in the interactive CLI wizard:
 
 step 1. Select Demo server
 step 2. Authenticate with Prisma Cloud in your browser (if necessary)
 step 3. Back in your terminal, confirm all suggested values
 
-then start the server: node src/index.js
+then start the server: 
+
+```sh
+node src/index.js
+```
 
 the server should now be running on http:/localhost:4000 , you can
 confirm it by navigating to the address in a browser where you will see the GraphQL Playground.
@@ -31,17 +47,22 @@ confirm it by navigating to the address in a browser where you will see the Grap
    in a new terminal window navigate to the root folder
    run:
 
+```sh
 npm install
+```
 
 and then:
 
+```sh
 npm run start
+```
 
 The webpack development server should now be running on http://localhost:8080
 
 Known Bugs:
 
-- Voting: when casting a vote the user has to reload the page for the new vote count to show. It is some type of problem with the Apollo store cache, which is supposed to update, but thus far, I have not been able to get it to work.
+- Voting: when casting a vote the user has to reload the page for the new vote count to show. It is some type of problem with the Apollo store cache, which is supposed to update, but thus far, I have not been able to get it to work. I think it is because the request to the database takes too long time.
+
 
 Make sure you read **all** of this document carefully, and follow the guidelines in it.
 
@@ -58,15 +79,28 @@ Polling is often needed for the organizers to understand what is more interestin
 ### User Stories
 
 1. When a user opens the page, he/she should see a list of lighting talks submitted by the users, ordered by rating (poll amount).
+- OK!
+
 2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
+- TODO
+
 3. For each of the talks in the list, the user could vote it by clicking a button.
+- OK!
+
 4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
+- Kind of OK, the user needs to reload the page to see the updated vote number. Known Bug. 
+
 5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
+- OK, logged in users can submit new talks at any time, and the required information is the title and description. Time and user is saved into the post. 
+
 6. After submitting a topic, the user should see an updated version of the list.
+- OK, after submitting the talk the page navigates to the front page. 
 
 ### Functionality
 
-- The **frontend** part should be a single page application rendered in the frontend and load data from a RESTful API (**not** rendered from backend).
+- The **frontend** part should be a single page application rendered in the frontend and load data from a RESTful API (**not** rendered from backend). 
+ ### I used GraphQL Hope that is ok!
+
 - The API should follow typical RESTful API design pattern.
 - Provide proper unit test.
 
@@ -75,6 +109,9 @@ Polling is often needed for the organizers to understand what is more interestin
 - Backend oriented
   - Use [Loopback](http://loopback.io/) for the backend. Use any DB for storing the data.
   - Use any **frontend** framework as you like.
+
+I am frontend oriented!
+
 - Frontend oriented
   - Use any **backend** framework as you like. Use any DB for storing the data, or if you prefer, only using the memory (with no permanent storage) could just work.
   - Use React for the frontend.
@@ -92,11 +129,16 @@ _These are used for some further challenges. You can safely skip them if you are
 
 - **Backend**:
   - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
+  ----------------> OK, I have authentication with password hashing and storage of token in local storage
+  
   - Provide a complete logging (when/how/etc) strategy.
   - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
 - **Frontend**:
+
   - Do not use any scaffolding tool such as `create-react-app`, or any CSS framework,
     - but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
+    ----------------> I setup the project from scratch using Webpack+Babel, react, react-router, etc. 
+    
   - Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
   - Provide a form validation strategy.
   - Make it responsive.
