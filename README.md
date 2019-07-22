@@ -2,6 +2,8 @@
 
 How to use:
 
+In terminal navigate to working directory --> <br>
+
 1. clone repo
    ```sh
    git clone https://github.com/ugglr/test-fullstack/
@@ -22,7 +24,7 @@ How to use:
    you should see something similar to: 
    
       ```sh
-   C:\Code\docs\test-fullstack>git branch -a
+   C:\*YOUR DIR*\test-fullstack>git branch -a
    * master
     remotes/origin/HEAD -> origin/master
    remotes/origin/carl-w-application-code
@@ -44,7 +46,7 @@ git branch
 You should see something like this: 
 
 ```sh
-C:\Code\docs\test-fullstack>git branch
+C:\*YOUR DIR*\test-fullstack>git branch
 * carl-w-application-code
   master
 ```
