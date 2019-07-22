@@ -76,14 +76,20 @@ class LinkList extends Component {
 
           return (
             <Fragment>
-              {linksToRender.map((link, index) => (
-                <Link
-                  key={link.id}
-                  link={link}
-                  index={index + pageIndex}
-                  updateStoreAfterVote={this._updateCacheAfterVote}
-                />
-              ))}
+              {linksToRender.length === 0 ? (
+                <div>
+                  <h1>List is empty! Go and add your talk right away!</h1>
+                </div>
+              ) : (
+                linksToRender.map((link, index) => (
+                  <Link
+                    key={link.id}
+                    link={link}
+                    index={index + pageIndex}
+                    updateStoreAfterVote={this._updateCacheAfterVote}
+                  />
+                ))
+              )}
             </Fragment>
           );
         }}
