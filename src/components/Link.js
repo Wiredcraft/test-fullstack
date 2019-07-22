@@ -25,9 +25,13 @@ const VOTE_MUTATION = gql`
 `;
 
 class Link extends Component {
+  //This is an extremely uggly fix. I know.
+  reloadPage = () => {
+    window.location.reload();
+  };
+
   render() {
     const authToken = localStorage.getItem(AUTH_TOKEN);
-
     return (
       <div className="flex mt2 items-start">
         <div className="flex items-center">
@@ -44,7 +48,7 @@ class Link extends Component {
             >
               {voteMutation => (
                 <div className="ml1 gray f11 pointer" onClick={voteMutation}>
-                  ▲
+                  <div onClick={this.reloadPage}>▲</div>
                 </div>
               )}
             </Mutation>
