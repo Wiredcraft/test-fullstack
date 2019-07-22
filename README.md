@@ -6,6 +6,8 @@ How to use:
    ```sh
    git clone https://github.com/ugglr/test-fullstack/tree/carl-w-application-code
    ```
+   move into the folder
+   
    ```sh
    cd into the folder
    ```
