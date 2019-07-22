@@ -58,7 +58,7 @@ Since you are now on the right branch, you can start installing dependencies. Ma
    Let's start with the backend, so change folder into /server:
    
 ```sh
-cd /server && npm install   
+cd server && npm install   
 ```
    
 3. deploy prisma database API
