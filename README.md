@@ -77,8 +77,34 @@ prisma deploy
 Then, follow these steps in the interactive CLI wizard:
 
 step 1. Select Demo server <br>
-step 2. Authenticate with Prisma Cloud in your browser (if necessary)<br>
-step 3. Back in your terminal, confirm all suggested values<br>
+step 2. Authenticate with Prisma Cloud in your browser (if necessary).<br>
+Use the arrow keys to select. <br>
+- choose location of the cloud server.
+- hit enter for the name of service. (You can also enter what you want) 
+- hit enter for the name for stage. (You can also enter what you want)
+
+step 3. Back in your terminal, confirm that the endpoint was written: everything will look something like this:<br>
+
+```sh
+? Set up a new Prisma server or deploy to an existing server? Demo server + MySQL d
+atabase
+? Choose the region of your demo server carl-w-45d845/demo-us1
+? Choose a name for your service server
+? Choose a name for your stage dev
+
+Written endpoint `https://us1.prisma.sh/carl-w-45d845/server/dev` to prisma.yml
+
+Deploying service `server` to stage `dev` to server `prisma-us1` 2.7s
+Service is already up to date.
+
+post-deploy:
+
+Generating schema... 76ms
+Saving Prisma Client (JavaScript) at C:\YOUR-DIR\test-fullstack\server\src\generated\prisma-client
+
+Running prisma generate √
+```
+
 
 then start the server: 
 
