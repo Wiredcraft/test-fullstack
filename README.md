@@ -1,5 +1,48 @@
 # Wiredcraft Full-stack Developer test
 
+How to use:
+
+1. clone repo
+   git clone https://github.com/ugglr/test-fullstack/tree/carl-w-application-code
+
+- cd into the folder
+
+2. Install dependencies:
+   in the root directory:
+   cd server
+   cd npm install
+
+3. deploy prisma database API
+   Install prisma globally on machine: npm i -g prisma
+   still inside of /server run: prisma deploy
+
+Then, follow these steps in the interactive CLI wizard:
+
+step 1. Select Demo server
+step 2. Authenticate with Prisma Cloud in your browser (if necessary)
+step 3. Back in your terminal, confirm all suggested values
+
+then start the server: node src/index.js
+
+the server should now be running on http:/localhost:4000 , you can
+confirm it by navigating to the address in a browser where you will see the GraphQL Playground.
+
+4. Run the frontend development server
+   in a new terminal window navigate to the root folder
+   run:
+
+npm install
+
+and then:
+
+npm run start
+
+The webpack development server should now be running on http://localhost:8080
+
+Known Bugs:
+
+- Voting: when casting a vote the user has to reload the page for the new vote count to show. It is some type of problem with the Apollo store cache, which is supposed to update, but thus far, I have not been able to get it to work.
+
 Make sure you read **all** of this document carefully, and follow the guidelines in it.
 
 ## Context
@@ -30,11 +73,11 @@ Polling is often needed for the organizers to understand what is more interestin
 ### Tech stack
 
 - Backend oriented
-    - Use [Loopback](http://loopback.io/) for the backend. Use any DB for storing the data.
-    - Use any **frontend** framework as you like.
+  - Use [Loopback](http://loopback.io/) for the backend. Use any DB for storing the data.
+  - Use any **frontend** framework as you like.
 - Frontend oriented
-    - Use any **backend** framework as you like. Use any DB for storing the data, or if you prefer, only using the memory (with no permanent storage) could just work.
-    - Use React for the frontend.
+  - Use any **backend** framework as you like. Use any DB for storing the data, or if you prefer, only using the memory (with no permanent storage) could just work.
+  - Use React for the frontend.
 
 ### Bonus
 
@@ -45,18 +88,18 @@ Polling is often needed for the organizers to understand what is more interestin
 
 ### Advanced requirements
 
-*These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out.*
+_These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out._
 
 - **Backend**:
-    - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
-    - Provide a complete logging (when/how/etc) strategy.
-    - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
+  - Provide a complete user auth (authentication/authorization/etc) strategy, such as OAuth.
+  - Provide a complete logging (when/how/etc) strategy.
+  - Use a NoSQL DB and build a filter feature that can filter records with some of the attributes such as username. Do not use query languages such as MongoDB Query or Couchbase N1QL.
 - **Frontend**:
-    - Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, 
-        - but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-    - Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
-    - Provide a form validation strategy.
-    - Make it responsive.
+  - Do not use any scaffolding tool such as `create-react-app`, or any CSS framework,
+    - but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
+  - Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
+  - Provide a form validation strategy.
+  - Make it responsive.
 
 ## What We Care About
 

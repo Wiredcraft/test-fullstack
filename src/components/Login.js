@@ -51,7 +51,7 @@ class Login extends Component {
             value={password}
             onChange={e => this.setState({ password: e.target.value })}
             type="password"
-            placeholder="Choose a safe password"
+            placeholder="Password"
           />
         </div>
         <div className="flex mt3">
