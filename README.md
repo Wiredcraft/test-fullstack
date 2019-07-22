@@ -76,9 +76,9 @@ prisma deploy
    
 Then, follow these steps in the interactive CLI wizard:
 
-step 1. Select Demo server
-step 2. Authenticate with Prisma Cloud in your browser (if necessary)
-step 3. Back in your terminal, confirm all suggested values
+step 1. Select Demo server <br>
+step 2. Authenticate with Prisma Cloud in your browser (if necessary)<br>
+step 3. Back in your terminal, confirm all suggested values<br>
 
 then start the server: 
 
