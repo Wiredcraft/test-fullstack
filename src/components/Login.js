@@ -24,7 +24,13 @@ class Login extends Component {
     login: true, // switch between Login and SignUp
     email: '',
     password: '',
-    name: ''
+    name: '',
+    email_OK: false,
+    email_ERR: '',
+    password_OK: false,
+    password_ERR: '',
+    name_OK: false,
+    name_ERR: ''
   };
 
   render() {
