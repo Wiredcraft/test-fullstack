@@ -20,7 +20,10 @@ class CreateLink extends Component {
 
     this.state = {
       description: '',
-      url: ''
+      url: '',
+      formErr:
+        'Cannot be blank, keep title under 20 letters & description under 50 letters',
+      formOK: false
     };
   }
 
@@ -29,7 +32,35 @@ class CreateLink extends Component {
     e.preventDefault();
     let { name, value } = e.target;
     await this.setState({ [name]: value });
-    console.log(this.state);
+    await this.validateInput();
+  };
+
+  //This function will validate the input fields.
+  validateInput = async () => {
+    let { description, url } = this.state;
+    console.log(description.length);
+    console.log(url.length);
+    console.log(this.state.err);
+    if (
+      description.length < 21 &&
+      description.length > 0 &&
+      url.length < 51 &&
+      url.length > 0
+    ) {
+      await this.setState({
+        formErr: 'Validation OK!',
+        formOK: true
+      });
+      //Setting state formOK to true if whatever validation is OK
+    } else {
+      await this.setState({
+        formOK: false,
+        formErr:
+          'Cannot be blank, keep title under 20 letters & description under 50 letters'
+      });
+      //Setting state formOK to false if whatever validation is OK.
+      //Setting state formErr to some error message.
+    }
   };
 
   render() {
@@ -45,6 +76,7 @@ class CreateLink extends Component {
             type="text"
             onChange={this.handleChange}
           />
+          <small>Letters left: {20 - this.state.description.length}</small>
           <input
             name="url"
             placeholder="Description of the talk"
@@ -52,11 +84,12 @@ class CreateLink extends Component {
             type="text"
             onChange={this.handleChange}
           />
+          <small>Letters left: {50 - this.state.url.length}</small>
         </div>
         <Mutation
           mutation={POST_MUTATION}
           variables={{ description, url }}
-          // After completed mutation, RRD will navigate back to the LinkList component.
+          // After completed mutation, React Router Dom will navigate back to the LinkList component.
           onCompleted={() => this.props.history.push('/')}
           update={(store, { data: { post } }) => {
             const data = store.readQuery({ query: FEED_QUERY });
@@ -67,7 +100,14 @@ class CreateLink extends Component {
             });
           }}
         >
-          {postMutation => <button onClick={postMutation}>Submit</button>}
+          {/* Hiding the submit button if the form validation is not OK */}
+          {postMutation =>
+            this.state.formOK ? (
+              <button onClick={postMutation}>Submit</button>
+            ) : (
+              <small>{this.state.formErr}</small>
+            )
+          }
         </Mutation>
       </div>
     );
