@@ -1,0 +1,39 @@
+{
+  "extends": ["tslint:latest", "tslint-react"],
+  "rules": {
+    "ordered-imports": [false],
+
+    "member-access": [false],
+    "member-ordering": [false],
+    "trailing-comma": false,
+    "no-empty": false,
+    "no-empty-interface": false,
+    "no-unused-expression": false,
+    "no-submodule-imports": false,
+    "no-var-requires": false,
+    "no-implicit-dependencies": false,
+    "one-line": [false],
+    "triple-equals": [true, "allow-undefined-check"],
+    "curly": ["error", "multi-or-nest"],
+    "arrow-parens": [false],
+    "semicolon": ["error", "never", "ignore-bound-class-methods"],
+    "space-before-function-paren": [true, {"anonymous": "always", "named": "always", "asyncArrow": "always"}],
+    // "quotes": [2, "single", { "avoidEscape": true }],
+    "prefer-object-spread": false,
+    "quotemark": [true, "single"],
+    "object-literal-sort-keys": false,
+    "interface-name": false,
+     "interface-over-type-literal": false,
+    "no-duplicate-imports": true,
+    "jsx-alignment": true,
+    "no-consecutive-blank-lines": [true, 2],
+    "jsx-curly-spacing": ["warn", {
+      "when": "always"
+    }],
+    "jsx-no-bind": true,
+    "jsx-no-lambda": true,
+    "jsx-no-multiline-js": false,
+
+    "max-classes-per-file": [false]
+  }
+}
