@@ -2,6 +2,7 @@
 
 ## Intro
 Front-end tech stack: React.js + Redux.js + Typescript
+
 API: Koa.js + SQLite3 + Knex.js
 
 ### Prerequisite
