@@ -6,6 +6,7 @@ API: Koa.js + SQLite3 + Knex.js
 
 ### Prerequisite
 Node.js version 8+
+
 Install npm packages for our front-end, in your command line tool run:  **yarn**
 
 Install npm packages for our api server, command `cd src/api` then `yarn`
