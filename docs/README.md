@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Wiredcraft Full-stack Developer test
 
 Make sure you read the whole document carefully and follow the guidelines in it.
@@ -77,3 +78,10 @@ Fork this repo and send us a pull request when you think it's ready for review. 
 > What if I have a question?
 
 Create a new issue in the repo and we will get back to you shortly.
+=======
+# Lightning Talks Polling App
+
+## Wireframe & Design
+
+Checkout [lightning-talks-polling.fig](https://github.com/rankun203/lightning-talks-polling/blob/master/docs/lightning-talks-polling.fig)
+>>>>>>> 6b584e5... docs: add readme
