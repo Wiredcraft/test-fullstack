@@ -6,4 +6,4 @@ Checkout [lightning-talks-polling.fig](https://github.com/rankun203/lightning-ta
 
 ## API
 
-API Documentation: [open-api.yaml](https://github.com/rankun203/lightning-talks-polling/blob/master/docs/open-api.yaml)
+API Documentation: [open-api.yaml](https://github.com/rankun203/lightning-talks-polling/blob/master/docs/open-api.yaml), or use [this view only link](https://documenter.getpostman.com/view/4228/SW7Z3oDs).
