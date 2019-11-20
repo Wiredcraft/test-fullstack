@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-const SortButton = ({ key, name, value }) => {
-  console.log('sort button', key, name, value);
+const SortButton = ({ name, label, value }) => {
   return (
     <a href="#">
       <span>{name}</span>
@@ -13,8 +12,8 @@ const SortButton = ({ key, name, value }) => {
 export const FilterBar = () => {
   return (
     <div>
-      <SortButton key="createdAt" name="Time Added" value={-1} />
-      <SortButton key="votes" name="Votes" value={null} />
+      <SortButton name="createdAt" label="Time Added" value={-1} />
+      <SortButton name="votes" label="Votes" value={null} />
     </div>
   );
 };
