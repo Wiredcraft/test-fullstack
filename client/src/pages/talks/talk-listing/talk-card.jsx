@@ -1,13 +1,19 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { UpVoteButton } from './upvote-btn';
 import { Button } from '../../../components/button';
+
+// Add .fromNow() support to dayjs
+dayjs.extend(relativeTime);
 
 const TalkCardStyled = styled.div`
   display: flex;
   flex-direction: row;
   padding: ${props => props.theme.gridSize * 2}px;
+  border-bottom: 1px solid rgba(33, 33, 33, 0.1);
 `;
 
 const TalkContentStyled = styled.div`
@@ -21,7 +27,10 @@ const CardTitleStyled = styled.div`
 
 const CardDescStyled = styled.div`
   font-size: ${props => props.theme.fontSizeSmall}px;
+  line-height: 130%;
   margin-bottom: ${props => props.theme.gridSize / 2}px;
+  max-height: ${props => props.theme.fontSizeSmall * 1.3 * 2}px;
+  overflow: hidden;
 `;
 
 const CardMetaGroupStyled = styled.div`
@@ -47,19 +56,20 @@ const CardMetaSeparator = styled.div`
   background-color: ${props => props.theme.colorLight};
 `;
 
-export const TalkCard = () => {
+export const TalkCard = ({ talk }) => {
+  const { title, desc, ctime, author } = talk;
   return (
     <TalkCardStyled>
       <UpVoteButton />
       <TalkContentStyled>
-        <CardTitleStyled>The Journal of Open Research</CardTitleStyled>
-        <CardDescStyled>I think this is an important question</CardDescStyled>
+        <CardTitleStyled>{title}</CardTitleStyled>
+        <CardDescStyled>{desc}</CardDescStyled>
         <CardMetaGroupStyled>
           <CardMetaStyled>
-            <Button>Kun</Button>
+            <Button>{author}</Button>
           </CardMetaStyled>
           <CardMetaSeparator />
-          <CardMetaStyled>5 mins ago</CardMetaStyled>
+          <CardMetaStyled>{dayjs(ctime).fromNow()}</CardMetaStyled>
         </CardMetaGroupStyled>
       </TalkContentStyled>
     </TalkCardStyled>
