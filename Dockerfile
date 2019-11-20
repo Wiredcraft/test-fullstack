@@ -8,7 +8,7 @@ ENV NODE_ENV=production
 RUN npm i -g parcel-bundler
 
 # Only copy package.json, as it won't change that often
-COPY package.json ./
+COPY package.json package-lock.json ./
 RUN npm i
 
 # If project files change
