@@ -5,9 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import theme from './constants/theme';
 
 import { GlobalContainer } from './components/global-container';
-import { Header } from './components/header';
-import { FilterBar } from './components/filter-bar';
-import { TalkCard } from './components/talk-card';
+import { TalksPage } from './pages/talks';
 
 import 'normalize.css';
 
@@ -15,9 +13,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalContainer>
-        <Header />
-        <FilterBar />
-        <TalkCard />
+        <TalksPage />
       </GlobalContainer>
     </ThemeProvider>
   );

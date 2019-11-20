@@ -1,6 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { Logo } from './logo';
+import { MenuButtons } from './menu-buttons';
+
 const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -10,18 +13,6 @@ const HeaderWrapper = styled.div`
   background: ${props => props.theme.themeColor};
   color: ${props => props.theme.colorInverted};
 `;
-
-const LogoStyled = styled.span`
-  font-size: ${props => props.theme.fontSizeLogo}px;
-`;
-
-const Logo = ({ title }) => {
-  return <LogoStyled>{title}</LogoStyled>;
-};
-
-const MenuButtons = () => {
-  return <span>Sign In</span>;
-};
 
 export const Header = () => {
   const title = 'Lightning Talks';

@@ -7,6 +7,8 @@
     "doc": "docs"
   },
   "scripts": {
+    "start": "concurrently npm:server:start npm:client:start",
+    "server:start": "node server/src/index.js",
     "client:start": "parcel client/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,6 +27,7 @@
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
     "@types/styled-components": "^4.4.0",
+    "concurrently": "^5.0.0",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.23.7"
   },
