@@ -22,14 +22,15 @@ const TalkContentStyled = styled.div`
 
 const CardTitleStyled = styled.div`
   font-weight: 500;
+  line-height: 125%;
   margin-bottom: ${props => props.theme.gridSize / 2}px;
 `;
 
 const CardDescStyled = styled.div`
   font-size: ${props => props.theme.fontSizeSmall}px;
-  line-height: 130%;
+  line-height: 125%;
   margin-bottom: ${props => props.theme.gridSize / 2}px;
-  max-height: ${props => props.theme.fontSizeSmall * 1.3 * 2}px;
+  max-height: ${props => props.theme.fontSizeSmall * 1.25 * 2}px;
   overflow: hidden;
 `;
 
