@@ -26,7 +26,7 @@ export const UpVoteButton = ({ count }) => {
   return (
     <UpVoteButtonStyled>
       <UpVoteImg src={icUpvoteTriangle} />
-      <UpVoteCount>44</UpVoteCount>
+      <UpVoteCount>{count}</UpVoteCount>
     </UpVoteButtonStyled>
   );
 };

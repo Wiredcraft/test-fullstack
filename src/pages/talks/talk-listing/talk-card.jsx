@@ -57,10 +57,10 @@ const CardMetaSeparator = styled.div`
 `;
 
 export const TalkCard = ({ talk }) => {
-  const { title, desc, ctime, author } = talk;
+  const { title, desc, ctime, author, votes } = talk;
   return (
     <TalkCardStyled>
-      <UpVoteButton />
+      <UpVoteButton count={votes} />
       <TalkContentStyled>
         <CardTitleStyled>{title}</CardTitleStyled>
         <CardDescStyled>{desc}</CardDescStyled>

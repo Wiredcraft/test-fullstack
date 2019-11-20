@@ -1,5 +1,5 @@
-# Usage: docker build -t NAME:TAG .
-# docker run --rm -p 8000:80 NAME:TAG
+# Usage: docker build -t rankun203/test-fullstack .
+# docker run --rm -p 8000:80 rankun203/test-fullstack
 # Building
 FROM node:12-buster-slim AS build
 

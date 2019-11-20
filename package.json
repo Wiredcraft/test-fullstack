@@ -10,8 +10,8 @@
     "start": "parcel index.html",
     "build": "parcel build index.html",
     "build:clean": "rm -rf dist",
-    "build:docker": "docker build -t containers.rankun.net/test-fullstack:latest .",
-    "start:docker": "docker run --rm -p 8000:80 containers.rankun.net/test-fullstack:latest",
+    "build:docker": "docker build -t rankun203/test-fullstack:latest .",
+    "start:docker": "docker run --rm -p 8000:80 rankun203/test-fullstack:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

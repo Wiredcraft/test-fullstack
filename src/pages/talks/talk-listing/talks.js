@@ -5,7 +5,8 @@ export const talks = [
     desc:
       'Spreadsheet Science by Finn Bacall. The role of the Community and Campus Champions by Gillian Sinclair. Using Agile Methods in Collaboration with Domain Scientists by Robert Haines.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 32
   },
   {
     id: '37a4bd24-55aa-4e12-a049-15cb99ccb279',
@@ -13,7 +14,8 @@ export const talks = [
     desc:
       'Help the Software Sustainability Institute with our unknowns by Mike Jackson. How to effectively use the potential of the scientific software user community in producing documentation by Aleksandra Pawlik. Tools for Kinect, research tools and motion analysis by Simon Choppin',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 29
   },
   {
     id: '37a4bd24-55aa-4e12-a049-15cb99ccb289',
@@ -22,7 +24,8 @@ export const talks = [
     desc:
       'The Genome Standards Consortium by Norman Morrison. Developing and localising for the international market by Malte Ressin. "Click here" to design your UAV by Dirk Gorissen.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 28
   },
   {
     id: '37a4bd24-55aa-4e12-a049-15cb99ccb299',
@@ -31,7 +34,8 @@ export const talks = [
     desc:
       'Software as an Infrastructure: EPSRC Action Plan by Dan Emmerson. The Journal of Open Research Software by Brian Hole.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 25
   },
   {
     id: '47a4bd24-55aa-4e12-a049-15cb99ccb269',
@@ -40,7 +44,8 @@ export const talks = [
     desc:
       'A computational-domain-model-centric process for comparative social simulation by Stuart Rossiter. The YouShare VE: for Developers by Aaron Turner. The importance of ethnography and epistemology on system (hardware and software) design by Sarbjit Bakshi.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 24
   },
   {
     id: '57a4bd24-55aa-4e12-a049-15cb99ccb269',
@@ -48,7 +53,8 @@ export const talks = [
     desc:
       'Statistical modeling of molecular sequence data by Elisa Loza. D3.js for data visualisation by Anna Powell-Smith',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 21
   },
   {
     id: '67a4bd24-55aa-4e12-a049-15cb99ccb269',
@@ -57,7 +63,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 20
   },
   {
     id: '67a4bd25-55aa-4e12-a049-15cb99ccb269',
@@ -66,7 +73,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 19
   },
   {
     id: '67a4bd26-55aa-4e12-a049-15cb99ccb269',
@@ -75,7 +83,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 15
   },
   {
     id: '67a4bd27-55aa-4e12-a049-15cb99ccb269',
@@ -84,7 +93,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 12
   },
   {
     id: '67a4bd28-55aa-4e12-a049-15cb99ccb269',
@@ -93,7 +103,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 10
   },
   {
     id: '67a4bd29-55aa-4e12-a049-15cb99ccb269',
@@ -102,7 +113,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 9
   },
   {
     id: '67a4bd20-55aa-4e12-a049-15cb99ccb269',
@@ -111,7 +123,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 8
   },
   {
     id: '67a4bd21-55aa-4e12-a049-15cb99ccb269',
@@ -120,7 +133,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 6
   },
   {
     id: '67a4bd22-55aa-4e12-a049-15cb99ccb269',
@@ -129,7 +143,8 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 3
   },
   {
     id: '67a4bd23-55aa-4e12-a049-15cb99ccb269',
@@ -138,6 +153,7 @@ export const talks = [
     desc:
       'Data processing at the RCaH Lasers for Science Facility by Steve Fisher. Ondex: an open source data integration, visualisation and analysis framework by Jan Taubert.',
     ctime: 1574276016324,
-    author: 'Kun'
+    author: 'Kun',
+    votes: 0
   }
 ];
