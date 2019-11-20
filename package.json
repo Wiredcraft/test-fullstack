@@ -2,14 +2,16 @@
   "name": "lightning-talks-polling",
   "version": "1.0.0",
   "description": "Lightning Talks Polling app",
-  "main": "server/src/index.js",
+  "main": "src/index.jsx",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "start": "concurrently npm:server:start npm:client:start",
-    "server:start": "node server/src/index.js",
-    "client:start": "parcel client/index.html",
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "build:clean": "rm -rf dist",
+    "build:docker": "docker build -t containers.rankun.net/test-fullstack:latest .",
+    "start:docker": "docker run --rm -p 8000:80 containers.rankun.net/test-fullstack:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,16 +25,10 @@
     "url": "https://github.com/rankun203/lightning-talks-polling/issues"
   },
   "homepage": "https://github.com/rankun203/lightning-talks-polling#readme",
-  "devDependencies": {
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.9.4",
-    "@types/styled-components": "^4.4.0",
-    "concurrently": "^5.0.0",
-    "parcel-bundler": "^1.12.4",
-    "sass": "^1.23.7"
-  },
   "dependencies": {
+    "cssnano": "^4.1.10",
     "dayjs": "^1.8.17",
+    "parcel-bundler": "^1.12.4",
     "normalize.css": "^8.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
