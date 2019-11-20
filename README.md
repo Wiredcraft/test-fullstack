@@ -7,3 +7,11 @@ Checkout [lightning-talks-polling.fig](https://github.com/rankun203/test-fullsta
 ## API
 
 API Documentation: [open-api.yaml](https://github.com/rankun203/test-fullstack/blob/master/docs/open-api.yaml), or use [this view only link](https://documenter.getpostman.com/view/4228/SW7Z3oDw).
+
+## Containerization
+
+This project includes `Dockerfile`s for each sub-project (client, server), and have a `docker-compose.yml` which you can use to quickly spin up an instance.
+
+## Deployment
+
+For deployment, I'm using [this tool(reverse-proxy)](https://github.com/rankun203/reverse-proxy) I created to put it online.
