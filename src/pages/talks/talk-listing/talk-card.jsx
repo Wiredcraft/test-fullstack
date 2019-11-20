@@ -21,7 +21,7 @@ const TalkContentStyled = styled.div`
 `;
 
 const CardTitleStyled = styled.div`
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: ${props => props.theme.gridSize / 2}px;
 `;
 
