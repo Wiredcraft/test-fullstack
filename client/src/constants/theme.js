@@ -1,4 +1,6 @@
 const theme = {
+  fixedHeader: true,
+
   themeColor: '#27AE60',
   color: '#333333',
   colorInverted: '#ffffff',

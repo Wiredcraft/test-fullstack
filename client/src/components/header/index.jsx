@@ -8,6 +8,11 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+
+  position: ${props => (props.theme.fixedHeader ? 'fixed' : 'inherit')};
+
   padding: 0 ${props => props.theme.gridSize * 2}px;
   height: ${props => props.theme.gridSize * 8}px;
   background: ${props => props.theme.themeColor};
@@ -16,6 +21,7 @@ const HeaderWrapper = styled.div`
 
 export const Header = () => {
   const title = 'Lightning Talks';
+
   return (
     <HeaderWrapper>
       <Logo title={title} />
