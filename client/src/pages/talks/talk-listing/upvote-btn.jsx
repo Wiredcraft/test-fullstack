@@ -8,7 +8,7 @@ const UpVoteButtonStyled = styled(Button)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: ${props => props.theme.gridSize * 5}px;
+  width: ${props => props.theme.gridSize * 6}px;
   height: ${props => props.theme.gridSize * 7}px;
   border: 2px solid #ccc;
   border-radius: 2px;
