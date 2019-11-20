@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import dayjs from 'dayjs';
+import dayjs from 'dayjs'; // Just another smaller moment.js
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { UpVoteButton } from './upvote-btn';
