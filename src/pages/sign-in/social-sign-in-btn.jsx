@@ -25,11 +25,11 @@ export const SocialSignInButton = ({
   backgroundColor,
   label,
   light = false,
-  iconSrc
+  iconSrc,
+  onClick
 }) => {
-  console.log('social sign in button, icon: ', iconSrc);
   return (
-    <ButtonStyled style={{ backgroundColor }} light={light}>
+    <ButtonStyled style={{ backgroundColor }} light={light} onClick={onClick}>
       <Image src={iconSrc} width={28} />
       <ButtonLabelStyled>{label}</ButtonLabelStyled>
     </ButtonStyled>

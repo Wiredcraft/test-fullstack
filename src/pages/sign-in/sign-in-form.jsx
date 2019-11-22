@@ -38,6 +38,9 @@ const SocialButtons = styled.div`
 `;
 
 export const SignInForm = () => {
+  const handleSignInGithub = () => {
+    console.log('sign in with github');
+  };
   return (
     <SignInFormStyled>
       <LoginIconStyled>
@@ -53,6 +56,7 @@ export const SignInForm = () => {
           iconSrc={icSocialLoginBtnIcon}
           backgroundColor="#333333"
           light
+          onClick={handleSignInGithub}
         />
       </SocialButtons>
     </SignInFormStyled>
