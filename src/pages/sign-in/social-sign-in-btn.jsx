@@ -22,14 +22,14 @@ const ButtonLabelStyled = styled.div`
 `;
 
 export const SocialSignInButton = ({
-  backgroundColor,
   label,
   light = false,
   iconSrc,
-  onClick
+  onClick,
+  ...props
 }) => {
   return (
-    <ButtonStyled style={{ backgroundColor }} light={light} onClick={onClick}>
+    <ButtonStyled light={light} onClick={onClick} {...props}>
       <Image src={iconSrc} width={28} />
       <ButtonLabelStyled>{label}</ButtonLabelStyled>
     </ButtonStyled>

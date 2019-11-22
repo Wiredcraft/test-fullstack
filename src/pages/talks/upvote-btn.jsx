@@ -25,7 +25,7 @@ const UpVoteCount = styled.div`
 
 export const UpVoteButton = ({ count }) => {
   return (
-    <UpVoteButtonStyled>
+    <UpVoteButtonStyled transparent>
       <Image src={icUpvoteTriangle} width={15} height={7.5} />
       <UpVoteCount>{count}</UpVoteCount>
     </UpVoteButtonStyled>

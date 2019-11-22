@@ -1,10 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import { Image } from './image';
-
-const ImageStyled = styled(Image)``;
-
 const ButtonStyled = styled.button`
   display: flex;
   align-items: center;
@@ -38,17 +34,18 @@ const ButtonStyled = styled.button`
  * @param {*} param0.backgroundColor Specify background color
  * @param {*} param0.expand Take the whole parent space
  * @param {*} param0.icon Icon component, will be rendered as is
+ * @param {*} param0.onClick onClick handler
+ * @see <button />
  */
 export const Button = ({
   component,
   children,
   icon: IconComponent,
   iconImgWidth = 32,
-  onClick,
   ...props
 }) => {
   return (
-    <ButtonStyled onClick={onClick} {...props}>
+    <ButtonStyled {...props}>
       {IconComponent}
       {children}
     </ButtonStyled>

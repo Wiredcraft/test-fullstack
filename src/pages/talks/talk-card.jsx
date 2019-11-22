@@ -67,7 +67,7 @@ export const TalkCard = ({ talk }) => {
         <CardDescStyled>{desc}</CardDescStyled>
         <CardMetaGroupStyled>
           <CardMetaStyled>
-            <Button>{author}</Button>
+            <Button transparent>{author}</Button>
           </CardMetaStyled>
           <CardMetaSeparator />
           <CardMetaStyled>{dayjs(ctime).fromNow()}</CardMetaStyled>

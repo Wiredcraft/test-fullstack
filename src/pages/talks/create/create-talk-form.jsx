@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 
 import { InputField } from '../../../components/input-field';
@@ -28,20 +29,27 @@ const ButtonsGroup = styled.div`
 `;
 
 export const CreateTalkForm = () => {
+  const history = useHistory();
+  const cancel = () => history.push('/');
+  const create = e => {
+    e.preventDefault && e.preventDefault();
+    console.log('create talk...');
+  };
+
   const formik = useFormik({
     initialValues: {}
   });
 
   return (
-    <FormStyled>
+    <FormStyled onSubmit={create}>
       <InputField label="Title" />
       <TextAreaField label="Description" rows={4} />
       <ButtonsGroup>
-        <ButtonStyled inverted icon={<IcBtnCancel />}>
+        <ButtonStyled inverted icon={<IcBtnCancel />} onClick={cancel}>
           Cancel
         </ButtonStyled>
-        <ButtonStyled primary icon={<IcBtnAdd />}>
-          Post
+        <ButtonStyled type="submit" primary icon={<IcBtnAdd />}>
+          Create
         </ButtonStyled>
       </ButtonsGroup>
     </FormStyled>

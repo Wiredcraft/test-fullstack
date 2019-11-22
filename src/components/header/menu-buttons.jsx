@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../button';
 import icArrowDropDown from '../../assets/ic-arrow-drop-down.png';
@@ -17,13 +17,14 @@ const MenuButtonImgStyled = styled.img`
 `;
 
 export const MenuButtons = () => {
+  const history = useHistory();
   const hasMoreButtons = false;
-  const [goSignIn, updateGoSignIn] = React.useState(false);
+
+  const goSignIn = () => history.push('/sign-in');
 
   return (
     <MenuButtonsStyled>
-      {goSignIn && <Redirect to="/sign-in" />}
-      <ButtonStyled primary expand onClick={() => updateGoSignIn(true)}>
+      <ButtonStyled primary expand onClick={goSignIn}>
         Sign In{' '}
         {hasMoreButtons ? (
           <MenuButtonImgStyled src={icArrowDropDown} alt="Dropdown" />
