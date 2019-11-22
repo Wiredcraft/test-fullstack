@@ -17,7 +17,7 @@ const ButtonStyled = styled.button`
 `;
 
 /**
- *
+ * @extends <button />
  * @param {*} param0 {}
  * @param {*} param0.primary Is this button a primary button (use themeColor)
  * @param {*} param0.expand Take the whole parent space

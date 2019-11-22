@@ -12,7 +12,7 @@ const UpVoteButtonStyled = styled(Button)`
   flex: 0 0 ${props => props.theme.gridSize * 6}px;
   height: ${props => props.theme.gridSize * 7}px;
   border: 2px solid #ccc;
-  border-radius: 2px;
+  border-radius: ${props => props.theme.borderRadius}px;
 `;
 
 const UpVoteImg = styled.img`

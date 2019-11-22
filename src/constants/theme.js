@@ -6,6 +6,7 @@ const theme = {
   colorInverted: '#ffffff',
   colorLight: '#aaaaaa',
   colorLighter: '#c4c4c4',
+  colorInputBg: '#f2f2f2',
 
   // Prefer "Helvetica Neue" over "Helvetica", it looks better for small texts used in talk's meta data,
   // Arial is for Windows fallback
@@ -13,8 +14,11 @@ const theme = {
     '"Helvetica Neue", Helvetica, Arial, PingFangSC-Regular, "Microsoft YaHei", sans-serif',
 
   fontSize: 16,
+  fontSizeMega: 34,
+
   gridSize: 8,
-  gapSize: 8
+
+  borderRadius: 2
 };
 
 // Add more values which using above values, usually for adding variants...

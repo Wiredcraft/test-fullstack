@@ -14,7 +14,7 @@ const SignInFormStyled = styled.div`
   width: 100%;
   min-height: 300px;
   text-align: center;
-  padding-top: ${props => props.theme.gapSize * 9}px;
+  padding-top: ${props => props.theme.gridSize * 9}px;
 `;
 
 const LoginIconStyled = styled.div`
@@ -23,19 +23,19 @@ const LoginIconStyled = styled.div`
 `;
 
 const LoginMsgStyled = styled.div`
-  margin-top: ${props => props.theme.gapSize * 2}px;
+  margin-top: ${props => props.theme.gridSize * 2}px;
   max-width: 220px;
   font-size: ${props => props.theme.fontSizeBig}px;
   line-height: 150%;
 `;
 
 const OptionsMsgStyled = styled.div`
-  margin-top: ${props => props.theme.gapSize * 7}px;
+  margin-top: ${props => props.theme.gridSize * 7}px;
   font-size: ${props => props.theme.fontSizeMinor}px;
 `;
 
 const SocialButtons = styled.div`
-  margin-top: ${props => props.theme.gapSize * 3}px;
+  margin-top: ${props => props.theme.gridSize * 3}px;
 `;
 
 export const SignInForm = () => {

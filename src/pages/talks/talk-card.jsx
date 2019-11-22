@@ -49,11 +49,11 @@ const CardMetaStyled = styled.div`
 `;
 
 const CardMetaSeparator = styled.div`
-  margin-left: ${props => props.theme.gapSize / 2}px;
-  margin-right: ${props => props.theme.gapSize / 2}px;
+  margin-left: ${props => props.theme.gridSize / 2}px;
+  margin-right: ${props => props.theme.gridSize / 2}px;
   width: 2px;
   height: 2px;
-  border-radius: 2px;
+  border-radius: ${props => props.theme.borderRadius}px;
   background-color: ${props => props.theme.colorLight};
 `;
 

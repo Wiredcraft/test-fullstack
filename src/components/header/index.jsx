@@ -19,6 +19,11 @@ const HeaderWrapper = styled.div`
   color: ${props => props.theme.colorInverted};
 `;
 
+export const FixedHeaderFixer = styled.div`
+  height: ${props =>
+    props.theme.fixedHeader ? props.theme.gridSize * 8 : 0}px;
+`;
+
 export const Header = () => {
   const title = 'Lightning Talks';
 

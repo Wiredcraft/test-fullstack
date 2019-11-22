@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Header } from '../../components/header';
-import { FixedHeaderFixer } from '../../components/fixed-header-fixer';
+import { Header, FixedHeaderFixer } from '../../components/header';
 import { SignInForm } from './sign-in-form';
 
 export const SignInPage = () => {

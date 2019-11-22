@@ -5,7 +5,7 @@ import { Button } from '../button';
 import icArrowDropDown from '../../assets/ic-arrow-drop-down.png';
 
 const ButtonStyled = styled(Button)`
-  padding: 0 ${props => props.theme.gapSize}px;
+  padding: 0 ${props => props.theme.gridSize}px;
 `;
 
 const MenuButtonsStyled = styled.div`

@@ -9,7 +9,7 @@ const ButtonStyled = styled(Button)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-radius: 2px;
+  border-radius: ${props => props.theme.borderRadius}px;
   width: 263px;
   height: 48px;
   color: ${props =>

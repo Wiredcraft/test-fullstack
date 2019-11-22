@@ -1,19 +1,21 @@
 import * as React from 'react';
+import { Redirect } from 'react-router-dom';
 
-import { Header } from '../../components/header';
-import { FixedHeaderFixer } from '../../components/fixed-header-fixer';
+import { Header, FixedHeaderFixer } from '../../components/header';
 // import { FilterBar } from '../../components/filter-bar';
 import { TalkListing } from './talk-listing';
 import { CreateTalkFab } from './create-talk-fab';
 
 export const TalksPage = () => {
+  const [goCreate, updateGoCreate] = React.useState(false);
   return (
     <>
+      {goCreate && <Redirect to="/talks/create" />}
       <Header />
       <FixedHeaderFixer />
       {/* <FilterBar /> */}
       <TalkListing />
-      <CreateTalkFab />
+      <CreateTalkFab onClick={() => updateGoCreate(true)} />
     </>
   );
 };
