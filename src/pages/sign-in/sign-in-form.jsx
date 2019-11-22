@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
 import { SocialSignInButton } from './social-sign-in-btn';
 import { Image } from '../../components/image';
@@ -38,11 +39,16 @@ const SocialButtons = styled.div`
 `;
 
 export const SignInForm = () => {
+  const [loginSuccessful, updateLoginSuccessful] = React.useState(false);
+
   const handleSignInGithub = () => {
     console.log('sign in with github');
+    updateLoginSuccessful(true);
   };
+
   return (
     <SignInFormStyled>
+      {loginSuccessful && <Redirect to="/" />}
       <LoginIconStyled>
         <Image src={icLoginGithub} width={72} />
       </LoginIconStyled>
