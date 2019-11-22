@@ -8,6 +8,7 @@ const ImgStyled = styled.div`
 `;
 
 export const Image = ({ src, width, height }) => {
+  console.log(src);
   return (
     <ImgStyled
       style={{

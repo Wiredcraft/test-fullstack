@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Button } from '../../components/button';
+import { Button } from './button';
 
-export const CreateTalkFab = styled(Button)`
+export const Fab = styled(Button)`
   position: fixed;
   right: ${props => props.theme.gridSize * 4}px;
   bottom: ${props => props.theme.gridSize * 4}px;

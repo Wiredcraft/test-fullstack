@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { Header, FixedHeaderFixer } from '../../components/header';
 // import { FilterBar } from '../../components/filter-bar';
 import { TalkListing } from './talk-listing';
-import { CreateTalkFab } from './create-talk-fab';
+import { Fab } from '../../components/fab';
 
 export const TalksPage = () => {
   const [goCreate, updateGoCreate] = React.useState(false);
@@ -15,7 +15,7 @@ export const TalksPage = () => {
       <FixedHeaderFixer />
       {/* <FilterBar /> */}
       <TalkListing />
-      <CreateTalkFab onClick={() => updateGoCreate(true)} />
+      <Fab onClick={() => updateGoCreate(true)} />
     </>
   );
 };
