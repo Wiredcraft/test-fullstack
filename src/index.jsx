@@ -9,6 +9,7 @@ import { GlobalContainer } from './components/global-container';
 import { AppRouter } from './router';
 
 const App = () => {
+  // Display global error
   return (
     <ThemeProvider theme={theme}>
       <GlobalContainer>
