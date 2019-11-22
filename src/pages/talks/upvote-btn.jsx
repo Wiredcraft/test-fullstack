@@ -11,7 +11,10 @@ const UpVoteButtonStyled = styled(Button)`
   justify-content: center;
   flex: 0 0 ${props => props.theme.gridSize * 6}px;
   height: ${props => props.theme.gridSize * 7}px;
-  border: 2px solid #ccc;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${props =>
+    props.highlight ? props.theme.themeColor : props.theme.colorLighter};
   border-radius: ${props => props.theme.borderRadius}px;
 `;
 
@@ -20,14 +23,16 @@ const UpVoteImg = styled.img`
 `;
 
 const UpVoteCount = styled.div`
+  color: ${props =>
+    props.highlight ? props.theme.themeColor : props.theme.color};
   margin-top: 4px;
 `;
 
-export const UpVoteButton = ({ count }) => {
+export const UpVoteButton = ({ count, votedByMe }) => {
   return (
-    <UpVoteButtonStyled transparent>
+    <UpVoteButtonStyled transparent highlight={votedByMe}>
       <Image src={icUpvoteTriangle} width={15} height={7.5} />
-      <UpVoteCount>{count}</UpVoteCount>
+      <UpVoteCount highlight={votedByMe}>{count}</UpVoteCount>
     </UpVoteButtonStyled>
   );
 };
