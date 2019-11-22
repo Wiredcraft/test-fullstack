@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { SocialSignInButton } from './social-sign-in-btn';
 import { Image } from '../../components/image';
 import icLoginGithub from '../../assets/ic-login-github.png';
+import icSocialLoginBtnIcon from '../../assets/ic-social-login-btn-icon.png';
 
 const SignInFormStyled = styled.div`
   display: flex;
@@ -49,7 +50,9 @@ export const SignInForm = () => {
       <SocialButtons>
         <SocialSignInButton
           label="Sign In With Github"
-          icon="ic-social-login-github"
+          iconSrc={icSocialLoginBtnIcon}
+          backgroundColor="#333333"
+          light
         />
       </SocialButtons>
     </SignInFormStyled>
