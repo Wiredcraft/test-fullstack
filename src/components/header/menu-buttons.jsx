@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../button';
 import icArrowDropDown from '../../assets/ic-arrow-drop-down.png';
@@ -18,17 +18,17 @@ const MenuButtonImgStyled = styled.img`
 
 export const MenuButtons = () => {
   const hasMoreButtons = false;
+  const [goSignIn, updateGoSignIn] = React.useState(false);
 
   return (
     <MenuButtonsStyled>
-      <Link to="/sign-in">
-        <ButtonStyled primary expand>
-          Sign In{' '}
-          {hasMoreButtons ? (
-            <MenuButtonImgStyled src={icArrowDropDown} alt="Dropdown" />
-          ) : null}
-        </ButtonStyled>
-      </Link>
+      {goSignIn && <Redirect to="/sign-in" />}
+      <ButtonStyled primary expand onClick={() => updateGoSignIn(true)}>
+        Sign In{' '}
+        {hasMoreButtons ? (
+          <MenuButtonImgStyled src={icArrowDropDown} alt="Dropdown" />
+        ) : null}
+      </ButtonStyled>
     </MenuButtonsStyled>
   );
 };

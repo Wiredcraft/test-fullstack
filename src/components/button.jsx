@@ -22,7 +22,7 @@ const ButtonStyled = styled.button`
  * @param {*} param0.primary Is this button a primary button (use themeColor)
  * @param {*} param0.expand Take the whole parent space
  */
-export const Button = ({ children, onClick, ...props }) => {
+export const Button = ({ component, children, onClick, ...props }) => {
   return (
     <ButtonStyled onClick={onClick} {...props}>
       {children}
