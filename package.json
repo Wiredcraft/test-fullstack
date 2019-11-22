@@ -30,6 +30,7 @@
     "cssnano": "^4.1.10",
     "dayjs": "^1.8.17",
     "formik": "^2.0.4",
+    "framer-motion": "^1.6.17",
     "normalize.css": "^8.0.1",
     "parcel-bundler": "^1.12.4",
     "react": "^16.12.0",
