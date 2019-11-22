@@ -26,10 +26,12 @@
   },
   "homepage": "https://github.com/rankun203/lightning-talks-polling#readme",
   "dependencies": {
+    "@svgr/parcel-plugin-svgr": "^4.3.3",
     "cssnano": "^4.1.10",
     "dayjs": "^1.8.17",
-    "parcel-bundler": "^1.12.4",
+    "formik": "^2.0.4",
     "normalize.css": "^8.0.1",
+    "parcel-bundler": "^1.12.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^4.4.1"

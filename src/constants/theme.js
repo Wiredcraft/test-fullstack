@@ -19,7 +19,9 @@ const theme = {
 
 // Add more values which using above values, usually for adding variants...
 Object.assign(theme, {
+  fontSizeMinor: theme.fontSize / 1.14, // 14px
   fontSizeSmall: theme.fontSize / 1.3, // 12px, 16 / 1.3 = 12px
+  fontSizeBig: theme.fontSize * 1.125, // 18px
   fontSizeLogo: 18
 });
 

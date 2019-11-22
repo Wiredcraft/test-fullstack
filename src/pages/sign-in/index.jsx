@@ -1,17 +1,14 @@
 import * as React from 'react';
-
 import { Header } from '../../components/header';
 import { FixedHeaderFixer } from '../../components/fixed-header-fixer';
-// import { FilterBar } from '../../components/filter-bar';
-import { TalkListing } from './talk-listing';
+import { SignInForm } from './sign-in-form';
 
-export const TalksPage = () => {
+export const SignInPage = () => {
   return (
     <>
       <Header />
       <FixedHeaderFixer />
-      {/* <FilterBar /> */}
-      <TalkListing />
+      <SignInForm />
     </>
   );
 };

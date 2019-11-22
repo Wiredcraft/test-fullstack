@@ -2,6 +2,7 @@
   "cSpell.words": [
     "Arial",
     "Figma",
+    "Formik",
     "Helvetica",
     "Neue",
     "Wireframe",
@@ -9,6 +10,7 @@
     "dayjs",
     "openapi",
     "rankun",
+    "svgr",
     "upvote"
   ]
 }

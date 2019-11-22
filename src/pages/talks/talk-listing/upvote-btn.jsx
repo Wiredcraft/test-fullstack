@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import icUpvoteTriangle from '../../../assets/ic-upvote-triangle.png';
 import { Button } from '../../../components/button';
+import { Image } from '../../../components/image';
 
 const UpVoteButtonStyled = styled(Button)`
   display: flex;
@@ -25,7 +26,7 @@ const UpVoteCount = styled.div`
 export const UpVoteButton = ({ count }) => {
   return (
     <UpVoteButtonStyled>
-      <UpVoteImg src={icUpvoteTriangle} />
+      <Image src={icUpvoteTriangle} width={15} height={7.5} />
       <UpVoteCount>{count}</UpVoteCount>
     </UpVoteButtonStyled>
   );

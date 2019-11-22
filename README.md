@@ -33,3 +33,11 @@ This project includes `Dockerfile`s for each sub-project (client, server), and h
 ## Deployment
 
 For deployment, I'm using [this tool(reverse-proxy)](https://github.com/rankun203/reverse-proxy) I created to put it online.
+
+## Tech Stack
+
+### Form Validation
+
+For form data validation, I'm using [Yup](https://github.com/jquense/yup) as the schema validator, it works on both frontend and backend, compares to Joi, it's lighter and generally more friendly to use in browsers, and it supports backend as well.
+
+In addition to that, I'm using [Formik](https://jaredpalmer.com/formik) to manage my form state and validates against schemas.
