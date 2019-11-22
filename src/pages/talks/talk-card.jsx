@@ -4,7 +4,7 @@ import dayjs from 'dayjs'; // Just another smaller moment.js
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { UpVoteButton } from './upvote-btn';
-import { Button } from '../../../components/button';
+import { Button } from '../../components/button';
 
 // Add .fromNow() support to dayjs
 dayjs.extend(relativeTime);
