@@ -9,6 +9,7 @@ const ButtonStyled = styled.button`
   height: ${props => (props.expand ? '100%' : 'auto')};
   overflow: visible;
 
+  -webkit-tap-highlight-color: rgba(39, 174, 96, 0.5);
   color: ${props =>
     props.primary ? props.theme.colorInverted : props.theme.color};
   background-color: ${props =>

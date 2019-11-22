@@ -22,7 +22,7 @@ export const NotFound = () => {
           Page not found
           <br />
           <br />
-          Go to&nbsp;<Link to="/talks">Talk Listing page</Link>
+          Take me to the&nbsp;<Link to="/">home page</Link>
         </p>
       </NotFoundStyled>
     </>
