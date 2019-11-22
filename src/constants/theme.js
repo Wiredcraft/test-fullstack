@@ -7,6 +7,7 @@ const theme = {
   colorLight: '#aaaaaa',
   colorLighter: '#c4c4c4',
   colorInputBg: '#f2f2f2',
+  colorError: '#EB5757',
 
   // Prefer "Helvetica Neue" over "Helvetica", it looks better for small texts used in talk's meta data,
   // Arial is for Windows fallback

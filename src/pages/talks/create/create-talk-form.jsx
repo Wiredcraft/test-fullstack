@@ -8,6 +8,7 @@ import { TextAreaField } from '../../../components/textarea-field';
 import { Button } from '../../../components/button';
 import IcBtnCancel from '../../../assets/ic-btn-cancel.svg';
 import IcBtnAdd from '../../../assets/ic-btn-add.svg';
+import { CreateTalkSchema } from './create-talk-schema';
 
 const FormStyled = styled.form`
   padding: ${props => props.theme.gridSize}px
@@ -37,13 +38,35 @@ export const CreateTalkForm = () => {
   };
 
   const formik = useFormik({
-    initialValues: {}
+    initialValues: {
+      title: '',
+      description: ''
+    },
+    onSubmit: values => {
+      console.log('create talk', values);
+    },
+    validationSchema: CreateTalkSchema
   });
 
   return (
-    <FormStyled onSubmit={create}>
-      <InputField label="Title" />
-      <TextAreaField label="Description" rows={4} />
+    <FormStyled onSubmit={formik.handleSubmit}>
+      <InputField
+        name="title"
+        label="Title"
+        onChange={formik.handleChange}
+        value={formik.values.title}
+        error={formik.errors.title}
+        touched={formik.touched.title}
+      />
+      <TextAreaField
+        name="description"
+        label="Description"
+        rows={4}
+        onChange={formik.handleChange}
+        value={formik.values.description}
+        error={formik.errors.description}
+        touched={formik.touched.description}
+      />
       <ButtonsGroup>
         <ButtonStyled inverted icon={<IcBtnCancel />} onClick={cancel}>
           Cancel
