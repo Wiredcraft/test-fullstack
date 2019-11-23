@@ -3,6 +3,7 @@ const { LogicError } = require('../../../errors/logic-error');
 
 const createSingleTalkKey = id => `talk:id:${id}`; // id to val, one for each talk (set, get), stringified object
 const createHashToIdTableKey = hash => `talk:hash:${hash}`; // hash to id, one for each talk (set, get)
+const createVotedUsersSetKey = id => `talk:id:${id}:voted`; // id to voted user id array, a set
 const indexVotesToIdKey = `talk:index:votes`; // index votes to id, one for all (zadd, zrange)
 const indexCTimeToIdKey = `talk:index:ctime`;
 
@@ -67,16 +68,51 @@ async function insert(talk) {
  * Up tick votes by 1
  */
 async function vote(talkId, userId, votes = 1) {
-  // Check if user has voted and votes > 0
+  const exists = await talkExists(talkId);
+  if (!exists) {
+    throw new LogicError(1200);
+  }
+  // Check if user has voted and votes > 0 (is voting, but voted before)
+  const voted = await hasVoted(talkId, userId);
+  if (votes > 0 && voted) {
+    return;
+  }
+  // Hasn't voted yet, but trying to unvote
+  if (votes < 0 && !voted) {
+    return;
+  }
 
   // Proceed to vote
   await redis.zincrby(indexVotesToIdKey, votes, talkId);
   const talkResult = await redis.get(createSingleTalkKey(talkId));
   const talk = JSON.parse(talkResult);
   talk.votes += votes;
-  await redis.set(createSingleTalkKey(talkId), JSON.stringify(talk));
-  await redis.zadd(indexVotesToIdKey, talk.votes, talkId);
-  // TODO: Log user votes activities (matrix table....)
+
+  await redis
+    .pipeline()
+    .set(createSingleTalkKey(talkId), JSON.stringify(talk)) // Save updated talk object
+    .zadd(indexVotesToIdKey, talk.votes, talkId) // Update votes number index
+    .exec();
+
+  if (votes > 0) {
+    await redis.sadd(createVotedUsersSetKey(talkId), userId); // Update voted users for the post
+  } else {
+    await redis.srem(createVotedUsersSetKey(talkId), userId); // Remove specific user from voted users
+  }
+}
+
+async function hasVoted(talkId, userId) {
+  const isMember = await redis.sismember(
+    createVotedUsersSetKey(talkId),
+    userId
+  );
+
+  return isMember > 0;
+}
+
+async function talkExists(talkId) {
+  const exists = await redis.exists(createSingleTalkKey(talkId));
+  return exists > 0;
 }
 
 module.exports = { findAll, findById, findByHash, insert, vote };

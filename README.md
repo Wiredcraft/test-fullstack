@@ -58,6 +58,10 @@ Similar to MongoDB's Object ID, it also breaks down into different parts which i
 
 The implementation of ID generation can be easily swapped, checkout [server/src/utils/id.js](https://github.com/rankun203/test-fullstack/blob/master/server/src/utils/id.js).
 
+### Database
+
+Using Redis as the only database, it works great for current requirement, but it's not so easy to work in the future. I haven't defined any database migration logic yet.
+
 ### Backend Overall Architecture
 
 Applying practices of [Uncle Bob's clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), but due to limited time I have to design the API system, the implementation is not so "clean" after all(e.g., db part) and should be considered twice if it's gonna be used in production in large scale.
