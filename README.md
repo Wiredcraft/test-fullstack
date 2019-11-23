@@ -60,8 +60,11 @@ The implementation of ID generation can be easily swapped, checkout [server/src/
 
 Applying practices of [Bob Martin's clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), but due to limited time I have to design the API system, the implementation is not so "clean" after all(e.g., db part) and should be considered twice if it's gonna be used in production in large scale.
 
+It looks like Dependency Injection in a way, under each module, there is an [index.js](https://github.com/rankun203/test-fullstack/blob/master/server/src/modules/talks/models/index.js) to configure the dependencies for other functions in the same module.
+
 ### JavaScript Code Style
 
 On top of some of the best practices, here are a few opinionated JavaScript code style used in this project:
 
 - Use named exports over default exports
+- Normal functions and arrow functions both can be used, `function` keyword for easier naming and arrow functions for easier management of `this` scope.
