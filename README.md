@@ -6,7 +6,7 @@ Checkout [lightning-talks-polling.fig](https://github.com/rankun203/test-fullsta
 
 This app was designed in a Mobile First approach.
 
-<p align="center"><a href="https://www.figma.com/file/yFqtpELaUl31Qe0GGXTsXR/Lightning-Talks-Polling" target="_blank"><img width="738" src="docs/design.png"></a></p>
+<p align="center"><a href="https://www.figma.com/file/yFqtpELaUl31Qe0GGXTsXR/Lightning-Talks-Polling"><img width="738" src="docs/design.png"></a></p>
 
 ## API
 
