@@ -24,6 +24,7 @@
     "zadd",
     "zincrby",
     "zrange",
-    "zrangebyscore"
+    "zrangebyscore",
+    "zrevrangebyscore"
   ]
 }

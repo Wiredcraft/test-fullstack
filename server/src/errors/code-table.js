@@ -18,5 +18,10 @@ module.exports.CODE = {
   1200: {
     status: 404,
     message: 'Talk not found'
+  },
+
+  1300: {
+    status: 400,
+    message: 'Listing order by field not valid'
   }
 };

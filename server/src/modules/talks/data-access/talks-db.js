@@ -6,13 +6,19 @@ const createHashToIdTableKey = hash => `talk:hash:${hash}`; // hash to id, one f
 const indexVotesToIdKey = `talk:index:votes`; // index votes to id, one for all (zadd, zrange)
 const indexCTimeToIdKey = `talk:index:ctime`;
 
-async function findAll() {
+async function findAll({ orderBy = 'ctime', asc = false } = {}) {
+  let key = indexCTimeToIdKey; // default to by time
+  if (orderBy === 'ctime') key = indexCTimeToIdKey;
+  else if (orderBy === 'votes') key = indexVotesToIdKey;
+  else throw new LogicError(1300);
+
   // Get all ids, ordered by ctime by default
-  const talkIdArr = await redis.zrangebyscore(
-    indexCTimeToIdKey,
-    '-inf',
-    '+inf'
-  );
+  let talkIdArr; // = await redisFunc(key, ...params);
+  if (asc) {
+    talkIdArr = await redis.zrangebyscore(key, '-inf', '+inf');
+  } else {
+    talkIdArr = await redis.zrevrangebyscore(key, '+inf', '-inf');
+  }
 
   const talkKeys = talkIdArr.map(id => createSingleTalkKey(id));
   const talkResultArr = await redis.mget(talkKeys);

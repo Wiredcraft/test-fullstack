@@ -4,7 +4,12 @@ const services = require('./services');
 const talks = new Router();
 
 talks.get('/', async ctx => {
-  ctx.body = await services.listTalks();
+  const { orderBy, asc } = ctx.request.query;
+
+  ctx.body = await services.listTalks({
+    orderBy,
+    asc: asc === 'true' ? true : false
+  });
 });
 
 talks.post('/', async ctx => {
