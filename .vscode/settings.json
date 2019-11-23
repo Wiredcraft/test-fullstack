@@ -10,8 +10,11 @@
     "csstools",
     "dayjs",
     "ericelliott",
+    "hget",
     "hgetall",
+    "hmset",
     "hset",
+    "mget",
     "middlewares",
     "openapi",
     "rankun",
@@ -19,6 +22,7 @@
     "upvote",
     "zadd",
     "zincrby",
-    "zrange"
+    "zrange",
+    "zrangebyscore"
   ]
 }

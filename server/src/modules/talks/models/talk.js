@@ -1,4 +1,4 @@
-const { DataModelError } = require('../../../errors/data-model-error');
+const { LogicError } = require('../../../errors/logic-error');
 const { CreateTalkSchema } = require('../../../schemas/create-talk-schema');
 
 function buildMakeTalk({ ID, md5 }) {
@@ -20,13 +20,13 @@ function buildMakeTalk({ ID, md5 }) {
     };
 
     if (!ID.isValidId(id)) {
-      throw new DataModelError(1100, 'Id of the talk is invalid', {
+      throw new LogicError(1100, 'Id of the talk is invalid', {
         data: newTalk
       });
     }
 
     if (!author) {
-      throw new DataModelError(1100, 'Talk must include an author', {
+      throw new LogicError(1100, 'Talk must include an author', {
         data: newTalk
       });
     }
@@ -37,12 +37,13 @@ function buildMakeTalk({ ID, md5 }) {
     } catch (err) {
       console.log('TODO, check', err);
       // TODO: Anything else with schema error?
-      throw new DataModelError(1100, 'Talk is invalid', {
+      throw new LogicError(1100, 'Talk is invalid', {
         data: newTalk,
         errors: err.errors
       });
     }
 
+    let hash;
     function makeHash() {
       return md5(title + description + author);
     }
@@ -52,8 +53,8 @@ function buildMakeTalk({ ID, md5 }) {
       getTitle: () => title,
       getDescription: () => description,
       getAuthor: () => author,
-      getCTime: () => ctime,
-      getVotes: () => votes,
+      getCTime: () => Number(ctime),
+      getVotes: () => Number(votes),
       getHash: () => hash || (hash = makeHash())
     });
   };

@@ -1,6 +1,6 @@
 const ExtendableError = require('es6-error');
 
-class DataModelError extends ExtendableError {
+class LogicError extends ExtendableError {
   constructor(code, msg, extra = {}) {
     if (msg instanceof Error) {
       msg = msg.message;
@@ -11,4 +11,4 @@ class DataModelError extends ExtendableError {
   }
 }
 
-module.exports.DataModelError = DataModelError;
+module.exports.LogicError = LogicError;

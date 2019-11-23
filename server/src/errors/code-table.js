@@ -13,5 +13,10 @@ module.exports.CODE = {
   1100: {
     status: 400,
     message: 'Data failed validation'
+  },
+
+  1200: {
+    status: 404,
+    message: 'Talk not found'
   }
 };
