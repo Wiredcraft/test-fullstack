@@ -70,6 +70,8 @@ It looks like Dependency Injection in a way, under each layer(folder), there is 
 
 The benefits: Separation of concern and high flexibility for changing implementation of each layer, for example if we want to add another talks db layer, we can just add it in `data-access` layer and configure it under `services` layer's index.js file.
 
+The drawback is there are much more boilerplate code, just to take care of different layers of a simple create talk action, it takes hundreds lines of code compares to tens of lines if we just want something quick.
+
 ### JavaScript Code Style
 
 On top of some of the best practices, here are a few opinionated JavaScript code style used in this project:
