@@ -16,6 +16,9 @@
     "openapi",
     "rankun",
     "svgr",
-    "upvote"
+    "upvote",
+    "zadd",
+    "zincrby",
+    "zrange"
   ]
 }

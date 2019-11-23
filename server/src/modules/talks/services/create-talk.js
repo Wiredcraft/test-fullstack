@@ -14,7 +14,8 @@ function makeCreateTalk({ talksDb }) {
       title: newTalk.getTitle(),
       description: newTalk.getDescription(),
       author: newTalk.getAuthor(),
-      ctime: newTalk.getCTime()
+      ctime: newTalk.getCTime(),
+      votes: newTalk.getVotes()
     });
   };
 }

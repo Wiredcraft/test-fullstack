@@ -7,14 +7,16 @@ function buildMakeTalk({ ID, md5 }) {
     title,
     description,
     author,
-    ctime = Date.now()
+    ctime = Date.now(),
+    votes = 0
   } = {}) {
     const newTalk = {
       id,
       title,
       description,
       author,
-      ctime
+      ctime,
+      votes
     };
 
     if (!ID.isValidId(id)) {
@@ -51,6 +53,7 @@ function buildMakeTalk({ ID, md5 }) {
       getDescription: () => description,
       getAuthor: () => author,
       getCTime: () => ctime,
+      getVotes: () => votes,
       getHash: () => hash || (hash = makeHash())
     });
   };
