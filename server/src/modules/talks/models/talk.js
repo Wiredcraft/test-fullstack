@@ -33,13 +33,10 @@ function buildMakeTalk({ ID, md5 }) {
 
     // Validate talk
     try {
-      await CreateTalkSchema.isValid(newTalk);
+      await CreateTalkSchema.validate(newTalk);
     } catch (err) {
-      console.log('TODO, check', err);
-      // TODO: Anything else with schema error?
       throw new LogicError(1100, 'Talk is invalid', {
-        data: newTalk,
-        errors: err.errors
+        data: { talk: newTalk, errors: err.errors }
       });
     }
 

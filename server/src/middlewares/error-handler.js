@@ -7,7 +7,7 @@ const errorHandler = async (ctx, next) => {
     if (err.code) {
       const errCodeItem = CODE[err.code];
       if (errCodeItem) {
-        err.message = errCodeItem.message;
+        if (!err.message) err.message = errCodeItem.message;
         ctx.status = errCodeItem.status;
       }
     }
