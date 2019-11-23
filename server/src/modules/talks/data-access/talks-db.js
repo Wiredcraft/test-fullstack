@@ -11,7 +11,7 @@ async function findAll({ orderBy = 'ctime', asc = false } = {}) {
   let key = indexCTimeToIdKey; // default to by time
   if (orderBy === 'ctime') key = indexCTimeToIdKey;
   else if (orderBy === 'votes') key = indexVotesToIdKey;
-  else throw new LogicError(1300);
+  else throw new LogicError(1300, null, { data: { orderBy, asc } });
 
   // Get all ids, ordered by ctime by default
   let talkIdArr; // = await redisFunc(key, ...params);
