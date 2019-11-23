@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/router": "^8.0.2",
+    "cuid": "^2.1.6",
+    "dotenv": "^8.2.0",
+    "es6-error": "^4.1.1",
+    "ioredis": "^4.14.1",
+    "koa": "^2.11.0",
+    "koa-bodyparser": "^4.2.1",
+    "nodemon": "^2.0.1"
+  }
+}

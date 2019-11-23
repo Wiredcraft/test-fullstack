@@ -8,7 +8,9 @@ import { TextAreaField } from '../../../components/textarea-field';
 import { Button } from '../../../components/button';
 import IcBtnCancel from '../../../assets/ic-btn-cancel.svg';
 import IcBtnAdd from '../../../assets/ic-btn-add.svg';
-import { CreateTalkSchema } from './create-talk-schema';
+const {
+  CreateTalkSchema
+} = require('../../../../server/src/schemas/create-talk-schema');
 
 const FormStyled = styled.form`
   padding: ${props => props.theme.gridSize}px

@@ -12,7 +12,7 @@ const SortButton = ({ name, label, value }) => {
 export const FilterBar = () => {
   return (
     <div>
-      <SortButton name="createdAt" label="Time Added" value={-1} />
+      <SortButton name="ctime" label="Time Added" value={-1} />
       <SortButton name="votes" label="Votes" value={null} />
     </div>
   );

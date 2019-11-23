@@ -40,6 +40,28 @@ For deployment, I'm using [this tool(reverse-proxy)](https://github.com/rankun20
 
 ### Form Validation
 
-For form data validation, I'm using [Yup](https://github.com/jquense/yup) as the schema validator, it works on both frontend and backend, compares to Joi, it's lighter and generally more friendly to use in browsers, and it supports backend as well.
+For form data validation, I'm using [Yup](https://github.com/jquense/yup) as the schema validator, it works on both frontend and backend, compares to Joi, it's lighter and generally more friendly to use in browsers, and it supports backend as well, and it supports multiple languages.
 
 In addition to that, I'm using [Formik](https://jaredpalmer.com/formik) to manage my form state and validates against schemas.
+
+### Error Handling
+
+Server side: Heavily influenced by this repo [Wiredcraft/service-error](https://github.com/Wiredcraft/service-error). it's what I considered a good practice. Extend from ExtendableError is easier to work with than extending from Error itself.
+
+### ID Generation
+
+Use [cuid](https://github.com/ericelliott/cuid)(by ericelliott) instead of uuid/v1 or uuid/v4. UUID is like USB Type-C connector, the shape looks the same but the implementation can be vastly different. cuid offers the same functionality as uuid/v1, so for this particular project I'll just use cuid for better recognizability.
+
+Similar to MongoDB's Object ID, it also breaks down into different parts which is faster for binary search since some parts in the front won't change that often.
+
+The implementation of ID generation can be easily swapped, checkout [server/src/utils/id.js](https://github.com/rankun203/test-fullstack/blob/master/server/src/utils/id.js).
+
+### Backend Overall Architecture
+
+Applying practices of [Bob Martin's clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), but due to limited time I have to design the API system, the implementation is not so "clean" after all(e.g., db part) and should be considered twice if it's gonna be used in production in large scale.
+
+### JavaScript Code Style
+
+On top of some of the best practices, here are a few opinionated JavaScript code style used in this project:
+
+- Use named exports over default exports
