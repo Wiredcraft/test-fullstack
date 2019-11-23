@@ -3,14 +3,14 @@ const services = require('./services');
 
 const talks = new Router();
 
-talks.get('/', ctx => {
-  ctx.body = services.listTalks();
+talks.get('/', async ctx => {
+  ctx.body = await services.listTalks();
 });
 
-talks.post('/', ctx => {
+talks.post('/', async ctx => {
   const talk = ctx.request.body;
 
-  ctx.body = services.createTalk(talk);
+  ctx.body = await services.createTalk(talk);
 });
 
 module.exports.talks = talks;

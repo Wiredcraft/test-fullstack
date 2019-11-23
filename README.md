@@ -10,7 +10,7 @@ This app was designed in a Mobile First approach.
 
 ## API
 
-API Documentation: [open-api.yaml](https://github.com/rankun203/test-fullstack/blob/master/docs/open-api.yaml), or use [this view only link](https://documenter.getpostman.com/view/4228/SW7Z3oDw).
+API Documentation: [open-api.yaml](https://github.com/rankun203/test-fullstack/blob/master/docs/open-api.yaml), or use [this view only link](https://documenter.getpostman.com/view/4228/SW7c2n5Z).
 
 ## Run This Project
 
@@ -63,6 +63,8 @@ The implementation of ID generation can be easily swapped, checkout [server/src/
 Applying practices of [Bob Martin's clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), but due to limited time I have to design the API system, the implementation is not so "clean" after all(e.g., db part) and should be considered twice if it's gonna be used in production in large scale.
 
 It looks like Dependency Injection in a way, under each layer(folder), there is an [index.js](https://github.com/rankun203/test-fullstack/blob/master/server/src/modules/talks/models/index.js) to configure the dependencies for other functions in the same module.
+
+The benefits: Separation of concern and high flexibility for changing implementation of each layer, for example if we want to add another talks db layer, we can just add it in `data-access` layer and configure it under `services` layer's index.js file.
 
 ### JavaScript Code Style
 

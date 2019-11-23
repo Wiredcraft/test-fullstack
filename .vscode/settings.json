@@ -10,6 +10,7 @@
     "csstools",
     "dayjs",
     "ericelliott",
+    "hgetall",
     "hset",
     "middlewares",
     "openapi",

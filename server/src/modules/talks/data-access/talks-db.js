@@ -2,6 +2,8 @@ const { redis } = require('../../../utils/redis');
 
 async function findAll() {
   console.log('find all talks');
+  await redis.hgetall('talk:*');
+  return [{ hello: 'world' }, { hello: 'kun' }];
 }
 
 async function findById() {
@@ -13,6 +15,7 @@ async function findByHash(hash) {
 }
 
 async function insert(talk) {
+  await redis.hset(`talk:${talk.id}`, talk);
   console.log('insert new talk', talk);
 }
 
