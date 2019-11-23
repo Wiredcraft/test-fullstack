@@ -60,23 +60,17 @@ async function insert(talk) {
 /**
  * Up tick votes by 1
  */
-async function vote(talkId, userId) {
-  await redis.zincrby(indexVotesToIdKey, 1, talkId);
+async function vote(talkId, userId, votes = 1) {
+  // Check if user has voted and votes > 0
+
+  // Proceed to vote
+  await redis.zincrby(indexVotesToIdKey, votes, talkId);
   const talkResult = await redis.get(createSingleTalkKey(talkId));
   const talk = JSON.parse(talkResult);
-  talk.votes++;
+  talk.votes += votes;
   await redis.set(createSingleTalkKey(talkId), JSON.stringify(talk));
   await redis.zadd(indexVotesToIdKey, talk.votes, talkId);
   // TODO: Log user votes activities (matrix table....)
 }
 
-async function unVote(talkId, userId) {
-  await redis.zincrby(indexVotesToIdKey, -1, talkId);
-  const talkResult = await redis.get(createSingleTalkKey(talkId));
-  const talk = JSON.parse(talkResult);
-  talk.votes--;
-  await redis.set(createSingleTalkKey(talkId), JSON.stringify(talk));
-  await redis.zadd(indexVotesToIdKey, talk.votes, talkId);
-}
-
-module.exports = { findAll, findById, findByHash, insert, vote, unVote };
+module.exports = { findAll, findById, findByHash, insert, vote };

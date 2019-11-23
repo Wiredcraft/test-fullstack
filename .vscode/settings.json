@@ -19,6 +19,7 @@
     "openapi",
     "rankun",
     "svgr",
+    "unvote",
     "upvote",
     "zadd",
     "zincrby",

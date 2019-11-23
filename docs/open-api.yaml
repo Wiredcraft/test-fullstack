@@ -1,11 +1,11 @@
 openapi: '3.0.0'
 info:
-  version: 1.0.0
+  version: 0.0.4
   title: Lightning Talk Polling API Specification
   license:
     name: MIT
 servers:
-  - url: https://talks-api.mindfine.com
+  - url: https://talks-api.rankun.net
 paths:
   /talks:
     get:
@@ -79,6 +79,51 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /talks/{talkId}/vote:
+    put:
+      summary: Vote a specific talk
+      operationId: voteTalkById
+      tags:
+        - talks
+      responses:
+        '200':
+          description: Vote successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Talk'
+  /talks/{talkId}/unvote:
+    put:
+      summary: Unvote a specific talk
+      operationId: unvoteTalkById
+      tags:
+        - talks
+      responses:
+        '200':
+          description: Unvote successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Talk'
+  /users/me:
+    get:
+      summary: Get current logged in user
+      operationId: showLoggedInUser
+      tags:
+        - users
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Talk:
@@ -94,8 +139,9 @@ components:
           type: string
         description:
           type: string
-        ctime:
-          type: long
+        createdAt:
+          type: string
+          format: date-time
     Talks:
       type: array
       items:
