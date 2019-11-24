@@ -21,6 +21,7 @@ login.get('/oauth/github', async ctx => {
 
 login.get('/oauth/callback', async ctx => {
   const { code, state } = ctx.query;
+  // TODO: Verify state
   const user = await getUserByCode(code, state);
 
   const url = `${

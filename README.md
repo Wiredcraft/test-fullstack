@@ -62,6 +62,19 @@ The implementation of ID generation can be easily swapped, checkout [server/src/
 
 Using Redis as the only database, it works great for current requirement, but it's not so easy to work in the future. I haven't defined any database migration logic yet.
 
+### Authentication
+
+Using Github as OAuth provider, since it doesn't support implicit grant yet, I'm implementing OAuth web application flow instead.
+
+- When a user login with GitHub, the api server will redirect the user to Github's authorize page
+- Then redirect back to api server with the `authorization code`
+- Then api server will try to obtain `access_token` for this user with that authorization code
+- Then api server will use the access token to get user's profile, which contains a login(username), and use that login as username in our system.
+- The api server then generates a new access token(jwt) for the user, the user will need to use this token for future requests
+- Till now, the only step which is missing is to pass that access token back to client side
+  - Method 1 [Selected]: Redirect to frontend app with access token in the URL query parameter, this is similar to implicit grant, which has its own security issue
+  - Method 2: Use session (not ideal, since it's not stateless).
+
 ### Backend Overall Architecture
 
 Applying practices of [Uncle Bob's clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), but due to limited time I have to design the API system, the implementation is not so "clean" after all(e.g., db part) and should be considered twice if it's gonna be used in production in large scale.

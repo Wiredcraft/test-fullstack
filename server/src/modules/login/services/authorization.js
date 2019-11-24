@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { CONFIG } = require('../../../config');
 
 function createAuthToken(login) {
-  const token = jwt.sign({ login }, CONFIG.auth.jwtSecret, {
+  const token = jwt.sign({ login, type: 'github' }, CONFIG.auth.jwtSecret, {
     expiresIn: CONFIG.auth.jwtExpiresIn
   });
   return token;
