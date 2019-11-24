@@ -14,6 +14,7 @@ const auth = async (ctx, next) => {
 
   console.log(accessToken);
   const userData = validateToken(accessToken);
+  // TODO: if expired, return corresponding message
   if (!userData.login) {
     throw new LogicError(1101);
   }

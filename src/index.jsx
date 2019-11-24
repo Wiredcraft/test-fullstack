@@ -4,18 +4,20 @@ import { ThemeProvider } from 'styled-components';
 import 'normalize.css';
 
 import theme from './constants/theme';
-
+import { StoreProvider } from './store/store-provider';
 import { GlobalContainer } from './components/global-container';
 import { AppRouter } from './router';
 
 const App = () => {
   // Display global error
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalContainer>
-        <AppRouter />
-      </GlobalContainer>
-    </ThemeProvider>
+    <StoreProvider>
+      <ThemeProvider theme={theme}>
+        <GlobalContainer>
+          <AppRouter />
+        </GlobalContainer>
+      </ThemeProvider>
+    </StoreProvider>
   );
 };
 

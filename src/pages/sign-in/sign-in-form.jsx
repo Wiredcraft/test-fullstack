@@ -1,11 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
+import { Store } from '../../store/store-provider';
 import { CONFIG } from '../../constants/config';
 import { SocialSignInButton } from './social-sign-in-btn';
 import { Image } from '../../components/image';
-import { extractAccessToken } from '../../utils/extract-access-token';
+import { extractAccessToken } from '../../utils/access-token';
 import icLoginGithub from '../../assets/ic-login-github.png';
 import icSocialLoginBtnIcon from '../../assets/ic-social-login-btn-icon.png';
 
@@ -42,6 +43,7 @@ const SocialButtons = styled.div`
 
 export const SignInForm = () => {
   const history = useHistory();
+  const { dispatch } = React.useContext(Store);
 
   const handleSignInGithub = () => {
     console.log('sign in with github');
@@ -50,8 +52,13 @@ export const SignInForm = () => {
 
   React.useEffect(() => {
     // Receive access token
-    const accessToken = extractAccessToken();
-    console.log(accessToken);
+    const { username, accessToken } = extractAccessToken();
+    // If doesn't exists, just skip
+    if (!accessToken) {
+      return;
+    }
+
+    dispatch({ type: 'SIGN_IN', payload: { accessToken, username } });
     // Check access token by get current user
     history.push('/');
   }, []);

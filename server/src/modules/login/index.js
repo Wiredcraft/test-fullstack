@@ -2,7 +2,7 @@ const Router = require('@koa/router');
 const queryString = require('query-string');
 const { CONFIG } = require('../../config');
 const { getUserByCode } = require('./services/oauth-github');
-const { createAuthToken } = require('../../utils/authorization');
+const { createAuthToken } = require('../../utils/token-utils');
 
 const login = new Router();
 
