@@ -26,7 +26,7 @@ login.get('/oauth/callback', async ctx => {
 
   const url = `${
     CONFIG.oauth.frontendRedirectUri
-  }?accessToken=${createAuthToken(user.login)}`;
+  }/sign-in?accessToken=${createAuthToken(user.login)}`;
 
   ctx.redirect(url);
 });

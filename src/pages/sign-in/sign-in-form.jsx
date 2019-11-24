@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 import { SocialSignInButton } from './social-sign-in-btn';
 import { Image } from '../../components/image';
@@ -43,7 +43,8 @@ export const SignInForm = () => {
 
   const handleSignInGithub = () => {
     console.log('sign in with github');
-    updateLoginSuccessful(true);
+    window.location = 'https://a3c159d8.ngrok.io/login/oauth/github'; // TODO: Put in config
+    // updateLoginSuccessful(true);
   };
 
   return (
