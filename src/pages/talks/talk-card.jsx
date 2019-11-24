@@ -5,6 +5,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { UpVoteButton } from './upvote-btn';
 import { Button } from '../../components/button';
+import { Store } from '../../store/store-provider';
 
 // Add .fromNow() support to dayjs
 dayjs.extend(relativeTime);
@@ -58,10 +59,24 @@ const CardMetaSeparator = styled.div`
 `;
 
 export const TalkCard = ({ talk }) => {
-  const { title, description, ctime, author, votes, votedByMe } = talk;
+  const { id, title, description, ctime, author, votes, votedByMe } = talk;
+  const { dispatch } = React.useContext(Store);
+
+  const toggleVoteTalk = React.useCallback(() => {
+    if (votedByMe) {
+      dispatch({ type: 'UNVOTE_TALK', payload: { talkId: id } });
+    } else {
+      dispatch({ type: 'VOTE_TALK', payload: { talkId: id } });
+    }
+  }, [dispatch, votedByMe]);
+
   return (
     <TalkCardStyled>
-      <UpVoteButton count={votes} votedByMe={votedByMe} />
+      <UpVoteButton
+        count={votes}
+        votedByMe={votedByMe}
+        onClick={toggleVoteTalk}
+      />
       <TalkContentStyled>
         <CardTitleStyled>{title}</CardTitleStyled>
         <CardDescStyled>{description}</CardDescStyled>

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import icUpvoteTriangle from '../../assets/ic-upvote-triangle.png';
+import IcUpvoteTriangle from '../../assets/ic-upvote-triangle.svg';
+import IcUpvotedTriangle from '../../assets/ic-upvote-triangle-upvoted.svg';
 import { Button } from '../../components/button';
-import { Image } from '../../components/image';
 
 const UpVoteButtonStyled = styled(Button)`
   display: flex;
@@ -18,20 +18,16 @@ const UpVoteButtonStyled = styled(Button)`
   border-radius: ${props => props.theme.borderRadius}px;
 `;
 
-const UpVoteImg = styled.img`
-  width: 15px;
-`;
-
 const UpVoteCount = styled.div`
   color: ${props =>
     props.highlight ? props.theme.themeColor : props.theme.color};
   margin-top: 4px;
 `;
 
-export const UpVoteButton = ({ count, votedByMe }) => {
+export const UpVoteButton = ({ count, votedByMe, onClick }) => {
   return (
-    <UpVoteButtonStyled transparent highlight={votedByMe}>
-      <Image src={icUpvoteTriangle} width={15} height={7.5} />
+    <UpVoteButtonStyled transparent highlight={votedByMe} onClick={onClick}>
+      {votedByMe ? <IcUpvotedTriangle /> : <IcUpvoteTriangle />}
       <UpVoteCount highlight={votedByMe}>{count}</UpVoteCount>
     </UpVoteButtonStyled>
   );
