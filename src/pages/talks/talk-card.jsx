@@ -60,7 +60,7 @@ const CardMetaSeparator = styled.div`
   background-color: ${props => props.theme.colorLight};
 `;
 
-export const TalkCard = ({ talk }) => {
+export const TalkCard = ({ talk, loadTalks }) => {
   const { id, title, description, ctime, author, votes, votedByMe } = talk;
   const { state, dispatch } = React.useContext(Store);
 
@@ -123,7 +123,9 @@ export const TalkCard = ({ talk }) => {
         <CardDescStyled>{description}</CardDescStyled>
         <CardMetaGroupStyled>
           <CardMetaStyled>
-            <Button transparent>{author}</Button>
+            <Button transparent onClick={() => loadTalks({ author })}>
+              {author}
+            </Button>
           </CardMetaStyled>
           <CardMetaSeparator />
           <CardMetaStyled>{dayjs(ctime).fromNow()}</CardMetaStyled>

@@ -5,21 +5,21 @@ const createSingleTalkKey = id => `talk:id:${id}`; // id to val, one for each ta
 const createHashToIdTableKey = hash => `talk:hash:${hash}`; // hash to id, one for each talk (set, get)
 const createVotedUsersSetKey = id => `talk:id:${id}:voted`; // id to voted user id array set
 const createUserVotedSetKey = userId => `talk:userId:${userId}:voted`; // user id to talk id set
+const createAuthorToIdSetKey = userId => `talk:author:${userId}`; // user id to talk id set
 const indexVotesToIdKey = `talk:index:votes`; // index votes to id, one for all (zadd, zrange)
 const indexCTimeToIdKey = `talk:index:ctime`;
 
-async function findAll({ orderBy = 'votes', asc = false, userId } = {}) {
-  let key = indexCTimeToIdKey; // default to by time
-  if (orderBy === 'ctime') key = indexCTimeToIdKey;
-  else if (orderBy === 'votes') key = indexVotesToIdKey;
-  else throw new LogicError(1300, null, { data: { orderBy, asc } });
-
-  // Get all ids, ordered by ctime by default
-  let talkIdArr; // = await redisFunc(key, ...params);
-  if (asc) {
-    talkIdArr = await redis.zrangebyscore(key, '-inf', '+inf');
+async function findAll({
+  orderBy = 'votes',
+  asc = false,
+  author,
+  userId
+} = {}) {
+  let talkIdArr;
+  if (author) {
+    talkIdArr = await findAllKeysByFilter({ author });
   } else {
-    talkIdArr = await redis.zrevrangebyscore(key, '+inf', '-inf');
+    talkIdArr = await findAllKeysByIndex({ orderBy, asc });
   }
 
   const talkKeys = talkIdArr.map(id => createSingleTalkKey(id));
@@ -39,6 +39,27 @@ async function findAll({ orderBy = 'votes', asc = false, userId } = {}) {
   });
 
   return talks;
+}
+
+async function findAllKeysByIndex({ orderBy, asc }) {
+  let key = indexCTimeToIdKey; // default to by time
+  if (orderBy === 'ctime') key = indexCTimeToIdKey;
+  else if (orderBy === 'votes') key = indexVotesToIdKey;
+  else throw new LogicError(1300, null, { data: { orderBy, asc } });
+
+  // Get all ids, ordered by ctime by default
+  let talkIdArr; // = await redisFunc(key, ...params);
+  if (asc) {
+    talkIdArr = await redis.zrangebyscore(key, '-inf', '+inf');
+  } else {
+    talkIdArr = await redis.zrevrangebyscore(key, '+inf', '-inf');
+  }
+  return talkIdArr;
+}
+
+async function findAllKeysByFilter({ author }) {
+  const talkIdArr = await redis.smembers(createAuthorToIdSetKey(author));
+  return talkIdArr;
 }
 
 async function findById(id) {
@@ -66,6 +87,7 @@ async function insert(talk) {
     .pipeline()
     .set(createSingleTalkKey(talk.id), JSON.stringify(talk))
     .set(createHashToIdTableKey(talk.hash), talk.id)
+    .sadd(createAuthorToIdSetKey(talk.author), talk.id)
     .zadd(indexVotesToIdKey, talk.votes, talk.id)
     .zadd(indexCTimeToIdKey, talk.ctime, talk.id)
     .exec();

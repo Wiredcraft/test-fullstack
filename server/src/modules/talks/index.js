@@ -5,10 +5,11 @@ const { auth } = require('../../middlewares/authentication');
 const talks = new Router();
 
 talks.get('/', auth({ required: false }), async ctx => {
-  const { orderBy, asc } = ctx.query;
+  const { author, orderBy, asc } = ctx.query;
   const userId = ctx.state.user && ctx.state.user.username;
 
   ctx.body = await services.listTalks({
+    author,
     orderBy,
     asc: asc === 'true' ? true : false,
     userId
