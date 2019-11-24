@@ -1,5 +1,6 @@
 const Router = require('@koa/router');
 const services = require('./services');
+const { auth } = require('../../middlewares/authentication');
 
 const talks = new Router();
 
@@ -12,19 +13,21 @@ talks.get('/', async ctx => {
   });
 });
 
-talks.post('/', async ctx => {
+talks.post('/', auth, async ctx => {
   const talk = ctx.body;
+  const username = ctx.state.user.login;
+  talk.author = username;
 
   ctx.body = await services.createTalk(talk);
 });
 
-talks.put('/:id/vote', async ctx => {
+talks.put('/:id/vote', auth, async ctx => {
   const postId = ctx.params.id;
   const userId = 0; // TODO: Fix me
   ctx.body = await services.voteTalk(postId, userId);
 });
 
-talks.put('/:id/unvote', async ctx => {
+talks.put('/:id/unvote', auth, async ctx => {
   const postId = ctx.params.id;
   const userId = 0; // TODO: Fix me
   ctx.body = await services.unVoteTalk(postId, userId);

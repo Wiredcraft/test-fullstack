@@ -2,8 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Redirect, useHistory } from 'react-router-dom';
 
+import { CONFIG } from '../../constants/config';
 import { SocialSignInButton } from './social-sign-in-btn';
 import { Image } from '../../components/image';
+import { extractAccessToken } from '../../utils/extract-access-token';
 import icLoginGithub from '../../assets/ic-login-github.png';
 import icSocialLoginBtnIcon from '../../assets/ic-social-login-btn-icon.png';
 
@@ -39,17 +41,22 @@ const SocialButtons = styled.div`
 `;
 
 export const SignInForm = () => {
-  const [loginSuccessful, updateLoginSuccessful] = React.useState(false);
+  const history = useHistory();
 
   const handleSignInGithub = () => {
     console.log('sign in with github');
-    window.location = 'https://a3c159d8.ngrok.io/login/oauth/github'; // TODO: Put in config
-    // updateLoginSuccessful(true);
+    window.location = CONFIG.auth.github;
   };
+
+  React.useEffect(() => {
+    // Receive access token
+    const accessToken = extractAccessToken();
+    console.log(accessToken);
+    history.push('/');
+  }, []);
 
   return (
     <SignInFormStyled>
-      {loginSuccessful && <Redirect to="/" />}
       <LoginIconStyled>
         <Image src={icLoginGithub} width={72} />
       </LoginIconStyled>

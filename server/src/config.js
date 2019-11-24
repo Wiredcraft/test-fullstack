@@ -9,12 +9,15 @@ const CONFIG = {
   endpoint: {
     prefix: ENV.ENDPOINT_PREFIX
   },
+  frontend: {
+    baseUrl: ENV.FRONTEND_BASE_URL || 'localhost:1234',
+    signInPage: '/sign-in'
+  },
   auth: {
     jwtSecret: ENV.AUTH_JWT_SECRET || 'app-secret',
     jwtExpiresIn: ENV.AUTH_JWT_EXPIRES_IN || '1d'
   },
   oauth: {
-    frontendRedirectUri: ENV.OAUTH_FRONTEND_REDIRECT_URI,
     github: {
       clientId: ENV.OAUTH_GITHUB_CLIENT_ID,
       clientSecret: ENV.OAUTH_GITHUB_CLIENT_SECRET

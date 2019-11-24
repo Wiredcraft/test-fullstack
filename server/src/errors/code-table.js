@@ -14,6 +14,14 @@ module.exports.CODE = {
     status: 400,
     message: 'Data failed validation'
   },
+  1101: {
+    status: 401,
+    message: 'Login required'
+  },
+  1102: {
+    status: 400,
+    message: 'Authorization: token xxx header is required'
+  },
 
   1200: {
     status: 404,
