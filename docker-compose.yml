@@ -8,7 +8,7 @@ services:
     build: ./
     restart: always
     ports:
-      - "80"
+      - '80'
     networks:
       - public
       - default
@@ -17,3 +17,30 @@ services:
       - 'traefik.backend=talks'
       - 'traefik.frontend.rule=Host:talks.mindfine.com'
       - 'traefik.port=80'
+  api:
+    build: ./server/
+    restart: always
+    depends_on:
+      - redis
+    ports:
+      - '3000'
+    networks:
+      - public
+      - default
+    environment:
+      - 'OAUTH_GITHUB_CLIENT_ID=8f16245f33bbfc85e496'
+      - 'OAUTH_GITHUB_CLIENT_SECRET=3faeddb612de511e30c4f9f066d2d00fdc29ca7d'
+      - 'FRONTEND_BASE_URL=https://talks.mindfine.com'
+      - 'REDIS_HOST=redis'
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.backend=talks-api'
+      - 'traefik.frontend.rule=Host:talks-api.mindfine.com'
+      - 'traefik.port=3000'
+  redis:
+    image: redis
+    restart: always
+    # ports:
+    #   - '6379'
+    # networks:
+    #   - default

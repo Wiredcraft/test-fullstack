@@ -3,3 +3,6 @@
 dist
 docs
 node_modules
+
+# Server time .env is not required, but when building frontend, need .env to configure
+./server/.env

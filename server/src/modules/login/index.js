@@ -25,14 +25,6 @@ login.get('/oauth/callback', async ctx => {
   const user = await getUserByCode(code, state);
   const accessToken = createAuthToken(user.login);
 
-  // // Save access token in cookie
-  // // Predefined keys to prevent client side front modifying
-  // const cookies = new Cookies(ctx.req, ctx.res, ['accessToken']);
-  // cookies.set('accessToken', accessToken, {
-  //   sameSite: 'lax',
-  //   signed: false // TODO: Try sign it
-  // });
-
   const url = `${CONFIG.frontend.baseUrl}${CONFIG.frontend.signInPage}?accessToken=${accessToken}`;
   // const url = `${CONFIG.frontend.baseUrl}${CONFIG.frontend.signInPage}`;
 

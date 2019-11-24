@@ -25,6 +25,7 @@ cp .env.sample .env
 # Configure backend
 cd server
 cp .env.sample .env
+# Or specify environment variables in docker run config
 ```
 
 Mind that you will need to specify `API_SERVER` for frontend and `FRONTEND_BASE_URL` for backend.
