@@ -3,11 +3,12 @@ const { LogicError } = require('../../../errors/logic-error');
 
 const createSingleTalkKey = id => `talk:id:${id}`; // id to val, one for each talk (set, get), stringified object
 const createHashToIdTableKey = hash => `talk:hash:${hash}`; // hash to id, one for each talk (set, get)
-const createVotedUsersSetKey = id => `talk:id:${id}:voted`; // id to voted user id array, a set
+const createVotedUsersSetKey = id => `talk:id:${id}:voted`; // id to voted user id array set
+const createUserVotedSetKey = userId => `talk:userId:${userId}:voted`; // user id to talk id set
 const indexVotesToIdKey = `talk:index:votes`; // index votes to id, one for all (zadd, zrange)
 const indexCTimeToIdKey = `talk:index:ctime`;
 
-async function findAll({ orderBy = 'ctime', asc = false } = {}) {
+async function findAll({ orderBy = 'ctime', asc = false, userId } = {}) {
   let key = indexCTimeToIdKey; // default to by time
   if (orderBy === 'ctime') key = indexCTimeToIdKey;
   else if (orderBy === 'votes') key = indexVotesToIdKey;
@@ -22,8 +23,20 @@ async function findAll({ orderBy = 'ctime', asc = false } = {}) {
   }
 
   const talkKeys = talkIdArr.map(id => createSingleTalkKey(id));
-  const talkResultArr = await redis.mget(talkKeys);
-  const talks = talkResultArr.map(t => JSON.parse(t));
+  if (!(talkKeys && talkKeys.length > 0)) {
+    return [];
+  }
+
+  const [talkResultArr, votedTalksByMe] = await Promise.all([
+    redis.mget(talkKeys),
+    votedByMe(userId)
+  ]);
+
+  const talks = talkResultArr.map(t => {
+    t = JSON.parse(t);
+    t.votedByMe = votedTalksByMe.includes(t.id);
+    return t;
+  });
 
   return talks;
 }
@@ -45,12 +58,6 @@ async function findByHash(hash) {
 
   const talkResult = await redis.get(createSingleTalkKey(id));
   const talk = JSON.parse(talkResult);
-
-  // TODO: is set / get possibly returns {}? if not remove this
-  if (!(talk && talk.id)) {
-    return null;
-  }
-
   return talk;
 }
 
@@ -95,9 +102,17 @@ async function vote(talkId, userId, votes = 1) {
     .exec();
 
   if (votes > 0) {
-    await redis.sadd(createVotedUsersSetKey(talkId), userId); // Update voted users for the post
+    await redis
+      .pipeline()
+      .sadd(createVotedUsersSetKey(talkId), userId) // Update voted users for the post
+      .sadd(createUserVotedSetKey(userId), talkId) // Update user voted posts
+      .exec();
   } else {
-    await redis.srem(createVotedUsersSetKey(talkId), userId); // Remove specific user from voted users
+    await redis
+      .pipeline()
+      .srem(createVotedUsersSetKey(talkId), userId) // Remove specific user from voted users
+      .srem(createUserVotedSetKey(userId), talkId) // Remove talk from user voted
+      .exec();
   }
 }
 
@@ -108,6 +123,11 @@ async function hasVoted(talkId, userId) {
   );
 
   return isMember > 0;
+}
+
+async function votedByMe(userId) {
+  if (!userId) return false;
+  return redis.smembers(createUserVotedSetKey(userId));
 }
 
 async function talkExists(talkId) {

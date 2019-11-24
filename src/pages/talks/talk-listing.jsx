@@ -15,7 +15,9 @@ export const TalkListing = () => {
   // Cache loadTalks
   const loadTalks = React.useCallback(() => {
     axios
-      .get(`${CONFIG.apiServer}/talks`)
+      .get(`${CONFIG.apiServer}/talks`, {
+        headers: { Authorization: `Bearer ${state.userInfo.accessToken}` }
+      })
       .then(resp => {
         if (resp.status === 200) {
           dispatch({ type: 'UPDATE_TALKS', payload: resp.data });

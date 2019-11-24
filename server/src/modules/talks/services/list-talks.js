@@ -1,6 +1,6 @@
 function makeListTalks({ talksDb }) {
-  return async function listTalks({ orderBy, asc }) {
-    return talksDb.findAll({ orderBy, asc });
+  return async function listTalks({ orderBy, asc, userId }) {
+    return talksDb.findAll({ orderBy, asc, userId });
   };
 }
 

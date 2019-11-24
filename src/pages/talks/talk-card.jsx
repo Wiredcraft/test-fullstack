@@ -64,6 +64,7 @@ export const TalkCard = ({ talk }) => {
   const { id, title, description, ctime, author, votes, votedByMe } = talk;
   const { state, dispatch } = React.useContext(Store);
 
+  // TODO: Extract to parent container for easier testing
   // Cache vote talk
   const voteTalk = React.useCallback(() => {
     if (!(state && state.userInfo && state.userInfo.accessToken)) {
