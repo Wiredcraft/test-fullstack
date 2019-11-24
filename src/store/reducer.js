@@ -15,7 +15,7 @@ export const reducer = (state, action) => {
       return { ...state, userInfo };
     case 'SIGN_OUT':
       localStorage.removeItem(CONFIG.auth.localUserInfoKey);
-      return { ...state, userInfo: null };
+      return { ...state, userInfo: {} };
     case 'UPDATE_TALKS':
       return { ...state, talks: action.payload };
     case 'NEW_TALK':
