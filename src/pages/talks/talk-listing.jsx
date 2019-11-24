@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import queryString from 'query-string';
 
+import { FilteredBy } from './filtered-by';
 import { EmptyListing } from './empty-listing';
 import { Store } from '../../store/store-provider';
 import { CONFIG } from '../../constants/config';
@@ -12,6 +13,7 @@ const TalkListingStyled = styled.div``;
 
 export const TalkListing = () => {
   const { state, dispatch } = React.useContext(Store);
+  const [filterBy, updateFilterBy] = React.useState();
 
   // Cache loadTalks
   const loadTalks = React.useCallback(
@@ -19,6 +21,7 @@ export const TalkListing = () => {
       let query = '';
       if (filter) {
         query = `?${queryString.stringify(filter)}`;
+        updateFilterBy(filter);
       }
 
       axios
@@ -43,13 +46,14 @@ export const TalkListing = () => {
 
   return (
     <TalkListingStyled>
+      <FilteredBy filterInfo={filterBy} />
       {state && state.talks.length > 0 ? (
         state.talks.map(t => (
           <TalkCard key={t.id} talk={t} loadTalks={loadTalks} />
         ))
       ) : (
         <EmptyListing>
-          Tap (+) on the right bottom corner to create a new Lightning Talk
+          No talks, tap (+) on the right bottom corner to create a new Lightning Talk
         </EmptyListing>
       )}
     </TalkListingStyled>
