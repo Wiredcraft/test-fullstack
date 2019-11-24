@@ -23,13 +23,13 @@ talks.post('/', auth, async ctx => {
 
 talks.put('/:id/vote', auth, async ctx => {
   const postId = ctx.params.id;
-  const userId = 0; // TODO: Fix me
+  const userId = ctx.state.user.login;
   ctx.body = await services.voteTalk(postId, userId);
 });
 
 talks.put('/:id/unvote', auth, async ctx => {
   const postId = ctx.params.id;
-  const userId = 0; // TODO: Fix me
+  const userId = ctx.state.user.login;
   ctx.body = await services.unVoteTalk(postId, userId);
 });
 

@@ -39,4 +39,8 @@ login.get('/oauth/callback', async ctx => {
   ctx.redirect(url);
 });
 
+login.get('/me', async ctx => {
+  this.body = ctx.state.user;
+});
+
 module.exports.login = login;

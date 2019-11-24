@@ -52,6 +52,7 @@ export const SignInForm = () => {
     // Receive access token
     const accessToken = extractAccessToken();
     console.log(accessToken);
+    // Check access token by get current user
     history.push('/');
   }, []);
 
