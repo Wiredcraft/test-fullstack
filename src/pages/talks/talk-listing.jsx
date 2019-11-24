@@ -2,10 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
+import { EmptyListing } from './empty-listing';
 import { Store } from '../../store/store-provider';
 import { CONFIG } from '../../constants/config';
 import { TalkCard } from './talk-card';
-// import { talks } from './talks';
 
 const TalkListingStyled = styled.div``;
 
@@ -34,7 +34,13 @@ export const TalkListing = () => {
 
   return (
     <TalkListingStyled>
-      {state && state.talks.map(t => <TalkCard key={t.id} talk={t} />)}
+      {state && state.talks.length > 0 ? (
+        state.talks.map(t => <TalkCard key={t.id} talk={t} />)
+      ) : (
+        <EmptyListing>
+          Tap (+) on the right bottom corner to create a new Lightning Talk
+        </EmptyListing>
+      )}
     </TalkListingStyled>
   );
 };
