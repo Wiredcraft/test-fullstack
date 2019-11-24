@@ -12,10 +12,9 @@ const auth = async (ctx, next) => {
 
   accessToken = accessToken.replace(AUTH_HEADER_REGEX, '');
 
-  console.log(accessToken);
   const userData = validateToken(accessToken);
   // TODO: if expired, return corresponding message
-  if (!userData.login) {
+  if (!userData.username) {
     throw new LogicError(1101);
   }
   ctx.state.user = userData;

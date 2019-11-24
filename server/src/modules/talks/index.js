@@ -14,8 +14,8 @@ talks.get('/', async ctx => {
 });
 
 talks.post('/', auth, async ctx => {
-  const talk = ctx.body;
-  const username = ctx.state.user.login;
+  const talk = ctx.request.body;
+  const { username } = ctx.state.user;
   talk.author = username;
 
   ctx.body = await services.createTalk(talk);
@@ -23,13 +23,13 @@ talks.post('/', auth, async ctx => {
 
 talks.put('/:id/vote', auth, async ctx => {
   const postId = ctx.params.id;
-  const userId = ctx.state.user.login;
+  const userId = ctx.state.user.username;
   ctx.body = await services.voteTalk(postId, userId);
 });
 
 talks.put('/:id/unvote', auth, async ctx => {
   const postId = ctx.params.id;
-  const userId = ctx.state.user.login;
+  const userId = ctx.state.user.username;
   ctx.body = await services.unVoteTalk(postId, userId);
 });
 

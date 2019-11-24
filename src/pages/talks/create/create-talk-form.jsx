@@ -1,8 +1,11 @@
 import * as React from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useFormik } from 'formik';
 
+import { CONFIG } from '../../../constants/config';
+import { Store } from '../../../store/store-provider';
 import { InputField } from '../../../components/input-field';
 import { TextAreaField } from '../../../components/textarea-field';
 import { Button } from '../../../components/button';
@@ -33,11 +36,31 @@ const ButtonsGroup = styled.div`
 
 export const CreateTalkForm = () => {
   const history = useHistory();
+  const { state, dispatch } = React.useContext(Store);
   const cancel = () => history.push('/');
-  const create = e => {
-    e.preventDefault && e.preventDefault();
-    console.log('create talk...');
-  };
+
+  // Cache create talk
+  const createTalk = React.useCallback(
+    talk => {
+      if (!(state && state.userInfo && state.userInfo.accessToken)) {
+        return;
+      }
+
+      axios
+        .post(`${CONFIG.apiServer}/talks`, talk, {
+          headers: { Authorization: `Bearer ${state.userInfo.accessToken}` }
+        })
+        .then(resp => {
+          if (`${resp.status}`.startsWith('2')) {
+            dispatch({ type: 'NEW_TALK', payload: resp.data });
+          }
+        })
+        .catch(err => {
+          dispatch({ type: 'ERROR', payload: err });
+        });
+    },
+    [dispatch]
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -46,6 +69,7 @@ export const CreateTalkForm = () => {
     },
     onSubmit: values => {
       console.log('create talk', values);
+      createTalk(values);
     },
     validationSchema: CreateTalkSchema
   });

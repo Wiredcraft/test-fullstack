@@ -17,5 +17,10 @@ export const reducer = (state, action) => {
       return { ...state, userInfo: null };
     case 'UPDATE_TALKS':
       return { ...state, talks: action.payload };
+    case 'NEW_TALK':
+      return { ...state, talks: [...state.talks, action.payload] };
+    case 'ERROR':
+      console.log('ERROR', action);
+      return { ...state, error: action.payload };
   }
 };

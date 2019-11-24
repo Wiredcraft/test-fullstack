@@ -1,4 +1,4 @@
-const API_SERVER = 'https://a3c159d8.ngrok.io';
+const API_SERVER = 'http://localhost:3000';
 
 export const CONFIG = {
   apiServer: API_SERVER,

@@ -14,6 +14,9 @@ const errorHandler = async (ctx, next) => {
       }
     }
 
+    console.error('error', ctx.request.url);
+    console.error(err);
+
     ctx.body = {
       code: err.code,
       message: err.message,
@@ -22,10 +25,4 @@ const errorHandler = async (ctx, next) => {
   }
 };
 
-const onError = (err, ctx) => {
-  console.error('error', ctx.request.url);
-  console.error(err);
-};
-
 module.exports.errorHandler = errorHandler;
-module.exports.onError = onError;
