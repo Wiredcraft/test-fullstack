@@ -14,6 +14,21 @@ API Documentation: [open-api.yaml](https://github.com/rankun203/test-fullstack/b
 
 ## Run This Project
 
+### Configuration
+
+Edit .env as well as server/.env:
+
+```bash
+# Configure frontend
+cp .env.sample .env
+
+# Configure backend
+cd server
+cp .env.sample .env
+```
+
+Mind that you will need to specify `API_SERVER` for frontend and `FRONTEND_BASE_URL` for backend.
+
 You can build the project locally and run it, or you can use the pre-built docker images to run.
 
 ### Pre-built Docker Image

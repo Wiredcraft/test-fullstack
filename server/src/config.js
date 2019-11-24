@@ -6,9 +6,6 @@ const CONFIG = {
   app: {
     port: ENV.APP_PORT ? Number(ENV.APP_PORT) : 3000
   },
-  endpoint: {
-    prefix: ENV.ENDPOINT_PREFIX
-  },
   frontend: {
     baseUrl: ENV.FRONTEND_BASE_URL || 'localhost:1234',
     signInPage: '/sign-in'
