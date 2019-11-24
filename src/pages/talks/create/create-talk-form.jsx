@@ -96,7 +96,12 @@ export const CreateTalkForm = () => {
         touched={formik.touched.description}
       />
       <ButtonsGroup>
-        <ButtonStyled inverted icon={<IcBtnCancel />} onClick={cancel}>
+        <ButtonStyled
+          type="button"
+          inverted
+          icon={<IcBtnCancel />}
+          onClick={cancel}
+        >
           Cancel
         </ButtonStyled>
         <ButtonStyled type="submit" primary icon={<IcBtnAdd />}>
