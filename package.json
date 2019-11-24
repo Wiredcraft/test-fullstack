@@ -33,6 +33,7 @@
     "framer-motion": "^1.6.17",
     "normalize.css": "^8.0.1",
     "parcel-bundler": "^1.12.4",
+    "query-string": "^6.9.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",

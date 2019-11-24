@@ -19,6 +19,7 @@ RUN npm run build
 FROM nginx:alpine
 
 COPY --from=build --chown=nginx:nginx /app/dist /usr/share/nginx/html
+COPY ./dockerfiles/nginx/default.conf /etc/nginx/conf.d/default.conf
 RUN touch /var/run/nginx.pid && chown nginx:nginx /var/run/nginx.pid
 
 # USER nginx

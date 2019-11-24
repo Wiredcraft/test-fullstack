@@ -4,7 +4,7 @@ const services = require('./services');
 const talks = new Router();
 
 talks.get('/', async ctx => {
-  const { orderBy, asc } = ctx.request.query;
+  const { orderBy, asc } = ctx.query;
 
   ctx.body = await services.listTalks({
     orderBy,
@@ -13,7 +13,7 @@ talks.get('/', async ctx => {
 });
 
 talks.post('/', async ctx => {
-  const talk = ctx.request.body;
+  const talk = ctx.body;
 
   ctx.body = await services.createTalk(talk);
 });

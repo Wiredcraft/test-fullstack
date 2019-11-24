@@ -1,7 +1,7 @@
 require('dotenv').config();
 const ENV = process.env;
 
-module.exports.CONFIG = {
+const CONFIG = {
   isDev: ENV.NODE_ENV === 'development',
   app: {
     port: ENV.APP_PORT ? Number(ENV.APP_PORT) : 3000
@@ -9,7 +9,12 @@ module.exports.CONFIG = {
   endpoint: {
     prefix: ENV.ENDPOINT_PREFIX
   },
+  auth: {
+    jwtSecret: ENV.AUTH_JWT_SECRET || 'app-secret',
+    jwtExpiresIn: ENV.AUTH_JWT_EXPIRES_IN || '1d'
+  },
   oauth: {
+    frontendRedirectUri: ENV.OAUTH_FRONTEND_REDIRECT_URI,
     github: {
       clientId: ENV.OAUTH_GITHUB_CLIENT_ID,
       clientSecret: ENV.OAUTH_GITHUB_CLIENT_SECRET
@@ -22,3 +27,7 @@ module.exports.CONFIG = {
     DB: ENV.REDIS_DB ? Number(ENV.REDIS_DB) : 0
   }
 };
+
+// TODO: Ensure required config values
+
+module.exports.CONFIG = CONFIG;

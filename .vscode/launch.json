@@ -10,7 +10,12 @@
       "name": "Launch Server",
       "skipFiles": ["<node_internals>/**"],
       "cwd": "${workspaceFolder}/server",
-      "program": "${workspaceFolder}/server/src/server.js"
+      "program": "${workspaceFolder}/server/src/server.js",
+      "env": {
+        "HTTP_PROXY": "",
+        "HTTPS_PROXY": "",
+        "ALL_PROXY": ""
+      }
     }
   ]
 }
