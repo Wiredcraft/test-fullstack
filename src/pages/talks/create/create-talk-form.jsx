@@ -53,6 +53,7 @@ export const CreateTalkForm = () => {
         .then(resp => {
           if (`${resp.status}`.startsWith('2')) {
             dispatch({ type: 'NEW_TALK', payload: resp.data });
+            history.push('/');
           }
         })
         .catch(err => {
@@ -62,6 +63,7 @@ export const CreateTalkForm = () => {
     [dispatch]
   );
 
+  // Form validation tool
   const formik = useFormik({
     initialValues: {
       title: '',

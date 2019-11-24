@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { Store } from '../../store/store-provider';
 import { Logo } from './logo';
-import { MenuButtons } from './menu-buttons';
+import { MenuButtonsSmart } from './menu-buttons';
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -26,11 +27,12 @@ export const FixedHeaderFixer = styled.div`
 
 export const Header = () => {
   const title = 'Lightning Talks';
+  const { state } = React.useContext(Store);
 
   return (
     <HeaderWrapper>
       <Logo title={title} />
-      <MenuButtons />
+      <MenuButtonsSmart username={state.userInfo && state.userInfo.username} />
     </HeaderWrapper>
   );
 };

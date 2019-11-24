@@ -17,6 +17,7 @@
     "hset",
     "mget",
     "middlewares",
+    "onclickoutside",
     "openapi",
     "rankun",
     "sadd",
