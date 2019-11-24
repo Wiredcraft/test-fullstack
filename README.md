@@ -75,6 +75,10 @@ Using Github as OAuth provider, since it doesn't support implicit grant yet, I'm
   - Method 1 [Selected]: Redirect to frontend app with access token in the URL query parameter, this is similar to implicit grant, which has its own security issue
   - Method 2: Use session (not ideal, since it's not stateless).
 
+### Frontend Overall Architecture
+
+Using React Hooks in conjunction with useReducer(), useContext() to manage application state.
+
 ### Backend Overall Architecture
 
 Applying practices of [Uncle Bob's clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), but due to limited time I have to design the API system, the implementation is not so "clean" after all(e.g., db part) and should be considered twice if it's gonna be used in production in large scale.

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import dayjs from 'dayjs'; // Just another smaller moment.js
 import relativeTime from 'dayjs/plugin/relativeTime';
 
+import { CONFIG } from '../../constants/config';
 import { UpVoteButton } from './upvote-btn';
 import { Button } from '../../components/button';
 import { Store } from '../../store/store-provider';
@@ -60,13 +62,51 @@ const CardMetaSeparator = styled.div`
 
 export const TalkCard = ({ talk }) => {
   const { id, title, description, ctime, author, votes, votedByMe } = talk;
-  const { dispatch } = React.useContext(Store);
+  const { state, dispatch } = React.useContext(Store);
+
+  // Cache vote talk
+  const voteTalk = React.useCallback(() => {
+    if (!(state && state.userInfo && state.userInfo.accessToken)) {
+      return;
+    }
+
+    axios
+      .put(`${CONFIG.apiServer}/talks/${id}/vote`, null, {
+        headers: { Authorization: `Bearer ${state.userInfo.accessToken}` }
+      })
+      .then(resp => {
+        if (`${resp.status}`.startsWith('2')) {
+          dispatch({ type: 'VOTE_TALK', payload: { talkId: id } });
+        }
+      })
+      .catch(err => {
+        dispatch({ type: 'ERROR', payload: err });
+      });
+  }, [dispatch]);
+  const unvoteTalk = React.useCallback(() => {
+    if (!(state && state.userInfo && state.userInfo.accessToken)) {
+      return;
+    }
+
+    axios
+      .put(`${CONFIG.apiServer}/talks/${id}/unvote`, null, {
+        headers: { Authorization: `Bearer ${state.userInfo.accessToken}` }
+      })
+      .then(resp => {
+        if (`${resp.status}`.startsWith('2')) {
+          dispatch({ type: 'UNVOTE_TALK', payload: { talkId: id } });
+        }
+      })
+      .catch(err => {
+        dispatch({ type: 'ERROR', payload: err });
+      });
+  }, [dispatch]);
 
   const toggleVoteTalk = React.useCallback(() => {
     if (votedByMe) {
-      dispatch({ type: 'UNVOTE_TALK', payload: { talkId: id } });
+      unvoteTalk(id);
     } else {
-      dispatch({ type: 'VOTE_TALK', payload: { talkId: id } });
+      voteTalk(id);
     }
   }, [dispatch, votedByMe]);
 
