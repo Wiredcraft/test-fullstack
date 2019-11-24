@@ -6,6 +6,7 @@ import {
   Route
 } from 'react-router-dom';
 
+import { PrivateRoute } from './components/private-route';
 import { TalksPage } from './pages/talks';
 import { CreateTalk } from './pages/talks/create';
 import { SignInPage } from './pages/sign-in';
@@ -21,9 +22,9 @@ export const AppRouter = () => {
         <Route path="/sign-in">
           <SignInPage />
         </Route>
-        <Route path="/talks/create">
+        <PrivateRoute path="/talks/create">
           <CreateTalk />
-        </Route>
+        </PrivateRoute>
         <Route path="/talks">
           <Redirect to="/" />
         </Route>

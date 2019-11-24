@@ -28,6 +28,8 @@ cp .env.sample .env
 # Or specify environment variables in docker run config
 ```
 
+Setting Authorization callback URL: `https://<DOMAIN>/login/oauth/callback`.
+
 Mind that you will need to specify `API_SERVER` for frontend and `FRONTEND_BASE_URL` for backend.
 
 You can build the project locally and run it, or you can use the pre-built docker images to run.
