@@ -93,6 +93,11 @@ Using Github as OAuth provider, since it doesn't support implicit grant yet, I'm
   - Method 1 [Selected]: Redirect to frontend app with access token in the URL query parameter, this is similar to implicit grant, which has its own security issue
   - Method 2: Use session (not ideal, since it's not stateless).
 
+### Testing
+
+- Frontend: use Enzyme to test stateless components
+- Backend: use Jest to test `services`, `models`, `data-access` layers.
+
 ### Frontend Overall Architecture
 
 Using React Hooks in conjunction with useReducer(), useContext() to manage application state.
