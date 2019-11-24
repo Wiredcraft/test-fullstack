@@ -8,7 +8,7 @@ const createUserVotedSetKey = userId => `talk:userId:${userId}:voted`; // user i
 const indexVotesToIdKey = `talk:index:votes`; // index votes to id, one for all (zadd, zrange)
 const indexCTimeToIdKey = `talk:index:ctime`;
 
-async function findAll({ orderBy = 'ctime', asc = false, userId } = {}) {
+async function findAll({ orderBy = 'votes', asc = false, userId } = {}) {
   let key = indexCTimeToIdKey; // default to by time
   if (orderBy === 'ctime') key = indexCTimeToIdKey;
   else if (orderBy === 'votes') key = indexVotesToIdKey;

@@ -8,6 +8,8 @@ import { SocialSignInButton } from './social-sign-in-btn';
 import { Image } from '../../components/image';
 import { extractAccessToken } from '../../utils/access-token';
 import icLoginGithub from '../../assets/ic-login-github.png';
+import IcGithubBlack from '../../assets/ic-github-black.svg';
+import IcGithubWhiteSmall from '../../assets/ic-github-white-small.svg';
 import icSocialLoginBtnIcon from '../../assets/ic-social-login-btn-icon.png';
 
 const SignInFormStyled = styled.div`
@@ -66,7 +68,8 @@ export const SignInForm = () => {
   return (
     <SignInFormStyled>
       <LoginIconStyled>
-        <Image src={icLoginGithub} width={72} />
+        {/* <Image src={icLoginGithub} width={72} /> */}
+        <IcGithubBlack />
       </LoginIconStyled>
       <LoginMsgStyled>
         Login to start creating lightning talks now!
@@ -75,7 +78,8 @@ export const SignInForm = () => {
       <SocialButtons>
         <SocialSignInButton
           label="Sign In With Github"
-          iconSrc={icSocialLoginBtnIcon}
+          // iconSrc={icSocialLoginBtnIcon}
+          icon={<IcGithubWhiteSmall />}
           backgroundColor="#333333"
           light
           onClick={handleSignInGithub}

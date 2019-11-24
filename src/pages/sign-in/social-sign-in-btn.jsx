@@ -30,7 +30,7 @@ export const SocialSignInButton = ({
 }) => {
   return (
     <ButtonStyled light={light} onClick={onClick} {...props}>
-      <Image src={iconSrc} width={28} />
+      {iconSrc && <Image src={iconSrc} width={28} />}
       <ButtonLabelStyled>{label}</ButtonLabelStyled>
     </ButtonStyled>
   );
