@@ -53,7 +53,7 @@ export const TalkListing = () => {
         ))
       ) : (
         <EmptyListing>
-          No talks, tap (+) on the right bottom corner to create a new Lightning Talk
+          No talks, tap (+) on the bottom right corner to create a new Lightning Talk
         </EmptyListing>
       )}
     </TalkListingStyled>
