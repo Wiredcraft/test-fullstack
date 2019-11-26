@@ -11,12 +11,18 @@ const auth = ({ required = true } = {}) => {
     if (accessToken && AUTH_HEADER_REGEX.test(accessToken)) {
       accessToken = accessToken.replace(AUTH_HEADER_REGEX, '');
 
-      const userData = validateToken(accessToken);
-      // TODO: if expired, return corresponding message
-      if (!userData.username) {
-        throw new LogicError(1101);
+      try {
+        const userData = validateToken(accessToken);
+        // TODO: if expired, return corresponding message
+        if (!userData.username) {
+          throw new LogicError(1101);
+        }
+        ctx.state.user = userData;
+      } catch (err) {
+        if (required) {
+          throw new LogicError(1103);
+        }
       }
-      ctx.state.user = userData;
     } else if (required) {
       // If required, but no access token, throw
       throw new LogicError(1102);

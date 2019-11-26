@@ -148,7 +148,7 @@ async function hasVoted(talkId, userId) {
 }
 
 async function votedByMe(userId) {
-  if (!userId) return false;
+  if (!userId) return [];
   return redis.smembers(createUserVotedSetKey(userId));
 }
 

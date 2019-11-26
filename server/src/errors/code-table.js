@@ -22,6 +22,10 @@ module.exports.CODE = {
     status: 400,
     message: 'Authorization: token xxx header is required'
   },
+  1103: {
+    status: 400,
+    message: 'Login token is invalid'
+  },
 
   1200: {
     status: 404,
