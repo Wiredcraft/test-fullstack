@@ -20,6 +20,7 @@ const auth = ({ required = true } = {}) => {
         ctx.state.user = userData;
       } catch (err) {
         if (required) {
+          // If required, but had error decoding the token, throw
           throw new LogicError(1103);
         }
       }
