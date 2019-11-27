@@ -31,7 +31,7 @@ export const MenuButtons = ({ username }) => {
   const signOut = React.useCallback(() => {
     dispatch({ type: 'SIGN_OUT' });
     history.push('/sign-in');
-  }, [dispatch]);
+  }, [dispatch, history]);
 
   return (
     <MenuButtonsStyled>

@@ -37,7 +37,7 @@ const ButtonsGroup = styled.div`
 export const CreateTalkForm = () => {
   const history = useHistory();
   const { state, dispatch } = React.useContext(Store);
-  const cancel = () => history.push('/');
+  const cancel = React.useCallback(() => history.push('/'));
 
   // Cache create talk
   const createTalk = React.useCallback(

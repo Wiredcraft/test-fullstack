@@ -8,7 +8,9 @@ import { Fab } from '../../components/fab';
 
 export const TalksPage = () => {
   const history = useHistory();
-  const goCreate = () => history.push('/talks/create');
+  const goCreate = React.useCallback(() => history.push('/talks/create'), [
+    history
+  ]);
   return (
     <>
       <Header />
