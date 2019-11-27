@@ -56,6 +56,31 @@ This project includes `Dockerfile`s for each sub-project (client, server), and h
 
 For deployment, I'm using [this tool(reverse-proxy)](https://github.com/rankun203/reverse-proxy) I created to put it online.
 
+If you are trying to use docker-compose.yml provided in this repo to deploy, keep in mind to add additional configs with a docker-compose.override.yml config.
+
+For example:
+
+```yaml
+version: '3.6'
+services:
+  frontend:
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.backend=talks'
+      - 'traefik.frontend.rule=Host:***.com'
+      - 'traefik.port=80'
+  api:
+    environment:
+      - 'OAUTH_GITHUB_CLIENT_ID=<OAUTH_GITHUB_CLIENT_ID>'
+      - 'OAUTH_GITHUB_CLIENT_SECRET=<OAUTH_GITHUB_CLIENT_SECRET>'
+      - 'FRONTEND_BASE_URL=<FRONTEND_BASE_URL>'
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.backend=talks-api'
+      - 'traefik.frontend.rule=Host:<FRONTEND_DOMAIN>'
+      - 'traefik.port=<PORT>'
+```
+
 ## Tech Stack
 
 ### Form Validation
