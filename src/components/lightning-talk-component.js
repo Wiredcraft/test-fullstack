@@ -3,23 +3,16 @@ import Buttons from './buttons.js';
 
 // votes initial state is set to 0 as all lightning talks will start with zero votes. Title and description also set to an empty string until API sets state
 class LightningTalk extends React.Component {
-   constructor(props){
-    super(props);
-    this.state = {
-      votes: 0
-    }
-  }
-
 // Need to change this so that the increment and decrement change the state of votes in App (super?). I assume that because it is a nested array it no longer works
    increment = (e) => {
     this.setState({
-      lightningTalks: this.state.lightningTalk.votes + 1
+      lightningTalks: this.props.lightningTalk.votes + 1
     })
   }
 
    decrement = (e) => {
     this.setState({
-      lightningTalks: this.state.lightningTalk.votes - 1
+      lightningTalks: this.props.lightningTalk.votes - 1
     })
   }
 
