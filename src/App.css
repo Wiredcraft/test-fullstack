@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+  padding: 10px 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 4vh;
+  background: #ff6600;
+}
+
+.nav-links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.login {
+  display: flex;
+
+}
+
+.news-title {
+  display: flex;
+  background: #dedddd;
+  padding: 1px 2px;
+  margin: 2px 2px;
+  font-size: 12px;
+}
+
