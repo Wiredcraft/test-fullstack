@@ -6,17 +6,17 @@ import Form from './components/form.js';
 // initialized state of App to hold an empty lightningTalks compoennt. componentDidMount sets its state depends
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       lightningTalks: []
     };
   }
 
 // componentDidMount is called and sets the state of the lightningTalks array in constructor(props)
-componentDidMount = () => {
-  fetch("http://localhost:3000/talks.json")
-  .then(response => response.json())
-  .then((data) => {
+  componentDidMount = () => {
+    fetch("http://localhost:3000/talks.json")
+    .then(response => response.json())
+    .then((data) => {
       this.setState((state) => {
         return {
           lightningTalks: data
@@ -24,14 +24,46 @@ componentDidMount = () => {
       });
     });
   }
+
+
+// increments/decrements the votes in an object of lightningTalks
+  incrementInApp = (id) => {
+    // creates a new array based off current state of lightningTalks
+    const nextLightningTalks = this.state.lightningTalks.map((currentLightningTalk) => {
+      // if the id in the parameters equals the id of the current objects ID then place back into the array
+      if (currentLightningTalk.id !== id) {
+        return currentLightningTalk
+      }
+      // whatever remains (the one whose ID does match), += 1 votes of that object
+        const nextLightningTalk = {...currentLightningTalk, votes: currentLightningTalk.votes + 1,
+        };
+    return nextLightningTalk
+    })
+// set new state of lightningTalks to equal the result of the new array above (the .map)
+  this.setState({lightningTalks: nextLightningTalks})
+  }
+
+  decrementInApp = (id) => {
+    const nextLightningTalks = this.state.lightningTalks.map((currentLightningTalk) => {
+      if (currentLightningTalk.id !== id) {
+        return currentLightningTalk
+      }
+        const nextLightningTalk = {...currentLightningTalk, votes: currentLightningTalk.votes - 1,
+        };
+    return nextLightningTalk
+    })
+  this.setState({lightningTalks: nextLightningTalks})
+  }
+
   // now the state of lightning talks depends on what is on the API. Below there is a loop(.map) which is set by componentDidMount
   render() {
+
     return (
       <div>
         <Form />
           <div className="talks">
             {this.state.lightningTalks.map((talk) => {
-              return <LightningTalk lightningTalk={talk} />
+              return <LightningTalk lightningTalk={talk} incrementInApp={this.incrementInApp} decrementInApp={this.decrementInApp}/>
             })}
           </div>
        </div>
