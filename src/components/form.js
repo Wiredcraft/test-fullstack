@@ -5,6 +5,7 @@ import React from 'react';
 class Form extends React.Component {
    constructor(props){
     super(props);
+    this.onSubmit = this.onSubmit.bind(this)
       this.state = {
         title: '',
         description: ''
@@ -13,14 +14,16 @@ class Form extends React.Component {
 // on submit, time is logged (new Date) and state of title and description is changed
    onSubmit= (e) => {
     e.preventDefault()
-    // current time is saved to send to API
-    const time = new Date()
+
+    const titleDescription = this.state
     // call onSubmit in LightningTalk so that new talk is added from form
-    this.props.onSubmitToLightningTalk()
+
+    this.props.postInApp(titleDescription)
    }
 
 // the values of the title and description (this.title) are set to whatever is typed into the input forms (setState... event.target.value) as it is being typed
   render() {
+    console.log('current state', this.state)
     return (
       <form>
         <input
@@ -32,7 +35,7 @@ class Form extends React.Component {
         placeholder="Enter its description"
         value={this.state.description}
         onChange={e => this.setState({description: e.target.value})} />
-      {/*when the button is clicked, call the onSubmit function above. E (event) is passed into function to prevent default and to send values in forms to LightningTalk*/}
+      {/*when the button is clicked, call the onSubmit function above. E (event) is passed into onSubmit function (above)*/}
         <br />
         <button onClick={e => this.onSubmit(e)}>Submit Talk</button>
       </form>

@@ -25,6 +25,25 @@ class App extends React.Component {
     });
   }
 
+// sends a post request to the API
+  postInApp = (titleDescription) => {
+    const title = titleDescription.title
+    const description = titleDescription.description
+    const votes = 0
+
+      fetch("http://localhost:3000/talks", {
+        method: "POST",
+        body: {
+          title: title,
+          description: description,
+          votes: votes
+        }
+      })
+      .then(response => response.json())
+      .then((data) => {
+         console.log(data);
+      });
+  }
 
 // increments/decrements the votes in an object of lightningTalks
   incrementInApp = (id) => {
@@ -60,7 +79,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <Form />
+        <Form postInApp={this.postInApp}/>
           <div className="talks">
             {this.state.lightningTalks.map((talk) => {
               return <LightningTalk lightningTalk={talk} incrementInApp={this.incrementInApp} decrementInApp={this.decrementInApp}/>
