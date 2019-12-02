@@ -17,6 +17,8 @@ class App extends React.Component {
     fetch("http://localhost:3000/talks.json")
     .then(response => response.json())
     .then((data) => {
+      // sorts the data when component mounts from largest to smallest votes
+      data.sort((a, b) => b.votes - a.votes)
       this.setState((state) => {
         return {
           lightningTalks: data
