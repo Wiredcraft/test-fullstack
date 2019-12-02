@@ -1,5 +1,6 @@
 import React from "react"
 import Buttons from './buttons.js';
+import './lightning.css';
 
 // votes initial state is set to 0 as all lightning talks will start with zero votes. Title and description also set to an empty string until API sets state
 class LightningTalk extends React.Component {
@@ -20,8 +21,8 @@ class LightningTalk extends React.Component {
     return (
         <div className="lightning-talk-item">
           <div className="lt-text">
-            <div className="lt-title"> {this.props.lightningTalk.title}</div>
-            <div className="lt-description"> {this.props.lightningTalk.description}</div>
+            <div className="lt-title"> Title: {this.props.lightningTalk.title}</div>
+            <div className="lt-description"> Title: {this.props.lightningTalk.description}</div>
           </div>
         {/*increment= and decrement= (defined as a prop of Buttons in Buttons class) equals the increment and decrement function of this (LightningTalk) component. This means the state of votes changes onClick of up-vote/down-vote buttons*/}
           <Buttons incrementInLightning={this.incrementInLightning} decrementInLightning={this.decrementInLightning} votes={this.props.lightningTalk.votes}/>

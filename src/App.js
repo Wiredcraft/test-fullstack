@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import LightningTalk from './components/lightning-talk-component.js';
 import Form from './components/form.js';
 
