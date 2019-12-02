@@ -60,6 +60,8 @@ class App extends React.Component {
         };
     return nextLightningTalk
     })
+    // sorts when number of votes increases
+    nextLightningTalks.sort((a, b) => b.votes - a.votes)
 // set new state of lightningTalks to equal the result of the new array above (the .map)
   this.setState({lightningTalks: nextLightningTalks})
   }
@@ -73,6 +75,9 @@ class App extends React.Component {
         };
     return nextLightningTalk
     })
+     // sorts when number of votes decreases
+    nextLightningTalks.sort((a, b) => b.votes - a.votes)
+
   this.setState({lightningTalks: nextLightningTalks})
   }
 
