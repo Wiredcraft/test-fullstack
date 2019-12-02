@@ -5,12 +5,12 @@ import Buttons from './buttons.js';
 class LightningTalk extends React.Component {
 
 // send the id of the lightningTalk selected to the function called in App
-   increment = (e) => {
+   incrementInLightning = (e) => {
     const targetId = this.props.lightningTalk.id
     this.props.incrementInApp(targetId)
   }
 
-   decrement = (e) => {
+   decrementInLightning = (e) => {
      const targetId = this.props.lightningTalk.id
      this.props.decrementInApp(targetId)
   }
@@ -24,7 +24,7 @@ class LightningTalk extends React.Component {
             <div className="lt-description"> {this.props.lightningTalk.description}</div>
           </div>
         {/*increment= and decrement= (defined as a prop of Buttons in Buttons class) equals the increment and decrement function of this (LightningTalk) component. This means the state of votes changes onClick of up-vote/down-vote buttons*/}
-          <Buttons increment={this.increment} decrement={this.decrement} votes={this.props.lightningTalk.votes}/>
+          <Buttons incrementInLightning={this.incrementInLightning} decrementInLightning={this.decrementInLightning} votes={this.props.lightningTalk.votes}/>
         </div>
       )
     }

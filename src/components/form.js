@@ -23,7 +23,6 @@ class Form extends React.Component {
 
 // the values of the title and description (this.title) are set to whatever is typed into the input forms (setState... event.target.value) as it is being typed
   render() {
-    console.log('current state', this.state)
     return (
       <form>
         <input
