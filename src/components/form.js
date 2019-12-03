@@ -1,4 +1,5 @@
 import React from 'react';
+import './form.css';
 
 // the initial state of title and description are an empty string since the form is empty and the inputted values must be a string
 
@@ -24,17 +25,23 @@ class Form extends React.Component {
 // the values of the title and description (this.title) are set to whatever is typed into the input forms (setState... event.target.value) as it is being typed
   render() {
     return (
-      <form>
-        <input
-        placeholder="Enter your talk title"
-        value={this.state.title}
-        onChange={e => this.setState({title: e.target.value})} />
+      <form className="form-container">
+        <label>
+        <p className="form-title">Title:</p>
+          <input className="input-title"
+          placeholder="enter a title"
+          value={this.state.title}
+          onChange={e => this.setState({title: e.target.value})} />
+        </label>
         <br />
-        <input
-        placeholder="Enter its description"
-        value={this.state.description}
-        onChange={e => this.setState({description: e.target.value})} />
-      {/*when the button is clicked, call the onSubmit function above. E (event) is passed into onSubmit function (above)*/}
+        <label>
+        <p className="form-description">Description:</p>
+          <input className="input-description"
+          placeholder="enter a description"
+          value={this.state.description}
+          onChange={e => this.setState({description: e.target.value})} />
+        {/*when the button is clicked, call the onSubmit function above. E (event) is passed into onSubmit function (above)*/}
+        </label>
         <br />
         <button onClick={e => this.onSubmit(e)}>Submit Talk</button>
       </form>

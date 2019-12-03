@@ -1,0 +1,22 @@
+.lt-buttons>button {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #aaaaaa;
+  box-shadow: 1px 2px 1px #cccccc;
+}
+.button-up {
+  background: #5fe038;
+
+}
+
+.button-down {
+  background: #ff1414;
+}
+
+
+
+

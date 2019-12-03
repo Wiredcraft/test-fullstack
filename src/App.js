@@ -1,6 +1,7 @@
 import React from 'react';
 import LightningTalk from './components/lightning-talk-component.js';
 import Form from './components/form.js';
+import './App.css'
 
 // initialized state of App to hold an empty lightningTalks compoennt. componentDidMount sets its state depends
 class App extends React.Component {
@@ -84,14 +85,17 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="container">
+        <h1>Lightning Talks!</h1>
+            <div className="talks">
+              {this.state.lightningTalks.votes}
+                {this.state.lightningTalks.map((talk) => {
+                  return <LightningTalk lightningTalk={talk} incrementInApp={this.incrementInApp} decrementInApp={this.decrementInApp}/>
+                })}
+            </div>
+          <h3 className="form-header"> Submit your talk</h3>
         <Form postInApp={this.postInApp}/>
-          <div className="talks">
-            {this.state.lightningTalks.map((talk) => {
-              return <LightningTalk lightningTalk={talk} incrementInApp={this.incrementInApp} decrementInApp={this.decrementInApp}/>
-            })}
-          </div>
-       </div>
+      </div>
     )
   }
 }

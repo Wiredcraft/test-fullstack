@@ -1,0 +1,29 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 0 auto;
+}
+
+input {
+  height: 38px;
+  font-size: 11px;
+  text-align: center;
+  width: 100%;
+}
+
+form>button {
+  padding: 16px;
+  margin-bottom:35px;
+  font-size:12px;
+  font-weight:bold;
+  background-color: beige;
+  border-radius: 16px;
+}
+
+.form-container p {
+  font-size:13px;
+  font-weight: lighter;
+  margin-bottom: 3px;
+  color: #7f7f7f;
+}

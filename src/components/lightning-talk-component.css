@@ -1,0 +1,42 @@
+.lightning-talk-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  background: white;
+  padding: 8px 16px;
+  border: 1px solid rgb(235,235,235);
+  width: 587px;
+  margin: 8px auto;
+}
+
+
+.lt-text {
+  flex-grow: 1;
+}
+
+.lt-votes-container {
+  display: flex;
+  flex-direction: row;
+}
+
+h4.lt-title {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  margin-bottom: 10px;
+  line-height: 12px;
+}
+
+.lt-description {
+  padding-top: 9px;
+}
+
+.lt-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+p.lt-votes-number {
+  padding: 16px;
+  padding-right: 23px;
+}
