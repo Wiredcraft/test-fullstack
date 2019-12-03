@@ -13,7 +13,7 @@ class App extends React.Component {
 
 // componentDidMount is called and sets the state of the lightningTalks array in constructor(props)
   componentDidMount = () => {
-    fetch("http://localhost:3000/talks.json")
+    fetch("http://localhost:4000/talks.json")
     .then(response => response.json())
     .then((data) => {
       // sorts the data when component mounts from largest to smallest votes
@@ -28,18 +28,18 @@ class App extends React.Component {
 
 // sends a post request to the API
   postInApp = (titleDescription) => {
-    const title = titleDescription.title
-    const description = titleDescription.description
-    const votes = 0
+    const talk = {}
+    talk.title = titleDescription.title
+    talk.description = titleDescription.description
+    talk.votes = 0
 
-      fetch("http://localhost:3000/talks", {
+      fetch("http://localhost:4000/talks", {
+        headers: {
+          "Content-Type": "application/json"
+        },
         method: "POST",
-        body: {
-          title: title,
-          description: description,
-          votes: votes
-        }
-      })
+        body: JSON.stringify({ "talk": talk })
+        })
       .then(response => response.json())
       .then((data) => {
          console.log(data);
