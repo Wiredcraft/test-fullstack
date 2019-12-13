@@ -1,0 +1,112 @@
+body{
+  margin: 0;
+  padding: 1rem;
+  font-family: "NEXTBook",-apple-system,"Avenir next",Avenir,Roboto,Noto,"Helvetica neue",Helvetica,Arial,Sans-serif;
+}
+
+#app{
+  width: 750px;
+  margin: 0 auto;
+  padding: .4rem 0;
+}
+
+@media (max-width: 750px) and (min-width: 300px) {
+  #app{
+    width: 100%;
+    padding: 0;
+  }
+}
+
+header{
+  overflow: hidden;
+  clear: both;
+  margin-bottom: 1rem;
+  line-height: 1.2rem;
+}
+
+header *{
+  margin-left: .5rem;
+  color: #000;
+  font-size: 1rem;
+  font-weight: normal;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+header *:last-child{
+  float: right;
+}
+
+header > a:first-child{
+  float: left;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #FF4847;
+  margin-left: 0;
+}
+
+label{
+  display: block;
+  margin-bottom: 1rem;
+}
+
+input, textarea{
+  display: block;
+  border: 0 none;
+  border-bottom: 1px solid #FF4847;
+  width: 100%;
+  font-size: 1rem;
+  color: #FF4847;
+  outline: none;
+}
+
+.error{
+  color: #FF4847;
+}
+
+button{
+  color: #FF4847;
+  border: 1px solid #FF4847;
+  background: #fff;
+  font-size: 1rem;
+  padding: .3rem .5rem;
+}
+
+button:hover, button:checked{
+  color: #fff;
+  background: #FF4847;
+  outline: none;
+}
+
+.vote{
+  position: absolute;
+  margin: -.2rem .3rem 0 0;
+  width: 0;
+  height: 0;
+  border: .4rem solid transparent;
+  border-bottom: .8rem solid #FFA3A3;
+  cursor: pointer;
+}
+
+.vote:hover, .voted {
+  border-bottom: .8rem solid #FF4847;
+}
+
+.title {
+  cursor: pointer;
+  margin-left: 1.2rem;
+}
+
+.title:hover {
+  color: #FF4847;
+}
+
+.description {
+  white-space: pre-line;
+  cursor: pointer;
+}
+
+.info {
+  color: #999;
+  font-size: 0.8rem;
+}

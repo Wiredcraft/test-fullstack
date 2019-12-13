@@ -1,0 +1,33 @@
+{
+  "name": "fullstack-test",
+  "private": true,
+  "version": "0.0.0",
+  "devDependencies": {
+    "eslint": "*",
+    "eslint-config-recommended": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-node": "*",
+    "jest": "*"
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "browser": true,
+      "es2020": true,
+      "jest": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "ignorePatterns": [
+      "public/"
+    ]
+  },
+  "jest": {
+    "collectCoverage": true,
+    "testRegex": "/*\\.test\\.js$",
+    "coveragePathIgnorePatterns": [
+      "/__tests__/"
+    ]
+  }
+}
