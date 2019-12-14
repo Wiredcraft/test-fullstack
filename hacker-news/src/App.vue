@@ -9,7 +9,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+
 import Navigation from '@/components/MainNavigation.vue';
+
+Vue.use(VueAxios, axios);
 
 export default Vue.extend({
   name: 'app',
@@ -35,7 +40,6 @@ export default Vue.extend({
 }
 
 #main-content {
-  padding-top: 8vh;
   width: 100vw;
 }
 
