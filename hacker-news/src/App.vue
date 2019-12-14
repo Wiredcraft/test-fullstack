@@ -1,29 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <Navigation/>
+    <transition name="fade">
+      <router-view id="main-content"></router-view>
+    </transition>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Navigation from '@/components/MainNavigation.vue';
 
 export default Vue.extend({
   name: 'app',
   components: {
-    HelloWorld,
+    Navigation,
   },
 });
 </script>
 
 <style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#main-content {
+  padding-top: 8vh;
+  width: 100vw;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+  transition: opacity 0s;
 }
 </style>
