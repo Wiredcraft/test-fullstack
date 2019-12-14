@@ -1,11 +1,12 @@
 // server.js
-
 const express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
     cors = require('cors'),
     mongoose = require('mongoose'),
     config = require('./config/DB');
+
+const postRoutes = require('./expressRoutes/postRoutes');
 
 mongoose.Promise = global.Promise;
 mongoose.set('useNewUrlParser', true);
@@ -18,6 +19,8 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use('/posts', postRoutes);
 
 var port = process.env.PORT || 4000;
 

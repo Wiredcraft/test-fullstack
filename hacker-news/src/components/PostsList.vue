@@ -1,8 +1,9 @@
 <template>
   <div>
     <ul>
-      <li v-for="post in posts" :key="post._id">
+      <li v-for="(post, index) in posts" :key="post._id">
         <Post
+          :index="index"
           :postData="post"></Post>
       </li>
     </ul>
@@ -25,7 +26,7 @@ export default {
   components: {
     Post,
   },
-  mthods: {
+  methods: {
     getPosts() {
       const uri = 'http://localhost:4000/posts/fetch';
       this.axios.get(uri).then((response) => {

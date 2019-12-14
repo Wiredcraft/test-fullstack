@@ -28,7 +28,7 @@
         </ul>
         <p id="top-nav__account">
           <router-link
-            :to="{ name: 'login' }"
+            :to="{ name: 'auth' }"
             class="router-link">
             Login
           </router-link>
