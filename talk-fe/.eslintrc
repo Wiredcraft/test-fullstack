@@ -1,0 +1,43 @@
+{
+  "extends": ["airbnb", "prettier"],
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "describe": true,
+    "expect": true,
+    "it": true,
+    "test": true
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/react-in-jsx-scope": [0],
+    "react/jsx-filename-extension": [0],
+    "react/prop-types": [0],
+    "class-methods-use-this": [0],
+    "react/prefer-stateless-function": [0],
+    "react/jsx-one-expression-per-line": [0],
+    "consistent-return": [0],
+    "no-param-reassign": [0],
+    "no-lonely-if": [0],
+    "no-return-await": [0],
+    "no-use-before-define": [0],
+    "no-underscore-dangle": [0],
+    "global-require": [0],
+    "camelcase": [0],
+    "react/jsx-no-bind": [0],
+    "no-unused-expressions": [0],
+    "react/destructuring-assignment": [0],
+    "react/no-array-index-key": [0],
+    "no-nested-ternary": [0],
+    "quotes": [0, "single"],
+    "react/forbid-prop-types": [0],
+    "prefer-rest-params": [0],
+    "jsx-a11y/accessible-emoji": [0],
+    "jsx-a11y/click-events-have-key-events": [0],
+    "jsx-a11y/no-static-element-interactions": [0],
+    "react/jsx-props-no-spreading": [0]
+  },
+  "parser": "babel-eslint"
+}

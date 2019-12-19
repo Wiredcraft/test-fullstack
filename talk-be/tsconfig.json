@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    /**********************************基本选项 ************************************/
+    // baseUrl
+    "baseUrl": "./",
+    // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "target": "es2017",
+    // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
+    "module": "commonjs",
+    // 生成相应的 '.d.ts' 文件
+    "declaration": true,
+    // 删除编译后的所有的注释
+    "removeComments": true,
+    // dist输出目录
+    "outDir": "./dist",
+    // tsconfig.build.tsbuildinfo
+    "incremental": true,
+    // 生成相应的 '.map' 文件
+    "sourceMap": true,
+    /******************************   额外的检查     ****************************************/
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    /****************************************** Decorator *********************************************/
+    // 为装饰器提供元数据的支持
+    "emitDecoratorMetadata": true,
+    // 启用装饰器
+    "experimentalDecorators": true
+  },
+  "exclude": ["node_modules", "dist"]
+}

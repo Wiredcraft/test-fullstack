@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-development
+spec:
+  template:
+    metadata:
+      labels:
+        app: nodejs
+        type: backend
+    spec:
+      containers:
+        - name: nodejs-container
+          image: nizhengyiming-docker.pkg.coding.net/419-be/419-be/419-be:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: nodejs-configmap
+            - secretRef:
+                name: nodejs-secretmap
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs
+      type: backend

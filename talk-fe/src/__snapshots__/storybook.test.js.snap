@@ -1,0 +1,246 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Talk default 1`] = `
+<div
+  style={
+    Object {
+      "background": "#4FD2DA",
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="talk"
+  >
+    <span
+      className="index"
+    >
+      NaN
+      .
+    </span>
+    <span
+      className="like"
+      onClick={[Function]}
+    >
+      ❤️
+      1000
+    </span>
+    <span
+      className="title"
+    >
+      title
+    </span>
+    <span
+      className="description"
+    >
+      description
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots TalkList empty talks 1`] = `
+<div
+  style={
+    Object {
+      "background": "#4FD2DA",
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="talkList"
+  >
+    <span>
+      no talk, please submit some 
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Storyshots TalkList list of talks 1`] = `
+<div
+  style={
+    Object {
+      "background": "#4FD2DA",
+      "padding": "3rem",
+    }
+  }
+>
+  <div
+    className="talkList"
+  >
+    <div
+      className="talk"
+    >
+      <span
+        className="index"
+      >
+        1
+        .
+      </span>
+      <span
+        className="like"
+        onClick={[Function]}
+      >
+        ❤️
+        1
+      </span>
+      <span
+        className="title"
+      >
+        title
+      </span>
+      <span
+        className="description"
+      >
+        ssdasssssssd
+      </span>
+    </div>
+    <div
+      className="talk"
+    >
+      <span
+        className="index"
+      >
+        2
+        .
+      </span>
+      <span
+        className="like"
+        onClick={[Function]}
+      >
+        ❤️
+        1
+      </span>
+      <span
+        className="title"
+      >
+        title
+      </span>
+      <span
+        className="description"
+      >
+        ssdasssssssd
+      </span>
+    </div>
+    <div
+      className="talk"
+    >
+      <span
+        className="index"
+      >
+        3
+        .
+      </span>
+      <span
+        className="like"
+        onClick={[Function]}
+      >
+        ❤️
+        1
+      </span>
+      <span
+        className="title"
+      >
+        title
+      </span>
+      <span
+        className="description"
+      >
+        ssdasssssssd
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots TaskListRouter default 1`] = `
+<div>
+  <div
+    className="talkList"
+  >
+    <div
+      className="talk"
+    >
+      <span
+        className="index"
+      >
+        1
+        .
+      </span>
+      <span
+        className="like"
+        onClick={[Function]}
+      >
+        ❤️
+        1
+      </span>
+      <span
+        className="title"
+      >
+        title
+      </span>
+      <span
+        className="description"
+      >
+        ssdasssssssd
+      </span>
+    </div>
+    <div
+      className="talk"
+    >
+      <span
+        className="index"
+      >
+        2
+        .
+      </span>
+      <span
+        className="like"
+        onClick={[Function]}
+      >
+        ❤️
+        1
+      </span>
+      <span
+        className="title"
+      >
+        title
+      </span>
+      <span
+        className="description"
+      >
+        ssdasssssssd
+      </span>
+    </div>
+    <div
+      className="talk"
+    >
+      <span
+        className="index"
+      >
+        3
+        .
+      </span>
+      <span
+        className="like"
+        onClick={[Function]}
+      >
+        ❤️
+        1
+      </span>
+      <span
+        className="title"
+      >
+        title
+      </span>
+      <span
+        className="description"
+      >
+        ssdasssssssd
+      </span>
+    </div>
+  </div>
+</div>
+`;

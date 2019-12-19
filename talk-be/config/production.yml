@@ -1,0 +1,7 @@
+server:
+  loggerLevel: ['error', 'warn']
+  cors: { origin: 'http://xxx.com' }
+
+db:
+  synchronize: false
+  loggerLevel: ['error', 'schema']

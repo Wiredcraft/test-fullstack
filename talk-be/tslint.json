@@ -1,0 +1,18 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint-config-alloy", "tslint-config-prettier"],
+  "jsRules": {
+    "no-unused-expression": true
+  },
+  "rules": {
+    "quotemark": [true, "single"],
+    "no-magic-numbers": false,
+    "no-parameter-properties": false,
+    "no-unused-variable": true,
+    "max-line-length": [true, 120],
+    "ordered-imports": [false],
+    "member-access": [false],
+    "no-invalid-this": [false]
+  },
+  "rulesDirectory": []
+}

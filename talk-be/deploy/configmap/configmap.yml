@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nodejs-configmap
+data:
+  NODE_ENV: 'production'
+  RDS_HOSTNAME: 'postgres-db.default.svc.cluster.local'
+  RDS_PORT: '5432'
+  DB_SYNC: 'true'
