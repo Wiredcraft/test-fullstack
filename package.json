@@ -65,6 +65,15 @@
       "prettier/@typescript-eslint"
     ],
     "rules": {
+      "import/extensions": [
+        "error",
+        {
+          "tsx": "never"
+        }
+      ],
+      "@typescript-eslint/explicit-function-return-type": ["warn", {
+        "allowExpressions": true
+      }],
       "react/jsx-filename-extension": [
         "error",
         {
@@ -73,12 +82,7 @@
           ]
         }
       ],
-      "import/extensions": [
-        "error",
-        {
-          "tsx": "never"
-        }
-      ]
+      "react/prop-types": "off"
     }
   }
 }
