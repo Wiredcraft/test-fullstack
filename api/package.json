@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "echo 'node dev yet'"
+    "dev": "echo 'no dev yet'",
+    "test": "echo 'no test yet'"
   }
 }

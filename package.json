@@ -11,7 +11,10 @@
   "scripts": {
     "dev": "yarn dev:api & yarn dev:web",
     "dev:api": "yarn workspace api dev",
-    "dev:web": "yarn workspace web dev"
+    "dev:web": "yarn workspace web dev",
+    "test": "yarn test:api & yarn test:web",
+    "test:api": "yarn workspace api test",
+    "test:web": "yarn workspace web test"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
