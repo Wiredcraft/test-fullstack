@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "pm2 start dist/index.js",
     "dev": "yarn dev:prisma & yarn dev:server",
     "dev:server": "ts-node-dev src/index.ts",
     "dev:prisma": "prisma2 dev",
-    "test": "jest"
+    "test": "jest",
+    "build": "tsc"
   },
   "dependencies": {
     "@prisma/photon": "2.0.0-preview019",
@@ -41,7 +43,8 @@
     "prisma2": "2.0.0-preview019",
     "supertest": "4.0.2",
     "ts-node": "8.5.4",
-    "ts-node-dev": "1.0.0-pre.44"
+    "ts-node-dev": "1.0.0-pre.44",
+    "typescript": "3.7.4"
   },
   "babel": {
     "presets": [
