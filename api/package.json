@@ -40,7 +40,7 @@
     "@types/node": "13.1.4",
     "@types/supertest": "2.0.8",
     "jest": "24.9.0",
-    "pm2": "^4.2.1",
+    "pm2": "4.2.1",
     "prisma2": "2.0.0-preview019",
     "supertest": "4.0.2",
     "ts-node": "8.5.4",
