@@ -1,0 +1,26 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+  default  = true
+}
+
+generator photon {
+  provider = "photonjs"
+}
+
+model User {
+  id         String  @default(cuid()) @id
+  name       String  @unique
+  password   String
+  talks      Talk[]
+  votedTalks Talk[]  @relation(name: "voted")
+}
+
+model Talk {
+  id           String   @default(cuid()) @id
+  createdAt    DateTime @default(now())
+  title        String
+  description  String
+  author       User
+  votedAuthors User[]   @relation(name: "voted")
+}
