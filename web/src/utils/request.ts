@@ -1,6 +1,7 @@
 import axios from "axios";
 import { STORE_USER_INFO } from "../constants/auth";
 
+// TODO: read from env
 const BASE_URL = "http://localhost:8383";
 const instance = axios.create({
   baseURL: BASE_URL,
