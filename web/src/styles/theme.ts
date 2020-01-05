@@ -19,6 +19,8 @@ const lightTheme: Theme = {
     background: {
       base: colors.grey["5"],
       light: colors.white,
+      lighter: colors.primary["10"],
+      lightest: colors.primary["5"],
       deep: colors.grey["10"]
     },
     border: {
@@ -30,6 +32,10 @@ const lightTheme: Theme = {
       base: colors.grey["80"],
       light: colors.grey["50"],
       deep: colors.grey["90"]
+    },
+    icon: {
+      base: colors.grey["70"],
+      light: colors.grey["40"]
     }
   }
 };
@@ -43,7 +49,9 @@ const darkTheme: Theme = {
     },
     background: {
       base: colors.grey["90"],
-      light: colors.grey["80"]
+      light: colors.grey["80"],
+      lighter: colors.primary["70"],
+      lightest: colors.primary["40"]
     },
     border: {
       base: colors.grey["10"],
@@ -52,6 +60,10 @@ const darkTheme: Theme = {
     text: {
       base: colors.grey["5"],
       light: colors.grey["20"]
+    },
+    icon: {
+      base: colors.grey["40"],
+      light: colors.grey["60"]
     }
   }
 };
@@ -61,4 +73,4 @@ export const themes = {
   [Themes.LIGHT]: lightTheme
 };
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = (): DefaultTheme => useContext(ThemeContext);

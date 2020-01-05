@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test <Typography /> should match snapshot 1`] = `
+.c0 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 500;
+  color: #17171D;
+}
+
+<h4
+  class="c0"
+>
+  Test
+</h4>
+`;
+
+exports[`test <Typography /> should match snapshot 2`] = `
+.c0 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #17171D;
+}
+
+<div
+  class="c0"
+>
+  Test
+</div>
+`;
+
+exports[`test <Typography /> should match snapshot 3`] = `
+.c0 {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #636477;
+}
+
+<span
+  class="c0"
+>
+  Test
+</span>
+`;
