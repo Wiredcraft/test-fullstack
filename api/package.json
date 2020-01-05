@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "yarn dev:prisma & yarn dev:server",
     "dev:server": "ts-node-dev src/index.ts",
-    "dev:prisma": "./node_modules/.bin/prisma2 dev",
-    "test": "jest"
+    "dev:prisma": "prisma2 dev",
+    "test": "NODE_ENV=test jest --forceExit --runInBand"
   },
   "dependencies": {
     "@prisma/photon": "2.0.0-preview019",
