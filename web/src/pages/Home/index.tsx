@@ -41,7 +41,7 @@ const Home: FC = () => {
         onVote={async item => {
           if (!user) {
             history.push(LOGIN, {
-              from: `/?vote=${item.id}`
+              from: `/?vote=${item.id}` // TODO: Figure out if need to help users auto vote after login
             });
             return;
           }
