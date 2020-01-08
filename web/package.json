@@ -8,7 +8,7 @@
     "build": "parcel build src/index.html"
   },
   "dependencies": {
-    "axios": "0.19.0",
+    "axios": "0.19.1",
     "immer": "5.1.0",
     "lodash": "4.17.15",
     "polished": "3.4.2",
