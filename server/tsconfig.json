@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "paths": {
+      "@libs/db": [
+        "libs/db/src"
+      ],
+      "@libs/db/*": [
+        "libs/db/src/*"
+      ],
+      "@libs/common": [
+        "libs/common/src"
+      ],
+      "@libs/common/*": [
+        "libs/common/src/*"
+      ],
+      "@libs/crud": [
+        "libs/crud/src"
+      ],
+      "@libs/crud/*": [
+        "libs/crud/src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

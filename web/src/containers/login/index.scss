@@ -1,0 +1,10 @@
+.mod-form{
+  .mod-form-field{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    label{
+      width: 100px;
+    }
+  }
+}

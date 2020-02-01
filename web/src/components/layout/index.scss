@@ -1,0 +1,21 @@
+.page{
+  padding: 10px;
+}
+
+.mod-top{
+  background-color: rgb(255, 102, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  overflow: hidden;
+  min-width: 500px;
+  .logo{
+    background-image: paint(Talk);
+    padding-left: 35px;
+    display: block;
+    cursor: pointer;
+  }
+  
+}
