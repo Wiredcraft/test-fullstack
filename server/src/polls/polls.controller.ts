@@ -8,6 +8,7 @@ import { Poll } from '@libs/db/models/poll.model';
 import { UserDecorator } from 'src/auth/user.decorator';
 import { UserDocument } from '@libs/db/models/user.model';
 import { PollDto } from './poll.dto';
+import { APIS_PATH } from '../config';
 
 @Crud({
   model: Crud,
@@ -15,7 +16,7 @@ import { PollDto } from './poll.dto';
     create: false
   }
 })
-@Controller('polls')
+@Controller(`${APIS_PATH}polls`)
 @ApiTags('polls')
 export class PollsController {
   constructor(
