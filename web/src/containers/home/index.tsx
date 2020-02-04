@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import fetch from 'isomorphic-unfetch';
 import _ from 'lodash';
 import {Poll} from '../../components/poll';
-
+import { SERVER_PATH } from '../../config';
 
 function Home():JSX.Element {
   let history = useHistory();
@@ -26,13 +26,13 @@ function Home():JSX.Element {
       "page": 1,
       "populate": "desc"
     };
-    const res = await fetch(`http://localhost:3000/polls?query=${JSON.stringify(options)}`);
+    const res = await fetch(`${SERVER_PATH}polls?query=${JSON.stringify(options)}`);
     const data = await res.json();
     setList(data.data);
   }
 
   async function deletePoll(id) {
-    const res = await fetch(`http://localhost:3000/polls/${id}`, {
+    const res = await fetch(`${SERVER_PATH}polls/${id}`, {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ function Home():JSX.Element {
 
 
   async function votePoll(id, poll) {
-    const res = await fetch(`http://localhost:3000/polls/${id}`, {
+    const res = await fetch(`${SERVER_PATH}polls/${id}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'

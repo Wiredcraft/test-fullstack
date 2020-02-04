@@ -31,7 +31,6 @@ const port = new FallbackPort(8000);
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-const isPro = process.env.NODE_ENV === 'production';
 
 module.exports = {
 	module: {
@@ -85,7 +84,7 @@ module.exports = {
 	output: {
 		chunkFilename: '[name].js',
 		filename: '[name].js',
-		path: isPro ? path.join(__dirname, './build/') : path.join(__dirname, './dist/')
+		path: path.join(__dirname, './build/')
 	},
 
 	resolve: {
@@ -111,10 +110,5 @@ module.exports = {
 		  toType: 'dir'
 		}
 	  ], {})
-  ],
-  devServer: {
-    contentBase: "./dist",
-    port: port.getPort(),
-    hot: true
-  }
+  ]
 };

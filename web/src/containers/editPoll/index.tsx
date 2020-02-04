@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import fetch from 'isomorphic-unfetch';
 import _ from 'lodash';
-
+import { SERVER_PATH } from '../../config';
 
 function EditPoll():JSX.Element {
   let history = useHistory()
@@ -18,7 +18,7 @@ function EditPoll():JSX.Element {
 
   async function postPoll(params) {
     const token = sessionStorage.getItem('token');
-    const res = await fetch('http://localhost:3000/polls', {
+    const res = await fetch(`${SERVER_PATH}polls`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',

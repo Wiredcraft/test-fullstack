@@ -6,7 +6,7 @@ import { User } from '@libs/db/models/user.model';
 
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt-poll') {
   constructor(
-    @InjectModel(User) private userModel: ReturnModelType<typeof User>
+    @InjectModel(User) private model: ReturnModelType<typeof User>
   ) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -16,6 +16,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt-poll') {
 
   async validate({id}) {
     console.log('validatevalidate', id)
-    return await this.userModel.findById(id);
+    return await this.model.findById(id);
   }
 }

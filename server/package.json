@@ -87,9 +87,11 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "@libs/db/(.*)": "<rootDir>/libs/db/src/$1",
-      "@libs/crud/(.*)": "<rootDir>/libs/crud/src/$1",
-      "@libs/common/(.*)": "<rootDir>/libs/common/src/$1"
+      "^@libs/crud(.*)$": "<rootDir>/libs/crud/src/$1",
+      "^@libs/common(.*)$": "<rootDir>/libs/common/src$1",
+      "^@libs/db(.*)$": "<rootDir>/libs/db/src$1",
+      "^src/auth/(.*)$": "<rootDir>/src/auth/$1",
+      "src/config": "<rootDir>/src/config.ts"
     }
   }
 }

@@ -3,10 +3,7 @@ import { WsAdapter } from '@nestjs/platform-ws';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { AnyExceptionsFilter } from './filters/any-exception.filter';
-import * as dotenv from 'dotenv';
-dotenv.config();
-
-const port: any = process.env.PORT;
+import { SERVER_PORT } from './config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -21,6 +18,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api-docs', app, document);
   app.useWebSocketAdapter(new WsAdapter(app));
-  await app.listen(port);
+  await app.listen(SERVER_PORT);
 }
 bootstrap();

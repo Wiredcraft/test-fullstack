@@ -1,4 +1,4 @@
-import { prop, modelOptions } from '@typegoose/typegoose';
+import { prop, modelOptions, getModelForClass } from '@typegoose/typegoose';
 import { ApiProperty, ApiPropertyOptions } from '@nestjs/swagger';
 
 
@@ -27,3 +27,4 @@ export class Poll {
   userName: string
 
 }
+

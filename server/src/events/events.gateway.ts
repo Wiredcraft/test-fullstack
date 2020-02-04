@@ -9,9 +9,7 @@ import {
 } from '@nestjs/websockets';
 import { Server } from 'ws';
 import * as dotenv from 'dotenv';
-dotenv.config();
-
-const port: any = process.env.SOCKET_PORT;
+import { SOCKET_PORT } from 'src/config';
 
 
 @WebSocketGateway(8080)

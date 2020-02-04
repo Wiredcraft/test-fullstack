@@ -9,9 +9,10 @@ import { LoginDto } from './dtos/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { UserDecorator } from './user.decorator';
 import { DeleteUserDto } from './dtos/delete.dto';
+import { APIS_PATH } from '../config';
 
 
-@Controller('auth')
+@Controller(`${APIS_PATH}auth`)
 @ApiTags('auth')
 export class AuthController {
   constructor(

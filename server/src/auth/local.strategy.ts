@@ -8,7 +8,7 @@ import { compareSync } from 'bcryptjs';
 
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(
-    @InjectModel(User) private userModel: ReturnModelType<typeof User>
+    @InjectModel(User) private model: ReturnModelType<typeof User>
   ) {
     super({
       usernameField: 'userName',
@@ -17,7 +17,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(userName: string, password: string) {
-    const user = await this.userModel.findOne({userName}).select('+password');
+    const user = await this.model.findOne({userName}).select('+password');
     if(!user){
       throw new BadRequestException('user is miss');
     }

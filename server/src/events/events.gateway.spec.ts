@@ -15,4 +15,8 @@ describe('EventsGateway', () => {
   it('should be defined', () => {
     expect(gateway).toBeDefined();
   });
+
+  it('should be right', () => {
+    expect([1,2,3]).toEqual([1,2,3])
+  })
 });

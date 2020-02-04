@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { Link, useHistory } from 'react-router-dom';
 import './index.scss';
+import { SERVER_PATH } from '../../config';
 
 export default function UserInfo(props: {token: string}) {
     const [userName, setUserName] = useState();
 
     async function getUser(token: string) {
-      const res = await fetch('http://localhost:3000/auth/user', {
+      const res = await fetch(`${SERVER_PATH}auth/user`, {
         method: 'get',
         headers: {
           'Content-Type': 'application/json',

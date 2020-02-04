@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { Link, useHistory } from 'react-router-dom';
+import { SERVER_PATH } from '../../config';
 import './index.scss';
 
 function Register():JSX.Element {
@@ -10,7 +11,7 @@ function Register():JSX.Element {
   const [message, setMessage] = useState();
 
   async function postRegister(params) {
-    const res = await fetch('http://localhost:3000/auth/register', {
+    const res = await fetch(`${SERVER_PATH}auth/register`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'

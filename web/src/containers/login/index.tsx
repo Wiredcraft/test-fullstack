@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import { Link, useHistory } from 'react-router-dom';
 import './index.scss';
+import { SERVER_PATH } from '../../config';
+
+
 
 function Login():JSX.Element {
   let history = useHistory()
@@ -10,7 +13,7 @@ function Login():JSX.Element {
   const [message, setMessage] = useState();
 
   async function postLogin(params) {
-    const res = await fetch('http://localhost:3000/auth/login', {
+    const res = await fetch(`${SERVER_PATH}auth/login`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
