@@ -57,12 +57,12 @@ export class AuthController {
   @ApiOperation({summary: 'find a user'})
   @UseGuards(AuthGuard('jwt-auth'))
   @ApiBearerAuth()
-  async user(@UserDecorator() user: UserDocument) {
+  async getUser(@UserDecorator() user: UserDocument) {
     return user;
   }
 
   @Get('users')
-  async users() {
+  async getUsers() {
     return await this.userModel.find();
   }
 

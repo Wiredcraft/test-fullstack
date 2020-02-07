@@ -1,22 +1,34 @@
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { EventsGateway } from './events.gateway';
 
 describe('EventsGateway', () => {
+  let app: INestApplication;
   let gateway: EventsGateway;
+  const mockClient = {
+    emit: jest.fn(),
+  };
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [EventsGateway],
     }).compile();
 
-    gateway = module.get<EventsGateway>(EventsGateway);
+    app = module.createNestApplication();
+    await app.init();
+    gateway = app.get<EventsGateway>(EventsGateway);
   });
 
-  it('should be defined', () => {
-    expect(gateway).toBeDefined();
+  afterAll(async () => {
+    await app.close();
   });
 
-  it('should be right', () => {
-    expect([1,2,3]).toEqual([1,2,3])
-  })
+  beforeEach(async () => {
+    jest.resetAllMocks();
+  });
+
+  it('server is defined', () => {
+    expect(gateway.server).not.toBeNull();
+  });
+  
 });

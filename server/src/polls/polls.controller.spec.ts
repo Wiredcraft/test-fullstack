@@ -21,7 +21,7 @@ describe('Polls Controller', () => {
     controller = module.get<PollsController>(PollsController);
   });
 
-  it('post/ create a poll', async () => {
+  it('POST/ create a poll', async () => {
     const params = {
       title: '1',
       description: '11111'
