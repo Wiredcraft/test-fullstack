@@ -4,9 +4,11 @@ import './index.scss';
 
 export default function Layout(props: { children: React.ReactNode; }) {
   return (
-    <div className="page">
+    <div className="page" data-testid="page">
       <Header />
-      {props.children}
+      <div className="container" data-testid="container">
+        {props.children}
+      </div>
     </div>
   )
 }

@@ -18,24 +18,30 @@ function EditPoll():JSX.Element {
 
   async function postPoll(params) {
     const token = sessionStorage.getItem('token');
-    const res = await fetch(`${SERVER_PATH}polls`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      },
-      body: JSON.stringify(params),
-    });
-    const data = await res.json();
-    console.log(data)
-    if(data.errors || data.message){
-      setErrors(data.errors);
-      setMessage(data.message);
-      if(data.message === 'please login'){
-        history.push('/login');
+    if(!token){
+      history.push('/login');
+    }
+    try {
+      const res = await fetch(`${SERVER_PATH}polls`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(params),
+      });
+      const data = await res.json();
+      if(data.errors || data.message){
+        setErrors(data.errors);
+        setMessage(data.message);
+        if(data.message === 'please login'){
+          history.push('/login');
+        }
+      } else {
+        history.push('/');
       }
-    } else {
-      history.push('/');
+    } catch(err) {
+      setMessage('server down');
     }
     
   }

@@ -62,6 +62,7 @@ function Home():JSX.Element {
     });
     const data = await res.json();
     if(data._id === id) {
+      alert('vote success');
       sendToWebsocket({
         event: 'events',
         data: 'vote',
@@ -72,7 +73,6 @@ function Home():JSX.Element {
   }
 
   function sendToWebsocket(params) {
-    console.log('socket.readyState', socket.readyState)
     if(socket.readyState === 1) {
       setDisable(false);
       socket.send(
@@ -106,7 +106,6 @@ function Home():JSX.Element {
       ws.onclose = () => {
         console.log('not Connected');
       }
-
     };
   }
 
@@ -120,8 +119,6 @@ function Home():JSX.Element {
     let poll = e.target.getAttribute('value') || 0;
     poll = parseInt(poll) + 1;
     votePoll(id, poll);
-    
-    
   }
 
   if(list && list.length > 0) {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import UserInfo from '../userInfo'
 import './index.scss';
 
@@ -21,8 +21,8 @@ export default function Header({}) {
   }
 
   return (
-    <div className="mod-top">
-      <h1 className="logo" onClick={gotoHome}>lightning talk</h1>
+    <div className="mod-top" data-testid="header">
+      <h1 className="logo" data-testid="logo" onClick={gotoHome}>lightning talk</h1>
       <UserInfo token={token}></UserInfo>
     </div>
   )

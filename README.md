@@ -29,6 +29,8 @@ Polling is often needed for the organizers to understand what is more interestin
   
 ### how to start it
 ```
+    brew install mongodb-community@4.2
+    brew services start mongodb-community@4.2
     npm install
     npm i -g @nestjs/cli
     cd server 

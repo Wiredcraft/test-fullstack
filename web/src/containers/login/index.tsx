@@ -13,21 +13,28 @@ function Login():JSX.Element {
   const [message, setMessage] = useState();
 
   async function postLogin(params) {
-    const res = await fetch(`${SERVER_PATH}auth/login`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(params),
-    });
-    const data = await res.json();
-    if(data.errors || data.message){
-      setErrors(data.errors);
-      setMessage(data.message);
-    } else {
-      sessionStorage.setItem('token', data.access_token);
-      history.push('/');
+    try {
+      const res = await fetch(`${SERVER_PATH}auth/login`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params),
+      });
+      const data = await res.json();
+      console.log(data)
+      if(data.errors || data.message){
+        setErrors(data.errors);
+        setMessage(data.message);
+      } else {
+        sessionStorage.setItem('token', data.access_token);
+        history.push('/');
+      }
+
+    } catch(err) {
+      setMessage('server down');
     }
+    
     
   }
 

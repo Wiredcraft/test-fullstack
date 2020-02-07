@@ -32,7 +32,7 @@ export default function UserInfo(props: {token: string}) {
     }, [props.token])
 
     return (
-      <div className="mod-user-info">
+      <div className="mod-user-info" data-testid="userInfo">
         {
             userName ? [
               <h4 key="wellcome">wellcome {userName}</h4>,

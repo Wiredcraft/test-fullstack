@@ -18,8 +18,12 @@
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@testing-library/react-hooks": "^3.2.1",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "^7.8.3",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.0",
+    "@types/jest": "^25.1.1",
     "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
@@ -38,11 +42,14 @@
     "fallback-port": "^0.1.7",
     "html-webpack-harddisk-plugin": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^25.1.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
     "nodemon": "^2.0.2",
+    "react-test-renderer": "^16.12.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
+    "ts-jest": "^25.2.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.5",
     "uglifyjs-webpack-plugin": "^2.2.0",
@@ -51,12 +58,42 @@
     "webpack-dev-server": "^3.10.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "NODE_ENV=production webpack --config webpack.config.pro.js --mode production",
+    "build": "NODE_ENV=production webpack --config webpack.config.pro.js --mode production && node app.js",
     "dev": "NODE_ENV=development webpack --mode development",
     "watch": "webpack --watch --mode development",
-    "start": "webpack-dev-server --open --mode development --hot"
+    "start": "webpack-dev-server --open --mode development --hot",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
   },
   "author": "cieldon",
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "rootDir": ".",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest",
+      "^.+\\.(t|j)sx$": "ts-jest"
+    },
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "jsdom",
+    "roots": [
+      "<rootDir>/src/"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss)$": "<rootDir>/__mocks__/styleMock.js"
+    },
+    "setupFilesAfterEnv": [
+      "@testing-library/react/cleanup-after-each",
+      "@testing-library/jest-dom/extend-expect",
+      "@testing-library/react-hooks/dont-cleanup-after-each.js"
+    ]
+  }
 }

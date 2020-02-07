@@ -11,21 +11,24 @@ function Register():JSX.Element {
   const [message, setMessage] = useState();
 
   async function postRegister(params) {
-    const res = await fetch(`${SERVER_PATH}auth/register`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(params),
-    });
-    const data = await res.json();
-    console.log(data)
-    if(data.errors || data.message){
+    try {
+      const res = await fetch(`${SERVER_PATH}auth/register`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(params),
+      });
+      const data = await res.json();
+      if(data.errors || data.message){
         setErrors(data.errors);
         setMessage(data.message);
       } else {
         history.push('/login');
       }
+    } catch(err) {
+      setMessage('server down');
+    }
   }
 
   function onChangeField(e) {
