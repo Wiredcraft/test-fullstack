@@ -11,7 +11,7 @@ function App(): JSX.Element {
   return (
     <Layout>
       <Switch>
-        <Route path={"/"} exact={true} component={Home} />
+        <Route path="/" exact={true} component={Home} />
         <Route path={"/login"} exact={true} component={Login} />
         <Route path={"/register"} exact={true} component={Register} />
         <Route path={"/addPost"} exact={true} component={EditPoll} />
