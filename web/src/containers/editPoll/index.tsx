@@ -7,14 +7,9 @@ import { SERVER_PATH } from '../../config';
 function EditPoll():JSX.Element {
   let history = useHistory()
   const [field, setField] = useState({title: '', description: ''})
-  const [data, setData] = useState({title: '', description: ''})
   const [errors, setErrors] = useState();
   const [message, setMessage] = useState();
   const { pollId } = useParams();
-
-  useEffect(() => {
-    
-  }, []);
 
   async function postPoll(params) {
     const token = sessionStorage.getItem('token');

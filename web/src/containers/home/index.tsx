@@ -4,7 +4,8 @@ import fetch from 'isomorphic-unfetch';
 import _ from 'lodash';
 import {Poll} from '../../components/poll';
 import { SERVER_PATH } from '../../config';
-
+import { SampleComponent } from '../sample'
+ 
 function Home():JSX.Element {
   let history = useHistory();
   const [socket, setSocket] = useState();
@@ -142,6 +143,7 @@ function Home():JSX.Element {
   } else {
     return (
       <div className="mod-empty">
+        <SampleComponent></SampleComponent>
         <p>no data, you could add one</p>
         <Link to="/addPost">add a post</Link>
       </div>

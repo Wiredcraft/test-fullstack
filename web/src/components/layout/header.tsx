@@ -13,7 +13,7 @@ export default function Header({}) {
       setToken(token);
     }
     
-  }, [])
+  }, [token])
 
   function gotoHome() {
     console.log('gotoHome')

@@ -3,7 +3,6 @@ import './index.scss';
 
 export const Poll = (props: { dataSource: any; isAdmin: any; disable: boolean; onVote: any; onDelete: any; }) => {
   const {dataSource: item, isAdmin, disable, onVote, onDelete} = props;
-  const [title, setTitle] = useState('');
   return (
     <div className="mod-poll">
       <p className="mod-poll-title">{item.title}</p>

@@ -1,43 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import fetch from 'isomorphic-unfetch';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './index.scss';
-import { SERVER_PATH } from '../../config';
+import { useAuth0 } from '../../index.provider';
 
 export default function UserInfo(props: {token: string}) {
-    const [userName, setUserName] = useState();
+    const {logout, user, isLogin} = useAuth0();
 
-    async function getUser(token: string) {
-      const res = await fetch(`${SERVER_PATH}auth/user`, {
-        method: 'get',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      const data = await res.json();
-      setUserName(data.userName);
-    };
-
-    function loginOut() {
-      setUserName('');
-      sessionStorage.removeItem('token');
+    function onLoginOut() {
+      logout();
     }
-
-    useEffect(() => {
-      if(props.token){
-        getUser(props.token);
-      }
-      
-    }, [props.token])
 
     return (
       <div className="mod-user-info" data-testid="userInfo">
         {
-            userName ? [
-              <h4 key="wellcome">wellcome {userName}</h4>,
-              <a key="loginStatus" onClick={loginOut}>login out</a>
-            ] :  <Link to="/login">please login</Link>
+          isLogin ? [
+            <h4 key="wellcome">wellcome {user && user.userName}</h4>,
+            <a key="loginStatus" onClick={onLoginOut}>login out</a>
+          ] :  <Link to="/login">please login</Link>
             
         }
       </div>

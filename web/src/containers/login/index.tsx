@@ -3,6 +3,7 @@ import fetch from 'isomorphic-unfetch';
 import { Link, useHistory } from 'react-router-dom';
 import './index.scss';
 import { SERVER_PATH } from '../../config';
+import { useAuth0 } from '../../index.provider';
 
 
 
@@ -11,6 +12,7 @@ function Login():JSX.Element {
   const [field, setField] = useState({userName: '', password: ''})
   const [errors, setErrors] = useState();
   const [message, setMessage] = useState();
+  const { login } = useAuth0();
 
   async function postLogin(params) {
     try {
@@ -22,12 +24,12 @@ function Login():JSX.Element {
         body: JSON.stringify(params),
       });
       const data = await res.json();
-      console.log(data)
       if(data.errors || data.message){
         setErrors(data.errors);
         setMessage(data.message);
       } else {
         sessionStorage.setItem('token', data.access_token);
+        login(data.access_token);
         history.push('/');
       }
 
@@ -45,7 +47,7 @@ function Login():JSX.Element {
     setField(field);
   }
 
-  function login(e) {
+  function onLogin(e) {
     postLogin(field);
     e.preventDefault();
   }
@@ -71,7 +73,7 @@ function Login():JSX.Element {
       </div>
       <p>{errors && errors.password && errors.password.message}</p>
       <p>{message}</p>
-      <button onClick={login}>submit</button><span> or </span>
+      <button onClick={onLogin}>submit</button><span> or </span>
       <Link to="/register">go to register</Link>
     </form>
   );

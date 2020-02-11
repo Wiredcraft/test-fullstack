@@ -9,5 +9,15 @@
       <script>
         CSS.paintWorklet.addModule('cssPaint/index.js')
       </script>
+      <script>
+        function foo() {console.log(this.a)};
+  var obj = {a : 2}
+  foo.call(obj);
+  foo();
+  obj.foo = foo;
+  obj.foo();
+  var bar = obj.foo;
+  bar();
+        </script>
     <script type="text/javascript" src="index.js"></script></body>
   </html>
