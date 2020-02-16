@@ -1,0 +1,15 @@
+/*
+ * General styles
+ */
+@import './generals/variables';
+@import './generals/fonts';
+@import './generals/layouts';
+
+/*
+ * Components styles
+ */
+@import './components/header';
+@import './components/talk';
+@import './components/form';
+
+@import '~video-react/styles/scss/video-react';

@@ -1,0 +1,80 @@
+.talk {
+  border: 1px solid $color-light;
+  padding: 15px;
+  border-radius: 3px;
+  transition: 0.3s ease;
+  margin: 15px 0;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+
+  &__title {
+    font-size: $font-size-sm;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  &__player {
+    padding: 10px 0;
+  }
+
+  &__polling {
+    $block: &;
+    // inline css for polling icon
+    background-image: url($like-icon-src);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    float: right;
+    bottom: 15px;
+    margin-top: 0 !important;
+    cursor: pointer;
+
+    &.liked {
+      background-image: url($liked-icon-src);
+    }
+
+    &:hover {
+      #{$block}-num {
+        display: inline-block;
+      }
+    }
+
+    &-num {
+      position: absolute;
+      display: none;
+      background-color: $color-primary;
+      color: $color-light;
+      padding: 5px;
+      border-radius: 3px;
+      right: 100%;
+      margin-right: 5px;
+      top: -1px;
+
+      &::after {
+        content: '';
+        background-color: $color-primary;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        transform: rotate(-45deg) translateY(-50%);
+        z-index: -1;
+      }
+    }
+  }
+}
+
+.talks-placeholder {
+  text-align: center;
+
+  a {
+    font-style: italic;
+  }
+}

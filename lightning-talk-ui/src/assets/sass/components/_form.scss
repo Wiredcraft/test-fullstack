@@ -1,0 +1,38 @@
+.form {
+  width: 325px;
+  margin: auto;
+
+  input,
+  textarea {
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid $color-light;
+    padding: 5px 15px;
+    border-radius: 3px;
+    font-size: $font-size-sm;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+
+  button {
+    margin-top: 10px;
+
+    &:hover {
+      color: $color-white;
+    }
+    &.btn--text {
+      display: block;
+    }
+  }
+
+  .err {
+    font-size: $font-size-xsm;
+    color: $color-red;
+    position: absolute;
+    margin-top: -7px;
+  }
+
+  @media screen and (max-width: 625px) {
+    width: 100%;
+  }
+}

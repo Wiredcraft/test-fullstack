@@ -1,0 +1,33 @@
+{
+  "connection": "default",
+  "collectionName": "lightning_talks",
+  "info": {
+    "name": "Lightning Talk"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "video": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "polling": {
+      "type": "integer",
+      "default": 0
+    }
+  }
+}

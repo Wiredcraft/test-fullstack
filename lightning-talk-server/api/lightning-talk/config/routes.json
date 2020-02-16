@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/lightning-talks",
+      "handler": "lightning-talk.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/lightning-talks/count",
+      "handler": "lightning-talk.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/lightning-talks/:id",
+      "handler": "lightning-talk.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/lightning-talks",
+      "handler": "lightning-talk.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/lightning-talks/:id",
+      "handler": "lightning-talk.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/lightning-talks/:id",
+      "handler": "lightning-talk.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

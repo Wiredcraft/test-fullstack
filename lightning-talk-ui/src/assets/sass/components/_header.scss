@@ -1,0 +1,44 @@
+.header {
+  position: relative;
+  width: 100%;
+  text-align: center;
+
+  .username {
+    button {
+      margin-left: 10px;
+    }
+  }
+
+  h1 {
+    a {
+      color: $color-primary;
+    }
+  }
+
+  .nav {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    a {
+      margin-left: 10px;
+    }
+  }
+
+  @media screen and (max-width: 625px) {
+    display: flex;
+    justify-content: space-between;
+
+    h1 {
+      font-size: $font-size-lg;
+    }
+    
+    .nav {
+      position: static;
+      transform: none;
+      font-size: $font-size-sm;
+      padding: 15px 0;
+    }
+  }
+}
