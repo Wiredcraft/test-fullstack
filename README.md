@@ -40,3 +40,10 @@ _These are used for some further challenges. You can safely skip them if you are
 * Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
 * Provide a complete user auth \(authentication/authorization/etc\) strategy, such as OAuth.
 * Provide a complete logging \(when/how/etc\) strategy.
+
+
+#Test Anwser:
+
+online => http://159.89.84.197:8000/
+frontend => https://github.com/eleven-huang/hack-news-frontend
+backend => https://github.com/eleven-huang/hack-news-backend
