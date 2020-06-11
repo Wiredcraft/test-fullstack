@@ -1,0 +1,25 @@
+.card{
+    padding: 20px;
+    width: calc(100% - 40px);
+    box-shadow: 0px 0px 8px 0px #BDBDBD;
+    background: linear-gradient(#BDBDBD , #9E9E9E);
+    display: flex;
+    align-items: center;
+
+    border-radius: 10px;
+    margin-bottom: 20px;
+
+}
+
+.card .desc{
+    font-size: 16px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+.card .send{
+    width: 40px;
+    height: 40px;
+    margin-left: auto;
+}

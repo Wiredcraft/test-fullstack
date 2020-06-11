@@ -1,0 +1,122 @@
+.commentCard{
+    width: calc(100% - 40px);
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 8px 0px #BDBDBD;
+    margin-top: 10px;
+}
+
+.commentCard .title{
+    font-size: 16px;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+.commentCard .description{
+    font-size: 14px;
+    color: gray;
+    margin-top: 4px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+}
+
+.filtersView{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.filtersView .filter{
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    margin-right: 10px;
+    background: transparent;
+    border: 0px;
+    outline: none;
+    transition: all 0.25s;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.filtersView .filter:hover{
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.filtersView .selected{
+    color: black;
+    font-weight: bold;
+    border: 1px solid black;
+}
+
+.bottom{
+    border-top: 0.5px dashed #BDBDBD;
+    padding-top: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    color: gray;
+    font-size: 12px;
+}
+
+.bottom .property{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom .property .icon{
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+}
+
+.bottom .property .value{
+    font-size: 12px;
+    color: gray;
+}
+
+.bottom .btContainer{
+    margin-left: auto;
+}
+
+.bottom .btContainer .btVote{
+    padding: 4px 20px 4px 20px;
+    border: 1px solid black;
+    color: black;
+    font-size: 14px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    background: transparent;
+    border-radius: 20px;
+    transition: 0.25s all;
+    outline: none;
+}
+
+.bottom .btContainer .btVote:hover{
+    background: black;
+    color: white;
+}
+
+.list{
+    height: 75vh;
+    padding: 0px 10px 10px 10px;
+    overflow-y: scroll;
+}
+
+.noComments{
+    display: flex;
+    width: 100%;
+    height: 75vh;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+}

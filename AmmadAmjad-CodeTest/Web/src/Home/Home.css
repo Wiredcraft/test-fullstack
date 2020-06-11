@@ -1,0 +1,112 @@
+.home{
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.brandName{
+    width: 160px;
+    padding: 20px;
+    font-size: 30px;
+    line-height: 30px;
+    font-family: 'Quicksand', sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.centerContaienr{
+    width: calc(100% - 260px);
+    height: 100vh;
+    padding: 20px;
+    border-left: 0.5px solid lightgray;
+    border-right: 0.5px solid lightgray;
+}
+
+.loginContainer{
+    width: 160px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.loginContainer label{
+    font-size: 14px;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.loginContainer .margin50{
+    margin-top: 50px;
+}
+
+.loginContainer .btLogin{
+    padding: 10px;
+    width: 150px;
+    height: 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+    border-radius: 30px;
+    line-height: 20px;
+    text-align: center;
+    color: black;
+    border: 1px solid black;
+    transition: all 0.25s;
+    box-shadow: 0px 0px 4px 0px gray;
+    margin-top: 10px;
+}
+
+.loginContainer .btLogin:hover{
+    background: black;
+    color: white;
+    box-shadow: 0px 0px 10px 0px gray;
+    font-size: 20px;
+}
+
+
+.loginContainer .username{
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.loginContainer .email{
+    font-size: 14px;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.notificationContainer{
+    width: calc(100vw - 20px);
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #4CAF50;
+    padding: 10px;
+    display: flex;
+    z-index: 10;
+}
+
+.notificationContainer .message{
+    padding: 10px;
+    font-size: 14px;
+    color: black;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+.notificationContainer button{
+    margin-left: auto;
+    background: transparent;
+    color: white;
+    font-weight: bold;
+    border-radius: 20px;
+    outline: none;
+    padding: 0px 30px 0px 30px;
+    border: 2px solid white;
+}
