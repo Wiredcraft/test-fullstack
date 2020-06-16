@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "root",
+    "password": "abcd1234",
+    "database": "hacker-news",
+    "host": "localhost",
+    "dialect": "sqlite",
+    "storage": "./data/db.sqlite",
+    "logging": false
+  },
+  "test": {
+    "username": null,
+    "password": null,
+    "database": null,
+    "host": "localhost",
+    "dialect": "sqlite",
+    "storage": "./data/db-test.sqlite",
+    "logging": false
+  }
+}
