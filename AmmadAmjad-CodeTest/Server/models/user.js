@@ -3,7 +3,7 @@ var _ = require('underscore');
 var cryptojs = require('crypto-js');
 var jwt = require('jsonwebtoken');
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
 	var user = sequelize.define('user', {
 		email: {
 			type: DataTypes.STRING,
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
 			validate: {
 				len: [7, 100]
 			},
-			set: function(value) {
+			set: function (value) {
 				var salt = bcrypt.genSaltSync(10);
 				var hashedPassword = bcrypt.hashSync(value, salt);
 
@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
 		token: {
 			type: DataTypes.VIRTUAL,
 			allowNull: true,
-			set: function(value) {
+			set: function (value) {
 				var hash = cryptojs.MD5(value).toString();
 				this.setDataValue('token', value);
 				this.setDataValue('tokenHash', hash);
@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	}, {
 		hooks: {
-			beforeValidate: function(user, options) {
+			beforeValidate: function (user, options) {
 				// user.email
 				if (typeof user.email === 'string') {
 					user.email = user.email.toLowerCase();
@@ -63,42 +63,52 @@ module.exports = function(sequelize, DataTypes) {
 	});
 
 
-	user.authenticate = function(body) {
-		return new Promise(function(resolve, reject) {
-			if (typeof body.email !== 'string' || typeof body.password !== 'string') {;
-				reject({status : 409 , message : "Please send both email and password in request body"});
+	user.authenticate = function (body) {
+		return new Promise(function (resolve, reject) {
+			if (typeof body.email !== 'string' || typeof body.password !== 'string') {
+				;
+				reject({
+					status: 409,
+					message: "Please send both email and password in request body"
+				});
 			}
 			user.findOne({
 				where: {
 					email: body.email
 				}
-			}).then(function(user) {
+			}).then(function (user) {
 				if (!user || !bcrypt.compareSync(body.password, user.get(
 						'password_hash'))) {
-					reject({status : 401 , message : "Email or password is incorrect . Please make sure you enter a valid registered email with correct password"});
+					reject({
+						status: 401,
+						message: "Email or password is incorrect . Please make sure you enter a valid registered email with correct password"
+					});
 				}
 				resolve(user);
-			}, function(e) {
+			}, function (e) {
 				reject();
 			});
 		});
 	};
 
 
-	user.findByToken = function(token) {
-		return new Promise(function(resolve, reject) {
+	user.findByToken = function (token) {
+		return new Promise(function (resolve, reject) {
 			try {
 				const decodedJWT = jwt.verify(token, process.env.USER_TOKEN_SECRET);
 				const bytes = cryptojs.AES.decrypt(decodedJWT.token, process.env.USER_TOKEN_CRYPTO_SECRET);
 				const tokenData = JSON.parse(bytes.toString(cryptojs.enc.Utf8));
 
-				user.findById(tokenData.id).then(function(user) {
+				user.findById(tokenData.id).then(function (user) {
 					if (user) {
 						resolve(user);
 					} else {
-						reject({status : 401 , message : "User not found. Please make sure the token is valid and user exists"});
+						reject({
+							status: 401,
+							message: "User not found. Please make sure the token is valid and user exists"
+						});
 					}
-				}, function(e) {
+				}, function (e) {
 					reject(e);
 				});
 			} catch (e) {
@@ -108,7 +118,7 @@ module.exports = function(sequelize, DataTypes) {
 	};
 
 
-	user.prototype.generateToken = function(type) {
+	user.prototype.generateToken = function (type) {
 		try {
 			var stringData = JSON.stringify({
 				id: this.get('id'),
@@ -124,7 +134,7 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	};
 
-	user.prototype.toPublicJSON = function() {
+	user.prototype.toPublicJSON = function () {
 		var json = this.toJSON();
 		return _.pick(json, 'id', 'email', 'createdAt', "name");
 	};

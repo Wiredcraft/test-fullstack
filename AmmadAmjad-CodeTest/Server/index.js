@@ -12,9 +12,8 @@ const db = require('./controllers/db.js');
 
 db.sequelize.sync({
 	force: force
-}).then(function() {
-	app.listen(PORT, function() {
+}).then(function () {
+	app.listen(PORT, function () {
 		console.log('Express listening on PORT ' + PORT + ' ! ');
 	});
 });
-

@@ -2,10 +2,10 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-  return Promise.resolve()
+    return Promise.resolve()
   },
 
   down: (queryInterface, Sequelize) => {
-   return queryInterface.bulkDelete('comments' , {} , {})
+    return queryInterface.bulkDelete('comments', {}, {})
   }
 };

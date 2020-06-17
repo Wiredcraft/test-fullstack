@@ -10,7 +10,7 @@ var sequelize = new Sequelize(
     storage: process.env.DB_FILE_PATH,
     operatorsAliases: false,
     logging: false
-});
+  });
 
 var db = {};
 
@@ -21,8 +21,8 @@ db.Op = Sequelize.Op;
 db.user = sequelize.import('../models/user.js');
 
 db.comment = sequelize.import('../models/comment.js');
-db.comment.belongsTo(db.user , {
-  as : 'author'
+db.comment.belongsTo(db.user, {
+  as: 'author'
 });
 
 db.commentVoters = sequelize.define('commentVoters', {});
