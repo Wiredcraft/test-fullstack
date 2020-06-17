@@ -41,7 +41,8 @@ app.post('/comment/create' , middleware.requireAuthentication , function(req , r
 
     if (req.user) {
       attrs.push(
-        [db.sequelize.literal('(SELECT COUNT(*) FROM "commentVoters" where "commentVoters"."commentid" = "comment"."id" AND "commentVoters"."userId" = ' + req.user.id + ')'), 'voted']
+        [db.sequelize.literal('(SELECT COUNT(*) FROM "commentVoters" where "commentVoters"."commentid" = "comment"."id" AND "commentVoters"."userId" = ' + db.sequelize.escape(`${req.user.id}`) + ')'),
+         'voted']
       );
     }
 
