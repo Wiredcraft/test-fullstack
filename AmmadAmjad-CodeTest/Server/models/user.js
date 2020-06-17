@@ -66,9 +66,8 @@ module.exports = function(sequelize, DataTypes) {
 	user.authenticate = function(body) {
 		return new Promise(function(resolve, reject) {
 			if (typeof body.email !== 'string' || typeof body.password !== 'string') {;
-				return reject();
+				reject({status : 409 , message : "Please send both email and password in request body"});
 			}
-
 			user.findOne({
 				where: {
 					email: body.email
@@ -76,9 +75,7 @@ module.exports = function(sequelize, DataTypes) {
 			}).then(function(user) {
 				if (!user || !bcrypt.compareSync(body.password, user.get(
 						'password_hash'))) {
-					return reject(
-						"Email or password is incorrect . Please make sure you enter a valid registered email with correct password"
-					);
+					reject({status : 401 , message : "Email or password is incorrect . Please make sure you enter a valid registered email with correct password"});
 				}
 				resolve(user);
 			}, function(e) {
@@ -99,13 +96,13 @@ module.exports = function(sequelize, DataTypes) {
 					if (user) {
 						resolve(user);
 					} else {
-						reject();
+						reject({status : 401 , message : "User not found. Please make sure the token is valid and user exists"});
 					}
 				}, function(e) {
-					reject();
+					reject(e);
 				});
 			} catch (e) {
-				reject();
+				reject(e);
 			}
 		});
 	};
@@ -121,11 +118,9 @@ module.exports = function(sequelize, DataTypes) {
 			var token = jwt.sign({
 				token: encryptedData
 			}, 'qwerty098');
-
-
 			return token;
 		} catch (e) {
-			return undefined;
+			throw e;
 		}
 	};
 

@@ -1,6 +1,10 @@
 // require('dotenv').config();
 
+require('custom-env').env(true)
+
 const PORT = process.env.PORT || 3001;
+
+console.log(`Your port is ${PORT}`);
 const force = process.env.force || false;
 
 const app = require('./server');

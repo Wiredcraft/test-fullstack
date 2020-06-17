@@ -7,28 +7,26 @@ const middleware = require('../../../controllers/middleware.js')(db);
 
 
 // USER REGISTER
-app.post('/user/register', function (req, res) {
+app.post('/user/register', function (req, res , next) {
     var body = underscore.pick(req.body, 'email', "name", "password");
-    db.user.create(body).then(function (user) {
+    db.user.create(body)
+    .then(function (user) {
             res.json({
                 message: "User registered successfully",
                 user: user.toPublicJSON()
-            })
-
+            });
         })
         .catch(function (e) {
-            res.status(403).json({
-                message: "Failed to register user",
-                error: String(e)
-            })
+            next(e);
         });
 });
 
 // USER LOGIN
-app.post('/user/login', function (req, res) {
+app.post('/user/login', function (req, res, next) {
     const body = underscore.pick(req.body, 'email', 'password');
     var token, userInstance;
-    db.user.authenticate(body).then(function (user) {
+    db.user.authenticate(body)
+    .then(function (user) {
             userInstance = user;
             token = user.generateToken('authentication');
             return db.user.update({
@@ -38,7 +36,8 @@ app.post('/user/login', function (req, res) {
                     id: user.id
                 }
             });
-        }).then(function (u) {
+        })
+        .then(function (u) {
             res.header('Authentication', token)
             var user = userInstance.toPublicJSON();
             user.token = token
@@ -48,15 +47,14 @@ app.post('/user/login', function (req, res) {
             })
         })
         .catch(function (e) {
-            res.status(404).json({
-                message: "Failed to login",
-                error: String(e)
-            })
+            console.log(e);
+            
+            next(e);
         });
 });
 
 // USER LOGOUT
-app.delete('/user/logout', middleware.requireAuthentication, function (req, res) {
+app.delete('/user/logout', middleware.requireAuthentication, function (req, res , next) {
     db.user.update({
         token: '',
         tokenHash: ''
@@ -64,15 +62,14 @@ app.delete('/user/logout', middleware.requireAuthentication, function (req, res)
         where: {
             id: req.user.id
         }
-    }).then(function (user) {
+    })
+    .then(function (user) {
         res.json({
             message: 'Logged out successfully'
         })
-    }).catch(function (e) {
-        res.status(401).json({
-            message: "Failed to logout",
-            error: e.errors[0].message || e.message || String(e)
-        })
+    })
+    .catch(function (e) {
+        next(e);
     });
 });
 

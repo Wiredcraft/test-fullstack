@@ -6,7 +6,7 @@ const middleware = require('../../../controllers/middleware.js')(db);
 
 
 
-app.post('/comment/create' , middleware.requireAuthentication , function(req , res){
+app.post('/comment/create' , middleware.requireAuthentication , function(req , res , next){
     var body = underscore.pick(req.body, 'title', "description");
     body.authorId = req.user.id;
     db.comment.create(body)
@@ -16,16 +16,13 @@ app.post('/comment/create' , middleware.requireAuthentication , function(req , r
         comment : comment
       });
     })
-    .catch(function(e){
-      res.status(403).json({
-        message : "Failed to add comment",
-        error : String(e)
-      });
+    .catch(function (e) {
+        next(e);
     });
   });
 
   // GET COMMENTS LIST
-  app.get('/comment/list/all' , middleware.optionalAuthentication , function(req , res){
+  app.get('/comment/list/all' , middleware.optionalAuthentication , function(req , res , next){
 
     const limit = parseInt(req.query.limit) || 10;
 		var page = parseInt(req.query.page) || 0;
@@ -66,22 +63,16 @@ app.post('/comment/create' , middleware.requireAuthentication , function(req , r
     .then(function(comments){
       res.json(comments);
     })
-    .catch(function(e){
-      res.status(403).json({
-        message : "Failed to fetch comments",
-        error : String(e)
-      });
+    .catch(function (e) {
+        next(e);
     });
   });
 
   // DELETE BY ID
-  app.delete('/comment/:id' , middleware.requireAuthentication , function(req , res){
+  app.delete('/comment/:id' , middleware.requireAuthentication , function(req , res , next){
     const id = parseInt(req.params.id);
-		if (id === undefined || id === null || id <= 0) {
-      res.status(403).json({
-        message : "Please provide a valid comment iD"
-      });
-			return;
+		if (id === NaN || id <= 0) {
+      throw {status : 409 , message : "Please provide a valid comment iD"}
 		}
     db.comment.findOne({
       where : {
@@ -90,13 +81,9 @@ app.post('/comment/create' , middleware.requireAuthentication , function(req , r
     })
     .then(function(comment){
       if (!comment) {
-        return res.status(404).json({
-          message : "Comment not found. Please make sure the commentId is valid and comment exists"
-        });
+        throw {status : 404 , message : "Comment not found. Please make sure the commentId is valid and comment exists"}
       }else if (comment && comment.authorId !== req.user.id) {
-        return res.status(401).json({
-          message : "Only comment author can delete the comment"
-        });
+        throw {status : 401 , message : "Only comment author can delete the comment"}
       }else{
         db.comment.destroy({
           where : {
@@ -107,68 +94,77 @@ app.post('/comment/create' , middleware.requireAuthentication , function(req , r
           res.json({
             message : "Comment deleted successfully"
           });
+        })
+        .catch(function (e) {
+          next(e);
         });
       }
     })
-    .catch(function(e){
-      res.status(403).json({
-        message : "Failed to delete the comment",
-        error : String(e)
-      });
+    .catch(function (e) {
+      next(e);
     });
   });
 
   // VOTE FOR THE COMMENT
-  app.post('/comment/:id/vote' , middleware.requireAuthentication , function(req , res){
+  app.post('/comment/:id/vote' , middleware.requireAuthentication , function(req , res , next){
     const id = parseInt(req.params.id);
-    if (id === undefined || id === null || id <= 0) {
-      res.status(403).json({
-        message : "Please provide a valid comment iD"
-      });
+    if (id === NaN || id <= 0) {
+      throw {status : 409 , message : "Please provide a valid comment iD"}
       return;
     }
 
-    db.commentVoters.findOne({
+    db.comment.findOne({
       where : {
-        commentId : id,
-        userId : req.user.id
+        id : id 
       }
     })
-    .then(function(existing){
-      if (existing) {
-        res.status(401).json({
-          message : "You have already voted for this comment"
-        });
+    .then(function(comment){
+      if(!comment){
+        throw {status : 404 , message : "Commend not found. Please make sure the comment exists and commentId is valid"}
       }else{
-        db.commentVoters.create({
-          commentId : id,
-          userId : req.user.id
+        db.commentVoters.findOne({
+          where : {
+            commentId : id,
+            userId : req.user.id
+          }
         })
-        .then(function(status){
-          res.json({
-            message : "Vote added to the comment successfully"
-          });
+        .then(function(existing){      
+          if (existing) {
+            throw {status : 401 , message : "You have already voted for this comment"}
+          }else{
+            db.commentVoters.create({
+              commentId : id,
+              userId : req.user.id
+            })
+            .then(function(status){
+              res.json({
+                message : "Vote added to the comment successfully"
+              });
+            })
+            .catch(function (e) {
+              next(e);
+            });
+          }
         })
+        .catch(function (e) {
+          next(e);
+        });
       }
     })
-    .catch(function(e){
-      res.status(403).json({
-        message : "Failed to add vote to the comment",
-        error : String(e)
-      });
+    .catch(function (e) {
+      next(e);
     });
+
+    
 
   });
 
 
   // RECIND VOTE
-  app.delete('/comment/:id/vote' , middleware.requireAuthentication , function(req , res){
+  app.delete('/comment/:id/vote' , middleware.requireAuthentication , function(req , res , next){
     const id = parseInt(req.params.id);
-    if (id === undefined || id === null || id <= 0) {
-      res.status(403).json({
-        message : "Please provide a valid comment iD"
-      });
-      return;
+    if (id === NaN || id <= 0) {
+      throw {status : 409 , message : "Please provide a valid comment iD"}
     }
 
     db.commentVoters.findOne({
@@ -179,9 +175,7 @@ app.post('/comment/create' , middleware.requireAuthentication , function(req , r
     })
     .then(function(existing){
       if (!existing) {
-        res.status(401).json({
-          message : "You have never voted for this comment before"
-        });
+        throw {status : 404 , message : "Vote not found. You have never voted for this comment before"}
       }else{
         db.commentVoters.destroy({
           where : {
@@ -194,14 +188,15 @@ app.post('/comment/create' , middleware.requireAuthentication , function(req , r
             message : "Vote rescinded successfully"
           });
         })
+        .catch(function (e) {
+          next(e);
+        });
       }
     })
-    .catch(function(e){
-      res.status(403).json({
-        message : "Failed to rescind the vote",
-        error : String(e)
-      });
+    .catch(function (e) {
+      next(e);
     });
 
   });
+
 module.exports = app;
