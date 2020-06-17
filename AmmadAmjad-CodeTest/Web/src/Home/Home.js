@@ -3,7 +3,7 @@ import './Home.css';
 
 import Comments from '../Comments/Comments';
 import LoginModal from '../LoginModal/LoginModal';
-import RegistrationModel from '../RegistrationModel/RegistrationModel';
+import RegistrationModal from '../RegistrationModal/RegistrationModal';
 
 
 export default class Home extends Component {
@@ -159,7 +159,7 @@ export default class Home extends Component {
 
                 <LoginModal show={this.state.showLoginModal} handleClose={e => this.closeLoginModal(e)} handleSuccess={e => this.onLoginSuccess(e)}/>
 
-                <RegistrationModel show={this.state.showRegisterModal} handleClose={e => this.hideRegistratiionModal(e)} handleSuccess={e => this.onRegistrationSuccess(e)}/>
+                <RegistrationModal show={this.state.showRegisterModal} handleClose={e => this.hideRegistratiionModal(e)} handleSuccess={e => this.onRegistrationSuccess(e)}/>
             </div>
         )
     }

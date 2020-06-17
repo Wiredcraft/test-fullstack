@@ -1,9 +1,9 @@
 import React , {useState  , useRef} from 'react';
-import './RegistrationModel.css';
+import './RegistrationModal.css';
 import axios from 'axios';
 
 
-const RegistrationModel = ({ handleClose , handleSuccess , show }) => {
+const RegistrationModal = ({ handleClose , handleSuccess , show }) => {
   const showHideClassName = show ? "modal" : "hideModal";
  
   const [nameWarning, setNameWarning] = useState(false);  
@@ -174,4 +174,4 @@ function handleAbort(e){
   );
 };
 
-export default RegistrationModel;
+export default RegistrationModal;
