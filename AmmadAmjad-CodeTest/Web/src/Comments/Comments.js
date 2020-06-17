@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './Comments.css';
 
-import axios from  'axios';
+import axios from 'axios';
 import NewCommentWidget from '../NewCommentWidget/NewCommentWidget';
 import AddNewCommentModal from '../AddNewCommentModal/AddNewCommentModal';
 
@@ -14,21 +14,21 @@ import moment from 'moment';
 
 export default class Comments extends Component {
 
-    
 
-    constructor(props){
+
+    constructor(props) {
         super(props);
         console.log(props);
-        
+
         this.state = {
-            comments : [],
-            count : 0,
+            comments: [],
+            count: 0,
             showAddModal: false,
-            type : 0,
-            isLoggedIn : props.props.isLoggedIn
+            type: 0,
+            isLoggedIn: props.props.isLoggedIn
         }
         console.log(this.state.isLoggedIn);
-        
+
         this.onShowPopularClicked = this.onShowPopularClicked.bind(this);
         this.onShowLatestClicked = this.onShowLatestClicked.bind(this);
         this.modalOpen = this.modalOpen.bind(this);
@@ -43,21 +43,21 @@ export default class Comments extends Component {
     }
 
 
-    getComments(){
-        axios.get(`http://localhost:3001/comment/list/all?sortBy=${this.state.type === 1 ? 'votes' : 'createdAt'}` , {
-            headers : {
+    getComments() {
+        axios.get(`http://localhost:3001/comment/list/all?sortBy=${this.state.type === 1 ? 'votes' : 'createdAt'}`, {
+            headers: {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .then(response => {
-            this.setState({
-                comments : response.data.rows,
-                count : response.data.count
+            .then(response => {
+                this.setState({
+                    comments: response.data.rows,
+                    count: response.data.count
+                });
+            })
+            .catch(error => {
+                console.log(error);
             });
-        })
-        .catch(error => {
-            console.log(error);
-        });
     }
 
     modalOpen() {
@@ -70,7 +70,7 @@ export default class Comments extends Component {
         });
     }
 
-    handleAddNewCommentSuccess(){
+    handleAddNewCommentSuccess() {
         this.setState({
             showAddModal: false
         });
@@ -78,49 +78,49 @@ export default class Comments extends Component {
         this.props.onAddNewComment()
     }
 
-    onShowPopularClicked(e){
+    onShowPopularClicked(e) {
         this.setState({
-            type : 0
+            type: 0
         });
         this.getComments();
     }
 
-    onShowLatestClicked(e){
+    onShowLatestClicked(e) {
         this.setState({
-            type : 1
+            type: 1
         });
         console.log(this.state.type);
         this.getComments();
     }
 
-    vote(comment){
-        if(comment.voted === 1) return;
-        axios.post(`http://localhost:3001/comment/${comment.id}/vote` , {} , {
-            headers : {
+    vote(comment) {
+        if (comment.voted === 1) return;
+        axios.post(`http://localhost:3001/comment/${comment.id}/vote`, {}, {
+            headers: {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .then(response => {
-            this.getComments()
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(response => {
+                this.getComments()
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
-    
-    cancelVote(comment){
-        if(comment.voted === 0) return;
-        axios.delete(`http://localhost:3001/comment/${comment.id}/vote` , {
-            headers : {
+
+    cancelVote(comment) {
+        if (comment.voted === 0) return;
+        axios.delete(`http://localhost:3001/comment/${comment.id}/vote`, {
+            headers: {
                 Authorization: localStorage.getItem('token')
             }
         })
-        .then(response => {
-            this.getComments()
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            .then(response => {
+                this.getComments()
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
     render() {

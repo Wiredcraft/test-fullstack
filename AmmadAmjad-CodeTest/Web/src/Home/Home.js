@@ -8,30 +8,30 @@ import RegistrationModal from '../RegistrationModal/RegistrationModal';
 
 export default class Home extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         const token = localStorage.getItem('token');
         console.log(token);
-        
-        if(token === null || token === undefined || token === ''){
+
+        if (token === null || token === undefined || token === '') {
             this.state = {
-                showLoginModal : false,
-                showRegisterModal : false,
-                isLoggedIn : false,
-                name : '',
-                email : '',
-                showNotification : false,
-                notification : ''
+                showLoginModal: false,
+                showRegisterModal: false,
+                isLoggedIn: false,
+                name: '',
+                email: '',
+                showNotification: false,
+                notification: ''
             };
-        }else{
+        } else {
             this.state = {
-                showLoginModal : false,
-                showRegisterModal : false,
-                isLoggedIn : true,
-                name : localStorage.getItem('name'),
-                email : localStorage.getItem('email'),
-                showNotification : false,
-                notification : ''
+                showLoginModal: false,
+                showRegisterModal: false,
+                isLoggedIn: true,
+                name: localStorage.getItem('name'),
+                email: localStorage.getItem('email'),
+                showNotification: false,
+                notification: ''
             };
         }
         this.displayLoginModal = this.displayLoginModal.bind(this);
@@ -46,77 +46,77 @@ export default class Home extends Component {
         this.onAddNewCommentSuccess = this.onAddNewCommentSuccess.bind(this);
     }
 
-    hideNotification(e){
+    hideNotification(e) {
         this.setState({
-            showNotification : false,
-            notification : ''
+            showNotification: false,
+            notification: ''
         })
     }
 
-    displayNotification(msg){
+    displayNotification(msg) {
         this.setState({
-            notification : msg,
-            showNotification : true,
+            notification: msg,
+            showNotification: true,
         })
         const ctx = this;
-        setTimeout(function(res){
+        setTimeout(function (res) {
             ctx.hideNotification();
         }, 3000)
     }
 
-    displayRegistratiionModal(e){
+    displayRegistratiionModal(e) {
         this.setState({
-            showRegisterModal : true
+            showRegisterModal: true
         })
     }
 
-    hideRegistratiionModal(e){
+    hideRegistratiionModal(e) {
         this.setState({
-            showRegisterModal : false
+            showRegisterModal: false
         })
     }
 
-    displayLoginModal(e){
+    displayLoginModal(e) {
         this.setState({
-            showLoginModal : true,
+            showLoginModal: true,
         });
     }
 
-    closeLoginModal(e){
+    closeLoginModal(e) {
         this.setState({
-            showLoginModal : false
+            showLoginModal: false
         })
     }
 
-    logout(e){
-        localStorage.setItem('token' , '');
-        localStorage.setItem('name' , '');
-        localStorage.setItem('email' , '');
+    logout(e) {
+        localStorage.setItem('token', '');
+        localStorage.setItem('name', '');
+        localStorage.setItem('email', '');
         this.setState({
-            showLoginModal : false,
-            isLoggedIn : false,
-            name : '',
-            email : ''
+            showLoginModal: false,
+            isLoggedIn: false,
+            name: '',
+            email: ''
         })
         this.displayNotification("Logout Successful")
     }
 
-    onLoginSuccess(e){
+    onLoginSuccess(e) {
         this.setState({
-            showLoginModal : false,
-            isLoggedIn : true,
-            name : localStorage.getItem('name'),
-            email : localStorage.getItem('email')
+            showLoginModal: false,
+            isLoggedIn: true,
+            name: localStorage.getItem('name'),
+            email: localStorage.getItem('email')
         })
         this.displayNotification("Login Successful")
     }
 
-    onRegistrationSuccess(e){
+    onRegistrationSuccess(e) {
         this.hideRegistratiionModal()
         this.displayNotification("Registration Successful")
     }
 
-    onAddNewCommentSuccess(e){
+    onAddNewCommentSuccess(e) {
         this.displayNotification("Commented added successfully")
     }
     render() {

@@ -6,7 +6,6 @@ export default class NewCommentWidget extends Component {
         return (
             <div className="card">
                 <label className="desc">Whats on your mind ?</label>
-                {/* <label className="post">POST</label> */}
                 <img className="send" src={logo} alt=""></img>
             </div>
         )

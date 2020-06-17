@@ -1,43 +1,43 @@
-import React , {useState  , useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import './RegistrationModal.css';
 import axios from 'axios';
 
 
-const RegistrationModal = ({ handleClose , handleSuccess , show }) => {
+const RegistrationModal = ({ handleClose, handleSuccess, show }) => {
   const showHideClassName = show ? "modal" : "hideModal";
- 
-  const [nameWarning, setNameWarning] = useState(false);  
-const [emailWarning, setEmailWarning] = useState(false);
-const [pwdWarning, setPwdWarning] = useState(false);
-const [rePwdWarning, setRePwdWarning] = useState(false);
-const [showLoginError, setLoginError] = useState(false);
-const [errMsg, setErrMsg] = useState("");
 
-const nameRef = useRef();
+  const [nameWarning, setNameWarning] = useState(false);
+  const [emailWarning, setEmailWarning] = useState(false);
+  const [pwdWarning, setPwdWarning] = useState(false);
+  const [rePwdWarning, setRePwdWarning] = useState(false);
+  const [showLoginError, setLoginError] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
+
+  const nameRef = useRef();
   const emailRef = useRef();
   const pwdRef = useRef();
   const rePwdRef = useRef();
 
 
-function handleAbort(e){
-      emailRef.current.value = null; 
-        pwdRef.current.value = null;
-        nameRef.current.value = null;
-        rePwdRef.current.value = null;
-        setPwdWarning(false)
-            setEmailWarning(false)
-            setLoginError(false)
-            setRePwdWarning(false)
-        setNameWarning(false)
-        handleClose()
-}
-  function handleRegistration(e){
+  function handleAbort(e) {
+    emailRef.current.value = null;
+    pwdRef.current.value = null;
+    nameRef.current.value = null;
+    rePwdRef.current.value = null;
+    setPwdWarning(false)
+    setEmailWarning(false)
+    setLoginError(false)
+    setRePwdWarning(false)
+    setNameWarning(false)
+    handleClose()
+  }
+  function handleRegistration(e) {
 
     const name = nameRef.current.value;
-    if(name === null || name === undefined || name === ""){
-        setNameWarning(true)
-        return
-    }else{
+    if (name === null || name === undefined || name === "") {
+      setNameWarning(true)
+      return
+    } else {
       setNameWarning(false)
     }
 
@@ -45,48 +45,48 @@ function handleAbort(e){
 
 
 
-      const email = emailRef.current.value;
-      if(email === null || email === undefined || email === ""){
-          setEmailWarning(true)
-          return
-      }else{
-        setEmailWarning(false)
-      }
-      const password = pwdRef.current.value;
-      if(password === null || password === undefined || password === ""){
-          setPwdWarning(true);
-        return
-      }else{
-            setPwdWarning(false)
-      }
+    const email = emailRef.current.value;
+    if (email === null || email === undefined || email === "") {
+      setEmailWarning(true)
+      return
+    } else {
+      setEmailWarning(false)
+    }
+    const password = pwdRef.current.value;
+    if (password === null || password === undefined || password === "") {
+      setPwdWarning(true);
+      return
+    } else {
+      setPwdWarning(false)
+    }
 
 
-      const rePwd = rePwdRef.current.value;
-      if(rePwd === null || rePwd === undefined || rePwd === ""){
-          setRePwdWarning(true);
-        return
-      }else{
-        setRePwdWarning(false)
-      }
-      
+    const rePwd = rePwdRef.current.value;
+    if (rePwd === null || rePwd === undefined || rePwd === "") {
+      setRePwdWarning(true);
+      return
+    } else {
+      setRePwdWarning(false)
+    }
 
-      if(rePwd !== password){
-        setErrMsg("Please make sure the password matches")
-        setLoginError(true)
-        return
-      }
 
-      axios.post('http://localhost:3001/user/register', {
-        email : email,
-        password : password,
-        name : name
-      })
+    if (rePwd !== password) {
+      setErrMsg("Please make sure the password matches")
+      setLoginError(true)
+      return
+    }
+
+    axios.post('http://localhost:3001/user/register', {
+      email: email,
+      password: password,
+      name: name
+    })
       .then(response => {
         console.log(response);
         localStorage.setItem('name', response.data.user.name);
         localStorage.setItem('email', response.data.user.email);
         localStorage.setItem('token', response.data.user.token);
-        emailRef.current.value = null; 
+        emailRef.current.value = null;
         pwdRef.current.value = null;
         nameRef.current.value = null;
         rePwdRef.current.value = null;

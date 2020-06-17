@@ -1,55 +1,55 @@
-import React , {useState  , useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import './LoginModal.css';
 import axios from 'axios';
 
 
-const LoginModal = ({ handleClose , handleSuccess , show }) => {
+const LoginModal = ({ handleClose, handleSuccess, show }) => {
   const showHideClassName = show ? "modal" : "hideModal";
 
-const [emailWarning, setEmailWarning] = useState(false);
-const [pwdWarning, setPwdWarning] = useState(false);
-const [showLoginError, setLoginError] = useState(false);
-const [errMsg, setErrMsg] = useState("");
+  const [emailWarning, setEmailWarning] = useState(false);
+  const [pwdWarning, setPwdWarning] = useState(false);
+  const [showLoginError, setLoginError] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const emailRef = useRef();
   const pwdRef = useRef();
 
 
-function handleAbort(e){
-      emailRef.current.value = null; 
-        pwdRef.current.value = null;
-        setPwdWarning(false)
-        setEmailWarning(false)
-        setLoginError(false)
-        handleClose()
-}
-  function handleLogin(e){
-      const email = emailRef.current.value;
-      if(email === null || email === undefined || email === ""){
-          setEmailWarning(true)
-          return
-      }else{
-        setEmailWarning(false)
-      }
-      const password = pwdRef.current.value;
-      if(password === null || password === undefined || password === ""){
-          setPwdWarning(true);
-        return
-        }else{
-            setPwdWarning(false)
-        }
-      
+  function handleAbort(e) {
+    emailRef.current.value = null;
+    pwdRef.current.value = null;
+    setPwdWarning(false)
+    setEmailWarning(false)
+    setLoginError(false)
+    handleClose()
+  }
+  function handleLogin(e) {
+    const email = emailRef.current.value;
+    if (email === null || email === undefined || email === "") {
+      setEmailWarning(true)
+      return
+    } else {
+      setEmailWarning(false)
+    }
+    const password = pwdRef.current.value;
+    if (password === null || password === undefined || password === "") {
+      setPwdWarning(true);
+      return
+    } else {
+      setPwdWarning(false)
+    }
 
-      axios.post('http://localhost:3001/user/login', {
-        email : email,
-        password : password
-      })
+
+    axios.post('http://localhost:3001/user/login', {
+      email: email,
+      password: password
+    })
       .then(response => {
         console.log(response);
         localStorage.setItem('name', response.data.user.name);
         localStorage.setItem('email', response.data.user.email);
         localStorage.setItem('token', response.data.user.token);
-        emailRef.current.value = null; 
+        emailRef.current.value = null;
         pwdRef.current.value = null;
         setPwdWarning(false)
         setEmailWarning(false)
