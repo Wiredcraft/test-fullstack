@@ -10,7 +10,7 @@ export const URLS = {
   baseURL: baseURL,
   REGISTER: '/user/register',
   LOGIN: '/user/login',
-  COMMENTS : '/comment/list/all?sortBy=:sortBy',
+  COMMENTS : '/comment/list/all?sortBy=:sortBy&page=1&limit=1000',
   VOTE : 'comment/:commentId/vote',
   CREATE_COMMENT : 'comment/create'
 }
