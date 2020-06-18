@@ -12,7 +12,7 @@ Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 Runs all unit tests in console<br />
 
-## Enviorment Variables
+## Enviorment Variables Fiels
 
 This project depends on env variable files . There are three .env files needed for different scenerios .
 
@@ -25,8 +25,8 @@ This is the test .env file
 ### `.env`
 This is the fallback .env file
 
-### `.env files required variables`
-#### APP PORT
+## `Enviorment Variables`
+##### APP PORT
 ##### PORT=3001
 
 # DB CONSTANTS
