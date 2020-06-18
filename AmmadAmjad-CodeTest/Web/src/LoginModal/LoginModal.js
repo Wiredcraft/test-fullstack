@@ -1,7 +1,6 @@
-import React, { useState, useRef } from 'react';
-import './LoginModal.css';
-import axios from 'axios';
-
+import React, { useState, useRef } from "react";
+import "./LoginModal.css";
+import { HTTP, URLS } from "../network/http";
 
 const LoginModal = ({ handleClose, handleSuccess, show }) => {
   const showHideClassName = show ? "modal" : "hideModal";
@@ -14,104 +13,106 @@ const LoginModal = ({ handleClose, handleSuccess, show }) => {
   const emailRef = useRef();
   const pwdRef = useRef();
 
-
   function handleAbort(e) {
     emailRef.current.value = null;
     pwdRef.current.value = null;
-    setPwdWarning(false)
-    setEmailWarning(false)
-    setLoginError(false)
-    handleClose()
+    setPwdWarning(false);
+    setEmailWarning(false);
+    setLoginError(false);
+    handleClose();
   }
   function handleLogin(e) {
     const email = emailRef.current.value;
     if (email === null || email === undefined || email === "") {
-      setEmailWarning(true)
-      return
+      setEmailWarning(true);
+      return;
     } else {
-      setEmailWarning(false)
+      setEmailWarning(false);
     }
     const password = pwdRef.current.value;
     if (password === null || password === undefined || password === "") {
       setPwdWarning(true);
-      return
+      return;
     } else {
-      setPwdWarning(false)
+      setPwdWarning(false);
     }
 
-
-    axios.post('http://localhost:3001/user/login', {
+    HTTP.post(URLS.LOGIN, {
       email: email,
-      password: password
+      password: password,
     })
-      .then(response => {
+      .then((response) => {
         console.log(response);
-        localStorage.setItem('name', response.data.user.name);
-        localStorage.setItem('email', response.data.user.email);
-        localStorage.setItem('token', response.data.user.token);
+        localStorage.setItem("name", response.data.user.name);
+        localStorage.setItem("email", response.data.user.email);
+        localStorage.setItem("token", response.data.user.token);
         emailRef.current.value = null;
         pwdRef.current.value = null;
-        setPwdWarning(false)
-        setEmailWarning(false)
-        setLoginError(false)
+        setPwdWarning(false);
+        setEmailWarning(false);
+        setLoginError(false);
 
         handleSuccess();
       })
-      .catch(err => {
+      .catch((err) => {
         setLoginError(true);
-        setErrMsg(err.response.data.error);
-      })
+        var msg = "";
+        try {
+          msg = err.response.data.message;
+        } catch (e) {
+          msg = err.message;
+        }
+        setErrMsg(msg || "Failed to login");
+      });
   }
 
   return (
-   
-
-        <div name="modal" className={showHideClassName}>
-        <div className="modal-mask">
-            <div className="modal-wrapper">
-                <div className="modal-container" >
-                <div className="modal-header">
-  <h3 >LOGIN </h3>
-                </div>
-
-                <div className="modal-body">
-                    <label className="fieldName">Email</label>
-                    <input ref={emailRef} className="filedValue"></input>
-                    {
-                        emailWarning ?
-                        <label className="warning">Please enter a valid email address</label> : 
-                        null
-                    }
-                    
-                
-    
-                    <label className="fieldName">Password</label>
-                    <input ref={pwdRef} className="filedValue" type="password"></input>
-                    {
-                        pwdWarning ?
-                        <label className="warning">Please enter a password</label>     : 
-                        null
-                    }
-
-
-                    {
-                        showLoginError ?
-                      <label className="warning">{errMsg}</label>     : 
-                        null
-                    }
-                    
-                </div>
-
-                <div className="modal-footer">
-                    <div className="buttonsContainer">
-                        <button className="bt grey" onClick={handleAbort}>ABORT</button>
-                        <button className="bt black" onClick={handleLogin}>LOGIN</button>
-                    </div>
-                </div>
-                </div>
+    <div name="modal" className={showHideClassName}>
+      <div className="modal-mask">
+        <div className="modal-wrapper">
+          <div className="modal-container">
+            <div className="modal-header">
+              <h3>LOGIN </h3>
             </div>
+
+            <div className="modal-body">
+              <label className="fieldName">Email</label>
+              <input ref={emailRef} className="filedValue"></input>
+              {emailWarning ? (
+                <label className="warning">
+                  Please enter a valid email address
+                </label>
+              ) : null}
+
+              <label className="fieldName">Password</label>
+              <input
+                ref={pwdRef}
+                className="filedValue"
+                type="password"
+              ></input>
+              {pwdWarning ? (
+                <label className="warning">Please enter a password</label>
+              ) : null}
+
+              {showLoginError ? (
+                <label className="warning">{errMsg}</label>
+              ) : null}
+            </div>
+
+            <div className="modal-footer">
+              <div className="buttonsContainer">
+                <button className="bt grey" onClick={handleAbort}>
+                  ABORT
+                </button>
+                <button className="bt black" onClick={handleLogin}>
+                  LOGIN
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
+      </div>
+    </div>
   );
 };
 

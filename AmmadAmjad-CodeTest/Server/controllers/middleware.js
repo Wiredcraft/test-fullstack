@@ -54,7 +54,7 @@ module.exports = function (db) {
             case 'not_unique':
               message = error.value + ' is taken. Please choose another ' + error.path;
           }
-          messages["error"] = message;
+          messages["message"] = message;
         });
         res.status(422).json(messages)
       } else {
