@@ -26,18 +26,18 @@ This is the test .env file
 This is the fallback .env file
 
 ### `.env files required variables`
-# APP PORT
-PORT=3001
+#### APP PORT
+##### PORT=3001
 
 # DB CONSTANTS
-DB_NAME={val_here}
-DB_USERNAME={val_here}
-DB_PASSWORD={val_here}
-DB_DIALECT=sqlite
-DB_FILE_PATH={val_here}
+#####  DB_NAME={val_here}
+##### DB_USERNAME={val_here}
+##### DB_PASSWORD={val_here}
+##### DB_DIALECT=sqlite
+##### DB_FILE_PATH={val_here}
 
 # USER TOKEN KEYS
-USER_TOKEN_SECRET={val_here}
-USER_TOKEN_CRYPTO_SECRET={val_here}
+##### USER_TOKEN_SECRET={val_here}
+##### USER_TOKEN_CRYPTO_SECRET={val_here}
 
 
