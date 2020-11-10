@@ -15,8 +15,16 @@ export class LightningTalk {
 
   @Prop({ type: Types.ObjectId, ref: User.name })
   owner: User;
+
+  @Prop()
+  createdAt: Date;
+
+  @Prop()
+  updatedAt: Date;
 }
 
 export type LightningTalkDocument = LightningTalk & Document;
 
 export const LightningTalkSchema = SchemaFactory.createForClass(LightningTalk);
+
+LightningTalkSchema.index({ votes: -1, updatedAt: -1 });

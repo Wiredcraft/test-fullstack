@@ -10,8 +10,9 @@ import { AppService } from './app.service';
 import { LoggerMiddleware } from './middlewares/logger/logger.middleware';
 import { LoggerModule } from './middlewares/logger/logger.module';
 
-import { LightningTalk, LightningTalkSchema } from './db/lightning-talks.schema';
 import { User, UserSchema } from './db/user.schema';
+import { LightningTalk, LightningTalkSchema } from './db/lightning-talks.schema';
+import { LightningTalkVote, LightningTalkVoteSchema } from './db/lightning-talks-vote.schema';
 
 import { LightningTalkController } from './controllers/lightning-talk/lightning-talk.controller';
 import { AuthController } from './controllers/auth/auth.controller';
@@ -40,6 +41,7 @@ import { JwtStrategy } from './services/auth/jwt-strategy';
     }),
     MongooseModule.forFeature([
       { name: LightningTalk.name, schema: LightningTalkSchema },
+      { name: LightningTalkVote.name, schema: LightningTalkVoteSchema },
       { name: User.name, schema: UserSchema },
     ]),
 

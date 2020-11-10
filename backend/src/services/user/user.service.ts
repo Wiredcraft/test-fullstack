@@ -38,9 +38,12 @@ export class UserService {
         }
 
         // create new user
+        const now = new Date();
         const newUser = await this.userModel.create({
             username: registerParam.username,
             password: pwdHash(registerParam.password),
+            createdAt: now,
+            updatedAt: now,
         });
 
         return {

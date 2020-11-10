@@ -45,8 +45,6 @@ export class AuthService {
     }
 
     async validateUser(payload: JwtPayload): Promise<User> {
-        this.logger.debug(`Validate user: ${JSON.stringify(payload)}`)
-
         return await this.userModel.findOne({ username: payload.username });
     }
 }

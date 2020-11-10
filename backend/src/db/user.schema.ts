@@ -8,6 +8,12 @@ export class User {
 
   @Prop()
   password: string;
+
+  @Prop()
+  createdAt: Date;
+
+  @Prop()
+  updatedAt: Date;
 }
 
 export type UserDocument = User & Document;
