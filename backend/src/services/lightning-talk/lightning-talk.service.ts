@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { LightningTalk, LightningTalkDocument } from 'src/db/lightning-talks.schema';
 import { LightningTalksQueryResultDto } from 'src/dto/lightning-talks-query-result.dto';
 import { LightningTalkDto } from 'src/dto/lightning-talk.dto';
+import { UserDocument } from 'src/db/user.schema';
 
 @Injectable()
 export class LightningTalkService {
@@ -39,18 +40,19 @@ export class LightningTalkService {
     };
   }
 
-  public async create(data): Promise<LightningTalkDto> {
+  public async create(data, user: UserDocument): Promise<LightningTalkDto> {
     const doc = await this.lightningTalkModel.create({
       title: data.title,
       votes: 0,
       images: [],
+      owner: user._id,
     })
 
     return {
       id: doc._id,
       title: doc.title,
       votes: doc.votes,
-      images: doc.images,
+      images: doc.images
     }
   }
 }

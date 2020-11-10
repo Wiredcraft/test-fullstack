@@ -3,4 +3,5 @@ export class LightningTalkDto {
   title: string;
   images: string[];
   votes: number;
+  amIVoted?: boolean;
 }
