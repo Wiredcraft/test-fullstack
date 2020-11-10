@@ -7,6 +7,7 @@ import { LightningTalkDto } from 'src/dto/lightning-talk.dto';
 import { UserDocument } from 'src/db/user.schema';
 import { LightningTalk, LightningTalkDocument } from 'src/db/lightning-talks.schema';
 import { LightningTalkVote, LightningTalkVoteDocument } from 'src/db/lightning-talks-vote.schema';
+import { BizException } from 'src/exceptions';
 
 @Injectable()
 export class LightningTalkService {
@@ -35,7 +36,7 @@ export class LightningTalkService {
   private async checkLightningTalkExistence(lightningTalkId) {
     const lightningTalkExist = await this.lightningTalkModel.exists({ _id: lightningTalkId });
     if (!lightningTalkExist) {
-      throw new Error(`No such item: ${lightningTalkId}`);
+      throw new BizException(`No such item: ${lightningTalkId}`, 'lightningtalk-notfound', 404);
     }
   }
 
@@ -44,7 +45,7 @@ export class LightningTalkService {
   }
 
   public async vote(lightningTalkId, user): Promise<boolean> {
-    this.checkLightningTalkExistence(lightningTalkId);
+    await this.checkLightningTalkExistence(lightningTalkId);
 
     const now = new Date();
     const res = await this.lightningTalkVoteModel.updateOne(
@@ -62,11 +63,11 @@ export class LightningTalkService {
       return true;
     }
 
-    return false;
+    throw new BizException('Duplicated votes on same item.', 'vote-duplicated', 200);
   }
 
   public async unvote(lightningTalkId, user): Promise<boolean> {
-    this.checkLightningTalkExistence(lightningTalkId);
+    await this.checkLightningTalkExistence(lightningTalkId);
 
     const res = await this.lightningTalkVoteModel.remove({ user: user._id, lightningTalk: lightningTalkId });
 
@@ -80,7 +81,7 @@ export class LightningTalkService {
       return true;
     }
 
-    return false;
+    throw new BizException('No such vote.', 'vote-removed', 200);
   }
 
   public async getList(page: number): Promise<LightningTalksQueryResultDto> {

@@ -3,12 +3,16 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { MyLogger } from './middlewares/logger/logger.service';
+import { BizExceptionFilter } from './filters/biz-exception.filter';
+import { NormalizeResponseInterceptor } from './interceptors/normalize-response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.useLogger(app.get(MyLogger));
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new BizExceptionFilter());
+  app.useGlobalInterceptors(new NormalizeResponseInterceptor());
 
   const options = new DocumentBuilder()
     .setTitle('Ligntning Talks')

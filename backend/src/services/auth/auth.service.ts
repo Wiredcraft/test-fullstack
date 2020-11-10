@@ -11,6 +11,7 @@ import { UserLoginParamDto } from 'src/dto/user-login-param.dto';
 import { UserLoginResultDto } from 'src/dto/user-login-result.dto';
 
 import { JwtPayload } from './jwt-payload';
+import { BizException } from 'src/exceptions';
 
 @Injectable()
 export class AuthService {
@@ -32,7 +33,7 @@ export class AuthService {
         });
 
         if (!user) {
-            throw new Error('User name or password incorrect!');
+            throw new BizException('User name or password incorrect!', 'login-incorrect', 200);
         }
 
         return {
