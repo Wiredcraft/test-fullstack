@@ -30,12 +30,14 @@ export class UploadService {
     });
   }
 
+  // Convert the PPT document to images and save result
   private convertDocument(doc) {
     this.converterQueue.push(doc, async (error, data) => {
       if (error) {
         return this.logger.error(`Convert Error: ${JSON.stringify(error)}`);
       }
 
+      // PPT has been succesfully converted, just save the images paths to database
       try {
         await this.lightningTalkModel.updateOne({_id: doc._id}, {$set: {images: data}});
       } catch (e) {
@@ -50,22 +52,26 @@ export class UploadService {
 
   public createUploadUri(data: CreateUploadUriDto) {
     const token = this.jwtService.sign(data)
-    return {
-      uri: `http://${this.getStoreAddr()}/upload?token=${token}`
-    };
+    const uri = `http://${this.getStoreAddr()}/upload?token=${token}`;
+
+    this.logger.debug(`Upload URI generated: ${uri}, for title: "${data.title}"`)
+    return { uri };
   }
+
   async upload(q: UploadLightningTalkQueryDto, data: UploadLightningTalkDataDto, file, user: UserDocument) {
-    // Verify data
+    // Verify upload Uri token
     const token = this.jwtService.decode(q.token);
     if (!token || !token['title'] || token['title'] !== data.title) {
       throw new BizException(`Invaild upload token.`, 'upload-invaild-token', 400);
     }
 
+    // Same title is not allow
     const duplicated = await this.lightningTalkModel.exists({ owner: user._id, title: data.title });
     if (duplicated) {
       throw new BizException(`Your already have an item with the same title "${data.title}".`, 'upload-title-conflict', 200);
     }
 
+    // Save new lightning talk item to database
     const now = new Date();
     const doc = await this.lightningTalkModel.create({
       title: data.title,
@@ -82,14 +88,15 @@ export class UploadService {
       updatedAt: now,
     });
 
-    // Convert PPT to images
+    // Issue a conversion job on this document
     this.convertDocument(doc);
 
     return {
       id: doc._id,
       title: doc.title,
       votes: doc.votes,
-      images: doc.images
+      store: doc.store,
+      rawFile: doc.rawFile,
     };
   }
 }

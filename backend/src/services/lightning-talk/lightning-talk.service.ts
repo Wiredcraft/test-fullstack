@@ -2,19 +2,27 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { LightningTalksQueryResultDto } from 'src/dto/lightning-talks-query-result.dto';
-import { LightningTalkDto } from 'src/dto/lightning-talk.dto';
+import { ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
+import { timeout } from 'rxjs/operators';
+
 import { UserDocument } from 'src/db/user.schema';
 import { LightningTalk, LightningTalkDocument } from 'src/db/lightning-talks.schema';
 import { LightningTalkVote, LightningTalkVoteDocument } from 'src/db/lightning-talks-vote.schema';
+
 import { BizException } from 'src/exceptions';
+
+import { LightningTalksQueryResultDto } from 'src/dto/lightning-talks-query-result.dto';
+import { LightningTalkDto } from 'src/dto/lightning-talk.dto';
 import { CreateLightningTalkDto } from 'src/dto/create-lightning-talk.dto';
-import { ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
 
 @Injectable()
 export class LightningTalkService {
   private readonly logger = new Logger(LightningTalkService.name);
   private pageSize;
+
+  // We dont upload file directly to Web server,
+  // instead we have sperated Upload servers to handle all upload request,
+  // We communicate with Upload server throught microservice, and generate upload URIs.
   private uploadServers: ClientProxy[];
 
   constructor(
@@ -24,6 +32,7 @@ export class LightningTalkService {
   {
     this.pageSize = parseInt(this.config.get('PAGE_SIZE')) || 10;
 
+    // Load upload servers microservice configuration from .env file
     this.uploadServers = (this.config.get('UPLOAD_SERVERS') || '').split(',').map(addr => {
       const [host, port] = addr.split(':');
       return ClientProxyFactory.create({ transport: Transport.TCP, options: { host, port } });
@@ -36,8 +45,11 @@ export class LightningTalkService {
     return {
       id: lightningTalk._id,
       title: lightningTalk.title,
-      images: lightningTalk.images,
       votes: lightningTalk.votes,
+      store: lightningTalk.store,
+      rawFile: lightningTalk.rawFile,
+      images: lightningTalk.images,
+      cover: lightningTalk.images && lightningTalk.images[0],
     };
   }
 
@@ -46,6 +58,7 @@ export class LightningTalkService {
     if (!lightningTalk) {
       throw new BizException(`No such item: ${lightningTalkId}`, 'lightningtalk-notfound', 404);
     }
+
     if ((<any>lightningTalk.owner)._id.equals(user._id)) {
       throw new BizException(`Vote on own items is not allowed.`, 'vote-own-item', 403);
     }
@@ -110,7 +123,9 @@ export class LightningTalkService {
         id: item._id,
         title: item.title,
         votes: item.votes,
-        images: item.images,
+        store: item.store,
+        rawFile: item.rawFile,
+        cover: item.images && item.images[0],
       }))
     };
   }
@@ -123,13 +138,13 @@ export class LightningTalkService {
     // Should pick best available server to handle the upload job,
     // But we only have 1 for demo purpose
     try {
-      const { uri } = await this.uploadServers[0].send({ cmd: 'create-upload-uri' }, data).toPromise();
+      const { uri } = await this.uploadServers[0].send({ cmd: 'create-upload-uri' }, data).pipe(timeout(5000)).toPromise();
       return {
         uploadUri: uri,
       };
     } catch (e) {
       this.logger.error(`Failed to call microservice create-upload-uri. ${e.message}`);
-      throw new BizException(`Fail to create upload Uri!`, 'upload-failed-1', 500);
+      throw new BizException(`Failed to create upload Uri!`, 'upload-failed-1', 500);
     }
   }
 }
