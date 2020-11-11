@@ -1,0 +1,92 @@
+"The Lighting Talk"
+type Talk {
+    "The id of the talk."
+    id: ID!
+
+    "The title of the talk."
+    title: String!
+
+    "The detailed content of this talk."
+    description: String!
+
+    "The ID of author who post this talk."
+    authorId: ID!
+
+    "The author of the talk."
+    author: User!
+
+    "A list of user who upvotes this talk."
+    voters: UserConnection!
+
+    "The creation time of this talk."
+    createdAt: DateTime!
+
+    "The last updating time of this talk."
+    updatedAt: DateTime!
+}
+
+"How to filter the talk."
+input TalkSearchFilter {
+    "Search talks posted by specified users."
+    authorIds: [ID!]
+}
+
+"Allowed sort fields"
+enum TalkField {
+    "Sort talks by vote counts"
+    VOTES
+
+    "Sort talks by creation time"
+    CREATED_AT
+
+    "Sort talks by last updating time"
+    UPDATED_AT
+}
+
+"Option to order the talk in the list"
+input TalkOrder {
+    "Which field to order with"
+    field: TalkField!
+
+    "The direction of order: ascending or descending."
+    direction: SortDirection!
+}
+type TalkConnection {
+    "How many talk records that santisfy the query filter."
+    totalCount: Int!
+
+    "The list of record in current requested page."
+    nodes: [Talk!]!
+}
+
+extend type Query {
+    "Query all talks with given filter, order and pagination parameters"
+    allTalks(
+        "Optional filter to specify what kind of talks to returns."
+        filter: TalkSearchFilter,
+
+        "How to order the returned records"
+        order: TalkOrder,
+
+        "How many and which page of record to return"
+        pagination: Pagination
+    ): TalkConnection!
+}
+
+"Parameters used to create a new talk."
+input CreateTalkInput {
+    "The title of the new talk to create."
+    title: String!
+
+    "The detailed conetnt of the talk."
+    description: String!
+}
+
+
+extend type Mutation {
+    "Create a talk."
+    createTalk(input: CreateTalkInput!): Talk!
+
+    "Upvote a talk."
+    upvoteTalk(id: ID!): Talk!
+}

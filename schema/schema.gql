@@ -1,0 +1,30 @@
+"The DateTime type repensent a JSON Date object"
+scalar DateTime
+
+"The sorting direstion."
+enum SortDirection {
+    "Sorting in ascending order."
+    ASC
+
+    "Sorting in descending order."
+    DESC
+}
+
+"Option to specify which page of records to return."
+input Pagination {
+    "The max size of the page. Optional, default to 100."
+    limit: Int
+
+    "The page offset. Optional, default to 0, which is the offset for the first page."
+    offset: Int
+}
+
+"The root for all queries."
+type Query {
+
+}
+
+"The root for all mutations."
+type Mutation {
+
+}

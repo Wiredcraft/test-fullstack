@@ -1,0 +1,58 @@
+"The User who create talks and upvote talks."
+type User {
+    "ID of the user."
+    id: ID!
+
+    "The name of the user."
+    name: String!
+
+    "The creation time of the user, that is the registion time."
+    createdAt: DateTime!
+
+    "The last update time of the user."
+    upatedAt: DateTime!
+}
+
+"A list of user with some metadata such as total count."
+type UserConnection {
+    "Total number of user in this search reslut"
+    totalCount: Int!
+
+    "The users records in this page."
+    nodes: [User!]!
+}
+
+"The parameters to register a new user."
+input RegisterUserInput {
+    "The name of the user."
+    name: String!
+
+    "The password of the user."
+    passowrd: String!
+}
+
+"The parameters to login as an existing user."
+input LoginUserInput {
+    "The name of the user."
+    name: String!
+
+    "The password of the user."
+    passowrd: String!
+}
+
+"The logged-in user information."
+type Session {
+    "The token for next api request."
+    token: String!
+
+    "The user."
+    user: User!
+}
+
+extend type Mutation {
+    "Create, aka. register, a user. returns a user with he/she's authentication token."
+    register(input: RegisterUserInput!): Session!
+
+    "Login. returns a user with he/she's authentication token."
+    login(input: LoginUserInput): Session!
+}
