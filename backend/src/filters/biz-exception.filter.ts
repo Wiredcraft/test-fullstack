@@ -10,10 +10,10 @@ export class BizExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
 
-    if (exception.statusCode === 200) {
-      this.logger.debug(`${exception.code}, message: ${exception.message}`);
+    if (exception.statusCode === 500) {
+      this.logger.error(`${exception.code}, message: ${exception.message}`);
     } else {
-      this.logger.verbose(`${exception.code}, message: ${exception.message}`);
+      this.logger.debug(`${exception.code}, message: ${exception.message}`);
     }
 
     response.status(exception.statusCode);

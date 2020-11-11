@@ -8,11 +8,14 @@ import { UserDocument } from 'src/db/user.schema';
 import { LightningTalk, LightningTalkDocument } from 'src/db/lightning-talks.schema';
 import { LightningTalkVote, LightningTalkVoteDocument } from 'src/db/lightning-talks-vote.schema';
 import { BizException } from 'src/exceptions';
+import { CreateLightningTalkDto } from 'src/dto/create-lightning-talk.dto';
+import { ClientProxy, ClientProxyFactory, Transport } from '@nestjs/microservices';
 
 @Injectable()
 export class LightningTalkService {
   private readonly logger = new Logger(LightningTalkService.name);
   private pageSize;
+  private uploadServers: ClientProxy[];
 
   constructor(
     @Inject(ConfigService) private config: ConfigService,
@@ -20,6 +23,11 @@ export class LightningTalkService {
     @InjectModel(LightningTalkVote.name) private lightningTalkVoteModel: Model<LightningTalkVoteDocument>)
   {
     this.pageSize = parseInt(this.config.get('PAGE_SIZE')) || 10;
+
+    this.uploadServers = (this.config.get('UPLOAD_SERVERS') || '').split(',').map(addr => {
+      const [host, port] = addr.split(':');
+      return ClientProxyFactory.create({ transport: Transport.TCP, options: { host, port } });
+    });
   }
 
   public async get(lightningTalkId): Promise<LightningTalkDto> {
@@ -107,22 +115,21 @@ export class LightningTalkService {
     };
   }
 
-  public async create(data, user: UserDocument): Promise<LightningTalkDto> {
-    const now = new Date()
-    const doc = await this.lightningTalkModel.create({
-      title: data.title,
-      votes: 0,
-      images: [],
-      owner: user._id,
-      createdAt: now,
-      updatedAt: now,
-    })
+  public async create(data: CreateLightningTalkDto, user: UserDocument) {
+    if (!this.uploadServers || this.uploadServers.length === 0) {
+      throw new BizException(`Cannot upload file right now!`, 'upload-not-available', 500);
+    }
 
-    return {
-      id: doc._id,
-      title: doc.title,
-      votes: doc.votes,
-      images: doc.images
+    // Should pick best available server to handle the upload job,
+    // But we only have 1 for demo purpose
+    try {
+      const { uri } = await this.uploadServers[0].send({ cmd: 'create-upload-uri' }, data).toPromise();
+      return {
+        uploadUri: uri,
+      };
+    } catch (e) {
+      this.logger.error(`Failed to call microservice create-upload-uri. ${e.message}`);
+      throw new BizException(`Fail to create upload Uri!`, 'upload-failed-1', 500);
     }
   }
 }

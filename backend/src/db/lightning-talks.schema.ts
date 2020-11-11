@@ -10,8 +10,19 @@ export class LightningTalk {
   @Prop()
   votes: number;
 
+  @Prop()
+  store: string;
+
+  @Prop()
+  rawFile: {
+    name: string;
+    mimetype: string;
+    filename: string;
+    size: number;
+  };
+
   @Prop([String])
-  images: string[];
+  images?: string[];
 
   @Prop({ type: Types.ObjectId, ref: User.name })
   owner: User;
@@ -28,3 +39,11 @@ export type LightningTalkDocument = LightningTalk & Document;
 export const LightningTalkSchema = SchemaFactory.createForClass(LightningTalk);
 
 LightningTalkSchema.index({ votes: -1, updatedAt: -1 });
+LightningTalkSchema.index({ owner: 1, title: 1 }, { unique: true });
+
+// Index items those were not convert yet
+LightningTalkSchema.index({ store: 1 }, {
+  partialFilterExpression: {
+    images: null
+  }
+});

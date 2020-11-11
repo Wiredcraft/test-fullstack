@@ -1,13 +1,16 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
+import { AppModule } from './app.module';
 import { MyLogger } from './middlewares/logger/logger.service';
 import { BizExceptionFilter } from './filters/biz-exception.filter';
 import { NormalizeResponseInterceptor } from './interceptors/normalize-response.interceptor';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: false,
+  });
 
   app.useLogger(app.get(MyLogger));
   app.useGlobalPipes(new ValidationPipe());
