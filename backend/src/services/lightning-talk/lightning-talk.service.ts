@@ -33,10 +33,13 @@ export class LightningTalkService {
     };
   }
 
-  private async checkLightningTalkExistence(lightningTalkId) {
-    const lightningTalkExist = await this.lightningTalkModel.exists({ _id: lightningTalkId });
-    if (!lightningTalkExist) {
+  private async checkLightningTalk(lightningTalkId, user) {
+    const lightningTalk = await this.lightningTalkModel.findById(lightningTalkId, { owner: 1 });
+    if (!lightningTalk) {
       throw new BizException(`No such item: ${lightningTalkId}`, 'lightningtalk-notfound', 404);
+    }
+    if ((<any>lightningTalk.owner)._id.equals(user._id)) {
+      throw new BizException(`Vote on own items is not allowed.`, 'vote-own-item', 403);
     }
   }
 
@@ -45,7 +48,7 @@ export class LightningTalkService {
   }
 
   public async vote(lightningTalkId, user): Promise<boolean> {
-    await this.checkLightningTalkExistence(lightningTalkId);
+    await this.checkLightningTalk(lightningTalkId, user);
 
     const now = new Date();
     const res = await this.lightningTalkVoteModel.updateOne(
@@ -67,11 +70,9 @@ export class LightningTalkService {
   }
 
   public async unvote(lightningTalkId, user): Promise<boolean> {
-    await this.checkLightningTalkExistence(lightningTalkId);
-
     const res = await this.lightningTalkVoteModel.remove({ user: user._id, lightningTalk: lightningTalkId });
 
-    // Decrease votes counter if the user's vote was deleted
+    // Decrease votes counter if the user's vote was successful deleted
     if (res.deletedCount > 0) {
       const now = new Date();
       await this.lightningTalkModel.updateOne({ _id: lightningTalkId }, {
@@ -81,7 +82,7 @@ export class LightningTalkService {
       return true;
     }
 
-    throw new BizException('No such vote.', 'vote-removed', 200);
+    throw new BizException('Cannot delete a not existing vote.', 'vote-not-exist', 200);
   }
 
   public async getList(page: number): Promise<LightningTalksQueryResultDto> {

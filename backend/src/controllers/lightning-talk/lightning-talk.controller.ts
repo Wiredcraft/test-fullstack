@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Query, Body, Logger, UseGuards, Req, Param } from '@nestjs/common';
+import { Controller, Get, Post, Query, Body, Logger, UseGuards, Req, Param, Delete } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Types } from 'mongoose';
 
@@ -54,7 +54,7 @@ export class LightningTalkController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Unvote for specific lightning talk.' })
   @UseGuards(AuthGuard())
-  @Post('/:id/unvote')
+  @Delete('/:id/vote')
   async unvote(@Req() request, @Param() lightningTalkId: LightningTalkIdParamDto) {
     return this.lightningTalkService.unvote(Types.ObjectId(lightningTalkId.id), request.user)
   }

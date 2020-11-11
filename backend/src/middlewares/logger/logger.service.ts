@@ -25,7 +25,7 @@ export class MyLogger implements LoggerService {
   }
 
   log(message: string) {
-    return this.logger.info(message);
+    return this.logger.log('info', message);
   }
 
   error(message: string, trace: string) {
@@ -34,6 +34,14 @@ export class MyLogger implements LoggerService {
 
   warn(message: string) {
     return this.logger.warn(message);
+  }
+
+  info(message: string) {
+    return this.logger.info(message);
+  }
+
+  verbose(message: string) {
+    return  this.logger.verbose(message);
   }
 
   debug(message: string) {
