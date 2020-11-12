@@ -83,6 +83,7 @@ export class UploadService {
         size: file.size,
       },
       store: this.getStoreAddr(),
+      images: null,
       owner: user._id,
       createdAt: now,
       updatedAt: now,
