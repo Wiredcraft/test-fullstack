@@ -1,10 +1,10 @@
-<h1 class="my-4 pt-4">Login</h1>
-<form class="form-group" [formGroup]="loginForm" (ngSubmit)="login()">
+<h1 class="my-4 pt-4">Register</h1>
+<form class="form-group" [formGroup]="registerForm" (ngSubmit)="register()">
   <div class="row">
     <div class="col">
       <label for="username">Username
-        <span *ngIf="loginForm.controls['username'].invalid" class="text-danger">
-          <span *ngIf="loginForm.controls['username'].errors.required">*</span>
+        <span *ngIf="registerForm.controls['username'].invalid" class="text-danger">
+          <span *ngIf="registerForm.controls['username'].errors.required">*</span>
         </span>
       </label>
       <input id="username" name="username" type="text" formControlName="username" class="form-control">
@@ -13,8 +13,8 @@
   <div class="row mt-3">
     <div class="col">
       <label for="password">Password
-        <span *ngIf="loginForm.controls['password'].invalid" class="text-danger">
-          <span *ngIf="loginForm.controls['password'].errors.required">*</span>
+        <span *ngIf="registerForm.controls['password'].invalid" class="text-danger">
+          <span *ngIf="registerForm.controls['password'].errors.required">*</span>
         </span>
       </label>
       <input id="password" name="password" type="password" formControlName="password" class="form-control">
@@ -27,7 +27,7 @@
   </div>
   <div class="row mt-4">
     <div class="col">
-      <input [disabled]="!loginForm.valid" class="btn btn-primary mr-3" type="submit" value="Login">/<a routerLink="/register" class="btn btn-link btn-sm ml-2">Register new user</a>
+      <input [disabled]="!registerForm.valid" class="btn btn-primary" type="submit" value="Register">
     </div>
   </div>
 </form>

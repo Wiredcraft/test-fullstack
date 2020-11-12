@@ -4,6 +4,7 @@ import { CreateLightningTalkComponent } from './components/create-lightning-talk
 import { LightningTalkDetailComponent } from './components/lightning-talk-detail/lightning-talk-detail.component';
 import { LightningTalksListComponent } from './components/lightning-talks-list/lightning-talks-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'lightningtalks/:id', component: LightningTalkDetailComponent },
   { path: 'create', component: CreateLightningTalkComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
   // otherwise redirect
   { path: '**', redirectTo: 'lightningtalks' }

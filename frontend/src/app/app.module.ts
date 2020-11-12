@@ -11,6 +11,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateLightningTalkComponent } from './components/create-lightning-talk/create-lightning-talk.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CreateLightningTalkComponent } from './components/create-lightning-talk
     LightningTalksListComponent,
     LightningTalkDetailComponent,
     LoginComponent,
-    CreateLightningTalkComponent
+    CreateLightningTalkComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
