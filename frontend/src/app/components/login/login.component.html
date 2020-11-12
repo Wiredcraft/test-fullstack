@@ -1,0 +1,33 @@
+<h1 class="my-4 pt-4">Login</h1>
+<form class="form-group" [formGroup]="loginForm" (ngSubmit)="login()">
+  <div class="row">
+    <div class="col">
+      <label for="username">Username
+        <span *ngIf="loginForm.controls['username'].invalid" class="text-danger">
+          <span *ngIf="loginForm.controls['username'].errors.required">*</span>
+        </span>
+      </label>
+      <input id="username" name="username" type="text" formControlName="username" class="form-control">
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <label for="password">Password
+        <span *ngIf="loginForm.controls['password'].invalid" class="text-danger">
+          <span *ngIf="loginForm.controls['password'].errors.required">*</span>
+        </span>
+      </label>
+      <input id="password" name="password" type="password" formControlName="password" class="form-control">
+    </div>
+  </div>
+  <div *ngIf="apiResult && apiResult.error" class="row mt-3">
+    <div *ngFor="let msg of apiResult.message" class="col-12 alert alert-warning" role="alert">
+      <strong>{{msg}}.</strong>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <input [disabled]="!loginForm.valid" class="btn btn-primary" type="submit" value="Login">
+    </div>
+  </div>
+</form>

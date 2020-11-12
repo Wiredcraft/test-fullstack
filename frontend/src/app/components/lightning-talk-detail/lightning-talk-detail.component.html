@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-12 col-lg-9">
+    <div class="row pt-2">
+      <div class="col-12">
+        <img *ngIf="item.cover" style="width: 100%" [src]="generatePath(item.store, item.cover)" class="img-fluid">
+        <img *ngIf="!item.cover" style="width: 100%" src="https://via.placeholder.com/800x600.png?text=PPT+is+Still+Processing" class="img-fluid">
+      </div>
+    </div>
+    <div class="row pt-4">
+      <div class="col-12">
+        <div class="px-2">
+          <h3>{{item.title}}</h3>
+          <div class="row">
+            <div class="col-6">
+              <b>Creator:</b> {{item.owner.username}}
+            </div>
+            <div class="col-6 text-right">
+              <ng-container *ngIf="!own(item)">
+                <button *ngIf="item.voted" class="btn btn-sm btn-primary" (click)="unvote(item)">unvote</button>
+                <button *ngIf="!item.voted" class="btn btn-sm btn-outline-primary" (click)="vote(item)">vote</button>
+              </ng-container>
+              <span class="pl-2">{{item.votes}} votes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-lg-3 bg-light">
+    <div class="row py-2">
+      <div class="col">
+        <img width="100%" src="//via.placeholder.com/150x100" >
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col">
+        <img width="100%" src="//via.placeholder.com/150x100" >
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col">
+        <img width="100%" src="//via.placeholder.com/150x100" >
+
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="col">
+        <img width="100%" src="//via.placeholder.com/150x100" >
+      </div>
+    </div>
+  </div>
+</div>
