@@ -1,0 +1,24 @@
+.page {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+
+  .arrow {
+    position: absolute;
+    top: 50%;
+    line-height: 0em;
+    cursor: pointer;
+  }
+
+  .arrow.left {
+    left: 0.2em;
+    font-size: 3em;
+  }
+
+  .arrow.right {
+    right: 0.2em;
+    font-size: 3em;
+  }
+}

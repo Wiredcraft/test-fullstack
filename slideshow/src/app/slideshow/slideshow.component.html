@@ -1,0 +1,5 @@
+<div class="container" [style.width]="width">
+  <img class="page" *ngIf="images && images.length > 0" [src]="images[index]">
+  <a class="arrow left" (click)="prev()">&lt;</a>
+  <a class="arrow right" (click)="next()">&gt;</a>
+</div>
