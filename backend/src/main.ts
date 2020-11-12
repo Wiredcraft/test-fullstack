@@ -12,6 +12,7 @@ async function bootstrap() {
     logger: false,
   });
 
+  app.enableCors();
   app.useLogger(app.get(MyLogger));
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new BizExceptionFilter());

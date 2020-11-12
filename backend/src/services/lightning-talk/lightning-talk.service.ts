@@ -39,17 +39,29 @@ export class LightningTalkService {
     });
   }
 
-  public async get(lightningTalkId): Promise<LightningTalkDto> {
-    const lightningTalk = await this.lightningTalkModel.findById(lightningTalkId);
+  public async get(lightningTalkId, user): Promise<LightningTalkDto> {
+    let q = this.lightningTalkModel.findById(lightningTalkId).populate({
+      path: 'owner',
+      select: 'username -_id'
+    });
+    if (user) {
+      q = q.populate({
+        path: 'listvotes',
+        match: { user: user._id }
+      });
+    }
+    const lightningTalk = await q;
 
     return {
       id: lightningTalk._id,
       title: lightningTalk.title,
       votes: lightningTalk.votes,
+      owner: lightningTalk.owner,
       store: lightningTalk.store,
       rawFile: lightningTalk.rawFile,
       images: lightningTalk.images,
       cover: lightningTalk.images && lightningTalk.images[0],
+      voted: (user ? lightningTalk['listvotes'].length > 0 : undefined),
     };
   }
 
@@ -106,7 +118,7 @@ export class LightningTalkService {
     throw new BizException('Cannot delete a not existing vote.', 'vote-not-exist', 200);
   }
 
-  public async getList(page: number): Promise<LightningTalksQueryResultDto> {
+  public async getList(page: number, user): Promise<LightningTalksQueryResultDto> {
     // Re-calcuate the page index by the actual data we have
     const countTotalItems = await this.lightningTalkModel.count({});
     const maxPageCount = Math.ceil(countTotalItems / this.pageSize) || 1
@@ -114,7 +126,17 @@ export class LightningTalkService {
     const skip = (pageIndex - 1) * this.pageSize
 
     // retrieve records from db
-    const docs = await this.lightningTalkModel.find({}).sort({votes: -1, updatedAt: -1}).skip(skip).limit(this.pageSize);
+    let q = this.lightningTalkModel.find({}).sort({votes: -1, updatedAt: -1}).skip(skip).limit(this.pageSize).populate({
+      path: 'owner',
+      select: 'username -_id'
+    });
+    if (user) {
+      q = q.populate({
+        path: 'listvotes',
+        match: { user: user._id }
+      });
+    }
+    const docs = await q;
 
     return {
       maxPageCount,
@@ -123,9 +145,11 @@ export class LightningTalkService {
         id: item._id,
         title: item.title,
         votes: item.votes,
+        owner: item.owner,
         store: item.store,
         rawFile: item.rawFile,
         cover: item.images && item.images[0],
+        voted: (user ? item['listvotes'].length > 0 : undefined),
       }))
     };
   }

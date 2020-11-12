@@ -2,6 +2,8 @@ import { NestFactory } from "@nestjs/core";
 import { ValidationPipe } from "@nestjs/common";
 import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { join } from "path";
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 import { UploadModule } from "src/upload.module";
 import { MyLogger } from "src/middlewares/logger/logger.service";
@@ -9,7 +11,7 @@ import { BizExceptionFilter } from "./filters/biz-exception.filter";
 import { NormalizeResponseInterceptor } from "./interceptors/normalize-response.interceptor";
 
 (async () => {
-    const app = await NestFactory.create(UploadModule, {
+    const app = await NestFactory.create<NestExpressApplication>(UploadModule, {
         logger: false,
     });
     const microservice = app.connectMicroservice({
@@ -20,10 +22,12 @@ import { NormalizeResponseInterceptor } from "./interceptors/normalize-response.
       }
     });
 
+    app.enableCors();
     app.useLogger(app.get(MyLogger));
     app.useGlobalPipes(new ValidationPipe());
     app.useGlobalFilters(new BizExceptionFilter());
     app.useGlobalInterceptors(new NormalizeResponseInterceptor());
+    app.useStaticAssets(join(__dirname, '..', 'upload'), { prefix: '/upload' });
 
     const options = new DocumentBuilder()
       .setTitle('Ligntning Talks Upload Server')

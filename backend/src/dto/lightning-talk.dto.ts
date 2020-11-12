@@ -2,6 +2,7 @@ export class LightningTalkDto {
   id: string;
   title: string;
   votes: number;
+  owner: object;
   store: string;
   rawFile: {
     name: string;
@@ -11,4 +12,5 @@ export class LightningTalkDto {
   };
   cover?: string;
   images?: string[];
+  voted?: boolean;
 }

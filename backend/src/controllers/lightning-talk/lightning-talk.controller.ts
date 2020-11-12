@@ -7,6 +7,7 @@ import { CreateLightningTalkDto } from 'src/dto/create-lightning-talk.dto';
 import { LightningTalkService } from 'src/services/lightning-talk/lightning-talk.service';
 import { AuthGuard } from '@nestjs/passport';
 import { LightningTalkIdParamDto } from 'src/dto/lightning-talk-id-param.dto';
+import { ApplyUser } from 'src/services/auth/apply-user';
 
 @ApiTags('lightning-talks')
 @Controller('lightning-talks')
@@ -15,10 +16,12 @@ export class LightningTalkController {
 
   constructor(private readonly lightningTalkService: LightningTalkService) {}
 
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get list of lightning talks, by using ?page=n as the paginator.' })
+  @UseGuards(ApplyUser)
   @Get('')
-  async list(@Query() q: LightningTalksQueryDto) {
-    return this.lightningTalkService.getList(q.page);
+  async list(@Req() request, @Query() q: LightningTalksQueryDto) {
+    return this.lightningTalkService.getList(q.page, request.user);
   }
 
   @ApiBearerAuth()
@@ -29,10 +32,12 @@ export class LightningTalkController {
     return this.lightningTalkService.create(data, request.user)
   }
 
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get one lightning talk detail.' })
+  @UseGuards(ApplyUser)
   @Get('/:id')
-  async get(@Param() lightningTalkId: LightningTalkIdParamDto) {
-    return this.lightningTalkService.get(Types.ObjectId(lightningTalkId.id));
+  async get(@Req() request, @Param() lightningTalkId: LightningTalkIdParamDto) {
+    return this.lightningTalkService.get(Types.ObjectId(lightningTalkId.id), request.user);
   }
 
   @ApiBearerAuth()

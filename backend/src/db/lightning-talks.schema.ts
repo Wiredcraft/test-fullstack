@@ -38,6 +38,12 @@ export type LightningTalkDocument = LightningTalk & Document;
 
 export const LightningTalkSchema = SchemaFactory.createForClass(LightningTalk);
 
+LightningTalkSchema.virtual('listvotes', {
+  ref: 'LightningTalkVote',
+  localField: '_id',
+  foreignField: 'lightningTalk',
+});
+
 LightningTalkSchema.index({ votes: -1, updatedAt: -1 });
 LightningTalkSchema.index({ owner: 1, title: 1 }, { unique: true });
 
