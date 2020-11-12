@@ -23,7 +23,6 @@ export class CreateLightningTalkComponent implements OnInit {
   }
 
   handleFileInput(files: FileList) {
-    console.log(files.item(0));
     this.createForm.patchValue({
       fileSource: files.item(0)
     });

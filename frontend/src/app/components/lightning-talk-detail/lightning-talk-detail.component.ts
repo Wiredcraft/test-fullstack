@@ -29,7 +29,11 @@ export class LightningTalkDetailComponent implements OnInit {
   }
 
   generatePath(store, imgPath) {
-    return `//${store}/upload/${imgPath}`;
+    if (Array.isArray(imgPath)) {
+      return imgPath.map(path => `//${store}/upload/${path}`)
+    } else {
+      return `//${store}/upload/${imgPath}`;
+    }
   }
 
   own(item) {

@@ -1,9 +1,11 @@
-<div class="row">
+<div *ngIf="item" class="row">
   <div class="col-12 col-lg-9">
     <div class="row pt-2">
       <div class="col-12">
-        <img *ngIf="item.cover" style="width: 100%" [src]="generatePath(item.store, item.cover)" class="img-fluid">
-        <img *ngIf="!item.cover" style="width: 100%" src="https://via.placeholder.com/800x600.png?text=PPT+is+Still+Processing" class="img-fluid">
+        <x-slideshow *ngIf="(item.images && item.images.length); else noimages" style="width: 100%" [images]="generatePath(item.store, item.images)"></x-slideshow>
+        <ng-template #noimages>
+          <img style="width: 100%" src="https://via.placeholder.com/800x600.png?text=PPT+is+Still+Processing" class="img-fluid">
+        </ng-template>
       </div>
     </div>
     <div class="row pt-4">

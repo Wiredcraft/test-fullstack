@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import config from 'src/app/config';
 
 import { User } from '../models/user';
 
@@ -20,7 +21,7 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`http://localhost:3000/auth/login`, { username, password }).pipe(map(data => {
+    return this.http.post<any>(`${config.apiUrl}/auth/login`, { username, password }).pipe(map(data => {
       // login successful if there's a jwt token in the response
       if (!data.error && data.result.jwt) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
