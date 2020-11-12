@@ -59,6 +59,12 @@ export class UploadService {
   }
 
   async upload(q: UploadLightningTalkQueryDto, data: UploadLightningTalkDataDto, file, user: UserDocument) {
+    // Check file type, should be *.ppt,*.pptx
+    const ofn = file.originalname.toLowerCase();
+    if (!ofn.endsWith('.ppt') && !ofn.endsWith('.pptx')) {
+      throw new BizException(`Invaild file type`, 'upload-invaild-file', 400);
+    }
+
     // Verify upload Uri token
     const token = this.jwtService.decode(q.token);
     if (!token || !token['title'] || token['title'] !== data.title) {
@@ -75,6 +81,7 @@ export class UploadService {
     const now = new Date();
     const doc = await this.lightningTalkModel.create({
       title: data.title,
+      description: data.description,
       votes: 0,
       rawFile: {
         name: file.originalname,

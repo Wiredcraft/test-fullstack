@@ -39,6 +39,7 @@ export class LightningTalkService {
     });
   }
 
+  // Get lightning talk detail
   public async get(lightningTalkId, user): Promise<LightningTalkDto> {
     let q = this.lightningTalkModel.findById(lightningTalkId).populate({
       path: 'owner',
@@ -55,6 +56,7 @@ export class LightningTalkService {
     return {
       id: lightningTalk._id,
       title: lightningTalk.title,
+      description: lightningTalk.description,
       votes: lightningTalk.votes,
       owner: lightningTalk.owner,
       store: lightningTalk.store,
@@ -80,6 +82,7 @@ export class LightningTalkService {
     return await this.lightningTalkVoteModel.exists({ user: user._id, lightningTalk: lightningTalkId });
   }
 
+  // Vote a lightning talk
   public async vote(lightningTalkId, user): Promise<boolean> {
     await this.checkLightningTalk(lightningTalkId, user);
 
@@ -102,6 +105,7 @@ export class LightningTalkService {
     throw new BizException('Duplicated votes on same item.', 'vote-duplicated', 200);
   }
 
+  // Unvote a lightning talk
   public async unvote(lightningTalkId, user): Promise<boolean> {
     const res = await this.lightningTalkVoteModel.remove({ user: user._id, lightningTalk: lightningTalkId });
 
@@ -118,6 +122,7 @@ export class LightningTalkService {
     throw new BizException('Cannot delete a not existing vote.', 'vote-not-exist', 200);
   }
 
+  // Get a list of lightning talks with pagination
   public async getList(page: number, user): Promise<LightningTalksQueryResultDto> {
     // Re-calcuate the page index by the actual data we have
     const countTotalItems = await this.lightningTalkModel.count({});
@@ -144,6 +149,7 @@ export class LightningTalkService {
       data: docs.map(item => ({
         id: item._id,
         title: item.title,
+        description: item.description,
         votes: item.votes,
         owner: item.owner,
         store: item.store,

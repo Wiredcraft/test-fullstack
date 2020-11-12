@@ -25,13 +25,14 @@ export class LightningTalkService {
     return this.http.delete(`${config.apiUrl}/lightning-talks/${id}/vote`);
   }
 
-  create(title, file) {
+  create(title, description, file) {
     return this.http.post(`${config.apiUrl}/lightning-talks`, { title }).pipe(mergeMap((data: any) => {
       if (data.error) {
         return data;
       }
       const formData = new FormData();
       formData.append('title', title);
+      formData.append('description', description);
       formData.append('file', file);
       return this.http.post(data.result.uploadUri, formData);
     }))

@@ -6,4 +6,9 @@ export class UploadLightningTalkDataDto {
   @IsNotEmpty()
   @IsString()
   title: string;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsString()
+  description: string;
 }

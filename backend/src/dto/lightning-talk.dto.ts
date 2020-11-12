@@ -1,6 +1,7 @@
 export class LightningTalkDto {
   id: string;
   title: string;
+  description: string;
   votes: number;
   owner: object;
   store: string;

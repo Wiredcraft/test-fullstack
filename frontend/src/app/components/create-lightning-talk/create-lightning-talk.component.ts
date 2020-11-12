@@ -17,6 +17,7 @@ export class CreateLightningTalkComponent implements OnInit {
   ngOnInit(): void {
     this.createForm = this.formBuilder.group({
       title: ['', Validators.required],
+      description: ['', Validators.required],
       file: [null, Validators.required],
       fileSource: ['', Validators.required],
     });
@@ -35,7 +36,7 @@ export class CreateLightningTalkComponent implements OnInit {
       return;
     }
 
-    this.lightningTalkService.create(this.controls.title.value, this.controls.fileSource.value).subscribe((data: any) => {
+    this.lightningTalkService.create(this.controls.title.value, this.controls.description.value, this.controls.fileSource.value).subscribe((data: any) => {
       this.apiResult = data.error;
       if (!data.error) {
         return this.router.navigate(['lightningtalks', data.result.id]);

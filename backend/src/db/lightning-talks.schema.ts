@@ -8,6 +8,9 @@ export class LightningTalk {
   title: string;
 
   @Prop()
+  description: string;
+
+  @Prop()
   votes: number;
 
   @Prop()
