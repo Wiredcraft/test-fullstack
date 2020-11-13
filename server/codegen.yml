@@ -1,0 +1,15 @@
+overwrite: true
+schema: "../schema/*.gql"
+documents: null
+generates:
+  src/types/index.ts:
+    config:
+      useIndexSignature: true
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+  src/types/schemas.graphql:
+    plugins:
+      - schema-ast
+    config:
+      includeDirectives: true

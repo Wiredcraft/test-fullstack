@@ -13,6 +13,12 @@ type User {
     upatedAt: DateTime!
 }
 
+"The root for all queries."
+type Query {
+    "Return information about current logged-in user."
+    me: User
+}
+
 "A list of user with some metadata such as total count."
 type UserConnection {
     "Total number of user in this search reslut"
@@ -49,7 +55,8 @@ type Session {
     user: User!
 }
 
-extend type Mutation {
+"The root for all mutations."
+type Mutation {
     "Create, aka. register, a user. returns a user with he/she's authentication token."
     register(input: RegisterUserInput!): Session!
 

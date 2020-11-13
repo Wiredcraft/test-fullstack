@@ -18,13 +18,3 @@ input Pagination {
     "The page offset. Optional, default to 0, which is the offset for the first page."
     offset: Int
 }
-
-"The root for all queries."
-type Query {
-
-}
-
-"The root for all mutations."
-type Mutation {
-
-}
