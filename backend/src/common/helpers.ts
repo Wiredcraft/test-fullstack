@@ -1,12 +1,12 @@
 import { createHmac } from 'crypto';
 
 export function nowInSeconds() {
-    return Math.floor(Date.now() / 1000);
+  return Math.floor(Date.now() / 1000);
 }
 
-export function pwdHash(pwd) {
-    if (!process.env.PASSWORD_SALT) {
-        throw new Error('PASSWORD_SALT is missing in .env file!')
-    }
-    return createHmac('sha256', process.env.PASSWORD_SALT).update(pwd).digest('hex');
+export function pwdHash(pwd, salt) {
+  if (!salt) {
+    throw new Error('Password salt is missing')
+  }
+  return createHmac('sha256', salt).update(pwd).digest('hex');
 }

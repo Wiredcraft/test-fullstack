@@ -1,13 +1,13 @@
 import { Controller, Get, Post, Query, Body, Logger, UseGuards, Req, Param, Delete } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Types } from 'mongoose';
+import { AuthGuard } from '@nestjs/passport';
 
 import { LightningTalksQueryDto } from 'src/dto/lightning-talks-query.dto';
 import { CreateLightningTalkDto } from 'src/dto/create-lightning-talk.dto';
 import { LightningTalkService } from 'src/services/lightning-talk/lightning-talk.service';
-import { AuthGuard } from '@nestjs/passport';
 import { LightningTalkIdParamDto } from 'src/dto/lightning-talk-id-param.dto';
-import { ApplyUser } from 'src/services/auth/apply-user';
+import { ApplyUser } from 'src/decorators/apply-user.decorator';
 
 @ApiTags('lightning-talks')
 @Controller('lightning-talks')
@@ -17,11 +17,12 @@ export class LightningTalkController {
   constructor(private readonly lightningTalkService: LightningTalkService) {}
 
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Get list of lightning talks, by using ?page=n as the paginator.' })
+  @ApiOperation({ summary: 'Get list of lightning talks with pagination.' })
   @UseGuards(ApplyUser)
   @Get('')
   async list(@Req() request, @Query() q: LightningTalksQueryDto) {
-    return this.lightningTalkService.getList(q.page, request.user);
+    // If page index is not provided, defaults to 1
+    return this.lightningTalkService.getList(parseInt(q.page) || 1, request.user);
   }
 
   @ApiBearerAuth()

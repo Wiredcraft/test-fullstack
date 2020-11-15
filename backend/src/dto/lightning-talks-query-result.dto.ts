@@ -1,4 +1,4 @@
-import { LightningTalkDto } from "./lightning-talk.dto";
+import { LightningTalkDto } from './lightning-talk.dto';
 
 export class LightningTalksQueryResultDto {
   maxPageCount: number;

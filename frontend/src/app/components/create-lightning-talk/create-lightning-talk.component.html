@@ -10,7 +10,7 @@
       <input id="title" name="title" type="text" formControlName="title" class="form-control">
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-3">
     <div class="col">
       <label for="description">Description
         <span *ngIf="createForm.controls['description'].invalid" class="text-danger">
@@ -28,6 +28,15 @@
         </span>
       </label>
       <input id="file" type="file" accept=".ppt,.pptx" name="file" formControlName="file" class="form-control" (change)="handleFileInput($event.target.files)">
+    </div>
+  </div>
+  <div *ngIf="apiResult && apiResult.error" class="row mt-3">
+    <div class="col-12 alert alert-warning" role="alert">
+      <ul class="mb-0">
+        <li *ngFor="let msg of apiResult.message">
+          <strong>{{msg}}.</strong>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="row mt-4">

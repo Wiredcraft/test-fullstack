@@ -34,6 +34,7 @@ export class LightningTalkService {
 
     // Load upload servers microservice configuration from .env file
     this.uploadServers = (this.config.get('UPLOAD_SERVERS') || '').split(',').map(addr => {
+      if (addr === '') return;
       const [host, port] = addr.split(':');
       return ClientProxyFactory.create({ transport: Transport.TCP, options: { host, port } });
     });
@@ -46,6 +47,7 @@ export class LightningTalkService {
       select: 'username -_id'
     });
     if (user) {
+      // load votes by current user
       q = q.populate({
         path: 'listvotes',
         match: { user: user._id }
@@ -63,6 +65,8 @@ export class LightningTalkService {
       rawFile: lightningTalk.rawFile,
       images: lightningTalk.images,
       cover: lightningTalk.images && lightningTalk.images[0],
+      // if it is query by a logged in user,
+      // we also tell about the lightning talk was voted by the user of not.
       voted: (user ? lightningTalk['listvotes'].length > 0 : undefined),
     };
   }
@@ -74,7 +78,7 @@ export class LightningTalkService {
     }
 
     if ((<any>lightningTalk.owner)._id.equals(user._id)) {
-      throw new BizException(`Vote on own items is not allowed.`, 'vote-own-item', 403);
+      throw new BizException(`Vote on own items is not allowed`, 'vote-own-item', 403);
     }
   }
 
@@ -98,11 +102,11 @@ export class LightningTalkService {
       await this.lightningTalkModel.updateOne({ _id: lightningTalkId }, {
         $inc: { votes: 1 },
         updatedAt: now,
-      })
+      });
       return true;
     }
 
-    throw new BizException('Duplicated votes on same item.', 'vote-duplicated', 200);
+    throw new BizException('Duplicated votes on same item', 'vote-duplicated', 200);
   }
 
   // Unvote a lightning talk
@@ -115,11 +119,11 @@ export class LightningTalkService {
       await this.lightningTalkModel.updateOne({ _id: lightningTalkId }, {
         $inc: { votes: -1 },
         updatedAt: now,
-      })
+      });
       return true;
     }
 
-    throw new BizException('Cannot delete a not existing vote.', 'vote-not-exist', 200);
+    throw new BizException('Cannot delete a not existing vote', 'vote-not-exist', 200);
   }
 
   // Get a list of lightning talks with pagination
@@ -127,7 +131,7 @@ export class LightningTalkService {
     // Re-calcuate the page index by the actual data we have
     const countTotalItems = await this.lightningTalkModel.count({});
     const maxPageCount = Math.ceil(countTotalItems / this.pageSize) || 1
-    const pageIndex = Math.min(page || 1, maxPageCount)
+    const pageIndex = Math.max(1, Math.min(page || 1, maxPageCount))
     const skip = (pageIndex - 1) * this.pageSize
 
     // retrieve records from db
@@ -136,6 +140,7 @@ export class LightningTalkService {
       select: 'username -_id'
     });
     if (user) {
+      // load votes by current user
       q = q.populate({
         path: 'listvotes',
         match: { user: user._id }
@@ -153,8 +158,9 @@ export class LightningTalkService {
         votes: item.votes,
         owner: item.owner,
         store: item.store,
-        rawFile: item.rawFile,
         cover: item.images && item.images[0],
+        // if it is query by a logged in user,
+        // we also tell about the lightning talk was voted by the user of not.
         voted: (user ? item['listvotes'].length > 0 : undefined),
       }))
     };
@@ -162,7 +168,7 @@ export class LightningTalkService {
 
   public async create(data: CreateLightningTalkDto, user: UserDocument) {
     if (!this.uploadServers || this.uploadServers.length === 0) {
-      throw new BizException(`Cannot upload file right now!`, 'upload-not-available', 500);
+      throw new BizException(`Cannot upload file right now`, 'upload-not-available', 500);
     }
 
     // Should pick best available server to handle the upload job,
@@ -174,7 +180,7 @@ export class LightningTalkService {
       };
     } catch (e) {
       this.logger.error(`Failed to call microservice create-upload-uri. ${e.message}`);
-      throw new BizException(`Failed to create upload Uri!`, 'upload-failed-1', 500);
+      throw new BizException(`Failed to create upload Uri`, 'upload-failed-1', 500);
     }
   }
 }

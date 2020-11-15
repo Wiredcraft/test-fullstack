@@ -31,7 +31,6 @@ export class LightningTalkService {
         return data;
       }
       const formData = new FormData();
-      formData.append('title', title);
       formData.append('description', description);
       formData.append('file', file);
       return this.http.post(data.result.uploadUri, formData);

@@ -21,8 +21,12 @@
     </div>
   </div>
   <div *ngIf="apiResult && apiResult.error" class="row mt-3">
-    <div *ngFor="let msg of apiResult.message" class="col-12 alert alert-warning" role="alert">
-      <strong>{{msg}}.</strong>
+    <div class="col-12 alert alert-warning" role="alert">
+      <ul class="mb-0">
+        <li *ngFor="let msg of apiResult.message">
+          <strong>{{msg}}.</strong>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="row mt-4">

@@ -8,6 +8,7 @@ import { CreateUploadUriDto } from 'src/dto/create-upload-uri.dto';
 import { UploadLightningTalkQueryDto } from 'src/dto/upload-lightning-talk-query.dto';
 import { UploadLightningTalkDataDto } from 'src/dto/upload-lightning-talk-data.dto';
 import { UploadService } from 'src/services/upload/upload.service';
+import { BizException } from 'src/exceptions';
 
 @ApiTags('lightning-talks-upload')
 @Controller()
@@ -42,6 +43,10 @@ export class UploadController {
   @Post('/upload')
   @UseInterceptors(FileInterceptor('file'))
   async upload(@Req() request, @Query() q: UploadLightningTalkQueryDto, @Body() data: UploadLightningTalkDataDto, @UploadedFile() file) {
+    if (!file) {
+      throw new BizException(`Must upload a PPT file`, 'upload-file-missing', 400);
+    }
+
     return this.uploadService.upload(q, data, file, request.user);
   }
 }

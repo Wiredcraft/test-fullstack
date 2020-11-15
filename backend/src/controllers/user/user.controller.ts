@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Req, Logger, HttpCode, UseGuards } from '@
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 
 import { UserService } from 'src/services/user/user.service';
-import { UserRegisterParamDto } from 'src/dto/user-register-param.dto';
+import { UserRegisterDataDto } from 'src/dto/user-register-data.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('user')
@@ -23,7 +23,7 @@ export class UserController {
   @ApiOperation({ summary: 'Register new user' })
   @Post('register')
   @HttpCode(200)
-  async register(@Body() registerParam: UserRegisterParamDto) {
+  async register(@Body() registerParam: UserRegisterDataDto) {
     return await this.userService.register(registerParam);
   }
 }

@@ -3,7 +3,7 @@ import { Model } from 'mongoose';
 import { Injectable, Logger, InternalServerErrorException, Inject } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { UserRegisterParamDto } from 'src/dto/user-register-param.dto';
+import { UserRegisterDataDto } from 'src/dto/user-register-data.dto';
 import { pwdHash } from 'src/common/helpers';
 import { User, UserDocument } from 'src/db/user.schema';
 import { UserDto } from 'src/dto/user.dto';
@@ -13,6 +13,7 @@ import { BizException } from 'src/exceptions';
 @Injectable()
 export class UserService {
   private readonly logger = new Logger(UserService.name);
+  private readonly pwdSalt = this.config.get('PASSWORD_SALT');
 
   constructor(
     @InjectModel(User.name) private readonly userModel: Model<UserDocument>,
@@ -22,7 +23,7 @@ export class UserService {
     user = await this.userModel.findOne({ username: user.username });
 
     if (!user) {
-      throw new BizException('Cannot load user profile!', 'user-notfound', 404);
+      throw new BizException('Cannot load user profile', 'user-notfound', 404);
     }
 
     return {
@@ -30,18 +31,18 @@ export class UserService {
     };
   }
 
-  async register(registerParam: UserRegisterParamDto): Promise<UserDto> {
+  async register(registerParam: UserRegisterDataDto): Promise<UserDto> {
     // check existing
     const exists = await this.userModel.exists({ username: registerParam.username });
     if (exists) {
-      throw new BizException('Username already been used!', 'user-register-conflict', 200);
+      throw new BizException('Username already been used', 'user-register-conflict', 200);
     }
 
     // create new user
     const now = new Date();
     const newUser = await this.userModel.create({
       username: registerParam.username,
-      password: pwdHash(registerParam.password),
+      password: pwdHash(registerParam.password, this.pwdSalt),
       createdAt: now,
       updatedAt: now,
     });

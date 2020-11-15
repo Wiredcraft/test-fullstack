@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Logger, HttpCode } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
 
-import { UserLoginParamDto } from 'src/dto/user-login-param.dto';
+import { UserLoginDataDto } from 'src/dto/user-login-data.dto';
 import { UserLoginResultDto } from 'src/dto/user-login-result.dto';
 import { AuthService } from 'src/services/auth/auth.service';
 
@@ -15,7 +15,7 @@ export class AuthController {
   @ApiOperation({ summary: 'User login' })
   @Post('login')
   @HttpCode(200)
-  async login(@Body() loginParam: UserLoginParamDto): Promise<UserLoginResultDto> {
+  async login(@Body() loginParam: UserLoginDataDto): Promise<UserLoginResultDto> {
     return await this.authService.login(loginParam);
   }
 

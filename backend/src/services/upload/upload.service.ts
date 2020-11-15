@@ -10,7 +10,7 @@ import { UploadLightningTalkQueryDto } from 'src/dto/upload-lightning-talk-query
 import { UploadLightningTalkDataDto } from 'src/dto/upload-lightning-talk-data.dto';
 import { BizException } from 'src/exceptions';
 import { UserDocument } from 'src/db/user.schema';
-import { createConverterQueue } from './converterQueue';
+import { createConverterQueue } from './converter-queue';
 
 @Injectable()
 export class UploadService {
@@ -47,7 +47,7 @@ export class UploadService {
   }
 
   private getStoreAddr() {
-    return `${this.config.get('UPLOAD_HTTP_HOST')}:${this.config.get('UPLOAD_HTTP_PORT')}`;
+    return `${this.config.get('UPLOAD_HTTP_DOMAIN')}:${this.config.get('UPLOAD_HTTP_PORT')}`;
   }
 
   public createUploadUri(data: CreateUploadUriDto) {
@@ -66,21 +66,21 @@ export class UploadService {
     }
 
     // Verify upload Uri token
-    const token = this.jwtService.decode(q.token);
-    if (!token || !token['title'] || token['title'] !== data.title) {
-      throw new BizException(`Invaild upload token.`, 'upload-invaild-token', 400);
+    const token = this.jwtService.decode(q.token) as CreateUploadUriDto;
+    if (!token || !token.title) {
+      throw new BizException(`Invaild upload token`, 'upload-invaild-token', 400);
     }
 
-    // Same title is not allow
-    const duplicated = await this.lightningTalkModel.exists({ owner: user._id, title: data.title });
+    // Same title is not allowed
+    const duplicated = await this.lightningTalkModel.exists({ owner: user._id, title: token.title });
     if (duplicated) {
-      throw new BizException(`Your already have an item with the same title "${data.title}".`, 'upload-title-conflict', 200);
+      throw new BizException(`Your already have an item with the same title "${token.title}"`, 'upload-title-conflict', 200);
     }
 
     // Save new lightning talk item to database
     const now = new Date();
     const doc = await this.lightningTalkModel.create({
-      title: data.title,
+      title: token.title,
       description: data.description,
       votes: 0,
       rawFile: {
@@ -102,6 +102,7 @@ export class UploadService {
     return {
       id: doc._id,
       title: doc.title,
+      description: doc.description,
       votes: doc.votes,
       store: doc.store,
       rawFile: doc.rawFile,
