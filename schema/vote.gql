@@ -1,0 +1,17 @@
+"A vote made by a user for specified talk."
+type Vote {
+    "The id of the talk."
+    talkId: ID!
+
+    "The id of user who made this vote."
+    userId: ID!
+}
+
+"A connection between talk or user and vote."
+type VoteConnection {
+    "Total number of votes that satisified specified query conditions."
+    totalCount: Int!
+
+    "The record of votes in this pagination."
+    nodes: [Vote!]!
+}

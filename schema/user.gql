@@ -10,7 +10,7 @@ type User {
     createdAt: DateTime!
 
     "The last update time of the user."
-    upatedAt: DateTime!
+    updatedAt: DateTime!
 }
 
 "The root for all queries."
@@ -34,7 +34,7 @@ input RegisterUserInput {
     name: String!
 
     "The password of the user."
-    passowrd: String!
+    password: String!
 }
 
 "The parameters to login as an existing user."
@@ -61,5 +61,5 @@ type Mutation {
     register(input: RegisterUserInput!): Session!
 
     "Login. returns a user with he/she's authentication token."
-    login(input: LoginUserInput): Session!
+    login(input: LoginUserInput!): Session!
 }

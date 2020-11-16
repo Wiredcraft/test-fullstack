@@ -1,7 +1,7 @@
-"The DateTime type repensent a JSON Date object"
+"The DateTime type represents a JSON Date object"
 scalar DateTime
 
-"The sorting direstion."
+"The sorting direction."
 enum SortDirection {
     "Sorting in ascending order."
     ASC

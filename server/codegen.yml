@@ -4,6 +4,7 @@ documents: null
 generates:
   src/types/index.ts:
     config:
+      contextType: ./context#Context
       useIndexSignature: true
     plugins:
       - "typescript"

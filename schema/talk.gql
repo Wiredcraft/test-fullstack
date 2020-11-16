@@ -15,8 +15,8 @@ type Talk {
     "The author of the talk."
     author: User!
 
-    "A list of user who upvotes this talk."
-    voters: UserConnection!
+    "Number of unique vote that the talk received."
+    votes: Int!
 
     "The creation time of this talk."
     createdAt: DateTime!
@@ -24,6 +24,7 @@ type Talk {
     "The last updating time of this talk."
     updatedAt: DateTime!
 }
+
 
 "How to filter the talk."
 input TalkSearchFilter {
@@ -78,8 +79,11 @@ input CreateTalkInput {
     "The title of the new talk to create."
     title: String!
 
-    "The detailed conetnt of the talk."
+    "The detailed content of the talk."
     description: String!
+
+    "Id of the author. Default to the logged-in user."
+    authorId: ID
 }
 
 

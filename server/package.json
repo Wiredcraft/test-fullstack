@@ -9,8 +9,16 @@
   "private": true,
   "dependencies": {
     "@graphql-tools/merge": "^6.2.5",
+    "@types/jsonwebtoken": "^8.5.0",
     "apollo-server": "^2.19.0",
+    "bcrypt": "^5.0.0",
+    "camelcase-keys": "^6.2.2",
+    "dotenv": "^8.2.0",
     "graphql": "^15.4.0",
+    "knex": "^0.21.12",
+    "lodash.snakecase": "^4.1.1",
+    "mysql2": "^2.2.5",
+    "snakecase-keys": "^3.2.0",
     "winston": "^3.3.3"
   },
   "devDependencies": {
@@ -22,10 +30,14 @@
     "@graphql-codegen/schema-ast": "^1.17.8",
     "@graphql-codegen/typescript": "1.17.11",
     "@graphql-codegen/typescript-resolvers": "1.17.10",
+    "@types/bcrypt": "^3.0.0",
+    "@types/lodash.snakecase": "^4.1.6",
     "babel-loader": "^8.2.1",
     "clean-webpack-plugin": "^3.0.0",
+    "jest": "^26.6.3",
     "npm-run-all": "^4.1.5",
     "raw-loader": "^4.0.2",
+    "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.11",
     "tslint": "^6.1.3",
     "typescript": "^4.0.5",
@@ -41,5 +53,8 @@
     "start": "node dist/server.js",
     "build": "npm-run-all --serial generate check lint bundle",
     "serve": "npm-run-all --serial generate bundle start"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
