@@ -92,7 +92,7 @@ frontend-react 基于 React 构建，重用了 Angular Web Component
 
 [React 版]
 
-```$ cd frontend-react && npm i && npm run buildall```
+```$ cd frontend-react && npm i```
 
 启动
 ----------------
