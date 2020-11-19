@@ -29,17 +29,7 @@ Done
 
 [√] Provide a complete logging (when/how/etc) strategy.
 
-
-Not Yet
--------------
-[] Provide proper unit test.
-
-[] Do not use any scaffolding tool such as create-react-app, or any CSS framework, but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-
-
-Not Doing
---------------
-[X] Use React for the frontend.
+[√] Use React for the frontend.
 
 
 后端部分
@@ -87,21 +77,37 @@ UploadServer API Testing Panel: ```http://localhost:3001/api-front/```
 
 前端部分
 =====================
-项目基于 Angular 构建，分两部分演示：Client App 和一个 Web Component
+frontend 基于 Angular 构建，分两部分演示：Client App 和一个 Web Component
+frontend-react 基于 React 构建，重用了 Angular Web Component
 
 
 安装
 ---------------
+
+[Angular 版]
+
 ```$ cd frontend && npm i```
 
 ```$ cd slideshow && npm i && npm run buildall```
 
+[React 版]
+
+```$ cd frontend-react && npm i && npm run buildall```
+
 启动
 ----------------
+
+[Angular 版]
 
 ```$ cd frontend && ng serve```
 
 Web Browser 访问 ```http://localhost:4200/```
+
+[React 版]
+
+```$ cd frontend-react && npm start```
+
+Web Browser 访问 ```http://localhost:3100/```
 
 功能点
 ---------------
