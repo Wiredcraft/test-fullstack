@@ -5,12 +5,11 @@ import queryString from 'query-string';
 import './lightning-talk-list.component.css';
 import { useForceUpdate } from '../../utils/force-update';
 import LightningTalkService from '../../services/lightning-talk.service';
-import AuthService from '../../services/auth.service';
 import Paginator from '../paginator/paginator.component';
 import { UserContext } from '../../contexts/user';
 
 
-function LightningTalkListItem({ lightningTalk, toggleVote }) {
+function LightningTalkListItem({ lightningTalk, toggleVote, currentUser }) {
   return (
     <div className="col-12 mx-0 px-0 border-bottom">
       <div className="row no-gutters py-4">
@@ -32,7 +31,7 @@ function LightningTalkListItem({ lightningTalk, toggleVote }) {
               //   2. Hide the button for user's own talk
               //   3. Show 'vote' for not-voted item
               //   4. Show 'unvote' for voted item
-              lightningTalk.owner.username !== AuthService.getCurrentUser()?.username
+              lightningTalk.owner.username !== currentUser?.username
               && <button
                   className={'badge badge-sm ' + (lightningTalk.voted ? 'badge-primary' : 'badge-outline')}
                   onClick={toggleVote}>{lightningTalk.voted ? 'unvote':'vote'}</button>
@@ -78,7 +77,12 @@ function LightningTalkList({ location }) {
           : <div>
               <p>Share you mind, <a className="btn btn-outline-primary btn-sm" href="/create">Create</a> your own one!</p>
               { lightningTalks.data.map((item, key) =>
-                  <LightningTalkListItem key={key} lightningTalk={item} toggleVote={() => toggleVote(item)}/>)
+                  <LightningTalkListItem
+                    key={key}
+                    lightningTalk={item}
+                    currentUser={currentUser}
+                    toggleVote={() => toggleVote(item)}
+                  />)
               }
               <Paginator {...lightningTalks} setPageIndex={setPageIndex}/>
             </div>

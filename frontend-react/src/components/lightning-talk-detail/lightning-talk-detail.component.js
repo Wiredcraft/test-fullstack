@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import './lightning-talk-detail.component.css';
 import { useForceUpdate } from '../../utils/force-update';
 import LightningTalkService from '../../services/lightning-talk.service';
-import AuthService from '../../services/auth.service';
 import { UserContext } from '../../contexts/user';
 
 // Use web components with React properties and functions
@@ -69,7 +68,7 @@ function LightningTalkDetail() {
                       //   2. Hide the button for user's own talk
                       //   3. Show 'vote' for not-voted item
                       //   4. Show 'unvote' for voted item
-                      lightningTalk.owner.username !== AuthService.getCurrentUser()?.username
+                      lightningTalk.owner.username !== currentUser?.username
                       &&  <button
                             className={'btn btn-sm ' + (lightningTalk.voted ? 'btn-primary':'btn-outline-primary')}
                             onClick={() => toggleVote(lightningTalk)}
