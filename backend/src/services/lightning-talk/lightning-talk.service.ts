@@ -135,7 +135,7 @@ export class LightningTalkService {
     const skip = (pageIndex - 1) * this.pageSize
 
     // retrieve records from db
-    let q = this.lightningTalkModel.find({}).sort({votes: -1, updatedAt: -1}).skip(skip).limit(this.pageSize).populate({
+    let q = this.lightningTalkModel.find({}).sort({votes: -1, updatedAt: 1}).skip(skip).limit(this.pageSize).populate({
       path: 'owner',
       select: 'username -_id'
     });

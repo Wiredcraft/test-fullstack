@@ -47,7 +47,7 @@ LightningTalkSchema.virtual('listvotes', {
   foreignField: 'lightningTalk',
 });
 
-LightningTalkSchema.index({ votes: -1, updatedAt: -1 });
+LightningTalkSchema.index({ votes: -1, updatedAt: 1 });
 LightningTalkSchema.index({ owner: 1, title: 1 }, { unique: true });
 
 // Index items those were not convert yet
