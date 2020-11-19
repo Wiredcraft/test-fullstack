@@ -29,21 +29,12 @@ type UserConnection {
 }
 
 "The parameters to register a new user."
-input RegisterUserInput {
+input UserInput {
     "The name of the user."
     name: String!
 
     "The password of the user."
     password: String!
-}
-
-"The parameters to login as an existing user."
-input LoginUserInput {
-    "The name of the user."
-    name: String!
-
-    "The password of the user."
-    passowrd: String!
 }
 
 "The logged-in user information."
@@ -58,8 +49,8 @@ type Session {
 "The root for all mutations."
 type Mutation {
     "Create, aka. register, a user. returns a user with he/she's authentication token."
-    register(input: RegisterUserInput!): Session!
+    register(input: UserInput!): Session!
 
     "Login. returns a user with he/she's authentication token."
-    login(input: LoginUserInput!): Session!
+    login(input: UserInput!): Session!
 }

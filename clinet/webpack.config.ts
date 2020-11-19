@@ -14,6 +14,7 @@ const webpackConfig = (env): Configuration => ({
         path: path.join(__dirname, "/dist"),
         filename: "build.js"
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
@@ -23,7 +24,24 @@ const webpackConfig = (env): Configuration => ({
                     transpileOnly: true
                 },
                 exclude: /dist/
-            }
+            },
+            {
+                test: /\.(graphql|gql)$/,
+                exclude: /node_modules/,
+                loader: 'graphql-tag/loader',
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {loader: 'style-loader'},
+                    {loader: 'css-loader'}
+                ]
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+                loader: 'file-loader'
+            },
         ]
     },
     plugins: [
@@ -43,7 +61,8 @@ const webpackConfig = (env): Configuration => ({
     devServer: {
         contentBase: path.join(__dirname, "dist"),
         compress: true,
-        port: 9000
+        port: 9000,
+        historyApiFallback: true,
     }
 });
 

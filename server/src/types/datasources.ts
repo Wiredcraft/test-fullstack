@@ -1,22 +1,22 @@
 import {
     CreateTalkInput,
-    LoginUserInput, Maybe,
+    Maybe,
     Pagination,
-    RegisterUserInput,
     Talk,
     TalkConnection,
     TalkOrder,
     TalkSearchFilter,
-    User, VoteConnection
+    User,
+    UserInput
 } from "./index";
 import SelectionTree from "./SelectionTree";
 
 export interface UserDataSource {
-    create(tree: SelectionTree, input: RegisterUserInput): Promise<User>;
+    create(tree: SelectionTree, input: UserInput): Promise<User>;
 
     load(tree: SelectionTree, id: string): Promise<User>;
 
-    find(tree: SelectionTree, input: LoginUserInput): Promise<User>
+    find(tree: SelectionTree, input: UserInput): Promise<User>
 }
 
 export interface TalkDataSource {

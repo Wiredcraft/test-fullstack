@@ -1,0 +1,23 @@
+.header {
+    width: 80vw;
+    height: 24px;
+    background: #ff6600;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 4px;
+    box-sizing: border-box;
+    color: #000;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.header a {
+    text-decoration: none;
+    color: #000;
+}

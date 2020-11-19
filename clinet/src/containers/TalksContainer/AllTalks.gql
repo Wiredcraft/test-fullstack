@@ -1,0 +1,14 @@
+#import "./TalkFragment.gql"
+
+query AllTalks($filter: TalkSearchFilter, $order: TalkOrder, $pagination: Pagination) {
+    allTalks(filter: $filter, order: $order, pagination: $pagination) {
+        totalCount
+        nodes {
+            ...TalkFragment
+        }
+    }
+    me {
+        id
+        name
+    }
+}

@@ -121,3 +121,4 @@ dist
 /server/src/types/schemas.graphql
 
 .DS_Store
+/clinet/src/queries/

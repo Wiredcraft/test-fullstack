@@ -1,0 +1,11 @@
+fragment TalkFragment on Talk {
+    id
+    title
+    author {
+        id
+        name
+    }
+    description
+    votes
+    createdAt
+}

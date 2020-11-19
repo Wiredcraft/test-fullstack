@@ -1,4 +1,4 @@
-import {GraphQLResolveInfo, SelectionNode} from "graphql";
+import {FragmentDefinitionNode, GraphQLResolveInfo, SelectionNode} from "graphql";
 
 
 export default class SelectionTree {
@@ -17,18 +17,23 @@ export default class SelectionTree {
             throw new Error("requires a valid GraphQLResolveInfo");
         }
 
-        return this.formSelectionNodes(nodes);
+        return this.formSelectionNodes(nodes, info.fragments);
     }
 
-    private static formSelectionNodes(nodes: readonly SelectionNode[]) {
+    private static formSelectionNodes(nodes: readonly SelectionNode[], fragments: { [key: string]: FragmentDefinitionNode }) {
         const subtrees: Record<string, SelectionTree> = {};
         const fields: string[] = [];
         nodes.map(v => {
             if (v.kind === "Field") {
                 fields.push(v.name.value);
                 if (v.selectionSet !== undefined) {
-                    subtrees[v.name.value] = this.formSelectionNodes(v.selectionSet.selections)
+                    subtrees[v.name.value] = this.formSelectionNodes(v.selectionSet.selections,fragments);
                 }
+            }
+            if (v.kind === "FragmentSpread") {
+                const frag = fragments[v.name.value]
+                const ff = this.formSelectionNodes(frag.selectionSet.selections, fragments).fields();
+                fields.push(...ff);
             }
         })
         return new SelectionTree(fields, subtrees);

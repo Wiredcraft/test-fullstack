@@ -1,0 +1,35 @@
+schema: "../schema/*.gql"
+overwrite: true
+
+# Format files
+hooks:
+  afterAllFileWrite:
+    - prettier --write
+generates:
+  # Get schemas from server
+  src/queries/schemas.tsx:
+    documents: 'src/containers/**/**.gql'
+    plugins:
+      - typescript
+  # Create operations based on queries
+  src/queries/operations.tsx:
+    documents: 'src/containers/**/**.gql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./schemas
+    plugins:
+      - typescript-operations
+  # 1. Export GraphQL documents
+  # 2. React interface
+  src/queries/hooks.tsx:
+    documents: 'src/containers/**/**.gql'
+    preset: import-types
+    presetConfig:
+      typesPath: ./operations
+    plugins:
+      - typescript-react-apollo
+    config:
+      # Optionals
+      withHOC: false
+      withComponent: false
+      withHooks: true

@@ -1,0 +1,53 @@
+.list {
+    font-family: Verdana, Geneva, sans-serif;
+    color: #828282;
+    background: #f6f6ef;
+    display: flex;
+    flex-direction: column;
+}
+
+.talk {
+    display: flex;
+    flex-direction: row;
+    margin: 2.5px;
+}
+
+.title, .num  {
+    font-size: 10pt;
+}
+
+.title {
+    color: #828282;
+}
+
+.num {
+    text-align: right;
+    width: 30px;
+}
+
+.upvote {
+    width: 14px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
+
+}
+
+.upvote span {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+
+    border-bottom: 8px solid #828282;
+}
+
+.description {
+    font-size: 10pt;
+}
+
+.meta {
+    font-size: 7pt;
+}

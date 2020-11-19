@@ -1,0 +1,11 @@
+.wrapper {
+    width: 80vw;
+    color: #828282;
+    background: #f6f6ef;
+}
+
+.more, .more:visited {
+    font-size: 14px;
+    color: #828282;
+    margin: 10px auto 10px 46px;
+}

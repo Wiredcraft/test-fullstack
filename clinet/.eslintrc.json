@@ -45,6 +45,7 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "ignorePatterns": ["src/queries/*.*"]
 }
 

@@ -1,0 +1,7 @@
+#import "./TalkFragment.gql"
+
+mutation UpvoteTalk($id: ID!) {
+    upvoteTalk(id: $id) {
+        ...TalkFragment
+    }
+}

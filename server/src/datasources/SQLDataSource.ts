@@ -26,7 +26,14 @@ export interface SQLDataSourceConfig {
 }
 
 export const createSelectionMap = (fields: string[], relations?: Record<string, string>): Record<string, string> => {
-    const map: Record<string, string> = {}
+    const map: Record<string, string> = {
+        id: "id"
+    };
+
+    if (!fields) {
+        return map;
+    }
+
     for (const f of fields) {
         if (f.startsWith("__")) {
             continue;
@@ -72,7 +79,7 @@ export default abstract class SQLDataSource<Model, CreateInput> extends DataSour
     }
 
     protected createSelectionMap(tree: SelectionTree): Record<string, string> {
-        return createSelectionMap(tree.fields(), this.config.relations);
+        return createSelectionMap(tree?.fields(), this.config.relations);
     }
 
     protected async load(tree: SelectionTree, id: string): Promise<Model> {
