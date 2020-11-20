@@ -22,7 +22,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
-  if (401 === error.response.status) {
+  if (401 === error.response?.status) {
     history.push(`/login?returnUrl=${encodeURIComponent(window.location.pathname + window.location.search)}`);
   }
   return Promise.reject(error);

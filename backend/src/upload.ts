@@ -4,6 +4,7 @@ import { Transport } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { ConfigService } from '@nestjs/config';
 
 import { UploadModule } from 'src/upload.module';
 import { MyLogger } from 'src/middlewares/logger/logger.service';
@@ -14,11 +15,13 @@ import { NormalizeResponseInterceptor } from './interceptors/normalize-response.
   const app = await NestFactory.create<NestExpressApplication>(UploadModule, {
     logger: false,
   });
+  const config = app.get<ConfigService>(ConfigService);
+
   const microservice = app.connectMicroservice({
     transport: Transport.TCP,
     options: {
-      host: process.env.UPLOAD_MICROSVC_HOST,
-      port: process.env.UPLOAD_MICROSVC_PORT
+      host: config.get('UPLOAD_MICROSVC_HOST'),
+      port: config.get('UPLOAD_MICROSVC_PORT')
     }
   });
 
@@ -40,5 +43,5 @@ import { NormalizeResponseInterceptor } from './interceptors/normalize-response.
   SwaggerModule.setup('api-front', app, document);
 
   app.startAllMicroservicesAsync();
-  await app.listen(process.env.UPLOAD_HTTP_PORT);
+  await app.listen(config.get('UPLOAD_HTTP_PORT'));
 })();

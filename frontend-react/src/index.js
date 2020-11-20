@@ -11,13 +11,16 @@ import { Router } from 'react-router-dom';
 import history from './services/history';
 
 import { UserProvider } from './contexts/user';
+import { ErrorBoundary } from './utils/error-boundary';
 
 ReactDOM.render(
-  <UserProvider>
-    <Router history={history}>
-      <App />
-    </Router>
-  </UserProvider>,
+  <ErrorBoundary>
+    <UserProvider>
+      <Router history={history}>
+        <App />
+      </Router>
+    </UserProvider>
+  </ErrorBoundary>,
   document.getElementById('root')
 );
 

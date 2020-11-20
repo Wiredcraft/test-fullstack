@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "cross-env": "^7.0.2",
     "jquery": "^3.5.1",
     "query-string": "^6.13.7",
     "react": "^17.0.1",
@@ -21,15 +22,20 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "PORT=3100 react-scripts start",
+    "start": "cross-env PORT=3100 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "rules": {
-      "quotes": [1, "single"],
-      "semi": [1]
+      "quotes": [
+        1,
+        "single"
+      ],
+      "semi": [
+        1
+      ]
     },
     "extends": [
       "react-app",
