@@ -2,30 +2,29 @@ import React from "react";
 import {Link, useHistory} from "react-router-dom";
 
 import {storeToken} from "../../api/client";
-import NamePasswordForm from "../../components/NamePasswordFrom";
-import {useLoginMutation} from "../../queries/hooks";
+import NamePasswordForm from "../../components/NamePasswordForm";
+import {useRegisterMutation} from "../../queries/hooks";
 
-const LoginContainer: React.FunctionComponent = (): JSX.Element => {
+const RegisterContainer: React.FunctionComponent = (): JSX.Element => {
     const history = useHistory();
-    const [register] = useLoginMutation({
+    const [register] = useRegisterMutation({
         onCompleted: async (data) => {
-            await storeToken(data.login.token);
+            await storeToken(data.register.token);
             history.push("/talks");
         }
     });
-
     const handleSubmit = async (name: string, password: string) => {
         await register({variables: {input: {name, password}}});
     };
 
     return (
         <NamePasswordForm
-            title={"Login"}
-            action={"login"}
+            title={"Create Account"}
+            action="register"
             onSubmit={handleSubmit}
-            alternative={<Link to="/register">don&#39;t have account?</Link>}
+            alternative={<Link to="/login">login</Link>}
         />
     );
 };
 
-export default LoginContainer;
+export default RegisterContainer;
