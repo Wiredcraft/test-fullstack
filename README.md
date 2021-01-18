@@ -1,42 +1,110 @@
-# Fullstack
+# Goal
 
-### Context
+Build a Hacker News like App but for lightning talk polling。
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+# Getting Started
 
-A lightning talk is a very short presentation lasting only a few minutes, given at a conference or a meetup etc.
+## Prerequisites
 
-Polling is often needed for the organizers to understand what is more interesting, or for people to decide what should go on stage.
+* node ^v15.5.0
+* npm ^ v6.4.0
+* mongoDB
 
-### Requirements
+## Install
 
-#### User Stories
+`# Server Side
+ cd ./server && npm install
+`
 
-1. When a user opens the page, he/she should see a list of lighting talks submitted by the users, ordered by rating \(poll amount\).
-2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
-3. For each of the talks in the list, the user could vote it by clicking a button.
-4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
-5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
-6. After submitting a topic, the user should see an updated version of the list.
+`# Client Side
+ cd ./client && npm install
+`
 
-#### Functionality
+## Build
 
-* The frontend part should be a single page application rendered in the frontend and load data from a RESTful API \(not rendered from backend\).
-* The API should follow typical RESTful API design pattern.
-* Provide proper unit test.
+`# Client Side
+ cd ./client && npm build
+`
 
-#### Tech stack
+## Start the Server
+<!-- ## Running the tests -->
 
-* Use React for the frontend.
-* Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-* Use any backend framework as you like. Use any DB for storing the data, or if you prefer, only using the memory \(with no permanent storage\) could just work.
+`# Server Side
+ cd ./server && npm start
+ # http://localhost:9000/api
+`
 
-#### Advanced requirements
+`# Client Side
+ cd ./client && npm start
+ # http://localhost:3000/
+`
 
-_These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out._
+## API list
 
-* Make it responsive.
-* Provide a form validation strategy.
-* Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
-* Provide a complete user auth \(authentication/authorization/etc\) strategy, such as OAuth.
-* Provide a complete logging \(when/how/etc\) strategy.
+Name        |Method| Url
+------------|------|-----------------------------------------------
+Base        | GET  | http://localhost:9000/api
+Register    | POST | http://localhost:9000/api/register
+Login       | POST | http://localhost:9000/api/login
+List Page   | GET  | http://localhost:9000/api/polls
+Create Poll | POST | http://localhost:9000/api/poll/create
+Vote Poll   | PUT  | http://localhost:9000/api/poll/:pollId/vote
+
+## issues
+
+1. Need CSS decoration, using SCSS and Styled-Component
+2. CORS problem
+3. Adding Unit Testing (Jest)
+
+# Achieved with
+
+## Server
+
+* Node.js - (Web Server)
+
+* Express - (Web App Server)
+
+* Passport - (Authentication)
+
+* Mongoose / MongoDB
+
+* JWT
+
+## Front End
+
+* React - (UI Framework)
+
+* Redux / React-Redux / Redux-Saga
+
+* Webpack - (Module Bundler)
+
+* LocalStorage
+
+# Author
+
+# Test Requirements
+
+- [x] Home (List) Page
+- [x] Login/Register Page (OAuth Required)
+- [x] Form Section (Combine with Home Page) (OAuth Required)
+- [x] Vote a topic (OAuth Required)
+- [ ] Sorting by updating/vote
+- [x] A RESTful API service
+- [ ] Unit Testing
+
+##### Advanced
+
+- [ ] Responsive Page
+- [x] Form Validation Strategy
+- [x] UI/UX error handling
+- [x] Authentication Strategy
+- [x] Logging Strategy
+- [ ] \*Ranking Algorithms
+
+# Future Improvements (if)
+- [ ] Lambda Function AWS
+- [ ] CDN
+- [ ] Docker
+- [ ] SSR
+- [ ] Scaling
+- [ ] SQL Efficient Pagination
