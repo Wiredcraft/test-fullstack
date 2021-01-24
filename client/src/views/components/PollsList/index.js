@@ -1,5 +1,4 @@
 import React from 'react'
-import { PollsWrapper } from '../../../scss/poll';
 import Item from './item'
 
 export class PollsList extends React.Component {
@@ -15,7 +14,7 @@ export class PollsList extends React.Component {
   
   componentDidMount = () => this.handleSetData(this.props.polls);
 
-  handleSetData = polls => {
+  handleSetData = (polls) => {
     if (!!polls) {
       const data = polls
       this.setState({
@@ -28,14 +27,15 @@ export class PollsList extends React.Component {
     const { data, order, orderBy, rowsPerPage, page } = this.state;
 
     return (
-      <PollsWrapper>
-        {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(item => {
-          <Item
-            item = {item}
-            updatePollVote = {this.props.updatePollVote}
-          />
-        })}
-      </PollsWrapper>
+      <ul>
+          {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(item => {
+            <Item 
+              item = {item}
+              authed = {this.props.authed}
+              updatePollVote = {this.props.updatePollVote}
+            />
+          })}
+      </ul>
     )
   }
 }

@@ -2,24 +2,19 @@ import React from 'react';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
-// Styles
-import { PollTitle, PollMeta, PollMetaElement } from '../../../scss/poll';
-
-// Actions
-import { mapTime } from '../../../core/helpers';
 import { pollActions } from '../../../core/polls';
 
-const Item = ({ item, updatePollVote }) => {
+const Item = ({ item }) => {
   const dispatch = useDispatch();
 
   return (
     <li>
       <button onClick={() => dispatch(pollActions.updatePollVote(item._id))}> Vote {item.votes} </button>
-      <PollTitle>Topics Title</PollTitle>
-      <PollMeta>
-        <PollMetaElement>By: Authors name</PollMetaElement>
-        <PollMetaElement>{mapTime(item.date_created)}</PollMetaElement>
-      </PollMeta>
+      <h5>Topics Title</h5>
+      <p>
+        <span>By: Authors name</span>
+        <span>{moment(item.date_created).fromNow()}</span>
+      </p>
     </li>
   );
 };
