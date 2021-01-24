@@ -10,12 +10,15 @@ const Header = props => {
 
   return (
     <HeaderContainer>
-      <Link to='/'>Lightning Talk</Link>
+      <span>
+        <Link to='/'>Lightning Talk</Link>
         {
           !!authedUser ? (
               <Link to='/new'>New</Link>
-          ) : (<span></span>)
+          ) : (<a></a>)
         }
+      </span>
+      <span>
         {
           !!authedUser ? (
             <a>
@@ -26,6 +29,7 @@ const Header = props => {
             <Link to='/login'>Sign in</Link>
           )
         }
+      </span>
     </HeaderContainer>
   )
 }

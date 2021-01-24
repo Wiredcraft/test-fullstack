@@ -19,20 +19,18 @@ class Login extends React.Component {
       <label>
         {label}
       </label>
+      <input {...input} placeholder={label} type={type} />
       <div>
-        <input {...input} placeholder={label} type={type} />
-        {touched &&
-          error &&
-          <p>
-            {error}
-          </p>}
+        { 
+          touched && error &&<span>{ error }</span>
+        }
       </div>
     </FormGroup>
 
   render() {
     const { pristine, submitting, handleSubmit, dispatch, reset } = this.props;
     return (
-      <form id='auth-user-login' onSubmit={handleSubmit}>
+      <Form id='auth-user-login' onSubmit={handleSubmit}>
         <Field id='loginIn'
           type='text'
           name='name'
@@ -54,7 +52,7 @@ class Login extends React.Component {
             Reset
           </button>
         </div>
-      </form>
+      </Form>
     )
   }
 }

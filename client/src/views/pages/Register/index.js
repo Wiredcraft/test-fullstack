@@ -19,15 +19,14 @@ class Register extends React.Component {
       <label>
         {label}
       </label>
+      <input {...input} placeholder={label} type={type} />
       <div>
-        <input {...input} placeholder={label} type={type} />
-        {touched &&
-          error &&
-          <p>
-            {error}
-          </p>}
+        { 
+          touched && error &&<span>{ error }</span>
+        }
       </div>
     </FormGroup>
+
 
   render() {
     const { pristine, submitting, handleSubmit, dispatch, reset } = this.props;
@@ -93,7 +92,7 @@ Register = reduxForm({
     return errors;
   },
   onSubmit: (values, dispatch, props) => new Promise((resolve, reject) => props.authUser({ ...values }, { resolve, reject })),
-  onSubmitSuccess: (result, dispatch, props) => console.log(result)
+  onSubmitSuccess: (result, dispatch, props) => result
 })(Register);
 
 export default connect(

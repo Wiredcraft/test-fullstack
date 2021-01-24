@@ -2,27 +2,20 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.nav`
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
 	background-color: rgba(255, 102, 0);
-  	padding: 0 10px;
+  padding: 0 10px;
+  line-height: 1;
+  font-weight: bold;
+  padding: 5px;
 
+  > span > a {}
 
-  &:last-of-type {
-    align-self: flex-end
-    padding-right: 0;
+  > span > a:active, > span > a:visited {
+  	color: #000000;
   }
 
-  > a {
-	line-height: 1.7;
-	font-weight: bold;
-  padding-right: 15px;
-  }
-
-  > a:active, >a:visited {
-  	color: #000000
-  }
-
-  > a:hover {
-    color: #ffffff
+  > span > a:hover {
+    color: #ffffff;
   }
 `;

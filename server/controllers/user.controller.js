@@ -11,7 +11,6 @@ module.exports = {
 };
 
 function registerLocalUser(req, res, next) {
-  console.log(req.body);
   if (!req.body.name || !req.body.password) {
     console.error(`AUTH_USER: Prerequisite properties not found for user register:`, req.body);
     res.statusMessage = 'Please pass name and password.';
@@ -86,6 +85,7 @@ function loginLocalUser(name, password, cb) {
 // HELPER
 function createUser(userData, cb) {
   var newUser = new User({ ...userData });
+  console.log(newUser);
   newUser.save(function(err, user) {
     if (err) {
       return cb(`Error during user registration. ${err}`);
