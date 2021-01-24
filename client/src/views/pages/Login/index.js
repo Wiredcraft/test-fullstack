@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Field, change } from 'redux-form';
-// Import material-ui
+
+import { Form, FormGroup } from '../../../scss/form'
 
 class Login extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Login extends React.Component {
   }
 
   renderTextField = ({ input, label, type, meta: { touched, error } }) =>
-    <div>
+    <FormGroup>
       <label>
         {label}
       </label>
@@ -22,40 +23,38 @@ class Login extends React.Component {
         <input {...input} placeholder={label} type={type} />
         {touched &&
           error &&
-          <span>
+          <p>
             {error}
-          </span>}
+          </p>}
       </div>
-    </div>
+    </FormGroup>
 
   render() {
     const { pristine, submitting, handleSubmit, dispatch, reset } = this.props;
     return (
-      <div>
-        <form id='auth-user-login' onSubmit={handleSubmit}>
-          <Field id='loginIn'
-            type='text'
-            name='name'
-            label='Username'
-            component={this.renderTextField}
-            autoFocus={true}
-          />
-          <Field id='loginPwd'
-            type='password'
-            name='password'
-            label='Password'
-            component={this.renderTextField}
-          />
-          <div>
-            <button type="submit" disabled={submitting}>
-              Login in
-            </button>
-            <button type="button" disabled={pristine || submitting} onClick={reset}>
-              Reset
-            </button>
-          </div>
-        </form>
-      </div>
+      <form id='auth-user-login' onSubmit={handleSubmit}>
+        <Field id='loginIn'
+          type='text'
+          name='name'
+          label='Username'
+          component={this.renderTextField}
+          autoFocus={true}
+        />
+        <Field id='loginPwd'
+          type='password'
+          name='password'
+          label='Password'
+          component={this.renderTextField}
+        />
+        <div>
+          <button type="submit" disabled={submitting}>
+            Login in
+          </button>
+          <button type="button" disabled={pristine || submitting} onClick={reset}>
+            Reset
+          </button>
+        </div>
+      </form>
     )
   }
 }

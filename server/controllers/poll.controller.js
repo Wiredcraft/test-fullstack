@@ -79,7 +79,6 @@ function postPoll(req, res) {
                   user_id: user.cuid,
                   message: `Created poll "${poll.title}".`,
                 };
-                addUserActivity(user.cuid, activity);
                 res.statusMessage = 'Successfully created poll.';
                 res.status(201).send({ poll, message: `Poll "${poll.title}" created.` });
               }

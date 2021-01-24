@@ -13,12 +13,15 @@ const Header = props => {
       <Link to='/'>Lightning Talk</Link>
         {
           !!authedUser ? (
-
-            <div>
               <Link to='/new'>New</Link>
+          ) : (<span></span>)
+        }
+        {
+          !!authedUser ? (
+            <a>
               <span>{authedUser.name}</span>
               <button onClick={logoutUser}>Logout</button>
-            </div>
+            </a>
           ) : (
             <Link to='/login'>Sign in</Link>
           )
