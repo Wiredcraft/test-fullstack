@@ -12,7 +12,7 @@ class Auth extends React.Component {
     return (
       <div>
         <h1>Login</h1>
-        {<Login authUser={this.props.authUser} />}
+        <Login authUser={this.props.authUser} />
         <hr />
         <h1>Or</h1>
         <hr />
