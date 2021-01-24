@@ -6,26 +6,25 @@ import PollsList from '../components/PollsList'
 
 export class Home extends React.Component {
   render() {
-    const { polls } = this.props;
-    return !!polls ? (
-      <div>
-        <PollsList
-          polls={polls}
-          authed={this.props.authed}
-          updatePollVote={this.props.updatePollVote}
-        />
-      </div>
+    const { polls, loading } = this.props;
+    return !!loading ? (
+      <PollsList
+        polls={polls}
+        authed={this.props.authed}
+        updatePollVote={this.props.updatePollVote}
+      />
     ) : (
-      <div>No content.</div>
+      <div style={{padding: "1rem"}}>No content.</div>
     )
   }
 }
 
 Home.propTypes = {
-  authed: PropTypes.bool.isRequired,
+  authed: PropTypes.bool.isRequired
 }
 
 export default connect(
   state => ({
-    polls: state.polls.all.polls
+    polls: state.polls.all.polls,
+    loading: state.polls.all.loading
   }), null)(Home);

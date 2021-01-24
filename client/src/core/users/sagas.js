@@ -14,9 +14,9 @@ import * as TYPES from '../constants';
 
 export function* authUserSaga(action) {
   const { authType, name, password, resolve, reject } = action.payload;
-  console.log(action.payload)
   try {
     const response = yield call(authUserApi, authType, { name, password });
+    console.log(response);
     yield put(userRequestActions.authFulfilled({
       user: response.user,
       message: response.message

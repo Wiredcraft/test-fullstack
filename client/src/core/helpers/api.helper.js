@@ -26,7 +26,6 @@ export async function requestApi(url, opts, type = 'json') {
 
 export function handleResponse(response) {
   if (response.status >= 200 && response.status < 300) {
-    console.log(response)
     return response;
   } else {
     if (response.statusText) {

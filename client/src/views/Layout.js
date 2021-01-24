@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
 // Import components
-import Header from './components/header'
+import Header from './components/Header'
 
 // Import pages
 import HomePage from './pages/Home';
@@ -28,7 +28,7 @@ class Layout extends Component {
     } = this.props;
     const authed = (!!authedUser ? !!authedUser.token : false);
     return (
-      <div>
+      <div style={{backgroundColor: "#f6f6ef"}}>
         <Header logoutUser={logoutUser} />
         <Switch>
           <Route exact path='/' render={() => 

@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const common = require('./webpack.common.js')
 const paths = require('./paths')
 
@@ -37,7 +38,8 @@ module.exports = merge(common, {
   },
 
   plugins: [
-    // Only update what has changed on hot reload
+    // An EXPERIMENTAL Webpack plugin to enable "Fast Refresh" (also previously known as Hot Reloading) for React components.
     new webpack.HotModuleReplacementPlugin(),
-  ],
+    new ReactRefreshWebpackPlugin(),
+  ].filter(Boolean),
 })
