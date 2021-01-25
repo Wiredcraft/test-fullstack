@@ -2,7 +2,6 @@ const User = require('../models/user');
 const local = require('./passport-strategies/local');
 
 module.exports = (app, passport) => {
-  console.log(passport);
   passport.use('login', local);
 
   // Configure Passport authenticated session persistence.

@@ -20,8 +20,23 @@ const UserSchema = new mongoose.Schema({
 UserSchema.methods.comparePassword = function comparePassword(password, cb) {
   pwd.verify(Buffer.from(password), Buffer.from(this.password, 'base64'), function (err, result) {
     if (err) return cb(err);
+
+    if (result === securePassword.INVALID_UNRECOGNIZED_HASH) return cb('This hash was not made with secure-password. Attempt legacy algorithm.');
     if (result === securePassword.INVALID) return cb('Given password incorrect.');
-    // TODO
+
+    if (result === securePassword.VALID_NEEDS_REHASH) {
+      console.log('Password needs rehashing, wait for us to improve your safety');
+      const improvedHash = pwd.hashSync(Buffer.from(password)).toString('base64');
+      if (!improvedHash) {
+        console.error('You are authenticated, but we could not improve your safety this time around');
+      } else {
+        console.error('Returning improved Hash.');
+        this.password = improvedHash;
+      }
+      return cb(null, true);
+    } else {
+      return cb(null, true);
+    }
   })
 };
 

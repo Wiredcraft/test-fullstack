@@ -1,6 +1,5 @@
-require('dotenv').config({ path: '.env' });
+require('dotenv').config({ path: './.env' });
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cors = require('cors');
@@ -13,7 +12,7 @@ const configureRoutes = require('./config/routes');
 const app = express();
 
 // Bodyparser Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Passport Config

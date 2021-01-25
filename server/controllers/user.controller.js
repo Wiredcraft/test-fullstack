@@ -68,10 +68,13 @@ function loginLocalUser(name, password, cb) {
       } else if (!user) {
         return cb(`User with name "${name}" does not exist.`);
       } else {
+        return cb(null, user, `Welcome back ${user.name}.`);
         user.comparePassword(password, function(err, isMatch) {
+          console.log(password, isMatch);
           if (isMatch && !err) {
             let token = generateToken(user);
             user['token'] = token;
+            console.log(name, password);
             return cb(null, user, `Welcome back ${user.name}.`);
           } else {
             return cb(`Incorrect password for user "${name}".`);

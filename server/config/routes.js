@@ -13,13 +13,12 @@ module.exports = (app, passport) => {
 
   // LOCAL AUTH
   router.post('/api/login', function(req, res, next) {
-    passport.authenticate('login', { session: true }, function(err, user, message) {
+    passport.authenticate('login', { session: false }, function(err, user, message) {
       if (err || !user) {
         res.statusMessage = err;
         return res.status(400).end();
       } else {
-        console.log(req);
-        req.login(user, { session: true }, function(err) {
+        req.login(user, { session: false }, function(err) {
           if (err) {
             console.error(`AUTH_USER: Error during local login. ${err}`);
             res.statusMessage = err;
