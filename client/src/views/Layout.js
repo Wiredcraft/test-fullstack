@@ -28,7 +28,6 @@ const Layout = props => {
       polls,
       loading
     } = props;
-    console.log(polls);
     
     useEffect(() => {
       getPolls()
