@@ -72,17 +72,12 @@ function postPoll(req, res) {
                 res.status(410).end();
               } else {
                 console.log(`POST_POLL: Successfully created poll: ${poll}`);
-                const activity = {
-                  type: 'added',
-                  actionColor: 'green',
-                  poll_id: poll.cuid,
-                  user_id: user.cuid,
-                  message: `Created poll "${poll.title}".`,
-                };
                 res.statusMessage = 'Successfully created poll.';
                 res.status(201).send({ poll, message: `Poll "${poll.title}" created.` });
               }
             });
+            // TODO
+            // Insert newPoll id into user.polls []
           }
         });
       }

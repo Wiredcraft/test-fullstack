@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState, useCallback } from 'react'
+import { bindActionCreators } from "redux"
+// import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 
@@ -15,64 +16,62 @@ import NewPollPage from './pages/New';
 import { userActions } from '../core/users';
 import { pollActions } from '../core/polls';
 
-class Layout extends Component {
+// class Layout extends Component {
+const Layout = props => {
   
-  componentDidMount = () => {
-    this.props.getPolls();
-  }
-
-  render() {
     const {
       authedUser,
-      logoutUser
-    } = this.props;
+      authUser,
+      logoutUser,
+      getPolls,
+      postPoll,
+      polls,
+      loading
+    } = props;
+    console.log(polls);
+    
+    useEffect(() => {
+      getPolls()
+    }, [getPolls])
+
     const authed = (!!authedUser ? !!authedUser.token : false);
     return (
       <div style={{backgroundColor: "#f6f6ef"}}>
         <Header logoutUser={logoutUser} />
         <Switch>
           <Route exact path='/' render={() => 
-            <HomePage 
-              getPolls={this.props.getPolls}
-              updatePollVote={this.props.updatePollVote}
-              authed={authed} 
+            <HomePage
+              polls = {polls}
+              loading = {loading}
             />}
           />
           <Route exact path='/new' render={() => 
             <NewPollPage 
-              postPoll={this.props.postPoll}
+              postPoll={postPoll}
               authed={authed} 
             />} 
           />
           <Route exact path='/login' render={() => <AuthPage
-            authUser={this.props.authUser}
+            authUser={authUser}
             logoutUser={logoutUser}/>}
           />
         </Switch>
       </div>
     )
-  }
+  // }
 }
 
-Layout.propTypes = {
-  authedUser: PropTypes.shape({
-    cuid: PropTypes.string,
-    name: PropTypes.string,
-    polls: PropTypes.array,
-    token: PropTypes.string
-  }),
-  authUser: PropTypes.func.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  getPolls: PropTypes.func.isRequired,
-  updatePollVote: PropTypes.func.isRequired,
-  postPoll: PropTypes.func.isRequired
-};
+const mapStateToProps = state => ({
+  polls: state.polls.all.polls,
+  loading: state.polls.all.loading,
+  authedUser: state.users.authedUser.user
+})
 
-//  CONNECT
-export default connect(
-  state => ({
-    authedUser: state.users.authedUser.user
-  }), {
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
     ...userActions,
     ...pollActions
-  })(Layout);
+  }, dispatch)
+
+//  CONNECT
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

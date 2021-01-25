@@ -1,20 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+
+import { Form, FormGroup } from '../../scss/form'
 
 class New extends React.Component {
+  renderTextField = ({ input, label, meta: { touched, error, warning }, ...choices }) => (
+    <FormGroup className='form-input'>
+      <label>
+        {label}
+      </label>
+      <input {...input} value={(typeof input.value === 'string') ? input.value : ''} />
+      <div>
+        { 
+          !!touched && !!error && <span>{ error }</span>
+        }
+      </div>
+      
+    </FormGroup>
+  );
 
 	render() {
-		const { handleSubmit } = this.props
+		const { invalid, pristine, submitting, handleSubmit } = this.props
 		return (
 			<div>
 				<h1>New Topics</h1>
-				<form id='new-poll-form'
+				<Form 
+          id='new-poll-form'
 					onSubmit={handleSubmit}>
-					<label htmlFor="create_topic"></label>
-					<input type="text" name="create_topic" required />
-					<input type="submit" value="confirm" />
-				</form>
+          <Field
+            ref='title'
+            id='title'
+            type='text'
+            name='title'
+            label='Title'
+            placeholder='Spit out your idea'
+            component={this.renderTextField}
+          />
+
+          <button type="submit" disabled={submitting}>
+            Post
+          </button>
+				</Form>
 			</div>
 		)
 	}
@@ -27,8 +54,6 @@ New.propTypes = {
 New = reduxForm({
   form: 'newPoll',
   fields: ['title'],
-  destroyOnUnmount: true,
-  persistentSubmitErrors: true,
   touchOnChange: true,
   validate: (values, props) => {
     const errors = {};
@@ -40,5 +65,8 @@ New = reduxForm({
     return errors;
   },
   onSubmit: (values, dispatch, props) => new Promise((resolve, reject) => props.postPoll({ ...values }, { resolve, reject })),
+  onSubmitSuccess: (result, dispatch, props) => result
+
 })(New);
+
 export default New

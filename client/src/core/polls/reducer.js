@@ -1,4 +1,5 @@
 import * as TYPES from '../constants';
+import { getListWithItem, getItemById } from '../helpers';
 
 export const initialState = {
   all: {
@@ -30,7 +31,7 @@ export function pollReducer(state = initialState, action = {}) {
       polls = payload.polls || null;
       return {
         all: {
-          loading: false, error: null, polls
+          loading: true, error: null, polls
         }, 
         active: {
           loading: false, error: null, message: null, poll: null
@@ -57,12 +58,14 @@ export function pollReducer(state = initialState, action = {}) {
       };
 
     case TYPES.POST_POLL_SUCCESS:
+      // TODO 
+      // check result
       poll = payload.poll || null;
       message = payload.message || null;
-      polls = poll;
+      // polls = poll;
       return {
         all: {
-          loading: false, error: null, polls
+          loading: false, error: null, polls: getListWithItem(state.all.polls, poll)
         }, 
         active: {
           loading: false, error: null, message: null, poll: null
@@ -81,7 +84,7 @@ export function pollReducer(state = initialState, action = {}) {
       return {
         active: {
           loading: true, error: null, poll: null,
-          message: 'Updating poll...'
+          message: 'Updating vote...'
         }, ...state
       };
 

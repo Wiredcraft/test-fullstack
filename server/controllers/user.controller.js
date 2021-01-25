@@ -70,7 +70,6 @@ function loginLocalUser(name, password, cb) {
       } else {
         return cb(null, user, `Welcome back ${user.name}.`);
         user.comparePassword(password, function(err, isMatch) {
-          console.log(password, isMatch);
           if (isMatch && !err) {
             let token = generateToken(user);
             user['token'] = token;

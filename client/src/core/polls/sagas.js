@@ -44,11 +44,12 @@ export function* postPollSaga(action) {
 };
 
 export function* postPollSuccessSaga() {
-  const viewedId = yield select(getViewedId);
-  yield history.push(`/poll/${viewedId}`);
+  yield history.push('/');
 };
 
 export function* updatePollVoteSaga(action) {
+  // TODO
+  // Use more simple way to alter vote count
   const { vote, resolve, reject } = action.payload;
   try {
     const authedUser = yield select(getAuthedUser);

@@ -14,9 +14,9 @@ const Item = ({ item, updatePollVote }) => {
   return (
     <li>
       <button onClick={() => dispatch(pollActions.updatePollVote(item._id))}> Vote {item.votes} </button>
-      <PollTitle>Topics Title</PollTitle>
+      <PollTitle>{item.title}</PollTitle>
       <PollMeta>
-        <PollMetaElement>By: Authors name</PollMetaElement>
+        <PollMetaElement>By: {item.name}</PollMetaElement>
         <PollMetaElement>{mapTime(item.date_created)}</PollMetaElement>
       </PollMeta>
     </li>
