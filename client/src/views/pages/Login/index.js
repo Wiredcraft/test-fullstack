@@ -80,7 +80,7 @@ Login = reduxForm({
     return errors;
   },
   onSubmit: (values, dispatch, props) => new Promise((resolve, reject) => props.authUser({ ...values }, { resolve, reject })),
-  onSubmitSuccess: (result, dispatch, props) => console.log(result)
+  onSubmitSuccess: (result, dispatch, props) => result
 })(Login);
 
 export default connect(

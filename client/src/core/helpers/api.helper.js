@@ -15,6 +15,7 @@ export function requestOpts(method, body = null, token = null) {
 export async function requestApi(url, opts, type = 'json') {
   try {
     let response = await fetch(url, opts);
+    console.log(url, opts);
     await handleResponse(response);
     return (type === 'json') ? response.json() : response.text();
   } catch(error) {

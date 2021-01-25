@@ -18,18 +18,16 @@ const Header = props => {
           ) : (<a></a>)
         }
       </span>
-      <span>
-        {
-          !!authedUser ? (
-            <a>
-              <span>{authedUser.name}</span>
-              <button onClick={logoutUser}>Logout</button>
-            </a>
-          ) : (
-            <Link to='/login'>Sign in</Link>
-          )
-        }
-      </span>
+      {
+        !!authedUser ? (
+          <span>
+            <a>{authedUser.name}</a>
+            <button onClick={logoutUser}>Logout</button>
+          </span>
+        ) : (
+          <Link to='/login'>Sign in</Link>
+        )
+      }
     </HeaderContainer>
   )
 }
