@@ -63,6 +63,7 @@ export function pollReducer(state = initialState, action = {}) {
       poll = payload.poll || null;
       message = payload.message || null;
       // polls = poll;
+      console.log(state.all.polls);
       return {
         all: {
           loading: false, error: null, polls: getListWithItem(state.all.polls, poll)

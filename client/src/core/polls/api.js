@@ -7,6 +7,7 @@ export function getPollsApi() {
 };
 
 export function postPollApi(body) {
+	console.log(body);
   return requestApi(`${APP_URL}/api/poll/create`, requestOpts('POST', body));
 };
 

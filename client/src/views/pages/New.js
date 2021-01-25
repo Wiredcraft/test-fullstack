@@ -64,9 +64,7 @@ New = reduxForm({
 
     return errors;
   },
-  onSubmit: (values, dispatch, props) => new Promise((resolve, reject) => props.postPoll({ ...values }, { resolve, reject })),
-  onSubmitSuccess: (result, dispatch, props) => result
-
+  onSubmit: (values, dispatch, props) => new Promise((resolve, reject) => props.postPoll({ ...values }, { resolve, reject }))
 })(New);
 
 export default New

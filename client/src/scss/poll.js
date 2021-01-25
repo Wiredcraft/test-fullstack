@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const PollsWrapper = styled.ul`
 
+  > li {
+    margin-bottom: 10px
+  }
+
   &:first-of-type {
     border-top: 0;
   }
