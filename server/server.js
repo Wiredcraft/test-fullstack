@@ -16,7 +16,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Password Config
+// Passport Config
 configurePassport(app, passport);
 
 // DB Config
@@ -33,6 +33,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+
 // Temp Sample
 const url = 'http://localhost:9000';
 

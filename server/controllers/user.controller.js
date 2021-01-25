@@ -52,7 +52,6 @@ function generateToken(user) {
   //1. Dont use password and other sensitive fields
   //2. Use fields that are useful in other parts of the
   //app/collections/models
-  console.log(user);
   var u = { cuid: user.cuid, name: user.name };
   return jwt.sign(u, process.env.SECRET, {
     expiresIn: 60 * 60 * 24 // expires in 24 hours

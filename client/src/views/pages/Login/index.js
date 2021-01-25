@@ -44,14 +44,12 @@ class Login extends React.Component {
           label='Password'
           component={this.renderTextField}
         />
-        <div>
-          <button type="submit" disabled={submitting}>
-            Login in
-          </button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
-            Reset
-          </button>
-        </div>
+        <button type="submit" disabled={submitting}>
+          Login in
+        </button>
+        <button type="button" disabled={pristine || submitting} onClick={reset}>
+          Reset
+        </button>
       </Form>
     )
   }

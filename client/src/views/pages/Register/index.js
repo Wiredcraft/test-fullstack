@@ -45,14 +45,12 @@ class Register extends React.Component {
           label='Password'
           component={this.renderTextField}
         />
-        <div>
-          <button type="submit" disabled={submitting}>
-            Sign Up
-          </button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
-            Reset
-          </button>
-        </div>
+        <button type="submit" disabled={submitting}>
+          Sign Up
+        </button>
+        <button type="button" disabled={pristine || submitting} onClick={reset}>
+          Reset
+        </button>
       </Form>
     )
   }
