@@ -27,13 +27,12 @@ UserSchema.methods.comparePassword = function comparePassword(password, cb) {
 
 
 // The pre-save hook method
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function saveHook(next) {
   let user = this;
 
   if (!user.cuid) {
     user.cuid = cuid();
   };
-
   user.name = sanitizeHtml(user.name);
   user.date_updated = new Date().toISOString();
 

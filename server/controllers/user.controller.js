@@ -52,6 +52,7 @@ function generateToken(user) {
   //1. Dont use password and other sensitive fields
   //2. Use fields that are useful in other parts of the
   //app/collections/models
+  console.log(user);
   var u = { cuid: user.cuid, name: user.name };
   return jwt.sign(u, process.env.SECRET, {
     expiresIn: 60 * 60 * 24 // expires in 24 hours
@@ -70,7 +71,7 @@ function loginLocalUser(name, password, cb) {
       } else {
         user.comparePassword(password, function(err, isMatch) {
           if (isMatch && !err) {
-            var token = generateToken(user);
+            let token = generateToken(user);
             user['token'] = token;
             return cb(null, user, `Welcome back ${user.name}.`);
           } else {
@@ -84,8 +85,7 @@ function loginLocalUser(name, password, cb) {
 
 // HELPER
 function createUser(userData, cb) {
-  var newUser = new User({ ...userData });
-  console.log(newUser);
+  let newUser = new User({ ...userData });
   newUser.save(function(err, user) {
     if (err) {
       return cb(`Error during user registration. ${err}`);
