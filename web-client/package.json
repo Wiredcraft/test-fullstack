@@ -1,0 +1,8 @@
+{
+  "name": "@feed-x/web-client",
+  "private": true,
+  "version": "0.0.1",
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "feed-x",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "web-client",
+    "services"
+  ]
+}

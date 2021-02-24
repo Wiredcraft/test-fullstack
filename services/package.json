@@ -1,0 +1,7 @@
+{
+  "name": "@feed-x/services",
+  "private": true,
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  }
+}
