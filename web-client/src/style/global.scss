@@ -1,0 +1,33 @@
+@import "variables";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $bg-smoke;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+// width and height
+.fdx-full-width {
+  width: 100%;
+}
+.fdx-full-height {
+  height: 100%;
+}
+.fdx-fulfill {
+  width: 100%;
+  height: 100%;
+}
+
+// misc
+.fdx-transition {
+  transition: $fdx-transition;
+}

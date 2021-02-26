@@ -1,0 +1,22 @@
+@import "../../style/variables";
+
+label.fdx-label {
+  display: block;
+  font-weight: bold;
+  margin-top: 12px;
+  margin-bottom: 5px;
+}
+input.fdx-input {
+  outline: none;
+  border-radius: $border-radius-size;
+  padding: 3px 15px 6px;
+
+  // reaction
+  &:focus {
+    border: 1px solid darken($primary-color, 15);
+  }
+}
+
+.fdx-input-error {
+  color: red;
+}

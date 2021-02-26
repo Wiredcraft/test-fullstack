@@ -1,0 +1,224 @@
+// theming
+// ===============================================================
+$primary-color: #d43f2e;
+
+$dark: #1d1d1d;
+$gray: #666666;
+$white: #ffffff;
+$bg-smoke: #f0f0f0;
+
+$positive: #21ba45;
+$negative: #c10015;
+$info: #31ccec;
+$warning: #f2c037;
+
+// sizing
+// ===============================================================
+// content wrapper
+$content_width_max: 1040px;
+$content_width_mid: 940px;
+$content_width_vintage: 900px;
+$content_width_flex: 90%;
+
+// border radius
+$border-radius-size: 3px;
+
+// misc
+// ===============================================================
+$fdx-transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0s !important;
+// @function transition() {
+//   transition: $fdx-transition;
+// }
+
+// Lines below from a vue + quasar project
+
+// body.body--light {
+//   --q-color-primary: #0067b6;
+//   .main-bg-1 {
+//     background-color: $light-blue-1 !important;
+//   }
+//   .main-bg-2 {
+//     background-color: $light-blue-2 !important;
+//   }
+//   .main-bg-3 {
+//     background-color: rgba(0, 0, 0, 0.05) !important;
+//   }
+//   .main-bg-highlight {
+//     background-color: #fff !important;
+//   }
+//   .main-bg-home {
+//     background-color: #fff !important;
+//   }
+//   .main-front-1 {
+//     color: #121212;
+//   }
+// }
+// body.body--dark {
+//   --q-color-primary: #5eafec;
+
+//   *:not(i) {
+//     font-weight: bold !important;
+//   }
+//   .main-bg-1 {
+//     background-color: #292929 !important;
+//   }
+//   .main-bg-2 {
+//     background-color: #494949 !important;
+//   }
+//   .main-bg-3 {
+//     background-color: #595959 !important;
+//   }
+//   .main-bg-highlight {
+//     background-color: #494949 !important;
+//   }
+//   .main-bg-home {
+//     background-color: #292929 !important;
+//   }
+//   .main-front-1 {
+//     color: #eee;
+//   }
+// }
+
+// $shadow-24: 0 16px 15px rgba(30, 20, 70, 0.09),
+//   0 24px 38px 3px rgba(30, 20, 70, 0.09), 0 15px 46px 8px rgba(30, 20, 40, 0.09),
+//   inset 15px 15px 50px rgba(255, 255, 255, 0);
+// $shadow-23: 5px 16px 10px rgba(30, 20, 70, 0.09),
+//   5px 24px 28px rgba(30, 20, 70, 0.09), 5px 15px 36px rgba(30, 20, 40, 0.09),
+//   inset 15px 15px 50px rgba(255, 255, 255, 0.01);
+// $shadow-22: 5px 16px 10px rgba(30, 20, 70, 0.05),
+//   5px 24px 28px rgba(30, 20, 70, 0.05), 5px 15px 36px rgba(30, 20, 40, 0.05),
+//   inset 15px 15px 50px rgba(255, 255, 255, 0);
+// $shadow-1: 0px 0px 2px rgba(30, 20, 70, 0.04),
+//   0px 0px 5px rgba(30, 20, 40, 0.03), 0 5px 15px 5px rgba(30, 20, 40, 0.05),
+//   inset 15px 15px 50px rgba(255, 255, 255, 0);
+// $shadow-2: 0px 0px 2px rgba(30, 20, 70, 0.1), 0px 0px 5px rgba(30, 20, 40, 0.07),
+//   0 5px 15px 5px rgba(30, 20, 40, 0.03),
+//   inset 15px 15px 50px rgba(255, 255, 255, 0);
+
+// $generic-border-radius: 7px;
+// $green: #52be80;
+// // /** Form 表单的高度 */
+// // .q-field__control,
+// // .q-field__append,
+// // .q-field__marginal {
+// //     height: 36px;
+// // }
+
+// $color-success: $green-5;
+// $color-danger: $red-7;
+// $color-warning: $orange-7;
+// $color-normal: $primary;
+
+// .q-field--filled.q-field--dense {
+//   .q-field__control {
+//     border-radius: $generic-border-radius !important;
+//     overflow: hidden;
+
+//     &::before {
+//       border-bottom: 1px solid transparent;
+//     }
+
+//     .q-field__append .q-select__dropdown-icon {
+//       font-size: 0.9rem;
+//     }
+//   }
+
+//   &.q-field--focused .q-field__control {
+//     background-color: $grey-2;
+//   }
+// }
+// body.body--dark {
+//   .q-field--filled.q-field--dense.q-field--focused .q-field__control {
+//     background-color: $grey-10;
+//   }
+// }
+
+// // menu
+// .q-menu {
+//   .q-item {
+//     &:hover {
+//       background-color: rgba($primary, 0.1);
+//       color: $primary;
+//       font-weight: bold;
+//     }
+//   }
+// }
+
+// // notify
+// .q-notification {
+//   transition: transform 0.2s, opacity 0.2s;
+//   min-height: 40px;
+//   box-shadow: $shadow-24;
+//   padding: 0px 24px;
+//   .q-notification__badge.q-notification__badge--top-left {
+//     left: -36px;
+//   }
+//   .q-notification__icon {
+//     font-size: 15px;
+//   }
+//   .q-notification__message {
+//     padding: 0;
+//   }
+// }
+// .q-notifications__list--top {
+//   top: 10px;
+// }
+
+// // expansion icon
+// .q-item__section--side > .q-icon {
+//   font-size: 0.9rem;
+// }
+
+// // list
+// .q-menu {
+//   padding: 5px;
+//   box-shadow: $shadow-2;
+// }
+// .q-item {
+//   border-radius: $generic-border-radius;
+// }
+
+// // toggle
+// .q-toggle__thumb {
+//   .q-icon {
+//     font-size: 10px;
+//   }
+// }
+
+// .q-item__section--side > .q-icon {
+//   font-size: 0.95rem !important;
+// }
+
+// // button
+// .q-btn__wrapper {
+//   // box-shadow: $shadow-2;
+//   &::before {
+//     box-shadow: none;
+//   }
+// }
+// .q-btn__wrapper:before {
+//   box-shadow: $shadow-2 !important;
+// }
+
+// // notify transition
+// .q-notification {
+//   transition: transform 0.3s cubic-bezier(0.6, -0.21, 0.38, 1.8), opacity 0.3s !important;
+// }
+
+// // tree
+// .q-tree {
+//   .q-tree__node-header {
+//     &::before {
+//       width: 30px;
+//     }
+//   }
+//   .q-tree__node-header-content {
+//     padding-left: 8px !important;
+//   }
+// }
+
+// // scroll bar
+// .q-scrollarea__thumb {
+//   background-color: rgba(#000, 0.5);
+//   border-radius: 10px;
+// }

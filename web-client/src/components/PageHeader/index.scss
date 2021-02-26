@@ -1,0 +1,15 @@
+@import "../../style/variables";
+
+#fdx-page-header {
+  margin-bottom: 20px;
+  header {
+    padding: 10px 0 12px;
+    background-color: white;
+  }
+  nav {
+    padding: 0;
+    background-color: $dark;
+  }
+}
+
+@import "./NavbarLink";

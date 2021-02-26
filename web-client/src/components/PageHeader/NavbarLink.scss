@@ -1,0 +1,13 @@
+a.fdx-nav-link {
+  text-decoration: none;
+  color: $white;
+  display: inline-block;
+  padding: 10px 15px;
+  border-bottom-style: solid;
+  border-bottom-width: 3px;
+  border-color: transparent;
+  &.fdx-nav-link_active {
+    background-color: lighten($dark, 15);
+    border-color: $primary-color;
+  }
+}

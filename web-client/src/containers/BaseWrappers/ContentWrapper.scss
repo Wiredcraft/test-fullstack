@@ -1,0 +1,17 @@
+@import "../../style/variables";
+
+.fdx_content-wrapper {
+  @media only screen and (min-width: 1200px) {
+    width: $content_width_max;
+  }
+  @media only screen and (max-width: 1200px) {
+    width: $content_width_mid;
+  }
+  @media only screen and (max-width: 960px) {
+    width: $content_width_vintage;
+  }
+  @media only screen and (max-width: 940px) {
+    width: $content_width_flex;
+  }
+  margin: 0 auto;
+}

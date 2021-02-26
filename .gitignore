@@ -1,3 +1,7 @@
+# GLOBAL IGNORES
+# ================================================================================
+
+# dependencies
 /.yarn/*
 !/.yarn/releases
 !/.yarn/plugins
@@ -7,11 +11,44 @@
 # Documentation here: https://yarnpkg.com/features/zero-installs
 # !/.yarn/cache
 #/.pnp.*
-
-.env
-.env.*
-!.env.example
-
 node_modules
 
+# dotenv files
+.env
+.env.*
+.env.*.local
+!.env.example
+
+# Tests
+coverage
+
+# OS
 .DS_Store
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Self preserved
+CHEAT_LINKS.md
+temp

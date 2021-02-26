@@ -1,0 +1,12 @@
+@import "../../style/variables";
+
+.fdx-bloc {
+  border-radius: $border-radius-size;
+  // box-shadow: ;
+  &.fdx-bloc_flat {
+    border-radius: 0;
+  }
+  &.fdx-bloc_sharp {
+    box-shadow: none;
+  }
+}

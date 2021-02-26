@@ -1,0 +1,13 @@
+{
+  "useWorkspaces": true,
+  "version": "0.0.1",
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "*.md"
+      ],
+      "message": "bump version"
+    }
+  }
+}

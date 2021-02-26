@@ -1,0 +1,14 @@
+@import "../../style/variables";
+
+.fdx-auth-switch {
+  text-decoration: none;
+  color: $dark;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  &:nth-of-type(2) {
+    margin-left: 15px;
+  }
+  &.fdx-auth-switch_active {
+    color: $primary-color;
+  }
+}

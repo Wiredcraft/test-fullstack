@@ -1,0 +1,30 @@
+@import "../../style/variables";
+
+button.fdx-btn {
+  outline: none;
+  border-radius: $border-radius-size;
+  cursor: pointer;
+  padding: 3px 15px 6px;
+
+  // reaction
+  &:focus {
+    border: 1px solid darken($primary-color, 15);
+  }
+
+  // types
+  &.fdx-btn_primary {
+    background-color: $primary-color;
+    color: white;
+  }
+  &.fdx-btn_danger {
+    background-color: $primary-color;
+    color: white;
+  }
+  &.fdx-btn_ghost {
+    border: 1px solid $gray;
+    &:hover {
+      border: 1px solid lighten($gray, 15);
+      color: lighten($gray, 15);
+    }
+  }
+}
