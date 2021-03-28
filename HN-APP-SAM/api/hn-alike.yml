@@ -1,0 +1,351 @@
+openapi: 3.0.0
+info:
+  description: Hacker news alike app created by samcn26@gmail.com
+  version: 0.0.1
+  title: HN API
+  contact:
+    email: samcn26@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: "localhost:3000/api"
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: user
+    description: Operation about user
+  - name: news
+    description: Hacker news
+
+paths:
+  /user/login:
+    post:
+      tags:
+        - "user"
+      summary: "Logs user into the system"
+      operationId: login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  description: The user name for login
+                  type: string
+                password:
+                  description: The password for login
+                  type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Token"
+        400:
+          description: Invalid password
+        404:
+          description: User not found
+  /user:
+    get:
+      tags:
+        - user
+      summary: Retrieve multiple Users
+      operationId: findAllUsers
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+    post:
+      tags:
+        - user
+      summary: Register user
+      operationId: addUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        400:
+          description: User existed
+  /user/{id}:
+    get:
+      tags:
+        - user
+      summary: Retrieve a single User
+      operationId: findUserById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: integer
+      responses:
+        404:
+          description: User not found
+        200:
+          description: Get one base response
+    put:
+      tags:
+        - user
+      summary: Replace a single User
+      description: ""
+      operationId: updateUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID for user
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: User not found
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      operationId: deleteUserById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: successful operation
+        404:
+          description: User not found
+
+  /news:
+    post:
+      tags:
+        - news
+      summary: The news which user post
+      operationId: addNews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                create_time:
+                  type: string
+                  format: date-time
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/News"
+    get:
+      tags:
+        - news
+      summary: Retrieve multiple news
+      operationId: findAllNews
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                    - $ref: "#/components/schemas/News"
+                    - type: object
+                      properties:
+                        ratable:
+                          type: boolean
+                        latest:
+                          $ref: "#/components/schemas/Rate"
+                        rate_points:
+                          type: number
+
+  /news/{id}:
+    get:
+      tags:
+        - news
+      summary: Retrieve single news
+      operationId: findNewsById
+      parameters:
+        - name: id
+          in: path
+          description: ID of the news
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Get one base response
+        404:
+          description: News not found
+    put:
+      tags:
+        - news
+      summary: Update news
+      operationId: updateNewsById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the news
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+      responses:
+        200:
+          description: successful operation
+        400:
+          description: Invalid input
+        404:
+          description: User not found
+
+  /news/{news_id}/add_rate:
+    post:
+      tags:
+        - news
+      summary: Someone rate the news
+      operationId: addRate
+      parameters:
+        - name: news_id
+          in: path
+          description: ID of the news
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/News"
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/News"
+
+  /news/{news_id}/del_rate:
+    post:
+      tags:
+        - news
+      summary: Someone delete the rate
+      operationId: deleteRate
+      parameters:
+        - name: news_id
+          in: path
+          description: ID of the news
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/News"
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/News"
+        400:
+          description: Invalid input
+
+components:
+  schemas:
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    User:
+      type: object
+      required:
+        - name
+        - password
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+          format: password
+    News:
+      type: object
+      required:
+        - title
+        - content
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        creator:
+          $ref: "#/components/schemas/User"
+        create_time:
+          type: string
+          format: date-time
+        rates:
+          type: array
+          items:
+            $ref: "#/components/schemas/Rate"
+    Rate:
+      type: object
+      properties:
+        rater:
+          $ref: "#/components/schemas/User"
+        rate_time:
+          type: string
+          format: date-time
+
+  securitySchemes:
+    bearerAuth:
+      description: Return full user info encrypted as token after successful login
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
