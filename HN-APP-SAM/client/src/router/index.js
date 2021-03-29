@@ -6,7 +6,9 @@ import React from 'react'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import { createHashHistory } from 'history'
 import { getToken } from '@/utils/auth'
-const history = createHashHistory()
+
+// export singleton for axios interceptor
+export const history = createHashHistory()
 
 function PrivateRoute({ component: Component, ...rest }) {
   return (

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { getToken, removeToken } from '@/utils/auth'
-import {get } from 'lodash'
+import { get } from 'lodash'
+import { history } from '@/router'
 
 // request interceptor
 axios.interceptors.request.use(
@@ -30,7 +31,7 @@ axios.interceptors.response.use(
       removeToken()
 
       // navigate to login page
-      return window.location.href = `#/login`;
+      history.push('/login')
     } else {
       const message = get(error, 'response.data.message')
       message && alert(error.response.data.message)
