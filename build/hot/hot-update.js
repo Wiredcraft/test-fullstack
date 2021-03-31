@@ -1,0 +1,19 @@
+webpackHotUpdateCIMTAS("App",{
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src/index.js?!./src/components/HackerNews/HackerNews.css":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/src??ref--4-3!./src/components/HackerNews/HackerNews.css ***!
+  \************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, "body {\r\n  margin: 0;\r\n  padding: 0;\r\n  font-family: sans-serif;\r\n  background-color: #fbfbfb;\r\n}\r\n\r\n.sr-HackerNews {\r\n  width: 50%;\r\n  margin: 10px auto;\r\n  font-size: 14px;\r\n  background-color: #fff;\r\n  border: 1px solid #f1f1f1;\r\n  padding: 20px;\r\n}\r\n\r\n.news-input {\r\n  background-color: #fff;\r\n  border: 1px solid #f1f1f1;\r\n  padding: 20px;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n.news-field {\r\n  margin-bottom: 15px;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n\r\n.news-field .news-field-name {\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-preferred-size: 100px;\r\n      flex-basis: 100px;\r\n  font-size: 14px;\r\n}\r\n\r\n.news-field .news-field-input {\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex: 1;\r\n      flex: 1;\r\n}\r\n\r\n.news-field-input input,\r\n.news-field-input textarea {\r\n  border: 1px solid #e6e6e6;\r\n  border-radius: 3px;\r\n  padding: 5px;\r\n  outline: none;\r\n  font-size: 14px;\r\n  resize: none;\r\n  -ms-flex: 1;\r\n      flex: 1;\r\n  width: 100%;\r\n  font-family: sans-serif;\r\n}\r\n\r\n.news-field-input textarea {\r\n  height: 100px;\r\n}\r\n\r\n.news-field-button {\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -ms-flex-pack: end;\r\n      justify-content: flex-end;\r\n}\r\n\r\n.news-field-button button {\r\n  padding: 5px 10px;\r\n  width: 80px;\r\n  border: none;\r\n  border-radius: 3px;\r\n  background-color: #00a3cf;\r\n  color: #fff;\r\n  outline: none;\r\n  cursor: pointer;\r\n}\r\n\r\n.news-field-button button:active {\r\n  background: #13c1f1;\r\n}\r\n\r\n.news-list {\r\n  background-color: #fff;\r\n  border: 1px solid #f1f1f1;\r\n  padding: 20px;\r\n}\r\n\r\n.news {\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  border-bottom: 1px solid #f1f1f1;\r\n  margin-bottom: 10px;\r\n  padding-bottom: 10px;\r\n  min-height: 50px;\r\n}\r\n\r\n.news .news-user {\r\n  -ms-flex-negative: 0;\r\n      flex-shrink: 0;\r\n}\r\n\r\n.news span {\r\n  color: #00a3cf;\r\n  font-style: italic;\r\n}\r\n\r\n.news p {\r\n  margin: 0;\r\n  width: 100%;\r\n}\r\n\r\n.sr-HackerNewsno {\r\n  color: #00a3cf;\r\n  padding: 5px 0px 6px 7px;\r\n  border-bottom: 1px solid #f1f1f1;\r\n  margin-bottom: 10px;\r\n  padding-bottom: 10px;\r\n}\r\n\r\n.sr-HackerNewsheader {\r\n  font-size: 18px;\r\n  padding: 20px;\r\n}\r\n\r\n.news-like-button {\r\n  -ms-flex-pack: end;\r\n      justify-content: flex-end;\r\n    width: 100%;\r\n    display: -ms-inline-flexbox;\r\n    display: inline-flex;\r\n    height: 26px;\r\n}\r\n\r\n.news-like-button button {\r\n  padding: 5px 10px;\r\n  width: 80px;\r\n  border: none;\r\n  border-radius: 3px;\r\n  background-color: #00a3cf;\r\n  color: #fff;\r\n  outline: none;\r\n  cursor: pointer;\r\n}", ""]);
+
+
+
+/***/ })
+
+})
+//# sourceMappingURL=hot-update.js.map

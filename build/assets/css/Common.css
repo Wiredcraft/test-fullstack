@@ -1,0 +1,21 @@
+
+body,html,h1,li,ul{
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-family: "Microsoft YaHei";
+    
+}
+body{
+    /*background-color: rgb(249,249,249);*/
+    background: white;
+}
+.sr-quotation{
+    background: url(../img/sr-quotation.png) top center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #eef0f6;
+    min-height: 100vh;
+    min-width: 1196px;
+}

@@ -1,42 +1,72 @@
-# Fullstack
+npm -### 目录及约定
 
-### Context
+在文件和目录的组织上，使用约定的方式。
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+一个应用的目录结构如下：
 
-A lightning talk is a very short presentation lasting only a few minutes, given at a conference or a meetup etc.
+```js
+ ├─build 					 // 输出路径
+ ├─config                    // 配置
+ │   ├─index.js              // 打包配置
+ │   └─private.json          // SharePoint凭据信息
+ ├─scripts                   // 打包脚本
+ ├─src
+ │   ├─assets                // 公共静态资源
+ │   ├─components            // 公共组件/公共组件库
+ │   ├─config                // 运行时配置文件
+ │   ├─html                  // 页面模板
+ │   ├─i18n                  // 语言包
+ │   ├─pages
+ │   │  └─Test
+ │   │     ├── Index.ts      // 多页应用时的页面入口，单页应用时为页面组件
+ │   │     └── pageinfo.js   // 对应页面的html模板信息，多页应用时使用
+ │   ├─services              // 其他功能库
+ │   ├─App.css
+ │   ├─App.tsx
+ │   └─Index.tsx             // 单页应用入口
+ ├──modules.d.ts             // TypeScript模块声明
+ ├──package.json			 // 项目信息，脚本指令，依赖信息
+ ├──README.md                // 使用说明
+ ├──tsconfig.json            // TypeScript编译设置
+ └──tslint.json              // tslint代码规范选项
+```
 
-Polling is often needed for the organizers to understand what is more interesting, or for people to decide what should go on stage.
 
-### Requirements
 
-#### User Stories
+#### 使用
 
-1. When a user opens the page, he/she should see a list of lighting talks submitted by the users, ordered by rating \(poll amount\).
-2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
-3. For each of the talks in the list, the user could vote it by clicking a button.
-4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
-5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
-6. After submitting a topic, the user should see an updated version of the list.
+1.安装依赖
 
-#### Functionality
+在项目路径下打开cmd或使用vscode打开项目后启动终端，执行依赖安装命令
 
-* The frontend part should be a single page application rendered in the frontend and load data from a RESTful API \(not rendered from backend\).
-* The API should follow typical RESTful API design pattern.
-* Provide proper unit test.
+```bash
+npm i
+# 安装所需的依赖
+```
 
-#### Tech stack
 
-* Use React for the frontend.
-* Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-* Use any backend framework as you like. Use any DB for storing the data, or if you prefer, only using the memory \(with no permanent storage\) could just work.
 
-#### Advanced requirements
+2.运行
 
-_These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out._
+依次执行以下的命令，执行完命令后会自动打开浏览器，在打开的页面中选择打开html下的页面即可看到示例页面，如果打开的页面没看到有html，需等打包完成后刷新页面
 
-* Make it responsive.
-* Provide a form validation strategy.
-* Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
-* Provide a complete user auth \(authentication/authorization/etc\) strategy, such as OAuth.
-* Provide a complete logging \(when/how/etc\) strategy.
+```bash
+npm run dll	# 打包通用dll
+npm run watch	# 进行本地调试
+```
+
+
+
+4.部署
+
+执行正式环境打包命令，将build文件夹的内容复制到服务器。
+
+```bash
+npm run prod # 正式环境打包
+```
+
+
+
+
+
+
