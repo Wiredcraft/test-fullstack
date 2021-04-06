@@ -1,0 +1,88 @@
+{
+  "name": "FullStackTest-LightningTalk",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-decorators": "^7.13.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.13.12",
+    "@babel/plugin-syntax-jsx": "^7.12.13",
+    "@babel/plugin-transform-react-jsx": "^7.13.12",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/runtime": "^7.13.10",
+    "axios": "^0.21.1",
+    "create-react-class": "^15.7.0",
+    "css-loader": "^5.2.0",
+    "egg": "^2.29.1",
+    "egg-async-validator": "0.0.1",
+    "egg-bcrypt": "^1.1.0",
+    "egg-bizerror": "^2.2.1",
+    "egg-cors": "^2.2.3",
+    "egg-development": "^2.7.0",
+    "egg-jwt": "^3.1.7",
+    "egg-rest": "^2.1.0",
+    "egg-scripts": "^2.13.0",
+    "egg-sequelize": "^6.0.0",
+    "egg-validate": "^2.0.2",
+    "egg-validate-plus": "^1.1.6",
+    "less": "^4.1.1",
+    "less-loader": "^8.0.0",
+    "mocha": "^6.2.3",
+    "moment": "^2.29.1",
+    "mysql2": "^2.2.5",
+    "node-sass": "^5.0.0",
+    "path": "^0.12.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.3",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-router-redux": "^4.0.8",
+    "redux-form": "^8.3.7",
+    "redux-saga": "^1.1.3",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "styled-components": "^5.2.3",
+    "url": "^0.11.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.30.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "babel-loader": "^8.2.2",
+    "egg-bin": "^4.15.0",
+    "egg-mock": "^4.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0",
+    "webpack-cli": "^4.6.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "webpack --mode=development",
+    "start": "egg-scripts start --cluster --sticky --daemon --title=FullStackTest-LightningTalk --ignore-stderr",
+    "stop": "egg-scripts stop --title=FullStackTest-LightningTalk",
+    "dev": "egg-bin dev --cluster --sticky",
+    "test": "egg-bin test",
+    "autod": "autod"
+  },
+  "ci": {
+    "version": "10"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Mark Ma",
+  "license": "MIT"
+}

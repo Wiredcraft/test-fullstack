@@ -1,42 +1,38 @@
-# Fullstack
+# FullStackTest - Lightning Talk Polling APP
+Author: Mark Ma
 
-### Context
+## QuickStart
+1. I used EggJS framework for backend and use MySQL/MariaDB. Please install it and import the database from the directory: `/DB/lighting_talk.sql`, and run `npm i` to initial the required modules.
+2. Edit the configuration files:
+    /config/config.local.js (For Development)
+	/config/config.prod.js (For Depoly)
+	In them, please make sure the DB's name/host/username/password are the same as what you installed
+	If you want to change the web service's listening port, please edit the file /config/config.default.js and you can find it.
+3. The React Source directory is /app/public/reactAppSrc
+4. Please use `$npm run build` command to generate package file for the React by Webpack 
+5. Finally, you can run it use the command  `npm run dev` (development mode) or `npm start`
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+### Development
 
-A lightning talk is a very short presentation lasting only a few minutes, given at a conference or a meetup etc.
+```bash
+$ npm i
+$ npm run build
+$ npm run dev
+$ open http://localhost:8080/ or http://127.0.0.1:8080/
+```
 
-Polling is often needed for the organizers to understand what is more interesting, or for people to decide what should go on stage.
+### Deploy
 
-### Requirements
+```bash
+$ npm i
+$ npm run build
+$ npm start/stop (Make Start or Stop)
+$ open http://localhost:8080/ or http://127.0.0.1:8080/
+```
 
-#### User Stories
+### npm scripts
 
-1. When a user opens the page, he/she should see a list of lighting talks submitted by the users, ordered by rating \(poll amount\).
-2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
-3. For each of the talks in the list, the user could vote it by clicking a button.
-4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
-5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
-6. After submitting a topic, the user should see an updated version of the list.
-
-#### Functionality
-
-* The frontend part should be a single page application rendered in the frontend and load data from a RESTful API \(not rendered from backend\).
-* The API should follow typical RESTful API design pattern.
-* Provide proper unit test.
-
-#### Tech stack
-
-* Use React for the frontend.
-* Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-* Use any backend framework as you like. Use any DB for storing the data, or if you prefer, only using the memory \(with no permanent storage\) could just work.
-
-#### Advanced requirements
-
-_These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out._
-
-* Make it responsive.
-* Provide a form validation strategy.
-* Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
-* Provide a complete user auth \(authentication/authorization/etc\) strategy, such as OAuth.
-* Provide a complete logging \(when/how/etc\) strategy.
+- Use `npm run build` to use Webpack.
+- Use `npm run dev` to run the system with development mode
+- Use `npm test` to run unit test.
+- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
