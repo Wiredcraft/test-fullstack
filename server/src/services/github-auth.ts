@@ -19,14 +19,14 @@ export const getAuthenticatedUserEmail = async (req: Request, res: Response) => 
 }
 
 const authenticateUser = async (token: string): Promise<string> => {
-	const response = await axios({
-		method: 'post',
-		url: `${GITHUB_URL}/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${token}`, headers: {
+	const response = await axios.post(`${GITHUB_URL}/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${token}`, null, {
+		headers: {
 			accept: 'application/json',
 			'X-OAuth-Scopes': 'user',
 			'X-Accepted-OAuth-Scopes': 'user'
 		}
-	});
+	}
+	);
 
 	const { access_token: accessToken } = response.data;
 
@@ -34,15 +34,13 @@ const authenticateUser = async (token: string): Promise<string> => {
 }
 
 const getUserValidEmail = async (accessToken: string): Promise<string> => {
-	const emailListRawData = await axios({
-		method: 'get',
-		url: GITHUB_GET_EMAIL_URL,
+	const emailListRawData = await axios.get(GITHUB_GET_EMAIL_URL || '', {
 		headers: {
 			accept: 'application/json',
 			Authorization: `bearer ${accessToken}`
 		}
 	});
-
+	
 	const emailList: { primary: boolean, verified: boolean, email: string }[] = emailListRawData.data;
 
 	const selectedEmailData = emailList.filter(({ primary, verified }) => primary && verified)[0];
