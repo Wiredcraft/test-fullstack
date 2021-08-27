@@ -1,3 +1,6 @@
+import { config } from 'dotenv'
+config({ path: './.env' })
+
 import ApplicationManager from "./app";
 import routesConfig from "./router/routes-config";
 
