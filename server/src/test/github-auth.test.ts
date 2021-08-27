@@ -49,14 +49,8 @@ describe("Github Auth Service", () => {
 		expect(response.text).toBe('selected@selected.com');
 	})
 
-	it.skip("should receive error when no access token if found", async () => {
-		jest.spyOn(axios, 'post').mockResolvedValue({
-			data: {
-				access_token: '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',
-				token_type: 'bearer',
-				scope: 'user:email'
-			}
-		});
+	it("should receive error when access token request goes wrong", async () => {
+		jest.spyOn(axios, 'post').mockRejectedValueOnce('ERROR_TEST');
 
 		jest.spyOn(axios, 'get').mockResolvedValue({
 			data: [{
@@ -81,10 +75,12 @@ describe("Github Auth Service", () => {
 
 
 		const response = await request(server).get('/github/callback');
-		expect(response.text).toBe('selected@selected.com');
+		const { statusCode, message } = response.body;
+		expect(statusCode).toBe(400);
+		expect(message).toBe('Error trying to get Github Access Token');
 	})
 
-	it.skip("should receive error when no email is found", async () => {
+	it("should receive error when email request goes wrong", async () => {
 		jest.spyOn(axios, 'post').mockResolvedValue({
 			data: {
 				access_token: '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',
@@ -93,33 +89,15 @@ describe("Github Auth Service", () => {
 			}
 		});
 
-		jest.spyOn(axios, 'get').mockResolvedValue({
-			data: [{
-				email: 'selected@selected.com',
-				primary: true,
-				verified: true,
-				visibility: 'private'
-			},
-			{
-				email: 'test.noreply.github.com',
-				primary: false,
-				verified: true,
-				visibility: null
-			},
-			{
-				email: 'test@test.br',
-				primary: false,
-				verified: true,
-				visibility: null
-			}]
-		});
-
+		jest.spyOn(axios, 'get').mockRejectedValueOnce('ERROR_TEST')
 
 		const response = await request(server).get('/github/callback');
-		expect(response.text).toBe('selected@selected.com');
+		const { statusCode, message } = response.body;
+		expect(statusCode).toBe(400);
+		expect(message).toBe('Error trying to get Github Email');
 	})
 
-	it.skip("should receive error when no valid email is found", async () => {
+	it("should receive error when no valid email is found", async () => {
 		jest.spyOn(axios, 'post').mockResolvedValue({
 			data: {
 				access_token: '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',
@@ -129,29 +107,14 @@ describe("Github Auth Service", () => {
 		});
 
 		jest.spyOn(axios, 'get').mockResolvedValue({
-			data: [{
-				email: 'selected@selected.com',
-				primary: true,
-				verified: true,
-				visibility: 'private'
-			},
-			{
-				email: 'test.noreply.github.com',
-				primary: false,
-				verified: true,
-				visibility: null
-			},
-			{
-				email: 'test@test.br',
-				primary: false,
-				verified: true,
-				visibility: null
-			}]
+			data: []
 		});
 
-
 		const response = await request(server).get('/github/callback');
-		expect(response.text).toBe('selected@selected.com');
+		const { statusCode, message } = response.body;
+		expect(statusCode).toBe(400);
+		expect(message).toBe('Error trying to find valid Github Email');
+
 	})
 
 })
