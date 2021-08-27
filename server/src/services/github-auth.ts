@@ -1,5 +1,7 @@
 import axios from "axios";
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
+import { IGitEmail } from "../interfaces";
+import { ErrorHandler } from "../utils";
 
 const {
 	GITHUB_URL,
@@ -8,14 +10,22 @@ const {
 	GITHUB_CLIENT_SECRET: CLIENT_SECRET
 } = process.env;
 
-export const getAuthenticatedUserEmail = async (req: Request, res: Response) => {
-	const { code: token } = req.query;
+export const getAuthenticatedUserEmail = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const { code: token } = req.query;
 
-	const accessToken = await authenticateUser(token as string);
+		const accessToken = await authenticateUser(token as string);
 
-	const email = await getUserValidEmail(accessToken);
+		const email = await getUserValidEmail(accessToken);
 
-	res.send(email)
+		return res.json({
+			email,
+			statusCode: 200
+		});
+	}
+	catch (err) {
+		next(err);
+	}
 }
 
 const authenticateUser = async (token: string): Promise<string> => {
@@ -26,7 +36,14 @@ const authenticateUser = async (token: string): Promise<string> => {
 			'X-Accepted-OAuth-Scopes': 'user'
 		}
 	}
-	);
+	).catch(err => {
+		throw new ErrorHandler({
+			message: 'Error trying to get Github Access Token',
+			statusCode: 400,
+			errDev: JSON.stringify(err),
+			functionName: 'authenticateUser'
+		});
+	});
 
 	const { access_token: accessToken } = response.data;
 
@@ -39,11 +56,26 @@ const getUserValidEmail = async (accessToken: string): Promise<string> => {
 			accept: 'application/json',
 			Authorization: `bearer ${accessToken}`
 		}
+	}).catch(err => {
+		throw new ErrorHandler({
+			message: 'Error trying to get Github Email',
+			statusCode: 400,
+			errDev: JSON.stringify(err),
+			functionName: 'getUserValidEmail'
+		});
 	});
-	
-	const emailList: { primary: boolean, verified: boolean, email: string }[] = emailListRawData.data;
+
+	const emailList: IGitEmail[] = emailListRawData.data;
 
 	const selectedEmailData = emailList.filter(({ primary, verified }) => primary && verified)[0];
+
+	if (!selectedEmailData) {
+		throw new ErrorHandler({
+			message: 'Error trying to find valid Github Email',
+			statusCode: 400,
+			functionName: 'getUserValidEmail'
+		});
+	}
 
 	return selectedEmailData.email;
 }
