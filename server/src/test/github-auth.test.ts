@@ -1,5 +1,8 @@
+import { config } from 'dotenv';
+config({ path: './.env.test' });
+
 import axios from "axios";
-import { getAuthenticatedUserEmail } from "../services/github-auth";
+import { getAuthenticatedUserEmail } from "../controllers/github-auth";
 import ApplicationManager from "../app";
 import request from "supertest";
 import { HttpMethod, ICustomRoute } from "../interfaces";
@@ -11,7 +14,9 @@ const mockRoutesConfig: ICustomRoute[] = [{
 	handler: getAuthenticatedUserEmail
 }];
 
-const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig });
+const dbConn = () => console.log('Connected to DB MOCK');
+
+const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 const server = appManager.getServer();
 
 describe("Github Auth Service", () => {
@@ -19,7 +24,7 @@ describe("Github Auth Service", () => {
 		mockLogin();
 
 		const response = await request(server).get('/github/callback');
-		expect(response.text).toBe('selected@selected.com');
+		expect(response.body.email).toBe('selected@selected.com');
 	})
 
 	it("should receive error when access token request goes wrong", async () => {

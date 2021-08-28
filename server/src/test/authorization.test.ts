@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 config({ path: './.env.test' });
 
-import { getAuthenticatedUserEmail } from "../services/github-auth";
+import { getAuthenticatedUserEmail } from "../controllers/github-auth";
 import ApplicationManager from "../app";
 import request from "supertest";
 import { HttpMethod, ICustomRoute } from "../interfaces";
@@ -16,12 +16,14 @@ const mockRoutesConfig: ICustomRoute[] = [{
 {
 	path: '/protected/route',
 	method: HttpMethod.GET,
-	handler: (req, res) => res.json({ status: 200, message: 'You are in!', user: req.custom }),
+	handler: (req, res) => res.json({ status: 200, message: 'You are in!', user: req.headers["user"] }),
 	customMiddleware: authorizationMiddleware
 }
 ];
 
-const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig });
+const dbConn = () => console.log('Connected to DB MOCK');
+
+const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 const server = appManager.getServer();
 
 
