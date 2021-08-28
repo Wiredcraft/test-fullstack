@@ -7,7 +7,7 @@ export const authorizationMiddleware = (req: Request, res: Response, next: NextF
 	if (accessToken) {
 		try {
 			const accessData = checkToken(accessToken);
-			req.custom = (accessData as JwtPayload).email;
+			req.headers['user'] = (accessData as JwtPayload).email;
 
 		} catch (err) {
 			throw new ErrorHandler({
@@ -26,4 +26,3 @@ export const authorizationMiddleware = (req: Request, res: Response, next: NextF
 	}
 	next();
 }
-
