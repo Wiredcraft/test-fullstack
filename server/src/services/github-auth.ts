@@ -2,6 +2,7 @@ import axios from "axios";
 import { Response, Request, NextFunction } from "express";
 import { IGitEmail } from "../interfaces";
 import { ErrorHandler } from "../utils";
+import { createToken } from "../utils/token";
 
 const {
 	GITHUB_URL,
@@ -18,11 +19,15 @@ export const getAuthenticatedUserEmail = async (req: Request, res: Response, nex
 
 		const email = await getUserValidEmail(accessToken);
 
+		const internalToken = createToken(email);
+
 		return res.json({
+			internalToken,
 			email,
 			statusCode: 200
 		});
 	}
+
 	catch (err) {
 		next(err);
 	}
