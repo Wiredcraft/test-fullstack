@@ -1,10 +1,9 @@
-import { Response, Request, NextFunction } from "express";
-import { ITalkObject } from "../interfaces";
+import { Request } from "express";
+import { ITalkObject, ServerResponse } from "../interfaces";
 import { TalkModel } from "../models";
 import { ErrorHandler, getController } from "../utils";
 
-const createTalkFunction = async (req: Request, res: Response, next: NextFunction) => {
-
+const createTalkFunction = async (req: Request): Promise<ServerResponse> => {
 	const { headers, body } = req;
 	const user = headers["user"] as string;
 	const { title, description } = body;
@@ -28,7 +27,8 @@ const createTalkFunction = async (req: Request, res: Response, next: NextFunctio
 
 	return {
 		statusCode: 201,
-		talkId: newTalk._id
+		message: 'Talk created',
+		talkId: newTalk._id 
 	};
 }
 
