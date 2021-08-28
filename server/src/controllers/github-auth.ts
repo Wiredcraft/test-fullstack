@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Response, Request, NextFunction } from "express";
-import { IGitEmail } from "../interfaces";
+import { IGitEmail, ServerResponse } from "../interfaces";
 import { ErrorHandler, getController } from "../utils";
 import { createToken } from "../utils/token";
 
@@ -11,7 +11,7 @@ const {
 	GITHUB_CLIENT_SECRET: CLIENT_SECRET
 } = process.env;
 
-const getAuthUserFunction = async (req: Request, res: Response) => {
+const getAuthUserFunction = async (req: Request): Promise<ServerResponse> => {
 	const { code: token } = req.query;
 
 	const accessToken = await authenticateUser(token as string);
@@ -23,12 +23,17 @@ const getAuthUserFunction = async (req: Request, res: Response) => {
 	return {
 		internalToken,
 		email,
+		message: 'User Authenticated',
 		statusCode: 200
 	};
 }
 
 const authenticateUser = async (token: string): Promise<string> => {
-	const response = await axios.post(`${GITHUB_URL}/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${token}`, null, {
+	const requestUrl = `${GITHUB_URL}/login/oauth/access_token?
+											client_id=${CLIENT_ID}
+											&client_secret=${CLIENT_SECRET}&code=${token}`;
+
+	const response = await axios.post(requestUrl, null, {
 		headers: {
 			accept: 'application/json',
 			'X-OAuth-Scopes': 'user',

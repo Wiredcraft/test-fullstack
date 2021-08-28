@@ -1,7 +1,8 @@
 import { Response, Request, NextFunction } from "express";
 import { logger } from ".";
+import { ServerResponse } from "../interfaces";
 
-type ControllerFunction = (req: Request, res: Response, next: NextFunction) => void;
+type ControllerFunction = (req: Request) => Promise<ServerResponse>;
 
 /**
  * Encapsulate controller, log envent and treats any thrown error
@@ -20,7 +21,7 @@ const composeGenerator = (controller: ControllerFunction) => async (req: Request
 		}, 'EVENT INFO');
 
 
-		const response = await controller(req, res, next);
+		const response = await controller(req);
 		res.json(response);
 	} catch (err) {
 		next(err)

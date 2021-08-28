@@ -10,7 +10,7 @@ describe('ApplicationManager', () => {
 		const mockRoutesConfig: ICustomRoute[] = [{
 			path: '/health',
 			method: HttpMethod.GET,
-			handler: (req, res) => res.json({ status: 200, message: 'API running fine like wine' })
+			handler: (req, res) => res.json({ statusCode: 200, message: 'API running fine like wine' })
 		}];
 
 		const dbConn = () => console.log('Connected to DB MOCK');
@@ -18,9 +18,9 @@ describe('ApplicationManager', () => {
 		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 		const server = appManager.getServer();
 
-		const { body: { status, message } } = await request(server).get('/health');
+		const { body: { statusCode, message } } = await request(server).get('/health');
 
-		expect(status).toBe(200);
+		expect(statusCode).toBe(200);
 		expect(message).toBe('API running fine like wine');
 	})
 
@@ -29,17 +29,17 @@ describe('ApplicationManager', () => {
 			{
 				path: '/health',
 				method: HttpMethod.GET,
-				handler: (req, res) => res.json({ status: 200, message: 'API running fine like wine' })
+				handler: (req, res) => res.json({ statusCode: 200, message: 'API running fine like wine' })
 			},
 			{
 				path: '/health2',
 				method: HttpMethod.GET,
-				handler: (req, res) => res.json({ status: 200, message: 'API running fine like wine' })
+				handler: (req, res) => res.json({ statusCode: 200, message: 'API running fine like wine' })
 			},
 			{
 				path: '/health3',
 				method: HttpMethod.GET,
-				handler: (req, res) => res.json({ status: 200, message: 'API running fine like wine' })
+				handler: (req, res) => res.json({ statusCode: 200, message: 'API running fine like wine' })
 			}
 		];
 
@@ -48,17 +48,17 @@ describe('ApplicationManager', () => {
 		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 		const server = appManager.getServer();
 
-		const { body: { status, message } } = await request(server).get('/health');
+		const { body: { statusCode, message } } = await request(server).get('/health');
 
-		expect(status).toBe(200);
+		expect(statusCode).toBe(200);
 		expect(message).toBe('API running fine like wine');
 
-		const { body: { status: status2, message: message2 } } = await request(server).get('/health2');
+		const { body: { statusCode: status2, message: message2 } } = await request(server).get('/health2');
 
 		expect(status2).toBe(200);
 		expect(message2).toBe('API running fine like wine');
 
-		const { body: { status: status3, message: message3 } } = await request(server).get('/health3');
+		const { body: { statusCode: status3, message: message3 } } = await request(server).get('/health3');
 
 		expect(status3).toBe(200);
 		expect(message3).toBe('API running fine like wine');
@@ -72,8 +72,8 @@ describe('ApplicationManager', () => {
 		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 		const server = appManager.getServer();
 
-		const { body: { status } } = await request(server).get('/health');
+		const { body: { statusCode } } = await request(server).get('/health');
 
-		expect(status).toBe(undefined);
+		expect(statusCode).toBe(undefined);
 	})
 })

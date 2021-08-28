@@ -10,3 +10,9 @@ export interface ICustomError {
 	errDev?: string;
 	functionName: string;
 }
+
+export interface ServerResponse {
+	statusCode: number;
+	message: string;
+	[name: string]: any;
+}
