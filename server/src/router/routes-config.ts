@@ -1,6 +1,19 @@
 import { ICustomRoute } from "../interfaces";
 import { HttpMethod } from "../interfaces";
-import { getAuthenticatedUserEmail } from "../services";
+import {
+	getAuthenticatedUserEmail,
+	createTalk
+} from "../controllers";
+import { authorizationMiddleware } from "../middlewares";
+
+const talkRoutes: ICustomRoute[] = [
+	{
+		path: '/talk',
+		method: HttpMethod.POST,
+		handler: createTalk,
+		customMiddleware: authorizationMiddleware
+	},
+]
 
 const routesConfig: ICustomRoute[] = [
 	{
@@ -13,6 +26,7 @@ const routesConfig: ICustomRoute[] = [
 		method: HttpMethod.GET,
 		handler: getAuthenticatedUserEmail,
 	},
+	...talkRoutes
 ]
 
 export default routesConfig;
