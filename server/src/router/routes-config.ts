@@ -6,12 +6,12 @@ const routesConfig: ICustomRoute[] = [
 	{
 		path: '/health',
 		method: HttpMethod.GET,
-		handler: (req, res) => res.json({ status: 200, message: 'API running fine like wine' })
+		handler: (req, res) => res.json({ status: 200, message: 'API running fine like wine' }),
 	},
 	{
 		path: '/github/callback',
 		method: HttpMethod.GET,
-		handler: getAuthenticatedUserEmail
+		handler: getAuthenticatedUserEmail,
 	},
 ]
 
