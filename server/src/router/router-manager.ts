@@ -17,9 +17,9 @@ class RouterManager {
 	private static createRouteFromConfig(routeConfig: ICustomRoute): Router {
 		const router = Router();
 
-		const { handler, method, path } = routeConfig;
+		const { handler, method, path, customMiddleware } = routeConfig;
 
-		router[method](path, handler);
+		customMiddleware ? router[method](path, customMiddleware, handler) : router[method](path, handler);
 		return router;
 	}
 }
