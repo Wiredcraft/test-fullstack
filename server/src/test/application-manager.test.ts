@@ -63,7 +63,7 @@ describe('ApplicationManager', () => {
 		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig });
 		const server = appManager.getServer();
 
-		const { body: { status, message } } = await request(server).get('/health');
+		const { body: { status } } = await request(server).get('/health');
 
 		expect(status).toBe(undefined);
 	})
