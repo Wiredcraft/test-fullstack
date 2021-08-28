@@ -1,0 +1,25 @@
+version: '3.3'
+
+services:
+ app:
+  build:
+   context: .
+   dockerfile: ./server/Dockerfile
+  ports:
+   - 3000:3000
+  environment:
+   - SERVER_PORT=3000
+   - CONNECTIONSTRING=mongodb://mongo:27017/talk
+  volumes:
+   - ./:/app
+  command: npm run start
+ mongo:
+  image: mongo:4.2.8
+  ports:
+   - 27017:27017
+  volumes:
+   - mongodb:/data/db
+   - mongodb_config:/data/configdb
+volumes:
+ mongodb:
+ mongodb_config:
