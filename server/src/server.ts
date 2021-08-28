@@ -3,8 +3,9 @@ config({ path: './.env' })
 
 import ApplicationManager from "./app";
 import routesConfig from "./router/routes-config";
+import dbConn from "./utils/db";
 
-const appManager = new ApplicationManager({ routesConfig });
+const appManager = new ApplicationManager({ routesConfig, dbConn });
 
 const server = appManager.getServer();
 

@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import { IApplicationConfig } from "./interfaces";
 import RouterManager from "./router/router-manager";
-import { errorMiddleware, eventInfoMiddleware } from "./middlewares";
+import { errorMiddleware } from "./middlewares";
 
 class ApplicationManager {
 	private app: Application;
@@ -14,9 +14,10 @@ class ApplicationManager {
 	}
 
 	private setupApplication() {
-		const { routesConfig } = this.applicationConfig;
-
-		this.app.use(eventInfoMiddleware);
+		const { routesConfig, dbConn } = this.applicationConfig;
+		
+		dbConn();
+		this.app.use(express.json());
 		RouterManager.setRoutesInApplication(routesConfig, this.app);
 		this.app.use(errorMiddleware);
 	}
