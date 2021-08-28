@@ -1,3 +1,6 @@
+import { config } from 'dotenv';
+config({ path: './.env.test' });
+
 import request from "supertest";
 import ApplicationManager from "../app";
 import { HttpMethod, ICustomRoute } from "../interfaces";
@@ -10,7 +13,9 @@ describe('ApplicationManager', () => {
 			handler: (req, res) => res.json({ status: 200, message: 'API running fine like wine' })
 		}];
 
-		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig });
+		const dbConn = () => console.log('Connected to DB MOCK');
+
+		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 		const server = appManager.getServer();
 
 		const { body: { status, message } } = await request(server).get('/health');
@@ -38,7 +43,9 @@ describe('ApplicationManager', () => {
 			}
 		];
 
-		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig });
+		const dbConn = () => console.log('Connected to DB MOCK');
+
+		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 		const server = appManager.getServer();
 
 		const { body: { status, message } } = await request(server).get('/health');
@@ -60,7 +67,9 @@ describe('ApplicationManager', () => {
 	it('should receive udefined when trying to check API health -- no routes', async () => {
 		const mockRoutesConfig: ICustomRoute[] = [];
 
-		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig });
+		const dbConn = () => console.log('Connected to DB MOCK');
+
+		const appManager = new ApplicationManager({ routesConfig: mockRoutesConfig, dbConn });
 		const server = appManager.getServer();
 
 		const { body: { status } } = await request(server).get('/health');
