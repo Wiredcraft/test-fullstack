@@ -7,7 +7,7 @@ type ControllerFunction = (req: Request) => Promise<ServerResponse>;
 /**
  * Encapsulate controller, log envent and treats any thrown error
  */
-export const getController = (functionToExecute: ControllerFunction) => composeGenerator(functionToExecute)
+export const withServiceLayer = (functionToExecute: ControllerFunction) => composeGenerator(functionToExecute)
 
 const composeGenerator = (controller: ControllerFunction) => async (req: Request, res: Response, next: NextFunction) => {
 	try {
