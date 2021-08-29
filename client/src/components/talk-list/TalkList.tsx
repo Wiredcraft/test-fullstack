@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import TalkCard from '../talk/Talk';
 
 type Talk = {
 	title: string;
@@ -12,10 +13,13 @@ type InputProps = {
 	talks: Talk[]
 }
 
-function TalkListComponent(props: InputProps) {
+function TalkList(props: InputProps) {
 	const { isAuthenticated } = useAuth()
-	//This will be map actually and prop being passed will control whether the like button will be there or not	
-	return <Talk props={isAuthenticated}></Talk>
+	const { talks } = props
+
+	return <>
+		{talks.map(cardInfo => <TalkCard cardInfo={cardInfo} isAuthenticated={isAuthenticated}></TalkCard>)}
+	</>
 }
 
-export default TalkListComponent
+export default TalkList
