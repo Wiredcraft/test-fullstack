@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
+import React from 'react'
+import { useAuth } from "../../contexts/AuthContext";
 import './App.css'
 
 function App() {
