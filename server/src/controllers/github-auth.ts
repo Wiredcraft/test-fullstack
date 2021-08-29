@@ -1,7 +1,7 @@
 import axios from "axios";
-import { Response, Request, NextFunction } from "express";
+import { Request } from "express";
 import { IGitEmail, ServerResponse } from "../interfaces";
-import { ErrorHandler, getController } from "../utils";
+import { ErrorHandler, withServiceLayer } from "../utils";
 import { createToken } from "../utils/token";
 
 const {
@@ -29,9 +29,8 @@ const getAuthUserFunction = async (req: Request): Promise<ServerResponse> => {
 }
 
 const authenticateUser = async (token: string): Promise<string> => {
-	const requestUrl = `${GITHUB_URL}/login/oauth/access_token?
-											client_id=${CLIENT_ID}
-											&client_secret=${CLIENT_SECRET}&code=${token}`;
+	const requestUrl =
+		`${GITHUB_URL}/login/oauth/access_token?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&code=${token}`;
 
 	const response = await axios.post(requestUrl, null, {
 		headers: {
@@ -84,4 +83,4 @@ const getUserValidEmail = async (accessToken: string): Promise<string> => {
 	return selectedEmailData.email;
 }
 
-export const getAuthenticatedUserEmail = getController(getAuthUserFunction);
+export const getAuthenticatedUserEmail = withServiceLayer(getAuthUserFunction);
