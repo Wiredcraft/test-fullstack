@@ -4,7 +4,7 @@ function TalkList() {
 
 	return (
 		<div>
-			<TalkListComponent props={isAuthenticated} />
+			<TalkListComponent />
 		</div>
 	)
 }
