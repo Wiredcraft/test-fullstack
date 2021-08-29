@@ -50,7 +50,8 @@ const getTopTalks = async (req: Request): Promise<ServerResponse> => {
 				votesCount: { $sum: 1 }
 			}
 		},
-		{ $sort: { length: -1 } }]
+		{ $sort: { length: -1 } },
+		{ $limit: 30 }]
 	).catch((err) => {
 		throw new ErrorHandler({
 			errDev: JSON.stringify(err),
