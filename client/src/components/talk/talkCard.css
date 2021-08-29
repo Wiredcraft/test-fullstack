@@ -1,0 +1,42 @@
+.talk-card {
+	display: flex;
+	margin: .3rem;
+	width: 90vw;
+	height: fit-content;
+	background-color: #EFEEEE;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: .1rem;
+}
+
+.talk-card h1 {
+	font-size: 1.2rem;
+	font-family: Verdana, Geneva, sans-serif;
+	margin: .2;
+}
+
+.talk-card h3 {
+	font-size: .9rem;
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 0;
+}
+
+.talk-card p {
+	font-size: .8rem;
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 0;
+}
+
+.talk-card__button--not-voted {
+	cursor: pointer;
+	border: none;
+	background-color: #288D00;
+	color: white;
+}
+
+.talk-card__button--voted {
+	cursor: pointer; 
+	border: none;
+	background-color:#DA1111;
+	color: white;
+}
