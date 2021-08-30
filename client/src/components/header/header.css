@@ -1,9 +1,12 @@
 .c-header {
 	display: flex;
+	flex-direction: column;
 	width: 100vw;
-	height: 10vh;
+	height: fit-content;
 	background-color: rosybrown;
 	justify-content: space-around;
 	align-items: center;
 	min-width: 350px;
+	color: white;
+	padding: .5rem;
 }

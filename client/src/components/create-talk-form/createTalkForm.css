@@ -1,0 +1,18 @@
+.create-talk-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.create-talk-form label {
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.create-talk-form--submit {
+	font-family: Verdana, Geneva, sans-serif;
+	background-color: #EFEEEE;
+	border: none;
+	text-decoration: none;
+	margin-top: 1rem;
+	padding: .5rem;
+	cursor: pointer;
+}
