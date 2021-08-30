@@ -22,8 +22,21 @@ export const AuthContext = React.createContext<AuthContextData>({
 
 AuthContext.displayName = 'AuthContext';
 
+function setUserToken() {
+	const windowUrl = window.location.search;
+	const params = new URLSearchParams(windowUrl);
+	const token = params.get('token');
+
+	if (token) {
+		localStorage.setItem('token', token)
+	}
+
+}
+
 export function AuthProvider({ children }: ProviderProps) {
+	setUserToken();
 	const localToken = localStorage.getItem('token');
+
 	const [isAuthenticated, setIsAuthenticated] = React.useState(
 		() => Boolean(localToken?.length) ?? false
 	);

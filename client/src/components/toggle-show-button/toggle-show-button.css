@@ -1,0 +1,9 @@
+.toggle-show-button {
+	background-color: #EFEEEE;
+	border: none;
+	text-decoration: none;
+	padding: .5rem;
+	cursor: pointer;
+	color: black;
+ 	font-family: Verdana, Geneva, sans-serif;
+}

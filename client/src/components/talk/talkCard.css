@@ -13,6 +13,7 @@
 	font-size: 1.2rem;
 	font-family: Verdana, Geneva, sans-serif;
 	margin: .2;
+	min-width: 330px;
 }
 
 .talk-card h3 {

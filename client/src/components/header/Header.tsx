@@ -1,25 +1,27 @@
 import * as React from "react";
 import './header.css';
 import { useAuth } from "../../contexts/AuthContext";
+import ToggleShowButton from "../toggle-show-button/ToggleShowButton";
+import { REACT_APP_GIT_URL } from "../../../env";
+
 function Header() {
-	const { isAuthenticated } = useAuth() // to decide whether is going to show login button or create talk button
-	const [showLoginForm, setLoginState] = React.useState(false)
-	const [showCreateTalkForm, setTalkState] = React.useState(false)
-	
+	const { isAuthenticated } = useAuth()
+	const [showLoginForm, setLoginState] = React.useState(false);
+	const [showCreateTalkForm, setTalkState] = React.useState(false);
+	const GIT_URL = REACT_APP_GIT_URL;
+
 	return (
 		<div className="c-header">
 			<h1>Talkraft</h1>
-			<button>Login</button>
-			<button>CreateTalk</button>
+			<ToggleShowButton show={isAuthenticated} text="Create Talk" />
+			<ToggleShowButton
+				show={!isAuthenticated}
+				text="Sign in with GitHub"
+				href={GIT_URL} />
 		</div>
 	)
 }
-//			{
-//				if(!isAuthenticated){
-//					return <button >Open Login Form By Changing state</button>
-//				}
-//			}
-//
+
 //			{
 //				if(isAuthenticated){
 //					return <button >Open Create talk form by Changing state</button>
