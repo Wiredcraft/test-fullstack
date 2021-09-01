@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { JwtPayload } from "jsonwebtoken";
 import { ErrorHandler } from "../utils";
 import { getTokenData } from "../utils/token";
+
 export const authorizationMiddleware = (req: Request, res: Response, next: NextFunction) => {
 	const accessToken = req.headers['authorization'] || '';
 	if (accessToken) {

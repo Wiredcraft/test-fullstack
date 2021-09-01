@@ -53,12 +53,12 @@ describe('Talk endpoints', () => {
 
 		//Mocking Database
 		const talks = [
-			new TalkModel({ title: 'Test One', author: "tester", description: 'This is Test One' }),
-			new TalkModel({ title: 'Test Two', author: "tester", description: 'This is Test Two' }),
-			new TalkModel({ title: 'Test Three', author: "tester", description: 'This is Test Three' }),
-			new TalkModel({ title: 'Test Four', author: "tester", description: 'This is Test Three', votes: ["test@gmail.com"] }),
-			new TalkModel({ title: 'Test Five', author: "tester", description: 'This is Test Three', votes: ["test@gmail.com", "test2@gmail.com"] }),
-			new TalkModel({ title: 'Test Six', author: "tester", description: 'This is Test Three', votes: [] })
+			new TalkModel({ title: 'Test One', author: "tester", description: 'This is Test One', voteCount: 0 }),
+			new TalkModel({ title: 'Test Two', author: "tester", description: 'This is Test Two', voteCount: 0 }),
+			new TalkModel({ title: 'Test Three', author: "tester", description: 'This is Test Three', voteCount: 0 }),
+			new TalkModel({ title: 'Test Four', author: "tester", description: 'This is Test Three', votes: ["test@gmail.com", "hey@gmail.com"], voteCount: 2 }),
+			new TalkModel({ title: 'Test Five', author: "tester", description: 'This is Test Three', votes: ["test@gmail.com", "test2@gmail.com", "selected@selected.com"], voteCount: 3 }),
+			new TalkModel({ title: 'Test Six', author: "tester", description: 'This is Test Three', votes: [], voteCount: 1 })
 		];
 
 		await TalkModel.insertMany(talks);
@@ -80,12 +80,23 @@ describe('Talk endpoints', () => {
 		}
 	}
 
-	it('should get talks ordered by greater number of votes', async () => {
+	it('should get talks ordered by greater number of votes -- NO USER', async () => {
 		const { server } = await getValidInternalTokenAndServer();
 
 		const { body: { statusCode, message, talks } } = await request(server).get('/talk');
 
 		expect(talks[0].title).toBe('Test Five');
+		expect(statusCode).toBe(200);
+		expect(message).toBe('Talks ordered by votes count');
+	})
+
+	it('should get talks ordered by greater number of votes -- PASSING USER', async () => {
+		const { server, internalToken } = await getValidInternalTokenAndServer();
+
+		const { body: { statusCode, message, talks } } = await request(server).get(`/talk?code=${internalToken}`);
+
+		expect(talks[0].title).toBe('Test Five');
+    expect(talks[0].votedByUser).toBeTruthy();
 		expect(statusCode).toBe(200);
 		expect(message).toBe('Talks ordered by votes count');
 	})
@@ -96,7 +107,8 @@ describe('Talk endpoints', () => {
 		const newTalk = new TalkModel({
 			title: 'Test for update',
 			description: 'This is the Test for update',
-			author: "selected@selected.com"
+			author: "selected@selected.com",
+      voteCount: 0
 		});
 
 		const { _id } = await newTalk.save();
@@ -106,9 +118,10 @@ describe('Talk endpoints', () => {
 			.send({ talkId: _id, operation: 'ADD' })
 			.set('authorization', internalToken);
 
-		const updatedTalk = await TalkModel.findOne({ _id });
+		const updatedTalk = await TalkModel.findOne({ _id }).lean();
 
 		expect(updatedTalk?.votes.length).toBe(1);
+    expect(updatedTalk?.voteCount).toBe(1);
 		expect(updatedTalk?.votes[0]).toBe("selected@selected.com");
 		expect(statusCode).toBe(200);
 		expect(message).toBe('Vote Counted');
@@ -121,7 +134,8 @@ describe('Talk endpoints', () => {
 			title: 'Test for update',
 			description: 'This is the Test for update',
 			author: "selected@selected.com",
-			votes: ["selected@selected.com", "test@test.com"]
+			votes: ["selected@selected.com", "test@test.com"],
+      voteCount: 2
 		});
 
 		const { _id } = await newTalk.save();
@@ -131,9 +145,10 @@ describe('Talk endpoints', () => {
 			.send({ talkId: _id, operation: 'REMOVE' })
 			.set('authorization', internalToken);
 
-		const updatedTalk = await TalkModel.findOne({ _id });
+		const updatedTalk = await TalkModel.findOne({ _id }).lean();
 
 		expect(updatedTalk?.votes.length).toBe(1);
+    expect(updatedTalk?.voteCount).toBe(1);
 		expect(updatedTalk?.votes[0]).toBe("test@test.com");
 		expect(statusCode).toBe(200);
 		expect(message).toBe('Vote Counted');
