@@ -1,12 +1,11 @@
 import { Request } from "express";
-import { JwtPayload } from "jsonwebtoken";
 import { LeanDocument } from "mongoose";
 import { ITalk, ServerResponse } from "../../interfaces";
 import { TalkModel } from "../../models";
-import { ErrorHandler, withServiceLayer, getTokenData } from "../../utils";
+import { ErrorHandler, withServiceLayer } from "../../utils";
 
 const getTopTalks = async (req: Request): Promise<ServerResponse> => {
-  const { code: token } = req.query;
+  const { email } = req.query;
 
 
   const talksOrderedByVotes = await TalkModel.find({})
@@ -24,11 +23,8 @@ const getTopTalks = async (req: Request): Promise<ServerResponse> => {
 
   let talksToReturn;
 
-  if (token) {
-    const accessData = getTokenData(token as string);
-    const user = (accessData as JwtPayload).email;
-
-    talksToReturn = getTalksWithVotedByUserInfo(talksOrderedByVotes, user);
+  if (email) {
+    talksToReturn = getTalksWithVotedByUserInfo(talksOrderedByVotes, email as string);
   } else {
     talksToReturn = talksOrderedByVotes;
   }
