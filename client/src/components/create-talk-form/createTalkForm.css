@@ -16,3 +16,19 @@
 	padding: .5rem;
 	cursor: pointer;
 }
+
+.create-talk-form--error {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  float: left;
+  padding: .2rem;
+}
+
+.create-talk-form--error span {
+  color: #cc0033;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: .7rem;
+  font-weight: bold;
+  line-height: .4rem;
+  text-shadow: 1px 1px rgba(250,250,250,.3);
+}
