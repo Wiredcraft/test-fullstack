@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "tslint --project tsconfig.json --format codeFrame"
   },
   "dependencies": {
     "axios": "^0.21.1",

@@ -7,28 +7,28 @@ import "./createTalkForm.css";
 type FormInput = {
   title: String;
   description: String;
-}
+};
 
 type InputProps = {
   closeForm: Function;
-}
+};
 
-type ErrorForm = (DeepMap<String, FieldError> & Partial<FieldError>) | undefined
+type ErrorForm = (DeepMap<String, FieldError> & Partial<FieldError>) | undefined;
 
 function CreateTalkForm(props: InputProps) {
   const { closeForm } = props;
-  const { reloadTalks } = useTalks()
+  const { reloadTalks } = useTalks();
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormInput>();
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
     const { description, title } = data;
 
-    await createTalk({ title, description })
-    closeForm()
+    await createTalk({ title, description });
+    closeForm();
 
     const talksFromServer = await getTalks();
-    reloadTalks(talksFromServer)
+    reloadTalks(talksFromServer);
   };
 
   const showErrors = (error: ErrorForm) => {
@@ -37,9 +37,9 @@ function CreateTalkForm(props: InputProps) {
         <div className="create-talk-form--error">
           <span>{error.message}</span>
         </div>
-      )
+      );
     }
-  }
+  };
 
   return (
     <form className="create-talk-form" onSubmit={handleSubmit(onSubmit)}>

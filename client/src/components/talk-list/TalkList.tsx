@@ -6,17 +6,17 @@ import './talk-list.css';
 
 type InputProps = {
 	talks: TalkCardInfo[]
-}
+};
 
 function TalkList(props: InputProps) {
-	const { isAuthenticated } = useAuth()
-	const { talks } = props
+	const { isAuthenticated } = useAuth();
+	const { talks } = props;
 
 	return (
 		<div className="talk-list">
 			{talks.map(cardInfo => <TalkCard key={cardInfo._id?.toString()} cardInfo={cardInfo} isAuthenticated={isAuthenticated}></TalkCard>)}
 		</div>
-	)
+	);
 }
 
-export default TalkList
+export default TalkList;

@@ -7,4 +7,4 @@ export type TalkCardInfo = {
   voteCount?: Number;
   votedByUser?: Boolean;
   createdAt?: String;
-}
+};

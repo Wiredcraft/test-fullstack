@@ -26,9 +26,9 @@ function setUserToken() {
   const windowUrl = window.location.search;
   const params = new URLSearchParams(windowUrl);
   const token = params.get('token');
-  
+
   if (token) {
-    localStorage.setItem('token', token)
+    localStorage.setItem('token', token);
   }
 
 }

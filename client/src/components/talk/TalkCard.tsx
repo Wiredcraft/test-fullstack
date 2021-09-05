@@ -7,7 +7,7 @@ import "./talkCard.css";
 type InputProps = {
   isAuthenticated: boolean,
   cardInfo: TalkCardInfo
-}
+};
 
 function TalkCard(props: InputProps) {
   const { cardInfo: {
@@ -18,21 +18,20 @@ function TalkCard(props: InputProps) {
     voteCount,
     votedByUser,
     createdAt
-  }, isAuthenticated } = props
+  },      isAuthenticated } = props;
 
-  const { reloadTalks } = useTalks()
+  const { reloadTalks } = useTalks();
 
-  const operation = votedByUser ? "REMOVE" : "ADD"
-  const buttonClass = votedByUser ? "talk-card-container__button--voted" : "talk-card-container__button--not-voted"
-  const createdDate = new Date(createdAt.toString())
-  const formattedDate = `${createdDate.getHours()} : ${createdDate.getMinutes()}, ${createdDate.toDateString()}`
+  const operation = votedByUser ? "REMOVE" : "ADD";
+  const buttonClass = votedByUser ? "talk-card-container__button--voted" : "talk-card-container__button--not-voted";
+  const createdDate = new Date(createdAt!.toString());
+  const formattedDate = `${createdDate.getHours()} : ${createdDate.getMinutes()}, ${createdDate.toDateString()}`;
 
   const onVote = async () => {
-    voteTalk({ talkId: id!, operation })
+    voteTalk({ talkId: id!, operation });
     const talksFromServer = await getTalks();
-    console.log(talksFromServer)
-    talksFromServer.length ? reloadTalks(talksFromServer) : null
-  }
+    talksFromServer.length ? reloadTalks(talksFromServer) : null;
+  };
 
   return (
     <div className="talk-card-container">
@@ -49,7 +48,7 @@ function TalkCard(props: InputProps) {
         <p className="talk-created-date">{formattedDate}</p>
       </div>
     </div>
-  )
+  );
 }
 
 export default TalkCard;

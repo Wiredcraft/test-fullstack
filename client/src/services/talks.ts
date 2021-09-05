@@ -1,6 +1,6 @@
-import axios from "axios"
+import axios from "axios";
 import { TalkCardInfo } from "../types/talk";
-import Swal from 'sweetalert'
+import Swal from 'sweetalert';
 import { REACT_APP_API_URL } from "../../env";
 
 const notify = (message: string, isSuccess: boolean) => Swal({
@@ -11,9 +11,9 @@ const notify = (message: string, isSuccess: boolean) => Swal({
 });
 
 export const getUserLoginFromToken = async (token: string) => {
-  const response = await axios.get(`${REACT_APP_API_URL}/github/user-data?token=${token}`)
+  const response = await axios.get(`${REACT_APP_API_URL}/github/user-data?token=${token}`);
   return response.data.userData;
-}
+};
 
 export const getTalks = async (token?: string) => {
   try {
@@ -25,13 +25,13 @@ export const getTalks = async (token?: string) => {
     }
 
     const url = user ? `${REACT_APP_API_URL}/talk?user=${user}` : `${REACT_APP_API_URL}/talk`;
-    const response = await axios.get(url)
+    const response = await axios.get(url);
     return response.data.talks;
   } catch (error) {
-    notify("Couldn't load talks", false)
-    return []
+    notify("Couldn't load talks", false);
+    return [];
   }
-}
+};
 
 
 export const createTalk = async (talk: TalkCardInfo) => {
@@ -42,14 +42,14 @@ export const createTalk = async (talk: TalkCardInfo) => {
       headers: {
         'Authorization': `${localToken}`
       }
-    })
+    });
 
-    notify("Talk Created", true)
+    notify("Talk Created", true);
     return response.data.talks;
   } catch (error) {
-    notify("Try again later :(", false)
+    notify("Try again later :(", false);
   }
-}
+};
 
 export const voteTalk = async (input: { talkId: String, operation: String }) => {
   try {
@@ -58,12 +58,12 @@ export const voteTalk = async (input: { talkId: String, operation: String }) => 
       headers: {
         'Authorization': `${localToken}`
       }
-    })
+    });
 
-    notify("Voted!", true)
+    notify("Voted!", true);
     return response.data;
   } catch (error) {
-    notify("Try again later :(", false)
+    notify("Try again later :(", false);
   }
-}
+};
 

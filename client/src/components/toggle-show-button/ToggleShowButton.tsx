@@ -6,7 +6,7 @@ type InputProps = {
 	text: string;
 	href?: string;
 	onClick?: Function;
-}
+};
 
 function ToggleShowButton(props: InputProps) {
 	const { show, text, href, onClick = () => null } = props;
@@ -19,10 +19,10 @@ function ToggleShowButton(props: InputProps) {
 				onClick={() => onClick()}
 			>{text}
 			</a>
-		)
+		);
 	}
 
-	return <></>
+	return <></>;
 }
 
 export default ToggleShowButton;

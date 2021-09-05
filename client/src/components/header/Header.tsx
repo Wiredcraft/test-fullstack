@@ -6,11 +6,11 @@ import { REACT_APP_GIT_URL } from "../../../env";
 import CreateTalkForm from "../create-talk-form/CreateTalkForm";
 
 function Header() {
-  const { isAuthenticated } = useAuth()
-  const [showCreateTalkForm, setTalkState] = React.useState(false)
+  const { isAuthenticated } = useAuth();
+  const [showCreateTalkForm, setTalkState] = React.useState(false);
   const getCreateTalkForm = () => showCreateTalkForm ?
     <CreateTalkForm closeForm={() => setTalkState(false)} /> :
-    null
+    null;
 
   return (
     <div className={showCreateTalkForm ? "c-header__talk-form-open" : "c-header"}>
@@ -28,7 +28,7 @@ function Header() {
 
       { getCreateTalkForm()}
     </div >
-  )
+  );
 }
 
 export default Header;
