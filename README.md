@@ -3,6 +3,8 @@
 #### Hey there! First of all, thanks for this opportunity, I'm going to introduce you to some core ideas of this PR, this way it will be easier to review the project. You can imagine this is a conversation, just like a meeting in which I'm briefing you about the project you are about to review.
 
 #### You can access the application here: https://d3r1pzif4nr1c9.cloudfront.net
+###### I focused on the code behavior and not so much on design, because of time and also CSS/HTML is my least favorite partbut here is some of my frontend portfolio, https://pagar.me/, where I really cared about following design patterns established by a real designer.
+###### Also, I didn't create a system to refresh the token, they are lasting one entire day after its creation. The process would basically generate another token using some refresh system, so I decided to set this as a concept enough explored.
 #### It's Using Heroku Free Version for hosting, so depending on the time, you can face some cold start issues 😞
 
 #### To run it locally just use docker-compose up -d command, but keep in mind that you'll need the .env file in the server/ folder
@@ -121,3 +123,8 @@ Also, since the class is configurable by dependency injection, the code is not c
 ### Bonus point
  - CICD Running for Frontend
  - Frontend infra wrote using terraform
+
+### That was it! Feel free to review this and comment just like you want. I'm going to be super glad if you tell me how to improve :)
+
+
+######### Good Luck and Good Code
