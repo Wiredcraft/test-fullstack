@@ -1,5 +1,6 @@
 import * as React from "react";
-import { voteTalk } from "../../services/talks";
+import { useTalks } from "../../contexts/TalksContext";
+import { getTalks, voteTalk } from "../../services/talks";
 import { TalkCardInfo } from '../../types/talk';
 import "./talkCard.css";
 
@@ -14,14 +15,21 @@ function TalkCard(props: InputProps) {
     author,
     description,
     title,
-    votes,
     voteCount,
     votedByUser
   }, isAuthenticated } = props
 
+  const { reloadTalks } = useTalks()
+
   const operation = votedByUser ? "REMOVE" : "ADD"
   const buttonClass = votedByUser ? "talk-card__button--voted" : "talk-card__button--not-voted"
   const buttonText = votedByUser ? "unvote" : "vote"
+
+  const onVote = async () => {
+    voteTalk({ talkId: id!, operation })
+    const talksFromServer = await getTalks();
+    reloadTalks(talksFromServer)
+  }
 
   return (
     <div className="talk-card">
@@ -30,7 +38,7 @@ function TalkCard(props: InputProps) {
       <p>{description}</p>
       {
         isAuthenticated ? <button
-          onClick={() => voteTalk({ talkId: id!, operation })}
+          onClick={onVote}
           className={buttonClass}>{buttonText}: {voteCount}</button>
           : null
       }
