@@ -1,6 +1,6 @@
 # Nicolas de Lima application
 
-#### Hey there! First of all, thanks for this opportunity, I'm going to introduce you to some core ideas of this PR, this way it will be easier to review the project. You can imagine this is a conversation, just like a meeting in which I'm briefing you about the project you are about to review.
+#### Hey there! First of all, thanks for this opportunity, I'm going to introduce you to some core ideas of this PR, this way it will be easier to review the project. You can imagine this as a conversation, just like a meeting in which I'm briefing you about the project you are about to review.
 
 #### You can access the application here: https://d3r1pzif4nr1c9.cloudfront.net
 ###### I focused on the code behavior and not so much on design, because of time and also CSS/HTML is my least favorite part, but here is some of my frontend portfolio, https://pagar.me/, where I really cared about following design patterns established by a real designer.
