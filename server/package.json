@@ -2,8 +2,8 @@
   "name": "test-fullstack",
   "version": "1.0.0",
   "description": "### Context",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
   "scripts": {
     "test": "jest",
     "start": "ts-node src/server.ts",
