@@ -11,7 +11,7 @@ enum UpdateOps {
 
 const updateVoteCount = async (req: Request): Promise<ServerResponse> => {
   const { headers, body } = req;
-  const user = headers["user"] as string;
+  const user = headers.user as string;
   const { operation, talkId } = body;
 
   if (!talkId) {
@@ -25,12 +25,12 @@ const updateVoteCount = async (req: Request): Promise<ServerResponse> => {
 
   const conditions: FilterQuery<ITalk> = {
     _id: talkId,
-  }
+  };
 
   const mapByOperation = {
     [UpdateOps.ADD]: { $addToSet: { votes: user }, $inc: { voteCount: 1 } },
     [UpdateOps.REMOVE]: { $pull: { votes: user }, $inc: { voteCount: -1 } },
-  }
+  };
 
   const updateRule = mapByOperation[operation as UpdateOps];
 
@@ -48,7 +48,7 @@ const updateVoteCount = async (req: Request): Promise<ServerResponse> => {
     statusCode: 200,
     message: 'Vote Counted',
     talkId: id
-  }
-}
+  };
+};
 
 export const putVoteCount = withServiceLayer(updateVoteCount);

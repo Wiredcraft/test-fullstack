@@ -16,7 +16,7 @@ class ApplicationManager {
 
 	private setupApplication() {
 		const { routesConfig, dbConn } = this.applicationConfig;
-		
+
 		dbConn();
     this.app.use(cors());
 		this.app.use(express.json());

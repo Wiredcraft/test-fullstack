@@ -7,6 +7,6 @@ const TalkSchema: Schema = new Schema({
 	author: { type: String, required: true },
 	votes: { type: [String] },
 	voteCount: { type: Number, default: 0 }
-}, { timestamps: true })
+}, { timestamps: true });
 
 export const TalkModel: Model<ITalk> = model('Talk', TalkSchema);

@@ -12,6 +12,7 @@
         "tsutils"
       ]
     },
+    "eofline": true,
     "restrict-plus-operands": true,
     "ban-types": false,
     "no-empty": false,

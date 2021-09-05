@@ -33,8 +33,8 @@ const getTopTalks = async (req: Request): Promise<ServerResponse> => {
     statusCode: 200,
     message: 'Talks ordered by votes count',
     talks: talksToReturn
-  }
-}
+  };
+};
 
 const getTalksWithVotedByUserInfo = (talks: LeanDocument<ITalk[]>, user: string) => {
   return talks.map(talk => {
@@ -44,8 +44,8 @@ const getTalksWithVotedByUserInfo = (talks: LeanDocument<ITalk[]>, user: string)
       votedByUser = true;
     }
 
-    return { ...talk, votedByUser }
+    return { ...talk, votedByUser };
   });
-}
+};
 
 export const getTalks = withServiceLayer(getTopTalks);

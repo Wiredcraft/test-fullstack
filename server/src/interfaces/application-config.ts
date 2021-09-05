@@ -1,6 +1,6 @@
 import { ICustomRoute } from "./route";
 
 export interface IApplicationConfig {
-	routesConfig: ICustomRoute[],
+	routesConfig: ICustomRoute[];
 	dbConn(): void;
 }

@@ -27,7 +27,7 @@ const talkRoutes: ICustomRoute[] = [
     handler: putVoteCount,
     customMiddleware: authorizationMiddleware
   },
-]
+];
 
 const authRoutes: ICustomRoute[] = [
   {
@@ -40,7 +40,7 @@ const authRoutes: ICustomRoute[] = [
     method: HttpMethod.GET,
     handler: getUserEncryptedEmail,
   },
-]
+];
 
 
 const routesConfig: ICustomRoute[] = [
@@ -51,6 +51,6 @@ const routesConfig: ICustomRoute[] = [
   },
   ...authRoutes,
   ...talkRoutes
-]
+];
 
 export default routesConfig;

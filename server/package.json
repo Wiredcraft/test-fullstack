@@ -7,7 +7,8 @@
   "scripts": {
     "test": "jest",
     "start": "ts-node src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tslint --project tsconfig.json --format codeFrame"
   },
   "jest": {
     "testTimeout": 1000000,

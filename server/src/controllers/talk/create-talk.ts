@@ -5,7 +5,7 @@ import { ErrorHandler, withServiceLayer } from "../../utils";
 
 const createTalkFunction = async (req: Request): Promise<ServerResponse> => {
   const { headers, body } = req;
-  const user = headers["user"] as string;
+  const user = headers.user as string;
   const { title, description } = body;
 
   const talkInput: ITalkObject = {
@@ -30,6 +30,6 @@ const createTalkFunction = async (req: Request): Promise<ServerResponse> => {
     message: 'Talk created',
     talkId: newTalk._id
   };
-}
+};
 
 export const createTalk = withServiceLayer(createTalkFunction);

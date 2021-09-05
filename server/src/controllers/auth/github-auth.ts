@@ -27,7 +27,7 @@ export const getAuthUserFunction = async (req: Request): Promise<ServerResponse>
     message: 'User Authenticated',
     statusCode: 200
   };
-}
+};
 
 const authenticateUser = async (token: string): Promise<string> => {
   const requestUrl =
@@ -52,7 +52,7 @@ const authenticateUser = async (token: string): Promise<string> => {
   const { access_token: accessToken } = response.data;
 
   return accessToken;
-}
+};
 
 const getUserValidLogin = async (accessToken: string): Promise<string> => {
   const userRawData = await axios.get(GITHUB_GET_EMAIL_URL || '', {
@@ -80,6 +80,6 @@ const getUserValidLogin = async (accessToken: string): Promise<string> => {
   }
 
   return login;
-}
+};
 
 export const gitHubCallback = withServiceLayer(getAuthUserFunction);

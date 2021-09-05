@@ -5,5 +5,5 @@ const MONGO_URL = process.env.CONNECTIONSTRING
 	|| '';
 
 export default () => connect(MONGO_URL).then(
-	() => { logger.info('DB CONNECTED') },
-	(err) => logger.info(`ERROR DURING DB CONNECTION::::::${err}`))
+	() => { logger.info('DB CONNECTED'); },
+	(err) => logger.info(`ERROR DURING DB CONNECTION::::::${err}`));

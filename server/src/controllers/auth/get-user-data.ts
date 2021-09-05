@@ -13,7 +13,7 @@ const getUserDataFromToken = async (req: Request): Promise<ServerResponse> => {
     userData,
     statusCode: 200
   };
-}
+};
 
 
 export const getUserEncryptedEmail = withServiceLayer(getUserDataFromToken);

@@ -5,7 +5,7 @@ export interface ITalk extends Document {
 	description: string;
 	author: string;
 	votes: string[];
-	voteCount: number; //Best way to do this using mongo
+	voteCount: number; // Best way to do this using mongo
 }
 
 export interface ITalkObject {

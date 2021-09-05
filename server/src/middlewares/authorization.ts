@@ -4,11 +4,11 @@ import { ErrorHandler } from "../utils";
 import { getTokenData } from "../utils/token";
 
 export const authorizationMiddleware = (req: Request, res: Response, next: NextFunction) => {
-	const accessToken = req.headers['authorization'] || '';
+	const accessToken = req.headers.authorization || '';
 	if (accessToken) {
 		try {
 			const accessData = getTokenData(accessToken);
-			req.headers['user'] = (accessData as JwtPayload).email;
+			req.headers.user = (accessData as JwtPayload).email;
 
 		} catch (err) {
 			throw new ErrorHandler({
@@ -26,4 +26,4 @@ export const authorizationMiddleware = (req: Request, res: Response, next: NextF
 		});
 	}
 	next();
-}
+};
