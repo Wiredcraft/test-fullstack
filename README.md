@@ -2,6 +2,9 @@
 
 #### Hey there! First of all, thanks for this opportunity, I'm going to introduce you to some core ideas of this PR, this way it will be easier to review the project. You can imagine this is a conversation, just like a meeting in which I'm briefing you about the project you are about to review.
 
+#### You can access the application here: https://d3r1pzif4nr1c9.cloudfront.net
+#### It's Using Heroku Free Version for hosting, so depending on the time, you can face some cold start issues 😞
+
 #### ...Let's start with the Backend then
 
 # Backend
