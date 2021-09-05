@@ -4,7 +4,7 @@
 
 #### You can access the application here: https://d3r1pzif4nr1c9.cloudfront.net
 ###### I focused on the code behavior and not so much on design, because of time and also CSS/HTML is my least favorite part, but here is some of my frontend portfolio, https://pagar.me/, where I really cared about following design patterns established by a real designer.
-###### Also, I didn't create a system to refresh the token, they are lasting one entire day after its creation. The process would basically generate another token using some refresh system, so I decided to set this as a concept enough explored.
+###### Also, I didn't create a system to refresh the token, they are lasting one entire day after its creation. The process would basically generate another token using some refresh system, so I decided to set this as a concept already explored.
 #### It's Using Heroku Free Version for hosting, so depending on the time, you can face some cold start issues 😞
 
 #### To run it locally just use docker-compose up -d command, but keep in mind that you'll need the .env file in the server/ folder
