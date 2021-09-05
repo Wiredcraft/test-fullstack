@@ -1,70 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './talk.css'
 import TalkList from '../components/talk-list/TalkList'
 import { TalkCardInfo } from '../types/talk'
+import { useTalks } from '../contexts/TalksContext'
+import { getTalks } from '../services/talks'
 
 function App() {
+  const { talks, reloadTalks } = useTalks()
 
-  const talks: TalkCardInfo[] = [
-    {
-      title: 'This is a talk',
-      description: 'This is the description of the beauty you are This is the description of the beauty you are This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com"]
-    },
-    {
-      title: 'Do Dogs Like to walk with People?',
-      description: 'This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com"]
-    },
-    {
-      title: 'You know who is my mom?',
-      description: 'This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are,This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com", "test@gmail.com", "test@gmail.com", "test@gmail.com"]
-    },
-    {
-      title: 'This is a talk',
-      description: 'This is the description of the beauty you are This is the description of the beauty you are This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com"]
-    },
-    {
-      title: 'Anitta is like adam levine from brazil',
-      description: 'This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com"]
-    },
-    {
-      title: 'This is a talk',
-      description: 'This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are,This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com", "test@gmail.com", "test@gmail.com", "test@gmail.com"]
-    },
-    {
-      title: 'Cookie monster monster cookie',
-      description: 'This is the description of the beauty you are This is the description of the beauty you are This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com"]
-    },
-    {
-      title: 'This is a talk',
-      description: 'This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com"]
-    },
-    {
-      title: 'This is a talk',
-      description: 'This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are, This is the description of the beauty you are,This is the description of the beauty you are',
-      author: 'Frankly Kissman',
-      votes: ["test@gmail.com", "test@gmail.com", "test@gmail.com", "test@gmail.com"]
-    },
-  ]
+
+  useEffect(() => {
+
+    (async () => {
+      const talksFromServer = await getTalks();
+      console.log( talksFromServer)
+      reloadTalks(talksFromServer)
+    })();
+
+  }, []);
 
   return (
     <div className="App">
-      <TalkList talks={talks} />
+      {talks.length ?
+        <TalkList talks={talks} /> :
+        <p>Please Login and create a new talk</p>
+      }
     </div>
   )
 }
