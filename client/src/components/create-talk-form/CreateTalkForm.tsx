@@ -3,7 +3,6 @@ import { useForm, SubmitHandler, DeepMap, FieldError } from "react-hook-form";
 import { useTalks } from "../../contexts/TalksContext";
 import { createTalk, getTalks } from "../../services/talks";
 import "./createTalkForm.css";
-import { errorMapper } from "./errorMapper";
 
 type FormInput = {
   title: String;
@@ -34,10 +33,9 @@ function CreateTalkForm(props: InputProps) {
 
   const showErrors = (error: ErrorForm) => {
     if (error) {
-      const errorMsg = errorMapper[error.type || 'default']
       return (
         <div className="create-talk-form--error">
-          <span>{errorMsg}</span>
+          <span>{error.message}</span>
         </div>
       )
     }
@@ -46,10 +44,10 @@ function CreateTalkForm(props: InputProps) {
   return (
     <form className="create-talk-form" onSubmit={handleSubmit(onSubmit)}>
       <label>Title</label>
-      <input {...register("title", { required: true, maxLength: 20 })} />
+      <input {...register("title", { required: { value: true, message: 'Field is required' }, maxLength: { value: 20, message: "Title should be under 20 characters" } })} />
       {showErrors(errors.title)}
       <label>Description</label>
-      <textarea {...register("description", { required: true, maxLength: 200 })} />
+      <textarea {...register("description", { required: { value: true, message: 'Field is required' }, maxLength: { value: 20, message: "Description should be under 200 characters" } })} />
       {showErrors(errors.description)}
       <input className="create-talk-form__button--submit" type="submit" />
       <a onClick={() => closeForm()} className="create-talk-form__button--cancel">Cancel</a>
