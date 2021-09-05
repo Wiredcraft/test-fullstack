@@ -7,7 +7,7 @@ export enum HttpMethod {
 export interface ICustomError {
 	statusCode: number;
 	message: string;
-	errDev?: string;
+	errDev?: unknown;
 	functionName: string;
 }
 

@@ -3,7 +3,7 @@ import { ICustomError } from "../interfaces";
 export class ErrorHandler extends Error {
 	public functonName: string;
 	public message: string;
-	public errDev: string;
+	public errDev: unknown;
 	public statusCode: number;
 
 	constructor(input: ICustomError) {
@@ -12,6 +12,6 @@ export class ErrorHandler extends Error {
 		this.functonName = functionName;
 		this.message = message;
 		this.statusCode = statusCode;
-		this.errDev = errDev || '';
+		this.errDev = errDev;
 	}
 }
