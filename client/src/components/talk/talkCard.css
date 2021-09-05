@@ -8,6 +8,7 @@
   border-radius: 20px;
 	padding: 1rem;
   flex-wrap: wrap-reverse;
+  overflow-wrap: break-word;
 }
 
 .talk-card-container--row {
