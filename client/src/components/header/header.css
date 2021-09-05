@@ -1,12 +1,36 @@
 .c-header {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    width: 100vw;
+    height: fit-content;
+    background-color: #A1CDF1;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 310px;
+    color: white;
+    margin: auto;
+}
+.c-header h1 {
+  font-size: 1.4rem;
+  color: #9D695A;
+}
+
+.c-header__talk-form-open {
 	display: flex;
 	flex-direction: column;
 	width: 100vw;
 	height: fit-content;
-	background-color: #716E6E;
-	justify-content: space-around;
+	background-color: transparent;
+	justify-content: center;
 	align-items: center;
-	min-width: 350px;
+	min-width: 310px;
 	color: white;
 	padding: .5rem;
+  margin: auto;
+}
+
+.c-header__talk-form-open h1 {
+  font-size: 1.4rem;
+  color: #9D695A;
 }

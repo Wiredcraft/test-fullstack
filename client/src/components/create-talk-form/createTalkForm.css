@@ -1,20 +1,29 @@
 .create-talk-form {
 	display: flex;
+  position: relative;
 	flex-direction: column;
+  justify-content: center;
 }
 
 .create-talk-form label {
 	font-family: Verdana, Geneva, sans-serif;
+  color: #9D695A;
+  font-weight: 700;
+  margin: 0.6rem;
+  align-self: center;
 }
 
 .create-talk-form--submit {
 	font-family: Verdana, Geneva, sans-serif;
-	background-color: #EFEEEE;
+	background-color: transparent;
 	border: none;
 	text-decoration: none;
 	margin-top: 1rem;
 	padding: .5rem;
 	cursor: pointer;
+  color: #9D695A;
+  font-weight: bolder;
+  font-size: 1.2rem;
 }
 
 .create-talk-form--error {

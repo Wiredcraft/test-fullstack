@@ -3,29 +3,35 @@
 	margin: .3rem;
 	width: 90vw;
 	height: fit-content;
-	background-color: #EFEEEE;
+	background-color: #D2BAB1;
 	flex-direction: column;
 	justify-content: flex-start;
-	padding: .1rem;
+	padding: 1rem;
+  border-radius: 20px;
 }
 
 .talk-card h1 {
-	font-size: 1.2rem;
+	font-size: 1.4rem;
 	font-family: Verdana, Geneva, sans-serif;
-	margin: .2;
-	min-width: 330px;
+	margin: .2rem 0 .2rem 0;
+  color: black;
+  font-weight: 900;
 }
 
 .talk-card h3 {
 	font-size: .9rem;
 	font-family: Verdana, Geneva, sans-serif;
-	margin: 0;
+	margin-bottom: .4rem 0 0 0;
+  color: black;
+  font-weight: 900;
 }
 
 .talk-card p {
 	font-size: .8rem;
+  font-weight: 600;
+  color: #686868;
 	font-family: Verdana, Geneva, sans-serif;
-	margin: 0;
+  margin: 0;
 }
 
 .talk-card__button--not-voted {
