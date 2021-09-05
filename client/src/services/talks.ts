@@ -1,6 +1,7 @@
 import axios from "axios"
 import { TalkCardInfo } from "../types/talk";
 import Swal from 'sweetalert'
+import { REACT_APP_API_URL } from "../../env";
 
 const notify = (message: string, isSuccess: boolean) => Swal({
   text: message,
@@ -10,7 +11,7 @@ const notify = (message: string, isSuccess: boolean) => Swal({
 });
 
 export const getUserLoginFromToken = async (token: string) => {
-  const response = await axios.get(`http://localhost:5000/github/user-data?token=${token}`)
+  const response = await axios.get(`${REACT_APP_API_URL}/github/user-data?token=${token}`)
   return response.data.userData;
 }
 
@@ -23,7 +24,7 @@ export const getTalks = async (token?: string) => {
       user = await getUserLoginFromToken(localToken);
     }
 
-    const url = user ? `http://localhost:5000/talk?user=${user}` : `http://localhost:5000/talk`;
+    const url = user ? `${REACT_APP_API_URL}/talk?user=${user}` : `${REACT_APP_API_URL}/talk`;
     const response = await axios.get(url)
     return response.data.talks;
   } catch (error) {
