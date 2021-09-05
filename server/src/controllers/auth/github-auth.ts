@@ -8,7 +8,8 @@ const {
   GITHUB_URL,
   GITHUB_GET_EMAIL_URL,
   GITHUB_CLIENT_ID: CLIENT_ID,
-  GITHUB_CLIENT_SECRET: CLIENT_SECRET
+  GITHUB_CLIENT_SECRET: CLIENT_SECRET,
+  CLIENT_URL
 } = process.env;
 
 export const getAuthUserFunction = async (req: Request): Promise<ServerResponse> => {
@@ -23,7 +24,7 @@ export const getAuthUserFunction = async (req: Request): Promise<ServerResponse>
   return {
     internalToken,
     email,
-    redirect: `http://localhost:3001?token=${internalToken}`,
+    redirect: `http://${CLIENT_URL}?token=${internalToken}`,
     message: 'User Authenticated',
     statusCode: 200
   };
