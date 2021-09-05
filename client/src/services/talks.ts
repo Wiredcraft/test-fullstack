@@ -6,7 +6,7 @@ const notify = (message: string, isSuccess: boolean) => Swal({
   text: message,
   icon: isSuccess ? "success" : "error",
   closeOnClickOutside: true,
-  timer: 1500
+  timer: 800,
 });
 
 export const getUserLoginFromToken = async (token: string) => {
