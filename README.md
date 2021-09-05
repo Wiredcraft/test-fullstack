@@ -60,7 +60,7 @@ export const REACT_APP_API_URL = "http://localhost:5000";
  ### App.ts One of the two classes in this code
 
 ![Application Manager](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+09-27-21.png)
-#### The Application Manager is responsible for configuring everything our application needs to start running. You can notice that we are instantiating the database, middlewares, and asl routes, everything abstract into this entity that exports the server object so we can really start listening to HTTP requests
+#### The Application Manager is responsible for configuring everything our application needs to start running. You can notice that we are instantiating the database, middlewares, and routes, everything abstracted into this entity that exports the server object so we can really start listening to HTTP requests
 
 #### It's important to say that separating the application from the server like this, allows us to test all the application flows by really calling the endpoints using libraries such as supertest, which uses the application configuration to simulate an API during the tests execution time.
 Also, since the class is configurable by dependency injection, the code is not coupled, so we can control the state of the application the way we'd like for testings purposes, from easily creating a new database connection rule to applying new routes with new handlers. 
@@ -89,7 +89,7 @@ Also, since the class is configurable by dependency injection, the code is not c
 
 # Frontend
 
-####  I decided to keep it as simple as possible as well, I worked as a full-stack engineer but my focus always was on the backend and DevOps. And because of the lack of time for this test (I'm currently launching a new release in my current project), I couldn't afford to follow one of the rules of this test "Do not use any scaffolding tool such as create-react-app".
+####  I decided to keep it as simple as possible as well, I worked as a full-stack engineer but my focus always was on the backend and DevOps. And because of the lack of time for this test (I'm launching a new release in my current project), I couldn't afford to follow one of the rules of this test "Do not use any scaffolding tool such as create-react-app".
 
 #### But I also didn't use create-react-app, I decided to go with ![VITE](https://vitejs.dev/)
 - #### As I said before, frontend is not my focus, but I did some research and it seems like Vite is a faster and lighter option when compared to react-create-app and even to Webpack. 
@@ -102,7 +102,7 @@ Also, since the class is configurable by dependency injection, the code is not c
 
 ### Project Structure
 
-#### There is only one page in this application, I decided to do it like that because I think this way I could show that I understand the main concepts without investing too much time. After all, we all already implemented routes a million times in frontend applications. For the frontend, I'm betting on showing my knowledge regarding contexts and data flow than design/basic features.
+#### There is only one page in this application, I decided to do it like that because I think this way I could show that I understand the main concepts without investing too much time. After all, we all already implemented routes a million times in frontend applications. For the frontend, I'm betting on showing my knowledge regarding contexts and data flow more than design/basic features.
 
 ![Frontend structure](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+10-54-22.png)
 
