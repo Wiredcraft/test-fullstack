@@ -8,15 +8,11 @@ import { getTalks } from '../services/talks'
 function App() {
   const { talks, reloadTalks } = useTalks()
 
-
   useEffect(() => {
-
     (async () => {
       const talksFromServer = await getTalks();
-      console.log( talksFromServer)
       reloadTalks(talksFromServer)
     })();
-
   }, []);
 
   return (
