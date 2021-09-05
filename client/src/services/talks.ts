@@ -38,7 +38,7 @@ export const createTalk = async (talk: TalkCardInfo) => {
   try {
     const localToken = localStorage.getItem('token');
     const { title, description } = talk;
-    const response = await axios.post(`${REACT_APP_API_URL}}/talk`, { title, description }, {
+    const response = await axios.post(`${REACT_APP_API_URL}/talk`, { title, description }, {
       headers: {
         'Authorization': `${localToken}`
       }
@@ -54,7 +54,7 @@ export const createTalk = async (talk: TalkCardInfo) => {
 export const voteTalk = async (input: { talkId: String, operation: String }) => {
   try {
     const localToken = localStorage.getItem('token');
-    const response = await axios.put("http://localhost:5000/talk/vote", input, {
+    const response = await axios.put(`${REACT_APP_API_URL}/talk/vote`, input, {
       headers: {
         'Authorization': `${localToken}`
       }
