@@ -5,6 +5,29 @@
 #### You can access the application here: https://d3r1pzif4nr1c9.cloudfront.net
 #### It's Using Heroku Free Version for hosting, so depending on the time, you can face some cold start issues 😞
 
+#### To run it locally just use docker-compose up -d command, but keep in mind that you'll need the .env file in the server/ folder
+
+```
+GITHUB_URL=https://github.com
+GITHUB_GET_EMAIL_URL=https://api.github.com/user
+GITHUB_CLIENT_ID=OAUTH_CLIENT_ID
+GITHUB_CLIENT_SECRET=OAUTH_SECRET
+
+JWT_PRIVATE_KEY=this_is_private_hihi
+JWT_EXPIRES_IN=1d
+
+CLIENT_URL=http://localhost:3000
+
+MONGO_URL=mongodb://localhost:27017/talk
+```
+
+#### Also, you'll need a env.ts file inside client/ folder
+
+```
+export const REACT_APP_GIT_URL = "https://github.com/login/oauth/authorize?client_id=CLIENT_ID";
+export const REACT_APP_API_URL = "http://localhost:5000";
+```
+
 #### ...Let's start with the Backend then
 
 # Backend
