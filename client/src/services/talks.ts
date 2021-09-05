@@ -38,7 +38,7 @@ export const createTalk = async (talk: TalkCardInfo) => {
   try {
     const localToken = localStorage.getItem('token');
     const { title, description } = talk;
-    const response = await axios.post("http://localhost:5000/talk", { title, description }, {
+    const response = await axios.post(`${REACT_APP_API_URL}}/talk`, { title, description }, {
       headers: {
         'Authorization': `${localToken}`
       }
