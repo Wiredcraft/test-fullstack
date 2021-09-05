@@ -28,6 +28,8 @@ export const REACT_APP_GIT_URL = "https://github.com/login/oauth/authorize?clien
 export const REACT_APP_API_URL = "http://localhost:5000";
 ```
 
+#### Run docker-compose up -d, wait and access it on http://localhost:3000 -- Remember you need the OAuth Token from Github
+
 #### ...Let's start with the Backend then
 
 # Backend
