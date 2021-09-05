@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import { IApplicationConfig } from "./interfaces";
 import RouterManager from "./router/router-manager";
 import { errorMiddleware } from "./middlewares";
+import cors from "cors";
 
 class ApplicationManager {
 	private app: Application;
@@ -17,6 +18,7 @@ class ApplicationManager {
 		const { routesConfig, dbConn } = this.applicationConfig;
 		
 		dbConn();
+    this.app.use(cors());
 		this.app.use(express.json());
 		RouterManager.setRoutesInApplication(routesConfig, this.app);
 		this.app.use(errorMiddleware);
