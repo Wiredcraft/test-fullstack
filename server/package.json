@@ -41,7 +41,6 @@
   },
   "homepage": "https://github.com/Wiredcraft/test-fullstack#readme",
   "devDependencies": {
-    "@types/axios": "^0.14.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.1",
