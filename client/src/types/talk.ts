@@ -1,8 +1,9 @@
 export type TalkCardInfo = {
-  id: string;
-	title: string;
-	description: string;
-	votes: string[];
-	author: string;
-  voteCount: number;
+  _id?: String;
+	title: String;
+	description: String;
+	votes?: String[];
+	author?: String;
+  voteCount?: Number;
+  votedByUser?: Boolean;
 }
