@@ -1,16 +1,26 @@
-.talk-card {
+.talk-card-container {
 	display: flex;
 	margin: .3rem;
 	width: 90vw;
 	height: fit-content;
+	background-color:#D2BAB1;
+	justify-content: flex-start;
+  border-radius: 20px;
+	padding: 1rem;
+  flex-wrap: wrap-reverse;
+}
+
+.talk-card-container--row {
+	display: flex;
+	margin: .3rem;
+	width: 80%;
+	height: fit-content;
 	background-color: #D2BAB1;
 	flex-direction: column;
 	justify-content: flex-start;
-	padding: 1rem;
-  border-radius: 20px;
 }
 
-.talk-card h1 {
+.talk-card-container h1 {
 	font-size: 1.4rem;
 	font-family: Verdana, Geneva, sans-serif;
 	margin: .2rem 0 .2rem 0;
@@ -18,7 +28,7 @@
   font-weight: 900;
 }
 
-.talk-card h3 {
+.talk-card-container h3 {
 	font-size: .9rem;
 	font-family: Verdana, Geneva, sans-serif;
 	margin-bottom: .4rem 0 0 0;
@@ -26,7 +36,7 @@
   font-weight: 900;
 }
 
-.talk-card p {
+.talk-card-container p {
 	font-size: .8rem;
   font-weight: 600;
   color: #686868;
@@ -34,16 +44,38 @@
   margin: 0;
 }
 
-.talk-card__button--not-voted {
-	cursor: pointer;
-	border: none;
-	background-color: #288D00;
-	color: white;
+.talk-created-date {
+	font-size: .3rem;
+  font-weight: 600;
+  color: #686868;
+	font-family: Verdana, Geneva, sans-serif;
+  margin: 0;
 }
 
-.talk-card__button--voted {
-	cursor: pointer; 
-	border: none;
-	background-color:#DA1111;
-	color: white;
+.talk-card-container__button--not-voted {
+    cursor: pointer;
+    border: none;
+    width: 2%;
+    padding: .2rem;
+    margin-right: .3rem;
+    background-color: #D3D3D3;
+    color: white;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: 900;
+    min-width: 50px;
+}
+
+.talk-card-container__button--voted {
+    cursor: pointer;
+    border: none;
+    width: 2%;
+    padding: .2rem;
+    min-width: 50px;
+    margin-right: .3rem;
+    color: white;
+    background-color: #18A558;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    font-weight: 900;
 }
