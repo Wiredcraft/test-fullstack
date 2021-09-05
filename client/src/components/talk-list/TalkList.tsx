@@ -14,7 +14,7 @@ function TalkList(props: InputProps) {
 
 	return (
 		<div className="talk-list">
-			{talks.map(cardInfo => <TalkCard cardInfo={cardInfo} isAuthenticated={isAuthenticated}></TalkCard>)}
+			{talks.map(cardInfo => <TalkCard key={cardInfo._id?.toString()} cardInfo={cardInfo} isAuthenticated={isAuthenticated}></TalkCard>)}
 		</div>
 	)
 }
