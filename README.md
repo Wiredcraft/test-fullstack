@@ -1,42 +1,59 @@
-# Fullstack
+# Nicolas de Lima application
 
-### Context
+#### Hey there! First of all, thanks for this opportunity, I'm going to introduce you to some core ideas of this PR, this way it will be easier to review the project. You can imagine this is a conversation, just like a meeting in which I'm briefing you about the project you are about to review.
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+#### ...Let's start with the Backend then
 
-A lightning talk is a very short presentation lasting only a few minutes, given at a conference or a meetup etc.
+## Backend
 
-Polling is often needed for the organizers to understand what is more interesting, or for people to decide what should go on stage.
+- Typescript 
+- Testing: Jest
+- Database: MongoDB
+- Auth: Github
 
-### Requirements
+#### In Summary:
+#### I choose Typescript to have a more scalable code, with type checking helping me in situations like the form values validation in the service-side 
+#### MongoDB because this is an initial phase project, so several things can still change with time, this way I can leverage the NoSql features, without losing control, since MongoDB/Typescript/Jest has a unique combo together when it comes to testing and type checking
 
-#### User Stories
+####  I can create the Mongoose Schemas using the Typescript interfaces, this way I can return validation errors using Mongo validator. You can check the behavior inside the tests folder.
 
-1. When a user opens the page, he/she should see a list of lighting talks submitted by the users, ordered by rating \(poll amount\).
-2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
-3. For each of the talks in the list, the user could vote it by clicking a button.
-4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
-5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
-6. After submitting a topic, the user should see an updated version of the list.
+#### Also, I run a Mongo binary during the execution of the tests, this way I'm able to really test database calls and validate my queries in a real case scenario!
 
-#### Functionality
+#### Github OAuth because I 'm assuming  the person reviewing my code has access to a Github account, so it is a fast way to implement some auth concepts
 
-* The frontend part should be a single page application rendered in the frontend and load data from a RESTful API \(not rendered from backend\).
-* The API should follow typical RESTful API design pattern.
-* Provide proper unit test.
+### Project Structure
 
-#### Tech stack
+![project folder](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+09-21-42.png)
 
-* Use React for the frontend.
-* Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-* Use any backend framework as you like. Use any DB for storing the data, or if you prefer, only using the memory \(with no permanent storage\) could just work.
+#### As you can see it's quite simple, after all why it needs to be complicated right? I believe I don't have to explain the architecture since it is a very common way to organize small Rest APIs, that's why I'm going to show you only some important parts that  have some key concepts to understand the code
 
-#### Advanced requirements
+ ### App.ts One of the two classes in this code
 
-_These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out._
+![Application Manager](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+09-27-21.png)
+#### The Application Manager is responsible for configuring everything our application needs to start running. You can notice that we are instantiating the database, middlewares, and asl routes, everything abstract into this entity that exports the server object so we can really start listening to HTTP requests
 
-* Make it responsive.
-* Provide a form validation strategy.
-* Provide an error handling strategy, such as the UI/UX, and different handling for different errors etc.
-* Provide a complete user auth \(authentication/authorization/etc\) strategy, such as OAuth.
-* Provide a complete logging \(when/how/etc\) strategy.
+#### It's important to say that separating the application from the server like this, allows us to test all the application flows by really calling the endpoints using libraries such as supertest, which uses the application configuration to simulate an API during the tests execution time.
+Also, since the class is configurable by dependency injection, the code is not coupled, so we can control the state of the application the way we'd like for testings purposes, from easily creating a new database connection rule to applying new routes with new handlers. 
+
+### Routes
+
+#### Another important part of the application is the way we use routes, this is a plug and play method to initiate Routes. As soon as you created your controller function, you just need to go to the router/routes-config.ts and create a new object like the following one
+
+![Router](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+09-37-49.png)
+
+#### And another cool thing, the logic behind this abstraction is also using ![Pino](https://github.com/pinojs/pino) to log info about the routes. And this is a choice I made in case we want to have more control of our logging system in the future, maybe different behaviors per environment? storing them into Kafka? One thousand possibilities, but now, we are on the right way to afford all of them.
+
+![Routes info](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+09-46-37.png)
+
+### Compose Generator
+
+#### Basically it encapsulates our controller functions and generates a common service layer for all of them, responsible for logging info about the request, defining a common interface for Server Responses, and also being a cool way to centralize error handling in our application, reducing significantly the number of Try Catch in the code.
+
+![ComposeGenerator](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+09-58-31.png)
+
+### Error Handling the other class I mentioned
+
+#### It will log info about the error, containing the error message to send to the client, the error message for the backend developer, and also the function name where the error occurred.
+
+![Error Handling](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+10-07-11.png)
+
