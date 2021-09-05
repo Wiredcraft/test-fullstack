@@ -44,7 +44,10 @@ function CreateTalkForm(props: InputProps) {
   return (
     <form className="create-talk-form" onSubmit={handleSubmit(onSubmit)}>
       <label>Title</label>
-      <input {...register("title", { required: { value: true, message: 'Field is required' }, maxLength: { value: 20, message: "Title should be under 20 characters" } })} />
+      <input {...register("title", {
+        required: { value: true, message: 'Field is required' },
+        maxLength: { value: 20, message: "Title should be under 20 characters" }
+      })} />
       {showErrors(errors.title)}
       <label>Description</label>
       <textarea {...register("description", {

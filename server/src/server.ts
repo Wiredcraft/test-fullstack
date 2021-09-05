@@ -12,4 +12,4 @@ const server = appManager.getServer();
 
 const PORT = process.env.PORT || "5000";
 
-server.listen(PORT, () => logger.info(`Server Running on http://localhost:${PORT}`));
+server.listen(PORT, () => logger.info(`Server Running on port ${PORT}`));
