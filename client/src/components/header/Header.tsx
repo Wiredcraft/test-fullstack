@@ -4,21 +4,18 @@ import { useAuth } from "../../contexts/AuthContext";
 import ToggleShowButton from "../toggle-show-button/ToggleShowButton";
 import { REACT_APP_GIT_URL } from "../../../env";
 import CreateTalkForm from "../create-talk-form/CreateTalkForm";
-import { useTalks } from "../../contexts/TalksContext";
 
 function Header() {
   const { isAuthenticated } = useAuth()
   const [showCreateTalkForm, setTalkState] = React.useState(false)
-  const { talks, reloadTalks } = useTalks()
-
   const getCreateTalkForm = () => showCreateTalkForm ?
     <CreateTalkForm closeForm={() => setTalkState(false)} /> :
     null
 
   return (
-    <div className="c-header">
-      <h1>Talkraft</h1>
-      
+    <div className={showCreateTalkForm ? "c-header__talk-form-open" : "c-header"}>
+      <h1>{showCreateTalkForm ? "Create a cool Talk" : "Talkraft"}</h1>
+
       <ToggleShowButton
         onClick={() => setTalkState(true)}
         show={isAuthenticated && !showCreateTalkForm}
@@ -29,8 +26,8 @@ function Header() {
         text="Sign in with GitHub"
         href={REACT_APP_GIT_URL} />
 
-      {getCreateTalkForm()}
-    </div>
+      { getCreateTalkForm()}
+    </div >
   )
 }
 

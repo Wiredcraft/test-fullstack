@@ -34,8 +34,8 @@ function TalkCard(props: InputProps) {
   return (
     <div className="talk-card">
       <h1>{title}</h1>
-      <h3>by: {author}</h3>
       <p>{description}</p>
+      <h3>by: {author}</h3>
       {
         isAuthenticated ? <button
           onClick={onVote}
