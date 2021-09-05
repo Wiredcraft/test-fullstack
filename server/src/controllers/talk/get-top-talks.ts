@@ -5,8 +5,7 @@ import { TalkModel } from "../../models";
 import { ErrorHandler, withServiceLayer } from "../../utils";
 
 const getTopTalks = async (req: Request): Promise<ServerResponse> => {
-  const { email } = req.query;
-
+  const { user } = req.query;
 
   const talksOrderedByVotes = await TalkModel.find({})
     .sort({ voteCount: -1 })
@@ -23,8 +22,8 @@ const getTopTalks = async (req: Request): Promise<ServerResponse> => {
 
   let talksToReturn;
 
-  if (email) {
-    talksToReturn = getTalksWithVotedByUserInfo(talksOrderedByVotes, email as string);
+  if (user) {
+    talksToReturn = getTalksWithVotedByUserInfo(talksOrderedByVotes, user as string);
   } else {
     talksToReturn = talksOrderedByVotes;
   }
