@@ -1,6 +1,8 @@
 .call-to-message {
-  position: absolute;
-  margin-top: 10%;
-  margin-left: 40%;
+  position: relative;
   color: #9D695A;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 30% auto;
+  display: block;
 }

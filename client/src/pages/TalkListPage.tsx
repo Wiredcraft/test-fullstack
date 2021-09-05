@@ -8,7 +8,7 @@ import "./talkPage.css";
 function App() {
   const { talks, reloadTalks } = useTalks();
   const { isAuthenticated } = useAuth();
-  const callToText = isAuthenticated ? "Create your first talk! :)" : "Please, Log and create a new talk! :)";
+  const callToText = isAuthenticated ? "Create your first talk! :)" : "Please register and create a new talk! :)";
 
   useEffect(() => {
     (async () => {
