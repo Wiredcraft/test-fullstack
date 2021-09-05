@@ -95,7 +95,7 @@ describe('Talk endpoints', () => {
   it('should get talks ordered by greater number of votes -- PASSING USER', async () => {
     const { server } = await getValidInternalTokenAndServer();
 
-    const { body: { statusCode, message, talks } } = await request(server).get(`/talk?email=selected@selected.com`);
+    const { body: { statusCode, message, talks } } = await request(server).get(`/talk?user=selected@selected.com`);
 
     expect(talks[0].title).toBe('Test Five');
     expect(talks[0].votedByUser).toBeTruthy();
