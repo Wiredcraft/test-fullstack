@@ -1,0 +1,40 @@
+version: 2.1
+executors:
+  docker-executor:
+    docker:
+      - image:  node
+  docker-builder:    
+    docker:
+      - image:  python:2-alpine
+jobs:
+  build:
+    executor: docker-executor
+    steps:
+      - checkout
+      - run: npm install --force
+      - run: npm run build
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
+  deploy:
+    executor: docker-builder
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: pip install awscli
+      - run: aws configure set aws_access_key_id $ACCESS_KEY_AWS
+      - run: aws configure set aws_secret_access_key $SECRET_KEY_AWS
+      - run: aws configure set aws_default_region sa-east-1
+      - run: aws s3 sync dist/ s3://sanbox-wiredcraftcc.com --acl public-read
+      - run: aws cloudfront create-invalidation --distribution-id EM9XMZYQO2MEJ --paths  "/*"
+workflows:
+  build:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: develop

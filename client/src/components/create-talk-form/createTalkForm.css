@@ -1,0 +1,55 @@
+.create-talk-form {
+	display: flex;
+  position: relative;
+	flex-direction: column;
+  justify-content: center;
+}
+
+.create-talk-form label {
+	font-family: Verdana, Geneva, sans-serif;
+  color: #9D695A;
+  font-weight: 700;
+  align-self: flex-start;
+}
+
+.create-talk-form__button--submit {
+	font-family: Verdana, Geneva, sans-serif;
+	background-color: transparent;
+	border: none;
+	text-decoration: none;
+	margin-top: 1rem;
+	padding: .5rem;
+	cursor: pointer;
+  color: #9D695A;
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.create-talk-form__button--cancel {
+  font-family: Verdana, Geneva, sans-serif;
+  background-color: transparent;
+  border: none;
+  align-self: center;
+  text-decoration: none;
+  padding: .5rem;
+  cursor: pointer;
+  color: #9D695A;
+  font-weight: bolder;
+  font-size: 1.2rem;
+  }
+
+.create-talk-form--error {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  float: left;
+  padding: .2rem;
+}
+
+.create-talk-form--error span {
+  color: #cc0033;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: .7rem;
+  font-weight: bold;
+  line-height: .4rem;
+  text-shadow: 1px 1px rgba(250,250,250,.3);
+}
