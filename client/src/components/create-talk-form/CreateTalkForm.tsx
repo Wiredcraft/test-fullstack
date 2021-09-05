@@ -3,6 +3,7 @@ import { useForm, SubmitHandler, DeepMap, FieldError } from "react-hook-form";
 import { useTalks } from "../../contexts/TalksContext";
 import { createTalk, getTalks } from "../../services/talks";
 import "./createTalkForm.css";
+import { errorMapper } from "./errorMapper";
 
 type FormInput = {
   title: String;
@@ -33,9 +34,10 @@ function CreateTalkForm(props: InputProps) {
 
   const showErrors = (error: ErrorForm) => {
     if (error) {
+      const errorMsg = errorMapper[error.type || 'default']
       return (
         <div className="create-talk-form--error">
-          <span>This field is required</span>
+          <span>{errorMsg}</span>
         </div>
       )
     }
@@ -49,7 +51,8 @@ function CreateTalkForm(props: InputProps) {
       <label>Description</label>
       <textarea {...register("description", { required: true, maxLength: 200 })} />
       {showErrors(errors.description)}
-      <input className="create-talk-form--submit" type="submit" />
+      <input className="create-talk-form__button--submit" type="submit" />
+      <a onClick={() => closeForm()} className="create-talk-form__button--cancel">Cancel</a>
     </form>
   );
 }
