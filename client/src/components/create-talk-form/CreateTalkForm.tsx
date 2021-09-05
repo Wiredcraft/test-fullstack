@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useForm, SubmitHandler, DeepMap, FieldError } from "react-hook-form";
+import { createTalk } from "../../services/talks";
 import "./createTalkForm.css";
 
 type FormInput = {
@@ -18,7 +19,11 @@ function CreateTalkForm(props: InputProps) {
   const { closeForm } = props;
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormInput>();
-  const onSubmit: SubmitHandler<FormInput> = data => { closeForm() };
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    const { description, title } = data;
+    await createTalk({ title, description })
+    closeForm()
+  };
 
   const showErrors = (error: ErrorForm) => {
     if (error) {
