@@ -4,7 +4,7 @@
 
 #### ...Let's start with the Backend then
 
-## Backend
+# Backend
 
 - Typescript 
 - Testing: Jest
@@ -57,3 +57,39 @@ Also, since the class is configurable by dependency injection, the code is not c
 
 ![Error Handling](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+10-07-11.png)
 
+# Frontend
+
+####  I decided to keep it as simple as possible as well, I worked as a full-stack engineer but my focus always was on the backend and DevOps. And because of the lack of time for this test (I'm currently launching a new release in my current project), I couldn't afford to follow one of the rules of this test "Do not use any scaffolding tool such as create-react-app".
+
+#### But I also didn't use create-react-app, I decided to go with ![VITE](https://vitejs.dev/)
+- #### As I said before, frontend is not my focus, but I did some research and it seems like Vite is a faster and lighter option when compared to react-create-app and even to Webpack. 
+
+- #### It serves files over native ES modules and has a Hot Module Replacement feature, so it doesn't need to rebuild the entire bundle when something is updated.
+- #### It supports .ts files out of the box
+- #### Follows the Svelte logic, where the code is compiled
+
+##### In short, I had to make this decision because of time, but I tried to cover all the bad parts of using some tool as creat-react-app
+
+### Project Structure
+
+#### There is only one page in this application, I decided to do it like that because I think this way I could show that I understand the main concepts without investing too much time. After all, we all already implemented routes a million times in frontend applications. For the frontend, I'm betting on showing my knowledge regarding contexts and data flow than design/basic features.
+
+![Frontend structure](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+10-54-22.png)
+
+
+#### Basically I have the AuthContext providing info to its children regarding the user being authorized 
+#### The TalksContext, that centralizes the reload of new talks, this way we can trigger the refresh at any place of our code
+### Example of the AUth context being easily requested:
+
+![AuthCOntext example](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+11-09-32.png)
+
+### React Hooks forms for validating
+
+![Forms](https://nicrepoimg.s3.amazonaws.com/Screenshot+from+2021-09-05+11-04-39.png)
+
+#### You can check the ![lib](https://react-hook-form.com/), it's an easy way to create forms and control their error state. The JSX code looks so clean now that we don't have to worry about mapping errors.
+
+
+### Bonus point
+ - CICD Running for Frontend
+ - Frontend infra wrote using terraform
