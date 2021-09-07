@@ -1,12 +1,8 @@
-## Introduce
+## Features
 
-Because scaffolding tool is not allowed, I just use react without jsx.
-
-I don't use packing tool, so all react components have been put in a file.
-
-The api is very easy, so I just use pure node.js without framework.
-
-I use eslint for linting and jest for testing.
+- Zero dependencies: plain javascript and load React from CDN.
+- Use ESLint to lint code: 0 warning and 0 error.
+- Use Jest to test code: 100% code coverage and all test passed.
 
 ## Start
 
@@ -15,7 +11,7 @@ Requirements:
 - Node.js 12+
 - OS X / Linux
 
-To start project, just run: (no npm package needed)
+To start project, just run:
 
     node index.js
 
@@ -27,8 +23,8 @@ To start project, just run: (no npm package needed)
 
 2. run lint
 
-    yarn eslint .
+    yarn lint
 
 3. run unit tests
 
-    yarn jest
+    yarn test

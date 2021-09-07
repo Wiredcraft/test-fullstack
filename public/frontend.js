@@ -1,3 +1,5 @@
+/* global React, ReactDOM */
+
 function request(path, options){
   return fetch(path, Object.assign({ credentials: 'same-origin' }, options || {}))
     .then(async function(res){

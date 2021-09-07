@@ -109,4 +109,16 @@ describe('sessions', function() {
 
     expect(res.headers['Set-Cookie']).toEqual('session=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;');
   });
+
+  it('wrong session', function(){
+    api({
+      method: 'GET',
+      path: '/api/sessions',
+      headers: {
+        cookie: `session=wrong`
+      }
+    }, res);
+
+    expect(res.body).toEqual('{"data":null}');
+  });
 });
