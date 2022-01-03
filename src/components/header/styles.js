@@ -8,6 +8,6 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.span`
-  font-size: 1.8rem;
-  color: aliceblue;
+  font-size: 2rem;
+  color: papayawhip;
 `;
