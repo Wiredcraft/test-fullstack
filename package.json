@@ -5,7 +5,7 @@
   "scripts": {
     "client": "npx webpack-dev-server --mode development",
     "build": "npx webpack --mode production",
-    "server": "node server/index.js",
+    "server": "babel-node server/index.js",
     "start": "npm run build && npm run server"
   },
   "author": "taylor.j.brennan@gmail.com",
@@ -13,6 +13,7 @@
   "devDependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.7",
     "@babel/preset-env": "^7.16.7",
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.3",
@@ -29,6 +30,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "express": "^4.17.2",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",

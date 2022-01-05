@@ -1,22 +1,21 @@
-import React from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
-import { Container, Description } from './styles';
-import Button from '../common/button';
+import { getTopics } from '../../services/topics';
+import Empty from '../empty';
+import TopicList from '../topic-list';
 
-const Content = () => (
-  <Container>
-    <Description>No talks yet... Be the first!</Description>
-    <Button
-      onClick={() => {
-        axios.get('http://localhost:3000/api').then(response => {
-          console.log(response.data);
-        });
-      }}
-    >
-      + Add your lightning talk
-    </Button>
-  </Container>
-);
+const Content = () => {
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    const fetchTopics = async () => {
+      const response = await getTopics();
+      setTopics(response);
+    };
+    fetchTopics();
+  }, []);
+
+  return topics.length ? <TopicList {...{ topics }} /> : <Empty />;
+};
 
 export default Content;

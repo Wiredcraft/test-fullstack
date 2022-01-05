@@ -1,15 +1,22 @@
-/* eslint-disable no-undef */
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
+import router from './routes';
+
+const PORT = process.env.PORT || 3000;
 const app = express();
-const PORT = process.env.port || 3000;
 
+app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '..', 'dist')));
 
-app.get('/api', (req, res) => {
-  res.json({ foo: 'bar' });
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500);
+  res.send('An error occurred');
 });
+
+app.use('/api', router);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));

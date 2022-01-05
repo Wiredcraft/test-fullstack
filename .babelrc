@@ -1,6 +1,13 @@
 {
   "presets": [
-    "@babel/env",
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "node": "17.3.0"
+        }
+      }
+    ],
     "@babel/preset-react"
   ]
 }
