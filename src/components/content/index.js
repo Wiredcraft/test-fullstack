@@ -13,7 +13,7 @@ const Content = () => {
   };
 
   const onVote = async (id, amount) => {
-    await voteTopic(id, amount);
+    await voteTopic({ id, amount });
     fetchTopics();
   };
 

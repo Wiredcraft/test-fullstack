@@ -15,7 +15,7 @@ const EmptyList = () => {
           navigate('/add');
         }}
       >
-        + Add your lightning talk
+        Add your lightning talk
       </Button>
     </Container>
   );

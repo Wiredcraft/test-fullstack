@@ -5,7 +5,7 @@ export const Container = styled.div`
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  align-content: center;
+  align-items: center;
 `;
 
 export const Title = styled.span`
@@ -13,15 +13,21 @@ export const Title = styled.span`
   font-size: 3rem;
   font-weight: bold;
   color: midnightblue;
+  overflow-wrap: break-word;
+  word-break: break-all;
 `;
 
 export const User = styled.span`
-  margin: 0 0 2rem 2rem;
+  margin-bottom: 2rem;
   font-size: 2rem;
   color: darkorange;
+  overflow-wrap: break-word;
+  word-break: break-all;
 `;
 
 export const Description = styled.p`
   font-size: 1rem;
   color: midnightblue;
+  overflow-wrap: break-word;
+  word-break: break-all;
 `;

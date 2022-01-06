@@ -4,7 +4,7 @@ export const Container = styled.div`
   height: 5rem;
   overflow-y: hidden;
   width: 100%;
-  border-bottom: 1px solid midnightblue;
+  border-bottom: 1px solid darkorange;
   display: flex;
   align-content: space-between;
   align-items: center;

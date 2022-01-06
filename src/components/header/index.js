@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <Container>
       <Title onClick={() => navigate('/')}>⚡️ Lightning Talks</Title>
-      <Button onClick={() => navigate('/add')}>+ Add talk</Button>
+      <Button onClick={() => navigate('/add')}>Add talk</Button>
     </Container>
   );
 };
