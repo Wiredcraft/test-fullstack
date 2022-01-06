@@ -25,7 +25,9 @@ const TopicDetail = () => {
   return (
     <Container>
       <Title>{topic.title}</Title>
-      <User>by {topic.user}</User>
+      <User>
+        Submitted by {topic.user} on {new Date(topic.date).toDateString()}
+      </User>
       <Description>{topic.description}</Description>
     </Container>
   );

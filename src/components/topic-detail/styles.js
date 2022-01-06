@@ -19,10 +19,9 @@ export const Title = styled.span`
 
 export const User = styled.span`
   margin-bottom: 2rem;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: darkorange;
   overflow-wrap: break-word;
-  word-break: break-all;
 `;
 
 export const Description = styled.p`

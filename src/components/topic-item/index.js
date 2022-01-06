@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-import { Container, TitleContainer, Title, User } from './styles';
+import {
+  Container,
+  RatingContainer,
+  TitleContainer,
+  Title,
+  User
+} from './styles';
 import Voter from '../voter';
 
 const TopicItem = ({ id, title, rating, user, onVote }) => {
@@ -10,7 +16,9 @@ const TopicItem = ({ id, title, rating, user, onVote }) => {
 
   return (
     <Container>
-      <Voter {...{ id, rating, onVote }} />
+      <RatingContainer>
+        <Voter {...{ id, rating, onVote }} />
+      </RatingContainer>
       <TitleContainer
         onClick={() => {
           navigate(`/topics/${id}`);

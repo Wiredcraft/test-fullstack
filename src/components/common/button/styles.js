@@ -9,5 +9,8 @@ export const Button = styled.button`
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
-  height: 3.5rem;
+  max-height: 3.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

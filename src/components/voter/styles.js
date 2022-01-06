@@ -9,6 +9,8 @@ export const RatingDisplay = styled.span`
   font-weight: bold;
   color: midnightblue;
   width: 3rem;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
 `;
 
 export const UpButton = styled.div`
