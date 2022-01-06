@@ -13,4 +13,5 @@ export const Title = styled.span`
   -webkit-text-stroke: 2px darkorange;
   font-style: italic;
   font-weight: bold;
+  cursor: pointer;
 `;

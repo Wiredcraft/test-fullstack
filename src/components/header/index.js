@@ -8,7 +8,7 @@ const Header = () => {
   let navigate = useNavigate();
   return (
     <Container>
-      <Title>⚡️ Lightning Talks</Title>
+      <Title onClick={() => navigate('/')}>⚡️ Lightning Talks</Title>
       <Button onClick={() => navigate('/add')}>+ Add talk</Button>
     </Container>
   );

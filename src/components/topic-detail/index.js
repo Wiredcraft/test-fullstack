@@ -3,24 +3,32 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
 import { getTopic } from '../../services/topics';
+import { Container, Title, User, Description } from './styles';
 
 const TopicDetail = () => {
   const [topic, setTopic] = useState([]);
   const params = useParams();
 
+  const fetchTopic = async () => {
+    const response = await getTopic(params.topicId);
+    setTopic(response);
+  };
+
   useEffect(() => {
-    const fetchTopic = async () => {
-      const response = await getTopic(params.topicId);
-      setTopic(response);
-    };
     fetchTopic();
   }, []);
 
-  return <div>{topic.title}</div>;
+  return (
+    <Container>
+      <Title>{topic.title}</Title>
+      <User>by {topic.user}</User>
+      <Description>{topic.description}</Description>
+    </Container>
+  );
 };
 
 TopicDetail.propTypes = {
-  id: PropTypes.id,
+  id: PropTypes.number,
   title: PropTypes.string,
   description: PropTypes.string,
   rating: PropTypes.number,
