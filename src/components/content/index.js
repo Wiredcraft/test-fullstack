@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { getTopics } from '../../services/topics';
-import Empty from '../empty';
+import EmptyList from '../empty-list';
 import TopicList from '../topic-list';
 
 const Content = () => {
@@ -15,7 +15,7 @@ const Content = () => {
     fetchTopics();
   }, []);
 
-  return topics.length ? <TopicList {...{ topics }} /> : <Empty />;
+  return topics.length ? <TopicList {...{ topics }} /> : <EmptyList />;
 };
 
 export default Content;

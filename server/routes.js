@@ -5,7 +5,7 @@ const router = express.Router();
 // TODO: this will be db
 const topics = [
   {
-    id: '1',
+    id: 0,
     title: 'foobar',
     description: 'hello',
     rating: 2,
@@ -13,7 +13,7 @@ const topics = [
     date: '2022-01-05T14:07:57.585Z'
   },
   {
-    id: '2',
+    id: 1,
     title: 'foobaz',
     description: 'bye',
     rating: 5,
@@ -28,6 +28,9 @@ router.get('/', (req, res) => {
 
 router.get('/topics', (req, res) => {
   res.json(topics);
+});
+router.get('/topics/:topicId', (req, res) => {
+  res.json(topics[req.params.topicId]);
 });
 
 router.post('/topics', (req, res) => {

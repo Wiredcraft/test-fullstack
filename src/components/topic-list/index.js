@@ -4,15 +4,13 @@ import PropTypes from 'prop-types';
 import TopicItem from '../topic-item';
 
 const TopicList = ({ topics }) => (
-  <ul>
+  <div>
     {topics
       .sort((a, b) => a.rating < b.rating)
       .map(topic => (
-        <li key={topic.id}>
-          <TopicItem {...{ ...topic }} />
-        </li>
+        <TopicItem key={topic.id} {...{ ...topic }} />
       ))}
-  </ul>
+  </div>
 );
 
 TopicList.propTypes = {
