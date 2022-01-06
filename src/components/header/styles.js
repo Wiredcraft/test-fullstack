@@ -3,11 +3,14 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  background-color: steelblue;
-  padding: 0.5rem 1rem;
+  background-color: midnightblue;
+  padding: 1rem 1rem;
 `;
 
 export const Title = styled.span`
-  font-size: 2rem;
+  font-size: 3rem;
   color: papayawhip;
+  -webkit-text-stroke: 2px darkorange;
+  font-style: italic;
+  font-weight: bold;
 `;

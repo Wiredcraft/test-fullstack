@@ -2,32 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-import { Container, Rating, Title, User, Date } from './styles';
+import { Container, TitleContainer, Title, User } from './styles';
+import Voter from '../voter';
 
-const TopicItem = ({ id, title, description, rating, user, date }) => {
+const TopicItem = ({ id, title, rating, user, onVote }) => {
   let navigate = useNavigate();
 
   return (
-    <Container
-      onClick={() => {
-        navigate(`/topics/${id}`);
-      }}
-    >
-      <Rating>{rating}</Rating>
-      <Title>{title}</Title>
-      <User>{user}</User>
-      <Date>{date}</Date>
+    <Container>
+      <Voter {...{ id, rating, onVote }} />
+      <TitleContainer
+        onClick={() => {
+          navigate(`/topics/${id}`);
+        }}
+      >
+        <Title>{title}</Title>
+        <User>by {user}</User>
+      </TitleContainer>
     </Container>
   );
 };
 
 TopicItem.propTypes = {
-  id: PropTypes.id,
+  id: PropTypes.number,
   title: PropTypes.string,
-  description: PropTypes.string,
   rating: PropTypes.number,
   user: PropTypes.string,
-  date: PropTypes.date
+  onVote: PropTypes.func
 };
 
 export default TopicItem;
