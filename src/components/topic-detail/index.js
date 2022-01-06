@@ -5,7 +5,7 @@ import { getTopic } from '../../services/topics';
 import { Container, Title, User, Description } from './styles';
 
 const TopicDetail = () => {
-  const [topic, setTopic] = useState([]);
+  const [topic, setTopic] = useState({});
   let params = useParams();
   let navigate = useNavigate();
 

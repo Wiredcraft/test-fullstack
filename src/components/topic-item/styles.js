@@ -14,7 +14,6 @@ export const RatingContainer = styled.td`
 `;
 
 export const TitleContainer = styled.td`
-  margin-left: 2rem;
   cursor: pointer;
 `;
 

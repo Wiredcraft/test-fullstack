@@ -6,11 +6,13 @@ import { Container } from './styles';
 
 const TopicList = ({ topics, onVote }) => (
   <Container>
-    {topics
-      .sort((a, b) => a.rating < b.rating)
-      .map(topic => (
-        <TopicItem key={topic.id} {...{ ...topic, onVote }} />
-      ))}
+    <tbody>
+      {topics
+        .sort((a, b) => a.rating < b.rating)
+        .map(topic => (
+          <TopicItem key={topic.id} {...{ ...topic, onVote }} />
+        ))}
+    </tbody>
   </Container>
 );
 
