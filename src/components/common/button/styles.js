@@ -13,4 +13,8 @@ export const Button = styled.button`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;

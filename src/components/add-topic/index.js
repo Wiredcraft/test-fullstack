@@ -51,7 +51,11 @@ const AddTopic = () => {
           value={formData.user}
           onChange={handleChange}
         />
-        <Button type="submit" onSubmit={handleSubmit}>
+        <Button
+          type="submit"
+          onSubmit={handleSubmit}
+          disabled={!(formData.title && formData.description && formData.user)}
+        >
           Submit
         </Button>
       </Container>
