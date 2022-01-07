@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Content renders 1`] = `
+<div
+  className="sc-bdvvtL cdNifx"
+>
+  <p
+    className="sc-gsDKAQ liIgxQ"
+  >
+    No talks yet... Be the first!
+  </p>
+  <button
+    className="sc-dkPtRN bIiLjj"
+    onClick={[Function]}
+  >
+    Add your lightning talk
+  </button>
+</div>
+`;

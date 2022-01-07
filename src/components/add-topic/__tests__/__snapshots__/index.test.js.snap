@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddTopic renders 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <div
+    className="sc-bdvvtL jktTcy"
+  >
+    <span
+      className="sc-gsDKAQ hvZYDJ"
+    >
+      Submit your lightning talk!
+    </span>
+    <input
+      className="sc-dkPtRN ejKAfo"
+      name="title"
+      onChange={[Function]}
+      placeholder="Title"
+      type="text"
+      value=""
+    />
+    <textarea
+      className="sc-hKwDye dvofbG"
+      name="description"
+      onChange={[Function]}
+      placeholder="Describe your talk"
+      type="text"
+      value=""
+    />
+    <input
+      className="sc-dkPtRN ejKAfo"
+      name="user"
+      onChange={[Function]}
+      placeholder="Your name"
+      type="text"
+      value=""
+    />
+    <button
+      className="sc-eCImPb lbvQNE"
+      disabled={true}
+      onSubmit={[Function]}
+      type="submit"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+`;

@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Voter renders 1`] = `
+<div
+  className="sc-bdvvtL eLvoKT"
+>
+  <div
+    className="sc-dkPtRN fGaehG"
+    onClick={[Function]}
+  />
+  <div
+    className="sc-hKwDye dLhHFB"
+    onClick={[Function]}
+  />
+  <span
+    className="sc-gsDKAQ fncrVL"
+  />
+</div>
+`;

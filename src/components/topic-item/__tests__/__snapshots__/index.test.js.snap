@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopicItem renders 1`] = `
+<tr
+  className="sc-bdvvtL fuyBFa"
+>
+  <td
+    className="sc-gsDKAQ dEIjVV"
+  >
+    <div
+      className="sc-jRQBWg feKNfK"
+    >
+      <div
+        className="sc-iCfMLu fEMrVh"
+        onClick={[Function]}
+      />
+      <div
+        className="sc-furwcr dqEyLy"
+        onClick={[Function]}
+      />
+      <span
+        className="sc-gKclnd eeeTcR"
+      />
+    </div>
+  </td>
+  <td
+    className="sc-dkPtRN DXAXM"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-hKwDye ishIcs"
+    />
+    <div
+      className="sc-eCImPb hHGPbi"
+    >
+      by 
+    </div>
+  </td>
+</tr>
+`;

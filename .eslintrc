@@ -19,5 +19,5 @@
     "require": true,
     "process": true
   },
-  "ignorePatterns": ["webpack.config.js"]
+  "ignorePatterns": ["webpack.config.js", "*.test.js"]
 }

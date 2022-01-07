@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopicList renders 1`] = `
+<table
+  className="sc-pVTFL jKYrNm"
+>
+  <tbody />
+</table>
+`;
