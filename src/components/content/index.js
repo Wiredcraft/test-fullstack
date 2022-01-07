@@ -5,7 +5,7 @@ import EmptyList from '../empty-list';
 import TopicList from '../topic-list';
 
 const Content = () => {
-  const [topics, setTopics] = useState([]);
+  const [topics, setTopics] = useState();
 
   const fetchTopics = async () => {
     const response = await getTopics();
@@ -21,7 +21,13 @@ const Content = () => {
     fetchTopics();
   }, []);
 
-  return topics.length ? <TopicList {...{ topics, onVote }} /> : <EmptyList />;
+  return topics ? (
+    topics.length ? (
+      <TopicList {...{ topics, onVote }} />
+    ) : (
+      <EmptyList />
+    )
+  ) : null;
 };
 
 export default Content;
