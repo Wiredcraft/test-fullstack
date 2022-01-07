@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Content renders 1`] = `
+exports[`Content renders 1`] = `null`;
+
+exports[`Content renders with empty topics 1`] = `
 <div
   className="sc-bdvvtL cdNifx"
 >
@@ -16,4 +18,49 @@ exports[`Content renders 1`] = `
     Add your lightning talk
   </button>
 </div>
+`;
+
+exports[`Content renders with populated topics 1`] = `
+<table
+  className="sc-iqseJM deCyjf"
+>
+  <tbody>
+    <tr
+      className="sc-hKwDye lnnZFs"
+    >
+      <td
+        className="sc-eCImPb hciDOa"
+      >
+        <div
+          className="sc-furwcr dszeXW"
+        >
+          <div
+            className="sc-jrQzAO dipdKg"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-kDTinF jojDFf"
+            onClick={[Function]}
+          />
+          <span
+            className="sc-pVTFL gNSwkQ"
+          />
+        </div>
+      </td>
+      <td
+        className="sc-jRQBWg fUobTI"
+        onClick={[Function]}
+      >
+        <div
+          className="sc-gKclnd kRMSpt"
+        />
+        <div
+          className="sc-iCfMLu BuLQm"
+        >
+          by 
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 `;

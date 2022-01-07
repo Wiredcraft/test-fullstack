@@ -7,3 +7,88 @@ exports[`TopicList renders 1`] = `
   <tbody />
 </table>
 `;
+
+exports[`TopicList renders with props 1`] = `
+<table
+  className="sc-pVTFL jKYrNm"
+>
+  <tbody>
+    <tr
+      className="sc-bdvvtL fuyBFa"
+    >
+      <td
+        className="sc-gsDKAQ dEIjVV"
+      >
+        <div
+          className="sc-jRQBWg feKNfK"
+        >
+          <div
+            className="sc-iCfMLu fEMrVh"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-furwcr dqEyLy"
+            onClick={[Function]}
+          />
+          <span
+            className="sc-gKclnd eeeTcR"
+          >
+            2
+          </span>
+        </div>
+      </td>
+      <td
+        className="sc-dkPtRN DXAXM"
+        onClick={[Function]}
+      >
+        <div
+          className="sc-hKwDye ishIcs"
+        />
+        <div
+          className="sc-eCImPb hHGPbi"
+        >
+          by 
+        </div>
+      </td>
+    </tr>
+    <tr
+      className="sc-bdvvtL fuyBFa"
+    >
+      <td
+        className="sc-gsDKAQ dEIjVV"
+      >
+        <div
+          className="sc-jRQBWg feKNfK"
+        >
+          <div
+            className="sc-iCfMLu fEMrVh"
+            onClick={[Function]}
+          />
+          <div
+            className="sc-furwcr dqEyLy"
+            onClick={[Function]}
+          />
+          <span
+            className="sc-gKclnd eeeTcR"
+          >
+            5
+          </span>
+        </div>
+      </td>
+      <td
+        className="sc-dkPtRN DXAXM"
+        onClick={[Function]}
+      >
+        <div
+          className="sc-hKwDye ishIcs"
+        />
+        <div
+          className="sc-eCImPb hHGPbi"
+        >
+          by 
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

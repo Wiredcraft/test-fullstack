@@ -38,3 +38,47 @@ exports[`TopicItem renders 1`] = `
   </td>
 </tr>
 `;
+
+exports[`TopicItem renders with props 1`] = `
+<tr
+  className="sc-bdvvtL fuyBFa"
+>
+  <td
+    className="sc-gsDKAQ dEIjVV"
+  >
+    <div
+      className="sc-jRQBWg feKNfK"
+    >
+      <div
+        className="sc-iCfMLu fEMrVh"
+        onClick={[Function]}
+      />
+      <div
+        className="sc-furwcr dqEyLy"
+        onClick={[Function]}
+      />
+      <span
+        className="sc-gKclnd eeeTcR"
+      >
+        2
+      </span>
+    </div>
+  </td>
+  <td
+    className="sc-dkPtRN DXAXM"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-hKwDye ishIcs"
+    >
+      Title
+    </div>
+    <div
+      className="sc-eCImPb hHGPbi"
+    >
+      by 
+      You
+    </div>
+  </td>
+</tr>
+`;

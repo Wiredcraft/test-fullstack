@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TopicDetail renders 1`] = `
+exports[`TopicDetail navigates to "/" if no topic 1`] = `
 <div
   className="sc-bdvvtL jktTcy"
 >
