@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopicDetail navigates to "/" if no topic 1`] = `
+<div
+  className="sc-bdvvtL jktTcy"
+>
+  <span
+    className="sc-gsDKAQ kEMxst"
+  />
+  <span
+    className="sc-dkPtRN bBleUF"
+  >
+    Submitted by 
+     on 
+    Invalid Date
+  </span>
+  <p
+    className="sc-hKwDye bcHXVM"
+  />
+</div>
+`;

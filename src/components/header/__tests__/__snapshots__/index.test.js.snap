@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders 1`] = `
+<div
+  className="sc-bdvvtL kygHzC"
+>
+  <span
+    className="sc-gsDKAQ ka-Dnaq"
+    onClick={[Function]}
+  >
+    ⚡️ Lightning Talks
+  </span>
+  <button
+    className="sc-dkPtRN bIiLjj"
+    onClick={[Function]}
+  >
+    Add talk
+  </button>
+</div>
+`;
