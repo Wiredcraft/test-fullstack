@@ -1,10 +1,12 @@
 {
-    "env": {
-        "browser": false,
-        "node": true
-    },
-    "extends": [
-        "eslint:recommended", 
-        "google"
-    ]
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": ["eslint:recommended", "google"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  }
 }
