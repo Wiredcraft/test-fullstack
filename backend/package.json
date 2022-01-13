@@ -4,6 +4,7 @@
   "description": "Backend for \"Lightning Talk Polling\" app.",
   "main": "src/index.js",
   "scripts": {
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node --files' src/app.ts",
     "lint": "node ./node_modules/eslint/bin/eslint.js --ext .ts --fix src"
   },
   "repository": {
@@ -25,14 +26,17 @@
   },
   "homepage": "https://github.com/loicpirez/test-fullstack#readme",
   "dependencies": {
+    "mongoose": "^6.1.6",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.4",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "eslint": "^8.6.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.15"
   }
 }
