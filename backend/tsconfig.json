@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "target": "es5",
+    "strict": true,
+    "module": "commonJs",
+    "lib": ["ES5", "ES6"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
+}

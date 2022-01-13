@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "baseUrl": "./",
+    "target": "es5",
+    "strict": true,
+    "module": "commonJs",
+    "jsx": "react",
+    "lib": ["ES5", "ES6", "DOM"],
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "**/*.test.tsx"
+  ],
+}
