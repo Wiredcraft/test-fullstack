@@ -1,7 +1,7 @@
 import {
-  Query,
   Error,
   Model,
+  Query,
 } from 'mongoose';
 
 /**

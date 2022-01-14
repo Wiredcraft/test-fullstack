@@ -1,9 +1,9 @@
-import jwt from 'jsonwebtoken';
-import argon2 from 'argon2';
-import {randomBytes} from 'crypto';
 import IUser, {IUserInputDTO} from '../interfaces/IUser';
 import UserModel from '../models/user';
+import argon2 from 'argon2';
 import environment from '../lib/environment';
+import jwt from 'jsonwebtoken';
+import {randomBytes} from 'crypto';
 
 /**
  * Authentication service.

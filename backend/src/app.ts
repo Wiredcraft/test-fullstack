@@ -1,8 +1,13 @@
+// Disabling eslint rules for those lines, as the following imports
+// have to be made in this order because of initialization setup order.
+
+/* eslint-disable */
 require('dotenv').config();
 
-// eslint-disable-next-line no-unused-vars
 import environment from './lib/environment';
 import initializeMongoose from './lib/mongoose';
+
+/* eslint-enable */
 
 /**
  * Initialize the API.

@@ -1,4 +1,8 @@
-import {cleanEnv, str, port} from 'envalid';
+import {
+  cleanEnv,
+  port,
+  str,
+} from 'envalid';
 import {Env} from '../interfaces/Env';
 
 /**
