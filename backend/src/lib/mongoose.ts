@@ -1,5 +1,4 @@
 import mongoose, {Mongoose} from 'mongoose';
-// eslint-disable-next-line no-unused-vars
 import environment from '../lib/environment';
 
 /**
