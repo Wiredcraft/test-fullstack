@@ -1,5 +1,5 @@
 import {cleanEnv, str, port} from 'envalid';
-import {Env} from '../interface/env';
+import {Env} from '../interface/Env';
 
 /**
  * Class which handle the environment logic.
