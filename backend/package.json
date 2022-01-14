@@ -33,14 +33,17 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.7",
     "@types/node": "^17.0.8",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
     "@typescript-eslint/parser": "^5.9.1",
+    "argon2": "^0.28.3",
     "dotenv": "^11.0.0",
     "envalid": "^7.2.2",
     "eslint": "^8.6.0",
     "eslint-config-google": "^0.14.0",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.15"
   }
 }
