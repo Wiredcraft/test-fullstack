@@ -1,10 +1,10 @@
 /**
  * Database interface of a Receipt.
  */
-interface ITalks {
+interface ITalk {
     name: string,
     description: string
 }
 
-export default ITalks;
+export default ITalk;
 
