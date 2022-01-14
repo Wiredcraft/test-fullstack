@@ -12,6 +12,7 @@ class Environment {
    */
   constructor() {
     this.environment = cleanEnv(process.env, {
+      JWT_SECRET: str(),
       MONGO_DB: str(),
       MONGO_HOST: str(),
       MONGO_PASSWORD: str(),
