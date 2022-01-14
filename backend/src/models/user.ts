@@ -1,4 +1,4 @@
-import IUser from '../interface/IUser';
+import IUser from '../interfaces/IUser';
 import mongoose from 'mongoose';
 
 /**

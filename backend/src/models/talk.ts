@@ -1,4 +1,4 @@
-import ITalk from '../interface/ITalk';
+import ITalk from '../interfaces/ITalk';
 import mongoose from 'mongoose';
 import uuid from 'uuid';
 
