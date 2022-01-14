@@ -19,9 +19,9 @@ class Database {
     : Query<any, any> {
     return model.find({}, (error: Error, results: any): any => {
       if (error) {
-        console.log(error);
+        global.logger.error(error);
       }
-      console.log(results);
+      global.logger.error(results);
     });
   }
 
@@ -37,12 +37,12 @@ class Database {
     : Query<any, any> {
     return model.findOne(params, (error: Error, results: any): any => {
       if (error) {
-        console.log(error);
+        global.logger.error(error);
       }
       if (!results) {
-        console.log('No results');
+        global.logger.error('No results');
       } else {
-        console.log(results);
+        global.logger.error(results);
       }
     });
   }
@@ -61,14 +61,14 @@ class Database {
       [params.id]: params.value}, (error: Error, results: Object,
     ) => {
       if (error) {
-        console.log(error);
+        global.logger.error(error);
         return;
       }
       if (results) {
         return results;
       }
       if (!results) {
-        console.log('No results');
+        global.logger.error('No results');
       }
     });
   }
@@ -87,14 +87,14 @@ class Database {
     return model.findOneAndUpdate(
         params, patch, (error: Error, results: Object) => {
           if (error) {
-            console.log(error);
+            global.logger.error(error);
             return;
           }
           if (!results) {
-            console.log('No results');
+            global.logger.error('No results');
             return;
           } else {
-            console.log(results);
+            global.logger.error(results);
           }
         });
   }
@@ -116,7 +116,7 @@ class Database {
       const document = new model({...data});
       await document.save();
     } catch (error) {
-      console.log(error);
+      global.logger.error(error);
     }
   }
 }
