@@ -1,4 +1,5 @@
 export interface Env {
+    HOST: string;
     JWT_SECRET: string;
     LOG_LEVEL: string;
     MONGO_DB: string;
@@ -7,4 +8,5 @@ export interface Env {
     MONGO_PORT: number;
     MONGO_USER: string;
     NODE_ENV: string;
+    PORT: number;
 }
