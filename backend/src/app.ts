@@ -1,6 +1,7 @@
 require('dotenv').config();
-require('./lib/environment').currentEnvironment();
 
+// eslint-disable-next-line no-unused-vars
+import environment from './lib/environment';
 import initializeMongoose from './lib/mongoose';
 
 /**
