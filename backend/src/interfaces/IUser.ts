@@ -2,12 +2,13 @@
  * Database interface of an User.
  */
 interface IUser {
-    name: string
+    username: string
     password: string
+    role: string,
 }
 
 interface IUserInputDTO {
-    name: string
+    username: string
     password: string
 }
 

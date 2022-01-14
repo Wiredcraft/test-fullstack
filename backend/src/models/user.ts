@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
  */
 const User = new mongoose.Schema(
     {
-      name: {
+      username: {
         type: String,
         required: [true, 'Please enter a full name'],
         index: true,
