@@ -2,7 +2,8 @@
  * Database interface of a Vote.
  */
 interface IVote {
-    vote: number
+    vote: number;
+   _id?: any;
 }
 
 export default IVote;

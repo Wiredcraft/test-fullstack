@@ -33,7 +33,7 @@ class Database {
     * @return {Query<any, any>} Database query.
     */
   public get(
-      {model, params}: { model: Model<any>, params: any })
+      {model, params}: { model: Model<any>; params: any })
     : Query<any, any> {
     return model.findOne(params, (error: Error, results: any): any => {
       if (error) {
@@ -55,7 +55,7 @@ class Database {
     * @return {Query<any, any>} Database query.
     */
   public delete(
-      {model, params}: { model: Model<any>, params: any })
+      {model, params}: { model: Model<any>; params: any })
     : Query<any, any> {
     return model.findOneAndRemove({
       [params.id]: params.value}, (error: Error, results: Object,
@@ -82,7 +82,7 @@ class Database {
     * @return {Query<any, any>} Database query.
     */
   public update(
-      {model, params, patch}: { model: Model<any>, params: any, patch: any })
+      {model, params, patch}: { model: Model<any>; params: any; patch: any })
     : Query<any, any> {
     return model.findOneAndUpdate(
         params, patch, (error: Error, results: Object) => {
@@ -108,7 +108,7 @@ class Database {
     * @return {Query<any, any>} Database query.
     */
   public async save(
-      {model, data}: { model: Model<any>, data: Object })
+      {model, data}: { model: Model<any>; data: Object })
     : Promise<void> {
     try {
       // It's alright to make this linter exception here.
