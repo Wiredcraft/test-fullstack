@@ -4,6 +4,7 @@
   "description": "Backend for \"Lightning Talk Polling\" app.",
   "main": "src/index.js",
   "scripts": {
+    "build": "tsc --lib dom",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node --files' src/app.ts",
     "lint": "node ./node_modules/eslint/bin/eslint.js --ext .ts --fix src"
   },
