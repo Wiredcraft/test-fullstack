@@ -1,3 +1,4 @@
+import authRoute from './routes/auth';
 import {Router as router} from 'express';
 
 /**
@@ -8,6 +9,8 @@ import {Router as router} from 'express';
  */
 const initAppRouter: Function = async (): Promise<router> => {
   const appRouter: router = router();
+
+  authRoute(appRouter);
 
   return appRouter;
 };

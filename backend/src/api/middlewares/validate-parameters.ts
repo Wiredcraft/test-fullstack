@@ -14,7 +14,13 @@ import handleErrors from './handle-errors';
  * @return {Joi.ObjectSchema} Schema corresponding to the current route.
  */
 const getObjectSchema: Function = (req: Request): Joi.ObjectSchema => {
-  const constraints = {};
+  let constraints = {};
+  if (req.baseUrl.endsWith('/auth')) {
+    constraints = {
+      username: Joi.string().required(),
+      password: Joi.string().required(),
+    };
+  }
   return Joi.object(constraints);
 };
 
@@ -30,12 +36,12 @@ const validateParameters:
       const schema: Joi.ObjectSchema = getObjectSchema(req);
       const validation = schema.validate(req.body);
 
-  validation.error ? handleErrors(
-      generateError(
-          ApiErrorType.ValidationError,
-          validation.error.details.shift()?.message ?? 'Validation error',
-      ), req, res, next,
-  ) : next();
+      validation.error ? handleErrors(
+          generateError(
+              ApiErrorType.ValidationError,
+              validation.error.details.shift()?.message ?? 'Validation error',
+          ), req, res, next,
+      ) : next();
     };
 
 export default validateParameters;
