@@ -57,6 +57,6 @@ async function startServer(): Promise<Server> {
   }
 }
 
-startServer().catch((err) => {
-  handleFatalError(err);
+startServer().catch((error: Error) => {
+  handleFatalError(error);
 });
