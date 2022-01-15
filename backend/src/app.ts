@@ -10,44 +10,51 @@ import initializeMongoose from './lib/mongoose';
 import logger from './lib/logger'
 import express from 'express';
 
+import { Server } from 'http';
+
 /* eslint-enable */
+
+/**
+ * In case something fatal occurs and the server cannot continue, throw an
+ * error and exit the process.
+ *
+ * @param {Error} error - Error to handle.
+ *
+ */
+const handleFatalError: Function = (error: Error): void => {
+  global.logger.error('Fatal Error:', error.message);
+  global.logger.error(error.stack);
+  process.exit(1);
+};
+
 
 /**
  * Initialize the API.
  */
-async function main() {
-  const {
-    HOST,
-    LOG_LEVEL,
-    PORT,
-  } = environment.getEnvironment();
+async function startServer(): Promise<Server> {
+  {
+    const {
+      HOST,
+      LOG_LEVEL,
+      PORT,
+    } = environment.getEnvironment();
 
-  global.logger = logger(LOG_LEVEL);
+    global.logger = logger(LOG_LEVEL);
 
-  global.logger.info('🎙️ Welcome to Lightning Talks Poll API !');
-  global.logger.info('Connecting to MongoDB...');
+    global.logger.info('🎙️ Welcome to Lightning Talks Poll API !');
 
-  try {
+    global.logger.info('Connecting to MongoDB...');
     await initializeMongoose();
     global.logger.info('Database loaded and connected.');
-  } catch (error: any) {
-    global.logger.error(`Mongoose: ${error.message}`);
-    process.exit(1);
+
+    global.logger.info(`Initializing Express server...`);
+    global.expressApp = express();
+    return global.expressApp.listen(PORT, HOST, () => {
+      global.logger.info(`Server listening at http://${HOST}:${PORT} !`);
+    });
   }
-  global.logger.info(`Initializing Express server...`);
-
-  global.expressApp = express();
-
-  global.expressApp.get('/', (req, res) => {
-    res.send('Hello world !');
-  });
-
-  global.expressApp.listen(PORT, HOST, () => {
-    global.logger.info(`Server listening at http://${HOST}:${PORT} !`);
-  }).on('error', (error) => {
-    global.logger.error(error);
-    process.exit(1);
-  });
 }
 
-main();
+startServer().catch((err) => {
+  handleFatalError(err);
+});
