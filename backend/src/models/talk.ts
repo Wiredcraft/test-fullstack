@@ -1,4 +1,4 @@
-import ITalk from '../interfaces/ITalk';
+import {TalkModel} from 'types/models';
 import mongoose from 'mongoose';
 import uuid from 'uuid';
 
@@ -32,4 +32,4 @@ const Talk = new mongoose.Schema(
     {timestamps: true},
 );
 
-export default mongoose.model<ITalk & mongoose.Document>('Talk', Talk);
+export default mongoose.model<TalkModel>('Talk', Talk);

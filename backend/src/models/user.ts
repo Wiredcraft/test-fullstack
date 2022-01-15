@@ -1,4 +1,4 @@
-import IUser from '../interfaces/IUser';
+import {UserModel} from 'types/models';
 import mongoose from 'mongoose';
 
 /**
@@ -26,4 +26,4 @@ const User = new mongoose.Schema(
     {timestamps: true},
 );
 
-export default mongoose.model<IUser & mongoose.Document>('User', User);
+export default mongoose.model<UserModel>('User', User);

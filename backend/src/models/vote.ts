@@ -1,4 +1,4 @@
-import IVote from '../interface/IVote';
+import {VoteModel} from 'types/models';
 import mongoose from 'mongoose';
 
 /**
@@ -28,4 +28,4 @@ const Vote = new mongoose.Schema(
     {timestamps: true},
 );
 
-export default mongoose.model<IVote & mongoose.Document>('Vote', Vote);
+export default mongoose.model<VoteModel>('Vote', Vote);
