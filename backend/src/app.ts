@@ -6,6 +6,7 @@ require('dotenv').config();
 
 import environment from './lib/environment';
 import initializeMongoose from './lib/mongoose';
+import initializeExpress from './lib/express';
 
 import logger from './lib/logger'
 import express from 'express';
@@ -49,6 +50,7 @@ async function startServer(): Promise<Server> {
 
     global.logger.info(`Initializing Express server...`);
     global.expressApp = express();
+    await initializeExpress();
     return global.expressApp.listen(PORT, HOST, () => {
       global.logger.info(`Server listening at http://${HOST}:${PORT} !`);
     });
