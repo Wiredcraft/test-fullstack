@@ -29,7 +29,7 @@ class AuthService {
    * @param {IUserInputDTO} userInputDTO The User input DTO.
    * @return {Promise<IUser, string>} User and JWT.
    */
-  public async SignUp(userInputDTO: IUserInputDTO): Promise<
+  public async register(userInputDTO: IUserInputDTO): Promise<
   { user: IUser; token: string }
   > {
     try {
@@ -55,12 +55,12 @@ class AuthService {
   }
 
   /**
-   * Signin and retrieve the user interface and it's JSON web token.
+   * login and retrieve the user interface and it's JSON web token.
    * @param {string} email The User email.
    * @param {string} password The User password (hashed).
    * @return {Promise<IUser, string>} User and JWT.
    */
-  public async SignIn(
+  public async login(
       email: string, password: string,
   ): Promise<{ user: IUser; token: string }> {
     const userRecord = await this.userModel.findOne({email});
