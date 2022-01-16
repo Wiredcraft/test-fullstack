@@ -2,7 +2,7 @@ import winston from 'winston';
 
 /**
  * Get logger transport (options) according to the running Node environment.
- * @return {ConsoleTransportOptions} Winston console transport.
+ * @return {ConsoleTransportOptions} - Winston console transport.
  */
 const getLoggerTransport: Function = (
 ): winston.transports.ConsoleTransportOptions => {
@@ -25,8 +25,8 @@ const getLoggerTransport: Function = (
 
 /**
  * Winston Logger instance set with [[Config]] configuration.
- * @param {string} level Winston log level.
- * @return {winston.Logger} Winston logger instance.
+ * @param {string} level - level Winston log level.
+ * @return {winston.Logger} - Winston logger instance.
  */
 const LoggerInstance: Function = (
     level: string,

@@ -2,7 +2,7 @@ import {ErrorRequestHandler, NextFunction, Request, Response} from 'express';
 import ExtendedError from '../../interfaces/extended-errors';
 
 /**
- * Middleware to handle and give appropriates response to errors.
+ * Handle and give appropriates response to errors.
  *
  * @param {ExtendedError} err - Error response to handle.
  * @param {Request} req - Express request object.

@@ -31,7 +31,7 @@ class Environment {
 
   /**
    * Validate and sanitate the environment variables.
-   * @return {Env} Environment object.
+   * @return {Env} - Environment object.
    */
   getEnvironment(): Env {
     return this.environment;

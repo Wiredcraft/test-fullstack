@@ -15,7 +15,7 @@ class TalksService {
   aggregationQuery: Array<any>;
 
   /**
-    * Initialize User model.
+    * Initialize models and prepare aggregation query.
   */
   constructor() {
     this.talkModel = talkModel;
@@ -71,11 +71,16 @@ class TalksService {
 
   /**
    * Patch a talk by its ID.
+   *
+   * @async
+   *
    * @param {string} talkID - The talk ID.
    * @param {string} userID - The owner username.
    * @param {string} name - The new talk name.
    * @param {string} description - The new talk description.
-   * @throws {ApiError} - Throw if the talk cannot be found.
+   * @return {Promise<any>} - Patched talk.
+   *
+   * @throws {Error} - Throw if the talk cannot be found.
    */
   public async update(
       talkID: string,
@@ -105,10 +110,14 @@ class TalksService {
 
   /**
    * Delete a talk by its ID.
+   *
+   * @async
+   *
    * @param {string} talkID - The talk ID.
    * @param {string} userID - The owner username.
-   * @return {Promise<ITalk>} - Deleted talk.
-   * @throws {ApiError} - Throw if the talk cannot be found.
+   * @return {Promise<void>}
+   *
+   * @throws {Error} - Throw if the talk cannot be found.
    */
   public async remove(
       talkID: string,
@@ -129,9 +138,13 @@ class TalksService {
 
   /**
    * List all talks.
+   *
+   * @async
+   *
    * @param {string} username - The talks owner username.
    * @return {Promise<ITalk>} - Found talks.
-   * @throws {ApiError} - Throw if no talk have been found.
+   *
+   * @throws {Error} - Throw if no talk have been found.
    */
   public async list(
       username?: string,
@@ -156,9 +169,13 @@ class TalksService {
 
   /**
    * Get a talk by its ID.
+   *
+   * @async
+   *
    * @param {string} talkID - The talk ID.
    * @return {Promise<ITalk>} - Found talk.
-   * @throws {ApiError} - Throw if the talk cannot be found.
+   *
+   * @throws {Error} - Throw if the talk cannot be found.
    */
   public async get(talkID: string): Promise<any> {
     const id: mongoose.Types.ObjectId = new mongoose.Types.ObjectId(talkID);
@@ -171,10 +188,14 @@ class TalksService {
 
   /**
    * Create a talk.
+   *
+   * @async
+   *
    * @param {ITalk} talkData - The talk name and description.
    * @param {string} userID - The user id of the talk author.
    * @return {Promise<ITalk>} - Created talk.
-   * @throws {ApiError} - Throw if the talk cannot be created.
+   *
+   * @throws {Error} - Throw if the talk cannot be created.
    */
   public async create(
       talkData: ITalk, userID: string,

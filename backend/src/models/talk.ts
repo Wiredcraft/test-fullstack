@@ -3,9 +3,8 @@ import mongoose from 'mongoose';
 
 /**
  * Generate a Talks schema.
- * Contains `name`, `description`, `user`, `votes`.
  *
- * @return `Talk` database schema model.
+ * @return {TalkModel} - database schema model.
  */
 const Talk = new mongoose.Schema(
     {

@@ -4,7 +4,7 @@ import generateError from '../generate-error';
 import handleErrors from '../middlewares/handle-errors';
 
 /**
- * Middleware in use when a requested route is not existent.
+ * Handle request of a non existant route.
  * @param {Request} req - Express request object.
  * @param {Response} res - Express response object.
  * @param {NextFunction} next - Express next middleware function.

@@ -4,7 +4,7 @@ import talkModel from '../models/talk';
 import voteModel from '../models/vote';
 
 /**
- * Talks service.
+ * Votes service.
  */
 class VotesService {
   talkModel: mongoose.Model<TalkModel>;
@@ -20,10 +20,15 @@ class VotesService {
 
   /**
    * Vote for a talk by its ID.
+   *
+   * @async
+   *
    * @param {number} userVote - The vote of the user.
    * @param {string} userID - The owner username.
    * @param {string} talkID - The talk ID.
-   * @throws {ApiError} - Throw if the talk cannot be found.
+   * @return {Promise<void>}
+   *
+   * @throws {Error} - Throw if the talk cannot be found.
    */
   public async vote(
       userVote: number,

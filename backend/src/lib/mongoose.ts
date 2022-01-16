@@ -2,8 +2,11 @@ import mongoose, {Mongoose} from 'mongoose';
 import environment from '../lib/environment';
 
 /**
- ** Open the database connection.
- ** @return Promise wrapper around database connection instance.
+ * Open a database connection.
+ *
+ * @async
+ *
+ * @return {Promise<Mongoose>} - Database connection instance.
  */
 const connectToMongoDatabase: Function = async (): Promise<Mongoose> => {
   const {
@@ -18,12 +21,15 @@ const connectToMongoDatabase: Function = async (): Promise<Mongoose> => {
    `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}:${MONGO_PORT}/${MONGO_DB}`;
 
   return mongoose.connect(databaseURI);
-}
+};
 
 /**
- ** Open the database connection and set the database instance to the Container.
- ** @return Call to [[connectToMongoDatabase]], database connection instance.
-*/
+ * Initialize the database connection.
+ *
+ * @async
+ *
+ * @return {Promise<Mongoose>} - Database connection instance.
+ */
 const initializeMongoose: Function = async (): Promise<Mongoose> => {
   const connection: Mongoose = await connectToMongoDatabase();
   return connection;

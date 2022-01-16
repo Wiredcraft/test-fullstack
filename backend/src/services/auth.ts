@@ -28,8 +28,13 @@ class AuthService {
 
   /**
    * Signup and retrieve the user interface and it's JSON web token.
-   * @param {IUserInputDTO} userInputDTO The User input DTO.
-   * @return {Promise<IUser, string>} User and JWT.
+   *
+   * @async
+   *
+   * @param {IUserInputDTO} userInputDTO - The User input DTO.
+   * @return {Promise<IUser, string>} - User and JWT.
+   *
+   * @throws {Error} - Throw if the user cannot be created.
    */
   public async register(userInputDTO: IUserInputDTO): Promise<
   { user: IUser; token: string }
@@ -58,10 +63,15 @@ class AuthService {
   }
 
   /**
-   * login and retrieve the user interface and it's JSON web token.
-   * @param {string} username The User username.
-   * @param {string} password The User password (hashed).
-   * @return {Promise<IUser, string>} User and JWT.
+   * Login and retrieve the user interface and it's JSON web token.
+   *
+   * @async
+   *
+   * @param {string} username - The User username.
+   * @param {string} password - The User password (hashed).
+   * @return {Promise<IUser, string>} - User and JWT.
+   *
+   * @throws {Error} - Throw if the user credentials are invalid.
    */
   public async login(
       username: string, password: string,

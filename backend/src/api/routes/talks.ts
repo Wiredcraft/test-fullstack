@@ -9,8 +9,10 @@ import isAuth from '../middlewares/is-auth';
 import validateParameters from '../middlewares/validate-parameters';
 
 /**
- * Route to handle authentification mechanism.
+ * Route to perform CRUD operations on talks.
+ *
  * @async
+ *
  * @param {router} appRouter - Express Router with routes applied.
  */
 const talksRoute: Function = async (appRouter: router): Promise<void> => {

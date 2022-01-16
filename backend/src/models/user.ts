@@ -3,9 +3,8 @@ import mongoose from 'mongoose';
 
 /**
  * Generate an User schema.
- * Contains `name`, `email`, `password`.
  *
- * @return `User` database schema model.
+ * @return {UserModel} - database schema model.
  */
 const User = new mongoose.Schema(
     {

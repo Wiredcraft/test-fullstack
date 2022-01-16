@@ -6,6 +6,9 @@ import routes from '../api/';
 
 /**
  * Initialize `express` server by adding the required middleware and routes.
+ *
+ * @async
+ *
  */
 const initializeExpress: Function = async (): Promise<void> => {
   global.expressApp.use(cors());

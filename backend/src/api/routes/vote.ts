@@ -8,8 +8,10 @@ import isAuth from '../middlewares/is-auth';
 import validateParameters from '../middlewares/validate-parameters';
 
 /**
- * Route to handle authentification mechanism.
+ * Route to vote on talks.
+ *
  * @async
+ *
  * @param {router} appRouter - Express Router with routes applied.
  */
 const voteRoute: Function = async (appRouter: router): Promise<void> => {

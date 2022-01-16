@@ -3,9 +3,8 @@ import mongoose from 'mongoose';
 
 /**
  * Generate a Votes schema.
- * Contains `vote`.
  *
- * @return `Vote` database schema model.
+ * @return {VoteModel} - database schema model.
  */
 const Vote = new mongoose.Schema(
     {

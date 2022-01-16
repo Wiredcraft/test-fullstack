@@ -6,7 +6,7 @@ import ExtendedError from '../interfaces/extended-errors';
  *
  * @param {ApiErrorType} type - The type of error.
  *
- * @return {string} Error message prefix.
+ * @return {string} - Error message prefix.
  */
 const getTypeMessagePrefix: Function = (type: ApiErrorType): string => {
   switch (type) {
@@ -33,7 +33,7 @@ const getTypeMessagePrefix: Function = (type: ApiErrorType): string => {
  * @param {string} details - For an Error object, detail can be `error.message`.
  * @param {number} code - The HTTP status code of the error.
  *
- * @return {ExtendedError} `Error` object with parameters applied.
+ * @return {ExtendedError} - `Error` object with parameters applied.
  */
 const generateError: Function = (
     type: ApiErrorType,

@@ -5,7 +5,7 @@ import generateError from '../generate-error';
 import handleErrors from './handle-errors';
 
 /**
- * Middleware to attach user to the request.
+ * Attach user to the request.
  *
  * @param {Request} req - Express request object.
  * @param {Response} res - Express response object.

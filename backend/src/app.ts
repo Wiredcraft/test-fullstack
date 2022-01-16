@@ -31,6 +31,9 @@ const handleFatalError: Function = (error: Error): void => {
 
 /**
  * Initialize the API.
+ *
+ * @async
+ *
  */
 const startServer: Function = async (): Promise<Server> => {
   {
