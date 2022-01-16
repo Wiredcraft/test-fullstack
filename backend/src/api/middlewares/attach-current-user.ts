@@ -1,8 +1,8 @@
 import {NextFunction, Request, RequestHandler, Response} from 'express';
 import ApiErrorType from '../../enums/api-error-type';
-import UserModel from '../../models/user';
 import generateError from '../generate-error';
 import handleErrors from './handle-errors';
+import userModel from '../../models/user';
 
 /**
  * Attach user to the request.
@@ -17,7 +17,7 @@ const attachCurrentUser: RequestHandler = async (
     next: NextFunction,
 ) => {
   try {
-    const userRecord = await UserModel.findById({
+    const userRecord = await userModel.findById({
       _id: req.token?._id,
     });
     if (!userRecord) {
