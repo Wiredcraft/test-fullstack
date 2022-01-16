@@ -34,7 +34,6 @@
     "ts-loader": "^9.2.6",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.4",
-    "winston": "^3.4.0"
     "winston": "^3.4.0",
     "express-jwt": "^6.1.0",
     "jsonwebtoken": "^8.5.1"
