@@ -23,7 +23,7 @@ const getObjectSchema: Function = (req: Request): Joi.ObjectSchema => {
     };
   } else if (req.baseUrl.endsWith('/vote')) {
     constraints = {
-      talkID: Joi.string().required(),
+      talk_id: Joi.string().required(),
       vote: Joi.number().min(-1).max(+1).required(),
     };
   } else if (req.baseUrl.endsWith('/talks') && req.method === 'POST') {

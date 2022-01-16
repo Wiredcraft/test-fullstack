@@ -21,14 +21,12 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
 
   appRouter.use('/talks', route);
 
-  route.patch('/:talkID',
-      isAuth,
-      attachCurrentUser,
+  route.patch('/:talk_id', isAuth, attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           if (req.token?.username) {
             await talkService.update(
-                req.params.talkID,
+                req.params.talk_id,
                 req.token._id,
                 req.body.name ?? null,
                 req.body.description ?? null,
@@ -68,21 +66,12 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
         }
       });
 
-  route.delete('/:talkID',
-      isAuth,
-      validateParameters,
-      attachCurrentUser,
+  route.delete('/:talk_id', isAuth, validateParameters, attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           if (req.token?.username) {
-            await talkService.remove(
-                req.params.talkID,
-                req.token._id,
-            );
-
-            res.json({
-              'status': 'deleted',
-            });
+            await talkService.remove( req.params.talk_id, req.token._id);
+            res.json({'status': 'deleted'});
           } else {
             throw Error('Error occured during talk deletion.');
           }
@@ -94,10 +83,7 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
         }
       });
 
-  route.get('/:talkID',
-      isAuth,
-      validateParameters,
-      attachCurrentUser,
+  route.get('/:talk_id', isAuth, validateParameters, attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
         const errorMessage = generateError(
             ApiErrorType.TalkError,
