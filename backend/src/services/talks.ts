@@ -152,17 +152,14 @@ class TalksService {
     const query = [...this.aggregationQuery];
     const index = query.findIndex((query) => query.$unwind);
     query.splice(
-        index,
-        0,
+        index, 0,
         // Check if username is provided in the query.
         // If it is, find the user and get the talks.
         // Otherwise, get all talks.
         {$match: username?{'user.username': {$eq: username}}:{}},
     );
 
-    const talks = await this.talkModel.aggregate([
-      ...query,
-    ]);
+    const talks = await this.talkModel.aggregate([...query]);
     return talks;
   }
 

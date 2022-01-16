@@ -26,11 +26,8 @@ const Vote = new mongoose.Schema(
       },
     },
     {timestamps: true},
-).index({
-  user: 1, talk: 1,
-}, {unique: true},
-);
-
 // Indexing by user and talk to prevent user make multiple votes for one talk.
+).index({user: 1, talk: 1}, {unique: true});
+
 
 export default mongoose.model<VoteModel>('Vote', Vote);

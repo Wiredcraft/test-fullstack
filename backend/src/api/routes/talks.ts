@@ -31,10 +31,7 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
                 req.body.name ?? null,
                 req.body.description ?? null,
             );
-
-            res.json({
-              'status': 'patched',
-            });
+            res.json({'status': 'patched'});
           } else {
             throw Error('Error occured during talk update.');
           }
@@ -46,10 +43,7 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
         }
       });
 
-  route.get('/list/:username?',
-      isAuth,
-      validateParameters,
-      attachCurrentUser,
+  route.get('/list/:username?', isAuth, validateParameters, attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           const talkServiceResponse: any[] =
@@ -105,21 +99,13 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
         }
       });
 
-  route.post('/',
-      isAuth,
-      validateParameters,
-      attachCurrentUser,
+  route.post('/', isAuth, validateParameters, attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
-          const {
-            name,
-            description,
-          } = req.body;
+          const {name, description} = req.body;
+          const talk: ITalk = {name, description};
 
           const talk: ITalk = {
-            name,
-            description,
-          };
           const talkServiceResponse =
             await talkService.create(talk, req.currentUser?._id);
           res.json({

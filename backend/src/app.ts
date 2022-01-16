@@ -58,7 +58,7 @@ const startServer: Function = async (): Promise<Server> => {
       global.logger.info(`Server listening at http://${HOST}:${PORT} !`);
     });
   }
-}
+};
 
 startServer().catch((error: Error) => {
   handleFatalError(error);
