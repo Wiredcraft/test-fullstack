@@ -1,0 +1,17 @@
+{
+    "reporterOptions": {
+        "reportDir": "tests",
+        "reportFilename": "index"
+    },
+    "files": [
+        "tests/index.ts"
+    ],
+    "require": [
+        "ts-node/register"
+    ],
+    "recursive": true,
+    "exit": true,
+    "requiredFiles": [
+        "tests/index.ts"
+    ]
+}
