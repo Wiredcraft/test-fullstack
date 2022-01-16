@@ -3,7 +3,7 @@
 import {Application} from 'express';
 import {LeanDocument} from 'mongoose';
 import {Logger} from 'winston';
-import {TokenInformations} from 'interfaces/token';
+import TokenInformations from 'interfaces/token';
 import {UserModel} from './models';
 
 declare global {

@@ -3,7 +3,7 @@ import {
   port,
   str,
 } from 'envalid';
-import {Env} from '../interfaces/env';
+import Env from '../interfaces/env';
 
 /**
  * Class which handle the environment logic.

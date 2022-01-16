@@ -1,4 +1,4 @@
-export interface Env {
+interface Env {
     HOST: string;
     JWT_SECRET: string;
     LOG_LEVEL: string;
@@ -10,3 +10,5 @@ export interface Env {
     NODE_ENV: string;
     PORT: number;
 }
+
+export default Env;
