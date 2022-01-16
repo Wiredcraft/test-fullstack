@@ -4,6 +4,7 @@
  * `details` are the details of a validation error from `joi`.
  */
 interface ExtendedError extends Error {
+    type?: string;
     status?: number;
     details?: Array<any>;
 }

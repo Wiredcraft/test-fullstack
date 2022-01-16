@@ -17,7 +17,7 @@ const getTypeMessagePrefix: Function = (type: ApiErrorType): string => {
     case ApiErrorType.ValidationError:
       return 'Argument';
     default:
-      return 'Generic';
+      return 'Other';
   }
 };
 
@@ -37,8 +37,9 @@ const generateError: Function = (
     code?: number,
 ): ExtendedError => {
   const status: number = code ? code : 400;
-  const message: string = `${getTypeMessagePrefix(type)} error: ${details}`;
+  const message: string = `${details}`;
   const error: ExtendedError = Error(message);
+  error.type = `${getTypeMessagePrefix(type)} error`;
   error.status = status;
   return (error);
 };

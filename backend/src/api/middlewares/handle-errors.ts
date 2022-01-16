@@ -16,10 +16,15 @@ const handleErrors: ErrorRequestHandler = (
     _next: NextFunction,
 ): void => {
   const status: number = err.status || 500;
+  const type: string = err.type || 'Error';
   const message: string = err.message;
 
   res.status(status);
-  res.json({error: {message}});
+  res.json({
+    error: {
+      type,
+      message,
+    }});
   res.end();
 };
 
