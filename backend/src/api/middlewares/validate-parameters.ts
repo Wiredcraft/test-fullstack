@@ -31,7 +31,7 @@ const validateParameters:
  *
  * @param {Request} req - Express request object.
  *
- * @return {Joi.ObjectSchema} Schema corresponding to the current route.
+ * @return {Joi.ObjectSchema} - Validation schema of to the current route.
  */
 const getObjectSchema: Function = (req: Request): Joi.ObjectSchema => {
   let constraints = {};
