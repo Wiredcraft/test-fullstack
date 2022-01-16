@@ -150,7 +150,9 @@ class TalksService {
       username?: string,
   ): Promise<any[]> {
     const query = [...this.aggregationQuery];
-    const index = query.findIndex((query) => query.$unwind);
+    const index: number = query.findIndex((query) => {
+      return query.$unwind;
+    });
     query.splice(
         index, 0,
         // Check if username is provided in the query.

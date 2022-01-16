@@ -105,8 +105,7 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
           const {name, description} = req.body;
           const talk: ITalk = {name, description};
 
-          const talk: ITalk = {
-          const talkServiceResponse =
+          const talkServiceResponse: ITalk =
             await talkService.create(talk, req.currentUser?._id);
           res.json({
             'status': 'created',

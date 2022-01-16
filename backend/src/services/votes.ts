@@ -34,7 +34,7 @@ class VotesService {
       userVote: number,
       userID: string,
       talkID: string,
-  ) {
+  ): Promise<void> {
     const parameters = {
       user: userID,
       talk: talkID,
