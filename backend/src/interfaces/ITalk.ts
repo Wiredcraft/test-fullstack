@@ -4,6 +4,7 @@
 interface ITalk {
     name: string;
     description: string;
+   _id?: any;
 }
 
 export default ITalk;

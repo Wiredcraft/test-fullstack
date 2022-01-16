@@ -5,6 +5,7 @@ interface IUser {
     username: string;
     password: string;
     role: string;
+   _id?: any;
 }
 
 interface IUserInputDTO {
