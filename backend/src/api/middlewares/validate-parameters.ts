@@ -15,10 +15,21 @@ import handleErrors from './handle-errors';
  */
 const getObjectSchema: Function = (req: Request): Joi.ObjectSchema => {
   let constraints = {};
+
   if (req.baseUrl.endsWith('/auth')) {
     constraints = {
       username: Joi.string().required(),
       password: Joi.string().required(),
+    };
+  } else if (req.baseUrl.endsWith('/vote')) {
+    constraints = {
+      talkID: Joi.string().required(),
+      vote: Joi.number().min(-1).max(+1).required(),
+    };
+  } else if (req.baseUrl.endsWith('/talks') && req.method === 'POST') {
+    constraints = {
+      name: Joi.string().required(),
+      description: Joi.string().required(),
     };
   }
   return Joi.object(constraints);

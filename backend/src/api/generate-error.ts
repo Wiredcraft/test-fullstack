@@ -12,10 +12,14 @@ const getTypeMessagePrefix: Function = (type: ApiErrorType): string => {
   switch (type) {
     case ApiErrorType.RouteError:
       return 'Route';
+    case ApiErrorType.TalkError:
+      return 'Talk';
     case ApiErrorType.UserError:
       return 'User';
     case ApiErrorType.ValidationError:
       return 'Argument';
+    case ApiErrorType.VoteError:
+      return 'Vote';
     default:
       return 'Other';
   }

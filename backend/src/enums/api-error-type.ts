@@ -3,8 +3,10 @@
  */
 enum ApiErrorType {
     RouteError,
+    TalkError,
     UserError,
     ValidationError,
+    VoteError
 }
 
 export default ApiErrorType;

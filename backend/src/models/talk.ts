@@ -1,17 +1,14 @@
 import {TalkModel} from 'types/models';
 import mongoose from 'mongoose';
-import uuid from 'uuid';
 
 /**
  * Generate a Talks schema.
- * Contains `name`, `email`, `password`.
+ * Contains `name`, `description`, `user`, `votes`.
  *
  * @return `Talk` database schema model.
  */
 const Talk = new mongoose.Schema(
     {
-      _id: {type: String, default: uuid.v1, index: true},
-
       name: {
         type: String,
         required: [true, 'Please enter a full name'],
@@ -28,6 +25,9 @@ const Talk = new mongoose.Schema(
         ref: 'User',
       },
 
+      votes: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Vote',
+      }],
     },
     {timestamps: true},
 );
