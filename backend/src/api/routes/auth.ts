@@ -34,8 +34,8 @@ const authRoute: Function = (appRouter: router): void => {
             );
             return;
           }
-          const {token} = register;
-          return res.status(201).json({token});
+          const {token, user} = register;
+          return res.status(201).json({token, id: user._id});
         } catch (error: any) {
           handleErrors(
               generateError(ApiErrorType.UserError, error.message),
@@ -62,8 +62,8 @@ const authRoute: Function = (appRouter: router): void => {
             );
             return;
           }
-          const {token} = login;
-          return res.json({token}).status(200);
+          const {token, user} = login;
+          return res.json({token, id: user._id}).status(200);
         } catch (error: any) {
           handleErrors(
               generateError(ApiErrorType.UserError, error.message),

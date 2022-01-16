@@ -1,15 +1,17 @@
 import IUser, {IUserInputDTO} from '../interfaces/IUser';
-import UserModel from '../models/user';
+import {UserModel} from '../types/models';
 import argon2 from 'argon2';
 import environment from '../lib/environment';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import {randomBytes} from 'crypto';
+import userModel from '../models/user';
 
 /**
  * Authentication service.
  */
 class AuthService {
-  userModel: typeof UserModel;
+  userModel: mongoose.Model<UserModel>;
   jwtSecret: string;
 
   /**
@@ -20,7 +22,7 @@ class AuthService {
       JWT_SECRET,
     } = environment.getEnvironment();
 
-    this.userModel = UserModel;
+    this.userModel = userModel;
     this.jwtSecret = JWT_SECRET;
   }
 
@@ -90,6 +92,7 @@ class AuthService {
 
     return jwt.sign(
         {
+          _id: user._id.toString(),
           role: user.role,
           username: user.username,
           exp: exp.getTime() / 1000,

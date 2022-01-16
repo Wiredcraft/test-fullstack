@@ -17,8 +17,8 @@ const attachCurrentUser: RequestHandler = async (
     next: NextFunction,
 ) => {
   try {
-    const userRecord = await UserModel.findOne({
-      username: req.token?.username,
+    const userRecord = await UserModel.findById({
+      _id: req.token?._id,
     });
     if (!userRecord) {
       return handleErrors(
