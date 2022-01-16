@@ -61,7 +61,7 @@ class TalksService {
       {
         $project: {
           user: '$user.username',
-          vote: '$vote.count',
+          rating: '$vote.count',
           name: '$name',
           description: '$description',
         },
