@@ -35,8 +35,9 @@ class AuthService {
   { user: IUser; token: string }
   > {
     try {
-      const salt = randomBytes(32);
-      const hashedPassword = await argon2.hash(userInputDTO.password, {salt});
+      const salt: Buffer = randomBytes(32);
+      const hashedPassword: string =
+        await argon2.hash(userInputDTO.password, {salt});
 
       const userRecord = await this.userModel.create({
         ...userInputDTO,
@@ -45,7 +46,7 @@ class AuthService {
         salt: salt.toString('hex'),
         password: hashedPassword,
       });
-      const token = this.generateToken(userRecord);
+      const token: string = this.generateToken(userRecord);
       if (!userRecord) {
         throw Error('User cannot be created');
       }
@@ -70,9 +71,10 @@ class AuthService {
     if (!userRecord) {
       throw Error('User cannot be found');
     }
-    const validPassword = await argon2.verify(userRecord.password, password);
+    const validPassword: boolean =
+      await argon2.verify(userRecord.password, password);
     if (validPassword) {
-      const token = this.generateToken(userRecord);
+      const token: string = this.generateToken(userRecord);
       const user = userRecord.toObject();
       return {user, token};
     } else {
@@ -86,9 +88,9 @@ class AuthService {
    * @param {IUser} user User interface.
    * @return {string} JSON Web Token.
    */
-  private generateToken(user: IUser) {
-    const today = new Date();
-    const exp = new Date(today);
+  private generateToken(user: IUser): string {
+    const today: Date = new Date();
+    const exp: Date = new Date(today);
     exp.setDate(today.getDate() + 60);
 
     return jwt.sign(

@@ -1,15 +1,15 @@
+import jwt, {GetTokenCallback, RequestHandler} from 'express-jwt';
 import {Request} from 'express';
 import environment from '../../lib/environment';
-import jwt from 'express-jwt';
 
 /**
  * Extract the `authorization` token from the request headers.
  * (eg: authorization: `Bearer <token>`)
  *
  * @param {Request} req - Express request object.
- * @return {string} Token extracted from the request headers.
+ * @return {string | null} - Token extracted from the request headers.
  */
-const getTokenFromHeader = (req: Request) => {
+const getTokenFromHeader: GetTokenCallback = (req: Request): string | null => {
   if (
     (
       req.headers.authorization &&
@@ -29,7 +29,7 @@ const getTokenFromHeader = (req: Request) => {
  * Call JSON Web Tokens middleware from request.
  * (eg: authorization: `Bearer <token>`)
  */
-const isAuth = jwt({
+const isAuth: RequestHandler = jwt({
   algorithms: ['HS256'],
   secret: environment.getEnvironment().JWT_SECRET,
   userProperty: 'token',

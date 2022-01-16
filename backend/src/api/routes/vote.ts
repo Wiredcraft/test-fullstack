@@ -14,7 +14,7 @@ import validateParameters from '../middlewares/validate-parameters';
  */
 const voteRoute: Function = async (appRouter: router): Promise<void> => {
   const route: router = router();
-  const voteService = new VotesService();
+  const voteService: VotesService = new VotesService();
 
   appRouter.use('/vote', route);
 
@@ -25,10 +25,9 @@ const voteRoute: Function = async (appRouter: router): Promise<void> => {
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           if (req.token?.username) {
-            const {talkID, vote} = req.body;
-
+            const {talk_id: talkID, vote} = req.body;
             voteService.vote(vote, req.token?._id, talkID);
-            res.json({status: 'voted', vote: vote, talkID});
+            res.json({status: 'voted', vote, talkID});
           } else {
             throw Error('Error occured during vote.');
           }

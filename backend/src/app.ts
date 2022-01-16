@@ -32,7 +32,7 @@ const handleFatalError: Function = (error: Error): void => {
 /**
  * Initialize the API.
  */
-async function startServer(): Promise<Server> {
+const startServer: Function = async (): Promise<Server> => {
   {
     const {
       HOST,

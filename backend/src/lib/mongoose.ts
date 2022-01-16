@@ -5,7 +5,7 @@ import environment from '../lib/environment';
  ** Open the database connection.
  ** @return Promise wrapper around database connection instance.
  */
-async function connectToMongoDatabase(): Promise<Mongoose> {
+const connectToMongoDatabase: Function = async (): Promise<Mongoose> => {
   const {
     MONGO_DB,
     MONGO_HOST,

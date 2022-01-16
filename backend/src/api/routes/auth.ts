@@ -12,7 +12,7 @@ import validateParameters from '../middlewares/validate-parameters';
  */
 const authRoute: Function = (appRouter: router): void => {
   const route: router = router();
-  const authService = new AuthService();
+  const authService: AuthService = new AuthService();
 
   appRouter.use('/auth', route);
 
@@ -51,7 +51,7 @@ const authRoute: Function = (appRouter: router): void => {
       async (req: Request, res: Response, next: NextFunction) => {
         try {
           const {username, password} = req.body;
-          const login = await authService.login(username, password);
+          const login: {user: IUser; token: string} =
           if (!login) {
             handleErrors(
                 generateError(

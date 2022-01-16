@@ -15,7 +15,7 @@ import validateParameters from '../middlewares/validate-parameters';
  */
 const talksRoute: Function = async (appRouter: router): Promise<void> => {
   const route: router = router();
-  const talkService = new TalksService();
+  const talkService: TalksService = new TalksService();
 
   appRouter.use('/talks', route);
 
@@ -52,7 +52,7 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
       attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
-          const talkServiceResponse =
+          const talkServiceResponse: any[] =
             await talkService.list(req.params.username);
 
           res.json(talkServiceResponse);
@@ -96,8 +96,8 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
       attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
         try {
-          const talkServiceResponse =
-            await talkService.get(req.params.talkID);
+          const talkServiceResponse: any =
+            await talkService.get(req.params.talk_id);
 
           return res.json(talkServiceResponse.shift());
         } catch (error: any) {

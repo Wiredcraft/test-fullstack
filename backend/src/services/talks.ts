@@ -82,7 +82,7 @@ class TalksService {
       userID: string,
       name?: string,
       description?: string,
-  ) {
+  ): Promise<any> {
     const data: any = {
       _id: talkID,
       user: userID,
@@ -113,7 +113,7 @@ class TalksService {
   public async remove(
       talkID: string,
       userID: string,
-  ) {
+  ): Promise<void> {
     // Delete all votes related to the talk.
     await this.voteModel.deleteMany({talk: talkID});
 
@@ -160,12 +160,10 @@ class TalksService {
    * @return {Promise<ITalk>} - Found talk.
    * @throws {ApiError} - Throw if the talk cannot be found.
    */
-  public async get(
-      talkID: string,
-  ): Promise<any> {
-    const objId = new mongoose.Types.ObjectId(talkID);
+  public async get(talkID: string): Promise<any> {
+    const id: mongoose.Types.ObjectId = new mongoose.Types.ObjectId(talkID);
     const talk = await this.talkModel.aggregate([
-      {$match: {'_id': objId}},
+      {$match: {'_id': id}},
       ...this.aggregationQuery,
     ]);
     return talk;
