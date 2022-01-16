@@ -1,7 +1,7 @@
+import IUser, {IUserInputDTO} from '../../interfaces/IUser';
 import {NextFunction, Request, Response, Router as router} from 'express';
 import ApiErrorType from '../../enums/api-error-type';
 import AuthService from '../../services/auth';
-import {IUserInputDTO} from '../../interfaces/IUser';
 import generateError from '../generate-error';
 import handleErrors from '../middlewares/handle-errors';
 import validateParameters from '../middlewares/validate-parameters';
@@ -16,59 +16,46 @@ const authRoute: Function = (appRouter: router): void => {
 
   appRouter.use('/auth', route);
 
-  route.post(
-      '/register',
-      validateParameters,
+  route.post('/register', validateParameters,
       async (req: Request, res: Response, next: NextFunction) => {
+        const errorMessage: string = generateError(
+            ApiErrorType.AuthError,
+            'Cannot sign-up. User already exists?',
+        );
         try {
-          const register = await authService.register(
-            req.body as IUserInputDTO,
-          );
+          const register: {user: IUser; token: string} =
+            await authService.register(req.body as IUserInputDTO);
           if (!register) {
-            handleErrors(
-                generateError(
-                    ApiErrorType.UserError,
-                    'Cannot sign-up. User already exists?',
-                ),
-                req, res, next,
-            );
+            handleErrors(errorMessage, req, res, next);
             return;
           }
           const {token, user} = register;
           return res.status(201).json({token, id: user._id});
         } catch (error: any) {
-          handleErrors(
-              generateError(ApiErrorType.UserError, error.message),
-              req, res, next,
-          );
+          handleErrors(errorMessage, req, res, next);
         }
       },
   );
 
-  route.post(
-      '/login',
-      validateParameters,
+  route.post('/login', validateParameters,
       async (req: Request, res: Response, next: NextFunction) => {
+        const errorMessage: string = generateError(
+            ApiErrorType.AuthError,
+            'Problem while logging in. Are the credentials valid?',
+        );
+
         try {
           const {username, password} = req.body;
           const login: {user: IUser; token: string} =
+          await authService.login(username, password);
           if (!login) {
-            handleErrors(
-                generateError(
-                    ApiErrorType.UserError,
-                    'Problem while logging in. Are the credentials valid?',
-                ),
-                req, res, next,
-            );
+            handleErrors(errorMessage, req, res, next);
             return;
           }
           const {token, user} = login;
           return res.json({token, id: user._id}).status(200);
         } catch (error: any) {
-          handleErrors(
-              generateError(ApiErrorType.UserError, error.message),
-              req, res, next,
-          );
+          handleErrors(errorMessage, req, res, next);
         }
       },
   );

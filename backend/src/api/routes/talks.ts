@@ -60,7 +60,9 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
           res.json(talkServiceResponse);
         } catch (error: any) {
           handleErrors(
-              generateError(ApiErrorType.TalkError, error.message),
+              generateError(ApiErrorType.TalkError,
+                  'Error occured during user talk fetching.',
+              ),
               req, res, next,
           );
         }
@@ -97,16 +99,23 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
       validateParameters,
       attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
+        const errorMessage = generateError(
+            ApiErrorType.TalkError,
+            'Error occured during individual talk fetching.',
+        );
+
         try {
           const talkServiceResponse: any =
             await talkService.get(req.params.talk_id);
 
+          if (talkServiceResponse.length === 0) {
+            handleErrors(errorMessage, req, res, next);
+            return;
+          }
+
           return res.json(talkServiceResponse.shift());
         } catch (error: any) {
-          handleErrors(
-              generateError(ApiErrorType.TalkError, error.message),
-              req, res, next,
-          );
+          handleErrors(errorMessage, req, res, next);
         }
       });
 
@@ -133,7 +142,10 @@ const talksRoute: Function = async (appRouter: router): Promise<void> => {
           });
         } catch (error: any) {
           handleErrors(
-              generateError(ApiErrorType.TalkError, error.message),
+              generateError(
+                  ApiErrorType.TalkError,
+                  'Error occured during talk creation.',
+              ),
               req, res, next,
           );
         }

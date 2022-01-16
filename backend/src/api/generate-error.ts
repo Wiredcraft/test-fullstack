@@ -10,6 +10,8 @@ import ExtendedError from '../interfaces/extended-errors';
  */
 const getTypeMessagePrefix: Function = (type: ApiErrorType): string => {
   switch (type) {
+    case ApiErrorType.AuthError:
+      return 'Auth';
     case ApiErrorType.RouteError:
       return 'Route';
     case ApiErrorType.TalkError:

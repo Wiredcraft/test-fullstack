@@ -25,6 +25,12 @@ const voteRoute: Function = async (appRouter: router): Promise<void> => {
       validateParameters,
       attachCurrentUser,
       async (req: Request, res: Response, next: NextFunction) => {
+        const errorMessage: string = generateError(
+            ApiErrorType.VoteError,
+            'Error occured during vote creation.',
+        );
+
+
         try {
           if (req.token?.username) {
             const {talk_id: talkID, vote} = req.body;
@@ -34,10 +40,7 @@ const voteRoute: Function = async (appRouter: router): Promise<void> => {
             throw Error('Error occured during vote.');
           }
         } catch (error: any) {
-          handleErrors(
-              generateError(ApiErrorType.VoteError, error.message),
-              req, res, next,
-          );
+          handleErrors(errorMessage, req, res, next);
         }
       });
 };

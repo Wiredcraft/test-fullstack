@@ -36,8 +36,8 @@ class VotesService {
       talkID: string,
   ) {
     const parameters = {
-      talk: talkID,
       user: userID,
+      talk: talkID,
       vote: userVote,
     };
 
@@ -69,7 +69,7 @@ class VotesService {
         }
       }
     } else {
-      throw new Error('Talk not found');
+      throw new Error('Error while updating vote.');
     }
   }
 }
