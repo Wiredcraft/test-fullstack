@@ -58,14 +58,15 @@ class AuthService {
 
   /**
    * login and retrieve the user interface and it's JSON web token.
-   * @param {string} email The User email.
+   * @param {string} username The User username.
    * @param {string} password The User password (hashed).
    * @return {Promise<IUser, string>} User and JWT.
    */
   public async login(
-      email: string, password: string,
+      username: string, password: string,
   ): Promise<{ user: IUser; token: string }> {
-    const userRecord = await this.userModel.findOne({email});
+    const userRecord = await this.userModel.findOne({username});
+
     if (!userRecord) {
       throw Error('User cannot be found');
     }
