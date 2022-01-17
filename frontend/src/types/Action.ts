@@ -1,0 +1,4 @@
+export type APIFailureAction = 'LOGIN_USER_FAILURE' | 'REGISTER_USER_FAILURE';
+export type APIResetAction = 'LOGIN_USER_RESET' | 'REGISTER_USER_RESET';
+export type APIStartedAction = 'LOGIN_USER_STARTED' | 'REGISTER_USER_STARTED';
+export type APISuccessAction = 'LOGIN_USER_SUCCESS' | 'REGISTER_USER_SUCCESS';

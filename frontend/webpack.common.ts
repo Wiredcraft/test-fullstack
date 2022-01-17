@@ -1,7 +1,8 @@
-
 import {Configuration} from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
+import Dotenv from 'dotenv-webpack';
+
 const config: Configuration = {
   context: path.join(__dirname, 'src'),
   entry: './index.tsx',
@@ -22,6 +23,9 @@ const config: Configuration = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
   },
   plugins: [
+    new Dotenv({
+      path: './.env',
+    }),
     new CopyWebpackPlugin({
       patterns: [
         {
