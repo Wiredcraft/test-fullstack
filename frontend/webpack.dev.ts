@@ -1,8 +1,8 @@
 import {merge} from 'webpack-merge';
-import {DefinePlugin} from 'webpack';
 import {WebpackConfiguration} from 'webpack-dev-server';
 import common from './webpack.common';
 import path from 'path';
+import {DefinePlugin} from 'webpack';
 
 const config: WebpackConfiguration = merge(common, {
   mode: 'development',
@@ -14,6 +14,7 @@ const config: WebpackConfiguration = merge(common, {
   ],
 
   devServer: {
+    historyApiFallback: true,
     static: {
       directory: path.join(__dirname, 'public'),
     },
