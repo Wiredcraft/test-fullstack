@@ -1,0 +1,29 @@
+
+html, body, #app {
+  height: 100%;
+}
+
+body {
+    margin: 0;
+    background-color: #F0F3FA;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+input[type="text"], 
+input[type="password"], 
+textarea, 
+select { 
+  outline-color: #f18f34;
+}
+
+::selection {
+  background: rgba(255, 152, 0, 0.50)
+}
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: #f18f34;
+}
