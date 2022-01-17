@@ -30,7 +30,11 @@ const authRoute: Function = (appRouter: router): void => {
             return;
           }
           const {token, user} = register;
-          return res.status(201).json({token, id: user._id});
+          return res.status(201).json({
+            token,
+            id: user._id,
+            username: user.username,
+          });
         } catch (error: any) {
           handleErrors(errorMessage, req, res, next);
         }
@@ -53,7 +57,11 @@ const authRoute: Function = (appRouter: router): void => {
             return;
           }
           const {token, user} = login;
-          return res.json({token, id: user._id}).status(200);
+          return res.json({
+            token,
+            id: user._id,
+            username: user.username,
+          }).status(200);
         } catch (error: any) {
           handleErrors(errorMessage, req, res, next);
         }

@@ -1,5 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {isAuthenticated} from '../../utils/auth';
 
 import './index.css';
 
@@ -15,15 +16,26 @@ const Navbar = () => {
             marginTop: '0.625rem',
             marginBottom: '0.625rem',
           }}
-          width={175} />
+          width={175}
+        />
       </NavLink>
       <ul className="nav-links">
+
+        {isAuthenticated() ?
         <li className="nav-item">
-          <NavLink to="/login">Login</NavLink>
-        </li>
-        <li className="nav-item">
-          <NavLink to="/register">Register</NavLink>
-        </li>
+          <NavLink to="/logout">Logout</NavLink>
+        </li> :
+        <React.Fragment>
+          <li className="nav-item">
+            <NavLink to="/login">Login</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/register">Register</NavLink>
+          </li>
+        </React.Fragment>
+        }
+
+
       </ul>
     </nav>
   );

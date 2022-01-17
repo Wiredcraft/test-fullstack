@@ -7,29 +7,32 @@ import {IAppState} from '../../interfaces/IRootState';
 import {IUserReducer} from '../../interfaces/IReducer';
 import Centered from '../../components/centered';
 import Container from '../../components/container';
+import {setCookie} from '../../utils/cookies';
+import {Navigate} from 'react-router-dom';
+import {isAuthenticated} from '../../utils/auth';
 
 function Auth(props: InferProps<typeof Auth.propTypes>) {
-  const [, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
   const isLogin: boolean = props.type === 'login';
 
   useEffect(() => {
     const data: IUserReducer = isLogin ?
     props.loginUserReducer : props.registerUserReducer;
     if (data.response?.token) {
-      alert('Request done successfully !');
-      // console.log('user', JSON.stringify(data.response.user), 365);
-      // setCookie('token', data.response.token, 365);
+      setCookie('username', data.response.username || '', 60);
+      setCookie('token', data.response.token, 60);
       setSuccess(true);
     }
   }, [isLogin, props.loginUserReducer, props.registerUserReducer]);
 
   return (
-    <Container>
-      <Centered>
-        <UserForm type={props.type} dispatch={props.dispatch} />
-      </Centered>
-    </Container>
-  );
+       isAuthenticated() || success ? <Navigate to="/talks" /> : (
+       <Container>
+         <Centered>
+           <UserForm type={props.type} dispatch={props.dispatch} />
+         </Centered>
+       </Container>
+  ));
 }
 
 Auth.propTypes = {

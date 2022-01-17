@@ -1,4 +1,5 @@
 export interface IAPIResponse {
+    username?: string;
     token?: string;
     id?: string;
 }

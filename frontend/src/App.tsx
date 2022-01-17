@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 import Auth from './views/Auth';
 import Navbar from './components/Navbar';
 import {IState} from './interfaces/IState';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import Centered from './components/centered';
-import Container from './components/container';
+import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
+import Talks from './views/Talks';
+import PrivateRoute from './components/privateRoute';
+import {isAuthenticated} from './utils/auth';
 
 /**
  * The main Application component.
@@ -14,18 +15,23 @@ import Container from './components/container';
  */
 function App(): ReactElement {
   return (
-    <Router>
+    <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={
-          <Container>
-            <Centered>Please login or register to proceed.</Centered>
-          </Container>
+          isAuthenticated() ?
+          <Navigate to="/login" /> :
+          <Navigate to="/talks" />
+        } />
+        <Route path="/talks" element={
+          <PrivateRoute>
+            <Talks />
+          </PrivateRoute>
         } />
         <Route path="/login" element={ <Auth type="login" />} />
         <Route path="/register" element={ <Auth type="register" />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
