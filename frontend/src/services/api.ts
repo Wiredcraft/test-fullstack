@@ -1,5 +1,5 @@
-import IParameters from 'src/interface/IParameters';
-import {IRequest} from 'src/interface/IRequest';
+import IParameters from 'src/interfaces/IParameters';
+import {IRequest} from 'src/interfaces/IRequest';
 import HTTPMethod from 'src/types/HTTPMethod';
 
 const fetchService = (endpoint: string, method: HTTPMethod) => {
@@ -10,12 +10,6 @@ const fetchService = (endpoint: string, method: HTTPMethod) => {
       parameters.headers = {'Content-Type': 'application/json'};
       parameters.body = JSON.stringify(request.payload);
     }
-
-
-    console.log({
-      endpoint,
-      parameters,
-    });
 
     const response = await fetch(endpoint, parameters);
     const json = await response.json();

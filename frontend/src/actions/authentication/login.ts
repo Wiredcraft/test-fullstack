@@ -1,4 +1,4 @@
-import {IPayload} from '../../interface/IRequest';
+import {IPayload} from '../../interfaces/IRequest';
 
 export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
 export const LOGIN_USER_RESET = 'LOGIN_USER_RESET';

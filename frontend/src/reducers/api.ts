@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-import {IUserReducer} from 'src/interface/IReducer';
+import {IUserReducer} from 'src/interfaces/IReducer';
 import {
   APIFailureAction,
   APIResetAction,

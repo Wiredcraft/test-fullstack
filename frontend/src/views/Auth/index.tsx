@@ -3,8 +3,10 @@ import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import PropTypes, {InferProps} from 'prop-types';
 import UserForm from './component/UserForm';
-import {IAppState} from 'src/interface/IRootState';
-import { IUserReducer } from 'src/interface/IReducer';
+import {IAppState} from '../../interfaces/IRootState';
+import {IUserReducer} from '../../interfaces/IReducer';
+import Centered from '../../components/centered';
+import Container from '../../components/container';
 
 function Auth(props: InferProps<typeof Auth.propTypes>) {
   const [, setSuccess] = useState(false);
@@ -22,7 +24,11 @@ function Auth(props: InferProps<typeof Auth.propTypes>) {
   }, [isLogin, props.loginUserReducer, props.registerUserReducer]);
 
   return (
-    <UserForm type={props.type} dispatch={props.dispatch} />
+    <Container>
+      <Centered>
+        <UserForm type={props.type} dispatch={props.dispatch} />
+      </Centered>
+    </Container>
   );
 }
 

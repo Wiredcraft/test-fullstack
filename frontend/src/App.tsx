@@ -1,8 +1,12 @@
 /* eslint-disable no-undef */
 import React, {ReactElement} from 'react';
 import {connect} from 'react-redux';
-import Auth from './components/Auth';
-import {IState} from './interface/IState';
+import Auth from './views/Auth';
+import Navbar from './components/Navbar';
+import {IState} from './interfaces/IState';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Centered from './components/centered';
+import Container from './components/container';
 
 /**
  * The main Application component.
@@ -10,13 +14,18 @@ import {IState} from './interface/IState';
  */
 function App(): ReactElement {
   return (
-    <div>
-      <h1>你好，世界</h1>
-      <h2>Login</h2>
-      <Auth type='login' />
-      <h2>Register</h2>
-      <Auth type='register' />
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={
+          <Container>
+            <Centered>Please login or register to proceed.</Centered>
+          </Container>
+        } />
+        <Route path="/login" element={ <Auth type="login" />} />
+        <Route path="/register" element={ <Auth type="register" />} />
+      </Routes>
+    </Router>
   );
 }
 

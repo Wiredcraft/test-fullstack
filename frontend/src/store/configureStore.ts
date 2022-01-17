@@ -5,7 +5,6 @@ import rootReducer from '../reducers';
 import rootSaga from '../sagas';
 
 const configureStore = () => {
-  console.log('Inside!');
   const sagaMiddleware: SagaMiddleware<Object> = createSagaMiddleware();
 
   return {

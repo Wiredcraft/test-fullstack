@@ -1,4 +1,4 @@
-import {IPayload} from '../../interface/IRequest';
+import {IPayload} from '../../interfaces/IRequest';
 
 export const REGISTER_USER_FAILURE = 'REGISTER_USER_FAILURE';
 export const REGISTER_USER_RESET = 'REGISTER_USER_RESET';
