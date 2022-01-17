@@ -1,0 +1,11 @@
+.root {
+  padding: 8px;
+
+  .formFiled {
+    margin-top: 8px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}

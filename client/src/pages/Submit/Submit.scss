@@ -1,0 +1,14 @@
+.root {
+
+  .formField {
+    margin-bottom: 8px;
+
+    > label {
+      vertical-align: top;
+      display: inline-block;
+      min-width: 30px;
+      color: #828282;
+      margin-right: 4px;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+node_modules
+.env
+pouch__all_dbs__
+_db
+__db_*
