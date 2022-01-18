@@ -7,10 +7,9 @@ import Navbar from './components/Navbar';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import Talks from './views/Talks';
 import PrivateRoute from './components/privateRoute';
-import {checkAuth} from './utils/auth';
 import Logout from './views/Auth/component/logout';
 import {userInitAction} from './actions/user';
-import {getCookie} from './utils/cookies';
+import {checkCookie, getCookie} from './utils/cookies';
 import PropTypes, {InferProps} from 'prop-types';
 import {IAppState} from './interfaces/IRootState';
 
@@ -45,7 +44,7 @@ function App(props: InferProps<typeof App.propTypes>): ReactElement {
       <Navbar />
       <Routes>
         <Route path="/" element={
-          checkAuth() ?
+          checkCookie() ?
           <Navigate to="/login" /> :
           <Navigate to="/talks" />
         } />

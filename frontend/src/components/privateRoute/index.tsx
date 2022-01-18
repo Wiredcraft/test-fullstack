@@ -3,7 +3,7 @@
 
 import React from 'react';
 import {Navigate} from 'react-router-dom';
-import {checkAuth} from '../../utils/auth';
+import {checkCookie} from '../../utils/cookies';
 
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 const index = (props: Props) => {
   return (
     <React.Fragment>
-      {checkAuth() ? props.children : <Navigate to="/login" />}
+      {checkCookie() ? props.children : <Navigate to="/login" />}
     </React.Fragment>);
 };
 
