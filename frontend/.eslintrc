@@ -2,7 +2,17 @@
     "extends": [
         "react-app",
         "react-app/jest",
-        "eslint:recommended", 
+        "eslint:recommended",
         "google"
-    ]
+    ],
+    "rules": {
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
+            }
+        ]
+    }
 }
