@@ -1,10 +1,10 @@
 import './index.css';
 
 import {IAPIPayload, IAPIState} from '../../../interfaces/IAPI';
-import {IAppState, IOwnProps} from '../../../interfaces/IRootState';
 import PropTypes, {InferProps} from 'prop-types';
 import React, {ReactElement, useEffect} from 'react';
 import Button from '../../../components/button';
+import {IOwnProps} from '../../../interfaces/IRootState';
 import {IUserFormEvent} from '../../../interfaces/IUserFormEvent';
 import authentication from '../../../actions/api/authentication';
 import {connect} from 'react-redux';
@@ -19,19 +19,25 @@ import {connect} from 'react-redux';
  * @return {ReactElement}
  */
 function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
-  // @TODO: Error message, loading in form-message div
+  const [message, setMessage] = React.useState('');
 
   useEffect(() => {
-    const test: IAPIState = props.apiLoginUserReducer as IAPIState;
+    const loginUserReducer: IAPIState = props.apiLoginUserReducer as IAPIState;
+    const registerUserReducer: IAPIState =
+    props.apiRegisterUserReducer as IAPIState;
 
-    console.log(test.error);
+    const errorMessage = props.type === 'login' ?
+  loginUserReducer.error?.message :
+  registerUserReducer.error?.message;
+
+    setMessage(errorMessage || '');
   }, [
+    props,
+    props.type,
     props.apiLoginUserReducer,
     props.apiRegisterUserReducer,
   ]);
 
-
-  
 
   const handleSubmit = (event: React.FormEvent<IUserFormEvent>): void => {
     event.preventDefault();
@@ -59,12 +65,12 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
 
       <div className="form-group">
         <label>Username</label>
-        <input type="text" id="username" />
+        <input type="text" id="username" required pattern="[A-Za-z0-9]{1,20}" />
       </div>
 
       <div className="form-group">
         <label>Password</label>
-        <input type="password" id="password" />
+        <input type="password" id="password" required pattern="[A-Za-z0-9]{1,20}"/>
       </div>
 
       <div className='flex-reverse'>
@@ -74,7 +80,9 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
       </div>
 
       <p/>
-      <div className='center-text' id='form-message' />
+      <div className='center-text' id='form-message'>
+        {message}
+      </div>
 
     </form>
 
@@ -90,7 +98,7 @@ UserForm.propTypes = {
 
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const mapStateToProps = (state: IAppState, _ownProps: IOwnProps) => {
+const mapStateToProps = (state: any, _ownProps: IOwnProps) => {
   return {
     apiLoginUserReducer: state.apiLoginUserReducer,
     apiRegisterUserReducer: state.apiLoginUserReducer,
