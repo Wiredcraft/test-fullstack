@@ -1,15 +1,15 @@
-import {api as apiActions} from '../actions';
-import {authentication as apiAuthenticationService} from '../services';
-
-import {call, CallEffect, put, SagaReturnType} from 'redux-saga/effects';
 import {
   APIFailureAction,
   APISuccessAction,
 } from '../types/API';
-import {Service} from '../types/Service';
+import {CallEffect, SagaReturnType, call, put} from 'redux-saga/effects';
 import {SagaIterator} from 'redux-saga';
-import {user} from '../actions';
+import {Service} from '../types/Service';
 import {UserAction} from 'src/types/User';
+import {api as apiActions} from '../actions';
+import {authentication as apiAuthenticationService} from '../services';
+import {user} from '../actions';
+
 
 const fetchData = (
     service: Service,

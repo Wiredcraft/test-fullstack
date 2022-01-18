@@ -1,15 +1,15 @@
-import React, {ReactElement, useEffect} from 'react';
-import {connect} from 'react-redux';
-import Auth from './views/Auth';
-import Navbar from './components/Navbar';
 import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
-import Talks from './views/Talks';
-import PrivateRoute from './components/privateRoute';
-import Logout from './views/Auth/component/logout';
-import {userInitAction} from './actions/user';
-import {checkCookie, getCookie} from './utils/cookies';
 import PropTypes, {InferProps} from 'prop-types';
+import React, {ReactElement, useEffect} from 'react';
+import {checkCookie, getCookie} from './utils/cookies';
+import Auth from './views/Auth';
 import {IAppState} from './interfaces/IRootState';
+import Logout from './views/Auth/component/logout';
+import Navbar from './components/Navbar';
+import PrivateRoute from './components/privateRoute';
+import Talks from './views/Talks';
+import {connect} from 'react-redux';
+import {userInitAction} from './actions/user';
 
 /**
  * Main application component.
@@ -71,6 +71,6 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (_state: IAppState) => ({});
+const mapStateToProps = (_state: IAppState) => {};
 
 export default connect(mapStateToProps)(App);

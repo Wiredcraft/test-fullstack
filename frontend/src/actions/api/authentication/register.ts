@@ -12,7 +12,7 @@ export const apiRegisterUserAction = (payload: IAPIPayload): IAPIRequest => {
   };
 };
 
-export const apiRegisterUserResetAction = () => {
+export const apiRegisterUserResetAction = (): IAPIRequest => {
   return {
     type: API_REGISTER_USER_RESET,
   };

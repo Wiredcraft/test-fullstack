@@ -1,12 +1,18 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {NavLink} from 'react-router-dom';
-import {IUserState} from 'src/interfaces/IUser';
-import {IAppState} from '../../interfaces/IRootState';
-
 import './index.css';
+import React, {ReactElement} from 'react';
+import {IAppState} from '../../interfaces/IRootState';
+import {NavLink} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-const Navbar = (props: {userReducer: IUserState}) => {
+/**
+  * The navbar component.
+  * If the user is not authenticated, display Login and Register,
+  * otherwise display the Logout button.
+  * @param {Props} props
+  * @param {IUserState} props.userReducer - User reducer
+  * @return {ReactElement}
+ */
+function Navbar(props: { userReducer: { isLoggedIn: boolean } }): ReactElement {
   return (
     <nav className="navbar">
       <NavLink to="/">
@@ -39,11 +45,14 @@ const Navbar = (props: {userReducer: IUserState}) => {
       </ul>
     </nav>
   );
+}
+
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const mapStateToProps = (state: IAppState) => {
+  return {
+    userReducer: state.userReducer,
+  };
 };
-
-
-const mapStateToProps = (state: IAppState) => ({
-  userReducer: state.userReducer,
-});
 
 export default connect(mapStateToProps)(Navbar);

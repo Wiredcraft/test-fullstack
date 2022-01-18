@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 
 interface Props {
     children: React.ReactNode;
-    type: 'submit' | 'button'
+    type: 'submit' | 'button';
 }
 
-const index = (props: Props) => {
+/**
+  * Display a styled button.
+  * @param {Props} props
+  * @param {ReactElement} props.children - Children to display
+  * @return {ReactElement}
+ */
+const Button = (props: Props): ReactElement => {
   return (
     <button style={{
       backgroundColor: '#333333',
@@ -22,4 +28,4 @@ const index = (props: Props) => {
     </button>);
 };
 
-export default index;
+export default Button;

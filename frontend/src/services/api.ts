@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import HTTPMethod from '../types/HTTPMethod';
 import {IAPIRequest} from '../interfaces/IAPI';
 import IParameters from '../interfaces/IParameters';
-import HTTPMethod from '../types/HTTPMethod';
 
 const fetchService = (endpoint: string, method: HTTPMethod) => {
   return async function service(request: IAPIRequest) {

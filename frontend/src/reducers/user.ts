@@ -1,6 +1,6 @@
 
 
-import {IUserAction, IUserState} from '../interfaces/IUser';
+import {IUserAction, IUserPayload, IUserState} from '../interfaces/IUser';
 import {UserAction, UserReducerParameters} from '../types/User';
 import {user} from '../actions';
 
@@ -52,7 +52,7 @@ class User {
  */
   reducer(
       state: IUserState = this.initialState, action: IUserAction,
-  ): IUserState {
+  ): any {
     switch (action.type) {
       case this.login:
         return {

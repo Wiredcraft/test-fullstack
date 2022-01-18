@@ -1,11 +1,11 @@
-import React, {ReactElement, useEffect} from 'react';
-import {connect} from 'react-redux';
-import {Navigate} from 'react-router';
-import clearNetworkRequests from '../../../utils/clearNetworkRequests';
-import {checkCookie, clearCookie} from '../../../utils/cookies';
-import {userLoggedOutAction} from '../../../actions/user';
 import {IAppState, IOwnProps} from 'src/interfaces/IRootState';
+import React, {ReactElement, useEffect} from 'react';
+import {checkCookie, clearCookie} from '../../../utils/cookies';
+import {Navigate} from 'react-router';
 import PropTypes from 'prop-types';
+import clearNetworkRequests from '../../../utils/clearNetworkRequests';
+import {connect} from 'react-redux';
+import {userLoggedOutAction} from '../../../actions/user';
 
 /**
  * Handle the logout action by clearing cookies and Redux states.
@@ -37,11 +37,13 @@ Logout.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => ({
-  userReducer: state.userReducer,
-  apiLoginUserReducer: state.apiLoginUserReducer,
-  apiRegisterUserReducer: state.apiRegisterUserReducer,
-});
+const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => {
+  return {
+    userReducer: state.userReducer,
+    apiLoginUserReducer: state.apiLoginUserReducer,
+    apiRegisterUserReducer: state.apiRegisterUserReducer,
+  };
+};
 
 export default connect(mapStateToProps)(Logout);
 

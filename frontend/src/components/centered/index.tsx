@@ -1,14 +1,17 @@
-import React from 'react';
-
 import './index.css';
+import React, {ReactElement} from 'react';
 
 interface Props {
     children: React.ReactNode;
 }
 
-const index = (
-    props: Props,
-) => {
+/**
+  * Component which is centered vertically and horizontally.
+  * @param {Props} props
+  * @param {ReactElement} props.children - Children to display
+  * @return {ReactElement}
+ */
+function Centered(props: Props): ReactElement {
   return (
     <div className="flex-center">
       <div className="flex-center-row">
@@ -16,6 +19,6 @@ const index = (
       </div>
     </div>
   );
-};
+}
 
-export default index;
+export default Centered;

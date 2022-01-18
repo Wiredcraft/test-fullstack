@@ -1,13 +1,13 @@
 import {
   APIFailureAction,
+  APIReducerParameters,
   APIResetAction,
   APIStartedAction,
   APISuccessAction,
-  APIReducerParameters,
 } from '../types/API';
 
-import actions from '../actions/api';
 import {IAPIAction, IAPIState} from '../interfaces/IAPI';
+import actions from '../actions/api';
 
 /**
  * Class which handles the state of the API and

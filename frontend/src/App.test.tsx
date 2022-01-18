@@ -1,6 +1,6 @@
-import React from 'react';
 import renderer, {ReactTestRendererJSON} from 'react-test-renderer';
 import App from './App';
+import React from 'react';
 
 test('Initialize App component', () => {
   const component = renderer.create(<App/>);

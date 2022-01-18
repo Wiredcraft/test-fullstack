@@ -1,13 +1,13 @@
-import React, {ReactElement, useEffect} from 'react';
-import {connect} from 'react-redux';
-import PropTypes, {InferProps} from 'prop-types';
-import UserForm from './component/UserForm';
 import {IAppState, IOwnProps} from '../../interfaces/IRootState';
+import PropTypes, {InferProps} from 'prop-types';
+import React, {ReactElement, useEffect} from 'react';
 import Centered from '../../components/centered';
 import Container from '../../components/container';
-import {setCookie} from '../../utils/cookies';
-import {Navigate} from 'react-router-dom';
 import {IUserState} from '../../interfaces/IUser';
+import {Navigate} from 'react-router-dom';
+import UserForm from './component/UserForm';
+import {connect} from 'react-redux';
+import {setCookie} from '../../utils/cookies';
 
 /**
  * Page which display the login or register form.
@@ -51,8 +51,10 @@ Auth.propTypes = {
   type: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => ({
-  userReducer: state.userReducer,
-});
+const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => {
+  return {
+    userReducer: state.userReducer,
+  };
+};
 
 export default connect(mapStateToProps)(Auth);

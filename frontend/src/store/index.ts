@@ -2,7 +2,7 @@ import configureStore from './configureStore';
 
 const store = configureStore();
 
-export const getStore = () => {
+export const getStore = (): any => {
   return store;
 };
 

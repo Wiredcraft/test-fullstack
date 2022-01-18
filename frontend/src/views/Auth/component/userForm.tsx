@@ -1,15 +1,13 @@
-
-
 import './index.css';
 
-import {IUserFormEvent} from '../../../interfaces/IUserFormEvent';
-import authentication from '../../../actions/api/authentication';
-import Button from '../../../components/button';
+import {IAPIPayload, IAPIState} from '../../../interfaces/IAPI';
+import {IAppState, IOwnProps} from '../../../interfaces/IRootState';
 import PropTypes, {InferProps} from 'prop-types';
 import React, {ReactElement, useEffect} from 'react';
+import Button from '../../../components/button';
+import {IUserFormEvent} from '../../../interfaces/IUserFormEvent';
+import authentication from '../../../actions/api/authentication';
 import {connect} from 'react-redux';
-import {IAppState, IOwnProps} from '../../../interfaces/IRootState';
-import {IAPIPayload, IAPIState} from '../../../interfaces/IAPI';
 
 /**
  * User form for login and register actions.
@@ -33,7 +31,9 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
   ]);
 
 
-  const handleSubmit = (event: React.FormEvent<IUserFormEvent>) => {
+  
+
+  const handleSubmit = (event: React.FormEvent<IUserFormEvent>): void => {
     event.preventDefault();
 
     const elements = event.currentTarget.elements;
@@ -89,10 +89,13 @@ UserForm.propTypes = {
 };
 
 
-const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => ({
-  apiLoginUserReducer: state.apiLoginUserReducer,
-  apiRegisterUserReducer: state.apiLoginUserReducer,
-});
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const mapStateToProps = (state: IAppState, _ownProps: IOwnProps) => {
+  return {
+    apiLoginUserReducer: state.apiLoginUserReducer,
+    apiRegisterUserReducer: state.apiLoginUserReducer,
+  };
+};
 
 
 export default connect(mapStateToProps)(UserForm);

@@ -4,6 +4,6 @@ interface FormElements extends HTMLFormControlsCollection {
 }
 
 export interface IUserFormEvent extends HTMLFormElement {
-    readonly elements: FormElements
+    readonly elements: FormElements;
 }
 

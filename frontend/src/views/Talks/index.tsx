@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import {getCookie} from '../../utils/cookies';
 
-const index = () => {
+/**
+  * Talks component.
+  * @return {ReactElement}
+ */
+function Talks(): ReactElement {
   return (
     <div>
-            Welcome, {getCookie('username')} !
+        Welcome, {getCookie('username')} !
     </div>
   );
-};
+}
 
-export default index;
+export default Talks;

@@ -11,7 +11,7 @@ export function setCookie(
     cookieName: string,
     cookieValue: string,
     daysToExpire: number,
-) {
+): void {
   const date = new Date();
   date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
   const expires = 'expires=' + date.toUTCString();
@@ -59,6 +59,6 @@ export function checkCookie(): IAPIResponse | null {
   * Clear a specific cookie in the browser by a given name.
   * @param {string} cookieName - Cookie name
  */
-export function clearCookie(cookieName: string) {
+export function clearCookie(cookieName: string): void {
   setCookie(cookieName, '', -1);
 }

@@ -8,7 +8,7 @@ export interface IUserPayload {
 }
 
 export interface IUserRequest {
-    payload: IUserState;
+    payload?: IUserState;
     type: UserAction;
 }
 
