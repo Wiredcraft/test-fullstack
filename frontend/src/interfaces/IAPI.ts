@@ -5,7 +5,7 @@ import {
   APISuccessAction,
 } from 'src/types/API';
 
-export interface IAPIResponse {
+export interface IAPIAuthResponse {
     username?: string;
     token?: string;
     id?: string;
@@ -16,26 +16,28 @@ export interface IAPIError {
     message?: string;
 }
 
-export interface IAPIPayload {
+export interface IAPIAuthPayload {
     username: string;
     password: string;
 }
 
 export interface IAPIRequest {
-    payload?: IAPIPayload;
+    payload?: IAPIAuthPayload;
     type?: string;
+    token?: string;
+    id?: string;
 }
 
-export interface IAPIState {
+export interface IAPIAuthState {
     loading?: boolean;
-    response?: IAPIResponse;
+    response?: IAPIAuthResponse;
     error?: IAPIError;
 }
 
 export interface IAPIActions {
     type: APIFailureAction | APIResetAction |
     APIStartedAction | APISuccessAction;
-    payload?: IAPIPayload;
+    payload?: IAPIAuthPayload;
 }
 
-export interface IAPIAction extends IAPIState, IAPIRequest {}
+export interface IAPIAction extends IAPIAuthState, IAPIRequest {}

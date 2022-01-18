@@ -1,4 +1,4 @@
-import {IAPIResponse} from 'src/interfaces/IAPI';
+import {IAPIAuthResponse} from 'src/interfaces/IAPI';
 
 /**
  * Set a cookie in the browser with the
@@ -42,9 +42,9 @@ export function getCookie(cookieName: string): string {
 
 /**
   * Check if cookie are fully initialized.
-  * @return {IAPIResponse} - True if cookie are initialized
+  * @return {IAPIAuthResponse} - True if cookie are initialized
  */
-export function checkCookie(): IAPIResponse | null {
+export function checkCookie(): IAPIAuthResponse | null {
   const username: string = getCookie('username');
   const token: string = getCookie('token');
   const id: string = getCookie('id');

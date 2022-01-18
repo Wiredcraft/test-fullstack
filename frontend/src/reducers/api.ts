@@ -6,7 +6,7 @@ import {
   APISuccessAction,
 } from '../types/API';
 
-import {IAPIAction, IAPIState} from '../interfaces/IAPI';
+import {IAPIAction, IAPIAuthState} from '../interfaces/IAPI';
 import actions from '../actions/api';
 
 /**
@@ -21,7 +21,7 @@ class API {
   failure: APIFailureAction;
   reset: APIResetAction;
 
-  initialState: IAPIState;
+  initialState: IAPIAuthState;
 
   /**
   * Initialize the actions and initial reducer state
@@ -44,14 +44,14 @@ class API {
 
   /**
   * Create and return a reducer according to an action type.
-  * @param {IAPIState} state - Initial reducer state
+  * @param {IAPIAuthState} state - Initial reducer state
   * @param {IAPIAction} action - The action of the reducers
-  * @return {IAPIState}
+  * @return {IAPIAuthState}
  */
   reducer(
-      state: IAPIState = this.initialState,
+      state: IAPIAuthState = this.initialState,
       action: IAPIAction,
-  ): IAPIState {
+  ): IAPIAuthState {
     switch (action.type) {
       case this.started:
         return {
@@ -94,3 +94,46 @@ export const apiRegisterUserReducer = (new API([
   actions.authentication.register.API_REGISTER_USER_RESET,
 ])).reducer;
 
+export const apiTalksDeleteReducer = (new API([
+  actions.talks.API_TALKS_DELETE_STARTED,
+  actions.talks.API_TALKS_DELETE_SUCCESS,
+  actions.talks.API_TALKS_DELETE_FAILURE,
+  actions.talks.API_TALKS_DELETE_RESET,
+])).reducer;
+
+
+export const apiTalksGetReducer = (new API([
+  actions.talks.API_TALKS_GET_STARTED,
+  actions.talks.API_TALKS_GET_SUCCESS,
+  actions.talks.API_TALKS_GET_FAILURE,
+  actions.talks.API_TALKS_GET_RESET,
+])).reducer;
+
+export const apiTalksListReducer = (new API([
+  actions.talks.API_TALKS_LIST_STARTED,
+  actions.talks.API_TALKS_LIST_SUCCESS,
+  actions.talks.API_TALKS_LIST_FAILURE,
+  actions.talks.API_TALKS_LIST_RESET,
+])).reducer;
+
+export const apiTalksPatchReducer = (new API([
+  actions.talks.API_TALKS_PATCH_STARTED,
+  actions.talks.API_TALKS_PATCH_SUCCESS,
+  actions.talks.API_TALKS_PATCH_FAILURE,
+  actions.talks.API_TALKS_PATCH_RESET,
+])).reducer;
+
+export const apiTalksPostReducer = (new API([
+  actions.talks.API_TALKS_POST_STARTED,
+  actions.talks.API_TALKS_POST_SUCCESS,
+  actions.talks.API_TALKS_POST_FAILURE,
+  actions.talks.API_TALKS_POST_RESET,
+])).reducer;
+
+
+export const apiTalksVoteReducer = (new API([
+  actions.vote.API_VOTE_POST_STARTED,
+  actions.vote.API_VOTE_POST_SUCCESS,
+  actions.vote.API_VOTE_POST_FAILURE,
+  actions.vote.API_VOTE_POST_RESET,
+])).reducer;

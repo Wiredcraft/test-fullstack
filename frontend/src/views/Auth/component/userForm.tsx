@@ -1,6 +1,6 @@
 import './index.css';
 
-import {IAPIPayload, IAPIState} from '../../../interfaces/IAPI';
+import {IAPIAuthPayload, IAPIAuthState} from '../../../interfaces/IAPI';
 import PropTypes, {InferProps} from 'prop-types';
 import React, {ReactElement, useEffect} from 'react';
 import Button from '../../../components/button';
@@ -13,8 +13,8 @@ import {connect} from 'react-redux';
  * User form for login and register actions.
  * @param {Object} props
  * @param {AppDispatch} props.dispatch - Dispatch actions to the store
- * @param {IAPIState} props.apiLoginUserReducer - Login user reducer
- * @param {IAPIState} props.apiRegisterUserReducer - Register user reducer
+ * @param {IAPIAuthState} props.apiLoginUserReducer - Login user reducer
+ * @param {IAPIAuthState} props.apiRegisterUserReducer - Register user reducer
  * @param {string} props.type - `login` or `register`
  * @return {ReactElement}
  */
@@ -22,9 +22,9 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
   const [message, setMessage] = React.useState('');
 
   useEffect(() => {
-    const loginUserReducer: IAPIState = props.apiLoginUserReducer as IAPIState;
-    const registerUserReducer: IAPIState =
-    props.apiRegisterUserReducer as IAPIState;
+    const loginUserReducer: IAPIAuthState = props.apiLoginUserReducer as IAPIAuthState;
+    const registerUserReducer: IAPIAuthState =
+    props.apiRegisterUserReducer as IAPIAuthState;
 
     const errorMessage = props.type === 'login' ?
   loginUserReducer.error?.message :
@@ -44,7 +44,7 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
 
     const elements = event.currentTarget.elements;
 
-    const data: IAPIPayload = {
+    const data: IAPIAuthPayload = {
       username: elements.username.value,
       password: elements.password.value,
     };

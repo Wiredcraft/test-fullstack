@@ -1,10 +1,10 @@
 import {AppDispatch} from '../store';
-import {IAPIState} from './IAPI';
+import {IAPIAuthState} from './IAPI';
 import {IUserState} from './IUser';
 
 export interface IAppState {
-    apiLoginUserReducer: IAPIState;
-    apiRegisterUserReducer: IAPIState;
+    apiLoginUserReducer: IAPIAuthState;
+    apiRegisterUserReducer: IAPIAuthState;
     userReducer: IUserState;
     dispatch: AppDispatch;
 }
