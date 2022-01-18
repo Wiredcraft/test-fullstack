@@ -1,9 +1,9 @@
 import * as login from './login';
 import * as register from './register';
 
-const authentification = {
+const authentication = {
   login,
   register,
 };
 
-export default authentification;
+export default authentication;

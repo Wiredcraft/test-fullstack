@@ -1,10 +1,12 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
-import {isAuthenticated} from '../../utils/auth';
+import {IUserState} from 'src/interfaces/IUser';
+import {IAppState} from '../../interfaces/IRootState';
 
 import './index.css';
 
-const Navbar = () => {
+const Navbar = (props: {userReducer: IUserState}) => {
   return (
     <nav className="navbar">
       <NavLink to="/">
@@ -21,7 +23,7 @@ const Navbar = () => {
       </NavLink>
       <ul className="nav-links">
 
-        {isAuthenticated() ?
+        {props.userReducer.isLoggedIn ?
         <li className="nav-item">
           <NavLink to="/logout">Logout</NavLink>
         </li> :
@@ -34,11 +36,14 @@ const Navbar = () => {
           </li>
         </React.Fragment>
         }
-
-
       </ul>
     </nav>
   );
 };
 
-export default Navbar;
+
+const mapStateToProps = (state: IAppState) => ({
+  userReducer: state.userReducer,
+});
+
+export default connect(mapStateToProps)(Navbar);

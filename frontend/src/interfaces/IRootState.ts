@@ -1,8 +1,16 @@
-import {IUserReducer} from './IReducer';
+import {AppDispatch} from '../store';
+import {IAPIState} from './IAPI';
+import {IUserState} from './IUser';
 
 export interface IAppState {
-    loginUserReducer: IUserReducer;
-    registerUserReducer: IUserReducer;
+    apiLoginUserReducer: IAPIState;
+    apiRegisterUserReducer: IAPIState;
+    userReducer: IUserState;
+    dispatch: AppDispatch;
+}
+
+export interface IOwnProps {
+    dispatch?: AppDispatch;
 }
 
 export interface IRootState {

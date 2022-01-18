@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
 
-import {checkCookie, getCookie} from './cookies';
+import {checkCookie} from './cookies';
 
-function isAuthenticated(): boolean {
-  return checkCookie() !== null &&
-    getCookie('token') !== null &&
-    getCookie('user') !== null;
+function checkAuth(): boolean {
+  const isAuth = checkCookie();
+
+  return isAuth !== null;
 }
 
-export {isAuthenticated};
+export {checkAuth};

@@ -3,7 +3,7 @@
 
 import React from 'react';
 import {Navigate} from 'react-router-dom';
-import {isAuthenticated} from '../../utils/auth';
+import {checkAuth} from '../../utils/auth';
 
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 const index = (props: Props) => {
   return (
     <React.Fragment>
-      {isAuthenticated() ? props.children : <Navigate to="/login" />}
+      {checkAuth() ? props.children : <Navigate to="/login" />}
     </React.Fragment>);
 };
 

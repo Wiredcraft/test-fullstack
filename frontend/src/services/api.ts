@@ -1,9 +1,9 @@
-import IParameters from 'src/interfaces/IParameters';
-import {IRequest} from 'src/interfaces/IRequest';
-import HTTPMethod from 'src/types/HTTPMethod';
+import {IAPIRequest} from '../interfaces/IAPI';
+import IParameters from '../interfaces/IParameters';
+import HTTPMethod from '../types/HTTPMethod';
 
 const fetchService = (endpoint: string, method: HTTPMethod) => {
-  return async function service(request: IRequest) {
+  return async function service(request: IAPIRequest) {
     const parameters: IParameters = {method};
 
     if (method === 'POST' || method === 'PATCH') {

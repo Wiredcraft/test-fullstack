@@ -1,24 +1,30 @@
 /* eslint-disable require-jsdoc */
-import {IUserReducer} from 'src/interfaces/IReducer';
 import {
   APIFailureAction,
   APIResetAction,
   APIStartedAction,
-  APISuccessAction} from 'src/types/Action';
-import {authentification} from '../actions';
+  APISuccessAction,
+  APIReducerParameters,
+} from '../types/API';
+
+import actions from '../actions/api';
+import {IAPIAction, IAPIState} from '../interfaces/IAPI';
 
 class API {
   started: APIStartedAction;
   success: APISuccessAction;
   failure: APIFailureAction;
   reset: APIResetAction;
-  initialState: { loading: boolean; response: {}; error: {}; };
-  constructor([started, success, failure, reset]: any) {
+
+  initialState: IAPIState;
+
+  constructor([started, success, failure, reset]: APIReducerParameters) {
     this.started = started;
     this.success = success;
     this.failure = failure;
     this.reset = reset;
     this.reducer = this.reducer.bind(this);
+
     this.initialState = {
       loading: false,
       response: {},
@@ -26,7 +32,10 @@ class API {
     };
   }
 
-  reducer(state = this.initialState, action: any): IUserReducer {
+  reducer(
+      state = this.initialState,
+      action: IAPIAction,
+  ): IAPIState {
     switch (action.type) {
       case this.started:
         return {
@@ -55,17 +64,17 @@ class API {
   }
 }
 
-export const loginUserReducer = (new API([
-  authentification.login.LOGIN_USER_STARTED,
-  authentification.login.LOGIN_USER_SUCCESS,
-  authentification.login.LOGIN_USER_FAILURE,
-  authentification.login.LOGIN_USER_RESET,
+export const apiLoginUserReducer = (new API([
+  actions.authentication.login.API_LOGIN_USER_STARTED,
+  actions.authentication.login.API_LOGIN_USER_SUCCESS,
+  actions.authentication.login.API_LOGIN_USER_FAILURE,
+  actions.authentication.login.API_LOGIN_USER_RESET,
 ])).reducer;
 
-export const registerUserReducer = (new API([
-  authentification.register.REGISTER_USER_STARTED,
-  authentification.register.REGISTER_USER_SUCCESS,
-  authentification.register.REGISTER_USER_FAILURE,
-  authentification.register.REGISTER_USER_RESET,
+export const apiRegisterUserReducer = (new API([
+  actions.authentication.register.API_REGISTER_USER_STARTED,
+  actions.authentication.register.API_REGISTER_USER_SUCCESS,
+  actions.authentication.register.API_REGISTER_USER_FAILURE,
+  actions.authentication.register.API_REGISTER_USER_RESET,
 ])).reducer;
 

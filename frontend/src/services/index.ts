@@ -1,6 +1,8 @@
 import * as api from './api';
 
-export const authentification = {
-  loginUserReducer: api.loginUser,
-  registerUserReducer: api.registerUser,
+export const authentication = {
+  apiLoginUserReducer: api.loginUser,
+  apiRegisterUserReducer: api.registerUser,
 };
+
+
