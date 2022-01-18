@@ -1,10 +1,6 @@
-/* eslint-disable require-jsdoc */
-
-
 import React from 'react';
 import {Navigate} from 'react-router-dom';
 import {checkCookie} from '../../utils/cookies';
-
 
 interface Props {
   children: React.ReactNode,

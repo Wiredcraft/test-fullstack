@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 import {
   APIFailureAction,
   APIResetAction,
@@ -10,6 +9,12 @@ import {
 import actions from '../actions/api';
 import {IAPIAction, IAPIState} from '../interfaces/IAPI';
 
+/**
+ * Class which handles the state of the API and
+ * return a reducer according to an action type.
+ * @param {APIReducerParameters} - The actions to triggers.
+ * @return {ReactElement}
+ */
 class API {
   started: APIStartedAction;
   success: APISuccessAction;
@@ -18,6 +23,11 @@ class API {
 
   initialState: IAPIState;
 
+  /**
+  * Initialize the actions and initial reducer state
+  * @constructor
+  * @param {APIReducerParameters} - The actions of the reducers
+  */
   constructor([started, success, failure, reset]: APIReducerParameters) {
     this.started = started;
     this.success = success;
@@ -32,8 +42,14 @@ class API {
     };
   }
 
+  /**
+  * Create and return a reducer according to an action type.
+  * @param {IAPIState} state - Initial reducer state
+  * @param {IAPIAction} action - The action of the reducers
+  * @return {IAPIState}
+ */
   reducer(
-      state = this.initialState,
+      state: IAPIState = this.initialState,
       action: IAPIAction,
   ): IAPIState {
     switch (action.type) {

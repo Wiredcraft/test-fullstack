@@ -1,4 +1,4 @@
-/* eslint-disable require-jsdoc */
+
 
 import './index.css';
 
@@ -6,12 +6,21 @@ import {IUserFormEvent} from '../../../interfaces/IUserFormEvent';
 import authentication from '../../../actions/api/authentication';
 import Button from '../../../components/button';
 import PropTypes, {InferProps} from 'prop-types';
-import React, {useEffect} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {IAppState, IOwnProps} from '../../../interfaces/IRootState';
 import {IAPIPayload, IAPIState} from '../../../interfaces/IAPI';
 
-function UserForm(props: InferProps<typeof UserForm.propTypes>) {
+/**
+ * User form for login and register actions.
+ * @param {Object} props
+ * @param {AppDispatch} props.dispatch - Dispatch actions to the store
+ * @param {IAPIState} props.apiLoginUserReducer - Login user reducer
+ * @param {IAPIState} props.apiRegisterUserReducer - Register user reducer
+ * @param {string} props.type - `login` or `register`
+ * @return {ReactElement}
+ */
+function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
   // @TODO: Error message, loading in form-message div
 
   useEffect(() => {

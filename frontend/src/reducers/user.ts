@@ -1,9 +1,15 @@
-/* eslint-disable require-jsdoc */
+
 
 import {IUserAction, IUserState} from '../interfaces/IUser';
 import {UserAction, UserReducerParameters} from '../types/User';
 import {user} from '../actions';
 
+/**
+ * Class which handles the state of the User and
+ * return a reducer according to an action type.
+ * @param {UserReducerParameters} - The actions to triggers.
+ * @return {ReactElement}
+ */
 class User {
   init: UserAction;
   login: UserAction;
@@ -17,6 +23,11 @@ class User {
     id: string | null;
   };
 
+  /**
+  * Initialize the actions and initial reducer state
+  * @constructor
+  * @param {UserReducerParameters} - The actions of the reducers
+  */
   constructor([init, login, logout, registered]: UserReducerParameters) {
     this.init = init;
     this.login = login;
@@ -33,7 +44,15 @@ class User {
     };
   }
 
-  reducer(state = this.initialState, action: IUserAction): IUserState {
+  /**
+  * Create and return a reducer according to an action type.
+  * @param {IUserState} state - Initial reducer state
+  * @param {IUserAction} action - The action of the reducers
+  * @return {IUserState}
+ */
+  reducer(
+      state: IUserState = this.initialState, action: IUserAction,
+  ): IUserState {
     switch (action.type) {
       case this.login:
         return {

@@ -1,5 +1,4 @@
-/* eslint-disable require-jsdoc */
-import React, {useEffect} from 'react';
+import React, {ReactElement, useEffect} from 'react';
 import {connect} from 'react-redux';
 import PropTypes, {InferProps} from 'prop-types';
 import UserForm from './component/UserForm';
@@ -10,7 +9,16 @@ import {setCookie} from '../../utils/cookies';
 import {Navigate} from 'react-router-dom';
 import {IUserState} from '../../interfaces/IUser';
 
-function Auth(props: InferProps<typeof Auth.propTypes>) {
+/**
+ * Page which display the login or register form.
+ * If the user is already authenticated, redirect to the Talks page.
+ * @param {Object} props
+ * @param {AppDispatch} props.dispatch - Dispatch actions to the store
+ * @param {IUserState} props.userReducer - User reducer
+ * @param {string} props.type - `login` or `register`
+* @return {ReactElement}
+ */
+function Auth(props: InferProps<typeof Auth.propTypes>): ReactElement {
   useEffect(() => {
     const userReducer: IUserState = props.userReducer as IUserState;
     const isLoggedIn = userReducer.isLoggedIn;

@@ -1,5 +1,3 @@
-/* eslint-disable require-jsdoc */
-/* eslint-disable no-undef */
 import React, {ReactElement, useEffect} from 'react';
 import {connect} from 'react-redux';
 import Auth from './views/Auth';
@@ -13,10 +11,17 @@ import {checkCookie, getCookie} from './utils/cookies';
 import PropTypes, {InferProps} from 'prop-types';
 import {IAppState} from './interfaces/IRootState';
 
-
+/**
+ * Main application component.
+ * This component handle the application routing, and will initialize
+ * the userInitReducer if the user is authenticated.
+ * @param {Object} props
+ * @param {AppDispatch} props.dispatch - Dispatch actions to the store
+ * @return {ReactElement}
+ */
 function App(props: InferProps<typeof App.propTypes>): ReactElement {
   useEffect(() => {
-    const auth = checkAuth();
+    const auth = checkCookie();
     const token = getCookie('token');
     const username = getCookie('username');
     const id = getCookie('id');
