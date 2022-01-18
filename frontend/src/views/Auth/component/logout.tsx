@@ -15,7 +15,7 @@ import {userLoggedOutAction} from '../../../actions/user';
  * @param {IUserState} props.userReducer - User reducer
  * @return {ReactElement}
  */
-function Logout(props: IAppState): ReactElement {
+function Logout(props: any): ReactElement {
   useEffect(() => {
     if (checkCookie()) {
       clearCookie('id');
@@ -33,10 +33,12 @@ function Logout(props: IAppState): ReactElement {
   );
 }
 
+
 Logout.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => {
   return {
     userReducer: state.userReducer,
@@ -46,5 +48,4 @@ const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => {
 };
 
 export default connect(mapStateToProps)(Logout);
-
 

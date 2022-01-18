@@ -1,6 +1,6 @@
 
 
-import {IUserAction, IUserPayload, IUserState} from '../interfaces/IUser';
+import {IUserAction, IUserState} from '../interfaces/IUser';
 import {UserAction, UserReducerParameters} from '../types/User';
 import {user} from '../actions';
 

@@ -1,10 +1,10 @@
 import {IAppState, IOwnProps} from '../../interfaces/IRootState';
-import PropTypes, {InferProps} from 'prop-types';
 import React, {ReactElement, useEffect} from 'react';
 import Centered from '../../components/centered';
 import Container from '../../components/container';
 import {IUserState} from '../../interfaces/IUser';
 import {Navigate} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import UserForm from './component/UserForm';
 import {connect} from 'react-redux';
 import {setCookie} from '../../utils/cookies';
@@ -18,7 +18,7 @@ import {setCookie} from '../../utils/cookies';
  * @param {string} props.type - `login` or `register`
 * @return {ReactElement}
  */
-function Auth(props: InferProps<typeof Auth.propTypes>): ReactElement {
+function Auth(props: any): ReactElement {
   useEffect(() => {
     const userReducer: IUserState = props.userReducer as IUserState;
     const isLoggedIn = userReducer.isLoggedIn;
@@ -47,11 +47,10 @@ function Auth(props: InferProps<typeof Auth.propTypes>): ReactElement {
 
 Auth.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  userReducer: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
-const mapStateToProps = ( state: IAppState, _ownProps: IOwnProps) => {
+const mapStateToProps: any = ( state: IAppState, _ownProps: IOwnProps) => {
   return {
     userReducer: state.userReducer,
   };

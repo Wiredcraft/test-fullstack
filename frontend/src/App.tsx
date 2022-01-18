@@ -71,6 +71,9 @@ App.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (_state: IAppState) => {};
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const mapStateToProps = (_state: IAppState) => {
+  return {};
+};
 
 export default connect(mapStateToProps)(App);
