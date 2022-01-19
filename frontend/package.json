@@ -8,8 +8,7 @@
     "build:prod": "webpack --config webpack.prod.ts",
     "dev": "webpack-dev-server --config webpack.dev.ts",
     "lint": "node ./node_modules/eslint/bin/eslint.js src/",
-    "serve": "serve dist/",
-    "test": "node ./node_modules/jest/bin/jest.js -i -u"
+    "serve": "serve dist/"
   },
   "repository": {
     "type": "git",
@@ -55,8 +54,6 @@
     "webpack-merge": "^5.8.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.16.8",
-    "@babel/preset-react": "^7.16.7",
     "@types/copy-webpack-plugin": "^10.1.0",
     "@types/dotenv-webpack": "^7.0.3",
     "@types/jest": "^27.4.0",
@@ -65,12 +62,8 @@
     "@types/react-test-renderer": "^17.0.1",
     "@types/webpack-dev-server": "^4.7.2",
     "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "babel-jest": "^27.4.6",
     "eslint": "^8.6.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-config-react-app": "^7.0.0",
-    "jest": "^27.4.7",
-    "react-test-renderer": "^17.0.2",
-    "ts-jest": "^27.1.2"
+    "eslint-config-react-app": "^7.0.0"
   }
 }
