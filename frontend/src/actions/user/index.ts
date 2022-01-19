@@ -1,5 +1,5 @@
 import {IUserPayload, IUserRequest} from 'src/interfaces/IUser';
-import { UserAction } from 'src/types/User';
+import {UserAction} from 'src/types/User';
 
 export const USER_INIT = 'USER_INIT';
 export const USER_REGISTERED = 'USER_REGISTERED';
