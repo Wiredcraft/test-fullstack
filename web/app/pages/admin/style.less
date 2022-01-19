@@ -1,0 +1,181 @@
+@import './ReactCrop.less';
+
+.nav {
+    li {
+        color: var(--primary-700);
+        line-height: 28px;
+        &:hover {
+            color: var(--primary-600);
+        }
+    }
+}
+
+.board {
+    margin-bottom: 15px;
+    background: var(--tertiary-99);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    .header {
+        display: flex;
+        border-bottom: 1px solid var(--primary-300);
+        padding: 10px;
+        .avatar {
+            img {
+                display: block;
+                width: 96px;
+                height: 96px;
+                border-radius: 4px;
+            }
+        }
+        .meta {
+            flex: 1;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            h5 {
+                line-height: 2;
+                .actions {
+                    float: right;
+                    a {
+                        margin-left: 15px;
+                        color: var(--secondary-500);
+                        svg {
+                            height: 18px;
+                            vertical-align: middle;
+                            path {
+                                fill: var(--tertiary-400);
+                                transition: fill 0.1s;
+                            }
+                        }
+                        &.selected, &:hover {
+                            color: var(--specific-400);
+                            svg {
+                                path {
+                                    fill: var(--specific-400);
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            p {
+                flex: 1;
+                line-height: 2.5;
+            }
+            div {
+                .stat {
+                    svg {
+                        height: 18px;
+                        vertical-align: middle;
+                        position: relative;
+                        top: -2px;
+                        path {
+                            fill: var(--specific-400);
+                        }
+                    }
+                    &+.stat {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .body {
+        padding: 15px 10px;
+        .info {
+            li {
+                display: flex;
+                label {
+                    width: 111px;
+                }
+                &+li {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+.avatar {
+    .form {
+        margin-top: 20px;
+        .original {
+          img {
+            width: 96px;
+            height: 96px;
+            border-radius: 4px;
+          }
+        }
+    }
+}
+
+.profile {
+    .form {
+        margin-top: 20px;
+    }
+}
+
+.password {
+    margin-top: 16px;
+    .form {
+        margin-top: 20px;
+    }
+}
+
+.message {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid var(--primary-300);
+    .avatar {
+        font-size: 0;
+        img {
+            width: 48px;
+            height: 48px;
+            border-radius: 4px;
+        }
+    }
+    .main {
+        margin-left: 10px;
+        flex: 1;
+        .meta {
+            font-size: 12px;
+            line-height: 18px;
+            color: var(--tertiary-500);
+            &>span+span {
+                margin-left: 12px;
+            }
+            .user {
+                font-weight: 600;
+                color: var(--primary-600);
+                line-height: 18px;
+                &:hover {
+                    color: var(--primary-500);
+                }
+            }
+        }
+        .content {
+            .parent {
+                .refer {
+                    color: var(--tertiary-500);
+                    font-size: 12px;
+                }
+                font-weight: normal;
+                color: var(--primary-600);
+                background: var(--tertiary-200);
+                padding: 8px;
+                border-radius: 4px;
+                margin-bottom: 6px;
+            }
+            margin-top: 6px;
+            font-size: 14px;
+            line-height: 24px;
+            white-space: pre-wrap;
+        }
+    }
+
+    &.UNREAD {
+        .content {
+            font-weight: 600;
+        }
+    }
+}

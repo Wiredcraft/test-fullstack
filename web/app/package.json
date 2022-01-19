@@ -1,0 +1,29 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "fecha": "^4.2.0",
+    "form-urlencoded": "^4.1.3",
+    "framer-motion": "^1.11.0",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.15",
+    "next": "^9.3.5",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-image-crop": "^8.6.2",
+    "react-textarea-autosize": "^7.1.2",
+    "sanitize-html": "^1.26.0",
+    "simplemde": "file:../../../../packages/simplemde-markdown-editor",
+    "universal-cookie": "^4.0.3"
+  },
+  "devDependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "less": "^3.10.3"
+  }
+}

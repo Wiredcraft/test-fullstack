@@ -1,0 +1,29 @@
+{
+  "name": "angela",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "author": "shuhr@unitechs.com",
+  "license": "MIT",
+  "dependencies": {
+    "core-js": "^3.8.1",
+    "form-urlencoded": "^4.1.1",
+    "graphql-request": "^1.8.2",
+    "js-base64": "^2.5.1",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.15",
+    "reconnecting-websocket": "^4.2.0",
+    "regenerator-runtime": "^0.13.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "compile": "npx babel src --out-dir lib",
+    "build": "npx webpack"
+  }
+}

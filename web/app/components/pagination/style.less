@@ -1,0 +1,37 @@
+.pagination {
+    padding: 10px 0;
+    ul {
+        display: flex;
+        justify-content: center;
+        li {
+            color: var(--primary-600);
+            font-size: 12px;
+            height: 28px;
+            line-height: 28px;
+            background: var(--primary-300);
+            border-radius: 4px;
+            margin: 0px 5px;
+            transition: background 0.3s;
+            &.cur {
+                color: var(--tertiary-99);
+                background: var(--secondary-500);
+                &:hover {
+                    background: var(--secondary-400);
+                }
+            }
+            &:hover {
+                background: var(--primary-200);
+            }
+            a {
+                display: block;
+                padding: 0 10px;
+            }
+            &.disabled {
+                color: var(--primary-500);
+                a {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}

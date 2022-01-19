@@ -1,0 +1,42 @@
+.footer {
+    margin-top: 20px;
+    background: var(--tertiary-99);
+
+    .inner {
+        color: var(--tertiary-400);
+        color: var(--tertiary-400);
+        margin: 0 auto;
+        padding: 20px 0;
+        max-width: var(--primary-width);
+    }
+
+    ul {
+        display: flex;
+        li {
+            &+li {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 1036px) {
+    .footer {
+        .inner {
+            padding: 20px 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .footer {
+        .inner {
+            padding: 20px 5px;
+        }
+    }
+}

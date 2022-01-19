@@ -1,0 +1,72 @@
+.board {
+    margin-bottom: 15px;
+    background: var(--tertiary-99);
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    .header {
+        display: flex;
+        border-bottom: 1px solid var(--primary-300);
+        padding: 10px;
+        .avatar {
+            img {
+                display: block;
+                width: 96px;
+                height: 96px;
+                border-radius: 4px;
+            }
+        }
+        .meta {
+            flex: 1;
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            h5 {
+                font-size: 16px;
+                line-height: 32px;
+                .action {
+                    float: right;
+                    a {
+                        svg {
+                            height: 18px;
+
+                        }
+                    }
+                }
+            }
+            p {
+                flex: 1;
+                line-height: 2;
+            }
+            div {
+                .stat {
+                    svg {
+                        height: 18px;
+                        vertical-align: middle;
+                        position: relative;
+                        top: -2px;
+                        path {
+                            fill: var(--specific-400);
+                        }
+                    }
+                    &+.stat {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .body {
+        padding: 15px 10px;
+        .info {
+            li {
+                display: flex;
+                label {
+                    width: 111px;
+                }
+                &+li {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

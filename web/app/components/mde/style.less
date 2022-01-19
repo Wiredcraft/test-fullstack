@@ -1,0 +1,27 @@
+.mde {
+    font-size: 14px;
+
+    :global {
+        .editor-toolbar {
+            border: 1px solid var(--primary-400);
+            border-bottom: none;
+        }
+        .editor-toolbar a {
+            width: 24px;
+            height: 24px;
+            &:before {
+                line-height: 24px;
+            }
+        }
+        .editor-toolbar:before {
+            margin-bottom: 3px;
+        }
+        .editor-toolbar:after {
+            margin-top: 3px;
+        }
+        .CodeMirror {
+            border: 1px solid #cbd5e099;
+        }
+    }
+
+}

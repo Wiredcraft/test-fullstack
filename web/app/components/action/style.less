@@ -1,0 +1,22 @@
+.actions {
+    a {
+        margin-left: 15px;
+        color: var(--secondary-500);
+        svg {
+            height: 15px;
+            vertical-align: middle;
+            path {
+                fill: var(--tertiary-400);
+                transition: fill 0.1s;
+            }
+        }
+        &.selected {
+            color: var(--specific-400);
+            svg {
+                path {
+                    fill: var(--specific-400);
+                }
+            }
+        }
+    }
+}

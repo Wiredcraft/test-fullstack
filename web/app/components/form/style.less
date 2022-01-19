@@ -1,0 +1,70 @@
+.item {
+    display: flex;
+    font-size: 14px;
+    line-height: 32px;
+    margin-bottom: 20px;
+    label {
+        min-width: 80px;
+        text-align: right;
+        margin-right: 10px;
+    }
+
+    .input {
+        input {
+            height: 30px;
+            line-height: 30px;
+            outline: none;
+            padding: 0 10px;
+            border: 1px solid var(--primary-300);
+            border-radius: 2px;
+            color: var(--primary-700);
+            width: 230px;
+            transition: border-color 0.1s;
+            &:focus {
+                border-color: var(--secondary-500);
+            }
+        }
+
+        textarea {
+            font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans SC,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+            font-size: 14px;
+            color: var(--primary-700); 
+            line-height: 21px;
+            outline: none;
+            padding: 5px 10px;
+            border: 1px solid var(--primary-300);
+            border-radius: 2px;
+            width: 230px;
+            transition: border-color 0.1s;
+            &:focus {
+                border-color: var(--secondary-500);
+            }
+        }
+    }
+
+    .error {
+        margin-left: 10px;
+        color: var(--specific-400);
+    }
+}
+
+.button {
+    display: inline-block;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 2px;
+    padding: 0 20px;
+    text-align: center;
+
+    &.primary {
+        color: var(--tertiary-99);
+        background: var(--secondary-600);
+        :global{
+            transition: background 0.1s;
+        }
+        &:hover {
+            background: var(--secondary-500);
+        }
+    }
+}
