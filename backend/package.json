@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "tsc --lib dom",
+    "serve": "node dist/app.js",
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node --files' src/app.ts",
     "lint": "node ./node_modules/eslint/bin/eslint.js --ext .ts --fix src tests",
     "test": "mocha -r ts-node/register --config=.mocharc.json tests/index.ts"
