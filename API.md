@@ -32,7 +32,7 @@ Routes which needs to be authenticated must have the `Bearer <token>` provided i
 ```json
 {
     "username": "string",
-"password": "string"
+    "password": "string"
 }
 ```
 **Auth required** : NO
