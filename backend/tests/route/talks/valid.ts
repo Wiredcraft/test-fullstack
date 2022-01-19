@@ -18,17 +18,18 @@ exports.default = (): any => {
         .get(`/talks/list`)
         .set('Authorization', `Bearer ${parameters.token}`)
         .then((res: Response) => {
-          const expected = [
-            {
-              _id: talkID,
-              name: parameters.talkName,
-              description: parameters.talkDescription,
-              user: parameters.user,
-            },
-          ];
+          const expected = {
+            _id: talkID,
+            user: parameters.user,
+            name: parameters.talkName,
+            description: parameters.talkDescription,
+          };
 
-          expect(res.body).to.eql(expected);
           expect(res).to.have.status(200);
+          expect(res.body[0]._id).to.eql(expected._id);
+          expect(res.body[0].user).to.eql(expected.user);
+          expect(res.body[0].name).to.eql(expected.name);
+          expect(res.body[0].description).to.eql(expected.description);
           done();
         }).catch((err) => {
           return done(err);
@@ -40,17 +41,18 @@ exports.default = (): any => {
         .get(`/talks/list/test_user`)
         .set('Authorization', `Bearer ${parameters.token}`)
         .then((res: Response) => {
-          const expected = [
-            {
-              _id: talkID,
-              user: parameters.user,
-              name: parameters.talkName,
-              description: parameters.talkDescription,
-            },
-          ];
+          const expected = {
+            _id: talkID,
+            user: parameters.user,
+            name: parameters.talkName,
+            description: parameters.talkDescription,
+          };
 
-          expect(res.body).to.eql(expected);
           expect(res).to.have.status(200);
+          expect(res.body[0]._id).to.eql(expected._id);
+          expect(res.body[0].user).to.eql(expected.user);
+          expect(res.body[0].name).to.eql(expected.name);
+          expect(res.body[0].description).to.eql(expected.description);
           done();
         }).catch((err) => {
           return done(err);
@@ -69,7 +71,8 @@ exports.default = (): any => {
             description: parameters.talkDescription,
           };
 
-
+          delete res.body.createdAt;
+          delete res.body.updatedAt;
           expect(res.body).to.eql(expected);
           expect(res).to.have.status(200);
           done();
@@ -120,17 +123,18 @@ exports.default = (): any => {
         .get(`/talks/list`)
         .set('Authorization', `Bearer ${parameters.token}`)
         .then((res: Response) => {
-          const expected = [
-            {
-              _id: talkID,
-              name: parameters.talkName,
-              description: parameters.talkDescription,
-              user: parameters.user,
-            },
-          ];
+          const expected = {
+            _id: talkID,
+            user: parameters.user,
+            name: parameters.talkName,
+            description: parameters.talkDescription,
+          };
 
-          expect(res.body).to.eql(expected);
           expect(res).to.have.status(200);
+          expect(res.body[0]._id).to.eql(expected._id);
+          expect(res.body[0].user).to.eql(expected.user);
+          expect(res.body[0].name).to.eql(expected.name);
+          expect(res.body[0].description).to.eql(expected.description);
           done();
         }).catch((err) => {
           return done(err);

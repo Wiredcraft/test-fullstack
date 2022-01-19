@@ -6,7 +6,7 @@ import parameters from '../../../parameters';
 
 
 exports.default = (): any => {
-  it('POST /auth/signin (user) [200]', (done: Mocha.Done) => {
+  it('POST /auth/login (user) [200]', (done: Mocha.Done) => {
     chai.request(global.expressApp).post(`/auth/login`)
         .send({
           username: parameters.user,

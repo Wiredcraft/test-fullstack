@@ -42,6 +42,9 @@ exports.default = (): any => {
             description: parameters.talkDescription,
           };
 
+          delete res.body.createdAt;
+          delete res.body.updatedAt;
+
           expect(res.body).to.eql(expected);
           expect(res).to.have.status(200);
           done();
