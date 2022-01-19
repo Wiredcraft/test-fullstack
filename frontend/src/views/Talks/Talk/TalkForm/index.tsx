@@ -86,7 +86,6 @@ function TalkForm(props: any): ReactElement {
     } else {
       if (apiTalksPostReducer.response.status === 'created') {
         props.dispatch(talks.apiTalksPostResetAction());
-        props.dispatch(talks.apiTalksListAction(getCookie('token')));
         navigate('/talks');
       }
     }
@@ -105,7 +104,6 @@ function TalkForm(props: any): ReactElement {
     } else {
       if (apiTalksPatchReducer.response.status === 'patched') {
         props.dispatch(talks.apiTalksPatchResetAction());
-        props.dispatch(talks.apiTalksListAction(getCookie('token')));
         navigate('/talks');
       }
     }
