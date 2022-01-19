@@ -71,7 +71,8 @@ function Talks(props: TalksProps): ReactElement {
         <Centered>
           {props.apiTalksListReducer.loading ? 'Loading...' :
           ` No talks in the list.
-          Be the first one to take take the initiative and create one ! 
+          Be the first one to talk - take the initiative 
+          and create one Lightning Talk ! 
           Just a name and a description are required. 🎤`}
         </Centered>
       </Container>:(Object.values(
