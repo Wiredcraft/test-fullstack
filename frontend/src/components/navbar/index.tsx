@@ -30,9 +30,14 @@ function Navbar(props: { userReducer: { isLoggedIn: boolean } }): ReactElement {
       <ul className="nav-links">
 
         {props.userReducer.isLoggedIn ?
-        <li className="nav-item">
-          <NavLink to="/logout">Logout</NavLink>
-        </li> :
+        <React.Fragment>
+          <li className="nav-item">
+            <NavLink to="/talks/create">Create talk</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/logout">Logout</NavLink>
+          </li>
+        </React.Fragment> :
         <React.Fragment>
           <li className="nav-item">
             <NavLink to="/login">Login</NavLink>

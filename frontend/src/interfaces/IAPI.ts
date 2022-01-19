@@ -4,6 +4,7 @@ import {
   APIStartedAction,
   APISuccessAction,
 } from 'src/types/API';
+import {ITalkObject} from './ITalk';
 
 export interface IAPIAuthResponse {
     username?: string;
@@ -26,6 +27,14 @@ export interface IAPIRequest {
     type?: string;
     token?: string;
     id?: string;
+}
+
+export interface IAPITalksState {
+    loading: boolean;
+    response: {
+        [key: string]: ITalkObject;
+     };
+    error?: IAPIError;
 }
 
 export interface IAPIAuthState {

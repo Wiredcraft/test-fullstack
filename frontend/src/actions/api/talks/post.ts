@@ -4,13 +4,19 @@ export const API_TALKS_POST_SUCCESS = 'API_TALKS_POST_SUCCESS';
 export const API_TALKS_POST_RESET = 'API_TALKS_POST_RESET';
 
 export const apiTalksPostAction = (
-    token: string, id: string, payload: any,
+    payload: any, token: string,
 ): any => {
   return {
     type: API_TALKS_POST_STARTED,
     payload,
     token,
-    id,
   };
 };
+
+export const apiTalksPostResetAction = (): any => {
+  return {
+    type: API_TALKS_POST_RESET,
+  };
+};
+
 

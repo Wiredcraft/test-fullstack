@@ -7,6 +7,7 @@ import {IAppState} from './interfaces/IRootState';
 import Logout from './views/Auth/component/logout';
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/privateRoute';
+import TalkForm from './views/Talks/Talk/TalkForm';
 import Talks from './views/Talks';
 import {connect} from 'react-redux';
 import {userInitAction} from './actions/user';
@@ -56,6 +57,16 @@ function App(props: InferProps<typeof App.propTypes>): ReactElement {
         <Route path="/talks" element={
           <PrivateRoute>
             <Talks />
+          </PrivateRoute>
+        } />
+        <Route path="/talks/create" element={
+          <PrivateRoute>
+            <TalkForm type="create" />
+          </PrivateRoute>
+        } />
+        <Route path="/talks/edit/:id" element={
+          <PrivateRoute>
+            <TalkForm type="edit" />
           </PrivateRoute>
         } />
         <Route path="/login" element={ <Auth type="login" />} />

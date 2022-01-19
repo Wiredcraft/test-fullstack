@@ -1,9 +1,8 @@
-import './index.css';
-
 import {IAPIAuthPayload, IAPIAuthState} from '../../../interfaces/IAPI';
 import PropTypes, {InferProps} from 'prop-types';
 import React, {ReactElement, useEffect} from 'react';
 import Button from '../../../components/button';
+import Form from '../../../components/form';
 import {IOwnProps} from '../../../interfaces/IRootState';
 import {IUserFormEvent} from '../../../interfaces/IUserFormEvent';
 import authentication from '../../../actions/api/authentication';
@@ -22,7 +21,8 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
   const [message, setMessage] = React.useState('');
 
   useEffect(() => {
-    const loginUserReducer: IAPIAuthState = props.apiLoginUserReducer as IAPIAuthState;
+    const loginUserReducer: IAPIAuthState =
+     props.apiLoginUserReducer as IAPIAuthState;
     const registerUserReducer: IAPIAuthState =
     props.apiRegisterUserReducer as IAPIAuthState;
 
@@ -57,7 +57,7 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
   };
 
   return (
-    <form className='auth-form' onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
 
       <h1 className='center-text'>
         {props.type === 'login' ? 'Login' : 'Register'}
@@ -70,7 +70,11 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
 
       <div className="form-group">
         <label>Password</label>
-        <input type="password" id="password" required pattern="[A-Za-z0-9]{1,20}"/>
+        <input
+          type="password"
+          id="password"
+          required
+          pattern="[A-Za-z0-9]{1,20}"/>
       </div>
 
       <div className='flex-reverse'>
@@ -84,7 +88,7 @@ function UserForm(props: InferProps<typeof UserForm.propTypes>): ReactElement {
         {message}
       </div>
 
-    </form>
+    </Form>
 
   );
 }

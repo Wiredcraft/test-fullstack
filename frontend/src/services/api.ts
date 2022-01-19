@@ -6,11 +6,8 @@ import IParameters from '../interfaces/IParameters';
 const fetchService = (endpoint: string, method: HTTPMethod) => {
   return async function service(request: IAPIRequest) {
     const parameters: IParameters = {method};
-    console.log(request);
 
     const hasID = request.id === undefined ? false : true;
-
-    console.log({hasID});
 
     if (request.token) {
       parameters.headers = {

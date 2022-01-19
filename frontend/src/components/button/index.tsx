@@ -3,6 +3,7 @@ import React, {ReactElement} from 'react';
 interface Props {
     children: React.ReactNode;
     type: 'submit' | 'button';
+    fullWidth?: boolean;
 }
 
 /**
@@ -21,6 +22,7 @@ const Button = (props: Props): ReactElement => {
       margin: '0 0.1em 0.1em 0',
       border: '0.16em solid #333333',
       borderRadius: '0.4em',
+      width: props.fullWidth ? '100%' : '80px',
     }}
     type={props.type}
     >

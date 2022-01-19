@@ -13,3 +13,10 @@ export const apiTalksPatchAction = (
     id,
   };
 };
+
+export const apiTalksPatchResetAction = (): any => {
+  return {
+    type: API_TALKS_PATCH_RESET,
+  };
+};
+

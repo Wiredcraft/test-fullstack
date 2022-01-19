@@ -1,5 +1,5 @@
+import {IAPIAuthState, IAPITalksState} from './IAPI';
 import {AppDispatch} from '../store';
-import {IAPIAuthState} from './IAPI';
 import {IUserState} from './IUser';
 
 export interface IAppState {
@@ -7,6 +7,12 @@ export interface IAppState {
     apiRegisterUserReducer: IAPIAuthState;
     userReducer: IUserState;
     dispatch: AppDispatch;
+    apiTalksDeleteReducer: IAPIAuthState;
+    apiTalksGetReducer: IAPIAuthState;
+    apiTalksListReducer: IAPITalksState;
+    apiTalksPatchReducer: IAPIAuthState;
+    apiTalksPostReducer: IAPIAuthState;
+    apiTalksVoteReducer: IAPIAuthState;
 }
 
 export interface IOwnProps {
