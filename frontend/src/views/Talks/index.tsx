@@ -47,11 +47,6 @@ function Talks(props: TalksProps): ReactElement {
   const [talkList, setTalkList] = useState<ITalkObject[]>([]);
 
   useEffect(() => {
-    //fetchTalks(props);
-  }, []);
-
-
-  useEffect(() => {
     setTalkList(
         sortTalks(Object.values(props.apiTalksListReducer.response)),
     );
