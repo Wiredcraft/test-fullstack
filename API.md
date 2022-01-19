@@ -21,7 +21,7 @@ Routes which needs to be authenticated must have the `Bearer <token>` provided i
 {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWUyZGNjNTgyZDBlN2RlZmFlYmExNGMiLCJyb2xlIjoidXNlciIsInVzZXJuYW1lIjoibG9pY3BpcmV6IiwiZXhwIjoxNjQ3NzQ4MzU4LjE2MSwiaWF0IjoxNjQyNTY0MzU4fQ.JpmvSS65Dbrd3S5w2EM5iAUPybkqygwuWZuIs0lIgpM",
     "id": "61e2dcc582d0e7defaeba14c",
-    "username": "loicpirez
+    "username": "loicpirez"
 }
 ```
 
@@ -61,7 +61,7 @@ Routes which needs to be authenticated must have the `Bearer <token>` provided i
 {
     "_id": "61e2ea6c58086c324bfba7ec",
     "user": "loicpirez",
-    "score": +1,
+    "score": "+1",
     "name": "Hi Wiredcraft !",
     "description": "An introduction about my technical skills."
 }
@@ -83,7 +83,7 @@ Routes which needs to be authenticated must have the `Bearer <token>` provided i
   ```json
 {
     "name": "string",
-"description": "string"
+    "description": "string"
 }
 ```
   
@@ -107,7 +107,7 @@ Routes which needs to be authenticated must have the `Bearer <token>` provided i
   ```json
 {
     "name": "optional string",
-"description": "optional string"
+    "description": "optional string"
 }
 ```
 **Auth required** : YES
