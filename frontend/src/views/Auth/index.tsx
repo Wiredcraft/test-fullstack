@@ -5,7 +5,7 @@ import Container from '../../components/container';
 import {IUserState} from '../../interfaces/IUser';
 import {Navigate} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import UserForm from './component/UserForm';
+import UserForm from './component/userForm';
 import {connect} from 'react-redux';
 import {setCookie} from '../../utils/cookies';
 

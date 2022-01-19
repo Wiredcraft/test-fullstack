@@ -5,7 +5,7 @@ import {checkCookie, getCookie} from './utils/cookies';
 import Auth from './views/Auth';
 import {IAppState} from './interfaces/IRootState';
 import Logout from './views/Auth/component/logout';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar';
 import PrivateRoute from './components/privateRoute';
 import TalkForm from './views/Talks/Talk/TalkForm';
 import Talks from './views/Talks';
