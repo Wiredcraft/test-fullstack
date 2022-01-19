@@ -3,6 +3,8 @@ import PropTypes, {InferProps} from 'prop-types';
 import React, {ReactElement, useEffect} from 'react';
 import {checkCookie, getCookie} from './utils/cookies';
 import Auth from './views/Auth';
+import Centered from './components/centered';
+import Container from './components/container';
 import {IAppState} from './interfaces/IRootState';
 import Logout from './views/Auth/component/logout';
 import Navbar from './components/navbar';
@@ -72,6 +74,13 @@ function App(props: InferProps<typeof App.propTypes>): ReactElement {
         <Route path="/login" element={ <Auth type="login" />} />
         <Route path="/register" element={ <Auth type="register" />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="*" element={
+          <Container>
+            <Centered>
+            404: page not found
+            </Centered>
+          </Container>
+        } />
       </Routes>
     </BrowserRouter>
   );
