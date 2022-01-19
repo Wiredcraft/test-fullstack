@@ -64,6 +64,8 @@ class TalksService {
           rating: '$vote.count',
           name: '$name',
           description: '$description',
+          createdAt: '$createdAt',
+          updatedAt: '$createdAt',
         },
       },
     ];
