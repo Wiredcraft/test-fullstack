@@ -28,7 +28,7 @@ function Provider(props) {
     }
 
     return (
-        <Context.Provider values={values} onValuesChange={onValuesChange}>
+        <Context.Provider value={{ values, errors, onValuesChange }} >
             {props.children}
         </Context.Provider>
     )

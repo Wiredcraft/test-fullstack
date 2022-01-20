@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, Panel } from 'Components';
 import styles from './style.module.less';
 
 export default class extends React.Component {
@@ -7,7 +8,15 @@ export default class extends React.Component {
 
         this.state = {
             values: {},
-            errors: {}
+            errors: {},
+            onValuesChange: (values) => {
+                this.setState({
+                    values: {
+                        ...this.state.values,
+                        ...values
+                    }
+                })
+            }
         }
     }
 
@@ -23,16 +32,16 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Panel title="登录">
+            <Panel title="注册">
                 <Form className={styles.registerPanel} {...this.state}>
                     <Form.Item label="邮箱">
                         <input field="email" />
                     </Form.Item>
-                    <Form.Item label="密码" error={error.password}>
+                    <Form.Item label="密码">
                         <input field="password" />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" onClick={this.onSubmit}>登录</Button>
+                        <button type="primary" onClick={this.onSubmit}>登录</button>
                         <a className={styles.tip} href="/reset">忘记密码？</a>
                     </Form.Item>
                 </Form>

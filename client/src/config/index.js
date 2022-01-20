@@ -6,23 +6,6 @@ export default {
             }
             return onRequest(req);
         },
-        onRequest: function (req, onRequest) {
-            if (!sessionStorage.getItem('lastRequsetTime')) {
-                sessionStorage.setItem('lastRequsetTime', Date.now());
-            }
-
-            if ( (Date.now() - (+sessionStorage.getItem('lastRequsetTime'))) > 30*60 * 1000) {
-                app.storage.remove('access_token');
-                sessionStorage.removeItem('lastRequsetTime');
-            }
-
-            if (!req.headers.slient) {
-                sessionStorage.setItem('lastRequsetTime', Date.now());
-            }
-
-            req.headers.Authorization = app.storage.get('access_token') ? 'Bearer ' + app.storage.get('access_token') : '';
-            return onRequest(req);
-        },
         onResponse: function(res) {
             if (res.status == 401) {
                 return res.json()

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "blank",
+  "name": "client",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -9,12 +9,16 @@
     "build": "superman build"
   },
   "dependencies": {
+    "angela": "file:../packages/angela",
+    "classnames": "^2.3.1",
     "core-js": "^3.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.2.1",
     "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
-    "superman": "file:../../packages/superman"
+    "superman": "file:../packages/superman"
   }
 }

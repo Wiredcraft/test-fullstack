@@ -1,4 +1,5 @@
 import React from 'react';
+import { Panel } from 'Components';
 
 export default class extends React.Component {
     constructor(props) {
@@ -11,9 +12,9 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Panel title="登录">
+            <div>
                 
-            </Panel>
+            </div>
         )
     }
 }

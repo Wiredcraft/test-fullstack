@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './style.module.less';
 
 export default class extends React.Component {
@@ -11,7 +12,8 @@ export default class extends React.Component {
                     </a>
                     <div style={{ flex: 1}}>
                     </div>
-                    <a></a>
+                    <Link to={{ pathname: '/register'}}>register</Link>
+                    <Link to={{ pathname: '/login'}}>login</Link>
                 </div>
             </div>
         )

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, Panel } from 'Components';
 import styles from './style.module.less';
 
 export default class extends React.Component {
@@ -10,27 +11,30 @@ export default class extends React.Component {
             errors: {},
             onValuesChange: (values) => {
                 this.setState({
-                    ...this.state.values,
-                    ...values
+                    values: {
+                        ...this.state.values,
+                        ...values
+                    }
                 })
             }
         }
     }
 
     onSubmit = () => {
-        app.service.login(this.state.values)
-            .then(body => {
+        console.log(this.state.values);
+        // app.service.login(this.state.values)
+        //     .then(body => {
 
-            })
-            .catch(error => {
+        //     })
+        //     .catch(error => {
 
-            })
+        //     })
     }
 
     render() {
         return (
             <Panel title="登录" className={styles.loginPanel}>
-                <Form className={styles.login}>
+                <Form className={styles.login} {...this.state}>
                     <Form.Item label="邮箱">
                         <input field="email" />
                     </Form.Item>
@@ -38,7 +42,7 @@ export default class extends React.Component {
                         <input field="password" />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" onClick={this.onSubmit}>登录</Button>
+                        <button onClick={this.onSubmit}>登录</button>
                         <a className={styles.tip} href="/reset">忘记密码？</a>
                     </Form.Item>
                 </Form>

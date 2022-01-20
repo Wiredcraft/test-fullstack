@@ -1,6 +1,6 @@
 import React from 'react';
 import Context from './Context';
-import styles from './style.less';
+import styles from './style.module.less';
 
 export default class extends React.Component {
     static contextType = Context.Context;

@@ -15,7 +15,7 @@ app.error(error => {
     location.href = app.config.loginUrl;
   } else {
     if (error.code) {
-      message.error(error.message);
+      // message.error(error.message);
     }
   }
 })
