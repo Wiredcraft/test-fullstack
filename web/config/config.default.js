@@ -2,9 +2,6 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -16,13 +13,14 @@ module.exports = appInfo => {
   const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1574393434807_4495';
+  config.keys = appInfo.name + '_1642603991207_450';
 
   // add your middleware config here
-  config.middleware = ['prepare', 'captcha'];
+  config.middleware = [];
 
   // add your user config here
   const userConfig = {
+    // myAppName: 'egg',
     appDir: path.join(appInfo.baseDir, 'app'),
     publicDir: path.join(appInfo.baseDir, 'app/public'),
     uploadDir: path.join(appInfo.baseDir, 'app/public/uploads'),
@@ -37,21 +35,10 @@ module.exports = appInfo => {
       '/favicon.ico': fs.readFileSync(path.join(__dirname, 'favicon.png'))
     },
 
-    multipart: {
-      mode: 'file'
-    },
-
-    cdnDomain: 'https://img.boxopened.com',
-
-    oss: {
-      client: {
-        accessKeyId: 'LTAI4GENkqXwHZ28GxxcdMEB',
-        accessKeySecret: 'hbcUf32Kr1oL4tpJwfb927LhhDhZog',
-        bucket: 'u2pier-public',
-        endpoint: 'oss-cn-shanghai.aliyuncs.com',
-        timeout: '60s'
-      }
+    service: {
+      url: "http://127.0.0.1:7000"
     }
+
   };
 
   return {

@@ -1,131 +1,95 @@
 module.exports = function validator(descriptor) {
-    const length = function(str) {
-        str = str.trim();
-    
-        let bytes = 0;
-        let length = str.length;
-        for (let i = 0; i < length; i++) {
-          if (str.charCodeAt(i) > 255) {
-            bytes += 2;
-          } else {
-            bytes++;
-          }
-        }
-        return Math.floor(bytes / 2);
-    }
-
-    const rules = {
+    const RULES = {
         required: {
             validator: async function (field, options) {
-                if (typeof this[field] == 'string') {
-                    this[field] = this[field].trim();
-                }
-
-                if (this[field] == null || (typeof this[field] == 'string' && !this[field])) {
-                    throw new Error(`字段不能为空`);
+                const value = this[field] || '';
+                if (!value) {
+                    throw new Error(`${field} is required`);
                 }
             }
         },
         length: {
             validator: async function (field, options) {
-                if (typeof this[field] == 'string') {
-                    this[field] = this[field].trim();
-                }
-
+                const value = this[field] || '';
                 const { min, max } = options;
-                if (length(this[field]) < min || length(this[field]) > max) {
-                    throw new Error(`字段不能少于${min}个字符，不能多于${max}个字符`);
+                if (value.length <= min || value.length > max) {
+                    throw new Error(`${field} length should between ${min} ~ ${max}`)
                 }
             },
             options: { min: 0, max: 10000 }
         },
         email: {
             validator: async function (field, options) {
-                if (typeof this[field] == 'string') {
-                    this[field] = this[field].trim();
-                }
-
-                if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(this[field])) {
-                    throw new Error('不是合法的邮箱地址');
+                const value = this[field] || '';
+                if (!/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/.test(value)) {
+                    throw new Error(`${field} is not valid email address`);
                 }
             }
         },
         phone: {
             validator: async function (field, options) {
-                if (typeof this[field] == 'string') {
-                    this[field] = this[field].trim();
-                }
-
-                if (!/^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/.test(this[field])) {
-                    throw new Error('不是合法的手机号码');
+                const value = this[field] || '';
+                if (!/^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/.test(value)) {
+                    throw new Error(`${field} is not valid phone number`)
                 }
             }
         },
         password: {
             validator: async function (field, options) {
-                if (typeof this[field] == 'string') {
-                    this[field] = this[field].trim();
-                }
-
-                if (!/[a-zA-Z0-9\x21-\x7e]{6,20}/.test(this[field])) {
-                    throw new Error('密码必须为长度6~20位之间的数字，字母，特殊字符');
+                const value = this[field] || '';
+                if (!/[a-zA-Z0-9\x21-\x7e]{6,20}/.test(value)) {
+                    throw new Error(`${field} is not valid phone password`)
                 }
             }
         },
         url: {
             validator: async function (field, options) {
-                if (typeof this[field] == 'string') {
-                    this[field] = this[field].trim();
-                }
-
-                if (!/^((ht|f)tps?):\/\/([\w\-]+(\.[\w\-]+)*\/)*[\w\-]+(\.[\w\-]+)*\/?(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?/.test(this[field])) {
-                    throw new Error('不是合法的URL地址');
+                const value = this[field] || '';
+                if (!/^((ht|f)tps?):\/\/([\w\-]+(\.[\w\-]+)*\/)*[\w\-]+(\.[\w\-]+)*\/?(\?([\w\-\.,@?^=%&:\/~\+#]*)+)?/.test(value)) {
+                    throw new Error(`${field} is not valid url address`);
                 }
             }
         },
         enum: {
             validator: async function (value, field, options) {
-                if (typeof this[field] == 'string') {
-                    this[field] = this[field].trim();
-                }
-
+                const value = this[field] || '';
                 const { values } = options;
                 if (values.indexOf(this[field]) == -1) {
-                    throw new Error('不是合法的类型值');
+                    throw new Error(`${field} is not valid enum type`);
                 }
             }
         }
     }
 
-    return async source => {
+    return async function(data) {
         const fields = Object.keys(descriptor);
-        for (let i = 0; i < fields.length; i++) {
-            const field = fields[i];
-            const validators = descriptor[field];
-            for (let j = 0; j < validators.length; j++) {
-                var validator = validators[j];
-                var validateFunc = validator.validator;
-                var validateOptions = validator.options;
-                var validateMessage = validator.message;
+        for (let field of fields) {
+            const rules = descriptor[field];
+            for (let rule of rules) {
+                let { validator, options, message } = rule;
 
-                if (typeof validateFunc == 'string') {
-                    validator = rules[validateFunc];
-                    validateFunc = validator.validator;
-                    validateOptions = validateOptions || validator.options;
-                    validateMessage = validateMessage || validator.message;
+                if (typeof validator == 'string') {
+                    if (RULES[validator]) {
+                        options = options || RULES[validator].options;
+                        message = message || RULES[validator].message;
+                        validator = RULES[validator].validator;
+                    } else {
+                        throw new Error('Invalid validator type');
+                    }
                 }
 
                 try {
-                    await validateFunc.call(source, field, validateOptions)
+                    await validator.call(data, field, options);
                 } catch (e) {
-                    const error = new Error(validateMessage || e.message);
+                    const error = new Error(message || e.message);
                     error.name = 'ValidationError';
                     error.data = {
-                        [field]: validateMessage || e.message
+                        [field]: message || e.message
                     }
-                    throw error;
+                    throw error; 
                 }
             }
         }
     }
+
 }

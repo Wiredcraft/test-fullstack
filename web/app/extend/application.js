@@ -5,7 +5,7 @@ module.exports = {
         if (!this[BROKER]) {
             this[BROKER] = {
                 call: async (action, params) => {
-                    const { status, data = {} } = await this.curl(this.config.broker.url, {
+                    const { status, data = {} } = await this.curl(this.config.service.url, {
                         method: 'POST',
                         contentType: 'json',
                         data: {

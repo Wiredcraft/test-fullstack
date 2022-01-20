@@ -4,10 +4,7 @@ const ApplicationError = require('./errors/ApplicationError');
 
 class ServiceBroker {
     static getInstance() {
-        if (!ServiceBroker._instance) {
-            ServiceBroker._instance = new ServiceBroker();
-        }
-        return ServiceBroker._instance;
+        return new ServiceBroker();
     }
 
     constructor() {

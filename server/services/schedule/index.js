@@ -1,7 +1,7 @@
 const schedule = require('node-schedule');
 
 module.exports = {
-    name: 'Schedule',
+    name: 'schedule',
     config: {
         ...require('../../config').schedule
     },

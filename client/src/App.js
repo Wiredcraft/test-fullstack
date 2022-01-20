@@ -10,10 +10,10 @@ export default function (props) {
                     <Route path="/">
                         <Main>
                             <Switch>
+                                <Route exact path="/" component={require('Pages/Home').default} />
                                 <Route exact path="/login" component={require('Pages/Login').default} />
                                 <Route exact path="/register" component={require('Pages/Register').default} />
                                 <Route exact path="/topics" component={require('Pages/Topics').default} />
-                                <Redirect from="/" to="/login" />
                             </Switch>
                         </Main>
                     </Route>

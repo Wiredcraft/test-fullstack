@@ -1,5 +1,5 @@
 {
-  "name": "utopia",
+  "name": "web",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -7,13 +7,8 @@
     "declarations": true
   },
   "dependencies": {
-    "canvas": "^2.6.1",
     "egg": "^2.15.1",
-    "egg-oss": "^2.0.0",
-    "egg-scripts": "^2.11.0",
-    "file-type": "^14.4.0",
-    "mz": "^2.7.0",
-    "node-fetch": "^2.6.0"
+    "egg-scripts": "^2.11.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -28,8 +23,8 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --title=egg-server-utopia --port=7003",
-    "stop": "egg-scripts stop --title=egg-server-utopia",
+    "start": "egg-scripts start --daemon --title=egg-server-web",
+    "stop": "egg-scripts stop --title=egg-server-web",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",

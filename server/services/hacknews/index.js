@@ -11,7 +11,6 @@ module.exports = Object.assign({}, DbService, {
         await this.init();
     },
 
-
     login: {
 
     },

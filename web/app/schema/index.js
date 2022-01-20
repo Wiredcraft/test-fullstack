@@ -7,9 +7,6 @@ module.exports = {
         password: [
             { validator: 'required', message: '请输入密码' }
         ],
-        captcha: [
-            { validator: 'required', message: '请输入验证码' }
-        ]
     },
 
     register: {
@@ -25,46 +22,6 @@ module.exports = {
             { validator: 'required', message: '密码不能为空' },
             { validator: 'password', message: '密码长度为6~20位之间'}
         ],
-        code: [
-            { validator: 'required', message: '验证码不能为空' }
-        ]
-    },
-
-    reset: {
-        email: [
-            { validator: 'required', message: '请输入邮箱' },
-            { validator: 'email', message: '邮箱地址不正确' }
-        ],
-        password: [
-            { validator: 'required', message: '请输入新密码' },
-            { validator: 'password', message: '新密码必须为长度6~20位之间的数字，字母，特殊字符' }
-        ],
-        code: [
-            { validator: 'required', message: '验证码不能为空' }
-        ]
-    },
-
-    verify: {
-        email: [
-            { validator: 'required', message: '邮箱不能为空' },
-            { validator: 'email', message: '邮箱地址不正确' }
-        ]
-    },
-
-    avatar: {
-        input:  [
-            { validator: 'required', message: '输入不能为空' },
-        ]
-    },
-
-    password: {
-        passwordOld: [
-            { validator: 'required', message: '请输入原密码' },
-        ],
-        passwordNew: [
-            { validator: 'required', message: '请输入新密码' },
-            { validator: 'password', message: '新密码必须为长度6~20位之间的数字，字母，特殊字符' }
-        ]
     },
 
     post: {
@@ -77,26 +34,7 @@ module.exports = {
         ]
     },
 
-    append: {
-        id: [
-            { validator: 'required', message: '字段不能为空' },
-        ],
-        content: [
-            { validator: 'required', message: '内容不能为空' },
-            { validator: 'length', options: { min: 5, max: 5000 }, message: '内容太短'}
-        ]
-    },
-
-    reply: {
-        post: [
-            { validator: 'required', message: '帖子不能为空' },
-        ],
-        content: [
-            { validator: 'required', message: '内容不能为空' },
-        ]
-    },
-
-    relation: {
+    vote: {
         type: [
             { validator: 'required', message: '字段不能为空' },
         ],
@@ -105,7 +43,7 @@ module.exports = {
         ]
     },
 
-    unrelation: {
+    unvote: {
         type: [
             { validator: 'required', message: '字段不能为空' },
         ],
