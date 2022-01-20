@@ -7,9 +7,6 @@ const { Sequelize, Op, Transaction } = require('sequelize');
 module.exports = {
     async init() {
         const defaultConfig = {
-            host: 'localhost',
-            port: 3306,
-            username: 'root',
             benchmark: true,
             define: {
                 freezeTableName: false,
@@ -58,14 +55,14 @@ module.exports = {
     },
 
     async get(name, ...args) {
-        return this.model(name).findOne.apply(this.model(name), args)
+        return this.model(name).findOne(...args)
             .then(result => {
                 return result ? result.toJSON() : result;
             });
     },
 
     async list(name, ...args) {
-        return this.model(name).findAll.apply(this.model(name), args)
+        return this.model(name).findAll(...args)
             .then(results => {
                 results = results.map(item => item.toJSON());
                 return results;                
@@ -73,7 +70,7 @@ module.exports = {
     },
 
     async page(name, ...args) {
-        return this.model(name).findAndCountAll.apply(this.model(name), args)
+        return this.model(name).findAndCountAll(...args)
             .then(results => {
                 results.rows = results.rows.map(item => item.toJSON());
                 return results;                
@@ -81,22 +78,22 @@ module.exports = {
     },
 
     async count(name, ...args) {
-        return this.model(name).count.apply(this.model(name), args);
+        return this.model(name).count(...args);
     },
 
     async create(name, ...args) {
-        return this.model(name).create.apply(this.model(name), args)
+        return this.model(name).create(...args)
             .then(result => {
                 return result ? result.toJSON() : result;
             })
     },
 
     async update(name, ...args) {
-        return this.model(name).update.apply(this.model(name), args);
+        return this.model(name).update(...args);
     },
 
     async delete(name, ...args) {
-        return this.model(name).destroy.apply(this.model(name), args);
+        return this.model(name).destroy(...args);
     },
 
     async populate(rows, { model, field, attributes = [] }) {

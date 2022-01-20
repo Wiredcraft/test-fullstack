@@ -11,10 +11,27 @@ module.exports = Object.assign({}, DbService, {
         await this.init();
     },
 
-    send: {
-        params: ["from", "to", "subject", "text", "html"],
+
+    login: {
+
+    },
+
+    register: {
+
+    },
+
+    vote: {
+        params: ["", ""],
         handler: async function(params) {
-            await this.transporter.sendMail(params);
+
         }
-    }
+    },
+
+    unvote: {
+        params: ["", ""],
+        handler: async function(params) {
+            
+        }
+    },
+
 });
