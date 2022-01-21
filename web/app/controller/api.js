@@ -1,5 +1,5 @@
 'use strict';
-
+const jwt = require('jsonwebtoken');
 const Controller = require('egg').Controller;
 
 class ApiController extends Controller {
@@ -11,11 +11,12 @@ class ApiController extends Controller {
 
     const user = await app.broker.call('hacknews.login', body);
 
-    ctx.session.user = {
+    ctx.body = {
       id: user.id,
       name: user.name,
-      avatar: user.avatar
-    };
+      token: jwt.sign({ id: user.id, name: user.name, }, app.config.keys, { expiresIn: '24h' } )
+    }
+
   }
 
   async register() {
@@ -26,11 +27,11 @@ class ApiController extends Controller {
 
     const user = await app.broker.call('hacknews.register', body);
 
-    ctx.session.user = {
+    ctx.body = {
       id: user.id,
       name: user.name,
-      avatar: avatar.name
-    };
+      token: jwt.sign({ id: user.id, name: user.name, }, app.config.keys, { expiresIn: '24h' } )
+    }
   }
 
   async addTalk() {
@@ -50,16 +51,6 @@ class ApiController extends Controller {
     const { body } = ctx.request;
 
     ctx.body = await app.broker.call('hacknews.voteTalk', {
-      ...body,
-      creator: ctx.session.user.id
-    });
-  }
-
-  async unvoteTalk() {
-    const { ctx, app } = this;
-    const { body } = ctx.request;
-
-    ctx.body = await app.broker.call('hacknews.unvoteTalk', {
       ...body,
       creator: ctx.session.user.id
     });

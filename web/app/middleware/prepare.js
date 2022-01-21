@@ -3,8 +3,6 @@
 module.exports = (options, app) => {
     return async (ctx, next) => {
         try {
-            ctx.req.session = ctx.session;
-            ctx.req.cookies = ctx.cookies;
             ctx.res.statusCode = 200;
             await next();
             if (ctx.request.headers["x-requested-with"] == 'XMLHttpRequest') {
@@ -13,12 +11,17 @@ module.exports = (options, app) => {
                     data: ctx.body
                 }
             }
-        } catch(e) {
+        } catch(error) {
+            if (error.name == 'AuthenticationError') {
+                ctx.res.statusCode = 401;
+            } else {
+                ctx.res.statusCode = 500;
+            }
             ctx.body = {
                 success: false,
-                name: e.name || 'ApplicationError',
-                message: e.message || '系统开小差了，请稍后重试',
-                data: e.data
+                name: error.name || 'ApplicationError',
+                message: error.message,
+                data: error.data
             }
         }
     }

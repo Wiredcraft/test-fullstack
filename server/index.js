@@ -9,19 +9,24 @@ module.exports = (function() {
     broker.start();
 
     return async (req, res) => {
+        const { action, params } = await json(req);
         try {
-            const { action, params } = await json(req);
-            return {
-                success: true,
-                data: await broker.call(action, params)
-            }
-        } catch(e) {
-            broker.logger.error(e.message);
+            broker.logger.info(`Start call action:${action} with params:${JSON.stringify(params)}`);
+            const data = await broker.call(action, params);
+            broker.logger.info(`End call action:${action} got response:${JSON.stringify(data)}`);
+
+            return { 
+                success: true, 
+                data: data 
+            };
+
+        } catch(error) {
+            broker.logger.error(`End call action:${action} with error:${error.message}`);
             return {
                 success: false,
-                name: e.name,
-                data: e.data,
-                message: e.message
+                name: error.name,
+                data: error.data,
+                message: error.message
             }
         }
     }

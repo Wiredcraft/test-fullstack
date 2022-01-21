@@ -1,3 +1,4 @@
+const ApplicationError = require('../error/ApplicationError');
 const BROKER = Symbol('Application#broker');
 
 module.exports = {
@@ -8,29 +9,18 @@ module.exports = {
                     const { status, data = {} } = await this.curl(this.config.service.url, {
                         method: 'POST',
                         contentType: 'json',
-                        data: {
-                            action: action,
-                            params: params,
-                        },
+                        data: { action, params },
                         dataType: 'json',
                     });
 
                     if (status !== 200) {
-                        throw Object.assign(new Error(), {
-                            success: false,
-                            name: "ApplicationError",
-                            message: '服务未知异常'
-                        });
+                        throw new ApplicationError('System Unknow Error');
                     }
 
                     if (!data.success) {
-                        throw Object.assign(new Error(), {
-                            success: false,
-                            name: data.name,
-                            data: data.data,
-                            message: data.message
-                        });
+                        throw new ApplicationError(data.message, data.data);
                     }
+
                     return data.data;
                 }
             };

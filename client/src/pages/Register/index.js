@@ -32,17 +32,16 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Panel title="注册">
+            <Panel title="Register">
                 <Form className={styles.registerPanel} {...this.state}>
-                    <Form.Item label="邮箱">
+                    <Form.Item label="email">
                         <input field="email" />
                     </Form.Item>
-                    <Form.Item label="密码">
+                    <Form.Item label="password">
                         <input field="password" />
                     </Form.Item>
                     <Form.Item>
-                        <button type="primary" onClick={this.onSubmit}>登录</button>
-                        <a className={styles.tip} href="/reset">忘记密码？</a>
+                        <button type="primary" onClick={this.onSubmit}>register</button>
                     </Form.Item>
                 </Form>
             </Panel>

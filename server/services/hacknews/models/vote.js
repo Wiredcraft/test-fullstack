@@ -6,8 +6,7 @@ module.exports = db => {
             type: DataTypes.STRING,
             primaryKey: true
         },
-        site: DataTypes.STRING, // 网站
-        action: DataTypes.STRING, // 喜欢 || 不喜欢
-        creater: DataTypes.STRING, // 创建者
+        talk: DataTypes.STRING,
+        voteBy: DataTypes.STRING
     });
 };

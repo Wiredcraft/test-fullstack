@@ -1,15 +1,15 @@
-'use strict';
+const jwt = require('jsonwebtoken');
+const AuthenticationError = require('../error/AuthenticationError');
 
 module.exports = (options, app) => {
     return async (ctx, next) => {
-        if (ctx.session.user) {
+        const token = ctx.request.headers["token"];
+        try {
+            ctx.user = jwt.verify(token, app.config.app.keys);
             await next();
-        } else {
+        } catch(error) {
             if (ctx.request.headers["x-requested-with"] == 'XMLHttpRequest') {
-                throw Object.assign(new Error(), {
-                    name: "AuthenticationError",
-                    message: "请登录后再进行操作"
-                })
+                throw new AuthenticationError('Please login before you operate');
             } else {
                 ctx.redirect('/login');
             }

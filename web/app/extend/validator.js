@@ -1,3 +1,5 @@
+const ValidationError = require('../error/ValidationError');
+
 module.exports = function validator(descriptor) {
     const RULES = {
         required: {
@@ -81,15 +83,11 @@ module.exports = function validator(descriptor) {
                 try {
                     await validator.call(data, field, options);
                 } catch (e) {
-                    const error = new Error(message || e.message);
-                    error.name = 'ValidationError';
-                    error.data = {
+                    throw new ValidationError(message || e.message, {
                         [field]: message || e.message
-                    }
-                    throw error; 
+                    });
                 }
             }
         }
     }
-
 }

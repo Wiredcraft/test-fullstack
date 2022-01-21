@@ -21,7 +21,6 @@ export default class extends React.Component {
     }
 
     onSubmit = () => {
-        console.log(this.state.values);
         // app.service.login(this.state.values)
         //     .then(body => {
 
@@ -33,17 +32,17 @@ export default class extends React.Component {
 
     render() {
         return (
-            <Panel title="登录" className={styles.loginPanel}>
+            <Panel title="Login" className={styles.loginPanel}>
                 <Form className={styles.login} {...this.state}>
-                    <Form.Item label="邮箱">
+                    <Form.Item label="email">
                         <input field="email" />
                     </Form.Item>
-                    <Form.Item label="密码">
+                    <Form.Item label="password">
                         <input field="password" />
                     </Form.Item>
                     <Form.Item>
-                        <button onClick={this.onSubmit}>登录</button>
-                        <a className={styles.tip} href="/reset">忘记密码？</a>
+                        <button onClick={this.onSubmit}>login</button>
+                        <a className={styles.tip} href="/reset">Forget password ?</a>
                     </Form.Item>
                 </Form>
             </Panel>
