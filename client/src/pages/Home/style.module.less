@@ -1,0 +1,75 @@
+.talkPanel {
+    padding: 20px 0;
+
+    .emptyList {
+        padding: 0 10px;
+        a {
+            color: #ff6600;
+        }
+    }
+
+    .more {
+        margin: 10px;
+        a {
+            color: #ff6600;
+        }
+    }
+
+    .talkList {
+        li {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+
+            .left {
+                margin-right: 10px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                font-size: 16px;
+                line-height: 1;
+                .vote {
+                    flex: 1;
+                    svg {
+                        cursor: pointer;
+                        fill: #999;
+                        &:hover {
+                            fill: #333;
+                        }
+                    }
+                    &.voted {
+                        svg {
+                            fill: #333;
+                        }
+                    }
+                }
+            }
+
+            .right {
+                flex: 1;
+            }
+
+            .title{
+                color: #333;
+                font-size: 16px;
+                line-height: 1;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+            .desc {
+                margin-top: 5px;
+                color: #666;
+                font-size: 14px;
+                line-height: 1;
+            }
+            .meta {
+                margin-top: 5px;
+                font-size: 14px;
+                line-height: 1;
+                color: #999;
+            }
+        }
+    }
+
+}

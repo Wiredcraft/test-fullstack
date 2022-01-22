@@ -1286,7 +1286,7 @@ ajv@^6.1.0, ajv@^6.12.4, ajv@^6.12.5:
   version "1.0.0"
   dependencies:
     core-js "^3.8.1"
-    form-urlencoded "^4.1.1"
+    form-urlencoded "^6.0.5"
     graphql-request "^1.8.2"
     js-base64 "^2.5.1"
     js-cookie "^2.2.1"
@@ -2507,6 +2507,11 @@ faye-websocket@^0.11.3:
   dependencies:
     websocket-driver ">=0.5.1"
 
+fecha@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmmirror.com/fecha/download/fecha-4.2.1.tgz#0a83ad8f86ef62a091e22bb5a039cd03d23eecce"
+  integrity sha1-CoOtj4bvYqCR4iu1oDnNA9I+7M4=
+
 file-loader@^6.2.0:
   version "6.2.0"
   resolved "https://registry.npmmirror.com/file-loader/download/file-loader-6.2.0.tgz#baef7cf8e1840df325e4390b4484879480eebe4d"
@@ -2591,10 +2596,10 @@ for-in@^1.0.2:
   resolved "https://registry.nlark.com/for-in/download/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
   integrity sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=
 
-form-urlencoded@^4.1.1:
-  version "4.5.1"
-  resolved "https://registry.npmmirror.com/form-urlencoded/download/form-urlencoded-4.5.1.tgz#922da1f0f6846ba85e3d2977b808d9809cb60946"
-  integrity sha1-ki2h8PaEa6hePSl3uAjZgJy2CUY=
+form-urlencoded@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.npmmirror.com/form-urlencoded/download/form-urlencoded-6.0.5.tgz#61263c5cb6806523d0c6124318a9bcb612b7742b"
+  integrity sha1-YSY8XLaAZSPQxhJDGKm8thK3dCs=
 
 forwarded@0.2.0:
   version "0.2.0"
@@ -2809,7 +2814,7 @@ he@^1.2.0:
   resolved "https://registry.nlark.com/he/download/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha1-hK5l+n6vsWX922FWauFLrwVmTw8=
 
-history@^4.9.0:
+history@^4.10.1, history@^4.9.0:
   version "4.10.1"
   resolved "https://registry.npmmirror.com/history/download/history-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
   integrity sha1-MzcaZeOoOyZ0NOKz87G0xYqtTPM=
@@ -4613,7 +4618,7 @@ react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0:
   resolved "https://registry.npmmirror.com/react-is/download/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=
 
-react-router-dom@5:
+react-router-dom@^5.2.1:
   version "5.3.0"
   resolved "https://registry.npmmirror.com/react-router-dom/download/react-router-dom-5.3.0.tgz#da1bfb535a0e89a712a93b97dd76f47ad1f32363"
   integrity sha512-ObVBLjUZsphUUMVycibxgMdh5jJ1e3o+KpAZBVeHcNQZ4W+uUGGWsokurzlF4YOldQYRQL4y6yFRWM4m3svmuQ==
@@ -4626,7 +4631,7 @@ react-router-dom@5:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router@5, react-router@5.2.1:
+react-router@5.2.1, react-router@^5.2.1:
   version "5.2.1"
   resolved "https://registry.npmmirror.com/react-router/download/react-router-5.2.1.tgz#4d2e4e9d5ae9425091845b8dbc6d9d276239774d"
   integrity sha512-lIboRiOtDLFdg1VTemMwud9vRVuOCZmUIT/7lUoZiSpPODiiH1UQlfXy+vPLC/7IWdFYnhRwAyNqA/+I7wnvKQ==

@@ -2,6 +2,8 @@
 
 'use strict';
 
+const path = require('path');
+
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
@@ -16,27 +18,20 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1642603991207_450';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ "prepare" ];
 
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
     appDir: path.join(appInfo.baseDir, 'app'),
     publicDir: path.join(appInfo.baseDir, 'app/public'),
-    uploadDir: path.join(appInfo.baseDir, 'app/public/uploads'),
-    avatarDir: path.join(appInfo.baseDir, 'app/public/avatars'),
-    tempDir: path.join(appInfo.baseDir, 'app/public/temp'),
 
     static: {
       prefix: ''
     },
 
-    siteFile: {
-      '/favicon.ico': fs.readFileSync(path.join(__dirname, 'favicon.png'))
-    },
-
     service: {
-      url: "http://127.0.0.1:7000"
+      url: "http://127.0.0.1:8000"
     }
 
   };

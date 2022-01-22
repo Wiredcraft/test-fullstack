@@ -6,14 +6,15 @@ module.exports = (function() {
 
     broker.loadService(require('./services/mail'));
     broker.loadService(require('./services/schedule'));
+    broker.loadService(require('./services/hacknews'));
     broker.start();
 
     return async (req, res) => {
         const { action, params } = await json(req);
         try {
-            broker.logger.info(`Start call action:${action} with params:${JSON.stringify(params)}`);
+            broker.logger.info(`Call action:${action} with params:${JSON.stringify(params)}`);
             const data = await broker.call(action, params);
-            broker.logger.info(`End call action:${action} got response:${JSON.stringify(data)}`);
+            broker.logger.info(`call action:${action} success got response:${JSON.stringify(data)}`);
 
             return { 
                 success: true, 
@@ -21,7 +22,7 @@ module.exports = (function() {
             };
 
         } catch(error) {
-            broker.logger.error(`End call action:${action} with error:${error.message}`);
+            broker.logger.error(`Call action:${action} failure with error:${error.message}`);
             return {
                 success: false,
                 name: error.name,

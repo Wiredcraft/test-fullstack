@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const DbService = require('../DbService');
 const ValidationError = require('../../errors/ValidationError');
+const { Op } = require("sequelize");
 
 module.exports = Object.assign({}, DbService, {    
     name: 'hacknews',
@@ -33,17 +34,17 @@ module.exports = Object.assign({}, DbService, {
             const { name, password } = params;
             const transaction = await this.transaction();
             try {
-                const user = await  this.get('User', {
+                const exists = await this.get('User', {
                     where: { name }, 
                     transaction 
                 });
-                if (user) {
+                if (exists) {
                     throw new ValidationError('Name already used', {
                         name: "Name already used"
                     })
                 }
                 const salt = this.id();
-                await this.create('User', {
+                const user = await this.create('User', {
                     id: this.id(),
                     name,
                     salt,
@@ -83,9 +84,10 @@ module.exports = Object.assign({}, DbService, {
 
             const results = await this.page('Talk', {
                 offset: ( page - 1) * pageSize,
+                limit: pageSize,
                 order: [
                     ["points", "DESC"]
-                ]
+                ],
             });
 
             await this.populate(results.rows, {
@@ -98,14 +100,32 @@ module.exports = Object.assign({}, DbService, {
         }
     },
 
-    vote: {
+    listVote: {
+        params: ["talks", "voteBy"],
+        handler: async function(params) {
+            const { talks = [], voteBy } = params;
+            const votes = await this.list('Vote', {
+                where: {
+                    [Op.and]: [
+                        {
+                            voteBy: voteBy,
+                            talk: talks
+                        }
+                    ]
+                }
+            });
+            return votes;
+        }
+    },
+
+    voteTalk: {
         params: ["talk", "voteBy"],
         handler: async function(params) {
             const { talk, voteBy } = params;
             
             const transaction = await this.transaction();
             try {
-                const vote = this.get('Vote', {
+                const vote = await this.get('Vote', {
                     where: { talk, voteBy },
                     transaction
                 });

@@ -2,4 +2,25 @@
 
 html, body, #root {
     height: 100%;
+    color: #333;
+    background: #f6f6ef;
 }
+
+:root {
+    --primaryColor: #333;
+    --backgroundColor: #fff;
+    --contentWidth: 960px;
+    --contentPadding: 0;
+}
+
+.theme-default {
+    --primaryColor: #fafafa;
+    --backgroundColor: #bababa;
+}
+
+@media screen and (max-width: 960px) {
+    :root {
+      --contentWidth: 100%;
+      --contentPadding: 0px 10px;
+    }
+  }

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Form, Panel } from 'Components';
+import { Form, Panel, Auth } from 'Components';
+import Utils from 'Utils';
 import styles from './style.module.less';
+import { withRouter } from 'react-router-dom';
 
-export default class extends React.Component {
+class Login extends React.Component {
+    static contextType = Auth.Context;
+
     constructor(props) {
         super(props);
 
@@ -20,32 +24,57 @@ export default class extends React.Component {
         }
     }
 
-    onSubmit = () => {
-        // app.service.login(this.state.values)
-        //     .then(body => {
+    rules = {
+        name: [
+            { validator: 'required' },
+        ],
+        password: [
+            { validator: 'required' }
+        ],
+    }
 
-        //     })
-        //     .catch(error => {
-
-        //     })
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.setState({ errors: {} });
+        Utils.validator(this.rules)(this.state.values)
+            .then(() => {
+                return app.service.login(this.state.values)
+            })
+            .then(body => {
+                const { name, token } = body;
+                app.storage.set('user', { name });
+                app.storage.set('authToken', token);
+                this.context.notifyUserChange();
+                this.props.history.push("/");
+            })
+            .catch(error => {
+                if (error.name == 'ValidationError') {
+                    this.setState({
+                        errors: error.data
+                    })
+                } else {
+                    throw error;
+                }
+            })
     }
 
     render() {
         return (
             <Panel title="Login" className={styles.loginPanel}>
-                <Form className={styles.login} {...this.state}>
-                    <Form.Item label="email">
-                        <input field="email" />
+                <Form className={styles.loginForm} {...this.state}>
+                    <Form.Item label="Name">
+                        <input field="name" />
                     </Form.Item>
-                    <Form.Item label="password">
+                    <Form.Item label="Password">
                         <input field="password" />
                     </Form.Item>
                     <Form.Item>
                         <button onClick={this.onSubmit}>login</button>
-                        <a className={styles.tip} href="/reset">Forget password ?</a>
                     </Form.Item>
                 </Form>
             </Panel>
         )
     }
 }
+
+export default withRouter(Login);

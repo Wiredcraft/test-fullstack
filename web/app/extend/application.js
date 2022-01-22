@@ -1,4 +1,6 @@
 const ApplicationError = require('../error/ApplicationError');
+const ValidationError = require('../error/ValidationError');
+
 const BROKER = Symbol('Application#broker');
 
 module.exports = {
@@ -18,9 +20,11 @@ module.exports = {
                     }
 
                     if (!data.success) {
+                        if (data.name == 'ValidationError') {
+                            throw new ValidationError(data.message, data.data);
+                        }
                         throw new ApplicationError(data.message, data.data);
                     }
-
                     return data.data;
                 }
             };

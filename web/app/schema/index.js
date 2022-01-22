@@ -14,7 +14,6 @@ module.exports = {
         ],
         password: [
             { validator: 'required' },
-            { validator: 'password' },
         ],
     },
 
@@ -23,6 +22,7 @@ module.exports = {
             { validator: 'required' },
         ],
         description: [
+            { validator: 'required' },
             { validator: 'length', options: { min: 10, max: 100 }}
         ]
     },

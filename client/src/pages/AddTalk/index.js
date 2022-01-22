@@ -1,12 +1,10 @@
-import { Auth, Form, Panel } from 'Components';
+import { Form, Panel } from 'Components';
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import Utils from 'Utils';
+import { withRouter } from 'react-router-dom';
 import styles from './style.module.less';
 
-class Register extends React.Component {
-    static contextType = Auth.Context;
-
+class AddTalk extends React.Component {
     constructor(props) {
         super(props);
 
@@ -25,11 +23,12 @@ class Register extends React.Component {
     }
 
     rules = {
-        name: [
+        title: [
             { validator: 'required' },
         ],
-        password: [
-            { validator: 'required' }
+        description: [
+            { validator: 'required' },
+            { validator: 'length', options: { min: 10, max: 100 }}
         ],
     }
 
@@ -38,14 +37,10 @@ class Register extends React.Component {
         this.setState({ errors: {} });
         Utils.validator(this.rules)(this.state.values)
             .then(() => {
-                return app.service.register(this.state.values)
+                return app.service.addTalk(this.state.values)
             })
             .then(body => {
-                const { name, token } = body;
-                app.storage.set('user', { name });
-                app.storage.set('authToken', token);
-                this.context.notifyUserChange();
-                this.props.history.push("/");
+                this.props.history.push('/');
             })
             .catch(error => {
                 if (error.name == 'ValidationError') {
@@ -60,16 +55,16 @@ class Register extends React.Component {
 
     render() {
         return (
-            <Panel className={styles.registerPanel} title="Register">
-                <Form className={styles.registerForm} {...this.state}>
-                    <Form.Item label="Name">
-                        <input field="name" />
+            <Panel className={styles.addTalkPanel} title="Add Talk">
+                <Form className={styles.addTalkForm} {...this.state}>
+                    <Form.Item label="Title">
+                        <input field="title" />
                     </Form.Item>
-                    <Form.Item label="Password">
-                        <input field="password" />
+                    <Form.Item label="Description">
+                        <textarea field="description" rows={10} />
                     </Form.Item>
                     <Form.Item>
-                        <button type="primary" onClick={this.onSubmit}>register</button>
+                        <button type="primary" onClick={this.onSubmit}>submit</button>
                     </Form.Item>
                 </Form>
             </Panel>
@@ -77,4 +72,4 @@ class Register extends React.Component {
     }
 }
 
-export default withRouter(Register);
+export default withRouter(AddTalk);

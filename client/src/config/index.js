@@ -1,33 +1,26 @@
 export default {
+    cookie: {
+        encode: false,
+    },
+
     request: {
         onRequest: function (req, onRequest) {
-            if (app.storage.get('access_token')) {
-                req.headers.Authorization =  'Bearer ' + app.storage.get('access_token');
+            if (app.cookie.get('csrfToken')) {
+                req.headers['x-csrf-token'] =  app.cookie.get('csrfToken');
+            }
+            if (app.storage.get('authToken')) {
+                req.headers['Authorization'] =  'Bearer ' + app.storage.get('authToken');
             }
             return onRequest(req);
         },
         onResponse: function(res) {
-            if (res.status == 401) {
-                return res.json()
-                    .then(result => {
-                        return Promise.reject(result);
-                    })
-            }
-
-            if (res.status != 200) {
-                return Promise.reject({ code: res.status, message: res.statusText });
-            }
-
             return res.json()
                 .then(result => {
-                    const { code, body, message } = result;
-                    if (code == null) {
-                        return result;
+                    const { success, name, data, message } = result;
+                    if (success) {
+                        return data;
                     }
-                    if (code === '000000') {
-                        return body;
-                    }
-                    return Promise.reject({ code, body, message });
+                    return Promise.reject({ success, name, data, message });
                 });
         }
     },
@@ -36,8 +29,9 @@ export default {
         items: {
             "login": "POST /api/login",
             "register": "POST /api/register",
-            "vote": "POST /api/vote",
-            "unvote": "POST /api/unvote"
+            "addTalk": "POST /api/talk/add",
+            "pageTalk": "GET /api/talk/page",
+            "voteTalk": "POST /api/talk/vote",
         }
     }
 }

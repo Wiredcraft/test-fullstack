@@ -1,6 +1,4 @@
-const ValidationError = require('../error/ValidationError');
-
-module.exports = function validator(descriptor) {
+export default function validator(descriptor) {
     const RULES = {
         required: {
             validator: async function (field, options) {
@@ -69,6 +67,7 @@ module.exports = function validator(descriptor) {
             const rules = descriptor[field];
             for (let rule of rules) {
                 let { validator, options, message } = rule;
+
                 if (typeof validator == 'string') {
                     if (RULES[validator]) {
                         options = options || RULES[validator].options;
@@ -82,9 +81,12 @@ module.exports = function validator(descriptor) {
                 try {
                     await validator.call(data, field, options);
                 } catch (e) {
-                    throw new ValidationError(message || e.message, {
-                        [field]: message || e.message
-                    });
+                    throw Object.assign({}, new Error(message || e.message), {
+                        name: 'ValidationError',
+                        data: {
+                            [field]: message || e.message
+                        }
+                    })
                 }
             }
         }

@@ -1,0 +1,68 @@
+.form {
+    .field {
+        font-size: 14px;
+        line-height: 32px;
+        margin-bottom: 10px;
+
+        .content {
+            display: flex;
+            .label {
+                min-width: 80px;
+                text-align: right;
+                margin-right: 10px;
+            }
+        
+            .input {
+                flex: 1;
+                input {
+                    height: 30px;
+                    line-height: 30px;
+                    outline: none;
+                    padding: 0 10px;
+                    border: 1px solid #eee;
+                    border-radius: 2px;
+                    width: 230px;
+                    transition: border-color 0.1s;
+                    &:focus {
+                        border-color: #ccc;
+                    }
+                }
+                textarea {
+                    width: 230px;
+                    border: 1px solid #eee;
+                    border-radius: 2px;
+                    padding: 10px;
+                    outline: none;
+                    &:focus {
+                        border-color: #ccc;
+                    }
+                }
+            }
+        }
+    
+        .error {
+            margin-left: 90px;
+            color: #ff6600;
+            line-height: 1;
+            margin-top: 5px;
+            font-size: 14px;
+            height: 14px;
+        }
+    }
+    
+    button {
+        cursor: pointer;
+        font-size: 14px;
+        height: 32px;
+        line-height: 32px;
+        border-radius: 4px;
+        padding: 0 20px;
+        text-align: center;
+        border: none;
+        background: #efefef;
+        transition: all 0.1s;
+        &:hover {
+            background: #eaeaea;
+        }
+    }
+}

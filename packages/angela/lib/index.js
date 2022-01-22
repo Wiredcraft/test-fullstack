@@ -19,7 +19,7 @@ var _request = _interopRequireDefault(require("./request"));
 
 var _graphql = _interopRequireDefault(require("./graphql"));
 
-var _socket2 = _interopRequireDefault(require("./socket"));
+var _socket = _interopRequireDefault(require("./socket"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -95,9 +95,22 @@ const app = {
     return results;
   },
 
-  socket: (url, protocols, options) => {
-    return (0, _socket2.default)(url, protocols, options || app.config.socket);
+  get socket() {
+    const cfg = app.config.socket;
+
+    const builder = url => {
+      return (protocols, options) => {
+        return (0, _socket.default)(url, protocols || cfg.protocols, options || cfg.options);
+      };
+    };
+
+    const results = _socket.default;
+    Object.keys(cfg.items).map(key => {
+      results[key] = typeof cfg.items[key] == 'function' ? cfg.items[key] : builder(cfg.items[key]);
+    });
+    return results;
   },
+
   error: handler => {
     window.addEventListener('error', handler);
     window.addEventListener("unhandledrejection", event => handler(event.reason));
@@ -112,6 +125,7 @@ const app = {
 var _default = config => {
   app.config(require('./config.default').default);
   app.config(config);
+  app.config(window.ANGELA_CONFIG || {});
   return app;
 };
 

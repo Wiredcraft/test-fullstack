@@ -1,7 +1,14 @@
 'use strict';
 
+const jwt = require('jsonwebtoken');
+
 module.exports = (options, app) => {
     return async (ctx, next) => {
+        const token = ctx.request.headers["authorization"] || "";
+        try {
+            ctx.user = jwt.verify(token.replace('Bearer ', ''), ctx.app.config.keys);
+        } catch (error) { }
+
         try {
             ctx.res.statusCode = 200;
             await next();
