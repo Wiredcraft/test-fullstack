@@ -34,7 +34,12 @@ class AddTalk extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.setState({ errors: {} });
+        
+        if (this.state.loading) {
+            return;
+        }
+
+        this.setState({ loading: true, errors: {} });
         Utils.validator(this.rules)(this.state.values)
             .then(() => {
                 return app.service.addTalk(this.state.values)
@@ -43,6 +48,7 @@ class AddTalk extends React.Component {
                 this.props.history.push('/');
             })
             .catch(error => {
+                this.setState({ loading: false });
                 if (error.name == 'ValidationError') {
                     this.setState({
                         errors: error.data

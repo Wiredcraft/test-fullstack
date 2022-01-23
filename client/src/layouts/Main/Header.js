@@ -6,11 +6,12 @@ import styles from './style.module.less';
 class Header extends React.Component {
     static contextType = Auth.Context;
 
-    onLogout = () => {
+    onLogout = (e) => {
+        e.preventDefault();
         app.storage.remove('user');
         app.storage.remove('authToken');
         this.context.notifyUserChange();
-        this.props.history.push("/");
+        this.props.history.push({ pathname: '/'});
     }
 
     render() {
@@ -35,7 +36,7 @@ class Header extends React.Component {
                             <span className={styles.sep}>|</span>
                             <Link to={{ pathname: '/' }}>{user.name}</Link>
                             <span className={styles.sep}>|</span>
-                            <Link onClick={this.onLogout}>logout</Link>
+                            <Link to={{}} onClick={this.onLogout}>logout</Link>
                         </>
                     )}
                 </div>

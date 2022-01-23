@@ -3,15 +3,15 @@
 const validator = require('./validator');
 
 const helper = {
-  id: function() {
-    return  Math.random().toString(36).substr(2, 9);
+  id() {
+    return Math.random().toString(36).substr(2, 9);
   },
 
-  isImage: function(file) {
+  isImage(file) {
     return /\.(jpg|jpeg|png|gif|webp|bmp|svg)$/.test(file);
   },
 
-  validator
-}
+  validator,
+};
 
 module.exports = helper;

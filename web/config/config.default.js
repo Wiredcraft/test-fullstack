@@ -18,7 +18,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1642603991207_450';
 
   // add your middleware config here
-  config.middleware = [ "prepare" ];
+  config.middleware = [ 'prepare' ];
 
   // add your user config here
   const userConfig = {
@@ -27,12 +27,16 @@ module.exports = appInfo => {
     publicDir: path.join(appInfo.baseDir, 'app/public'),
 
     static: {
-      prefix: ''
+      prefix: '',
     },
 
     service: {
-      url: "http://127.0.0.1:8000"
-    }
+      url: 'http://127.0.0.1:8000',
+    },
+
+    security: {
+      csrf: false
+    },
 
   };
 

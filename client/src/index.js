@@ -14,7 +14,7 @@ app.error(error => {
   if (error.name == 'AuthenticationError') {
     app.storage.remove('user');
     app.storage.remove('authToken');
-    location.reload();
+    location.href = '/login'
   } else {
     message.show(error.message);
   }

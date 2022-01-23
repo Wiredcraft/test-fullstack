@@ -14,8 +14,8 @@ class ApiController extends Controller {
     ctx.body = {
       id: user.id,
       name: user.name,
-      token: jwt.sign({ id: user.id, name: user.name, }, app.config.keys, { expiresIn: '24h' } )
-    }
+      token: jwt.sign({ id: user.id, name: user.name }, app.config.keys, { expiresIn: '24h' }),
+    };
 
     ctx.logger.info(`${user.id} logined`);
   }
@@ -31,8 +31,8 @@ class ApiController extends Controller {
     ctx.body = {
       id: user.id,
       name: user.name,
-      token: jwt.sign({ id: user.id, name: user.name, }, app.config.keys, { expiresIn: '24h' } )
-    }
+      token: jwt.sign({ id: user.id, name: user.name }, app.config.keys, { expiresIn: '24h' }),
+    };
 
     ctx.logger.info(`${user.id} registerd`);
   }
@@ -42,23 +42,23 @@ class ApiController extends Controller {
     const { query } = ctx.request;
 
     const talks = await app.broker.call('hacknews.pageTalk', {
-        page: query.page || 1,
-        pageSize: 10
+      page: query.page || 1,
+      pageSize: 10,
     });
 
     if (ctx.user) {
       const votes = await app.broker.call('hacknews.listVote', {
         talks: talks.rows.map(item => item.id),
-        voteBy: ctx.user.id
+        voteBy: ctx.user.id,
       });
-      
+
       const voteMap = {};
       votes.forEach(v => {
         voteMap[v.talk] = true;
-      })
+      });
 
       talks.rows.forEach(row => {
-        row.voted = !!voteMap[row.id]
+        row.voted = !!voteMap[row.id];
       });
     }
 
@@ -73,7 +73,7 @@ class ApiController extends Controller {
 
     ctx.body = await app.broker.call('hacknews.addTalk', {
       ...body,
-      createdBy: ctx.user.id
+      createdBy: ctx.user.id,
     });
 
     ctx.logger.info(`${ctx.user.id} add talk ${ctx.body.id}`);
@@ -85,10 +85,10 @@ class ApiController extends Controller {
 
     ctx.body = await app.broker.call('hacknews.voteTalk', {
       ...body,
-      voteBy: ctx.user.id
+      voteBy: ctx.user.id,
     });
 
-    ctx.logger.info(`${ctx.user.id} vote talk ${body.talk}`)
+    ctx.logger.info(`${ctx.user.id} vote talk ${body.talk}`);
   }
 }
 

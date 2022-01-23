@@ -35,12 +35,18 @@ class Register extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        this.setState({ errors: {} });
+        
+        if (this.state.loading) {
+            return;
+        }
+
+        this.setState({ loading: true, errors: {} });
         Utils.validator(this.rules)(this.state.values)
             .then(() => {
                 return app.service.register(this.state.values)
             })
             .then(body => {
+                this.setState({ loading: false });
                 const { name, token } = body;
                 app.storage.set('user', { name });
                 app.storage.set('authToken', token);
@@ -48,6 +54,7 @@ class Register extends React.Component {
                 this.props.history.push("/");
             })
             .catch(error => {
+                this.setState({ loading: false });
                 if (error.name == 'ValidationError') {
                     this.setState({
                         errors: error.data
@@ -66,7 +73,7 @@ class Register extends React.Component {
                         <input field="name" />
                     </Form.Item>
                     <Form.Item label="Password">
-                        <input field="password" />
+                        <input field="password" type="password" />
                     </Form.Item>
                     <Form.Item>
                         <button type="primary" onClick={this.onSubmit}>register</button>
