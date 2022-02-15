@@ -1,0 +1,19 @@
+FROM node:16-alpine
+
+ENV NODE_ENV development
+
+ARG CHINA_MIRROR=false
+RUN /bin/ash -c "if [ $CHINA_MIRROR == 'true' ] ; then npm i -g tbify --registry=https://registry.npm.taobao.org; fi"
+
+USER node
+WORKDIR /home/node
+
+COPY package.json ./
+COPY yarn.lock ./
+
+RUN /bin/ash -c "if [ $CHINA_MIRROR == 'true' ] ; then tyn install; else yarn install; fi"
+
+
+COPY --chown=node:node . .
+
+CMD ["yarn", "start"]
