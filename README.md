@@ -1,5 +1,40 @@
 # Fullstack
 
+This repository holds my submission for the test-fullstack assignment from Wiredcraft.
+
+This project was built with NestJS/Postgresql as an API server with React as the frontend framework. Other key technologies include Jest for testing, eslint for code style and type error correction.
+
+### Running this Repository
+
+#### Requirements
+
+- Docker
+- Docker Compose
+
+#### Instructions
+
+1. Clone the repo and enter directory:
+```
+$ git clone git@github.com:swawrzyn/test-fullstack.git
+$ cd test-fullstack
+```
+
+2. Run the docker-compose stack:
+```
+$ docker-compose up
+```
+
+3. The stack will download, build and serve the docker images:
+    - Frontend (React) at http://localhost:3000
+    - API (NestJS) at http://localhost:3001
+
+4. To run tests:
+```
+$ docker-compose run --rm api yarn test         # Backend tests
+$ docker-compose run --rm frontend yarn test    # Frontend tests
+```
+
+
 ### Context
 
 Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
