@@ -1,39 +1,54 @@
-const prod = process.env.NODE_ENV === "production";
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
-  mode: prod ? "production" : "development",
-  entry: "./src/index.tsx",
+  mode: isDevelopment ? 'development' : 'production',
+  entry: './src/index.tsx',
+  devServer: {
+    hot: true,
+    historyApiFallback: {
+      rewrites: [{ from: /./, to: '/index.html' }]
+    }
+  },
+  target: 'web',
   output: {
-    path: __dirname + "/dist/",
+    filename: 'bundle.[hash].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html'
+    }),
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
+    isDevelopment && new ReactRefreshWebpackPlugin()
+  ],
+  resolve: {
+    modules: [__dirname, 'src', 'node_modules'],
+    extensions: ['*', '.js', '.jsx', '.tsx', '.ts']
   },
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.ts$|tsx/,
         exclude: /node_modules/,
-        resolve: {
-          extensions: [".ts", ".tsx", ".js", ".json"],
-        },
-        use: "ts-loader",
+        loader: require.resolve('babel-loader'),
+        options: {
+          plugins: [isDevelopment && require.resolve('react-refresh/babel')].filter(Boolean)
+        }
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        test: /\.s?css$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.png|svg|jpg|gif$/,
-        use: ["file-loader"],
-      },
-    ],
-  },
-  devtool: prod ? undefined : "source-map",
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./src/index.html",
-    }),
-    new MiniCssExtractPlugin(),
-  ],
+        use: ['file-loader']
+      }
+    ]
+  }
 };

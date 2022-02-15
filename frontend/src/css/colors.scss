@@ -1,0 +1,42 @@
+$color-list: (
+  'red': #f00,
+  'green': #0f0,
+  'blue': #0353a4,
+  'light-blue': #047cf4,
+  'lightest-blue': #4ea5fc,
+  'dark-blue': #011b36,
+  'white': #f4f4f4,
+  'black': #333,
+  'gray': #dedede,
+  'light-gray': #f1f1f1
+);
+
+$opacity-list: (0, 10, 20, 30, 40, 50, 60, 70, 75, 80, 85, 90, 100);
+
+@each $value in $color-list {
+  .text-#{nth($value, 1)} {
+    color: nth($value, 2);
+  }
+
+  .bg-#{nth($value, 1)} {
+    background-color: nth($value, 2);
+  }
+
+  .border-#{nth($value, 1)} {
+    border-color: nth($value, 2);
+  }
+}
+
+@each $value in $opacity-list {
+  .opacity-#{$value} {
+    opacity: calc(#{$value}/ 100);
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.transition-all {
+  transition: all 0.15 ease-in;
+}
