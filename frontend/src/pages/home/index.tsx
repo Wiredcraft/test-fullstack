@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon';
 import React from 'react';
+import FilterBar from '../../components/ui/FilterBar';
 import LightningCard from '../../components/ui/LightningCard';
 import { ITalk } from '../../store/modules/talks/talks.types';
 
@@ -96,25 +97,11 @@ export default class HomeIndex extends React.Component {
       }
     ];
     return (
-      <div>
+      <div className='w-full'>
+        <FilterBar />
         {talks.map((talk, index) => (
           <LightningCard key={talk.id} {...talk} />
         ))}
-        <div id="add-modal" className="modal-window">
-          <div>
-            <a href="#" title="Close" className="modal-close">
-              Close
-            </a>
-            <h1>Voilà!</h1>
-            <div>A CSS-only modal based on the :target pseudo-class. Hope you find it helpful.</div>
-            <div>
-              <small>Check out</small>
-            </div>
-            <a href="https://aminoeditor.com" target="_blank">
-              � Amino: Live CSS Editor for Chrome
-            </a>
-          </div>
-        </div>
       </div>
     );
   }

@@ -1,0 +1,23 @@
+.filter-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  .select {
+    width: 33%;
+  }
+
+  
+}
+
+@media (max-width: 1024px) {
+  .filter-bar {
+    justify-content: center;
+
+    .select {
+      width: 100%;
+    }
+  }
+
+}
