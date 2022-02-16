@@ -1,0 +1,32 @@
+input {
+  margin-bottom: 15px;
+}
+
+input[type=text] {
+  display: block;
+  height: 32px;
+  padding: 8px 16px;
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  background-color: #ececec;
+}
+
+textarea {
+  display: block;
+  padding: 8px 16px;
+  width: 100%;
+  border: none;
+  box-sizing: border-box;
+  background-color: #ececec;
+}
+
+input:focus, textarea:focus {
+  outline-color: #0353a4;
+}
+
+
+label {
+  color: #777;
+  font-size: 0.8em;
+}

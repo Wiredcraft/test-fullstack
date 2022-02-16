@@ -1,5 +1,6 @@
 html {
   overflow-y: scroll;
+  box-sizing: border-box;
 }
 
 body {
@@ -8,7 +9,6 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
   background-color: #f4f4f4;
   color: #2d2d2d;
 }

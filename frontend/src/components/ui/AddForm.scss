@@ -1,0 +1,21 @@
+.add-form {
+  box-sizing: border-box;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  input,
+  textarea {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .add-form {
+    width: 100%;
+    margin: 0 8px;
+  }
+}
