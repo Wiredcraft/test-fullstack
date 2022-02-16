@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
 
-interface UserState {
+export interface IUserState {
   user: IUser;
 }
 
-const initialState: UserState = {
+const initialState: IUserState = {
   user: {} as IUser
 };
 
