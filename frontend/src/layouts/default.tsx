@@ -7,7 +7,8 @@ export default class DefaultLayout extends React.Component {
     return (
       <div>
         <Navbar />
-        <div className="max-w">
+        <div className='spacer mb-12'>&nsbp;</div>
+        <div className="max-w py-10">
           <Outlet />
         </div>
       </div>

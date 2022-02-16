@@ -1,6 +1,10 @@
 nav.navbar {
+  position: fixed;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 24px;
+  box-sizing: border-box;
+  z-index: 50;
 }

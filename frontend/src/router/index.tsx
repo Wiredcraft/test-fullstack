@@ -22,6 +22,10 @@ const routes: RouteObject[] = [
     children: [
       { index: true, element: lazyLoadView(['home'], 'index') },
       {
+        path: '/add',
+        element: lazyLoadView(['home'], 'add')
+      },
+      {
         path: '/auth',
         element: <Outlet />,
         children: [{ index: true, element: lazyLoadView(['auth'], 'index') }]

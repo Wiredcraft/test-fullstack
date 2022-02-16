@@ -3,8 +3,9 @@
 }
 
 .max-w {
-  max-width: 1280px;
+  max-width: 960px;
   margin: 0 auto;
+  padding: 0 8px;
 }
 
 .flex {
@@ -21,4 +22,73 @@
 
 .justify-center {
   justify-content: center;
+}
+
+$spacing-list: (
+  0,
+  0.25rem,
+  0.5rem,
+  0.75rem,
+  1rem,
+  1.25rem,
+  1.5rem,
+  1.75rem,
+  2rem,
+  2.25rem,
+  2.5rem,
+  2.75rem,
+  3rem
+);
+
+@for $i from 0 through length($spacing-list) - 1 {
+  $s: nth($spacing-list, $i + 1);
+
+
+  .m-#{$i} {
+    margin: $s;
+  }
+  .mx-#{$i} {
+    margin-left: $s;
+    margin-right: $s;
+  }
+  .my-#{$i} {
+    margin-top: $s;
+    margin-bottom: $s;
+  }
+  .ml-#{$i} {
+    margin-left: $s;
+  }
+  .mr-#{$i} {
+    margin-right: $s;
+  }
+  .mt-#{$i} {
+    margin-top: $s;
+  }
+  .mb-#{$i} {
+    margin-bottom: $s;
+  }
+
+  .p-#{$i} {
+    padding: $s;
+  }
+  .px-#{$i} {
+    padding-left: $s;
+    padding-right: $s;
+  }
+  .py-#{$i} {
+    padding-top: $s;
+    padding-bottom: $s;
+  }
+  .pl-#{$i} {
+    padding-left: $s;
+  }
+  .pr-#{$i} {
+    padding-right: $s;
+  }
+  .pt-#{$i} {
+    padding-top: $s;
+  }
+  .pb-#{$i} {
+    padding-bottom: $s;
+  }
 }
