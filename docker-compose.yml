@@ -31,24 +31,24 @@ services:
       - ./scripts/pgsql:/docker-entrypoint-initdb.d
       - postgresql:/var/lib/postgresql/data
 
-  frontend:
-    depends_on:
-      - api
-    user: node
-    stdin_open: true
-    tty: true
-    build:
-      context: ./frontend
-      dockerfile: ./docker/Dockerfile.development
-      args:
-        CHINA_MIRROR: "true"
-    volumes:
-      - ./frontend:/home/node
-    env_file:
-      - .env.local
-    command: yarn start
-    ports:
-      - 3000:3000
+  # frontend:
+  #   depends_on:
+  #     - api
+  #   user: node
+  #   stdin_open: true
+  #   tty: true
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: ./docker/Dockerfile.development
+  #     args:
+  #       CHINA_MIRROR: "true"
+  #   volumes:
+  #     - ./frontend:/home/node
+  #   env_file:
+  #     - .env.local
+  #   command: yarn start
+  #   ports:
+  #     - 3000:3000
 
 volumes:
   postgresql:

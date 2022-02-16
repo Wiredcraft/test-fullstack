@@ -15,14 +15,20 @@ Auther: Stefan Wawrzyn <swawrzyn@gmail.com>
 Usage: ./cli.sh [command]
 Commands:
   run       Run development environment
+  database  Run database commands
   *         Help
     "
     exit 1
 }
 
+"$FSCLI_WORKDIR/scripts/cli/check-deps"
+
 case "$1" in
     run|r)
-        "$FSCLI_WORKDIR/scripts/cli/run" "$2"
+        "$FSCLI_WORKDIR/scripts/cli/run" "$2" "$3"
+    ;;
+    database|db)
+        "$FSCLI_WORKDIR/scripts/cli/db" "$2" "$3"
     ;;
     *)
         cli_help

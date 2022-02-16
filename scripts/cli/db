@@ -1,3 +1,14 @@
 #!/usr/bin/env bash
 
 set -e
+
+if [ -z "$1" ] || [ "$1" = "migrate" ]; then
+    echo "Running migrations..."
+    docker-compose run --rm api yarn typeorm:run
+elif [ "$1" == "generate" ]; then
+    echo "Generating migrations..."
+    echo "$@"
+    docker-compose run --rm api yarn typeorm:generate "$2"
+# else
+#     docker-compose "$@"
+fi

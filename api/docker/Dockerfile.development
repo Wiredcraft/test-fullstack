@@ -11,7 +11,7 @@ WORKDIR /home/node
 COPY package.json ./
 COPY yarn.lock ./
 
-RUN /bin/ash -c "if [ $CHINA_MIRROR == 'true' ] ; then tyn install; else yarn install; fi"
+RUN /bin/ash -c "if [ $CHINA_MIRROR == 'true' ] ; then tyn install --frozen-lockfile; else yarn install --frozen-lockfile; fi"
 
 
 COPY --chown=node:node . .
