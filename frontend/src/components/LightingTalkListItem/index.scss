@@ -1,0 +1,34 @@
+.lighting-talk-list-item {
+  display: flex;
+  border: 1px solid silver;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  h3 {
+    display: flex;
+    font-weight: normal;
+    font-size: 18px;
+    justify-content: space-between;
+  }
+  &__vote {
+    img {
+      height: 16px;
+      &.checked {
+        fill: #1890ff;
+      }
+    }
+  }
+  &__body {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__update-at {
+    font-size: 12px;
+    font-style: italic;
+    color: #bfbfbf;
+  }
+  &__more {
+    color: #1890ff;
+  }
+}

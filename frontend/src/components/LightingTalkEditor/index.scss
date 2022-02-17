@@ -1,0 +1,16 @@
+.lighting-talk-editor {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 1.5rem;
+
+  h2 {
+    padding: 0 0 1rem 0;
+  }
+
+  &__footer {
+    padding: 1rem 0px 0;
+    gap: 16px;
+    display: flex;
+    justify-content: end;
+  }
+}

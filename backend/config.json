@@ -1,0 +1,12 @@
+{
+  "AppEnv": "local",
+  "Secret": {
+    "JWTPrivateKeyPath": "./keys/jwt.rsa",
+    "JWTPublicKeyPath": "./keys/jwt.rsa.pub"
+  },
+  "DB": {
+    "DataSource": "hack_news_admin:hack_news2022@tcp(127.0.0.1:3306)/hack_news?charset=utf8&parseTime=True&loc=Local",
+    "ShowSQL": true
+  },
+  "AllowOragins": ["http://localhost:8080"]
+}
