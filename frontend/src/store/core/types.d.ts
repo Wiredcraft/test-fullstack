@@ -2,10 +2,9 @@ export interface EntityMap<T> {
   [key: string]: T;
 }
 
-export interface BaseState<T, ErrType = string> {
+export interface BaseState<T> {
   ids: Array<number | string>;
   all: EntityMap<T>;
-  loading: boolean;
-  touched: boolean;
-  errors: ErrType[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: string | null;
 }

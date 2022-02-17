@@ -1,15 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import {
-  getRepositoryToken,
-} from '@nestjs/typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
-import {  Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 const name = 'testuser1';
 const githubId = 'ajiodsj2213jsd2';
-
 
 const userArray = [
   new User({ githubId: '1234231', name: 'tesjies' }),
@@ -18,6 +15,7 @@ const userArray = [
 ];
 
 const oneUser = new User({ githubId, name });
+const otherUser = new User({ githubId: 'abc123', name: 'uaidaui' });
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -45,17 +43,12 @@ describe('UsersService', () => {
     repo = module.get<Repository<User>>(getRepositoryToken(User));
   });
 
-  // afterEach(async () => {
-  //   await connection.close();
-  // });
-
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
   describe('create', () => {
     it('should create a user successfully', async () => {
-      
       expect(
         service.create({
           name,
@@ -66,9 +59,39 @@ describe('UsersService', () => {
       expect(repo.create).toBeCalledTimes(1);
       expect(repo.create).toBeCalledWith({
         name,
-        githubId
+        githubId,
       });
       expect(repo.save).toBeCalledTimes(1);
+    });
+  });
+
+  describe('findOne', () => {
+    it('should return a single user', () => {
+      const repoSpy = jest.spyOn(repo, 'findOneOrFail');
+      expect(service.findOne('testuuid')).resolves.toEqual(oneUser);
+      expect(repoSpy).toBeCalledWith({ id: 'testuuid' });
+    });
+  });
+
+  describe('findOneByGithubId', () => {
+    it('should return a single user by github id', () => {
+      const repoSpy = jest.spyOn(repo, 'findOneOrFail');
+      expect(service.findOneByGithubId('testgithubid')).resolves.toEqual(
+        oneUser,
+      );
+      expect(repoSpy).toBeCalledWith({ githubId: 'testgithubid' });
+    });
+  });
+
+  describe('update', () => {
+    it('should call the update method', async () => {
+      const user = await service.update('uuuuid', {
+        name,
+        githubId,
+      });
+      expect(user).toEqual(oneUser);
+      expect(repo.update).toBeCalledTimes(1);
+      expect(repo.update).toBeCalledWith({ id: 'uuuuid' }, { name, githubId });
     });
   });
 });

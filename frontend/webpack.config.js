@@ -25,7 +25,10 @@ module.exports = {
       template: './public/index.html'
     }),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
-    isDevelopment && new ReactRefreshWebpackPlugin()
+    isDevelopment && new ReactRefreshWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env)
+    })
   ],
   resolve: {
     modules: [__dirname, 'src', 'node_modules'],

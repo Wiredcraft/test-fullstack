@@ -15,7 +15,7 @@ services:
     volumes:
       - ./api:/home/node
     env_file:
-      - .env.local
+      - .env
     command: yarn start:dev
     ports:
       - 3001:3001
@@ -24,31 +24,31 @@ services:
     hostname: db
     image: postgres:14-alpine
     env_file:
-      - .env.local
+      - .env
     ports:
       - 5432:5432
     volumes:
       - ./scripts/pgsql:/docker-entrypoint-initdb.d
       - postgresql:/var/lib/postgresql/data
 
-  # frontend:
-  #   depends_on:
-  #     - api
-  #   user: node
-  #   stdin_open: true
-  #   tty: true
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: ./docker/Dockerfile.development
-  #     args:
-  #       CHINA_MIRROR: "true"
-  #   volumes:
-  #     - ./frontend:/home/node
-  #   env_file:
-  #     - .env.local
-  #   command: yarn start
-  #   ports:
-  #     - 3000:3000
+  frontend:
+    depends_on:
+      - api
+    user: node
+    stdin_open: true
+    tty: true
+    build:
+      context: ./frontend
+      dockerfile: ./docker/Dockerfile.development
+      args:
+        CHINA_MIRROR: "true"
+    volumes:
+      - ./frontend:/home/node
+    env_file:
+      - .env
+    command: yarn start
+    ports:
+      - 3000:3000
 
 volumes:
   postgresql:

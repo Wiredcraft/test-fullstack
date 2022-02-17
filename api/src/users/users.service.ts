@@ -18,19 +18,16 @@ export class UsersService {
     return user;
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findOne(id: string): Promise<User> {
+    return await this.usersRepository.findOneOrFail({ id });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOneByGithubId(githubId: string): Promise<User> {
+    return await this.usersRepository.findOneOrFail({ githubId });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    await this.usersRepository.update({ id }, updateUserDto);
+    return await this.findOne(id);
   }
 }

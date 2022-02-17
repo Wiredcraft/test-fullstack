@@ -1,15 +1,23 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 
-import * as ormConfig from './db/orm-config';
+import config from './core/config';
 
+import * as ormConfig from './db/orm-config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+      load: [config],
+      isGlobal: true,
+    }),
     TypeOrmModule.forRoot(ormConfig),
     UsersModule,
     AuthModule,

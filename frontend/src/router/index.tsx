@@ -2,9 +2,7 @@ import React from 'react';
 import { Outlet, RouteObject } from 'react-router-dom';
 
 import DefaultLayout from '../layouts/default';
-import FullPageLayout from '../layouts/full-page';
 import Loading from '../pages/common/loading';
-import HomeIndex from '../pages/home';
 
 function lazyLoadView(groups: string[], view: string) {
   const V = React.lazy(() => import(`../pages/${groups.join('/')}/${view}`));
@@ -28,7 +26,10 @@ const routes: RouteObject[] = [
       {
         path: '/auth',
         element: <Outlet />,
-        children: [{ index: true, element: lazyLoadView(['auth'], 'index') }]
+        children: [
+          { index: true, element: lazyLoadView(['auth'], 'index') },
+          { path: '/auth/github', element: lazyLoadView(['auth'], 'github') }
+        ]
       },
       { path: '*', element: lazyLoadView(['errors'], '404') }
     ]

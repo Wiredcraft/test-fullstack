@@ -1,12 +1,11 @@
 import { BaseState } from './types';
 
-function initBaseState<T, ErrType = string>(): BaseState<T, ErrType> {
+function initBaseState<T>(): BaseState<T> {
   return {
     ids: [],
     all: {},
-    touched: false,
-    loading: false,
-    errors: []
+    status: 'idle',
+    error: null
   };
 }
 
@@ -23,15 +22,15 @@ function mapRecords<T>(state: BaseState<T>): T[] {
 }
 
 function isLoading<T>(state: BaseState<T>): boolean {
-  return state.loading && state.touched && !state.errors.length;
+  return state.status === 'loading';
 }
 
 function isLoaded<T>(state: BaseState<T>): boolean {
-  return !state.loading && state.touched && !state.errors.length;
+  return state.status === 'succeeded';
 }
 
 function hasError<T>(state: BaseState<T>): boolean {
-  return !state.loading && state.touched && !!state.errors.length;
+  return !!state.error;
 }
 
 export { initBaseState, getRecords, getRecord, mapRecords, isLoading, isLoaded, hasError };
