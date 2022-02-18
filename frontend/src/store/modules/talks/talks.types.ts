@@ -4,10 +4,9 @@ export interface ITalk {
   id: string;
   title: string;
   description: string;
-  votes: number;
+  voteCount: number;
   user: ITalkUser;
   createdAt: DateTime;
-  voted: boolean;
 }
 
 export interface ITalkCreateDTO {

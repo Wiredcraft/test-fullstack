@@ -64,6 +64,7 @@ describe('UsersController', () => {
       expect(res).toEqual({
         id: oneUser.id,
         name: oneUser.name,
+        votes: [],
       });
     });
   });

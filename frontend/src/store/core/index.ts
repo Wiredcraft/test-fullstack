@@ -49,4 +49,4 @@ function hasError<T>(state: BaseState<T>): boolean {
   return !!state.error;
 }
 
-export { initBaseState, getRecords, getRecord, mapRecords, isLoading, isLoaded, hasError };
+export { initBaseState, initBasePageState, getRecords, getRecord, mapRecords, isLoading, isLoaded, hasError };

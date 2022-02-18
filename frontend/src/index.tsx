@@ -14,6 +14,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './store';
 import App from './App';
 
+
 const rootElement = document.getElementById('app');
 
 ReactDOM.render(

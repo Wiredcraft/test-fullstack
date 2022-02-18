@@ -25,7 +25,6 @@ export class User {
   isActive: boolean;
 
   @Column()
-  @Exclude()
   githubId: string;
 
   @OneToMany(() => Talk, (talk) => talk.user)

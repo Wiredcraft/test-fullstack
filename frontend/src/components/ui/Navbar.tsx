@@ -11,7 +11,7 @@ export default () => {
 
   const logOut = async () => {
     try {
-      const hi = await dispatch(logout());
+      await dispatch(logout());
     } catch (err) {
       console.log(err);
     }

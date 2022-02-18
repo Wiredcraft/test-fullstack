@@ -7,10 +7,13 @@ import {
   Req,
   Res,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response } from 'express';
+import { SerializeInterceptor } from '../core/interceptors';
 import { User } from '../users/entities/user.entity';
+import { LoginReadDto } from './dto/login-read.dto';
 import { GithubGuard } from './github.guard';
 import { JwtAuthGuard } from './jwt-auth.guard';
 
@@ -24,6 +27,7 @@ export class AuthController {
 
   @Get('github/callback')
   @UseGuards(GithubGuard)
+  @UseInterceptors(new SerializeInterceptor(LoginReadDto))
   async githubAuthRedirect(
     @Req() req: Request,
     @Res({ passthrough: true }) res: Response,

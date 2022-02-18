@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 
-import { login, logout } from './user.api';
+import { fetchMe, login, logout } from './user.api';
 
 export interface IUserState {
   user: IUser;
@@ -12,12 +12,14 @@ export interface IUserState {
 
 const loggedIn = localStorage.getItem('fs_auth') === 'true' || false;
 
-const initialState: IUserState = {
-  user: { id: '', name: '', voteIds: [] },
-  loggedIn,
-  status: 'idle',
-  error: null
+const emptyState = {
+  user: { id: '', name: '', votes: [] },
+  loggedIn: false,
+  status: 'idle' as const,
+  error: null,
 };
+
+const initialState: IUserState = { ...emptyState };
 
 export const userSlice = createSlice({
   name: 'user',
@@ -30,7 +32,7 @@ export const userSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user = action.payload;
+        state.user = {...state.user, ...action.payload};
         state.loggedIn = true;
         localStorage.setItem('fs_auth', 'true');
       })
@@ -43,14 +45,30 @@ export const userSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user = initialState.user;
-        state.status = 'idle'
+        state.user = { ...emptyState.user };
+        state.status = 'idle';
         state.error = null;
         state.loggedIn = false;
         localStorage.setItem('fs_auth', 'false');
       })
       .addCase(logout.rejected, (state, action) => {
         state.status = 'failed';
+        state.error = `${action.error.message}`;
+      })
+      .addCase(fetchMe.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchMe.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+        state.error = null;
+        state.loggedIn = true;
+        localStorage.setItem('fs_auth', 'true');
+      })
+      .addCase(fetchMe.rejected, (state, action) => {
+        state.status = 'failed';
+        localStorage.setItem('fs_auth', 'false');
+        state.loggedIn = false;
         state.error = `${action.error.message}`;
       });
   }
