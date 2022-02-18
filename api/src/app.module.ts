@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TalksModule } from './talks/talks.module';
 
 import config from './core/config';
 
@@ -21,6 +22,7 @@ import * as ormConfig from './db/orm-config';
     TypeOrmModule.forRoot(ormConfig),
     UsersModule,
     AuthModule,
+    TalksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
