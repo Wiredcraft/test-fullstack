@@ -34,9 +34,6 @@ export class User {
   @OneToMany(() => Vote, (vote) => vote.user)
   votes: Vote[];
 
-  @RelationId((vote: Vote) => vote.talk)
-  talkVoteIds: string[];
-
   @CreateDateColumn()
   createdAt: Date;
 
