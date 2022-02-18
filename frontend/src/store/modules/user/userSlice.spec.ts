@@ -15,6 +15,7 @@ const initialState: IUserState = {
     name: '',
     voteIds: []
   },
+  loggedIn: false,
   status: 'idle',
   error: null
 };

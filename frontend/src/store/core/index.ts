@@ -1,4 +1,4 @@
-import { BaseState } from './types';
+import { BasePageState, BaseState } from './types';
 
 function initBaseState<T>(): BaseState<T> {
   return {
@@ -6,6 +6,22 @@ function initBaseState<T>(): BaseState<T> {
     all: {},
     status: 'idle',
     error: null
+  };
+}
+
+function initBasePageState<T>(): BasePageState<T> {
+  return {
+    ids: [],
+    all: {},
+    status: 'idle',
+    error: null,
+    meta: {
+      itemCount: 0,
+      totalItems: 0,
+      itemsPerPage: 0,
+      totalPages: 0,
+      currentPage: 0
+    }
   };
 }
 

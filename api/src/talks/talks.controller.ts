@@ -10,13 +10,18 @@ import {
   Req,
   Put,
   NotImplementedException,
+  Query,
+  DefaultValuePipe,
+  ParseIntPipe,
+  ParseEnumPipe,
 } from '@nestjs/common';
 import { TalksService } from './talks.service';
 import { CreateTalkDto } from './dto/create-talk.dto';
-import { UpdateTalkDto } from './dto/update-talk.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Request } from 'express';
 import { JwtReqUser } from '../auth/jwt-auth.strategy';
+
+export type SortTypes = 'popular' | 'newest';
 
 @Controller('talks')
 export class TalksController {
@@ -30,13 +35,19 @@ export class TalksController {
   }
 
   @Get()
-  async findAll() {
-    return this.talksService.findAll();
+  async index(
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
+    @Query('sort', new DefaultValuePipe('popular'))
+    sort: SortTypes = 'popular',
+  ) {
+    return await this.talksService.findAll({ page, limit: 20 }, sort);
   }
 
   @Put(':id/vote')
   @UseGuards(JwtAuthGuard)
-  async update(@Param('id') id: string, @Req() req: Request) {
-    throw NotImplementedException;
+  async vote(@Param('id') id: string, @Req() req: Request) {
+    const { id: userId } = req.user as JwtReqUser;
+
+    return await this.talksService.addOrDeleteVote(userId, id);
   }
 }

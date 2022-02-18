@@ -3,6 +3,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../users/entities/user.entity';
 import { Talk } from './entities/talk.entity';
+import { Vote } from './entities/vote.entity';
 import { TalksService } from './talks.service';
 
 const title = 'Test talk';
@@ -24,9 +25,14 @@ const talkArray = [
   new Talk({ id: 'randomid012', title: 'talk5', description: 'asddad' }),
 ];
 
+const numberOfVotes = 10;
+
+const newVote = new Vote({ user: user1, talk: oneTalk });
+
 describe('TalksService', () => {
   let service: TalksService;
-  let repo: Repository<Talk>;
+  let talkRepo: Repository<Talk>;
+  let voteRepo: Repository<Vote>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -40,6 +46,15 @@ describe('TalksService', () => {
             create: jest.fn().mockReturnValue(oneTalk),
             save: jest.fn(),
             update: jest.fn().mockResolvedValue(true),
+          },
+        },
+        {
+          provide: getRepositoryToken(Vote),
+          useValue: {
+            count: jest.fn().mockResolvedValue(numberOfVotes),
+            create: jest.fn().mockReturnValue(newVote),
+            save: jest.fn(),
+            update: jest.fn().mockResolvedValue(true),
             delete: jest.fn().mockResolvedValue(true),
           },
         },
@@ -47,7 +62,8 @@ describe('TalksService', () => {
     }).compile();
 
     service = module.get<TalksService>(TalksService);
-    repo = module.get<Repository<Talk>>(getRepositoryToken(Talk));
+    talkRepo = module.get<Repository<Talk>>(getRepositoryToken(Talk));
+    voteRepo = module.get<Repository<Vote>>(getRepositoryToken(Vote));
   });
 
   it('should be defined', () => {
@@ -55,26 +71,34 @@ describe('TalksService', () => {
   });
 
   describe('create', () => {
-    it('should create talk successfully', async () => {
+    it('should create talk and vote successfully', async () => {
       const talkRes = await service.create(user1.id, { title, description });
 
       expect(talkRes).toEqual(oneTalk);
 
-      expect(repo.create).toBeCalledTimes(1);
-      expect(repo.save).toBeCalledTimes(1);
+      expect(talkRepo.create).toBeCalledTimes(1);
+      expect(talkRepo.save).toBeCalledTimes(1);
+      expect(voteRepo.create).toBeCalledTimes(1);
+      expect(voteRepo.save).toBeCalledTimes(1);
     });
   });
 
-  describe('findAll', () => {
-    it('should return all talks successfully', async () => {
-      const orderBy = { title: 'ASC' };
+  describe('addOrDeleteVote', () => {
+    it('should add vote if none exists', async () => {
+      const spy = jest
+        .spyOn(voteRepo, 'delete')
+        .mockResolvedValueOnce({ affected: 0, raw: [] });
 
-      const talkRes = await service.findAll(orderBy);
+      const talkRes = await service.addOrDeleteVote(user1.id, oneTalk.id);
 
-      expect(talkRes).toEqual(talkArray);
+      expect(talkRes).toEqual(true);
 
-      expect(repo.find).toBeCalledTimes(1);
-      expect(repo.find).toBeCalledWith({order: orderBy})
+      expect(spy).toBeCalled();
+      expect(voteRepo.create).toBeCalledWith({
+        user: new User({ id: user1.id }),
+        talk: new Talk({ id: oneTalk.id }),
+      });
+      expect(voteRepo.save).toBeCalledTimes(1);
     });
   });
 });

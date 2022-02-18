@@ -8,8 +8,10 @@ import {
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
+  RelationId,
   UpdateDateColumn,
 } from 'typeorm';
+import { Vote } from '../../talks/entities/vote.entity';
 
 @Entity()
 export class User {
@@ -29,9 +31,11 @@ export class User {
   @OneToMany(() => Talk, (talk) => talk.user)
   talks: Talk[];
 
-  @ManyToMany(() => Talk, (talk) => talk.votes)
-  @JoinTable()
-  talkVotes: Talk[];
+  @OneToMany(() => Vote, (vote) => vote.user)
+  votes: Vote[];
+
+  @RelationId((vote: Vote) => vote.talk)
+  talkVoteIds: string[];
 
   @CreateDateColumn()
   createdAt: Date;

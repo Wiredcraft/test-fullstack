@@ -12,10 +12,10 @@ const config: ConnectionOptions = {
   synchronize: process.env.NODE_ENV === "development",
   entities: [User],
   migrations: [join(__dirname, "migrations/**/*{.ts,.js}")],
-  subscribers: [join(__dirname, "subscriber/**/*{.ts,.js}")],
+  subscribers: [join(__dirname, "subscribers/**/*{.ts,.js}")],
   cli: {
     migrationsDir: "src/db/migrations",
-    subscribersDir: "src/db/subscriber",
+    subscribersDir: "src/db/subscribers",
   },
 };
 

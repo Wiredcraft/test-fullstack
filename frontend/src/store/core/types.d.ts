@@ -8,3 +8,13 @@ export interface BaseState<T> {
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | null;
 }
+
+export interface BasePageState<T> extends BaseState<T> {
+  meta: {
+    itemCount: number;
+    totalItems: number;
+    itemsPerPage: number;
+    totalPages: number;
+    currentPage: number;
+  };
+}
