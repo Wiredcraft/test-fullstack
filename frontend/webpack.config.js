@@ -18,7 +18,7 @@ module.exports = {
   output: {
     filename: 'bundle.[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/test-fullstack/'
+    publicPath: isDevelopment ? '' : '/test-fullstack/'
   },
   plugins: [
     new HtmlWebpackPlugin({

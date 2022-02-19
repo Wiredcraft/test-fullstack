@@ -16,10 +16,12 @@ import App from './App';
 
 const rootElement = document.getElementById('app');
 
+const baseName = process.env.NODE_ENV !== 'production' ? '/' : '/test-fullstack'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename={baseName}>
         <App />
       </BrowserRouter>
     </Provider>
