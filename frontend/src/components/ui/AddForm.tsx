@@ -1,19 +1,135 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Joi from 'joi';
 
 import './AddForm.scss';
+import Spinner from './Spinner';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { createTalk } from '../../store/modules/talks/talks.api';
+import { useNavigate } from 'react-router-dom';
 
-export default class AddForm extends React.Component {
-  render() {
-    return (
-      <div className="flex items-center justify-center flex-col w-full">
-        <div className="add-form">
-          <input type="text" name="title" placeholder="Title"></input>
-          <textarea name="description" placeholder="Description" rows={3}></textarea>
-          <div className="w-full flex items-center justify-end py-4">
-            <button type="submit" className='bg-blue px-6 py-3 text-white'>Add</button>
-          </div>
+export default function AddForm() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const talksStatus = useAppSelector((state) => state.talks.status);
+  const talksError = useAppSelector((state) => state.talks.error);
+
+  const [form, setForm] = useState({
+    title: '',
+    description: ''
+  });
+
+  const [error, setErrors] = useState({
+    title: '',
+    description: ''
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (loading && talksStatus === 'succeeded') {
+      navigate('/');
+    } else if (loading && talksStatus === 'failed') {
+      setErrors({
+        title:
+          talksError!.indexOf('Key (title)') > -1
+            ? 'This talk title already exists. Please choose another.'
+            : '',
+        description: ''
+      });
+      setLoading(false);
+    }
+  }, [loading, talksStatus]);
+
+  const schema = Joi.object({
+    title: Joi.string().min(4).max(64).required(),
+    description: Joi.string().min(10).max(200).required()
+  });
+
+  const clearState = () => {
+    setForm({
+      title: '',
+      description: ''
+    });
+  };
+
+  const validateForm = (event: React.FormEvent<EventTarget>) => {
+    setErrors({ title: '', description: '' });
+    const result = schema.validate(form, { abortEarly: false });
+    const { error } = result;
+
+    setLoading(true);
+
+    if (error) {
+      const newErrors = { title: '', description: '' };
+      for (const item of error.details) {
+        if (item.context!.key! === 'title') {
+          newErrors.title = item.message;
+        } else if (item.context!.key! === 'description') {
+          newErrors.description = item.message;
+        }
+      }
+      setErrors(newErrors);
+      setLoading(false);
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const target = event.target;
+    const update = form;
+
+    if (target.name === 'title') {
+      update.title = target.value;
+    } else if (target.name === 'description') {
+      update.description = target.value;
+    }
+
+    setForm(update);
+  };
+
+  const handleDescriptionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const update = form;
+
+    update.description = event.target.value;
+
+    setForm(update);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
+    event.preventDefault();
+
+    if (!validateForm(event)) return;
+
+    await dispatch(createTalk(form));
+  };
+
+  return (
+    <div className="flex items-center justify-center flex-col w-full">
+      <form className="add-form" onSubmit={handleSubmit}>
+        <input type="text" name="title" placeholder="Title" onChange={handleInputChange}></input>
+        <span className="w-full text-red text-left py-2">{error.title || '\u00A0'}</span>
+
+        <textarea
+          name="description"
+          placeholder="Description"
+          rows={3}
+          onChange={handleDescriptionChange}></textarea>
+        <span className="w-full text-red text-left py-2">{error.description || '\u00A0'}</span>
+        <div className="w-full flex items-center justify-end py-4">
+          <button type="submit" className="bg-blue px-6 py-3 text-white">
+            {loading ? (
+              <div className="px-3 py-2">
+                <Spinner large={false} />
+              </div>
+            ) : (
+              'Add'
+            )}
+          </button>
         </div>
-      </div>
-    );
-  }
+      </form>
+    </div>
+  );
 }

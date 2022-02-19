@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 import { IsNumber, IsString } from 'class-validator';
-import { User } from '../../users/entities/user.entity';
+import { UserReadDto } from '../../users/dto/user-read.dto';
 
 @Expose()
 export class ReadTalkDto {
@@ -10,7 +10,7 @@ export class ReadTalkDto {
   @IsString()
   description: string;
 
-  user: User;
+  user: UserReadDto;
 
   @IsNumber()
   voteCount: number;

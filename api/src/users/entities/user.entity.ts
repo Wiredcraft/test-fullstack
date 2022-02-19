@@ -30,8 +30,11 @@ export class User {
   @OneToMany(() => Talk, (talk) => talk.user)
   talks: Talk[];
 
+  @Exclude()
   @OneToMany(() => Vote, (vote) => vote.user)
   votes: Vote[];
+
+  voteTalkIds: string[];
 
   @CreateDateColumn()
   createdAt: Date;

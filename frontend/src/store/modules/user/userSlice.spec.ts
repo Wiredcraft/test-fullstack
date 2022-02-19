@@ -1,7 +1,7 @@
 import { AnyAction } from '@reduxjs/toolkit';
 import configureStore from 'redux-mock-store';
 
-import reducer, { IUserState } from './userSlice';
+import reducer, { addVoteId, IUserState, removeVoteId } from './userSlice';
 
 import { fetchMe, login, logout } from './user.api';
 
@@ -42,6 +42,50 @@ describe('userSlice', () => {
 
   test('should return the initial state', () => {
     expect(reducer(undefined, {} as AnyAction)).toEqual(initialState);
+  });
+
+  describe('reducers', () => {
+    describe('addVoteId', () => {
+      it('adds the voteId to the user state', async () => {
+        const newVoteId = 'abc123123';
+        const newState = { ...initialState };
+
+        const res = reducer(newState, addVoteId(newVoteId));
+
+        expect(res.user.votes).toContain(newVoteId);
+      });
+
+      it('does not add the same vote id if already present', async () => {
+        const newVoteId = 'asiojdsiaod';
+        const newState = { ...initialState, user: { ...initialState.user, votes: [newVoteId] } };
+
+        const res = reducer(newState, addVoteId(newVoteId))
+
+        expect(res.user.votes.length).toEqual(1)
+
+        expect(res.user.votes[0]).toEqual(newVoteId)
+      });
+    });
+
+    describe('removeVoteId', () => {
+      it('removes given vote in the users state', async () => {
+        const newVoteId = 'abc123123';
+        const newState = { ...initialState, user: {...initialState.user, votes: [newVoteId]} };
+
+        const res = reducer(newState, removeVoteId(newVoteId));
+
+        expect(res.user.votes).not.toContain(newVoteId);
+      })
+
+      it('it does nothing if id not in user state', async () => {
+        const newVoteId = 'abc123123';
+        const newState = { ...initialState, user: {...initialState.user, votes: ['a', 'b', 'c']} };
+
+        const res = reducer(newState, removeVoteId(newVoteId));
+
+        expect(res.user.votes).not.toContain(newVoteId);
+      })
+    })
   });
 
   describe('thunks', () => {

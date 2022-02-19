@@ -65,14 +65,14 @@ export class TalksService {
   ): Promise<Pagination<Talk>> {
     const order =
       sort === 'popular'
-        ? { createdAt: 'ASC' as const }
-        : { id: 'DESC' as const };
+        ? { voteCount: 'DESC' as const }
+        : { createdAt: 'DESC' as const };
 
     return paginate<Talk>(this.talksRepository, options, { order });
   }
 
   /**
-   * Attempts to delete a vote, and if affected: 0 is returned, create a new vote.
+   * Attempts to delete a vote, and if affected = 0, create a new vote.
    *
    * @param {string} userId
    * @param {string} talkId
@@ -93,8 +93,14 @@ export class TalksService {
       await this.votesRepository.save(vote);
 
       return true;
+    } else {
+      this.talksRepository.manager.decrement(
+        Talk,
+        { id: talkId },
+        'voteCount',
+        1,
+      );
+      return false;
     }
-
-    return false;
   }
 }

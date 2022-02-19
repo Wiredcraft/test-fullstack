@@ -8,7 +8,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module';
-import { AllExceptionsFilter } from './core/filters/exceptions.filter';
+import { GlobalExceptionFilter } from './core/filters/global-exception';
 
 async function bootstrap() {
   const origin = ['127.0.0.1', 'localhost'];
@@ -28,11 +28,9 @@ async function bootstrap() {
     }),
   );
 
-  // app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
-  const httpAdapterHost = app.get(HttpAdapterHost);
-  
-  app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
+  app.useGlobalFilters(new GlobalExceptionFilter());
 
   const config = new DocumentBuilder()
     .setTitle('Wiredcraft test-fullstack API')

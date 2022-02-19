@@ -13,5 +13,5 @@ export class UserReadDto {
 
   @Expose()
   @IsArray()
-  votes: Vote[];
+  voteTalkIds: string[];
 }

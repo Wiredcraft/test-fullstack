@@ -5,8 +5,8 @@ export interface ITalk {
   title: string;
   description: string;
   voteCount: number;
-  user: ITalkUser;
-  createdAt: DateTime;
+  userName: string;
+  createdAt: string;
 }
 
 export interface ITalkCreateDTO {

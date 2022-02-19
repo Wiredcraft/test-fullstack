@@ -8,7 +8,7 @@ import reducer, { ITalksState } from './talksSlice';
 import mockAdapter from 'axios-mock-adapter';
 import { $axios } from '../../../plugins/axios';
 import thunk from 'redux-thunk';
-import { createTalk, fetchTalks } from './talks.api';
+import { createTalk, fetchTalks, vote } from './talks.api';
 
 const initialState: ITalksState = initBasePageState<ITalk>();
 
@@ -130,7 +130,19 @@ describe('talksSlice', () => {
     });
     describe('talks/vote', () => {
       it('sends vote and adds vote to user votes', async () => {
-        
+        const testId = 'djwaiodjiaow'
+        const expectedActions = [
+          { type: vote.pending.type },
+          { type: vote.fulfilled.type, payload: true }
+        ];
+
+        mockAxios.onPut().reply(200, true);
+
+        await store.dispatch(vote(testId));
+
+        const actualAction = store.getActions();
+        expect(actualAction.length).toEqual(expectedActions.length);
+        expect(actualAction[actualAction.length - 1].payload).toEqual(true);
       })
     })
   });

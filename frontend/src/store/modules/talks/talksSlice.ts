@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initBasePageState, initBaseState } from '../../core';
 import { BasePageState, BaseState } from '../../core/types';
 import type { RootState } from '../../store';
-import { createTalk, fetchTalks } from './talks.api';
+import { createTalk, fetchTalks, vote } from './talks.api';
 import { ITalk } from './talks.types';
 
 export interface ITalksState extends BasePageState<ITalk> {}
@@ -46,6 +46,25 @@ export const talksSlice = createSlice({
         state.meta = action.payload.meta;
       })
       .addCase(fetchTalks.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = `${action.error.message}`;
+      })
+      .addCase(vote.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(vote.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+
+        const talk = state.all[action.payload.id];
+
+        let change = action.payload.voteState ? 1 : -1;
+
+        state.all[action.payload.id] = {
+          ...talk,
+          voteCount: talk.voteCount + change
+        };
+      })
+      .addCase(vote.rejected, (state, action) => {
         state.status = 'failed';
         state.error = `${action.error.message}`;
       });

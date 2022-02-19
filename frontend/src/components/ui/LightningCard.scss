@@ -1,15 +1,21 @@
 .l-card {
+  position: relative;
   width: 100%;
   border: 1px solid lightgray;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  transition: box-shadow 0.15s ease-in;
+  transition: all 0.15s ease-in;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: start;
+  transform: scale(1);
 
   &:hover {
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+
+  &.voted {
+    background-color: #feffef;
   }
 
   .left {
@@ -57,6 +63,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    
 
     .content {
       .desc {
@@ -68,3 +75,4 @@
     }
   }
 }
+

@@ -18,9 +18,12 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get('me')
   async getUserMe(@Req() req): Promise<UserReadDto> {
-
     const { id } = req.user;
 
-    return await this.usersService.findOneWithTaskVotes(id);
+    try {
+      return await this.usersService.findOneWithTaskVotes(id);
+    } catch (e) {
+      console.log(e)
+    }
   }
 }

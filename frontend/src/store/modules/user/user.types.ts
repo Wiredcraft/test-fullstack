@@ -1,7 +1,7 @@
 interface IUser {
   id: string;
   name: string;
-  votes: string[];
+  voteTalkIds: string[];
 }
 
 interface ITalkUser {

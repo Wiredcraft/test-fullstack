@@ -25,20 +25,26 @@ export class UsersService {
   }
 
   async findOneWithTaskVotes(id: string): Promise<User> {
-    return await this.usersRepository
-      .createQueryBuilder('user')
-      .leftJoinAndSelect("user.votes", "vote.talkId")
-      .where("user.id = :id", { id })
-      .getOneOrFail();
+    const res = await this.usersRepository.findOneOrFail(id, {
+      relations: ['votes'],
+    });
 
+    // flatten votes to just talkids
+    res.voteTalkIds = res.votes.map((v) => v.talkId);
+    return res;
   }
 
   async findOneByGithubId(githubId: string): Promise<User> {
-    return await this.usersRepository
-      .createQueryBuilder('user')
-      .leftJoinAndSelect("user.votes", "vote.talkId")
-      .where("user.gitHubId = :githubId", { githubId })
-      .getOneOrFail();
+    const res = await this.usersRepository.findOneOrFail(
+      { githubId },
+      {
+        relations: ['votes'],
+      },
+    );
+
+    // flatten votes to just talkids
+    res.voteTalkIds = res.votes.map((v) => v.talkId);
+    return res;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {

@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Cookies from 'js-cookie';
 
 import { fetchMe, login, logout } from './user.api';
 
@@ -13,10 +12,10 @@ export interface IUserState {
 const loggedIn = localStorage.getItem('fs_auth') === 'true' || false;
 
 const emptyState = {
-  user: { id: '', name: '', votes: [] },
+  user: { id: '', name: '', voteTalkIds: [] },
   loggedIn: false,
   status: 'idle' as const,
-  error: null,
+  error: null
 };
 
 const initialState: IUserState = { ...emptyState };
@@ -24,7 +23,18 @@ const initialState: IUserState = { ...emptyState };
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    addVoteId: (state, action: PayloadAction<string>) => {
+      if (!state.user.voteTalkIds.includes(action.payload)) {
+        state.user.voteTalkIds.push(action.payload);
+      }
+    },
+    removeVoteId: (state, action: PayloadAction<string>) => {
+      const idIndex = state.user.voteTalkIds.indexOf(action.payload);
+
+      state.user.voteTalkIds.splice(idIndex, 1);
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(login.pending, (state, action) => {
@@ -32,7 +42,7 @@ export const userSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.user = {...state.user, ...action.payload};
+        state.user = { ...state.user, ...action.payload };
         state.loggedIn = true;
         localStorage.setItem('fs_auth', 'true');
       })
@@ -73,5 +83,7 @@ export const userSlice = createSlice({
       });
   }
 });
+
+export const { addVoteId, removeVoteId } = userSlice.actions;
 
 export default userSlice.reducer;

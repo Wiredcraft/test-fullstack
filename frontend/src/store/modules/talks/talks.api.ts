@@ -1,16 +1,34 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, miniSerializeError, SerializedError } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import { $axios } from '../../../plugins/axios';
+import { addVoteId, removeVoteId } from '../user/userSlice';
 import { ITalk, ITalkCreateDTO } from './talks.types';
 
 export const createTalk = createAsyncThunk('talks/create', async (payload: ITalkCreateDTO) => {
-  const response = await $axios.post(`/v1/talks`, payload);
-  return response.data as ITalk;
+  try {
+    const response = await $axios.post(`/v1/talks`, payload);
+    return response.data as ITalk;
+  } catch (err: any) {
+    throw miniSerializeError(err.response.data)
+  }
 });
 
 export const fetchTalks = createAsyncThunk(
   'talks/fetch',
   async (payload: { sort: string; page: number }) => {
-    const response = await $axios.get('/v1/talks');
+    const response = await $axios.get(`/v1/talks?sort=${payload.sort}&page=${payload.page}`);
     return response.data;
   }
 );
+
+export const vote = createAsyncThunk('talks/vote', async (payload: string, thunkAPI) => {
+  const response = await $axios.put(`/v1/talks/${payload}/vote`);
+
+  if (response.data) {
+    thunkAPI.dispatch(addVoteId(payload));
+  } else {
+    thunkAPI.dispatch(removeVoteId(payload));
+  }
+
+  return { voteState: response.data, id: payload };
+});

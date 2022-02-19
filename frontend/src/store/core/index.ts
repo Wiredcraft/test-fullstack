@@ -37,6 +37,8 @@ function mapRecords<T>(state: BaseState<T>): T[] {
   return getRecords(state, state.ids);
 }
 
+
+
 function isLoading<T>(state: BaseState<T>): boolean {
   return state.status === 'loading';
 }

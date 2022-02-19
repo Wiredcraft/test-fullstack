@@ -1,4 +1,10 @@
-import { CreateDateColumn, Entity, ManyToOne, UpdateDateColumn } from 'typeorm';
+import {
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  RelationId,
+  UpdateDateColumn,
+} from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Talk } from './talk.entity';
 
@@ -7,8 +13,14 @@ export class Vote {
   @ManyToOne((type) => User, (user) => user.votes, { primary: true })
   user: User;
 
+  @RelationId((vote: Vote) => vote.user)
+  userId: string;
+
   @ManyToOne((type) => Talk, (talk) => talk.votes, { primary: true })
   talk: Talk;
+
+  @RelationId((vote: Vote) => vote.talk)
+  talkId: string;
 
   @CreateDateColumn()
   createdAt: Date;

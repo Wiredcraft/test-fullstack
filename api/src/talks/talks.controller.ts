@@ -31,7 +31,7 @@ export class TalksController {
   @UseGuards(JwtAuthGuard)
   async create(@Req() req: Request, @Body() createTalkDto: CreateTalkDto) {
     const { id } = req.user as JwtReqUser;
-    return this.talksService.create(id, createTalkDto);
+    return await this.talksService.create(id, createTalkDto);
   }
 
   @Get()
@@ -47,7 +47,12 @@ export class TalksController {
   @UseGuards(JwtAuthGuard)
   async vote(@Param('id') id: string, @Req() req: Request) {
     const { id: userId } = req.user as JwtReqUser;
-
-    return await this.talksService.addOrDeleteVote(userId, id);
+    try {
+      const result = await this.talksService.addOrDeleteVote(userId, id);
+      return result;
+    } catch (e) {
+      console.log('error');
+    }
+    return;
   }
 }

@@ -1,10 +1,14 @@
 import classNames from 'classnames';
-import React from 'react';
-import { DateTime } from "luxon";
+import React, { useEffect, useState } from 'react';
+import { DateTime } from 'luxon';
 import StarIcon from '../icons/star';
 
 import './LightningCard.scss';
 import { ITalk } from '../../store/modules/talks/talks.types';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { vote } from '../../store/modules/talks/talks.api';
+import UserIcon from '../icons/user';
+import ClockIcon from '../icons/clock';
 
 type Props = ITalk;
 
@@ -12,34 +16,48 @@ type State = {
   checked: boolean;
 };
 
-export default class LightningCard extends React.Component<Props> {
-  render() {
-    const buttonClass = classNames({
-      left: true,
-      checked: this.props.voted,
-      'px-10': true
-    });
+export default function LightningCard(props: ITalk) {
+  const dispatch = useAppDispatch();
+  const userVoteIds = useAppSelector((state) => state.user.user.voteTalkIds);
 
-    const formattedTime = this.props.createdAt.toLocaleString(DateTime.DATETIME_SHORT)
+  const [checkedState, setCheckedState] = useState(false);
 
-    return (
-      <div className="l-card py-4 my-8">
-        <button type="button" className={buttonClass}>
-          <StarIcon fillColor="none" size={48} />
-          <span className="text-xl">{this.props.votes}</span>
-        </button>
-        <div className="center pr-4">
-          <div className="content">
-            <div className="title text-2xl text-bold text-blue">{this.props.title}</div>
-            <div className="desc text-lg">{this.props.description}</div>
-          </div>
-          <div className="info py-2 text-gray">
-            <span className="user">{this.props.user.name}</span>
-            <span className="mx-2">//</span>
-            <span className="created">{formattedTime}</span>
-          </div>
+  let cardClass = classNames('l-card', 'py-4', 'my-8', {
+    voted: checkedState
+  });
+
+  let buttonClass = classNames('left', 'px-10', {
+    checked: checkedState,
+  });
+
+  useEffect(() => {
+    setCheckedState(userVoteIds.includes(props.id));
+  }, [userVoteIds]);
+
+  const clickVote = () => {
+    dispatch(vote(props.id));
+  };
+
+  const formattedTime = DateTime.fromISO(props.createdAt).toLocaleString(DateTime.DATETIME_SHORT);
+
+  return (
+    <div className={cardClass}>
+      <button onClick={clickVote} type="button" className={buttonClass}>
+        <StarIcon fillColor="none" size={48} />
+        <span className="text-xl">{props.voteCount}</span>
+      </button>
+      <div className="center pr-4">
+        <div className="content">
+          <div className="title text-2xl text-bold text-blue">{props.title}</div>
+          <div className="desc text-lg">{props.description}</div>
+        </div>
+        <div className="info py-2 text-gray flex items-center justify-start">
+          <UserIcon size={18} />
+          <span className="user ml-1 mr-2">{props.userName}</span>
+          <ClockIcon size={18} />
+          <span className="created ml-1 mr-2">{formattedTime}</span>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }

@@ -36,6 +36,10 @@
   justify-content: flex-end;
 }
 
+.relative {
+  position: relative;
+}
+
 $spacing-list: (
   0,
   0.25rem,
@@ -101,5 +105,13 @@ $spacing-list: (
   }
   .pb-#{$i} {
     padding-bottom: $s;
+  }
+
+  .w-#{$i} {
+    width: $s
+  }
+
+  .h-#{$i} {
+    height: $s
   }
 }

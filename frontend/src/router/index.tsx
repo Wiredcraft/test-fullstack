@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, RouteObject } from 'react-router-dom';
+import { Navigate, Outlet, RouteObject } from 'react-router-dom';
 
 import DefaultLayout from '../layouts/default';
 import Loading from '../pages/common/loading';
@@ -13,7 +13,7 @@ function lazyLoadView(groups: string[], view: string) {
   );
 }
 
-const routes: RouteObject[] = [
+const routes = (loggedIn: boolean): RouteObject[] => [
   {
     path: '/',
     element: <DefaultLayout />,
@@ -21,7 +21,7 @@ const routes: RouteObject[] = [
       { index: true, element: lazyLoadView(['home'], 'index') },
       {
         path: '/add',
-        element: lazyLoadView(['home'], 'add')
+        element: loggedIn ? lazyLoadView(['home'], 'add') : <Navigate to="/auth" replace />
       },
       {
         path: '/auth',

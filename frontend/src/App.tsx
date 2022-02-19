@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useRoutes } from 'react-router-dom';
 import routes from './router';
-import { useAppDispatch } from './store';
+import { useAppDispatch, useAppSelector } from './store';
 import { fetchMe } from './store/modules/user/user.api';
 
-
 const App = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+  const loggedIn = useAppSelector((state) => state.user.loggedIn)
+  const router = useRoutes(routes(loggedIn));
 
-  if (localStorage.getItem('fs_auth') === 'true') {
-    useEffect(() => {
-      dispatch(fetchMe())
-    }, [ dispatch ]);
-  }
+  useEffect(() => {
+    if (localStorage.getItem('fs_auth') === 'true') {
+      dispatch(fetchMe());
+    }
+  }, []);
 
-  const router = useRoutes(routes);
 
   return <div>{router}</div>;
 };

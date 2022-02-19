@@ -1,3 +1,4 @@
+import { Exclude, Expose, Transform } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -9,6 +10,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { UserReadDto } from '../../users/dto/user-read.dto';
 import { User } from '../../users/entities/user.entity';
 import { Vote } from './vote.entity';
 
@@ -23,8 +25,14 @@ export class Talk {
   @Column()
   description: string;
 
-  @ManyToOne(() => User, (user) => user.talks)
+  @Exclude()
+  @ManyToOne(() => User, (user) => user.talks, { eager: true })
   user: User;
+
+  @Expose()
+  get userName(): string {
+    return this.user.name;
+  }
 
   @OneToMany(() => Vote, (vote) => vote.talk)
   votes: Vote[];
