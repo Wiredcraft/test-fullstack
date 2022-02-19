@@ -3,17 +3,13 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
   UseGuards,
   Req,
   Put,
-  NotImplementedException,
   Query,
   DefaultValuePipe,
   ParseIntPipe,
-  ParseEnumPipe,
   UseInterceptors,
 } from '@nestjs/common';
 import { TalksService } from './talks.service';
@@ -63,7 +59,7 @@ export class TalksController {
     type: ReadTalksDto,
   })
   async index(
-    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
     @Query('sort', new DefaultValuePipe('popular'))
     sort: SortTypes = 'popular',
   ) {

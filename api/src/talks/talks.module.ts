@@ -6,8 +6,8 @@ import { Vote } from './entities/vote.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Talk, Vote]),],
+  imports: [TypeOrmModule.forFeature([Talk, Vote])],
   controllers: [TalksController],
-  providers: [TalksService]
+  providers: [TalksService],
 })
 export class TalksModule {}

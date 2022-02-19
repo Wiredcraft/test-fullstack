@@ -6,11 +6,11 @@ import { TalkFactory } from '../core/factories';
 async function bootstrap() {
   const application = await NestFactory.createApplicationContext(AppModule);
 
-  Logger.debug('Seeding database...')
-  Logger.debug('Creating talks...')
+  Logger.debug('Seeding database...');
+  Logger.debug('Creating talks...');
   for (let i = 0; i < 100; i++) {
     const talkFactory: TalkFactory = new TalkFactory();
-    Logger.debug(`Creating talk #${i + 1}.`)
+    Logger.debug(`Creating talk #${i + 1}.`);
     await talkFactory.create();
   }
 

@@ -33,7 +33,7 @@ export class UsersController {
     try {
       return await this.usersService.findOneWithTaskVotes(id);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 }

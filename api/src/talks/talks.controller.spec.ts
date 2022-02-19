@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { Request } from 'express';
 import { User } from '../users/entities/user.entity';
 import { Talk } from './entities/talk.entity';
 import { TalksController } from './talks.controller';

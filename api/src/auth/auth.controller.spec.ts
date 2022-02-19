@@ -1,8 +1,8 @@
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 
-const httpMocks = require('node-mocks-http');
+import httpMocks from 'node-mocks-http';
 
 describe('AuthController', () => {
   let controller: AuthController;
@@ -30,14 +30,10 @@ describe('AuthController', () => {
   describe('logout', () => {
     it('logs out user successfully', async () => {
       const req = httpMocks.createRequest({
-        eventEmitter: require('events').EventEmitter,
         method: 'DELETE',
         url: '/auth',
         cookies: {
-          fs_jwt: {
-            value: 'abc123123',
-            options: { httpOnly: true },
-          },
+          fs_jwt: 'hi',
         },
       });
 

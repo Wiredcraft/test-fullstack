@@ -5,11 +5,9 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
-  setupFilesAfterEnv: [
-    '@testing-library/jest-dom/extend-expect'
-  ],
-  "moduleNameMapper": {
-    "^.+\\.(css|less|scss)$": "babel-jest"
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
+  moduleNameMapper: {
+    '^.+\\.(css|less|scss)$': 'babel-jest'
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

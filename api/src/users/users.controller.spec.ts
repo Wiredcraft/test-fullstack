@@ -1,26 +1,12 @@
 import { ExecutionContext } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { getRepositoryToken } from '@nestjs/typeorm';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
-import { Vote } from '../talks/entities/vote.entity';
-import { Talk } from '../talks/entities/talk.entity';
 
 const name = 'testuser1';
 const githubId = 'ajiodsj2213jsd2';
-
-const userArray = [
-  new User({
-    githubId: '1234231',
-    name: 'tesjies',
-    voteTalkIds: ['abc'],
-  }),
-  new User({ githubId: 'dasad2d1d', name: 'asdad' }),
-  new User({ githubId: 'asdd21ddswd', name: 'tesjdsaddsies' }),
-];
 
 const oneUser = new User({
   id: 'testuuuid',

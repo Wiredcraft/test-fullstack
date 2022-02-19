@@ -10,13 +10,13 @@ import { Talk } from './talk.entity';
 
 @Entity()
 export class Vote {
-  @ManyToOne((type) => User, (user) => user.votes, { primary: true })
+  @ManyToOne(() => User, (user) => user.votes, { primary: true })
   user: User;
 
   @RelationId((vote: Vote) => vote.user)
   userId: string;
 
-  @ManyToOne((type) => Talk, (talk) => talk.votes, { primary: true })
+  @ManyToOne(() => Talk, (talk) => talk.votes, { primary: true })
   talk: Talk;
 
   @RelationId((vote: Vote) => vote.talk)

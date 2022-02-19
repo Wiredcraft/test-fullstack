@@ -20,13 +20,6 @@ const oneUser = new User({
   name,
   votes: [new Vote({ talkId: 'abc' })],
 });
-const otherUser = new User({
-  githubId: 'abc123',
-  name: 'uaidaui',
-  votes: [new Vote({ talkId: 'abc' })],
-});
-
-const flatUser = new User({ githubId, name });
 
 describe('UsersService', () => {
   let service: UsersService;

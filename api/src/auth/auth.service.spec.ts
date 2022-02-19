@@ -43,7 +43,7 @@ describe('AuthService', () => {
       const userSpy1 = jest
         .spyOn(usersService, 'findOneByGithubId')
         .mockResolvedValueOnce(oneUser);
-      
+
       jest.spyOn(usersService, 'create');
 
       expect(
@@ -60,9 +60,7 @@ describe('AuthService', () => {
       const userSpy1 = jest
         .spyOn(usersService, 'findOneByGithubId')
         .mockRejectedValueOnce(new Error('nada.'));
-      const userSpy2 = jest
-        .spyOn(usersService, 'create')
-        .mockResolvedValueOnce(otherUser);
+      jest.spyOn(usersService, 'create').mockResolvedValueOnce(otherUser);
 
       expect(
         service.getOrCreateGithubUser({

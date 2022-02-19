@@ -17,8 +17,7 @@ export class TalkFactory extends Factory<Talk> {
   title = faker.company.catchPhrase();
   description = faker.hacker.phrase();
 
-  voteCount = faker.datatype.number({ min: 1, max: 500})
+  voteCount = faker.datatype.number({ min: 1, max: 500 });
 
   user = new SubFactory(UserFactory);
 }
-

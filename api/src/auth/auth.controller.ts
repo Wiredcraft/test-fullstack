@@ -2,8 +2,6 @@ import {
   Controller,
   Delete,
   Get,
-  HttpCode,
-  HttpStatus,
   Req,
   Res,
   UseGuards,
@@ -27,7 +25,9 @@ export class AuthController {
   @ApiOperation({ summary: 'Redirect path to Github login.' })
   @ApiResponse({ status: 302, description: 'Redirect to github login page.' })
   @UseGuards(GithubGuard)
-  async githubAuth() {}
+  async githubAuth() {
+    // simple redirect operation
+  }
 
   @Get('github/callback')
   @ApiOperation({

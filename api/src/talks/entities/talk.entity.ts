@@ -1,16 +1,13 @@
-import { Exclude, Expose, Transform } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { UserReadDto } from '../../users/dto/user-read.dto';
 import { User } from '../../users/entities/user.entity';
 import { Vote } from './vote.entity';
 
