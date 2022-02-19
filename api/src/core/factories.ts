@@ -1,15 +1,24 @@
-import * as Factory from 'typeorm-factories';
+import { Factory, SubFactory } from '@linnify/typeorm-factory';
+import { faker } from '@faker-js/faker';
+
 import { User } from '../users/entities/user.entity';
-const { Faker } = require('@faker-js/faker');
+import { Talk } from '../talks/entities/talk.entity';
 
-Factory.define(User, (faker: typeof Faker) => {
-  const user = new User({
-    id: faker.datatype.uuid(),
-    name: faker.name.findName(),
-    githubId: '12312032131',
-  });
+export class UserFactory extends Factory<User> {
+  entity = User;
 
-  return user;
-});
+  name = faker.name.findName();
+  githubId = faker.datatype.uuid();
+}
 
-export default Factory;
+export class TalkFactory extends Factory<Talk> {
+  entity = Talk;
+
+  title = faker.company.catchPhrase();
+  description = faker.hacker.phrase();
+
+  voteCount = faker.datatype.number({ min: 1, max: 500})
+
+  user = new SubFactory(UserFactory);
+}
+

@@ -1,19 +1,19 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { toast } from '../../components/ui/ToastManager';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { login } from '../../store/modules/user/user.api';
+import Loading from '../common/loading';
 
 export default () => {
   const dispatch = useAppDispatch();
-  const loginStatus = useAppSelector(state => state.user.status)
+  const loginStatus = useAppSelector((state) => state.user.status);
 
   let navigate = useNavigate();
   let [searchParams] = useSearchParams();
 
   const githubCode = searchParams.get('code');
-
-  
 
   if (!githubCode) {
     useEffect(() => {
@@ -24,19 +24,28 @@ export default () => {
   useEffect(() => {
     if (loginStatus === 'idle' && githubCode) {
       dispatch(login({ provider: 'github', code: githubCode }));
-      navigate('/', { state: 'success' });
     }
-  }, [loginStatus, dispatch])
+  }, []);
 
-  let content;
+  useEffect(() => {
+    if (loginStatus === 'succeeded') {
+      navigate('/', { state: 'success' });
+      toast.show({
+        title: 'Login Successful!',
+        content: 'You may now vote and create your own talks.',
+        type: 'success',
+        duration: 3000
+      });
+    } else if (loginStatus === 'failed') {
+      navigate('/', { state: 'error' });
+      toast.show({
+        title: 'There was an error logging in.',
+        content: 'Please try again later.',
+        type: 'error',
+        duration: 3000
+      });
+    }
+  }, [loginStatus]);
 
-  if (loginStatus === 'loading') {
-    content = <span className='text-2xl text-bold'>LOADING...</span>
-  } else if (loginStatus === 'succeeded') {
-    navigate('/', { state: 'success' });
-  } else {
-    navigate('/', { state: 'error' });
-  }
-
-  return <div>{content}</div>;
+  return <Loading />;
 };

@@ -14,7 +14,7 @@ const initialState: IUserState = {
   user: {
     id: '',
     name: '',
-    votes: []
+    voteTalkIds: []
   },
   loggedIn: false,
   status: 'idle',
@@ -52,38 +52,38 @@ describe('userSlice', () => {
 
         const res = reducer(newState, addVoteId(newVoteId));
 
-        expect(res.user.votes).toContain(newVoteId);
+        expect(res.user.voteTalkIds).toContain(newVoteId);
       });
 
       it('does not add the same vote id if already present', async () => {
         const newVoteId = 'asiojdsiaod';
-        const newState = { ...initialState, user: { ...initialState.user, votes: [newVoteId] } };
+        const newState = { ...initialState, user: { ...initialState.user, voteTalkIds: [newVoteId] } };
 
         const res = reducer(newState, addVoteId(newVoteId))
 
-        expect(res.user.votes.length).toEqual(1)
+        expect(res.user.voteTalkIds.length).toEqual(1)
 
-        expect(res.user.votes[0]).toEqual(newVoteId)
+        expect(res.user.voteTalkIds[0]).toEqual(newVoteId)
       });
     });
 
     describe('removeVoteId', () => {
       it('removes given vote in the users state', async () => {
         const newVoteId = 'abc123123';
-        const newState = { ...initialState, user: {...initialState.user, votes: [newVoteId]} };
+        const newState = { ...initialState, user: {...initialState.user, voteTalkIds: [newVoteId]} };
 
         const res = reducer(newState, removeVoteId(newVoteId));
 
-        expect(res.user.votes).not.toContain(newVoteId);
+        expect(res.user.voteTalkIds).not.toContain(newVoteId);
       })
 
       it('it does nothing if id not in user state', async () => {
         const newVoteId = 'abc123123';
-        const newState = { ...initialState, user: {...initialState.user, votes: ['a', 'b', 'c']} };
+        const newState = { ...initialState, user: {...initialState.user, voteTalkIds: ['a', 'b', 'c']} };
 
         const res = reducer(newState, removeVoteId(newVoteId));
 
-        expect(res.user.votes).not.toContain(newVoteId);
+        expect(res.user.voteTalkIds).not.toContain(newVoteId);
       })
     })
   });
@@ -97,7 +97,7 @@ describe('userSlice', () => {
         const newUser = {
           id: 'abc123',
           name: 'testname',
-          votes: ['0', '1', '2']
+          voteTalkIds: ['0', '1', '2']
         };
 
         const expectedActions = [
@@ -127,7 +127,7 @@ describe('userSlice', () => {
         const newUser = {
           id: 'abc123',
           name: 'testname',
-          votes: ['0', '1', '2']
+          voteTalkIds: ['0', '1', '2']
         };
 
         store = mockStore({ ...initialState, user: newUser });
@@ -158,7 +158,7 @@ describe('userSlice', () => {
         const newUser = {
           id: 'abc123',
           name: 'testname',
-          votes: ['0', '1', '2']
+          voteTalkIds: ['0', '1', '2']
         };
 
         const expectedActions = [

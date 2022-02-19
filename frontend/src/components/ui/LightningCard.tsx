@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { vote } from '../../store/modules/talks/talks.api';
 import UserIcon from '../icons/user';
 import ClockIcon from '../icons/clock';
+import { toast } from './ToastManager';
 
 type Props = ITalk;
 
@@ -18,6 +19,7 @@ type State = {
 
 export default function LightningCard(props: ITalk) {
   const dispatch = useAppDispatch();
+  const loggedIn = useAppSelector((state) => state.user.loggedIn);
   const userVoteIds = useAppSelector((state) => state.user.user.voteTalkIds);
 
   const [checkedState, setCheckedState] = useState(false);
@@ -27,7 +29,7 @@ export default function LightningCard(props: ITalk) {
   });
 
   let buttonClass = classNames('left', 'px-10', {
-    checked: checkedState,
+    checked: checkedState
   });
 
   useEffect(() => {
@@ -35,7 +37,16 @@ export default function LightningCard(props: ITalk) {
   }, [userVoteIds]);
 
   const clickVote = () => {
-    dispatch(vote(props.id));
+    if (loggedIn) {
+      dispatch(vote(props.id));
+    } else {
+      toast.show({
+        title: 'Login Required',
+        content: 'You must first login before you are able to vote.',
+        type: 'error',
+        duration: 3000
+      });
+    }
   };
 
   const formattedTime = DateTime.fromISO(props.createdAt).toLocaleString(DateTime.DATETIME_SHORT);
@@ -51,7 +62,7 @@ export default function LightningCard(props: ITalk) {
           <div className="title text-2xl text-bold text-blue">{props.title}</div>
           <div className="desc text-lg">{props.description}</div>
         </div>
-        <div className="info py-2 text-gray flex items-center justify-start">
+        <div className="info py-2 text-gray flex items-center justify-start text-md">
           <UserIcon size={18} />
           <span className="user ml-1 mr-2">{props.userName}</span>
           <ClockIcon size={18} />

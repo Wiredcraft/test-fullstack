@@ -29,7 +29,7 @@ $size-list: (
   ),
   4xl: (
     2.25rem,
-    2.5rem,
+    2.5rem
   ),
   5xl: (
     3rem,
@@ -68,4 +68,21 @@ $size-list: (
 
 .underline {
   text-decoration: underline !important;
+}
+
+@media (max-width: 1024px) {
+  .text-2xl {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .text-lg {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .text-md {
+    font-size: 0.75rem;
+    line-height: 1rem;
+  }
 }

@@ -5,14 +5,25 @@ import type { RootState } from '../../store';
 import { createTalk, fetchTalks, vote } from './talks.api';
 import { ITalk } from './talks.types';
 
-export interface ITalksState extends BasePageState<ITalk> {}
+type SortType = 'popular' | 'newest';
 
-const initialState: ITalksState = initBasePageState<ITalk>();
+export interface ITalksState extends BasePageState<ITalk> {
+  sortType: SortType;
+}
+
+const initialState: ITalksState = {
+  ...initBasePageState<ITalk>(),
+  sortType: 'popular'
+};
 
 export const talksSlice = createSlice({
   name: 'talks',
   initialState,
-  reducers: {},
+  reducers: {
+    changeSortType: (state, action: PayloadAction<SortType>) => {
+      state.sortType = action.payload;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(createTalk.pending, (state, action) => {
@@ -37,7 +48,11 @@ export const talksSlice = createSlice({
       .addCase(fetchTalks.fulfilled, (state, action) => {
         state.status = 'succeeded';
 
-        state.ids = action.payload.items.map((it: ITalk) => it.id);
+        if (action.payload.meta.currentPage > 1) {
+          state.ids = state.ids.concat(action.payload.items.map((it: ITalk) => it.id));
+        } else {
+          state.ids = action.payload.items.map((it: ITalk) => it.id);
+        }
 
         action.payload.items.forEach((item: ITalk) => {
           state.all[item.id] = item;
@@ -70,5 +85,8 @@ export const talksSlice = createSlice({
       });
   }
 });
+
+export const { changeSortType } = talksSlice.actions;
+
 
 export default talksSlice.reducer;

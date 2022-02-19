@@ -21,7 +21,7 @@ const routes = (loggedIn: boolean): RouteObject[] => [
       { index: true, element: lazyLoadView(['home'], 'index') },
       {
         path: '/add',
-        element: loggedIn ? lazyLoadView(['home'], 'add') : <Navigate to="/auth" replace />
+        element: lazyLoadView(['home'], 'add')
       },
       {
         path: '/auth',

@@ -4,14 +4,21 @@ import { $axios } from '../../../plugins/axios';
 import { addVoteId, removeVoteId } from '../user/userSlice';
 import { ITalk, ITalkCreateDTO } from './talks.types';
 
-export const createTalk = createAsyncThunk('talks/create', async (payload: ITalkCreateDTO) => {
-  try {
-    const response = await $axios.post(`/v1/talks`, payload);
-    return response.data as ITalk;
-  } catch (err: any) {
-    throw miniSerializeError(err.response.data)
+export const createTalk = createAsyncThunk(
+  'talks/create',
+  async (payload: ITalkCreateDTO, thunkAPI) => {
+    try {
+      const response = await $axios.post(`/v1/talks`, payload);
+
+      thunkAPI.dispatch(addVoteId(response.data.id));
+
+      return response.data as ITalk;
+
+    } catch (err: any) {
+      throw miniSerializeError(err.response.data);
+    }
   }
-});
+);
 
 export const fetchTalks = createAsyncThunk(
   'talks/fetch',

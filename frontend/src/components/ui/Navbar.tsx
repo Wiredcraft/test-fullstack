@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { logout } from '../../store/modules/user/user.api';
 
 import './Navbar.scss';
+import { toast } from './ToastManager';
 
 export default () => {
   const dispatch = useAppDispatch();
@@ -12,6 +13,12 @@ export default () => {
   const logOut = async () => {
     try {
       await dispatch(logout());
+      toast.show({
+        title: 'Logged out.',
+        content: 'You have been successfully logged out.',
+        type: 'success',
+        duration: 3000
+      });
     } catch (err) {
       console.log(err);
     }

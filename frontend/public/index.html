@@ -5,8 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>test-fullstack</title>
+    <style>
+      .loading-container {
+        width: 100vw;
+        height: 100vh;
+        background: #f4f4f4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .spinner-large:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 36px;
+        height: 36px;
+        margin-top: -10px;
+        margin-left: -10px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+        border-top-color: transparent;
+        animation: spinner 0.6s linear infinite;
+      }
+    </style>
   </head>
   <body>
-    <div id="app">App is loading...</div>
+    <div id="app">
+      <div class="loading-container">
+        <div class="spinner-large"></div>
+      </div>
+    </div>
   </body>
 </html>

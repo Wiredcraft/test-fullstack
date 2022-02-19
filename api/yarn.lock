@@ -600,6 +600,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@linnify/typeorm-factory@^1.0.12":
+  version "1.0.12"
+  resolved "https://registry.npmmirror.com/@linnify/typeorm-factory/-/typeorm-factory-1.0.12.tgz#879b60c738902d758f6aaaaaf4a00ad455bbd87e"
+  integrity sha512-Gkf6OnatI0/KJznICM2DBTJr6mABKuQLpoYVLEMGXO/HG62V+nXRyY8smqMJsEi4NfYhSq6tOb3OCQoVgFmBtA==
+
 "@nestjs/cli@^8.0.0":
   version "8.2.1"
   resolved "https://registry.npmmirror.com/@nestjs/cli/-/cli-8.2.1.tgz"
@@ -5261,11 +5266,6 @@ typedarray@^0.0.6:
   resolved "https://registry.npmmirror.com/typedarray/-/typedarray-0.0.6.tgz"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typeorm-factories@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmmirror.com/typeorm-factories/-/typeorm-factories-1.0.1.tgz#f41dd569c7859de1c1d8742efabc0f621701442d"
-  integrity sha512-TMipbsCOeQB3y1MuhBTkPgBhmfC9vdE12+aTN+tCmVJFw21I+wIMnhJ72XPTQUyrbamhwgn79mW9/xCHA5M3LQ==
-
 typeorm@^0.2.41:
   version "0.2.41"
   resolved "https://registry.npmmirror.com/typeorm/-/typeorm-0.2.41.tgz"
@@ -5598,7 +5598,7 @@ yargs@^16.0.0, yargs@^16.2.0:
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
 
-yargs@^17.0.1:
+yargs@^17.0.1, yargs@^17.3.1:
   version "17.3.1"
   resolved "https://registry.npmmirror.com/yargs/-/yargs-17.3.1.tgz"
   integrity sha512-WUANQeVgjLbNsEmGk20f+nlHgOqzRFpiGWVaBrYGYIGANIIu3lWjoyi0fNlFmJkvfhCZ6BXINe7/W2O2bV4iaA==

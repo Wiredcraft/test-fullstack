@@ -1,6 +1,5 @@
-import { Exclude, Expose, Type } from 'class-transformer';
-import { IsArray, IsNumber, IsString, ValidateNested } from 'class-validator';
-import { Vote } from '../../talks/entities/vote.entity';
+import { Expose } from 'class-transformer';
+import { IsArray, IsString, } from 'class-validator';
 
 export class LoginReadDto {
   @Expose()
@@ -13,5 +12,5 @@ export class LoginReadDto {
 
   @Expose()
   @IsArray()
-  votes: Vote[];
+  voteTalkIds: string[];
 }

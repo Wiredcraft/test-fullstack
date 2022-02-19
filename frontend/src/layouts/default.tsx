@@ -1,17 +1,16 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/ui/Navbar';
+import Toast from '../components/ui/Toast';
 
-export default class DefaultLayout extends React.Component {
-  render() {
+export default function DefaultLayout() {
     return (
-      <div>
+      <div className='relative'>
         <Navbar />
         <div className='spacer mb-12'>&nsbp;</div>
-        <div className="max-w py-10">
+        <div className="max-w pt-12">
           <Outlet />
         </div>
       </div>
     );
-  }
 }

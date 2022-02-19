@@ -6,6 +6,8 @@ import Spinner from './Spinner';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { createTalk } from '../../store/modules/talks/talks.api';
 import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
+import { toast } from './ToastManager';
 
 export default function AddForm() {
   const dispatch = useAppDispatch();
@@ -29,6 +31,12 @@ export default function AddForm() {
   useEffect(() => {
     if (loading && talksStatus === 'succeeded') {
       navigate('/');
+      toast.show({
+        title: 'Talk added!',
+        content: 'Your talk has been successfully added!',
+        type: 'success',
+        duration: 3000
+      });
     } else if (loading && talksStatus === 'failed') {
       setErrors({
         title:
@@ -53,7 +61,7 @@ export default function AddForm() {
     });
   };
 
-  const validateForm = (event: React.FormEvent<EventTarget>) => {
+  const validateForm = () => {
     setErrors({ title: '', description: '' });
     const result = schema.validate(form, { abortEarly: false });
     const { error } = result;
@@ -101,19 +109,33 @@ export default function AddForm() {
   const handleSubmit = async (event: React.FormEvent<EventTarget>) => {
     event.preventDefault();
 
-    if (!validateForm(event)) return;
+    setForm({
+      title: form.title.trim(),
+      description: form.title.trim()
+    });
+
+    if (!validateForm()) return;
 
     await dispatch(createTalk(form));
   };
 
+  const titleErrorClasses = classNames({
+    error: !!error.title
+  })
+
+  const descriptionErrorClasses = classNames({
+    error: !!error.description
+  })
+
   return (
     <div className="flex items-center justify-center flex-col w-full">
       <form className="add-form" onSubmit={handleSubmit}>
-        <input type="text" name="title" placeholder="Title" onChange={handleInputChange}></input>
+        <input type="text" className={titleErrorClasses} name="title" placeholder="Title" onChange={handleInputChange}></input>
         <span className="w-full text-red text-left py-2">{error.title || '\u00A0'}</span>
 
         <textarea
           name="description"
+          className={descriptionErrorClasses}
           placeholder="Description"
           rows={3}
           onChange={handleDescriptionChange}></textarea>

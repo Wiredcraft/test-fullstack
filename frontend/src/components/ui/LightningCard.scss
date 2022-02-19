@@ -35,7 +35,7 @@
     &:hover {
       font-weight: 700;
       .icon {
-        fill: #4ea5fc;
+        fill: #4ecbfc;
         color: transparent;
       }
 
@@ -54,6 +54,14 @@
         color: transparent;
         fill: #0353a4;
       }
+
+      &:hover {
+        font-weight: 700;
+        .icon {
+          fill: #4ea5fc;
+          color: transparent;
+        }
+      }
     }
   }
 
@@ -63,16 +71,28 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    
 
     .content {
+      .title {
+        word-break: break-all;
+      }
       .desc {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        word-break: break-all;
       }
     }
   }
 }
 
+@media (max-width: 1024px) {
+  .filter-bar {
+    justify-content: center;
+
+    .select {
+      width: 100%;
+    }
+  }
+}
