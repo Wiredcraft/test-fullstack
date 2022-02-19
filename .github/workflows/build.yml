@@ -13,6 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./frontend
 
     strategy:
       matrix:
@@ -28,10 +32,8 @@ jobs:
         cache: 'yarn'
     - name: Install dependencies
       run: yarn install --frozen-lockfile
-      working-directory: frontend
     - name: Build application
       run: yarn build
-      working-directory: frontend
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
