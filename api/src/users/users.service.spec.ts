@@ -4,6 +4,7 @@ import { User } from './entities/user.entity';
 import { UsersService } from './users.service';
 
 import { Repository } from 'typeorm';
+import { Vote } from '../talks/entities/vote.entity';
 
 const name = 'testuser1';
 const githubId = 'ajiodsj2213jsd2';
@@ -14,8 +15,18 @@ const userArray = [
   new User({ githubId: 'asdd21ddswd', name: 'tesjdsaddsies' }),
 ];
 
-const oneUser = new User({ githubId, name });
-const otherUser = new User({ githubId: 'abc123', name: 'uaidaui' });
+const oneUser = new User({
+  githubId,
+  name,
+  votes: [new Vote({ talkId: 'abc' })],
+});
+const otherUser = new User({
+  githubId: 'abc123',
+  name: 'uaidaui',
+  votes: [new Vote({ talkId: 'abc' })],
+});
+
+const flatUser = new User({ githubId, name });
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -76,10 +87,18 @@ describe('UsersService', () => {
   describe('findOneByGithubId', () => {
     it('should return a single user by github id', () => {
       const repoSpy = jest.spyOn(repo, 'findOneOrFail');
-      expect(service.findOneByGithubId('testgithubid')).resolves.toEqual(
-        oneUser,
+      expect(service.findOneByGithubId('testgithubid')).resolves.toEqual({
+        githubId,
+        name,
+        voteTalkIds: ['abc'],
+        votes: [new Vote({ talkId: 'abc' })],
+      });
+      expect(repoSpy).toBeCalledWith(
+        {
+          githubId: 'testgithubid',
+        },
+        { relations: ['votes'] },
       );
-      expect(repoSpy).toBeCalledWith({ githubId: 'testgithubid' });
     });
   });
 

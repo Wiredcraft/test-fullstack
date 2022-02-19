@@ -43,11 +43,17 @@ describe('AuthController', () => {
 
       const res = httpMocks.createResponse();
 
-      const controllerRes = await controller.logout(req, res);
+      const spy = jest.spyOn(res, 'clearCookie');
 
-      expect(controllerRes.header('cookie')).toEqual(undefined);
-      expect(controllerRes.statusCode).toEqual(204);
-      
+      await controller.logout(req, res);
+
+      expect(spy).toHaveBeenCalledWith('fs_jwt', {
+        expires: new Date(1),
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+        path: '/',
+      });
     });
   });
 });

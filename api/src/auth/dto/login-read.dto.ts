@@ -1,16 +1,18 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Expose } from 'class-transformer';
-import { IsArray, IsString, } from 'class-validator';
 
 export class LoginReadDto {
+  @ApiProperty({ description: "The user's id." })
   @Expose()
-  @IsString()
   id: string;
 
+  @ApiProperty({ description: "The user's display name." })
   @Expose()
-  @IsString()
   name: string;
 
+  @ApiProperty({
+    description: 'An array of all the talks the user has voted for.',
+  })
   @Expose()
-  @IsArray()
   voteTalkIds: string[];
 }

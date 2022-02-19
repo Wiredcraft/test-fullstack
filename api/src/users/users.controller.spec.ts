@@ -6,21 +6,31 @@ import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
+import { Vote } from '../talks/entities/vote.entity';
+import { Talk } from '../talks/entities/talk.entity';
 
 const name = 'testuser1';
 const githubId = 'ajiodsj2213jsd2';
 
 const userArray = [
-  new User({ githubId: '1234231', name: 'tesjies' }),
+  new User({
+    githubId: '1234231',
+    name: 'tesjies',
+    voteTalkIds: ['abc'],
+  }),
   new User({ githubId: 'dasad2d1d', name: 'asdad' }),
   new User({ githubId: 'asdd21ddswd', name: 'tesjdsaddsies' }),
 ];
 
-const oneUser = new User({ id: 'testuuuid', githubId, name });
+const oneUser = new User({
+  id: 'testuuuid',
+  githubId,
+  name,
+  voteTalkIds: ['abc'],
+});
 
 describe('UsersController', () => {
   let controller: UsersController;
-  let repo: Repository<User>;
   const canActivate = (context: ExecutionContext) => {
     const req = context.switchToHttp().getRequest();
     req.user = { id: oneUser.id, name: oneUser.name };
@@ -31,16 +41,10 @@ describe('UsersController', () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [UsersController],
       providers: [
-        UsersService,
         {
-          provide: getRepositoryToken(User),
+          provide: UsersService,
           useValue: {
-            find: jest.fn().mockResolvedValue(userArray),
-            findOneOrFail: jest.fn().mockResolvedValue(oneUser),
-            create: jest.fn().mockReturnValue(oneUser),
-            save: jest.fn(),
-            update: jest.fn().mockResolvedValue(true),
-            delete: jest.fn().mockResolvedValue(true),
+            findOneWithTaskVotes: jest.fn().mockReturnValue(oneUser),
           },
         },
       ],
@@ -50,7 +54,6 @@ describe('UsersController', () => {
       .compile();
 
     controller = module.get<UsersController>(UsersController);
-    repo = module.get<Repository<User>>(getRepositoryToken(User));
   });
 
   it('should be defined', () => {
@@ -60,11 +63,12 @@ describe('UsersController', () => {
   describe('GET - /users/me', () => {
     it('should return successfully', async () => {
       const req = { user: { id: oneUser.id } };
-      const res = await controller.getUserMe(req)
+      const res = await controller.getUserMe(req);
       expect(res).toEqual({
         id: oneUser.id,
-        name: oneUser.name,
-        votes: [],
+        name,
+        githubId,
+        voteTalkIds: ['abc'],
       });
     });
   });

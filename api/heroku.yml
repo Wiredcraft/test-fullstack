@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: docker/Dockerfile.production
+run:
+  web: node dist/server.js
