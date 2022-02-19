@@ -16,7 +16,7 @@ module.exports = {
   },
   target: 'web',
   output: {
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
   },
@@ -29,7 +29,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env)
     })
-  ],
+  ].filter(Boolean),
   resolve: {
     modules: [__dirname, 'src', 'node_modules'],
     extensions: ['*', '.js', '.jsx', '.tsx', '.ts']
