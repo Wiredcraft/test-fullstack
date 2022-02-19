@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash
         working-directory: ./frontend
 
     strategy:
@@ -30,6 +29,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+      working-directory: ./frontend
     - name: Install dependencies
       run: yarn install --frozen-lockfile
     - name: Build application
