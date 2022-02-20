@@ -13,7 +13,7 @@ export const GlobalResponseError: (
   request: Request,
 ): IResponseError => {
   return {
-    statusCode: statusCode,
+    statusCode,
     message,
     code,
     timestamp: new Date().toISOString(),

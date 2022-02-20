@@ -5,6 +5,8 @@ import {
   HttpException,
   HttpStatus,
   Logger,
+  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import {
@@ -20,18 +22,21 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    let message = (exception as any).message.message;
-    let code = 'HttpException';
 
-    Logger.error(
-      message,
-      (exception as any).stack,
-      `${request.method} ${request.url}`,
-    );
+    let message = (exception as any).message;
+    let code = 'HttpException';
 
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
 
     switch (exception.constructor) {
+      case NotFoundException:
+        status = (exception as HttpException).getStatus();
+        message = (exception as HttpException).message
+        break;
+      case UnauthorizedException:
+        status = (exception as HttpException).getStatus();
+        message = (exception as HttpException).message
+        break;
       case HttpException:
         status = (exception as HttpException).getStatus();
         break;
@@ -52,6 +57,11 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         break;
       default:
         status = HttpStatus.INTERNAL_SERVER_ERROR;
+        Logger.error(
+          message,
+          (exception as any).stack,
+          `${request.method} ${request.url}`,
+        );
     }
 
     response
