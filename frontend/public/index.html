@@ -7,7 +7,12 @@
     <title>test-fullstack</title>
 
     <style>
+      body {
+        margin: 0;
+      }
       .loading-container {
+        padding: 0;
+        margin: 0;
         width: 100vw;
         height: 100vh;
         background: #f4f4f4;
@@ -31,13 +36,20 @@
         border-top-color: transparent;
         animation: spinner 0.6s linear infinite;
       }
+
+      @keyframes spinner {
+        to {
+          transform: rotate(360deg);
+        }
+      }
     </style>
 
     <!-- favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="theme-color" content="#011b36">
 
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">

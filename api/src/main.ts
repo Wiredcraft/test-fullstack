@@ -11,11 +11,13 @@ import * as cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 import { GlobalExceptionFilter } from './core/filters/global-exception';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: process.env.FE_BASE_URL,
+    origin: isProd ? process.env.FE_BASE_URL : ['http://127.0.0.1:3000', 'http://localhost:3000'],
     credentials: true,
   });
 

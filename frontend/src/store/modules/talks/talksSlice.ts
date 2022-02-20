@@ -64,9 +64,6 @@ export const talksSlice = createSlice({
         state.status = 'failed';
         state.error = `${action.error.message}`;
       })
-      .addCase(vote.pending, (state, action) => {
-        state.status = 'loading';
-      })
       .addCase(vote.fulfilled, (state, action) => {
         state.status = 'succeeded';
 

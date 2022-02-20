@@ -1,8 +1,4 @@
-@keyframes spinner {
-  to {transform: rotate(360deg);}
-}
- 
-.spinner:before {
+ .spinner:before {
   content: '';
   box-sizing: border-box;
   position: absolute;
