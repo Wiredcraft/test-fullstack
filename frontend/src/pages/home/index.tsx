@@ -73,7 +73,7 @@ export default function HomeIndex() {
       </div>
     );
   } else {
-    pageElements = talks.map((talk) => <LightningCard key={talk.id} {...talk} />);
+    pageElements = talks.map((talk, index) => <LightningCard key={index} {...talk} />);
   }
 
   return (

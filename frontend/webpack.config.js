@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
@@ -19,12 +19,15 @@ module.exports = {
   output: {
     filename: 'bundle.[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: isDevelopment ? '' : '/test-fullstack/',
-    clean: true,
+    publicPath: isDevelopment ? '/' : '/test-fullstack/',
+    clean: true
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
+      templateParameters: {
+        isProd: !isDevelopment
+      }
     }),
     isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
@@ -32,10 +35,8 @@ module.exports = {
       'process.env': JSON.stringify(process.env)
     }),
     new CopyPlugin({
-      patterns: [
-        { from: "public", globOptions: {ignore: ["**/index.html"]} },
-      ],
-    }),
+      patterns: [{ from: 'public', globOptions: { ignore: ['**/index.html'] } }]
+    })
   ].filter(Boolean),
   resolve: {
     modules: [__dirname, 'src', 'node_modules'],
