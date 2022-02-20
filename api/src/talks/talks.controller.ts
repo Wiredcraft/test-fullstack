@@ -116,12 +116,6 @@ export class TalksController {
   })
   async vote(@Param('id') id: string, @Req() req: Request) {
     const { id: userId } = req.user as JwtReqUser;
-    try {
-      const result = await this.talksService.addOrDeleteVote(userId, id);
-      return result;
-    } catch (e) {
-      console.log('error');
-    }
-    return;
+    return await this.talksService.addOrDeleteVote(userId, id);
   }
 }

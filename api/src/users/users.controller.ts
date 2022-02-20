@@ -35,10 +35,6 @@ export class UsersController {
   async getUserMe(@Req() req): Promise<UserReadDto> {
     const { id } = req.user;
 
-    try {
-      return await this.usersService.findOneWithTaskVotes(id);
-    } catch (e) {
-      console.log(e);
-    }
+    return await this.usersService.findOneWithTaskVotes(id);
   }
 }

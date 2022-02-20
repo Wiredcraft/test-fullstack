@@ -64,6 +64,11 @@ export const userSlice = createSlice({
       .addCase(logout.rejected, (state, action) => {
         state.status = 'failed';
         state.error = `${action.error.message}`;
+
+        // log the person out anyways, if there's an error in logging out
+        // only errors that could happen are 401/500, both which need logging back in again.
+        state.loggedIn = false;
+        localStorage.setItem('fs_auth', 'false');
       })
       .addCase(fetchMe.pending, (state, action) => {
         state.status = 'loading';

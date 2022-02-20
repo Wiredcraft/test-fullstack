@@ -11,17 +11,13 @@ export default () => {
   const loginStatus = useAppSelector((state) => state.user.loggedIn);
 
   const logOut = async () => {
-    try {
-      await dispatch(logout());
-      toast.show({
-        title: 'Logged out.',
-        content: 'You have been successfully logged out.',
-        type: 'success',
-        duration: 3000
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    await dispatch(logout());
+    toast.show({
+      title: 'Logged out.',
+      content: 'You have been successfully logged out.',
+      type: 'success',
+      duration: 3000
+    });
   };
 
   let loginContent;
