@@ -35,6 +35,13 @@ export default function LightningCard(props: ITalk) {
     'not-allowed': voteLoading
   });
 
+  // need to check this twice because after talk creation
+  // the user votes for his/her own talk. Since the userVoteIds array changes
+  // before the mount, it doesn't pick up the change, hence on component mount.
+  useEffect(() => {
+    setCheckedState(userVoteIds.includes(props.id));
+  }, []);
+
   useEffect(() => {
     setCheckedState(userVoteIds.includes(props.id));
   }, [userVoteIds]);

@@ -33,20 +33,35 @@ if ! [ -x "$(command -v docker-compose)" ]; then
     exit 1
 fi
 
-printf "Starting docker-compose stack build..."
+printf "
+Starting docker-compose stack build...
+
+"
 docker-compose build
 
-printf "${green}Build complete.${off}"
-printf "Running migrations..."
+printf "
+${green}Build complete.${off}
+
+"
+printf "Running migrations...
+
+"
 docker-compose run --rm api yarn typeorm:run
 
-printf "${green}Migrations complete.${off}"
-printf "Running seed..."
+printf "
+${green}Migrations complete.${off}
+
+"
+printf "Running seed...
+
+"
 docker-compose run --rm api yarn seed
 
-printf "${green}Seed complete.${off}"
 printf "
+${green}Seed complete.${off}
 
+"
+printf "
 ${green}Setup complete!${off}
 
 Please run '${yellow}docker-compose up${off}' and navigate to http://127.0.0.1:3000 to see the frontend.

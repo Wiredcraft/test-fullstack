@@ -52,7 +52,7 @@ export default function HomeIndex() {
         </button>
       </div>
     );
-  } else if (talksLoading === 'loading') {
+  } else if (talksLoading === 'loading' && !moreLoading) {
     pageElements = (
       <div className="flex flex-col items-center justify-center p-8 my-8">
         <span className="p-8 mt-10">

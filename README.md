@@ -27,15 +27,16 @@ $ git clone git@github.com:swawrzyn/test-fullstack.git
 $ cd test-fullstack
 ```
 
-2. Init the docker-compose stack:
-```
-$ ./init.sh
-```
-3. Copy the .env.example to .env and add key variables. You need a github client_id and client_secret to start, and set the
+2. Copy the .env.example to .env and add key variables. You need a github client_id and client_secret to start, and set the
 callback url in your github application to http://127.0.0.1:3000/auth/github.
 ```
 $ cp .env.example .env
 $ nano .env                 # or whatever editor you prefer
+```
+
+3. Init the docker-compose stack:
+```
+$ ./init.sh
 ```
 
 4. Start up the docker-compose stack:

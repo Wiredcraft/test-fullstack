@@ -14,6 +14,7 @@ services:
         CHINA_MIRROR: "true"
     volumes:
       - ./api:/home/node
+      - /home/node/node_modules
     env_file:
       - .env
     command: yarn start:dev
@@ -44,6 +45,7 @@ services:
         CHINA_MIRROR: "true"
     volumes:
       - ./frontend:/home/node
+      - /home/node/node_modules
     env_file:
       - .env
     command: yarn start
