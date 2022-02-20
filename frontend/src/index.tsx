@@ -14,9 +14,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { store } from './store';
 import App from './App';
 
+import * as Sentry from '@sentry/browser';
+
 const rootElement = document.getElementById('app');
 
-const baseName = process.env.NODE_ENV !== 'production' ? '/' : '/test-fullstack'
+const baseName = process.env.NODE_ENV !== 'production' ? '/' : '/test-fullstack';
+
+Sentry.init({ dsn: process.env.FE_SENTRY_DSN });
 
 ReactDOM.render(
   <React.StrictMode>

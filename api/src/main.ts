@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { NestFactory, Reflector } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { SentryService } from '@ntegral/nestjs-sentry';
 import * as cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module';
@@ -46,6 +47,9 @@ async function bootstrap() {
     type: VersioningType.URI,
     defaultVersion: '1',
   });
+
+  app.useLogger(SentryService.SentryServiceInstance());
+
 
   await app.listen(process.env.PORT);
 }

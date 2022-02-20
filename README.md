@@ -7,9 +7,12 @@ This project was built with NestJS/Postgresql as an API server with React as the
 ### Online Version
 
 The online version of this submission can be found at:
-- Backend: https://stefan-wc-test.herokuapp.com/api/docs
+- Backend API Documentation: https://stefan-wc-test.herokuapp.com/api/docs
+- Frontend: https://swawrzyn.github.io/test-fullstack
 
-### Running this Repository
+**Be aware: the backend is running on a free Heroku dyno, so it make take a while to warm up and show talks. If it times out on first try, please reload.**
+
+### Running this Repository Locally
 
 #### Requirements
 
@@ -28,13 +31,19 @@ $ cd test-fullstack
 ```
 $ ./init.sh
 ```
+3. Copy the .env.example to .env and add key variables. You need a github client_id and client_secret to start, and set the
+callback url in your github application to http://127.0.0.1:3000/auth/github.
+```
+$ cp .env.example .env
+$ nano .env                 # or whatever editor you prefer
+```
 
-3. Start up the docker-compose stack:
+4. Start up the docker-compose stack:
 ```
 docker-compose up
 ```
 
-4. The stack will download, build and serve the docker images:
+5. The stack will serve the docker images at:
     - Frontend (React) at http://localhost:3000
     - API (NestJS) at http://localhost:3001
 
@@ -43,8 +52,13 @@ docker-compose up
 $ ./test.sh
 ```
 
+### Logging
 
-### Context
+This project uses [GlitchTip](https://glitchtip.com) for unified error reporting and logging. In order to take advantage, add your backend/frontend DSNs to the .env file.
+
+
+
+## Context
 
 Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
 

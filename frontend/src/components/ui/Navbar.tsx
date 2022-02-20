@@ -24,6 +24,10 @@ export default () => {
     }
   };
 
+  const errorOut = () => {
+    throw new Error('This is a test error.');
+  };
+
   let loginContent;
 
   if (!loginStatus) {
@@ -46,6 +50,7 @@ export default () => {
         piorun
       </Link>
       <div>
+        <button onClick={errorOut}>Error</button>
         <Link className="text-lg text-bold mr-8" to="/add">
           Add Talk
         </Link>
