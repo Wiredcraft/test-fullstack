@@ -10,6 +10,7 @@ import { vote } from '../../store/modules/talks/talks.api';
 import UserIcon from '../icons/user';
 import ClockIcon from '../icons/clock';
 import { toast } from './ToastManager';
+import Spinner from './Spinner';
 
 type Props = ITalk;
 
@@ -23,13 +24,15 @@ export default function LightningCard(props: ITalk) {
   const userVoteIds = useAppSelector((state) => state.user.user.voteTalkIds);
 
   const [checkedState, setCheckedState] = useState(false);
+  const [voteLoading, setVoteLoading] = useState(false);
 
   let cardClass = classNames('l-card', 'py-4', 'my-8', {
     voted: checkedState
   });
 
-  let buttonClass = classNames('left', 'px-10', {
-    checked: checkedState
+  let buttonClass = classNames('left', 'px-10', 'relative', {
+    checked: checkedState,
+    'not-allowed': voteLoading
   });
 
   useEffect(() => {
@@ -38,7 +41,12 @@ export default function LightningCard(props: ITalk) {
 
   const clickVote = () => {
     if (loggedIn) {
-      dispatch(vote(props.id));
+      if (!voteLoading) {
+        setVoteLoading(true);
+        dispatch(vote(props.id)).then(() => {
+          setVoteLoading(false);
+        });
+      }
     } else {
       toast.show({
         title: 'Login Required',
@@ -49,12 +57,24 @@ export default function LightningCard(props: ITalk) {
     }
   };
 
+  let starElement;
+
+  if (voteLoading) {
+    starElement = (
+      <div className="relative my-6">
+        <Spinner large={false} />
+      </div>
+    );
+  } else {
+    starElement = <StarIcon fillColor="none" size={48} />;
+  }
+
   const formattedTime = DateTime.fromISO(props.createdAt).toLocaleString(DateTime.DATETIME_SHORT);
 
   return (
     <div className={cardClass}>
       <button onClick={clickVote} type="button" className={buttonClass}>
-        <StarIcon fillColor="none" size={48} />
+        {starElement}
         <span className="text-xl">{props.voteCount}</span>
       </button>
       <div className="center pr-4">

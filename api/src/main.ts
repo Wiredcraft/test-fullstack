@@ -17,7 +17,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: isProd ? process.env.FE_BASE_URL : ['http://127.0.0.1:3000', 'http://localhost:3000'],
+    origin: isProd
+      ? process.env.FE_BASE_URL
+      : ['http://127.0.0.1:3000', 'http://localhost:3000'],
     credentials: true,
   });
 
@@ -33,16 +35,6 @@ async function bootstrap() {
 
   app.useGlobalFilters(new GlobalExceptionFilter());
 
-  const config = new DocumentBuilder()
-    .setTitle('Wiredcraft test-fullstack API')
-    .setDescription('The backend API for test-fullstack project.')
-    .setVersion('0.1')
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-
-  SwaggerModule.setup('api/docs', app, document);
-
   app.setGlobalPrefix('api');
 
   app.enableVersioning({
@@ -50,8 +42,18 @@ async function bootstrap() {
     defaultVersion: '1',
   });
 
-  app.useLogger(SentryService.SentryServiceInstance());
+  const config = new DocumentBuilder()
+    .setTitle('Wiredcraft test-fullstack API')
+    .setDescription('The backend API for test-fullstack project.')
+    .setVersion('0.1')
+    .addCookieAuth('fs_jwt')
+    .build();
 
+  const document = SwaggerModule.createDocument(app, config);
+
+  SwaggerModule.setup('api/docs', app, document);
+
+  app.useLogger(SentryService.SentryServiceInstance());
 
   await app.listen(process.env.PORT);
 }

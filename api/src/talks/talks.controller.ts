@@ -17,12 +17,22 @@ import { CreateTalkDto } from './dto/create-talk.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Request } from 'express';
 import { JwtReqUser } from '../auth/jwt-auth.strategy';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCookieAuth,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ReadTalkDto } from './dto/read-talk.dto';
 import { SerializeInterceptor } from '../core/interceptors';
 import { ReadTalksDto } from './dto/read-talks.dto';
 
-export type SortTypes = 'popular' | 'newest';
+export enum SortTypes {
+  popular = 'popular',
+  newest = 'newest',
+}
 
 @ApiTags('talks')
 @Controller('talks')
@@ -30,10 +40,15 @@ export class TalksController {
   constructor(private readonly talksService: TalksService) {}
 
   @Post()
+  @ApiCookieAuth()
   @ApiOperation({ summary: 'Creates a new talk.' })
   @ApiResponse({
     status: 201,
     description: 'Talk has been succesfully created.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized, valid JWT cookie not present in header.',
   })
   @ApiResponse({
     status: 422,
@@ -51,7 +66,20 @@ export class TalksController {
 
   @Get()
   @ApiOperation({
-    summary: 'Returns a paginated list of all talks dependent on query params.',
+    summary:
+      'Returns a paginated list of all talks dependent on query params. Set page size of 20.',
+  })
+  @ApiQuery({
+    name: 'page',
+    required: false,
+    description: 'The page number to return',
+    schema: { type: 'integer' },
+  })
+  @ApiQuery({
+    name: 'sort',
+    required: false,
+    description: 'the sort type of the talks list',
+    enum: SortTypes,
   })
   @ApiResponse({
     status: 200,
@@ -61,13 +89,14 @@ export class TalksController {
   async index(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
     @Query('sort', new DefaultValuePipe('popular'))
-    sort: SortTypes = 'popular',
+    sort: SortTypes = SortTypes.popular,
   ) {
     return await this.talksService.findAll({ page, limit: 20 }, sort);
   }
 
   @Put(':id/vote')
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
   @ApiOperation({
     summary: 'Vote/unvote for a specific talk.',
   })
@@ -76,6 +105,14 @@ export class TalksController {
     description:
       'Vote/Unvote successful. The response will indicate which one. true = vote created, false = vote deleted.',
     type: Boolean,
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized, valid JWT cookie not present in header.',
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Vote of given id not found.',
   })
   async vote(@Param('id') id: string, @Req() req: Request) {
     const { id: userId } = req.user as JwtReqUser;

@@ -8,7 +8,13 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCookieAuth,
+  ApiOperation,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { SerializeInterceptor } from '../core/interceptors';
 import { User } from '../users/entities/user.entity';
@@ -38,6 +44,15 @@ export class AuthController {
     description: 'Successful code redemption and return user details.',
     type: LoginReadDto,
   })
+  @ApiResponse({
+    status: 422,
+    description: 'Code is invalid or expired.',
+  })
+  @ApiQuery({
+    name: 'code',
+    required: true,
+    description: 'The code given by Github after redirect from login page.',
+  })
   @UseGuards(GithubGuard)
   @UseInterceptors(new SerializeInterceptor(LoginReadDto))
   async githubAuthRedirect(
@@ -58,12 +73,17 @@ export class AuthController {
   }
 
   @Delete()
+  @ApiCookieAuth()
   @ApiOperation({
     summary: 'Logout endpoint for all users.',
   })
   @ApiResponse({
     status: 204,
     description: 'User successfully logged out and JWT cookie cleared.',
+  })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized, valid JWT cookie not present in header.',
   })
   @UseGuards(JwtAuthGuard)
   async logout(@Req() req: Request, @Res({ passthrough: true }) res: Response) {
