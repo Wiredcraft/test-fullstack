@@ -2,7 +2,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthController } from './auth.controller';
 
-import httpMocks from 'node-mocks-http';
+const httpMocks = require('node-mocks-http'); // eslint-disable-line
 
 describe('AuthController', () => {
   let controller: AuthController;
