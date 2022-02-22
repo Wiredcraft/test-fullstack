@@ -54,13 +54,6 @@ export default function AddForm() {
     description: Joi.string().min(10).max(200).required()
   });
 
-  const clearState = () => {
-    setForm({
-      title: '',
-      description: ''
-    });
-  };
-
   const validateForm = () => {
     setErrors({ title: '', description: '' });
     const result = schema.validate(form, { abortEarly: false });
@@ -121,16 +114,21 @@ export default function AddForm() {
 
   const titleErrorClasses = classNames({
     error: !!error.title
-  })
+  });
 
   const descriptionErrorClasses = classNames({
     error: !!error.description
-  })
+  });
 
   return (
     <div className="flex items-center justify-center flex-col w-full">
       <form className="add-form" onSubmit={handleSubmit}>
-        <input type="text" className={titleErrorClasses} name="title" placeholder="Title" onChange={handleInputChange}></input>
+        <input
+          type="text"
+          className={titleErrorClasses}
+          name="title"
+          placeholder="Title"
+          onChange={handleInputChange}></input>
         <span className="w-full text-red text-left py-2">{error.title || '\u00A0'}</span>
 
         <textarea

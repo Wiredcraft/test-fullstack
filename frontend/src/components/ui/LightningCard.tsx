@@ -12,12 +12,6 @@ import ClockIcon from '../icons/clock';
 import { toast } from './ToastManager';
 import Spinner from './Spinner';
 
-type Props = ITalk;
-
-type State = {
-  checked: boolean;
-};
-
 export default function LightningCard(props: ITalk) {
   const dispatch = useAppDispatch();
   const loggedIn = useAppSelector((state) => state.user.loggedIn);

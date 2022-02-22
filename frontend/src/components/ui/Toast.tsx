@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Toast.scss';
 
 export interface ToastProps {

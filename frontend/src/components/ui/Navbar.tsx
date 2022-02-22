@@ -6,7 +6,7 @@ import { logout } from '../../store/modules/user/user.api';
 import './Navbar.scss';
 import { toast } from './ToastManager';
 
-export default () => {
+export default function Navbar() {
   const dispatch = useAppDispatch();
   const loginStatus = useAppSelector((state) => state.user.loggedIn);
 
@@ -49,4 +49,4 @@ export default () => {
       </div>
     </nav>
   );
-};
+}

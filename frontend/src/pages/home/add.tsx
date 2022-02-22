@@ -5,7 +5,7 @@ import { toast } from '../../components/ui/ToastManager';
 import { useAppSelector } from '../../store';
 import Loading from '../common/loading';
 
-export default function HomeAdd({ ...props }) {
+export default function HomeAdd() {
   const loggedIn = useAppSelector((state) => state.user.loggedIn);
   const navigate = useNavigate();
 

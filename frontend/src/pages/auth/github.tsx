@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { login } from '../../store/modules/user/user.api';
 import Loading from '../common/loading';
 
-export default () => {
+export default function GithubLogin() {
   const dispatch = useAppDispatch();
   const loginStatus = useAppSelector((state) => state.user.status);
 
@@ -48,4 +48,4 @@ export default () => {
   }, [loginStatus]);
 
   return <Loading />;
-};
+}
