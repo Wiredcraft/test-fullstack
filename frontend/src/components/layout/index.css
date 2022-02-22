@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-wrapper {
+  width: 85%;
+  height: calc(100% - 10px);
+  background: #f6f6ef;
+}

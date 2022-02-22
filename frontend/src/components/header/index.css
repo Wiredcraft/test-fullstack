@@ -1,0 +1,23 @@
+.header-wrapper {
+  height:48px;
+  background-color: #ff6600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.header-left-wrapper,
+.header-right-wrapper {
+  display: flex;
+}
+.header-left-wrapper > div,
+.header-right-wrapper > div {
+  padding: 0 10px;
+  border-right: 2px solid #343333;
+  cursor: pointer;
+  font-size: 16px;
+}
+.header-left-wrapper > div:last-child,
+.header-right-wrapper > div:last-child {
+  border-right: none;
+}
