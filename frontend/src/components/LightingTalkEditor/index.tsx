@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { AddLightingTalkRequest } from '../../models';
 import { lightingTalkStore } from '../../stores';
+import { StringUtils } from '../../utils';
 import './index.scss';
 
 type Props = {
   onSuccess?: () => void;
-  onFailed?: () => void;
+  onFailed?: (err: any) => void;
   onCancel?: () => void;
 };
 
@@ -17,6 +18,16 @@ const LightingTalkEditor: React.FC<Props> = (props) => {
   const onSubmit = (e: any) => {
     setError('');
     e?.preventDefault();
+
+    if (StringUtils.isBlank(topic)) {
+      alert('Topic is required');
+      return;
+    }
+
+    if (StringUtils.isBlank(content)) {
+      alert('Content is required');
+    }
+
     const request = {
       topic: topic,
       content: content,
@@ -28,7 +39,7 @@ const LightingTalkEditor: React.FC<Props> = (props) => {
       })
       .catch((err) => {
         setError(err);
-        props.onFailed?.call(this);
+        props.onFailed?.call(this, err);
       });
   };
 
@@ -46,7 +57,7 @@ const LightingTalkEditor: React.FC<Props> = (props) => {
           <textarea rows={10} onInput={(e: any) => setContent(e.target.value)}></textarea>
         </div>
         <div className="lighting-talk-editor__footer">
-          <button type="submit" onClick={(e) => onSubmit(e)} disabled={!topic || !content}>
+          <button type="submit" onClick={(e) => onSubmit(e)} disabled={!topic}>
             Submit
           </button>
           <button type="reset" onClick={props.onCancel}>

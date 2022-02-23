@@ -26,7 +26,7 @@ const LightingTalkList: React.FC<Props> = observer((props) => {
   };
 
   // On Vote
-  const onVote = async (item: LightingTalk) => {
+  const onVote = (item: LightingTalk) => {
     const request = {
       id: item.id,
     } as VoteLightingTalkRequest;
@@ -50,6 +50,11 @@ const LightingTalkList: React.FC<Props> = observer((props) => {
     setShowEditor(false);
   };
 
+  // onAddTopicFailed
+  const onAddTopicFailed = (err) => {
+    alert(`Error occured ${err}`);
+  };
+
   // Fetch news data
   useEffect(() => {
     lightingTalkStore.fetchLightingTalk();
@@ -68,7 +73,11 @@ const LightingTalkList: React.FC<Props> = observer((props) => {
         <h1>Hi, you! Try to say something</h1>
       )}
 
-      {showEditor ? <LightingTalkEditor onSuccess={onAddNewsSuccess} onCancel={onCancel} /> : <button onClick={onAddTopic}>Add topic</button>}
+      {showEditor ? (
+        <LightingTalkEditor onSuccess={onAddNewsSuccess} onCancel={onCancel} onFailed={(err) => onAddTopicFailed(err)} />
+      ) : (
+        <button onClick={onAddTopic}>Add topic</button>
+      )}
     </section>
   );
 });

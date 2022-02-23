@@ -84,7 +84,7 @@ func ExistsString(arrayData []string, val string) bool {
 	return false
 }
 
-// IntArrayToString 数値の配列を delimiter で結合した文字列で返却する.
+// IntArrayToString
 func IntArrayToString(arrayData []int, delimiter string) string {
 	results := make([]string, 0, len(arrayData))
 	for _, data := range arrayData {
@@ -93,7 +93,7 @@ func IntArrayToString(arrayData []int, delimiter string) string {
 	return strings.Join(results, delimiter)
 }
 
-// StringToIntArray delimiter で結合された文字列を数値の配列にする.
+// StringToIntArray delimiter
 func StringToIntArray(str string) ([]int, error) {
 	if str == "" {
 		return make([]int, 0), nil
@@ -111,7 +111,7 @@ func StringToIntArray(str string) ([]int, error) {
 	return result, nil
 }
 
-// RemoveNumInArray 指定した数字を数値配列内から全て除去する.
+// RemoveNumInArray
 func RemoveNumInArray(removeNum int, intArray []int) []int {
 	result := []int{}
 	for _, num := range intArray {
@@ -122,7 +122,7 @@ func RemoveNumInArray(removeNum int, intArray []int) []int {
 	return result
 }
 
-// SliceInt 指定した範囲のリストを取得する
+// SliceInt
 func SliceInt(offset int, limit int, intArray []int) []int {
 
 	result := make([]int, 0, limit)
@@ -140,7 +140,7 @@ func SliceInt(offset int, limit int, intArray []int) []int {
 	return result
 }
 
-//SortMapByValueForTime Map(key:int,value:time.Time)をvalue別に降順ソートし、その時に対応するkeyのリストを返す
+//SortMapByValueForTime Map(key:int,value:time.Time)
 func SortMapByValueForTime(srcMap map[int]time.Time) []int {
 
 	type temp struct {
@@ -167,7 +167,7 @@ func SortMapByValueForTime(srcMap map[int]time.Time) []int {
 	return result
 }
 
-//SortMapByValueForFloat Map(key:int,value:float64)をvalue別に降順ソートし、その時に対応するkeyのリストを返す
+//SortMapByValueForFloat Map(key:int,value:float64)
 func SortMapByValueForFloat(srcMap map[int]float64) []int {
 
 	type temp struct {

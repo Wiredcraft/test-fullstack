@@ -8,21 +8,21 @@ import (
 	"github.com/mervick/aes-everywhere/go/aes256"
 )
 
-// AESEncrypt aes 式で暗号化
+// AESEncrypt aes
 func AESEncrypt(text, key string) string {
 	return aes256.Encrypt(text, key)
 }
 
-// AESDecrypt aes 式で復号化
+// AESDecrypt aes
 func AESDecrypt(text, key string) string {
 	return aes256.Decrypt(text, key)
 }
 
-// JWTSign Json web token を生成する
+// JWTSign Json web token
 func JWTSign(input *jwt.StandardClaims, signBytes []byte) (string, error) {
 	token := jwt.New(jwt.SigningMethodRS256)
 
-	// claimsのセット
+	// claimsのセッ
 	claims := token.Claims.(jwt.MapClaims)
 
 	claims["sub"] = input.Subject
@@ -47,7 +47,7 @@ func JWTSign(input *jwt.StandardClaims, signBytes []byte) (string, error) {
 	return tokenString, nil
 }
 
-// JWTVerify JWTを復号化
+// JWTVerify
 func JWTVerify(tokenString string, verifyBytes []byte) *jwt.StandardClaims {
 	claim := &jwt.StandardClaims{}
 	verifyKey, err := jwt.ParseRSAPublicKeyFromPEM(verifyBytes)
