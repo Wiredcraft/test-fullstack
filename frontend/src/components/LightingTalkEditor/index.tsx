@@ -26,6 +26,7 @@ const LightingTalkEditor: React.FC<Props> = (props) => {
 
     if (StringUtils.isBlank(content)) {
       alert('Content is required');
+      return;
     }
 
     const request = {
