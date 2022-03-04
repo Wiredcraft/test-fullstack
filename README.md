@@ -29,7 +29,7 @@ Polling is often needed for the organizers to understand what is more interestin
 
 * Use React for the frontend.
 * Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, but try to use some JS frameworks such as React-Router, and packing tools such as Webpack or Parcel etc.
-* Use any backend framework as you like. Use any DB for storing the data, or if you prefer, only using the memory \(with no permanent storage\) could just work.
+* Prefer TypeScript related backend frameworks. Use any DB for storing the data, or if you prefer, in-memory DBs could just work.
 
 #### Advanced requirements
 
