@@ -37,9 +37,5 @@ _These are used for some further challenges. You can safely skip them if you are
 
 * Make it short and expressive, don't spend too much time just give it your best shot in a few hours, say, less than 3 hours if possible.
 * Make it aesthetically pleasant (not complex).
-* Make it responsive.
-* Don't have to implement it if you are short on time:
-  * Design a form validation strategy.
-  * Design an error handling strategy, such as the UI/UX, and different handling for different errors etc.
-  * Design a complete user auth \(authentication/authorization/etc\) strategy, such as OAuth.
-  * Design a complete logging \(when/how/etc\) strategy.
+* Explain  / prototype form validation, Error handling strategy, Auth, Logging strategies. Don't have to implement it if you are short on time
+* Your own idea.
