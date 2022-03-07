@@ -38,4 +38,4 @@ _These are used for some further challenges. You can safely skip them if you are
 * Make it short and expressive, don't spend too much time just give it your best shot in a few hours, say, less than 3 hours if possible.
 * Make it aesthetically pleasant (not complex).
 * Explain  / prototype form validation, Error handling strategy, Auth, Logging strategies. Don't have to implement it if you are short on time
-* Your own idea.
+* Justify your choice of tech.
