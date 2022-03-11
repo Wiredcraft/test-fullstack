@@ -1,0 +1,54 @@
+.LightningTalkCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin: var(--space-4x);
+  box-shadow: 0 2px 4px 0 var(--shadow-border);
+  border-radius: var(--border-radius-normal);
+  padding: var(--space-4x);
+  width: 100%;
+}
+
+.LightningTalkCard__Poll {
+  display: flex;
+  flex-direction: column;
+  margin: var(--space-4x);
+  user-select: none;
+}
+
+.LightningTalkCard__PollButton {
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.LightningTalkCard__PollButton:hover {
+  color: var(--font-color-normal);
+}
+
+.LightningTalkCard__PollCount {
+  font-weight: bold;
+  color: var(--color-muted);
+  width: 100px;
+  text-align: center;
+  margin-top: var(--space-4x);
+}
+
+.LightningTalkCard__Title {
+  margin: var(--space-2x) 0;
+}
+
+.LightningTalkCard__Desc {
+  margin: 0 0 var(--space-4x);
+  white-space: pre-line;
+}
+
+.LightningTalkCard__Meta {
+  display: flex;
+  color: var(--color-muted);
+}
+
+.LightningTalkCard__Meta span {
+  display: inline-block;
+  margin-right: var(--space-4x);
+}

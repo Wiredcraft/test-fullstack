@@ -1,0 +1,50 @@
+.LightningTalkFormContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8x);
+}
+
+.LightningTalkForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: var(--space-8x);
+  padding: 0;
+  max-width: 1024px;
+  min-width: 400px;
+}
+
+.LightningTalkForm__Field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-6x);
+}
+
+.LightningTalkForm__Field--Error .LightningTalkForm__Input {
+  border-color: var(--color-error);
+}
+
+.LightningTalkForm__ErrorText {
+  margin-top: var(--space-1x);
+  margin-left: var(--space-1x);
+  color: var(--color-error);
+}
+
+.LightningTalkForm__Input {
+  min-width: 400px;
+  padding: var(--space-2x);
+  border: 2px solid var(--color-muted);
+  border-radius: var(--border-radius-button);
+}
+
+.LightningTalkForm__Input::placeholder {
+  opacity: 0.5;
+}
+
+.LightningTalkForm__Input--Text {
+  height: 32px;
+}
+
+.LightningTalkForm__Input--Textarea {
+  height: 100px;
+}

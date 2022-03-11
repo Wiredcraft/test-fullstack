@@ -1,0 +1,21 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+  line-height: 64px;
+  position: sticky;
+  top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: var(--space-2x) var(--space-8x);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 2px 4px 0 var(--shadow-border);
+  background-color: var(--color-white);
+}
+
+.Header__Title {
+  font-size: 28px;
+  margin: 0;
+}
