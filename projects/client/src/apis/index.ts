@@ -14,7 +14,7 @@ type CombineResponse<T = null> = ErrorResponse | { data: T; error: null };
 
 export type GetLightningTalksResponse = CombineResponse<LightningTalk[]>;
 export type AddLightningTalkResponse = CombineResponse<LightningTalk>;
-export type AddPoll = CombineResponse<{}>;
+export type AddPollResponse = CombineResponse<{}>;
 
 /**
  * The api to fetch backend resource
@@ -74,13 +74,13 @@ export function addLightningTalk(
 }
 
 /**
- * Add one  poll to a specific talk
+ * Add one poll to a specific talk
  *
  * @param lightningTalkId
  * @returns Success message or error
  */
-export function addPoll(lightningTalkId: number): Promise<AddPoll> {
-  return fetchApi<AddPoll>(`/lightning-talk/${lightningTalkId}/poll`, {
+export function addPoll(lightningTalkId: number): Promise<AddPollResponse> {
+  return fetchApi<AddPollResponse>(`/lightning-talk/${lightningTalkId}/poll`, {
     method: "POST",
   });
 }

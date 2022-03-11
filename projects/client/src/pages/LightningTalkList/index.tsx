@@ -42,6 +42,7 @@ export default function LightningTalkList() {
     (async () => {
       await loadTalks();
       if (location.state === "newest") {
+        // Optimization::in complex multi-user environments, this approach may be inaccurate
         scrollToBottom();
       }
     })();
