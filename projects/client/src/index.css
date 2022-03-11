@@ -1,0 +1,34 @@
+:root {
+  --font-sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-size-root: 16px;
+  --font-color-normal: #444;
+  --shadow-border: rgba(0, 0, 0, 0.125);
+  --border-radius-normal: 4px;
+  --border-radius-button: 8px;
+  --space-1x: 4px;
+  --space-2x: 8px;
+  --space-3x: 12px;
+  --space-4x: 16px;
+  --space-5x: 20px;
+  --space-6x: 24px;
+  --space-7x: 28px;
+  --space-8x: 32px;
+  --color-muted: #868e96;
+  --color-primary: #ff4847;
+  --color-border: #ddd;
+  --color-white: #fff;
+  --color-error: #ee1f1e;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans-serif);
+  font-size: var(--font-size-root);
+  color: var(--font-color-normal);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
