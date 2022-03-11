@@ -35,4 +35,4 @@ boot-seed-prod:
 	yarn && make db-seed && make start-prod
 
 test:
-	yarn wss run test
+	yarn wss run test --verbose
