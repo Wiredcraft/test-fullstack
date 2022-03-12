@@ -1,0 +1,6 @@
+{
+    "watch": ["./"],
+    "ext": "ts,json",
+    "ignore": ["DB/**/data.json"],
+    "exec": "npx ts-node ./index.ts"
+}
