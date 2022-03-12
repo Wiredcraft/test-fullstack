@@ -1,0 +1,18 @@
+version: "3"
+services:
+  client:
+    container_name: client
+    image: node:16.14.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/workspace"
+    command: bash -c "cd /workspace && make env-dev && cd projects/client && yarn && yarn start:dev"
+  server:
+    container_name: server
+    image: node:16.14.0
+    ports:
+      - "3001:3001"
+    volumes:
+      - ".:/workspace"
+    command: bash -c "cd /workspace && make env-dev && cd projects/server && yarn && yarn db:seed && yarn start:dev"
