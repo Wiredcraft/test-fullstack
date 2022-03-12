@@ -6,7 +6,7 @@ import { LightningTalk } from "./entity/LightningTalk.entity";
 import { lightningTalkSeed } from "./test-utils/lightningTalkSeed";
 import { SQLiteTestingModule } from "./test-utils/SQLiteTestingModule";
 
-describe("AppController", () => {
+describe("AppService", () => {
   let appService: AppService;
   let lightningTalksSeeds: LightningTalk[];
 
