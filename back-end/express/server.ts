@@ -1,12 +1,16 @@
 import bodyParser from "body-parser";
 import express from "express";
+var cors = require('cors');
+
 import { routes } from "./routes";
 
 const server = express();
-const port = 3000;
+const port = 3001;
 
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json())
+
+server.use(cors());
  
 server.get('/ping', (req, res) => {
     res.send('pong');

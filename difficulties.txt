@@ -1,0 +1,13 @@
+Back-end
+1. flat-file-db need a local file to persist data. Once it changes(I/O) it will trigger nodemon watch. It leads to infinity watch...
+solution: nodemon.json -> field 'ignore'
+
+Front-end
+1. "hot: true" automatically applies HMR plugin
+solution: update node and npm (10.15 -> 16.14)
+
+2. Why not use .ts in front-end?
+As mentioned in the context "Do not use any scaffolding tool such as `create-react-app`, or any CSS framework",
+for saving time and avoiding the risk of compability with react eco-system.
+
+3. Migrate front-end into ts.....
