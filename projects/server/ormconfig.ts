@@ -1,4 +1,3 @@
-import { join } from "path";
 import { ConnectionOptions } from "typeorm";
 
 const connectionOptions: ConnectionOptions = {
