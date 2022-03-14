@@ -1,10 +1,10 @@
-import React, { Component} from "react";
+import React, { ChangeEvent, ChangeEventHandler, Component, MouseEventHandler} from "react";
 import userIcon from "../asset/user2.png";
 import meetingIcon from "../asset/meeting2.png";
 
-class Login extends Component {
+class Login extends React.Component<any, {}> {
 
-    constructor(props) {
+    constructor(props: any) {
 		super(props);
 	}
 
@@ -16,7 +16,7 @@ class Login extends Component {
         checkResponse: null
     }
 
-    render(h) {
+    render() {
         return (
             <div className="login-container">
                 <div className="field-container">
@@ -41,13 +41,13 @@ class Login extends Component {
         );
     }
 
-    onUserNameFieldChangeHandler = (e) => {
+    onUserNameFieldChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             userName: e.target.value
         });
     }
 
-    onMeetingIDFieldChangeHandler = (e) => {
+    onMeetingIDFieldChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
             meetingID: e.target.value
         });
@@ -82,20 +82,20 @@ class Login extends Component {
         return (this.state.checkResponse)? connectButton : checkButton;
     }
 
-    onCheckButtonClickHandler = () => {
-        const response = await fetch('http://localhost:3001/meeting', {
-            method: 'get',
-            mode:'cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: {
-                meetingID: 1234,//this.state.meetingID,
-                user: "CJ"
-            },
-        });
-        const data = await response.json();
-        console.log({ data })
+    onCheckButtonClickHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        // const response = await fetch('http://localhost:3001/meeting', {
+        //     method: 'get',
+        //     mode:'cors',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: {
+        //         meetingID: 1234,//this.state.meetingID,
+        //         user: "CJ"
+        //     },
+        // });
+        // const data = await response.json();
+        // console.log({ data })
 
         this.setState({
             isMeetingExisted: true,

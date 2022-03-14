@@ -4,9 +4,15 @@ import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Login from "./Login";
 
-class App extends Component{
+export type FixMeLater = any
 
-	constructor(props) {
+type PropsType = {
+	title: string
+}
+
+class App extends React.Component<PropsType, {}>{
+
+	constructor(props: PropsType | Readonly<PropsType>) {
 		super(props);
 	}
 

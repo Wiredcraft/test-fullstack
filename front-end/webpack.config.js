@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-	entry: path.resolve(__dirname, './src/index.js'),
+	entry: path.resolve(__dirname, './src/index.tsx'),
 	mode: "development",
 	module: {
 		rules: [
@@ -13,25 +13,31 @@ module.exports = {
 				options: { presets: ["@babel/env"] }
 			},
 			{
+				test: /\.(ts|tsx)$/,
+				exclude: /node-modules/,
+				loader: 'ts-loader'
+			},
+			{
 				test: /\.css$/,
 				use: ["style-loader", "css-loader"]
 			},
 			{
 				test: /\.(gif|png|jpe?g|svg)$/i,
-				use: [
-					'file-loader', 
-					{
-						loader: 'image-webpack-loader',
-						options: {
-							bypassOnDebug: true, // webpack@1.x
-							disable: true, // webpack@2.x and newer
-						},
-					},
-				],
+				// use: [
+				// 	'file-loader', 
+				// 	{
+				// 		loader: 'image-webpack-loader',
+				// 		options: {
+				// 			bypassOnDebug: true, // webpack@1.x
+				// 			disable: true, // webpack@2.x and newer
+				// 		},
+				// 	},
+				// ],
+				type: 'asset'
 			}
 		]
 	},
-	resolve: { extensions: ["*", ".js", ".jsx"] },
+	resolve: { extensions: ["*", ".js", ".jsx", ".ts", ".tsx"] },
 	output: {
 		path: path.resolve(__dirname, "dist/"),
 		filename: "bundle.js"

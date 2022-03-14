@@ -11,3 +11,4 @@ As mentioned in the context "Do not use any scaffolding tool such as `create-rea
 for saving time and avoiding the risk of compability with react eco-system.
 
 3. Migrate front-end into ts.....
+types adding; images "./cutom.d.ts"; webpack config
