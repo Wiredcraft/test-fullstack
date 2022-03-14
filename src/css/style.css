@@ -1,0 +1,166 @@
+/* common */
+* {
+box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Roobert, "Times New Roman", "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.primary {
+    color: #fff;
+    background-color: #409EFF;
+    border-color: #409EFF;
+}
+
+.fr {
+  float: right;
+}
+
+/* input */
+input, textarea {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    height: 40px;
+    line-height: 40px;
+    -webkit-appearance: none;
+    outline: none;
+    padding: 0 15px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #409eff;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+/* button */
+button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 4px;
+}
+
+.primary {
+    color: #fff;
+    background-color: #F56C6C;
+    border-color: #F56C6C;
+}
+
+.primary:hover {
+    background-color: #FD3E3E;
+    border-color: #FD3E3E;
+}
+
+/* other */
+.container {
+    padding: 20px;
+    position: relative;
+    height: 100%;
+}
+
+.container .talk {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .talk .title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.container .talk input {
+    margin-bottom: 20px;
+}
+
+.container .talk textarea {
+    margin-bottom: 20px;
+    height: 80px;
+}
+
+.container .talk button {
+    margin-top: 80px;
+}
+
+.container .list .add_talk {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 24px;
+    padding: 12px;
+    position: absolute;
+    bottom: 20px;
+    margin-left: -24px;
+    left: 50%;
+}
+
+.container .list .empty_message {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 30%;
+    color: #959595;
+}
+
+.container .list .item {
+  padding-bottom: 10px;
+  border-top: 1px solid #dddee6;
+}
+
+.container .list .item:first-child {
+  border-top: 0;
+}
+
+.container .list .item .title {
+  font-family: "source serif 4",serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.container .list .item .title button {
+  font-size: 12px;
+  padding: 5px 8px;
+  float: right;
+  margin-top: 3px;
+}
+
+.container .list .item .desc {
+  color: #323239;
+  font-family: "source serif 4",serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.container .list .item .info {
+  color: #6e707c;
+  font-size: 14px;
+}

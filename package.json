@@ -1,0 +1,33 @@
+{
+  "name": "test-fullstack",
+  "version": "1.0.0",
+  "description": "create a single page application based on react, typescript",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/platformdocs/test-fullstack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/platformdocs/test-fullstack/issues"
+  },
+  "homepage": "https://github.com/platformdocs/test-fullstack#readme",
+  "dependencies": {
+    "@types/react": "^17.0.40",
+    "@types/react-dom": "^17.0.13",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.12.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.2",
+    "typescript": "^4.6.2"
+  },
+  "devDependencies": {
+    "less": "^4.1.2"
+  }
+}
