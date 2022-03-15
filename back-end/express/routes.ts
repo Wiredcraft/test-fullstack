@@ -91,7 +91,6 @@ const talkRoutes: Route[] = [
 			meeting.talks.sort((t1, t2) => t2.polledUser.length - t1.polledUser.length);
 
 			memoryDB.put(meetingID, meeting);
-
 			return res.status(200).send("talk created")
 		}
 	}
@@ -114,7 +113,7 @@ const otherRoutes: Route[] = [
 			newPolledUser = Array.from(new Set(newPolledUser));
 			talk!.polledUser = newPolledUser;
 
-			memoryDB.put(meetingID, meeting);
+			meeting.talks.sort((t1, t2) => t2.polledUser.length - t1.polledUser.length);
 
 			return res.status(200).send(meeting)
 		}

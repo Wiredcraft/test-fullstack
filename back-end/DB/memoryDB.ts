@@ -30,6 +30,7 @@ const mockedMeeting: Meeting = {
 };
 
 db.on('open', function() {
+    db.clear();
     db.put('1234', mockedMeeting);
     console.log('init DB with', mockedMeeting)
 });

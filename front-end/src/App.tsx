@@ -46,10 +46,6 @@ class App extends React.Component<PropsType, IAppState>{
 					<Route path="*" element={<Navigate to="/login" />} />
 				</Routes>
 			</div>
-
-			<footer>
-				This is footer
-			</footer>
 		</div>
 		);
 	}
@@ -59,13 +55,27 @@ function Home() {
 	return (
 	<>
 		<main>
-			<h2>Welcome to the homepage!</h2>
-			<p>some instructions</p>
+			<h1>Welcome to the homepage!</h1>
+			<p>A lightning talk is a very short presentation lasting only a few minutes, given at a conference or a meetup etc.</p>
+			<p>Polling is often needed for the organizers to understand what is more interesting, or for people to decide what should go on stage.</p>
+			<p>Inspired by Wechat - Creating Group Chat face to face, compose 4bits number meetingID and your name, just can start your meeting!</p>
+			<p>Please, Please, Please be a nice user, d'ont impersonate</p>
 			<nav>
 				<Link to="/login">
 					<button>Log in</button>
 				</Link>
 			</nav>
+
+			<div className="cases-container">
+				<div className="title">Possible Use Case</div>
+				<div className="case">
+					- Fast Decision making (Such as
+					<a href="https://en.scrum-time.com/infobase/planning-poker.php" target="blank"> Planning Poker</a>
+					)
+				</div>
+				<div className="case">- Group Todo List with priority</div>
+				<div className="case">- etc...</div>
+			</div>
 
 			{/* <button onClick={async () => {
 				await getMeetingByID('1234')

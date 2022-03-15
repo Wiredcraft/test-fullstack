@@ -1,7 +1,7 @@
 h1 { font-size: xx-large; }
 
 a {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: white;
 }
 
@@ -91,6 +91,21 @@ footer {
     border-radius: 10px;
 }
 
+/* home page */
+div.cases-container {
+    margin-top: 30px;
+}
+
+div.title {
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 20px;
+}
+div.case {
+    font-size: large;
+    margin: 10px;
+}
+
 /* router dynamic content */
 /* /meeting */
 div.talks-list {
@@ -144,7 +159,10 @@ ul.polled-users-list {
 }
 li.polled-user { margin: 0 20px; }
 
-p { margin: 30px; }
+p {
+    margin: 30px;
+    font-size: larger;
+}
 
 div.talk-action {
     display: flex;
