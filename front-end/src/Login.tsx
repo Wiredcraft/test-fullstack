@@ -1,20 +1,26 @@
-import React, { ChangeEvent, ChangeEventHandler, Component, MouseEventHandler} from "react";
+import React from "react";
 import userIcon from "../asset/user2.png";
 import meetingIcon from "../asset/meeting2.png";
+import { getMeetingByID, postMeeting, putUser } from "./apiRequest";
+import { useNavigate } from "react-router-dom";
+import { IMeeting } from "./type";
+
+const defaultState = {
+    meetingID: '',
+    isMeetingExisted: false,
+    userName: '',
+    isUserNameInMeeting: false,
+    isCheckButtonValid: false,
+    checkResponse: null
+};
 
 class Login extends React.Component<any, {}> {
+
+    state = defaultState;
 
     constructor(props: any) {
 		super(props);
 	}
-
-    state = {
-        meetingID: '',
-        isMeetingExisted: false,
-        userName: '',
-        isUserNameInMeeting: false,
-        checkResponse: null
-    }
 
     render() {
         return (
@@ -43,13 +49,15 @@ class Login extends React.Component<any, {}> {
 
     onUserNameFieldChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
-            userName: e.target.value
+            userName: e.target.value,
+            isCheckButtonValid: e.target.value.length > 0 && this.state.meetingID.length > 0
         });
     }
 
     onMeetingIDFieldChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({
-            meetingID: e.target.value
+            meetingID: e.target.value,
+            isCheckButtonValid: this.state.userName.length > 0 && e.target.value.length > 0
         });
     }
 
@@ -76,38 +84,62 @@ class Login extends React.Component<any, {}> {
     }
 
     renderButton = () => {
-        const checkButton = <button onClick={this.onCheckButtonClickHandler}>Check</button>;
-        const connectButton = <button onClick={this.onConnectButtonClickHandler}>Connect</button>;
+        const checkButton = <button disabled={!this.state.isCheckButtonValid} onClick={this.onCheckButtonClickHandler}>Check</button>;
+        const okButton = <button key="okButton" onClick={this.onOKButtonClickHandler}>OK</button>;
+        const resetButton = <button key="resetButton" onClick={this.onResetButtonClickHandler}>Reset</button>;
 
-        return (this.state.checkResponse)? connectButton : checkButton;
+        return (this.state.checkResponse)? [resetButton, okButton] : checkButton;
     }
 
     onCheckButtonClickHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        // const response = await fetch('http://localhost:3001/meeting', {
-        //     method: 'get',
-        //     mode:'cors',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: {
-        //         meetingID: 1234,//this.state.meetingID,
-        //         user: "CJ"
-        //     },
-        // });
-        // const data = await response.json();
-        // console.log({ data })
+        const meeting = await getMeetingByID(this.state.meetingID) as any;
+        // console.log(meeting)
+
+        let isUserNameInMeeting: boolean;
+        if (!meeting.error) {
+            isUserNameInMeeting = meeting.allUsers.includes(this.state.userName);
+        } else {
+            // back-end has no meeting
+            isUserNameInMeeting = false;
+        }
 
         this.setState({
-            isMeetingExisted: true,
-            isUserNameInMeeting: true,
-            checkResponse: 12345
+            isMeetingExisted: (meeting.error)? false: true,
+            isUserNameInMeeting,
+            checkResponse: meeting
         })
         console.log('onCheckButtonClickHandler', this.state);
     }
 
-    onConnectButtonClickHandler = () => {
-        console.log('onConnectButtonClickHandler');
+    onOKButtonClickHandler = async () => {
+        let meeting = this.state.checkResponse as unknown as IMeeting;
+        // create meeting, and set user as organizer
+        if (!this.state.isMeetingExisted) {
+            const newMeeting = await postMeeting(this.state.meetingID, this.state.userName);
+            meeting = newMeeting;
+        }
+
+        // join the user intoMeeting
+        if (this.state.isMeetingExisted && !this.state.isUserNameInMeeting) {
+            const newMeeting = await putUser(this.state.meetingID, this.state.userName);
+            meeting = newMeeting;
+        }
+
+        this.props.setAppState({
+            currentUser: this.state.userName,
+            currentMeeting: meeting
+        })
+        this.props.navigate(`/meeting?meetingID=${this.state.meetingID}`)
+    }
+
+    onResetButtonClickHandler = () => {
+        this.setState(defaultState)
     }
 }
 
-export default Login;
+function WithNavigate(props: any) {
+    let navigate = useNavigate();
+    return <Login {...props} navigate={navigate} />
+}
+
+export default WithNavigate;

@@ -4,4 +4,4 @@ import { server } from "./express/server"
 server
 memoryDB
 
-console.log(5)
+console.log(11)

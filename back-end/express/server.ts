@@ -11,6 +11,7 @@ server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json())
 
 server.use(cors());
+server.enable('etag')
  
 server.get('/ping', (req, res) => {
     res.send('pong');

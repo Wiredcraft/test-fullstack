@@ -1,3 +1,54 @@
+h1 { font-size: xx-large; }
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+button{
+    box-sizing: border-box;
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #3498db;
+    border-radius: 0.6em;
+    color: #3498db;
+    cursor: pointer;
+    margin: 20px;
+    padding: 1em 2.4em;
+    text-decoration: none;
+    text-transform: capitalize;
+    text-align: center;
+    font-weight: 700;
+
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+button:hover:enabled {
+  color: white;
+  outline: 0;
+  box-shadow: 0 0 40px 40px #3498db inset;
+}
+
+button:disabled {
+    filter: grayscale(100%);
+    cursor: default;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
+    box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+}
+
 .App {
     font-family: Arial, Helvetica, sans-serif;
     height: 100%;
@@ -7,33 +58,145 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    background-color: yellowgreen;
+    background-color: #131417;
+    color: white;
 
 }
 
 header {
     height: 200px;
+    margin: 20px 20px 0 20px;
     display: flex;
     align-items: center;
     padding: 0 100px;
-    background-color: cornflowerblue;    
-}
-
-h1 {
-    margin: 0;
+    background-color: #040C14;
+    border-radius: 10px;
 }
 
 div.content {
     display: flex;
+    padding: 20px 0;
     align-items: center;
     justify-content: center;
     height: calc(100vh - 400px);
 }
 
+footer {
+    height: 200px;
+    margin: 0 20px 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #040C14;
+    border-radius: 10px;
+}
+
+/* router dynamic content */
+/* /meeting */
+div.talks-list {
+    height: 100%;
+    width: 80%;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: transparent;
+    overflow-y: auto;
+}
+
+div.talk-container {
+    display: block;
+    margin-bottom: 30px;
+    border: 1px solid #27272A;
+    border-radius: 10px;
+    
+    text-align: left;
+}
+
+div.talk-header {
+    display: flex;
+    padding: 5px 30px;
+    align-items: center;
+    position: relative;
+    background-color: #27272A;
+    border: 0 solid #27272A;
+    border-radius: 10px 10px 0 0;
+    color: white;
+}
+
+div.index-container {
+    height: 100%;
+    width: 50px;
+    font-size: 45px;
+    margin-right: 20px;
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: x-large;
+    text-transform: capitalize;
+}
+
+h3 { font-size: small; }
+
+ul.polled-users-list {
+    position: absolute;
+    display: flex;
+    right: 20px;
+}
+li.polled-user { margin: 0 20px; }
+
+p { margin: 30px; }
+
+div.talk-action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.new-talk-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input#new-talk-title {
+    margin: 20px 0;
+    padding: 10px;
+    border: 0;
+    font-size: 20px;
+    width: calc(100% - 20px);
+}
+
+textarea#new-talk-description {
+    padding: 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;;
+}
+
+div.users-list {
+    height: 100%;
+    width: 20%;
+    margin-right: 20px;
+    border-radius: 10px;
+    background-color: #0a0909;
+}
+
+div.user-container {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    margin: 20px;
+    height: 70px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #27272A;
+}
+
+/* /login */
 .login-container {
     height: 400px;
     width: 800px;
-    background-color: skyblue;
+    border-radius: 10px;
+    border: 2px solid white;
+    background: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,24 +205,17 @@ div.content {
 
 .field-container {
     display: flex;
-    width: 300px;
+    width: 400px;
     margin: 20px;
 }
 
 input {
-    margin: 0 10px;
     width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 img.input-icon {
     height: 40px;
     width: 40px;
-}
-
-footer {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    padding: 0 100px;
-    background-color: cornflowerblue;
+    margin: 0 20px;
 }
