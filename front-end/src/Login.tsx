@@ -27,7 +27,7 @@ class Login extends React.Component<any, {}> {
             <div className="login-container">
                 <div className="field-container">
                     <img className="input-icon" src={meetingIcon} />
-                    <input type="text" id="meetingID" placeholder="Meeting ID (4 bits)"
+                    <input type="text" id="meetingID" placeholder="Meeting ID (4 bits), ex. 1234"
                         onChange={this.onMeetingIDFieldChangeHandler}
                         value={this.state.meetingID} />
                 </div>
