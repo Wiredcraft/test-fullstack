@@ -6,7 +6,7 @@ import { LightningTalk } from "@/apis";
 import "./index.css";
 
 function formatISODatetimeToDate(date: string) {
-  return date.substring(0, 10);
+  return new Date(date).toLocaleDateString();
 }
 
 type Props = {
