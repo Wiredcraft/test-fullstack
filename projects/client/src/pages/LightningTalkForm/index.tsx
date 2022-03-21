@@ -19,10 +19,11 @@ function validateTextInput(
   value: string,
   maxLength: number
 ): string {
-  if (!value) {
+  const trimmedValue = value.trim();
+  if (!trimmedValue) {
     return `${name} is required`;
   }
-  if (value.length > maxLength) {
+  if (trimmedValue.length > maxLength) {
     return `The value contains a maximum of ${maxLength} characters`;
   }
   return "";
@@ -64,9 +65,9 @@ export default function LightningTalkForm() {
     if (isValid && !isSubmitting) {
       setIsSubmitting(true);
       const response = await addLightningTalk({
-        user: values.user,
-        title: values.title,
-        description: values.description,
+        user: values.user.trim(),
+        title: values.title.trim(),
+        description: values.description.trim(),
       });
       setIsSubmitting(false);
       if (!response.error) {

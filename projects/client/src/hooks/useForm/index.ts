@@ -28,7 +28,7 @@ export default function useForm({ initialValues, validate }: Options) {
       if (Object.prototype.hasOwnProperty.call(values, field)) {
         setValues({
           ...values,
-          [field]: e.target.value.trim(),
+          [field]: e.target.value,
         });
       }
     },
