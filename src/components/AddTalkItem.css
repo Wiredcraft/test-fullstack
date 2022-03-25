@@ -1,0 +1,54 @@
+.talkTitle{
+    background-color: #4867AA;
+    color: white;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+.input2{
+    width: 90%;
+    height: 100px;
+}
+
+.contentRight{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: right;
+}
+
+.spanStyle{
+    line-height: 50px;
+}
+
+.imgStyle{
+    cursor: pointer;
+    width: 40px;
+    height: 80px;
+}
+
+.contentStyle{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rankStyle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+.contentLeft{
+    flex: 1;
+    word-break:break-all;
+    word-wrap: break-word;
+}
