@@ -35,7 +35,7 @@ Polling is often needed for the organizers to understand what is more interestin
 
 _These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out._
 
-* Make it short and expressive, don't spend too much time just give it your best shot in a few hours, say, less than 3 hours if possible.
+* Make it short and expressive, don't spend too much time just give it your best shot in a few hours.
 * Make it aesthetically pleasant (not complex).
 * Explain  / prototype form validation, Error handling strategy, Auth, Logging strategies. Don't have to implement it if you are short on time
 * Justify your choice of tech.
