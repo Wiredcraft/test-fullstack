@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#app {
+  min-width: 796px;
+  width: 85%;
+
+  background-color: rgb(246, 246, 239);
+}
+
+#body {
+  padding: 12px 0 8px 4px;
+}
+
+header {
+  background-color: #9abfc3;
+  padding: 8px;
+}
+
+footer {
+  background-color: #9abfc3;
+  height: 2px;
+}
+
+a:link    { color:#000000; text-decoration:none; }
+a:visited { color:#000000; text-decoration:none; }
+
+@media only screen
+and (min-width: 300px)
+and (max-width: 750px) {
+  body { padding: 0; margin: 0; width: 100%; -webkit-text-size-adjust: none; }
+
+  #app {
+    width: 100%;
+    min-width: 0;
+  }
+} 

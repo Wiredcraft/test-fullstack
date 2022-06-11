@@ -1,0 +1,29 @@
+{
+  "name": "types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "dev": "tsc -w --pretty",
+    "build": "npm run format && npm run lint && npm run transpile",
+    "lint": "eslint --ext .ts src",
+    "transpile": "tsc --pretty",
+    "format": "prettier --loglevel error --write './src/**/*.ts'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-unicorn": "^42.0.0",
+    "prettier": "^2.6.2"
+  },
+  "dependencies": {
+    "typescript": "^4.7.3"
+  }
+}

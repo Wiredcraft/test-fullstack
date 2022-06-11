@@ -1,0 +1,27 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "downlevelIteration": true,
+    "noEmitOnError": true,
+    "strict": true,
+    "declaration": true,
+    "inlineSourceMap": true,
+    "experimentalDecorators": true,
+    "target": "es2018",
+    "lib": ["es2018"],
+    "rootDirs": ["src"],
+
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+
+  "jest": {
+    "mapCoverage": true
+  }
+}

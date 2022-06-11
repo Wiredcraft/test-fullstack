@@ -1,0 +1,3 @@
+{
+  "databaseURL": "postgresql://talk:talk@localhost:5420/talk"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "test-fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "docker-up": "pnpm --filter server docker-up",
+    "migrate-db": "pnpm --filter server migrate-db",
+    "generate-prisma": "pnpm --filter server generate-prisma",
+    "config": "pnpm --filter server config",
+    "dev": "pnpm --filter types --filter server --filter ui --parallel --stream dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

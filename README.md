@@ -1,3 +1,51 @@
+# Development
+
+This project uses pnpm instead of npm or yarn. Please install it first.
+
+After clone the repo, run these commands under the project root.
+
+```
+pnpm install
+
+# start database
+pnpm docker-up
+
+# migrate database
+pnpm migrate-db
+
+# generate prism client
+pnpm generate-prisma
+
+# generate configuration for server
+pnpm config
+
+# start two server to serve both the backend and frontend
+# it should also monitor the file change and recompile on the fly
+pnpm dev
+```
+
+# Stack
+
+pnpm is choosed, because it's much faster than npm.
+
+UI is bundled by parcel. During dev, parcel starts a server at http://localhost:1234.
+The requests sent to `/api` are proxied to http://localhost:8080, which is the server.
+Note, the proxy should be only used for dev. For production, we can either use nginx as
+a reverse proxy or simply serve UI as static files in the Nodejs server.
+
+Server uses prisma for database schema management. It also works as the database client.
+
+
+# Future Work
+
+- Support user authentication (register/login), then we can
+  - limit user to only vote once for each talk.
+  - allow user to modify her own talks.
+- Add metrics to the server. Besides CPU/MEM, we also need request duration, etc.
+- Add admin page to manage the talks.
+- Add tag to the talks, so we can list talk by tags.
+
+
 # Fullstack
 
 ### Context

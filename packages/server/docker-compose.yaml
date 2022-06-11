@@ -1,0 +1,11 @@
+version: '3'
+services:
+  postgres:
+    container_name: 'talk_database'
+    image: 'postgres:12-alpine'
+    ports:
+      - '5420:5432'
+    environment:
+      - POSTGRES_USER=talk
+      - POSTGRES_DB=talk
+      - POSTGRES_PASSWORD=talk

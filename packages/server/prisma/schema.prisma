@@ -1,0 +1,29 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["interactiveTransactions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Talk {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+
+  // Assuming int is enough to cover the maximum vote count
+  votes       Int  @default(0)
+
+  created_at  DateTime @default(now())
+
+  author_id String
+  author    User   @relation(fields: [author_id], references: [id])
+}
+
+model User {
+  id    String @id @default(uuid())
+  email String @unique
+  Talk  Talk[]
+}
