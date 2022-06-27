@@ -37,5 +37,6 @@ _These are used for some further challenges. You can safely skip them if you are
 
 * Make it short and expressive, don't spend too much time just give it your best shot in a few hours.
 * Make it aesthetically pleasant (not complex).
-* Explain  / prototype form validation, Error handling strategy, Auth, Logging strategies. Don't have to implement it if you are short on time
-* Justify your choice of tech.
+* Prototype / explain in text for: form validation, error handling strategy, auth, logging strategies.
+* Really understand your tools, justify your choice of tech.
+* Professional workflow.
