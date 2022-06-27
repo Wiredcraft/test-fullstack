@@ -21,8 +21,8 @@ Polling is often needed for the organizers to understand what is more interestin
 
 #### Functionality
 
-* The frontend part should be a single page application rendered in the frontend and load data from a RESTful API \(not rendered from backend\).
-* The API should follow typical RESTful API design pattern.
+* The frontend part should be a single page application rendered in the frontend and load data from an API \(not rendered from backend\).
+* If RESTful APIs, they should follow typical RESTful API design pattern.
 * Provide proper unit test.
 
 #### Tech stack
