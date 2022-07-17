@@ -1,0 +1,24 @@
+{
+  "name": "lightning-talk-polling-web-app",
+  "version": "1.0.0",
+  "description": "Browse a list of lightning talks and vote for the best. Display lightning talks based on a number of upvotes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bilal-korir/test-fullstack.git"
+  },
+  "keywords": [
+    "React",
+    "Fullstack",
+    "AWS"
+  ],
+  "author": "Bilal Korir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bilal-korir/test-fullstack/issues"
+  },
+  "homepage": "https://github.com/bilal-korir/test-fullstack#readme"
+}
