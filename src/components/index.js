@@ -1,5 +1,4 @@
 /**
  * Buttons
  */
-
-export PrimaryButton from './PrimaryButton'
+export PrimaryButton from './primary-button/PrimaryButton'
