@@ -1,5 +1,5 @@
 import React from 'react'
-import { PrimaryButton } from './components'
+import { PrimaryButton } from 'components'
 
 export default function App() {
   return (
