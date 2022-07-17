@@ -41,4 +41,14 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: "public/index.html",
+    }),
+  ],
+  performance: {
+    maxAssetSize: 300000,
+    maxEntrypointSize: 400000,
+  },
 }
