@@ -1,0 +1,7 @@
+export Template from './Template'
+export SignUp from './SignUp'
+export SignIn from './SignIn'
+export PublishNewPoll from './PublishNewPoll'
+export Home from './Home'
+export ConfirmSignUp from './ConfirmSignUp'
+export PageNotFound from './PageNotFound'
