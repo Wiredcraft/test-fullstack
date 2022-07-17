@@ -20,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/bilal-korir/test-fullstack/issues"
   },
-  "homepage": "https://github.com/bilal-korir/test-fullstack#readme"
+  "homepage": "https://github.com/bilal-korir/test-fullstack#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.18.6",
+    "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.6",
+    "@babel/preset-react": "^7.18.6"
+  }
 }
