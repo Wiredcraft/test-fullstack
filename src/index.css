@@ -12,7 +12,7 @@
 
 /* 
 ===============================================================
- Body styles
+ Default styles
 ===============================================================
 */
 body {
@@ -24,6 +24,12 @@ body {
   box-sizing: border-box;
   font-family: 'PT Sans Caption', sans-serif;
   overflow-x: hidden;
+}
+
+p {
+  color: black;
+  margin: 0;
+  padding: 0;
 }
 
 /* 
@@ -67,6 +73,30 @@ body {
   font-size: 2rem;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+/* 
+===============================================================
+ Text styles
+===============================================================
+*/
+.page-title-container {
+  display: flex;
+  justify-content: center;
+}
+
+.page-title-container > div {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: 0.2rem solid var(--primary-color);
+  border-style: solid;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+
+.page-title {
+  font-size: 2rem;
 }
 
 /* 

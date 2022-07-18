@@ -4,6 +4,11 @@
 export NavBar from './NavBar'
 
 /**
+ * Page title
+ */
+export PageTitle from './PageTitle'
+
+/**
  * Buttons
  */
 export PrimaryButton from './PrimaryButton'
