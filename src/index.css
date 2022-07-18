@@ -6,6 +6,8 @@
 :root {
   --primary-color: #ff0000;
   --secondary-color: #b2b0ce;
+  --large-screen-horizontal-padding: 5rem;
+  --small-screen-horizontal-padding: 0.7rem;
 }
 
 /* 
@@ -17,8 +19,8 @@ body {
   min-height: 100vh;
   margin: 0;
   padding-top: 1rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+  padding-left: var(--large-screen-horizontal-padding);
+  padding-right: var(--large-screen-horizontal-padding);
   box-sizing: border-box;
   font-family: 'PT Sans Caption', sans-serif;
   overflow-x: hidden;
@@ -75,12 +77,26 @@ body {
 .footer-container {
   height: 20rem;
   width: 100vw;
-  margin-left: -5rem;
+  margin-left: calc(var(--large-screen-horizontal-padding) * -1);
   /* position: absolute;
   bottom: 0;
   left: 0;
   right: 0; */
   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-logo {
+  height: 6rem;
+  filter: invert(78%) sepia(22%) saturate(270%) hue-rotate(205deg)
+    brightness(90%) contrast(85%);
+}
+
+.footer-container p {
+  text-align: center;
+  color: var(--secondary-color);
 }
 
 /* 
@@ -90,9 +106,9 @@ body {
 */
 @media only screen and (max-width: 768px) {
   body {
-    padding-top: 0.7rem;
-    padding-left: 0.7rem;
-    padding-right: 0.7rem;
+    padding-top: var(--small-screen-horizontal-padding);
+    padding-left: var(--small-screen-horizontal-padding);
+    padding-right: var(--small-screen-horizontal-padding);
   }
 
   .navbar-container {
@@ -102,5 +118,9 @@ body {
   .primary-button {
     width: 8rem;
     font-size: 1.5rem;
+  }
+
+  .footer-container {
+    margin-left: calc(var(--small-screen-horizontal-padding) * -1);
   }
 }
