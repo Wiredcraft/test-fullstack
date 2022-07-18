@@ -1,5 +1,106 @@
+/* 
+===============================================================
+ Variables 
+===============================================================
+*/
+:root {
+  --primary-color: #ff0000;
+  --secondary-color: #b2b0ce;
+}
+
+/* 
+===============================================================
+ Body styles
+===============================================================
+*/
 body {
+  min-height: 100vh;
   margin: 0;
+  padding-top: 1rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
   box-sizing: border-box;
   font-family: 'PT Sans Caption', sans-serif;
+  overflow-x: hidden;
+}
+
+/* 
+===============================================================
+ Template styles
+===============================================================
+*/
+.template {
+  height: 100vh;
+  position: relative;
+}
+
+/* 
+===============================================================
+ Navbar styles
+===============================================================
+*/
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  height: 8rem;
+}
+
+.navbar-logo {
+  height: inherit;
+}
+
+/* 
+===============================================================
+ Buttons styles
+===============================================================
+*/
+.primary-button {
+  width: 13rem;
+  height: inherit;
+  border-width: 0.3rem;
+  border-style: solid;
+  border-color: var(--primary-color);
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* 
+===============================================================
+ Footer styles
+===============================================================
+*/
+.footer-container {
+  height: 20rem;
+  width: 100vw;
+  margin-left: -5rem;
+  /* position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  background-color: black;
+}
+
+/* 
+===============================================================
+ Media Queries styles
+===============================================================
+*/
+@media only screen and (max-width: 768px) {
+  body {
+    padding-top: 0.7rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+  }
+
+  .navbar-container {
+    height: 5rem;
+  }
+
+  .primary-button {
+    width: 8rem;
+    font-size: 1.5rem;
+  }
 }

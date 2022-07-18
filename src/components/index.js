@@ -1,13 +1,18 @@
 /**
- * Buttons
- */
-export PrimaryButton from './primary-button/PrimaryButton'
-
-/**
- * Inputs
- */
-
-/**
  * Nav bar
  */
-export NavBar from './nav-bar/NavBar'
+export NavBar from './NavBar'
+
+/**
+ * Buttons
+ */
+export PrimaryButton from './PrimaryButton'
+
+/**
+ * Inputs fields
+ */
+
+/**
+ * Footer
+ */
+export Footer from './Footer'
