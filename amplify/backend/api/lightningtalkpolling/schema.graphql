@@ -5,13 +5,7 @@ input AMPLIFY {
 } # FOR TESTING ONLY!
 type LightningTalksPoll
   @model
-  @auth(
-    rules: [
-      { allow: public, operations: [read] }
-      { allow: private }
-      { allow: owner }
-    ]
-  ) {
+  @auth(rules: [{ allow: public }, { allow: private }, { allow: owner }]) {
   id: ID! @primaryKey(sortKeyFields: ["numberOfVotes"])
   title: String!
   description: String!

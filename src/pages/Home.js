@@ -17,6 +17,8 @@ export default function Home() {
       setIsLoading(true)
       const response = await api.listLightningTalksPolls()
 
+      l(response, 'response')
+
       if (response === false) throw new Error('API Error')
 
       setData(response)
@@ -39,14 +41,14 @@ export default function Home() {
   function submitNewVote(id) {}
 
   function renderLightningTalksPollsList() {
-    data.map((item) => (
+    return data.map((item) => (
       <LightningTalkCard
         key={item.id}
         title={item?.title}
         description={item?.description}
-        numberOfVotes={item?.description}
-        speaker={item?.description}
-        date={item?.description}
+        numberOfVotes={item?.numberOfVotes}
+        speaker={item?.username}
+        date={item?.createdAt}
         onVote={() => submitNewVote(item.id)}
         isLoading={isLoading}
       />

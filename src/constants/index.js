@@ -17,6 +17,8 @@ const INPUT_ID = Object.freeze({
   PASSWORD: 'password',
   CONFIRMATION_CODE: 'confirmationCode',
   EMAIL: 'email',
+  TITLE: 'title',
+  DESCRIPTION: 'description',
 })
 
 const SPACING = Object.freeze({

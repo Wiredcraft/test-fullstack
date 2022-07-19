@@ -40,6 +40,11 @@ export InputField from './InputField'
 export Spacing from './Spacing'
 
 /**
+ * Loader
+ */
+export Loader from './Loader'
+
+/**
  * Footer
  */
 export Footer from './Footer'
