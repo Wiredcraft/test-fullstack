@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { PrimaryButton, InputField } from 'components'
+import { PrimaryButton, InputField, UnstyledButton } from 'components'
 import { signInInputsConfig } from 'config'
 import { l, signIn } from 'utility'
 import CONSTANTS from 'constants'
@@ -67,6 +67,8 @@ export default function SignIn() {
   return (
     <div>
       {renderInputFields()}
+
+      <UnstyledButton text="Sign Up" onClick={() => navigate(signUpRoute)} />
 
       <div className="primary-button-container">
         <PrimaryButton

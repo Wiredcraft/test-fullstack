@@ -13,6 +13,7 @@ export PageTitle from './PageTitle'
  */
 export PrimaryButton from './PrimaryButton'
 export UpvoteButton from './UpvoteButton'
+export UnstyledButton from './UnstyledButton'
 
 /**
  * Typography components

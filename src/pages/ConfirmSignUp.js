@@ -3,9 +3,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { PrimaryButton, InputField } from 'components'
+import { isNil } from 'lodash'
+import { PrimaryButton, InputField, UnstyledButton } from 'components'
 import { confirmSignUpInputsConfig } from 'config'
-import { l, confirmSignUp } from 'utility'
+import { l, confirmSignUp, resendConfirmationCode } from 'utility'
 import CONSTANTS from 'constants'
 
 export default function ConfirmSignUp() {
@@ -76,6 +77,15 @@ export default function ConfirmSignUp() {
   return (
     <div>
       {renderInputFields()}
+
+      {isNil(params?.username) ? (
+        <UnstyledButton text="Sign In" onClick={() => navigate(signInRoute)} />
+      ) : (
+        <UnstyledButton
+          text="Resend Code"
+          onClick={() => resendConfirmationCode(params?.username)}
+        />
+      )}
 
       <div className="primary-button-container">
         <PrimaryButton

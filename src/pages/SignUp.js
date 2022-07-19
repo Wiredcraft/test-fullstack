@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { PrimaryButton, InputField } from 'components'
+import { PrimaryButton, InputField, UnstyledButton } from 'components'
 import { signUpInputsConfig } from 'config'
 import { l, signUp } from 'utility'
 import CONSTANTS from 'constants'
@@ -12,6 +12,7 @@ import { isNil } from 'lodash'
 export default function SignUp() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const signInRoute = `/${CONSTANTS?.ROUTES_NAMES?.SIGN_IN}`
   const confirmSignUpRoute = `/${CONSTANTS?.ROUTES_NAMES?.CONFIRM_SIGN_UP}`
 
   const schema = yup
@@ -67,6 +68,8 @@ export default function SignUp() {
   return (
     <div>
       {renderInputFields()}
+
+      <UnstyledButton text="Sign In" onClick={() => navigate(signInRoute)} />
 
       <div className="primary-button-container">
         <PrimaryButton

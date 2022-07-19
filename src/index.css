@@ -186,6 +186,27 @@ p {
   background-color: #e2e0e0;
 }
 
+.unstyled-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.unstyled-button-container > div {
+  width: 40%;
+}
+
+.unstyled-button {
+  border: none;
+  background-color: transparent;
+  color: var(--secondary-color);
+  font-size: var(--paragraph-font-size);
+  text-transform: uppercase;
+  padding: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  float: right;
+}
+
 /* 
 ===============================================================
  Text styles
@@ -310,6 +331,10 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .unstyled-button-container > div {
+    width: 95%;
   }
 
   .secondary-paragraph {
