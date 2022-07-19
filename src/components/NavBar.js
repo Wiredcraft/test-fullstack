@@ -1,11 +1,19 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PrimaryButton } from 'components'
+import { getCurrentAuthenticatedUser } from 'utility'
 import CONSTANTS from 'constants'
 
 export default function NavBar() {
   const navigate = useNavigate()
   const { ROUTES_NAMES } = CONSTANTS
+
+  async function navigateToPublishNewPollPage() {
+    const user = await getCurrentAuthenticatedUser()
+
+    if (user) navigate(ROUTES_NAMES?.PUBLISH_NEW_POLL)
+    else navigate(ROUTES_NAMES?.SIGN_IN)
+  }
 
   return (
     <div className="navbar-container">
@@ -19,7 +27,7 @@ export default function NavBar() {
 
       <PrimaryButton
         text="Publish"
-        onClick={() => navigate(ROUTES_NAMES?.PUBLISH_NEW_POLL)}
+        onClick={() => navigateToPublishNewPollPage()}
       />
     </div>
   )
