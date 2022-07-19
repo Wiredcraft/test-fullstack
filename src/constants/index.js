@@ -1,3 +1,8 @@
+const ENV = Object.freeze({
+  DEV: 'dev',
+  PROD: 'prod',
+})
+
 const ROUTES_NAMES = Object.freeze({
   HOME: '/',
   SIGN_UP: 'sign-up',
@@ -15,6 +20,7 @@ const SPACING = Object.freeze({
 })
 
 export default {
+  ENV,
   ROUTES_NAMES,
   SPACING,
   LOGO_URL:
