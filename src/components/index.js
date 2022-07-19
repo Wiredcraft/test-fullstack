@@ -12,6 +12,7 @@ export PageTitle from './PageTitle'
  * Buttons
  */
 export PrimaryButton from './PrimaryButton'
+export UpvoteButton from './UpvoteButton'
 
 /**
  * Inputs fields

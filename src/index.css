@@ -63,9 +63,9 @@ p {
 ===============================================================
 */
 .primary-button {
-  width: 13rem;
+  width: 15rem;
   height: inherit;
-  border-width: 0.3rem;
+  border-width: 0.2rem;
   border-style: solid;
   border-color: var(--primary-color);
   background-color: transparent;
@@ -73,6 +73,40 @@ p {
   font-size: 2rem;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.upvote-button-container {
+  min-height: 17rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+.upvote-button-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upvote-button-counter > p {
+  font-size: 2.8rem;
+  padding-left: 0.6rem;
+  color: var(--primary-color);
+}
+
+.upvote-button {
+  width: 15rem;
+  height: 5rem;
+  margin-top: 1.3rem;
+  border-width: 0.15rem;
+  border-style: solid;
+  border-color: white;
+  background-color: transparent;
+  color: white;
+  font-size: 2rem;
+  text-transform: uppercase;
 }
 
 /* 
@@ -96,7 +130,7 @@ p {
 }
 
 .page-title {
-  font-size: 2rem;
+  font-size: 2.8rem;
 }
 
 /* 
