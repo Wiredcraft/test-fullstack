@@ -9,18 +9,28 @@ import {
   PublishNewPoll,
   PageNotFound,
 } from 'pages'
+import CONSTANTS from 'constants'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Template />}>
+        <Route path={CONSTANTS?.ROUTES_NAMES?.HOME} element={<Template />}>
           <Route index element={<Home />} />
-          <Route path="sing-in" element={<SignIn />} />
-          <Route path="sign-up" element={<SignUp />} />
-          <Route path="confirm-sign-up" element={<ConfirmSignUp />} />
-          <Route path="publish-new-poll" element={<PublishNewPoll />} />
-          <Route path="*" element={<PageNotFound />} />
+          <Route path={CONSTANTS?.ROUTES_NAMES?.SIGN_UP} element={<SignUp />} />
+          <Route
+            path={CONSTANTS?.ROUTES_NAMES?.CONFIRM_SIGN_UP}
+            element={<ConfirmSignUp />}
+          />
+          <Route path={CONSTANTS?.ROUTES_NAMES?.SIGN_IN} element={<SignIn />} />
+          <Route
+            path={CONSTANTS?.ROUTES_NAMES?.PUBLISH_NEW_POLL}
+            element={<PublishNewPoll />}
+          />
+          <Route
+            path={CONSTANTS?.ROUTES_NAMES?.PAGE_NOT_FOUND}
+            element={<PageNotFound />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

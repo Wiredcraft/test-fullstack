@@ -5,14 +5,21 @@ import CONSTANTS from 'constants'
 
 export default function NavBar() {
   const navigate = useNavigate()
+  const { ROUTES_NAMES } = CONSTANTS
 
   return (
     <div className="navbar-container">
-      <img className="navbar-logo" src={CONSTANTS?.LOGO_URL} alt="Logo" />
+      <img
+        className="navbar-logo"
+        src={CONSTANTS?.LOGO_URL}
+        alt="Logo"
+        onClick={() => navigate(ROUTES_NAMES?.HOME)}
+        aria-hidden="true"
+      />
 
       <PrimaryButton
         text="Publish"
-        onClick={() => navigate('publish-new-poll')}
+        onClick={() => navigate(ROUTES_NAMES?.PUBLISH_NEW_POLL)}
       />
     </div>
   )
