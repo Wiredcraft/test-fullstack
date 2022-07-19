@@ -88,6 +88,7 @@ p {
 
 .lightning-talk-card-container > div {
   display: flex;
+  justify-content: space-between;
 }
 
 .empty-list-iew-container {
