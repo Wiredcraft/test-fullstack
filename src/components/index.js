@@ -15,6 +15,13 @@ export PrimaryButton from './PrimaryButton'
 export UpvoteButton from './UpvoteButton'
 
 /**
+ * Typography components
+ */
+export Title from './typography/Title'
+export Paragraph from './typography/Paragraph'
+export SecondaryParagraph from './typography/SecondaryParagraph'
+
+/**
  * Inputs fields
  */
 

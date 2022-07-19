@@ -6,8 +6,12 @@
 :root {
   --primary-color: #ff0000;
   --secondary-color: #b2b0ce;
+  --tertiary-color: #efc100;
   --large-screen-horizontal-padding: 5rem;
   --small-screen-horizontal-padding: 0.7rem;
+  --title-font-size: 2.5rem;
+  --paragraph-font-size: 1.2rem;
+  --secondary-font-size: 1.1rem;
 }
 
 /* 
@@ -22,6 +26,7 @@ body {
   padding-left: var(--large-screen-horizontal-padding);
   padding-right: var(--large-screen-horizontal-padding);
   box-sizing: border-box;
+  background-color: black;
   font-family: 'PT Sans Caption', sans-serif;
   overflow-x: hidden;
 }
@@ -131,6 +136,22 @@ p {
 
 .page-title {
   font-size: 2.8rem;
+}
+
+.title {
+  font-size: var(--title-font-size);
+  color: white;
+}
+
+.paragraph {
+  font-size: var(--paragraph-font-size);
+  color: white;
+  line-height: 1.5;
+}
+
+.secondary-paragraph {
+  font-size: var(--secondary-paragraph-font-size);
+  color: var(--tertiary-color);
 }
 
 /* 
