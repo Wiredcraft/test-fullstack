@@ -10,6 +10,11 @@
       "StackName": "amplify-lightningtalkpolling-dev-211000",
       "StackId": "arn:aws:cloudformation:us-east-1:171390162311:stack/amplify-lightningtalkpolling-dev-211000/2f9b8a00-0764-11ed-8513-0a6e32cde2e1",
       "AmplifyAppId": "d2ykot21kiyxwq"
+    },
+    "categories": {
+      "auth": {
+        "LTPAuth": {}
+      }
     }
   }
 }
