@@ -22,8 +22,18 @@ export Paragraph from './typography/Paragraph'
 export SecondaryParagraph from './typography/SecondaryParagraph'
 
 /**
+ * Lightning talk card
+ */
+export LightningTalkCard from './LightningTalkCard'
+
+/**
  * Inputs fields
  */
+
+/**
+ * Spacing between components
+ */
+export Spacing from './Spacing'
 
 /**
  * Footer

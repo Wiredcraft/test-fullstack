@@ -5,13 +5,14 @@
 */
 :root {
   --primary-color: #ff0000;
-  --secondary-color: #b2b0ce;
+  --secondary-color: #a5a1e8;
   --tertiary-color: #efc100;
   --large-screen-horizontal-padding: 5rem;
   --small-screen-horizontal-padding: 0.7rem;
-  --title-font-size: 2.5rem;
-  --paragraph-font-size: 1.2rem;
-  --secondary-font-size: 1.1rem;
+  --title-font-size: 1.7rem;
+  --paragraph-font-size: 1.15rem;
+  --secondary-font-size: 1rem;
+  --border-width: 0.15rem;
 }
 
 /* 
@@ -26,7 +27,7 @@ body {
   padding-left: var(--large-screen-horizontal-padding);
   padding-right: var(--large-screen-horizontal-padding);
   box-sizing: border-box;
-  background-color: black;
+  background-color: white;
   font-family: 'PT Sans Caption', sans-serif;
   overflow-x: hidden;
 }
@@ -43,7 +44,7 @@ p {
 ===============================================================
 */
 .template {
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -62,6 +63,25 @@ p {
   height: inherit;
 }
 
+/*
+===============================================================
+ Lightning talk card styles
+===============================================================
+*/
+.lightning-talk-card-container {
+  padding: 1rem;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: black;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  background-color: #f7f7f7;
+}
+
+.lightning-talk-card-container > div {
+  display: flex;
+}
+
 /* 
 ===============================================================
  Buttons styles
@@ -70,23 +90,23 @@ p {
 .primary-button {
   width: 15rem;
   height: inherit;
-  border-width: 0.2rem;
+  border-width: var(--border-width);
   border-style: solid;
   border-color: var(--primary-color);
   background-color: transparent;
   color: var(--primary-color);
-  font-size: 2rem;
+  font-size: var(--title-font-size);
   text-transform: uppercase;
-  font-weight: bold;
+}
+
+.primary-button:hover,
+.primary-button:active {
+  background-color: #fcf4f4;
 }
 
 .upvote-button-container {
-  min-height: 17rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
+  display: inline-block;
+  padding-left: 1.5rem;
 }
 
 .upvote-button-counter {
@@ -96,7 +116,7 @@ p {
 }
 
 .upvote-button-counter > p {
-  font-size: 2.8rem;
+  font-size: var(--title-font-size);
   padding-left: 0.6rem;
   color: var(--primary-color);
 }
@@ -105,13 +125,18 @@ p {
   width: 15rem;
   height: 5rem;
   margin-top: 1.3rem;
-  border-width: 0.15rem;
+  border-width: var(--border-width);
   border-style: solid;
-  border-color: white;
+  border-color: black;
   background-color: transparent;
-  color: white;
-  font-size: 2rem;
+  color: black;
+  font-size: var(--title-font-size);
   text-transform: uppercase;
+}
+
+.upvote-button:hover,
+.upvote-button:focus {
+  background-color: #e2e0e0;
 }
 
 /* 
@@ -125,8 +150,8 @@ p {
 }
 
 .page-title-container > div {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.1rem;
+  padding-right: 1.1rem;
   border-bottom: 0.2rem solid var(--primary-color);
   border-style: solid;
   border-top: 0;
@@ -135,23 +160,25 @@ p {
 }
 
 .page-title {
-  font-size: 2.8rem;
+  font-size: var(--title-font-size);
+  color: black;
 }
 
 .title {
   font-size: var(--title-font-size);
-  color: white;
+  color: black;
+  font-weight: bold;
 }
 
 .paragraph {
   font-size: var(--paragraph-font-size);
-  color: white;
+  color: black;
   line-height: 1.5;
 }
 
 .secondary-paragraph {
   font-size: var(--secondary-paragraph-font-size);
-  color: var(--tertiary-color);
+  color: var(--secondary-color);
 }
 
 /* 
@@ -203,6 +230,28 @@ p {
   .primary-button {
     width: 8rem;
     font-size: 1.5rem;
+  }
+
+  .lightning-talk-card-container {
+    padding: 0.6rem 0.3rem 0.3rem 0.6rem;
+  }
+
+  .lightning-talk-card-container > div {
+    flex-wrap: wrap;
+  }
+
+  .upvote-button-container {
+    width: 100%;
+    padding-top: 1.5rem;
+    padding-left: 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .secondary-paragraph {
+    text-align: center;
   }
 
   .footer-container {
