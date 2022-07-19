@@ -12,6 +12,13 @@ const ROUTES_NAMES = Object.freeze({
   PAGE_NOT_FOUND: '*',
 })
 
+const INPUT_ID = Object.freeze({
+  USERNAME: 'username',
+  PASSWORD: 'password',
+  CONFIRMATION_CODE: 'confirmationCode',
+  EMAIL: 'email',
+})
+
 const SPACING = Object.freeze({
   SM: '0.2rem',
   MD: '0.6rem',
@@ -22,6 +29,7 @@ const SPACING = Object.freeze({
 export default {
   ENV: ENV.DEV,
   ROUTES_NAMES,
+  INPUT_ID,
   SPACING,
   LOGO_URL:
     'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/logo-black.svg',
