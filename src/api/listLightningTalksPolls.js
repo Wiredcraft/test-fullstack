@@ -12,8 +12,7 @@ export default async function listLightningTalksPolls(nextToken, limit = 100) {
       },
     })
 
-    return data
-    // return { ...data?.listLightningTalksPolls?.items }
+    return [...data?.listLightningTalksPolls?.items]
   } catch (error) {
     l(error?.errors[0]?.message, 'listLightningTalksPolls', false, 'error')
     return false

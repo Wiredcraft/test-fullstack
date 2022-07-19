@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function UpvoteButton({ onClick, numberOfVotes }) {
+export default function UpvoteButton({ onClick, numberOfVotes, isLoading }) {
   const iconUrl =
     'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/icon-arrow-alt-up.svg'
 

@@ -9,9 +9,9 @@ import CONSTANTS from 'constants'
  * @param {string} type takes table, log, error, warn, or info. Has no effect in terminal console
  * @returns Formatted message
  */
-export function log(data, title, clearConsole, type) {
+export function log(data, title, clearConsole, type = 'log') {
   if (CONSTANTS.ENV === 'dev') {
-    const formattedHeader = `\n[---${type}---] ${title}: \n`
+    const formattedHeader = `\n[---${type}---] ${title || 'Output'}: \n`
 
     if (clearConsole) console.clear()
 
