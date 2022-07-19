@@ -4,21 +4,85 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { PrimaryButton, InputField } from 'components'
-import { signUpInputsConfig } from 'config'
-import { l, signUp } from 'utility'
+import { confirmSignUpInputsConfig } from 'config'
+import { l, confirmSignUp } from 'utility'
 import CONSTANTS from 'constants'
-import { isNil } from 'lodash'
 
 export default function ConfirmSignUp() {
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate = useNavigate()
   const params = useParams()
-  useEffect(() => {
-    l(params?.username)
-  }, [])
+  const signInRoute = `/${CONSTANTS?.ROUTES_NAMES?.SIGN_IN}`
+
+  const schema = yup
+    .object()
+    .shape({
+      [CONSTANTS?.INPUT_ID?.USERNAME]: yup.string().min(3).required(),
+      [CONSTANTS?.INPUT_ID?.CONFIRMATION_CODE]: yup.string().length(6),
+    })
+    .required()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schema),
+    defaultValues: {
+      [CONSTANTS?.INPUT_ID?.USERNAME]: params?.username,
+    },
+  })
+
+  async function handSignIn(data) {
+    try {
+      const { username, confirmationCode } = data
+
+      setIsLoading(true)
+      const response = await confirmSignUp(username, confirmationCode)
+
+      if (response !== 'SUCCESS') throw new Error('API Error')
+
+      setIsLoading(false)
+      navigate(signInRoute)
+    } catch (error) {
+      setIsLoading(false)
+      // eslint-disable-next-line no-alert
+      alert(
+        'Activating account Error. Please make sure you use the correct credentials.',
+      )
+    }
+  }
+
+  function renderInputFields() {
+    return confirmSignUpInputsConfig.map((item) => (
+      <InputField
+        key={item?.id}
+        id={item?.id}
+        label={item?.label}
+        placeholder={item?.placeholder}
+        type={item?.type}
+        register={register(item?.id)}
+        errors={errors}
+        errorMessage={item?.errorMessage}
+        disabled={
+          isLoading ||
+          (CONSTANTS?.INPUT_ID?.USERNAME === item?.id && params?.username)
+        }
+      />
+    ))
+  }
 
   return (
     <div>
+      {renderInputFields()}
+
       <div className="primary-button-container">
-        <PrimaryButton text="Activate" />
+        <PrimaryButton
+          text="Activate"
+          onClick={handleSubmit(handSignIn)}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   )

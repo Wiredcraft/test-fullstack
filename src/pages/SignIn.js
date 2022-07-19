@@ -59,6 +59,7 @@ export default function SignIn() {
         register={register(item?.id)}
         errors={errors}
         errorMessage={item?.errorMessage}
+        disabled={isLoading}
       />
     ))
   }

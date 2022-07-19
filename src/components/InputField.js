@@ -9,6 +9,7 @@ export default function InputField({
   errors,
   errorMessage,
   register,
+  disabled,
 }) {
   return (
     <div className="input-field-container">
@@ -21,6 +22,7 @@ export default function InputField({
           type={type}
           placeholder={placeholder}
           {...register}
+          disabled={disabled}
         />
         <Spacing />
         <ErrorText text={errors?.[id] && errorMessage} />

@@ -44,7 +44,7 @@ export default function SignUp() {
     } catch (error) {
       setIsLoading(false)
       // eslint-disable-next-line no-alert
-      alert('Sign In Error. Please make sure you use the correct credentials.')
+      alert('Sign Up Error. Please make sure you use the correct credentials.')
     }
   }
 
@@ -59,6 +59,7 @@ export default function SignUp() {
         register={register(item?.id)}
         errors={errors}
         errorMessage={item?.errorMessage}
+        disabled={isLoading}
       />
     ))
   }
