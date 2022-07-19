@@ -35,7 +35,6 @@ body {
 p {
   color: black;
   margin: 0;
-  padding: 0;
 }
 
 /* 
@@ -235,25 +234,17 @@ p {
   height: 20rem;
   width: 100vw;
   margin-left: calc(var(--large-screen-horizontal-padding) * -1);
-  /* position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0; */
   background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .footer-logo {
   height: 6rem;
-  filter: invert(78%) sepia(22%) saturate(270%) hue-rotate(205deg)
-    brightness(90%) contrast(85%);
-}
-
-.footer-container p {
-  text-align: center;
-  color: var(--secondary-color);
+  filter: invert(62%) sepia(86%) saturate(376%) hue-rotate(202deg)
+    brightness(94%) contrast(93%);
 }
 
 /* 
