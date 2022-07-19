@@ -9,7 +9,7 @@
   --tertiary-color: #efc100;
   --large-screen-horizontal-padding: 5rem;
   --small-screen-horizontal-padding: 0.7rem;
-  --horizontal-space: 2rem;
+  --vertical-space: 3rem;
   --title-font-size: 1.7rem;
   --paragraph-font-size: 1.15rem;
   --secondary-font-size: 1rem;
@@ -130,8 +130,8 @@ p {
 .primary-button-container {
   display: flex;
   justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 4rem;
+  padding-top: var(--vertical-space);
+  padding-bottom: var(--vertical-space);
 }
 
 .primary-button {
@@ -201,8 +201,8 @@ p {
   padding-right: 1.1rem;
   border: 0;
   border-bottom: 0.2rem solid var(--primary-color);
-  margin-top: var(--horizontal-space);
-  margin-bottom: var(--horizontal-space);
+  margin-top: var(--vertical-space);
+  margin-bottom: var(--vertical-space);
 }
 
 .page-title {

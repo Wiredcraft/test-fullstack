@@ -1,11 +1,25 @@
-import React from 'react'
-import { PrimaryButton } from 'components'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import { PrimaryButton, InputField } from 'components'
+import { signUpInputsConfig } from 'config'
+import { l, signUp } from 'utility'
+import CONSTANTS from 'constants'
+import { isNil } from 'lodash'
 
 export default function ConfirmSignUp() {
+  const params = useParams()
+  useEffect(() => {
+    l(params?.username)
+  }, [])
+
   return (
     <div>
-      <h1>Confirm Sign Up</h1>
+      <div className="primary-button-container">
+        <PrimaryButton text="Activate" />
+      </div>
     </div>
   )
 }

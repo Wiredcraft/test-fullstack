@@ -23,7 +23,11 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path={CONSTANTS?.ROUTES_NAMES?.SIGN_UP} element={<SignUp />} />
           <Route
-            path={CONSTANTS?.ROUTES_NAMES?.CONFIRM_SIGN_UP}
+            path={`${CONSTANTS?.ROUTES_NAMES?.CONFIRM_SIGN_UP}/:username`}
+            element={<ConfirmSignUp />}
+          />
+          <Route
+            path={`${CONSTANTS?.ROUTES_NAMES?.CONFIRM_SIGN_UP}`}
             element={<ConfirmSignUp />}
           />
           <Route path={CONSTANTS?.ROUTES_NAMES?.SIGN_IN} element={<SignIn />} />

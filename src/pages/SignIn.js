@@ -11,6 +11,7 @@ import CONSTANTS from 'constants'
 export default function SignIn() {
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
+  const signUpRoute = `/${CONSTANTS?.ROUTES_NAMES?.SIGN_UP}`
 
   const schema = yup
     .object()
@@ -35,11 +36,11 @@ export default function SignIn() {
 
       setIsLoading(true)
       const response = await signIn(username, password)
-      navigate(CONSTANTS?.ROUTES_NAMES?.HOME)
 
       if (response === false) throw new Error('API Error')
 
       setIsLoading(false)
+      navigate(CONSTANTS?.ROUTES_NAMES?.HOME)
     } catch (error) {
       setIsLoading(false)
       // eslint-disable-next-line no-alert
