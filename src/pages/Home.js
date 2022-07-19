@@ -22,8 +22,11 @@ export default function Home() {
       setData(response)
       setIsLoading(false)
     } catch (error) {
+      setIsLoading(false)
       // eslint-disable-next-line no-alert
-      alert('Something went wrong. Please refresh the page and try again.')
+      alert(
+        'Fetching list of talks error. Please refresh the page and try again.',
+      )
     }
   }
 

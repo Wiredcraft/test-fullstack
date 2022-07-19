@@ -14,6 +14,7 @@
   --paragraph-font-size: 1.15rem;
   --secondary-font-size: 1rem;
   --border-width: 0.15rem;
+  --height-of-navbar: 7rem;
 }
 
 /* 
@@ -63,7 +64,7 @@ p {
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  height: 8rem;
+  height: var(--height-of-navbar);
 }
 
 .navbar-logo {
@@ -126,9 +127,16 @@ p {
  Buttons styles
 ===============================================================
 */
+.primary-button-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
 .primary-button {
   width: 15rem;
-  height: inherit;
+  height: var(--height-of-navbar);
   border-width: var(--border-width);
   border-style: solid;
   border-color: var(--primary-color);
