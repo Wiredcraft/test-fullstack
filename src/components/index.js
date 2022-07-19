@@ -20,6 +20,7 @@ export UpvoteButton from './UpvoteButton'
 export Title from './typography/Title'
 export Paragraph from './typography/Paragraph'
 export SecondaryParagraph from './typography/SecondaryParagraph'
+export ErrorText from './typography/ErrorText'
 
 /**
  * Lightning talk card
@@ -29,6 +30,7 @@ export LightningTalkCard from './LightningTalkCard'
 /**
  * Inputs fields
  */
+export InputField from './InputField'
 
 /**
  * Spacing between components
