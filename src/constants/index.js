@@ -20,7 +20,7 @@ const SPACING = Object.freeze({
 })
 
 export default {
-  ENV,
+  ENV: ENV.DEV,
   ROUTES_NAMES,
   SPACING,
   LOGO_URL:

@@ -45,7 +45,14 @@ p {
 */
 .template {
   min-height: 100vh;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Make sure the footer always touch the bottom of the screen */
 }
 
 /* 
@@ -80,6 +87,10 @@ p {
 
 .lightning-talk-card-container > div {
   display: flex;
+}
+
+.empty-list-iew-container {
+  text-align: center;
 }
 
 /* 

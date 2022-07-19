@@ -23,9 +23,10 @@ export SecondaryParagraph from './typography/SecondaryParagraph'
 export ErrorText from './typography/ErrorText'
 
 /**
- * Lightning talk card
+ * Lightning talk poll components
  */
 export LightningTalkCard from './LightningTalkCard'
+export EmptyListView from './EmptyListView'
 
 /**
  * Inputs fields
