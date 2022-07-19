@@ -13,10 +13,18 @@ export default function Home() {
   }, [])
 
   async function getLightningTalksPolls() {
-    setIsLoading(true)
-    const response = await api.listLightningTalksPolls()
-    setData(response)
-    setIsLoading(false)
+    try {
+      setIsLoading(true)
+      const response = await api.listLightningTalksPolls()
+
+      if (response === false) throw new Error('API Error')
+
+      setData(response)
+      setIsLoading(false)
+    } catch (error) {
+      // eslint-disable-next-line no-alert
+      alert('Something went wrong. Please refresh the page and try again.')
+    }
   }
 
   /**
