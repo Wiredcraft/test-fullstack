@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "LTPAuth": {}
+      },
+      "function": {
+        "graphQlLambdaAuthorizerb50bfa69": {
+          "deploymentBucketName": "amplify-lightningtalkpolling-dev-211000-deployment",
+          "s3Key": "amplify-builds/graphQlLambdaAuthorizerb50bfa69-45494856736642416d54-build.zip"
+        }
       }
     }
   }

@@ -24,5 +24,57 @@
         ]
       }
     }
+  },
+  "function": {
+    "graphQlLambdaAuthorizerb50bfa69": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "api": {
+    "lightningtalkpolling": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "LTPAuth",
+          "attributes": [
+            "UserPoolId"
+          ]
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 365,
+              "apiKeyExpirationDate": "2023-07-19T13:34:32.263Z",
+              "description": "lightning-talk-polling-api-key"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authLTPAuth"
+              }
+            },
+            {
+              "authenticationType": "AWS_IAM"
+            },
+            {
+              "authenticationType": "AWS_LAMBDA",
+              "lambdaAuthorizerConfig": {
+                "lambdaFunction": "graphQlLambdaAuthorizerb50bfa69",
+                "ttlSeconds": "300"
+              }
+            }
+          ]
+        }
+      }
+    }
   }
 }
