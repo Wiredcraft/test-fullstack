@@ -1,4 +1,5 @@
 import React from 'react'
+import { formatDistanceToNow } from 'date-fns'
 import {
   Title,
   Paragraph,
@@ -33,7 +34,11 @@ export default function LightningTalkCard({
         </div>
       </div>
       <Spacing space="md" />
-      <SecondaryParagraph text={`${speaker} | ${date}`} />
+      <SecondaryParagraph
+        text={`By ${speaker} | ${formatDistanceToNow(new Date(date), {
+          addSuffix: true,
+        })}`}
+      />
     </div>
   )
 }
