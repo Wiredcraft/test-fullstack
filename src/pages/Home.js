@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { isEmpty } from 'lodash'
-import { useNavigate } from 'react-router-dom'
 import * as api from 'api'
 import { EmptyListView, LightningTalkCard } from 'components'
-import { getCurrentAuthenticatedUser } from 'utility'
-import CONSTANTS from 'constants'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState([])
-  const navigate = useNavigate()
 
   useEffect(() => {
     getLightningTalksPolls()
@@ -29,27 +25,26 @@ export default function Home() {
     }
   }
 
-  async function submitNewVote(id) {
-    const user = await getCurrentAuthenticatedUser()
+  async function submitNewVote(lightningTalksPollID) {
+    const response = await api.updateNumberOfVotesCountAtomicallyResolver(
+      lightningTalksPollID,
+    )
+    getLightningTalksPolls()
 
-    if (user) {
-      await api.updateNumberOfVotesCountAtomicallyResolver(id)
-      getLightningTalksPolls()
-    } else {
-      navigate(CONSTANTS?.ROUTES_NAMES?.SIGN_IN)
-    }
+    return response
   }
 
   function renderLightningTalksPollsList() {
     return data.map((item) => (
       <LightningTalkCard
-        key={item.id}
+        key={item?.id}
+        lightningTalkPollID={item?.id}
         title={item?.title}
         description={item?.description}
         numberOfVotes={item?.numberOfVotes}
         speaker={item?.username}
         date={item?.createdAt}
-        onVote={() => submitNewVote(item.id)}
+        onVote={() => submitNewVote(item?.id)}
         isLoading={isLoading}
       />
     ))

@@ -7,16 +7,16 @@ const userTable = process.env.LIGHTNING_TALK_POLL_TABLE
 const documentClient = new AWS.DynamoDB.DocumentClient()
 
 exports.handler = async (event) => {
-  const { id } = event.arguments
+  const { lightningTalkPollID, undulation } = event.arguments
 
   const params = {
     TableName: userTable,
     Key: {
-      id,
+      id: lightningTalkPollID,
     },
     UpdateExpression: 'set numberOfVotes = numberOfVotes + :value',
     ExpressionAttributeValues: {
-      ':value': 1,
+      ':value': undulation,
     },
     ReturnValues: 'UPDATED_NEW',
   }

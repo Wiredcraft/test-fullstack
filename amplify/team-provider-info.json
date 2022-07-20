@@ -23,7 +23,7 @@
         "updateNumberOfVotesCountAtomicallyResolver": {
           "secretsPathAmplifyAppId": "d2ykot21kiyxwq",
           "deploymentBucketName": "amplify-lightningtalkpolling-dev-211000-deployment",
-          "s3Key": "amplify-builds/updateNumberOfVotesCountAtomicallyResolver-45466d734441566d597a-build.zip"
+          "s3Key": "amplify-builds/updateNumberOfVotesCountAtomicallyResolver-43577852477377754479-build.zip"
         }
       },
       "hosting": {

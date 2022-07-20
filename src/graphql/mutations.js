@@ -2,8 +2,14 @@
 // this is an auto generated file. This will be overwritten
 
 export const updateNumberOfVotesCountAtomicallyResolver = /* GraphQL */ `
-  mutation UpdateNumberOfVotesCountAtomicallyResolver($id: ID!) {
-    updateNumberOfVotesCountAtomicallyResolver(id: $id)
+  mutation UpdateNumberOfVotesCountAtomicallyResolver(
+    $lightningTalkPollID: String!
+    $undulation: Int!
+  ) {
+    updateNumberOfVotesCountAtomicallyResolver(
+      lightningTalkPollID: $lightningTalkPollID
+      undulation: $undulation
+    )
   }
 `;
 export const createLightningTalksPoll = /* GraphQL */ `
@@ -67,10 +73,10 @@ export const createVotingRecord = /* GraphQL */ `
   ) {
     createVotingRecord(input: $input, condition: $condition) {
       id
-      lightningTalksPollID
-      creatorUsername
-      voterUsername
-      hasVoted
+      lightningTalkPollID
+      username
+      upvote
+      hasVotedBefore
       createdAt
       updatedAt
       owner
@@ -84,10 +90,10 @@ export const updateVotingRecord = /* GraphQL */ `
   ) {
     updateVotingRecord(input: $input, condition: $condition) {
       id
-      lightningTalksPollID
-      creatorUsername
-      voterUsername
-      hasVoted
+      lightningTalkPollID
+      username
+      upvote
+      hasVotedBefore
       createdAt
       updatedAt
       owner
@@ -101,10 +107,10 @@ export const deleteVotingRecord = /* GraphQL */ `
   ) {
     deleteVotingRecord(input: $input, condition: $condition) {
       id
-      lightningTalksPollID
-      creatorUsername
-      voterUsername
-      hasVoted
+      lightningTalkPollID
+      username
+      upvote
+      hasVotedBefore
       createdAt
       updatedAt
       owner

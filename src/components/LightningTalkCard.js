@@ -9,6 +9,7 @@ import {
 } from 'components'
 
 export default function LightningTalkCard({
+  lightningTalkPollID,
   title,
   description,
   numberOfVotes,
@@ -27,6 +28,7 @@ export default function LightningTalkCard({
         </div>
         <div>
           <UpvoteButton
+            lightningTalkPollID={lightningTalkPollID}
             numberOfVotes={numberOfVotes}
             onClick={onVote}
             isLoading={isLoading}

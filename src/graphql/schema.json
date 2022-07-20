@@ -1129,7 +1129,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "lightningTalksPollID",
+          "name" : "lightningTalkPollID",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1144,7 +1144,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "creatorUsername",
+          "name" : "username",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -1159,32 +1159,24 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "voterUsername",
+          "name" : "upvote",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "hasVoted",
+          "name" : "hasVotedBefore",
           "description" : null,
           "args" : [ ],
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Boolean",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
@@ -1288,7 +1280,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "lightningTalksPollID",
+          "name" : "lightningTalkPollID",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1297,7 +1289,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "creatorUsername",
+          "name" : "username",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1306,16 +1298,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "voterUsername",
+          "name" : "upvote",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelIDInput",
+            "name" : "ModelBooleanInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "hasVoted",
+          "name" : "hasVotedBefore",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1415,14 +1407,27 @@
           "name" : "updateNumberOfVotesCountAtomicallyResolver",
           "description" : null,
           "args" : [ {
-            "name" : "id",
+            "name" : "lightningTalkPollID",
             "description" : null,
             "type" : {
               "kind" : "NON_NULL",
               "name" : null,
               "ofType" : {
                 "kind" : "SCALAR",
-                "name" : "ID",
+                "name" : "String",
+                "ofType" : null
+              }
+            },
+            "defaultValue" : null
+          }, {
+            "name" : "undulation",
+            "description" : null,
+            "type" : {
+              "kind" : "NON_NULL",
+              "name" : null,
+              "ofType" : {
+                "kind" : "SCALAR",
+                "name" : "Int",
                 "ofType" : null
               }
             },
@@ -1914,7 +1919,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "lightningTalksPollID",
+          "name" : "lightningTalkPollID",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -1927,7 +1932,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "creatorUsername",
+          "name" : "username",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -1940,29 +1945,21 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "voterUsername",
+          "name" : "upvote",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "ID",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "hasVoted",
+          "name" : "hasVotedBefore",
           "description" : null,
           "type" : {
-            "kind" : "NON_NULL",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Boolean",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "defaultValue" : null
         } ],
@@ -1975,7 +1972,7 @@
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
-          "name" : "lightningTalksPollID",
+          "name" : "lightningTalkPollID",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1984,7 +1981,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "creatorUsername",
+          "name" : "username",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -1993,16 +1990,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "voterUsername",
+          "name" : "upvote",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelIDInput",
+            "name" : "ModelBooleanInput",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "hasVoted",
+          "name" : "hasVotedBefore",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2068,7 +2065,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "lightningTalksPollID",
+          "name" : "lightningTalkPollID",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2077,7 +2074,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "creatorUsername",
+          "name" : "username",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -2086,16 +2083,16 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "voterUsername",
+          "name" : "upvote",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "ID",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "hasVoted",
+          "name" : "hasVotedBefore",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -3153,23 +3150,6 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_publish",
         "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -3266,6 +3246,23 @@
         "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

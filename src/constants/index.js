@@ -35,4 +35,6 @@ export default {
   SPACING,
   LOGO_URL:
     'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/logo-black.svg',
+  RED_ARROW_ICON_URL:
+    'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/icon-arrow-alt-up.svg',
 }

@@ -78,10 +78,10 @@ export const getVotingRecord = /* GraphQL */ `
   query GetVotingRecord($id: ID!) {
     getVotingRecord(id: $id) {
       id
-      lightningTalksPollID
-      creatorUsername
-      voterUsername
-      hasVoted
+      lightningTalkPollID
+      username
+      upvote
+      hasVotedBefore
       createdAt
       updatedAt
       owner
@@ -97,10 +97,10 @@ export const listVotingRecords = /* GraphQL */ `
     listVotingRecords(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        lightningTalksPollID
-        creatorUsername
-        voterUsername
-        hasVoted
+        lightningTalkPollID
+        username
+        upvote
+        hasVotedBefore
         createdAt
         updatedAt
         owner
