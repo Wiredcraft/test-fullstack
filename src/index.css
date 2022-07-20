@@ -84,7 +84,7 @@ p {
 ===============================================================
 */
 .lightning-talk-card-container {
-  padding: 1rem;
+  padding: 1.5rem;
   border-width: 0.1rem;
   border-style: solid;
   border-color: black;
@@ -160,7 +160,6 @@ p {
 }
 
 .upvote-button-container {
-  display: inline-block;
   padding-left: 1.5rem;
 }
 
@@ -355,11 +354,11 @@ p {
   }
 
   .lightning-talk-card-container {
-    padding: 0.6rem 0.3rem 0.3rem 0.6rem;
+    padding: 0.6rem 0.6rem 2rem 0.6rem;
   }
 
   .lightning-talk-card-container > div {
-    flex-wrap: wrap;
+    display: block;
   }
 
   .input-field-container > div {
@@ -367,7 +366,11 @@ p {
   }
 
   .upvote-button-container {
+    padding-left: 0rem;
     padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .unstyled-button-container > div {

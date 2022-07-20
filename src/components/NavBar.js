@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { PrimaryButton } from 'components'
-import { getCurrentAuthenticatedUser, signOut, l } from 'utility'
+import { getCurrentAuthenticatedUser, signOut } from 'utility'
 import CONSTANTS from 'constants'
 
 export default function NavBar() {
   const [user, setUser] = useState(false)
-  const [shouldHideSignButton, setShouldHideSignButton] = useState(false)
+  const [shouldHideSignInButton, setShouldHideSignInButton] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const { ROUTES_NAMES } = CONSTANTS
@@ -17,8 +17,8 @@ export default function NavBar() {
       if (user) setUser(user)
 
       if (location.pathname === ROUTES_NAMES.HOME)
-        setShouldHideSignButton(false)
-      else setShouldHideSignButton(true)
+        setShouldHideSignInButton(false)
+      else setShouldHideSignInButton(true)
     }
 
     getUser()
@@ -47,7 +47,7 @@ export default function NavBar() {
         aria-hidden="true"
       />
       <div>
-        {!shouldHideSignButton && (
+        {!shouldHideSignInButton && (
           <img
             className="navbar-sign-in-button"
             src={

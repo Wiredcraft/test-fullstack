@@ -62,9 +62,11 @@ export default function UpvoteButton({
         />
         <p className="upvote-button-number">{numberOfVotes || 0}</p>
       </div>
-      <button className="upvote-button" type="button" onClick={() => vote()}>
-        {buttonText}
-      </button>
+      <div className="test">
+        <button className="upvote-button" type="button" onClick={() => vote()}>
+          {buttonText}
+        </button>
+      </div>
     </div>
   )
 }
