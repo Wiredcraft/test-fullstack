@@ -13,6 +13,6 @@ export default [
     label: 'Description',
     placeholder: 'Enter a short description...',
     type: 'textarea',
-    errorMessage: 'Enter description, between 10 and 150 characters',
+    errorMessage: 'Enter description, between 10 and 200 characters',
   },
 ]

@@ -37,4 +37,8 @@ export default {
     'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/logo-black.svg',
   RED_ARROW_ICON_URL:
     'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/icon-arrow-alt-up.svg',
+  SIGN_IN_ICON_URL:
+    'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/sign-in-icon.svg',
+  SIGN_OUT_OUT_ICON_URL:
+    'https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/sign-out-icon.svg',
 }

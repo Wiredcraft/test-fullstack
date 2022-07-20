@@ -28,9 +28,6 @@ export default async function updateNumberOfVotesCountAtomicallyResolver(
       await createVotingRecord(params)
     }
 
-    l(lightningTalkPollID, 'lightningTalkPollID')
-    l(undulation, 'undulation')
-
     const { data } = await API.graphql({
       query: mutations.updateNumberOfVotesCountAtomicallyResolver,
       variables: {
@@ -41,7 +38,12 @@ export default async function updateNumberOfVotesCountAtomicallyResolver(
 
     return data
   } catch (error) {
-    l(error, 'updateNumberOfVotesCountAtomicallyResolver', false, 'error')
+    l(
+      error?.errors[0]?.message,
+      'updateNumberOfVotesCountAtomicallyResolver',
+      false,
+      'error',
+    )
     return false
   }
 }

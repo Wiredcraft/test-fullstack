@@ -20,7 +20,7 @@ export default function PublishNewPoll() {
       [CONSTANTS?.INPUT_ID?.DESCRIPTION]: yup
         .string()
         .min(10)
-        .max(150)
+        .max(200)
         .required(),
     })
     .required()
