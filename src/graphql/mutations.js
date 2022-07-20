@@ -1,6 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const updateNumberOfVotesCountAtomicallyResolver = /* GraphQL */ `
+  mutation UpdateNumberOfVotesCountAtomicallyResolver($id: ID!) {
+    updateNumberOfVotesCountAtomicallyResolver(id: $id)
+  }
+`;
 export const createLightningTalksPoll = /* GraphQL */ `
   mutation CreateLightningTalksPoll(
     $input: CreateLightningTalksPollInput!

@@ -19,3 +19,8 @@ type LightningTalksPoll
   username: String!
   numberOfVotes: Int! @default(value: "0")
 }
+
+type Mutation {
+  updateNumberOfVotesCountAtomicallyResolver(id: ID!): String
+    @function(name: "updateNumberOfVotesCountAtomicallyResolver-${env}")
+}

@@ -38,7 +38,11 @@ export default function Home() {
    * - Update the count of vote atomically on the backend
    * - Fetch the new list with getLightningTalksPolls()
    */
-  function submitNewVote(id) {}
+  async function submitNewVote(id) {
+    l(id, 'id updateNumberOfVotesCountAtomicallyResolver')
+    const response = await api.updateNumberOfVotesCountAtomicallyResolver(id)
+    l(response, 'response updateNumberOfVotesCountAtomicallyResolver')
+  }
 
   function renderLightningTalksPollsList() {
     return data.map((item) => (

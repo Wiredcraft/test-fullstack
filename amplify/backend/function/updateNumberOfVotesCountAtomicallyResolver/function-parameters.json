@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "auth": {
+      "LTPAuth": [
+        "read"
+      ]
+    },
+    "api": {
+      "LightningTalkGraphQLAPI": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "secretNames": [
+    "apikey"
+  ]
+}
