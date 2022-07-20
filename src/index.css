@@ -208,9 +208,16 @@ p {
   float: right;
 }
 
-.sign-out-button {
-  position: absolute;
+/* .sign-out-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
+.sign-out-button-container > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+} */
 
 .loader {
   border: 5px solid #f3f3f3;
@@ -347,17 +354,11 @@ p {
   }
 
   .upvote-button-container {
-    width: 100%;
     padding-top: 1.5rem;
-    padding-left: 0rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 
   .unstyled-button-container > div {
-    width: 95%;
+    width: 100%;
   }
 
   .secondary-paragraph {
@@ -366,5 +367,13 @@ p {
 
   .footer-container {
     margin-left: calc(var(--small-screen-horizontal-padding) * -1);
+  }
+
+  .sign-out-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    float: none;
   }
 }

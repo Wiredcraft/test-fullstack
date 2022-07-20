@@ -28,7 +28,9 @@ export default function Footer() {
     <div className="footer-container">
       <div>
         {user && (
-          <UnstyledButton text="Sign out" onClick={() => handleSignOut()} />
+          <div className="sign-out-button-container">
+            <UnstyledButton text="Sign out" onClick={() => handleSignOut()} />
+          </div>
         )}
 
         <Spacing space="md" />
