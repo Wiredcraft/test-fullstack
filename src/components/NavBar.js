@@ -25,7 +25,10 @@ export default function NavBar() {
   }
 
   async function handleSignIn() {
-    if (user) await signOut()
+    if (user) {
+      await signOut()
+      setUser(false)
+    }
     navigate(ROUTES_NAMES?.SIGN_IN)
   }
 
