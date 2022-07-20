@@ -14,7 +14,7 @@
   --paragraph-font-size: 1.15rem;
   --secondary-font-size: 1rem;
   --border-width: 0.15rem;
-  --height-of-navbar: 7rem;
+  --height-of-navbar: 5rem;
 }
 
 /* 
@@ -136,7 +136,7 @@ p {
 }
 
 .primary-button {
-  width: 15rem;
+  width: 13rem;
   height: var(--height-of-navbar);
   border-width: var(--border-width);
   border-style: solid;
@@ -206,6 +206,10 @@ p {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   float: right;
+}
+
+.sign-out-button {
+  position: absolute;
 }
 
 .loader {
