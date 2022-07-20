@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import * as api from 'api'
-import { l } from 'utility'
-import { EmptyListView, LightningTalkCard } from 'components'
 import { isEmpty } from 'lodash'
+import { useNavigate } from 'react-router-dom'
+import * as api from 'api'
+import { EmptyListView, LightningTalkCard } from 'components'
+import { getCurrentAuthenticatedUser } from 'utility'
+import CONSTANTS from 'constants'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     getLightningTalksPolls()
@@ -16,8 +19,6 @@ export default function Home() {
     try {
       setIsLoading(true)
       const response = await api.listSortedLightningTalks()
-
-      l(response, 'response')
 
       if (response === false) throw new Error('API Error')
 
@@ -29,8 +30,14 @@ export default function Home() {
   }
 
   async function submitNewVote(id) {
-    await api.updateNumberOfVotesCountAtomicallyResolver(id)
-    getLightningTalksPolls()
+    const user = await getCurrentAuthenticatedUser()
+
+    if (user) {
+      await api.updateNumberOfVotesCountAtomicallyResolver(id)
+      getLightningTalksPolls()
+    } else {
+      navigate(CONSTANTS?.ROUTES_NAMES?.SIGN_IN)
+    }
   }
 
   function renderLightningTalksPollsList() {
