@@ -46,3 +46,45 @@ export const onDeleteLightningTalksPoll = /* GraphQL */ `
     }
   }
 `;
+export const onCreateVotingRecord = /* GraphQL */ `
+  subscription OnCreateVotingRecord($owner: String) {
+    onCreateVotingRecord(owner: $owner) {
+      id
+      lightningTalksPollID
+      creatorUsername
+      voterUsername
+      hasVoted
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateVotingRecord = /* GraphQL */ `
+  subscription OnUpdateVotingRecord($owner: String) {
+    onUpdateVotingRecord(owner: $owner) {
+      id
+      lightningTalksPollID
+      creatorUsername
+      voterUsername
+      hasVoted
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteVotingRecord = /* GraphQL */ `
+  subscription OnDeleteVotingRecord($owner: String) {
+    onDeleteVotingRecord(owner: $owner) {
+      id
+      lightningTalksPollID
+      creatorUsername
+      voterUsername
+      hasVoted
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;

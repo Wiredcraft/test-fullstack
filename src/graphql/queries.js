@@ -74,3 +74,38 @@ export const getLightningTalksByType = /* GraphQL */ `
     }
   }
 `;
+export const getVotingRecord = /* GraphQL */ `
+  query GetVotingRecord($id: ID!) {
+    getVotingRecord(id: $id) {
+      id
+      lightningTalksPollID
+      creatorUsername
+      voterUsername
+      hasVoted
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listVotingRecords = /* GraphQL */ `
+  query ListVotingRecords(
+    $filter: ModelVotingRecordFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listVotingRecords(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        lightningTalksPollID
+        creatorUsername
+        voterUsername
+        hasVoted
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;

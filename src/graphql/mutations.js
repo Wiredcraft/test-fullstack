@@ -60,3 +60,54 @@ export const deleteLightningTalksPoll = /* GraphQL */ `
     }
   }
 `;
+export const createVotingRecord = /* GraphQL */ `
+  mutation CreateVotingRecord(
+    $input: CreateVotingRecordInput!
+    $condition: ModelVotingRecordConditionInput
+  ) {
+    createVotingRecord(input: $input, condition: $condition) {
+      id
+      lightningTalksPollID
+      creatorUsername
+      voterUsername
+      hasVoted
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateVotingRecord = /* GraphQL */ `
+  mutation UpdateVotingRecord(
+    $input: UpdateVotingRecordInput!
+    $condition: ModelVotingRecordConditionInput
+  ) {
+    updateVotingRecord(input: $input, condition: $condition) {
+      id
+      lightningTalksPollID
+      creatorUsername
+      voterUsername
+      hasVoted
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteVotingRecord = /* GraphQL */ `
+  mutation DeleteVotingRecord(
+    $input: DeleteVotingRecordInput!
+    $condition: ModelVotingRecordConditionInput
+  ) {
+    deleteVotingRecord(input: $input, condition: $condition) {
+      id
+      lightningTalksPollID
+      creatorUsername
+      voterUsername
+      hasVoted
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
