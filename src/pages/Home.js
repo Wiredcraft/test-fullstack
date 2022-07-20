@@ -25,23 +25,12 @@ export default function Home() {
       setIsLoading(false)
     } catch (error) {
       setIsLoading(false)
-      // eslint-disable-next-line no-alert
-      // alert(
-      //   'Fetching list of talks error. Please refresh the page and try again.',
-      // )
     }
   }
 
-  /**
-   * TODO:
-   * - Add a loading indicator
-   * - Update the count of vote atomically on the backend
-   * - Fetch the new list with getLightningTalksPolls()
-   */
   async function submitNewVote(id) {
-    l(id, 'id updateNumberOfVotesCountAtomicallyResolver')
-    const response = await api.updateNumberOfVotesCountAtomicallyResolver(id)
-    l(response, 'response updateNumberOfVotesCountAtomicallyResolver')
+    await api.updateNumberOfVotesCountAtomicallyResolver(id)
+    getLightningTalksPolls()
   }
 
   function renderLightningTalksPollsList() {
