@@ -4,7 +4,8 @@ import { Loader } from 'components'
 export default function PrimaryButton({ text, onClick, isLoading }) {
   return (
     <button type="button" className="primary-button" onClick={onClick}>
-      {isLoading ? <Loader /> : text}
+      {/* {isLoading ? <Loader /> : text} */}
+      {text}
     </button>
   )
 }

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "LightningTalkGraphQLAPI",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/master/software-projects/job-interview/wiredcraft/test-fullstack/amplify/backend/api/LightningTalkGraphQLAPI/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-07-20T03:28:16.232Z",
+      "keyDescription": "lightning-talk-api-key"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authLTPAuth"
+      },
+      {
+        "mode": "AWS_IAM"
+      }
+    ]
+  }
+}

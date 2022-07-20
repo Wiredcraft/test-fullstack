@@ -6,11 +6,14 @@ export default async function createLightningTalksPoll(post) {
   const { username } = await getCurrentAuthenticatedUser()
 
   l(username)
+  l(post)
 
   try {
     const { data } = await API.graphql({
       query: mutations.createLightningTalksPoll,
-      variables: { input: { username, numberOfVotes: '0', ...post } },
+      variables: {
+        input: { username, type: 'Poll', numberOfVotes: 0, ...post },
+      },
     })
 
     return { ...data?.createLightningTalksPoll }

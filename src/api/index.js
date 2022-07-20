@@ -6,4 +6,6 @@ export * as queries from '../graphql/queries'
 export * as subscriptions from '../graphql/subscriptions'
 
 export createLightningTalksPoll from './createLightningTalksPoll'
+export updateLightningTalksPoll from './updateLightningTalksPoll'
 export listLightningTalksPolls from './listLightningTalksPolls'
+export listSortedLightningTalks from './listSortedLightningTalks'

@@ -6,9 +6,16 @@ input AMPLIFY {
 type LightningTalksPoll
   @model
   @auth(rules: [{ allow: public }, { allow: private }, { allow: owner }]) {
-  id: ID! @primaryKey(sortKeyFields: ["numberOfVotes"])
+  id: ID!
+  type: String!
+    @default(value: "Poll")
+    @index(
+      name: "lightningTalksByType"
+      queryField: "getLightningTalksByType"
+      sortKeyFields: ["numberOfVotes"]
+    )
   title: String!
   description: String!
   username: String!
-  numberOfVotes: String! @default(value: "0")
+  numberOfVotes: Int! @default(value: "0")
 }

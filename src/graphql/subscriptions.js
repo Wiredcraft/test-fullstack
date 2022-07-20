@@ -5,6 +5,7 @@ export const onCreateLightningTalksPoll = /* GraphQL */ `
   subscription OnCreateLightningTalksPoll($owner: String) {
     onCreateLightningTalksPoll(owner: $owner) {
       id
+      type
       title
       description
       username
@@ -19,6 +20,7 @@ export const onUpdateLightningTalksPoll = /* GraphQL */ `
   subscription OnUpdateLightningTalksPoll($owner: String) {
     onUpdateLightningTalksPoll(owner: $owner) {
       id
+      type
       title
       description
       username
@@ -33,6 +35,7 @@ export const onDeleteLightningTalksPoll = /* GraphQL */ `
   subscription OnDeleteLightningTalksPoll($owner: String) {
     onDeleteLightningTalksPoll(owner: $owner) {
       id
+      type
       title
       description
       username

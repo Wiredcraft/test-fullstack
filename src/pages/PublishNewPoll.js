@@ -10,7 +10,7 @@ import { l } from 'utility'
 import CONSTANTS from 'constants'
 
 export default function PublishNewPoll() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
 
   const schema = yup

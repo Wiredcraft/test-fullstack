@@ -8,6 +8,7 @@ export const createLightningTalksPoll = /* GraphQL */ `
   ) {
     createLightningTalksPoll(input: $input, condition: $condition) {
       id
+      type
       title
       description
       username
@@ -25,6 +26,7 @@ export const updateLightningTalksPoll = /* GraphQL */ `
   ) {
     updateLightningTalksPoll(input: $input, condition: $condition) {
       id
+      type
       title
       description
       username
@@ -42,6 +44,7 @@ export const deleteLightningTalksPoll = /* GraphQL */ `
   ) {
     deleteLightningTalksPoll(input: $input, condition: $condition) {
       id
+      type
       title
       description
       username

@@ -22,7 +22,7 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "api": {
-        "lightningtalkpolling": {
+        "LightningTalkGraphQLAPI": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"

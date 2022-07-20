@@ -15,7 +15,7 @@ export default function Home() {
   async function getLightningTalksPolls() {
     try {
       setIsLoading(true)
-      const response = await api.listLightningTalksPolls()
+      const response = await api.listSortedLightningTalks()
 
       l(response, 'response')
 
@@ -26,9 +26,9 @@ export default function Home() {
     } catch (error) {
       setIsLoading(false)
       // eslint-disable-next-line no-alert
-      alert(
-        'Fetching list of talks error. Please refresh the page and try again.',
-      )
+      // alert(
+      //   'Fetching list of talks error. Please refresh the page and try again.',
+      // )
     }
   }
 
