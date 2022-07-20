@@ -6,7 +6,7 @@ import CONSTANTS from 'constants'
 
 export default function NavBar() {
   const [user, setUser] = useState(false)
-  const [shouldHideSignInButton, setShouldHideSignInButton] = useState(false)
+  const [shouldNavbarButtons, setShouldHideSignInButton] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const { ROUTES_NAMES } = CONSTANTS
@@ -47,7 +47,7 @@ export default function NavBar() {
         aria-hidden="true"
       />
       <div>
-        {!shouldHideSignInButton && (
+        {!shouldNavbarButtons && (
           <img
             className="navbar-sign-in-button"
             src={
@@ -61,10 +61,12 @@ export default function NavBar() {
           />
         )}
 
-        <PrimaryButton
-          text="Publish"
-          onClick={() => navigateToPublishNewPollPage()}
-        />
+        {!shouldNavbarButtons && (
+          <PrimaryButton
+            text="Publish"
+            onClick={() => navigateToPublishNewPollPage()}
+          />
+        )}
       </div>
     </div>
   )
