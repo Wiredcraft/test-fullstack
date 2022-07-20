@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { PrimaryButton } from 'components'
-import { getCurrentAuthenticatedUser, signOut } from 'utility'
+import { getCurrentAuthenticatedUser, signOut, l } from 'utility'
 import CONSTANTS from 'constants'
 
 export default function NavBar() {
   const [user, setUser] = useState(false)
+  const [shouldHideSignButton, setShouldHideSignButton] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const { ROUTES_NAMES } = CONSTANTS
@@ -14,6 +15,10 @@ export default function NavBar() {
     async function getUser() {
       const user = await getCurrentAuthenticatedUser()
       if (user) setUser(user)
+
+      if (location.pathname === ROUTES_NAMES.HOME)
+        setShouldHideSignButton(false)
+      else setShouldHideSignButton(true)
     }
 
     getUser()
@@ -41,19 +46,20 @@ export default function NavBar() {
         onClick={() => navigate(ROUTES_NAMES?.HOME)}
         aria-hidden="true"
       />
-
       <div>
-        <img
-          className="navbar-sign-in-button"
-          src={
-            user
-              ? CONSTANTS?.SIGN_OUT_OUT_ICON_URL
-              : CONSTANTS?.SIGN_IN_ICON_URL
-          }
-          alt="Sign In"
-          onClick={() => handleSignIn()}
-          aria-hidden="true"
-        />
+        {!shouldHideSignButton && (
+          <img
+            className="navbar-sign-in-button"
+            src={
+              user
+                ? CONSTANTS?.SIGN_OUT_OUT_ICON_URL
+                : CONSTANTS?.SIGN_IN_ICON_URL
+            }
+            alt="Sign In"
+            onClick={() => handleSignIn()}
+            aria-hidden="true"
+          />
+        )}
 
         <PrimaryButton
           text="Publish"

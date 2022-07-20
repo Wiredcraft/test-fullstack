@@ -346,7 +346,7 @@ p {
   .primary-button {
     width: 8rem;
     height: var(--height-of-navbar-small-screen);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .navbar-sign-in-button {
