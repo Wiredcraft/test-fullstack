@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
-export default function PageTitle({ title }) {
+function PageTitle({ title }) {
   return (
     <div className="page-title-container">
       <div>
@@ -9,3 +10,9 @@ export default function PageTitle({ title }) {
     </div>
   )
 }
+
+PageTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+}
+
+export default PageTitle

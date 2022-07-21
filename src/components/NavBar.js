@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { PrimaryButton } from 'components'
 import { getCurrentAuthenticatedUser, signOut } from 'utility'
+import { useLocation, useNavigate } from 'react-router-dom'
+
 import CONSTANTS from 'constants'
+import { PrimaryButton } from 'components'
 
 export default function NavBar() {
   const [user, setUser] = useState(false)

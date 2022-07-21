@@ -1,7 +1,9 @@
-import React from 'react'
-import { Paragraph, ErrorText, Spacing } from 'components'
+import { ErrorText, Paragraph, Spacing } from 'components'
 
-export default function InputField({
+import PropTypes from 'prop-types'
+import React from 'react'
+
+function InputField({
   id,
   type,
   label,
@@ -30,3 +32,16 @@ export default function InputField({
     </div>
   )
 }
+
+InputField.propTypes = {
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  errors: PropTypes.object.isRequired,
+  errorMessage: PropTypes.string.isRequired,
+  register: PropTypes.object.isRequired,
+  disabled: PropTypes.bool.isRequired,
+}
+
+export default InputField

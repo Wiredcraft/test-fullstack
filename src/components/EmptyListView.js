@@ -1,5 +1,5 @@
-import React from 'react'
 import { Paragraph } from 'components'
+import React from 'react'
 
 export default function EmptyListView() {
   const emptyListMessage =

@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import * as api from 'api'
-import { PrimaryButton, InputField } from 'components'
-import { publishNewPollConfig } from 'config'
-import { l } from 'utility'
+import * as yup from 'yup'
+
+import { InputField, PrimaryButton } from 'components'
+import React, { useState } from 'react'
+
 import CONSTANTS from 'constants'
+import { publishNewPollConfig } from 'config'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 export default function PublishNewPoll() {
   const [isLoading, setIsLoading] = useState(false)
@@ -46,7 +47,7 @@ export default function PublishNewPoll() {
     } catch (error) {
       setIsLoading(false)
       // eslint-disable-next-line no-alert
-      // alert('Create Post Error. Refresh the page and try again.')
+      alert('Create Post Error. Refresh the page and try again.')
     }
   }
 

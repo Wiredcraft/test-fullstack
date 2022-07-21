@@ -1,6 +1,7 @@
-import React from 'react'
 import { SecondaryParagraph, Spacing } from 'components'
+
 import CONSTANTS from 'constants'
+import React from 'react'
 
 export default function Footer() {
   return (

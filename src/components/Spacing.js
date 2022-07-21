@@ -1,7 +1,8 @@
-import React from 'react'
 import CONSTANTS from 'constants'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-export default function Spacing({ space }) {
+function Spacing({ space }) {
   function getSpace() {
     switch (space) {
       case 'sm':
@@ -24,3 +25,9 @@ export default function Spacing({ space }) {
     />
   )
 }
+
+Spacing.propTypes = {
+  space: PropTypes.string,
+}
+
+export default Spacing

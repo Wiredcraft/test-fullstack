@@ -1,5 +1,12 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
-export default function Paragraph({ text }) {
+function Paragraph({ text }) {
   return <p className="paragraph">{text}</p>
 }
+
+Paragraph.propTypes = {
+  text: PropTypes.string.isRequired,
+}
+
+export default Paragraph

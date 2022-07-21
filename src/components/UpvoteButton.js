@@ -1,16 +1,15 @@
+import * as api from 'api'
+
 import React, { useEffect, useState } from 'react'
+
+import CONSTANTS from 'constants'
+import { Loader } from 'components'
+import PropTypes from 'prop-types'
+import { getCurrentAuthenticatedUser } from 'utility'
 import { isEmpty } from 'lodash'
 import { useNavigate } from 'react-router-dom'
-import * as api from 'api'
-import { Loader } from 'components'
-import { getCurrentAuthenticatedUser, l } from 'utility'
-import CONSTANTS from 'constants'
 
-export default function UpvoteButton({
-  lightningTalkPollID,
-  onClick,
-  numberOfVotes,
-}) {
+function UpvoteButton({ lightningTalkPollID, numberOfVotes, onClick }) {
   const [isLoading, setIsLoading] = useState(false)
   const [buttonText, setButtonText] = useState('Upvote')
   const navigate = useNavigate()
@@ -72,3 +71,11 @@ export default function UpvoteButton({
     </div>
   )
 }
+
+UpvoteButton.propTypes = {
+  lightningTalkPollID: PropTypes.string.isRequired,
+  numberOfVotes: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+}
+
+export default UpvoteButton

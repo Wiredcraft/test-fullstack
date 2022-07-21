@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { PrimaryButton, InputField, UnstyledButton } from 'components'
-import { signInInputsConfig } from 'config'
-import { l, signIn } from 'utility'
+
+import { InputField, PrimaryButton, UnstyledButton } from 'components'
+import React, { useState } from 'react'
+
 import CONSTANTS from 'constants'
+import { signIn } from 'utility'
+import { signInInputsConfig } from 'config'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 export default function SignIn() {
   const [isLoading, setIsLoading] = useState(false)

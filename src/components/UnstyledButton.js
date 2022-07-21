@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
-export default function UnstyledButton({ text, onClick }) {
+function UnstyledButton({ text, onClick }) {
   return (
     <div className="unstyled-button-container">
       <div>
@@ -11,3 +12,10 @@ export default function UnstyledButton({ text, onClick }) {
     </div>
   )
 }
+
+UnstyledButton.propTypes = {
+  text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+}
+
+export default UnstyledButton

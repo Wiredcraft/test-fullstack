@@ -1,22 +1,24 @@
-import React from 'react'
-import { formatDistanceToNow } from 'date-fns'
 import {
-  Title,
   Paragraph,
   SecondaryParagraph,
-  UpvoteButton,
   Spacing,
+  Title,
+  UpvoteButton,
 } from 'components'
 
-export default function LightningTalkCard({
+import PropTypes from 'prop-types'
+import React from 'react'
+import { formatDistanceToNow } from 'date-fns'
+
+function LightningTalkCard({
   lightningTalkPollID,
   title,
   description,
   numberOfVotes,
   speaker,
   date,
-  onVote,
   isLoading,
+  onVote,
 }) {
   return (
     <div className="lightning-talk-card-container">
@@ -44,3 +46,16 @@ export default function LightningTalkCard({
     </div>
   )
 }
+
+LightningTalkCard.propTypes = {
+  lightningTalkPollID: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  numberOfVotes: PropTypes.number.isRequired,
+  speaker: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  onVote: PropTypes.func.isRequired,
+}
+
+export default LightningTalkCard

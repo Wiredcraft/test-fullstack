@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { isEmpty } from 'lodash'
 import * as api from 'api'
+
 import { EmptyListView, LightningTalkCard } from 'components'
+import React, { useEffect, useState } from 'react'
+
+import { isEmpty } from 'lodash'
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
