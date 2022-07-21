@@ -1,5 +1,6 @@
+import { getCurrentAuthenticatedUser, l } from 'utility'
+
 import { API } from 'aws-amplify'
-import { l, getCurrentAuthenticatedUser } from 'utility'
 import { mutations } from 'api'
 
 export default async function createLightningTalksPoll(post) {

@@ -1,12 +1,13 @@
+import {
+  checkIfUserHasVotedBefore,
+  createVotingRecord,
+  mutations,
+  updateVotingRecord,
+} from 'api'
+import { getCurrentAuthenticatedUser, l } from 'utility'
+
 import { API } from 'aws-amplify'
 import { isEmpty } from 'lodash'
-import { getCurrentAuthenticatedUser, l } from 'utility'
-import {
-  mutations,
-  checkIfUserHasVotedBefore,
-  updateVotingRecord,
-  createVotingRecord,
-} from 'api'
 
 export default async function updateNumberOfVotesCountAtomicallyResolver(
   lightningTalkPollID,

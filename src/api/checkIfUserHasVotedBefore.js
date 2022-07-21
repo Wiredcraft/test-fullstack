@@ -1,6 +1,7 @@
-import { queries } from 'api'
-import { API } from 'aws-amplify'
 import { getCurrentAuthenticatedUser, l } from 'utility'
+
+import { API } from 'aws-amplify'
+import { queries } from 'api'
 
 export default async function checkIfUserHasVotedBefore(lightningTalkPollID) {
   const { username } = await getCurrentAuthenticatedUser()

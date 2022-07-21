@@ -1,4 +1,4 @@
-# Fullstack
+# Lightning Talks Polling Web App
 
 ### Context
 
