@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { NavBar, PageTitle, Footer, Spacing } from 'components'
+import { Footer, NavBar, PageTitle, Spacing } from 'components'
 import { Outlet, useLocation } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+
+import PropTypes from 'prop-types'
 import { getPageTitle } from 'utility'
 
 export default function Template() {
