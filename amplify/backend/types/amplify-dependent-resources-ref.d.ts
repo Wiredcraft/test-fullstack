@@ -14,12 +14,6 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "graphQlLambdaAuthorizerb50bfa69": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
         "updateNumberOfVotesCountAtomicallyResolver": {
             "Name": "string",
             "Arn": "string",

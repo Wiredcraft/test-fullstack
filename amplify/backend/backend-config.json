@@ -26,11 +26,6 @@
     }
   },
   "function": {
-    "graphQlLambdaAuthorizerb50bfa69": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "updateNumberOfVotesCountAtomicallyResolver": {
       "build": true,
       "providerPlugin": "awscloudformation",
