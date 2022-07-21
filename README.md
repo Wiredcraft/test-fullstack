@@ -1,42 +1,151 @@
 # Lightning Talks Polling Web App
 
-### Context
+Good day Wiredcraft team, this is the test result for the fullstack JS developer position.
 
-Build a [Hacker News](https://news.ycombinator.com/) like App but for lightning talk polling.
+## Test the website online
 
-A lightning talk is a very short presentation lasting only a few minutes, given at a conference or a meetup etc.
+The website is hosted on AWS servers. Please use the link below to test it:
 
-Polling is often needed for the organizers to understand what is more interesting, or for people to decide what should go on stage.
+```
+https://master.d2ykot21kiyxwq.amplifyapp.com/
+```
 
-### Requirements
+Please use the credentials below for quick testing. However, **you are encouraged to create a new account** to test the auth flow functionality.
 
-#### User Stories
+```
+username: bilal
+password: 12345678
+```
 
-1. When a user opens the page, he/she should see a list of lighting talks submitted by the users, ordered by rating \(poll amount\).
-2. If there's no lighting talk yet, there should be some description and some text to encourage the users to submit their own talks.
-3. For each of the talks in the list, the user could vote it by clicking a button.
-4. After voting it, the user should see an updated version of the list, eg. with new talks and new sorting order etc.
-5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
-6. After submitting a topic, the user should see an updated version of the list.
+## Test the website on a local machine
 
-#### Functionality
+Install dependencies
 
-* The frontend part should be a single page application rendered in the frontend and load data from an API \(not rendered from backend\).
-* If RESTful APIs, they should follow typical RESTful API design pattern.
-* Provide proper unit test.
+```
+yarn install
+```
 
-#### Tech stack
+Run the website
 
-* Use React for the frontend.
-* Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, but try to use some JS libs such as `react-router`, and packing tools such as Webpack or Parcel etc.
-* Prefer TypeScript related backend frameworks. Use any DB for storing the data, or if you prefer, in-memory DBs could just work.
+```
+yarn start
+```
 
-#### Advanced requirements
+Open in your browser
 
-_These are used for some further challenges. You can safely skip them if you are not asked to do any, but feel free to try out._
+```
+http://localhost:3000/
+```
 
-* Make it short and expressive, don't spend too much time just give it your best shot in a few hours.
-* Make it aesthetically pleasant (not complex).
-* Prototype / explain in text for: form validation, error handling strategy, auth, logging strategies.
-* Really understand your tools, justify your choice of tech.
-* Professional workflow.
+## Tech stack
+
+This is a macro overview of the tech stack. In the following sections, we will discuss more details at the micro level.
+
+- [React](https://reactjs.org/)
+- [AWS](https://aws.amazon.com/)
+- [Node.js](https://nodejs.dev/)
+
+## Software architecture overview
+
+I used serverless architecture. Below is an overview of the software architecture.
+
+![Software architecture overview](https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/software-architecture-overview.jpg)
+
+Here you can find more details about each AWS service I used in this project.
+
+- [AWS Amplify](https://docs.amplify.aws/)
+- [AWS S3](https://aws.amazon.com/s3/)
+- [AWS Cognito](https://aws.amazon.com/cognito/)
+- [AWS Lambda](https://aws.amazon.com/lambda/)
+- [AWS AppSync](https://aws.amazon.com/appsync/)
+- [AWS DynamoDB](https://aws.amazon.com/dynamodb/)
+
+## Frontend setup
+
+The frontend was manually configured, and no scaffolding tool was used. Some of the essential libraries are:
+
+- [react](https://reactjs.org/)
+- [aws-amplify](https://docs.amplify.aws/)
+- [react-router-dom](https://reactrouter.com/)
+- [babel](https://babeljs.io/)
+- [webpack](https://webpack.js.org/)
+- [react-hook-form](https://react-hook-form.com/)
+- [yup](https://github.com/jquense/yup)
+- [date-fns](https://date-fns.org/)
+
+## Backend setup
+
+I used serverless architecture to set up the backend. The configuration and management of the backend are done by using Amplify CLI. The business logic, when needed, is written in Node.js.
+
+## Database and schema
+
+Tow tables were used, `LightningTalksPoll` to store aligning talks polls, and `VotingRecord` to keep users' voting records. This is the database and schema I used for this project. It is a GraphQL schema.
+
+```
+  id: ID!
+  type: String!
+    @default(value: "Poll")
+    @index(
+      name: "lightningTalksByType"
+      queryField: "getLightningTalksByType"
+      sortKeyFields: ["numberOfVotes"]
+    )
+  title: String!
+  description: String!
+  username: String!
+  numberOfVotes: Int! @default(value: "0")
+```
+
+```
+  id: ID!
+  lightningTalkPollID: ID!
+  username: ID!
+  upvote: Boolean @default(value: "true")
+  hasVotedBefore: Boolean @default(value: "true")
+```
+
+## CI/CD deployment
+
+AWS Amplify provides an option to deploy the website to AWS S3 storage (website). I configured AWS Amplify CLI to deploy new updates online every time I push to the GitHub repository.
+
+## Functions implementation
+
+### Auth flow
+
+I used AWS Cognito to implement user authentication. The following functions are used in the auth flow:
+
+- Sign in
+- Sign up
+- Confirm sign up
+
+Each form comes with a validation and error messages schema, using `react-hook-form` and `yup` libraries.
+
+### Atomic update of votes counts explained
+
+One important aspect of the app is how to handle concurrent voting. For example, what if 1000 users submitted their votes at the same time. All the votes must be counted.
+
+For that, I used an atomic update on the backend. For more details, please refer to:
+
+```
+cd ./amplify/backend/function/updateNumberOfVotesCountAtomicallyResolver/src/index.js
+```
+
+or the following link:
+
+[DynamoDB Atomic update](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithItems.html)
+
+[AWS Amplify Resolver](https://docs.amplify.aws/cli-legacy/graphql-transformer/resolvers/)
+
+## Sorting polls by number of votes explained
+
+AWS AppSync provides a way to return sorted items. The sorting is done on the the backend. It save us time to sort the items on the frontend.
+
+## Code writing style
+
+I used ESLint and Prettier to enforce code writing style. Plus `imports` sorting tool. The package I used for code styling is called @imaginary-cloud/prettier-config. It is pre-configured and ready to use as is.
+
+# Final notes
+
+I didn't have a chance to work on unit testing, also I don't have much experience with unit testing, to be honest. So I decided to focus on what I know best. For the best optimal outcome.
+
+Thank you for the opportunity, I look forward to your feedback.
