@@ -274,7 +274,7 @@ p {
 .error-text {
   font-size: var(--secondary-paragraph-font-size);
   color: var(--tertiary-color);
-  height: 1.5rem; /* To avoid layout shift  */
+  min-height: 1.5rem; /* To avoid layout shift  */
 }
 
 .error-text::first-letter {
