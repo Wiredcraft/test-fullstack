@@ -2,6 +2,25 @@
 
 Good day Wiredcraft team, this is the test result for the fullstack JS developer position.
 
+# Table of Content
+
+1. [Test the website online](#test-the-website-online)
+2. [Test the website on a local machine](#test-the-website-on-a-local-machine)
+3. [Tech stack](#tech-stack)
+4. [Software architecture overview](#software-architecture-overview)
+5. [Frontend setup](#frontend-setup)
+6. [Backend setup](#backend-setup)
+7. [Database and schema](#database-and-schema)
+8. [Deployment](#deployment)
+9. [Functions implementation](#functions-implementation)
+   - [Auth flow](#auth-flow)
+   - [Atomic update of votes counts explained](#atomic-update-of-votes-counts-explained)
+   - [Sorting polls by number of votes explained](#sorting-polls-by-number-of-votes-explained)
+10. [Code writing style](#code-writing-style)
+11. [Final notes](#final-notes)
+
+___
+
 ## Test the website online
 
 The website is hosted on AWS servers. Please use the link below to test it:
@@ -104,9 +123,9 @@ Tow tables were used, `LightningTalksPoll` to store aligning talks polls, and `V
   hasVotedBefore: Boolean @default(value: "true")
 ```
 
-## CI/CD deployment
+## Deployment
 
-AWS Amplify provides an option to deploy the website to AWS S3 storage (website). I configured AWS Amplify CLI to deploy new updates online every time I push to the GitHub repository.
+AWS Amplify provides a CI/CD option to deploy the website to AWS S3 storage (website). I configured AWS Amplify CLI to deploy new updates online every time I push to the GitHub repository.
 
 ## Functions implementation
 
@@ -142,7 +161,7 @@ AWS AppSync provides a way to return sorted items. The sorting is done on the th
 
 ## Code writing style
 
-I used ESLint and Prettier to enforce code writing style. Plus `imports` sorting tool. The package I used for code styling is called @imaginary-cloud/prettier-config. It is pre-configured and ready to use as is.
+I used ESLint and Prettier to enforce code writing style. Plus `imports` sorting tool. The package I used for code styling is called [@imaginary-cloud/prettier-config](https://www.npmjs.com/package/@imaginary-cloud/prettier-config). It is pre-configured and ready to use as is.
 
 # Final notes
 
