@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { isEmpty } from 'lodash'
 import { useNavigate } from 'react-router-dom'
 import * as api from 'api'
+import { Loader } from 'components'
 import { getCurrentAuthenticatedUser, l } from 'utility'
 import CONSTANTS from 'constants'
 
@@ -10,6 +11,7 @@ export default function UpvoteButton({
   onClick,
   numberOfVotes,
 }) {
+  const [isLoading, setIsLoading] = useState(false)
   const [buttonText, setButtonText] = useState('Upvote')
   const navigate = useNavigate()
 
@@ -35,6 +37,7 @@ export default function UpvoteButton({
   }
 
   async function vote() {
+    setIsLoading(true)
     const user = await getCurrentAuthenticatedUser()
 
     if (!user) {
@@ -49,6 +52,7 @@ export default function UpvoteButton({
       if (buttonText === 'Upvote') setButtonText('Unvote')
       else setButtonText('Upvote')
     }
+    setIsLoading(false)
   }
 
   return (
@@ -63,7 +67,7 @@ export default function UpvoteButton({
         <p className="upvote-button-number">{numberOfVotes || 0}</p>
       </div>
       <button className="upvote-button" type="button" onClick={() => vote()}>
-        {buttonText}
+        {isLoading ? <Loader /> : buttonText}
       </button>
     </div>
   )

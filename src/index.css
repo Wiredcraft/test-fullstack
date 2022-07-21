@@ -220,24 +220,6 @@ p {
     brightness(96%) contrast(88%);
 }
 
-.loader {
-  border: 5px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 5px solid var(--primary-color);
-  width: 30px;
-  height: 30px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 /* 
 ===============================================================
  Text styles
@@ -297,6 +279,39 @@ p {
 
 .error-text::first-letter {
   text-transform: uppercase;
+}
+
+/* 
+===============================================================
+ Loader styles
+===============================================================
+*/
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0.2rem solid var(--primary-color);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  text-align: center;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* 

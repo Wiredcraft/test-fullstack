@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavBar, PageTitle, Footer } from 'components'
+import { NavBar, PageTitle, Footer, Spacing } from 'components'
 import { Outlet, useLocation } from 'react-router-dom'
 import { getPageTitle } from 'utility'
 
@@ -18,6 +18,7 @@ export default function Template() {
       <NavBar />
       <PageTitle title={pageTitle} />
       <Outlet />
+      <Spacing space="lg" />
       <Footer />
     </div>
   )

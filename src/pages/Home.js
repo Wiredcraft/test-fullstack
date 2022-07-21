@@ -4,7 +4,7 @@ import * as api from 'api'
 import { EmptyListView, LightningTalkCard } from 'components'
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState([])
 
   useEffect(() => {
