@@ -58,15 +58,15 @@ http://localhost:3000/
 
 ## Tech stack
 
-This is a macro overview of the tech stack. In the following sections, we will discuss more details at the micro level.
+This is a macro overview of the tech stack. In the following sections, I will discuss more details at the micro level.
 
 - [React](https://reactjs.org/)
-- [AWS](https://aws.amazon.com/)
+- [AWS - serverless application](https://aws.amazon.com/serverless/)
 - [Node.js](https://nodejs.dev/)
 
 ## Software architecture overview
 
-I used serverless architecture. Below is an overview of the software architecture.
+I used **serverless architecture**. Below is an overview of the software architecture.
 
 ![Software architecture overview](https://bilal-cloud.s3.ap-northeast-1.amazonaws.com/assets/software-architecture-overview.jpg)
 
@@ -94,7 +94,7 @@ The frontend was manually configured, and no scaffolding tool was used. Some of 
 
 ## Backend setup
 
-I used serverless architecture to set up the backend. The configuration and management of the backend are done by using Amplify CLI. The business logic, when needed, is written in Node.js.
+I used **serverless architecture** to set up the backend. The configuration and management of the backend are done by using **Amplify CLI**. The business logic, when needed, is written in **Node.js**.
 
 ## Database and schema
 
