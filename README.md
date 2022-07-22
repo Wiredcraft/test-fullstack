@@ -98,7 +98,9 @@ I used serverless architecture to set up the backend. The configuration and mana
 
 ## Database and schema
 
-Tow tables were used, `LightningTalksPoll` to store aligning talks polls, and `VotingRecord` to keep users' voting records. This is the database and schema I used for this project. It is a GraphQL schema.
+Tow tables were used, `LightningTalksPoll` to store lightning talks polls posts, and `VotingRecord` to keep track of users' voting records. The field `numberOfVotes` is used by the GraphQL server to sort the result in descending order.  This is the database and schema I used in this project.
+
+`LightningTalksPoll` table schema:
 
 ```
   id: ID!
@@ -114,6 +116,8 @@ Tow tables were used, `LightningTalksPoll` to store aligning talks polls, and `V
   username: String!
   numberOfVotes: Int! @default(value: "0")
 ```
+
+`VotingRecord` table schema:
 
 ```
   id: ID!
