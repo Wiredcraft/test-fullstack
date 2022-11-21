@@ -1,0 +1,13 @@
+header.navi {
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 24px;
+    background-color: #13292b;
+    align-items: center;
+}
+
+header.navi span{
+    color: #fff;
+    font-size: 20px;
+}

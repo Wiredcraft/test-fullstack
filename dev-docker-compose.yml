@@ -1,0 +1,17 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb
+    container_name: 'lightning-talk-mariadb'
+    environment:
+      MARIADB_ROOT_PASSWORD: '123456'
+      MARIADB_DATABASE: 'lightning-talks'
+    ports:
+      - 3306:3306
+    restart: always
+  redis:
+    image: redis
+    container_name: 'lightning-talk-redis'
+    ports:
+      - 6379:6379
+    restart: always

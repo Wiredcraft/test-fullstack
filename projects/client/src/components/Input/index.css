@@ -1,0 +1,32 @@
+.input {
+    margin-bottom: 20px;
+}
+.input .hint {
+    color: #f44336;
+    margin-top: 8px;
+    display: block;
+    height: 16px;
+    min-width: 100px;
+    font-size: 12px;
+}
+.input label span {
+    color: #333;
+    font-size: 20px;
+    user-select: none;
+}
+
+.input label input{
+    display: block;
+    margin-top: 12px;
+    width: 200px;
+    border:1px solid #999;
+    height: 28px;
+}
+
+.input label textarea{
+    display: block;
+    margin-top: 12px;
+    width: 400px;
+    border:1px solid #999;
+    height: 200px;
+}
