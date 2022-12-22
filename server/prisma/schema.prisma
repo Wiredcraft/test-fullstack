@@ -9,3 +9,80 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id Int @id @default(autoincrement())
+
+  // audit logger
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  // for further requirements
+  // updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  // deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  // fields
+  username   String    @unique
+  password   String
+  loggedInAt DateTime? @map("logged_in_at") @db.Timestamptz
+
+  // relations
+  talks   Talk[]
+  votes   Vote[]
+  session Session[]
+
+  @@index([username])
+  @@map("users")
+}
+
+model Session {
+  id String @id @default(uuid())
+
+  // fields
+  valid Boolean @default(true)
+
+  // relations
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model Talk {
+  id Int @id @default(autoincrement())
+
+  // audit logger
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  // for further requirements
+  // updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz
+  // deletedAt DateTime? @map("deleted_at") @db.Timestamptz
+
+  // fields
+  title       String
+  description String
+  voted       Int
+
+  // relations
+  votes   Vote[]
+  ownerId Int    @map("owner_id")
+  owner   User   @relation(fields: [ownerId], references: [id])
+
+  @@map("talks")
+}
+
+model Vote {
+  id Int @id @default(autoincrement())
+
+  // audit logger
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  // fields
+  score Int
+
+  // Relations
+  talkId  Int
+  talk    Talk @relation(fields: [talkId], references: [id])
+  ownerId Int  @map("owner_id")
+  owner   User @relation(fields: [ownerId], references: [id])
+
+  @@map("votes")
+}
