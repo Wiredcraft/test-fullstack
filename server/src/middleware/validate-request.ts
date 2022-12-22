@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { AnyZodObject, ZodError } from 'zod';
 
-import { HTTPStatus } from '../errors/enums/http-status';
+import { ValidationError } from '../errors/validation-error';
 
 export const validateResource =
   (schema: AnyZodObject) => (req: Request, res: Response, next: NextFunction) => {
@@ -12,8 +12,9 @@ export const validateResource =
         params: req.params,
       });
       next();
-    } catch (e: unknown) {
-      console.log(e);
-      return res.status(HTTPStatus.BAD_REQUEST).send((e as ZodError).errors);
+    } catch (err: unknown) {
+      if (err instanceof ZodError) throw new ValidationError(err.errors);
+
+      throw err;
     }
   };
