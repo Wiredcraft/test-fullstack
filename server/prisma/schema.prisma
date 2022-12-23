@@ -59,7 +59,7 @@ model Talk {
   // fields
   title       String
   description String
-  voted       Int
+  voted       Int    @default(0)
 
   // relations
   votes   Vote[]

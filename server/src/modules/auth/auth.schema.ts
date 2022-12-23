@@ -3,10 +3,10 @@ import { z } from 'zod';
 export const loginSchema = z.object({
   body: z.object({
     username: z.string({
-      required_error: 'Username is required',
+      required_error: 'Field `username` is required',
     }),
     password: z.string({
-      required_error: 'Password is required',
+      required_error: 'Field `password` is required',
     }),
   }),
 });
@@ -14,8 +14,8 @@ export const loginSchema = z.object({
 export type LoginInput = z.infer<typeof loginSchema>;
 
 export const refreshSchema = z.object({
-  params: z.object({
-    id: z.string({
+  body: z.object({
+    token: z.string({
       required_error: 'Refresh token is required',
     }),
   }),

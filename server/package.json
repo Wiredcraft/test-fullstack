@@ -6,21 +6,18 @@
   "private": true,
   "dependencies": {
     "@prisma/client": "4.8.0",
-    "body-parser": "1.20.1",
     "dotenv": "16.0.3",
     "es6-error": "4.1.1",
     "express": "4.18.2",
     "express-async-errors": "3.1.1",
-    "express-async-router": "0.1.15",
     "jsonwebtoken": "9.0.0",
     "md5": "2.3.0",
-    "yup": "0.32.11",
     "zod": "3.20.2"
   },
   "scripts": {
     "build": "tsc",
-    "start": "node dist/app.js",
-    "dev": "nodemon src/app.ts"
+    "start": "node dist/index.js",
+    "dev": "nodemon --transpile-only src/app.ts"
   },
   "devDependencies": {
     "@types/express": "4.17.15",

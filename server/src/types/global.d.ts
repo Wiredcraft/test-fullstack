@@ -1,11 +1,11 @@
-import { User } from '@prisma/client';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+declare namespace Express {
+  export interface Request {
+    user?: { id: number; username: string };
+  }
 
-declare global {
-  type RequestUser = Pick<User, 'id' | 'username'>;
-
-  namespace Express {
-    interface Request {
-      user?: RequestUser;
-    }
+  export interface Response {
+    success: (data: any, status?: number) => this;
+    error: (error: any, status?: number) => this;
   }
 }
