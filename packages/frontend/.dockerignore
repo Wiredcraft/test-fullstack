@@ -1,0 +1,11 @@
+.vscode
+node_modules
+archive
+docs
+
+.editorconfig
+.prettierignore
+.prettierrc
+README.md
+
+.yarnrc
