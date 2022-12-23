@@ -17,6 +17,7 @@ node_modules/
 build/
 dist/
 lib/
+data/
 
 # Temporary
 server-nest
