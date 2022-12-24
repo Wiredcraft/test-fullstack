@@ -1,0 +1,28 @@
+.header-box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  height: 100%;
+  background: var(--primary-color);
+  color: #ffffff;
+}
+
+.header-logo {
+  display: block;
+
+  width: var(--layout-header-height);
+  text-align: center;
+}
+
+.header-title {
+  margin: 0;
+
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.header-login {
+  margin: 0 8px 0 auto;
+  color: inherit;
+}

@@ -6,7 +6,15 @@ module.exports = {
     jest: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:prettier/recommended',
+    'plugin:import/recommended',
+    'plugin:compat/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
   globals: {
     __BUILD_DATE__: 'readonly',
     __DEVELOPMENT__: 'readonly',
@@ -15,7 +23,7 @@ module.exports = {
   },
   ignorePatterns: ['node_modules/**'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'import'],
+  plugins: ['@typescript-eslint', 'import', 'compat', 'jsx-a11y', 'react', 'react-hooks'],
   rules: {
     // base rules
     'no-await-in-loop': 'error',
@@ -62,6 +70,53 @@ module.exports = {
       },
     ],
     'import/newline-after-import': 'error',
+
+    // react rules
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
+    'react/destructuring-assignment': [
+      'error',
+      'always',
+      {
+        ignoreClassFields: true,
+      },
+    ],
+    'react/forbid-prop-types': [
+      'error',
+      {
+        forbid: ['any', 'array'],
+      },
+    ],
+    'react/no-unused-prop-types': 'warn',
+    'react/no-unused-state': 'error',
+    'react/self-closing-comp': 'error',
+    'react/sort-comp': [
+      'error',
+      {
+        order: ['static-methods', 'lifecycle', '/^(on|handle).+$/', 'everything-else', 'rendering'],
+        groups: {
+          rendering: ['/^render.+$/', 'render'],
+        },
+      },
+    ],
+    'react/sort-prop-types': [
+      'error',
+      {
+        ignoreCase: true,
+        callbacksLast: true,
+        sortShapeProp: true,
+      },
+    ],
+    'react/jsx-filename-extension': [
+      'warn',
+      {
+        extensions: ['.tsx', '.jsx'],
+      },
+    ],
+
+    // react-hooks rules
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
   overrides: [
     {
@@ -103,6 +158,13 @@ module.exports = {
         ],
 
         '@typescript-eslint/no-non-null-assertion': 'off',
+
+        // '@typescript-eslint rules
+        'react/prop-types': 'off',
+        'react/jsx-uses-react': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
       },
     },
   ],
@@ -115,7 +177,7 @@ module.exports = {
     },
     polyfills: ['Promise'],
     react: {
-      version: 'detect',
+      version: '18',
     },
   },
 };

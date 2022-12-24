@@ -1,11 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request } from 'express';
 
-import { HTTPStatus } from '../errors/enums/http-status';
+import { UnauthorizedError } from '../errors/unauthorized.error';
 
-export function requireUser(req: Request, res: Response, next: NextFunction) {
-  if (req.user == null) {
-    return res.sendStatus(HTTPStatus.UNAUTHORIZED);
-  }
-
-  return next();
+export function requireUser(req: Request) {
+  if (req.user == null) throw new UnauthorizedError();
 }

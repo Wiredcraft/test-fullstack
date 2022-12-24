@@ -5,24 +5,12 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "@types/jest": "29.2.4",
     "@types/node": "18.11.17",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "@types/webpack": "5.28.0",
-    "@typescript-eslint/eslint-plugin": "5.47.0",
-    "@typescript-eslint/parser": "5.47.0",
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "6.7.3",
-    "eslint": "8.30.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-import-resolver-typescript": "3.5.2",
-    "eslint-plugin-compat": "4.0.2",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jsx-a11y": "6.6.1",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.11",
-    "eslint-plugin-react-hooks": "4.6.0",
     "file-loader": "6.2.0",
     "git-repo-info": "2.1.1",
     "html-webpack-plugin": "5.5.0",
@@ -37,10 +25,14 @@
     "webpack-dev-server": "4.11.1"
   },
   "dependencies": {
+    "axios": "1.2.1",
+    "clsx": "1.2.1",
+    "es6-error": "4.1.1",
     "normalize.css": "8.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "6.5.0"
+    "react-router-dom": "6.5.0",
+    "recoil": "0.7.6"
   },
   "scripts": {
     "build": "webpack --env=production",

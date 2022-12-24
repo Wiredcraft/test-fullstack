@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { HTTPError } from '../errors/http-error';
-import { ValidationError } from '../errors/validation-error';
+import { HTTPError } from '../errors/http.error';
+import { ValidationError } from '../errors/validation.error';
 
 export function errorHandler(err: unknown, _req: Request, res: Response, next: NextFunction) {
   if (res.headersSent) return next(err);

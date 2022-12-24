@@ -14,6 +14,10 @@ export async function getSession(where: Prisma.SessionWhereInput) {
   return prisma.session.findFirst({ where });
 }
 
+export async function invalidSession(where: Prisma.SessionWhereUniqueInput) {
+  return prisma.session.update({ where, data: { valid: false } });
+}
+
 // For further usage
 // export async function getAllSessionsByUserId(userId: User['id']) {
 //   return prisma.session.findMany({ where: { user: { id: userId }, valid: true } });

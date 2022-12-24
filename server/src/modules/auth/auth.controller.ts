@@ -1,11 +1,18 @@
 import { Request, Response } from 'express';
 
-import { UnauthorizedError } from '../../errors/unauthorized';
-import { WrongCredentialsError } from '../../errors/wrong-credentials';
+import { NotFoundError } from '../../errors/not-found.error';
+import { UnauthorizedError } from '../../errors/unauthorized.error';
+import { WrongCredentialsError } from '../../errors/wrong-credentials.error';
 import { getUser, getUserByPassword } from '../users/user.service';
 
-import { LoginInput, RefreshInput } from './auth.schema';
-import { getSession, signAccessToken, signRefreshToken, verifyRefreshToken } from './auth.service';
+import { LoginInput, LogoutInput, RefreshInput } from './auth.schema';
+import {
+  getSession,
+  invalidSession,
+  signAccessToken,
+  signRefreshToken,
+  verifyRefreshToken,
+} from './auth.service';
 
 export async function createSessionHandler(
   req: Request<object, object, LoginInput['body']>,
@@ -16,7 +23,6 @@ export async function createSessionHandler(
 
   const accessToken = signAccessToken(user);
   const refreshToken = await signRefreshToken(user.id);
-
   res.success({ accessToken, refreshToken });
 }
 
@@ -42,4 +48,39 @@ export async function refreshSessionHandler(
 
   const accessToken = signAccessToken(user);
   res.success({ accessToken });
+}
+
+export async function getSessionHandler(req: Request, res: Response) {
+  const { user } = req;
+
+  if (user == null) {
+    throw new UnauthorizedError();
+  }
+
+  const userInfo = await getUser({ id: user.id });
+  if (userInfo == null) {
+    throw new NotFoundError(`The user of id: \`${user.id}\` not exists.`);
+  }
+
+  res.success(userInfo);
+}
+
+export async function removeSessionHandler(
+  req: Request<object, object, LogoutInput['body']>,
+  res: Response,
+) {
+  const { user } = req;
+
+  if (user == null) {
+    throw new UnauthorizedError();
+  }
+
+  const payload = verifyRefreshToken(req.body.token);
+  if (payload == null) {
+    throw new UnauthorizedError();
+  }
+
+  await invalidSession({ id: payload.session });
+
+  res.success();
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { UnauthorizedError } from '../../errors/unauthorized';
+import { UnauthorizedError } from '../../errors/unauthorized.error';
 
 import { CreateTalkInput, QueryTalksInput } from './talks.schema';
 import { createTalk, getAllTalks } from './talks.service';

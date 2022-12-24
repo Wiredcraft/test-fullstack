@@ -2,7 +2,7 @@ import { Prisma, User } from '@prisma/client';
 import md5 from 'md5';
 
 import { HTTPStatus } from '../../errors/enums/http-status';
-import { HTTPError } from '../../errors/http-error';
+import { HTTPError } from '../../errors/http.error';
 import prisma from '../../utils/prisma';
 
 const select = {

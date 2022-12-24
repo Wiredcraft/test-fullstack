@@ -16,9 +16,19 @@ export type LoginInput = z.infer<typeof loginSchema>;
 export const refreshSchema = z.object({
   body: z.object({
     token: z.string({
-      required_error: 'Refresh token is required',
+      required_error: 'Field `token` is required',
     }),
   }),
 });
 
 export type RefreshInput = z.infer<typeof refreshSchema>;
+
+export const logoutSchema = z.object({
+  body: z.object({
+    token: z.string({
+      required_error: 'Field `token` is required',
+    }),
+  }),
+});
+
+export type LogoutInput = z.infer<typeof logoutSchema>;

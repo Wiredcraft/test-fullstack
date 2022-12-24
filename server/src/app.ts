@@ -1,6 +1,5 @@
-// import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { json as parseJson } from 'express';
 import 'express-async-errors';
 
 import { HTTPStatus } from './errors/enums/http-status';
@@ -12,16 +11,16 @@ dotenv.config();
 
 const app = express();
 // add global response handler
-app.response.success = function (data: unknown, code = HTTPStatus.OK) {
+app.response.success = function (data, code = HTTPStatus.OK) {
   this.status(code).json({ data });
   return this;
 };
-app.response.error = function (error: unknown, code = HTTPStatus.INTERNAL_SERVER_ERROR) {
-  this.status(code).json({ error });
+app.response.error = function (error, code = HTTPStatus.INTERNAL_SERVER_ERROR) {
+  this.status(code).json({ error: { status: code, ...error } });
   return this;
 };
 
-app.use(express.json());
+app.use(parseJson());
 
 const basePath = process.env.BASE_PATH || '/api';
 app.use(basePath, authRouter);

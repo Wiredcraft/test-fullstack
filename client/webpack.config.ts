@@ -1,9 +1,10 @@
 import path from 'path';
 
-import webpack from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
 import getGitInfo from 'git-repo-info';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+// eslint-disable-next-line import/no-named-as-default
+import webpack from 'webpack';
 import 'webpack-dev-server';
 
 const git = getGitInfo();
@@ -52,17 +53,7 @@ module.exports = (env: Record<string, unknown> = {}, argv: Record<string, unknow
       proxy: [
         {
           context: '/api',
-          target: 'http://10.1.3.29:5000/',
-        },
-        {
-          context: '/report-api',
-          target: 'http://10.1.2.104:5000/',
-          pathRewrite: { '^/report-api': '/api' },
-        },
-        {
-          context: '/open-api',
-          target: 'http://10.1.2.153:5000/',
-          pathRewrite: { '^/open-api': '/api' },
+          target: 'http://localhost:8000/',
         },
       ],
       client: {
