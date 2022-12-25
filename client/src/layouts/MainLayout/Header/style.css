@@ -11,18 +11,28 @@
 .header-logo {
   display: block;
 
-  width: var(--layout-header-height);
+  width: var(--main-layout-header-height);
   text-align: center;
 }
 
 .header-title {
-  margin: 0;
+  margin: 0 0 0 16px;
 
   font-size: 26px;
   font-weight: 900;
 }
 
-.header-login {
-  margin: 0 8px 0 auto;
+.button-action {
   color: inherit;
+  margin: 0 8px 0 auto;
+}
+
+.header-actions {
+  margin: 0 16px 0 auto;
+}
+
+.header-actions .action + .action::before {
+  content: '|';
+
+  margin: 0 8px;
 }

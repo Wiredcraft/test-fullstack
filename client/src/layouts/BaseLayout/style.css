@@ -1,0 +1,23 @@
+:root {
+  --max-layout-width: 1208px;
+}
+
+.base-layout-box {
+  height: 100%;
+  width: 100%;
+
+  overflow: auto;
+}
+
+.layout-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  position: relative;
+
+  margin: 0 auto;
+  box-sizing: border-box;
+  height: 100%;
+  max-width: var(--max-layout-width);
+}

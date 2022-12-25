@@ -1,0 +1,57 @@
+.input-field {
+  display: block;
+
+  margin: 0 0 16px;
+}
+
+.input-label {
+  display: block;
+}
+
+.label-text {
+  display: block;
+
+  margin: 4px 0;
+  height: 20px;
+  line-height: 20px;
+  width: 100%;
+
+  color: var(--sub-title-color);
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.error-field .label-text {
+  color: var(--error-color);
+}
+
+.input {
+  display: block;
+
+  box-sizing: border-box;
+  padding: 0 16px;
+  border: 1px solid currentColor;
+
+  height: 36px;
+  line-height: 36px;
+  width: 100%;
+}
+
+.input.multi-lines-input {
+  height: auto;
+}
+
+.error-field .input {
+  border-color: var(--error-color);
+}
+
+.input-error {
+  display: block;
+
+  margin: 4px 0;
+  min-height: 20px;
+  line-height: 20px;
+  width: 100%;
+
+  color: var(--error-color);
+}

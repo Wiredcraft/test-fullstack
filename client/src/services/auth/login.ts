@@ -10,12 +10,12 @@ interface Response {
   refreshToken: string;
 }
 
-export const login: Service<Response, Params> = async (params) => {
+export const login: Service<void, Params> = async (params) => {
+  console.debug(params);
+  console.debug(typeof params);
   const response = await client.post<Response>('/auth', params);
 
   const { accessToken, refreshToken } = response;
   setAccessToken(accessToken);
   setRefreshToken(refreshToken);
-
-  return response;
 };

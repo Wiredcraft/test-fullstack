@@ -1,30 +1,8 @@
 :root {
   --max-layout-width: 1208px;
-  --layout-header-height: 48px;
-}
-
-.layout-box {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: stretch;
-
-  position: relative;
-
-  margin: 0 auto;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  max-width: var(--max-layout-width);
-
-  overflow: auto;
-}
-
-@media only screen and (min-width: 300px) and (max-width: 750px) {
-  .layout-box {
-    width: 100%;
-  }
+  --main-layout-header-height: 48px;
 }
 
 .layout-header {
-  height: var(--layout-header-height);
+  height: var(--main-layout-header-height);
 }

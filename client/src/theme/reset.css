@@ -1,7 +1,8 @@
 @import url('./variables.css');
 
 html,
-body {
+body,
+:global(#root) {
   position: relative;
 
   width: 100%;
@@ -9,10 +10,6 @@ body {
 }
 
 body {
-  margin: 0;
-  padding: 8px;
-  box-sizing: border-box;
-
   background: #e4e4e4;
   color: var(--paragraph-color);
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Segoe UI', Roboto, Oxygen-Sans,

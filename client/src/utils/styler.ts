@@ -13,7 +13,7 @@ interface StylerOption {
  */
 export function createStyler(
   style: Record<string, string>,
-  option: StylerOption = { keepOriginal: true },
+  option: StylerOption = { keepOriginal: false },
 ) {
   const { keepOriginal = true } = option;
 
@@ -21,7 +21,7 @@ export function createStyler(
     const classNames = clsx(...args).split(' ');
 
     return classNames
-      .map((name) => style[name])
+      .map((name) => style[name] ?? (!keepOriginal ? name : undefined))
       .filter((name) => name != null)
       .concat(keepOriginal ? classNames : [])
       .join(' ');

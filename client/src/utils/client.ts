@@ -2,7 +2,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 export class Client<T = any, E = any> {
-  private readonly instance: AxiosInstance;
+  readonly instance: AxiosInstance;
 
   constructor(
     config?: AxiosRequestConfig,

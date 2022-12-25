@@ -87,7 +87,7 @@ module.exports = (env: Record<string, unknown> = {}, argv: Record<string, unknow
               loader: 'css-loader',
               options: {
                 modules: {
-                  localIdentName: '[path][name]__[local]',
+                  localIdentName: '[path][name]__[local]__[hash:4]',
                   localIdentContext: dir.src,
                 },
               },

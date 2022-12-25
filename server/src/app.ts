@@ -6,6 +6,7 @@ import { HTTPStatus } from './errors/enums/http-status';
 import { errorHandler } from './middleware/error-handler';
 import authRouter from './routes/auth.routes';
 import talksRouter from './routes/talks.routes';
+import votesRouter from './routes/votes.routes';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(parseJson());
 const basePath = process.env.BASE_PATH || '/api';
 app.use(basePath, authRouter);
 app.use(basePath, talksRouter);
+app.use(basePath, votesRouter);
 app.use(errorHandler);
 
 const port = process.env.PORT || '80';

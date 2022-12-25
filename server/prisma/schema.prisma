@@ -75,9 +75,10 @@ model Vote {
 
   // audit logger
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz
 
   // fields
-  score Int
+  active Boolean @default(true)
 
   // Relations
   talkId  Int
@@ -85,5 +86,6 @@ model Vote {
   ownerId Int  @map("owner_id")
   owner   User @relation(fields: [ownerId], references: [id])
 
+  @@unique([talkId, ownerId])
   @@map("votes")
 }

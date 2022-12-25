@@ -14,17 +14,20 @@ export const createTalkSchema = z.object({
 export type CreateTalkInput = z.infer<typeof createTalkSchema>;
 
 export const queryTalksSchema = z.object({
-  body: z.object({
+  query: z.object({
     where: z
       .object({
         my: z.boolean().optional(),
       })
       .optional(),
-    skip: z.number().positive('Field `skip` should be positive').optional(),
-    take: z.number().positive('Field `take` should be positive').optional(),
+    skip: z.string().regex(/\d+/).optional(),
+    // .positive('Field `skip` should be positive')
+    take: z.string().regex(/\d+/).optional(),
+    // .positive('Field `take` should be positive'),
     orderBy: z
       .object({
-        voted: z.enum(['asc', 'desc']),
+        createdAt: z.enum(['asc', 'desc']).optional(),
+        voted: z.enum(['asc', 'desc']).optional(),
       })
       .optional(),
   }),

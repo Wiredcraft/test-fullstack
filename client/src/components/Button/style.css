@@ -1,6 +1,7 @@
 .button {
   position: relative;
 
+  height: 36px;
   background: none;
   border: none;
   color: inherit;
@@ -11,13 +12,19 @@
 }
 
 .filled-button {
+  padding: 0 24px;
+  min-width: 100px;
+
+  color: #ffffff;
   background: var(--primary-color);
 }
 
 .outline-button {
+  padding: 0 24px;
   border: 1px solid currentColor;
 }
 
 .link-button {
+  height: auto;
   color: var(--primary-color);
 }

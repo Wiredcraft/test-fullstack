@@ -1,0 +1,31 @@
+.login-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 36px 48px 72px;
+  width: 300px;
+  max-width: 100%;
+
+  background: #fff;
+  box-shadow: 0px 0px 8px rgba(5, 5, 5, 0.08);
+}
+
+/* @media only screen and (min-width: 300px) and (max-width: 750px) {
+  .layout-box {
+    width: 100%;
+  }
+} */
+
+.login-title {
+  margin: 48px 0 48px;
+
+  color: var(--title-color);
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.login-submit {
+  margin: 36px 0 0;
+}

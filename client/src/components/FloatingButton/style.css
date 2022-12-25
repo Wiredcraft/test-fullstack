@@ -1,0 +1,96 @@
+.floating-button {
+  --button-size: 56px;
+  --transition-duration: 0.6s;
+
+  position: absolute;
+  right: 48px;
+  bottom: 96px;
+
+  padding: 0 16px;
+  height: var(--button-size);
+
+  color: #ffffff;
+  border: none;
+  border-radius: calc(var(--button-size) / 2);
+
+  cursor: pointer;
+
+  background-color: var(--primary-color);
+  box-shadow: 0px 2px 8px rgba(50, 73, 107, 0.24);
+  transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.floating-button:hover {
+  background-color: var(--accent-color);
+  box-shadow: 0px 8px 32px rgba(53, 72, 100, 0.24);
+}
+
+.inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: calc(var(--button-size) / 2);
+  transition: max-width 0.3s ease-in-out;
+}
+
+.floating-button:hover .inner {
+  max-width: 500px;
+}
+
+.icon {
+  flex: none;
+  transform: rotate(0);
+  transition: transform 0.3s ease-in-out;
+
+  position: relative;
+  display: block;
+  height: var(--button-size);
+  width: var(--button-size);
+}
+
+.icon::before,
+.icon::after {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  box-sizing: content-box;
+  border: 1px solid currentColor;
+}
+
+.icon::before {
+  height: 0;
+  width: 30%;
+}
+
+.icon::after {
+  height: 30%;
+  width: 0;
+}
+
+.floating-button:hover .icon {
+  transform: rotate(-180deg);
+}
+
+.text {
+  flex: auto;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  white-space: nowrap;
+  text-transform: uppercase;
+
+  overflow: hidden;
+
+  padding: 0;
+  transition: padding 0.3s ease-in-out;
+}
+
+.floating-button:hover .text {
+  padding: 0 8px 0 0;
+}

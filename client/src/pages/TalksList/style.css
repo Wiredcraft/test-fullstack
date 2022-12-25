@@ -1,0 +1,9 @@
+.task-list-page {
+  flex: auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.task-list {
+  flex: auto;
+}

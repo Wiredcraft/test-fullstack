@@ -1,3 +1,28 @@
+.talks-list-box {
+  display: block;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+.talks-list-item-box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  margin: 12px 0;
+}
+
+.talks-item-order {
+  flex: none;
+
+  padding: 12px;
+  box-sizing: border-box;
+  width: 48px;
+  text-align: center;
+}
+
 .talk-box {
   display: flex;
   flex-flow: row nowrap;
@@ -13,20 +38,21 @@
 }
 
 .talk-vote-button {
+  position: relative;
+
   box-sizing: border-box;
   height: 64px;
   width: 64px;
 
   padding: 16px 0;
   border-radius: 4px;
+  color: var(--title-color);
   font-size: 20px;
   font-weight: 600;
 }
 
-.talk-vote-button::before {
-  content: '';
-
-  display: block;
+.vote-icon {
+  display: inline-block;
   position: absolute;
   top: 0;
   left: 50%;
@@ -43,6 +69,21 @@
   border-bottom: 8px solid currentColor;
 
   background: currentColor;
+  color: var(--paragraph-color);
+}
+
+.talk-vote-button.voted-button .vote-icon {
+  display: none;
+}
+
+.vote-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -4px);
+
+  color: var(--paragraph-color);
+  font-size: 10px;
 }
 
 .talk-info-box {
@@ -71,4 +112,8 @@
 
 .talk-info {
   margin: 4px 0 0;
+}
+
+.info-item + .info-item {
+  margin-left: 4px;
 }

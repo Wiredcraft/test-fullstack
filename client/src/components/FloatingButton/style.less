@@ -1,0 +1,90 @@
+@import '/src/themes/main.less';
+
+@button-size: 56px;
+@transition-duration: 0.6s;
+
+.floating-button {
+  position: absolute;
+  right: 48px;
+  bottom: 96px;
+
+  padding: 0 16px;
+  height: @button-size;
+
+  color: @color-white;
+  border: none;
+  border-radius: @button-size / 2;
+
+  cursor: pointer;
+
+  background-color: @palette-pink-500;
+  .elevation(3);
+  .transition-default(background-color, box-shadow);
+
+  &:hover {
+    background-color: @palette-pink-600;
+    .elevation(5);
+  }
+
+  .inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      flex: none;
+
+      & svg {
+        height: @button-size / 2;
+        width: @button-size / 2;
+
+        stroke: currentColor;
+        stroke-width: 2;
+      }
+    }
+
+    .text {
+      flex: auto;
+
+      font-size: 18px;
+      font-weight: 600;
+
+      white-space: nowrap;
+      text-transform: capitalize;
+
+      overflow: hidden;
+    }
+
+    // Transition start effects
+    & {
+      max-width: @button-size / 2;
+      .transition-default(max-width);
+      transition-duration: @transition-duration;
+
+      .icon {
+        transform: rotate(0);
+        .transition-default(transform);
+        transition-duration: @transition-duration;
+      }
+
+      .text {
+        padding: 0;
+        .transition-default(padding);
+        transition-duration: @transition-duration;
+      }
+    }
+  }
+
+  // Transition end effects
+  &:hover .inner {
+    max-width: 500px;
+
+    .icon {
+      transform: rotate(-180deg);
+    }
+
+    .text {
+      padding: 0 8px;
+    }
+  }
+}

@@ -4,7 +4,7 @@ declare namespace Express {
   }
 
   export interface Response {
-    success: (data?: object, status?: number) => this;
+    success: (data?: unknown, status?: number) => this;
     error: (error: object, status?: number) => this;
   }
 }

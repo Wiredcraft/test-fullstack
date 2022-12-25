@@ -63,18 +63,35 @@ export const client = new Client<ResponseData<any>, Error>(
   {
     timeout: REQUEST_TIMEOUT,
     baseURL: BASE_URL,
-    transformRequest: [
-      (data, headers) => {
-        headers.authorization = `Bearer ${getAccessToken()}`;
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // transformRequest: [
+    //   (data, headers) => {
+    //     console.debug(data);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return data;
-      },
-    ],
+    //     const accessToken = getAccessToken();
+    //     if (accessToken) headers.authorization = `Bearer ${accessToken}`;
+
+    //     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    //     return data;
+    //   },
+    // ],
   },
   onFulfilled,
   onRejected,
 );
+
+client.instance.interceptors.request.use((config) => {
+  const accessToken = getAccessToken();
+
+  if (accessToken) {
+    if (config.headers == null) config.headers = {};
+    config.headers.authorization = `Bearer ${accessToken}`;
+  }
+
+  return config;
+});
 
 /*****************************************************************************
  * JWT Token handlers
