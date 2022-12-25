@@ -21,13 +21,18 @@ export async function queryTalksHandler(
   res: Response,
 ) {
   const { user } = req;
-  const { where, take, skip, ...params } = req.query;
+  const { where, take, skip, orderBy, ...params } = req.query;
 
   if (where?.my && user == null) throw new UnauthorizedError();
 
   const { results, total } = await getAllTalks(
     { ownerId: where?.my ? user?.id : undefined },
-    { ...params, take: Number(take), skip: Number(skip) },
+    {
+      ...params,
+      take: Number(take),
+      skip: Number(skip),
+      orderBy: orderBy && Object.entries(orderBy).map(([key, value]) => ({ [key]: value })),
+    },
   );
   res.success({ results, total });
 }

@@ -34,12 +34,15 @@ function onRejected(error: any) {
     new ClientError<ResponseError, ResponseError['error']>(error, {
       onNetwork: () => {
         // notificateError('Network Error', error.message);
+        console.warn('Network Error');
       },
       onInternal: () => {
         // notificateError('Internal Error', error.message);
+        console.warn('Internal Error');
       },
       onRequest: () => {
         // notificateError('Request Error', error.message);
+        console.warn('Request Error');
       },
       onResponse: (response) => response.data.error,
       onFinal: (clientError) => {
@@ -49,9 +52,9 @@ function onRejected(error: any) {
           case NO_AUTH_CODE:
             //   goLogin();
             break;
-
           default:
             // notificateError(clientError.original.message, clientError.message);
+            console.warn('Uncatched Error');
             break;
         }
       },

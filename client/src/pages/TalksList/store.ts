@@ -15,7 +15,7 @@ export const talksFilterAtom = atom<QueryTalksParams>({
     // where: { my: false },
     take: 20,
     skip: 0,
-    orderBy: { createdAt: 'desc' },
+    orderBy: { voted: 'desc', createdAt: 'desc' },
   },
 });
 

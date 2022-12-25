@@ -1,6 +1,7 @@
 import { useRequest } from 'ahooks';
 import { useCallback, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 import style from './style.css';
 
@@ -10,6 +11,7 @@ import { queryVote } from '@/services/votes/queryVote';
 import { updateVote } from '@/services/votes/updateVote';
 import { myAtom } from '@/store/auth';
 import { createStyler } from '@/utils/styler';
+import { PATH } from '@/const';
 
 const styler = createStyler(style);
 
@@ -21,15 +23,23 @@ interface Props {
 export function VoteButton(props: Props) {
   const { talk, onChange } = props;
 
+  const my = useRecoilValue(myAtom);
+  const navigate = useNavigate();
+
   const [vote, save] = useMyVote(talk.id, onChange);
-  const voted = vote?.active;
+  const voted = my != null && vote?.active;
+
   const handleVoteClick = () => {
-    save();
+    if (my == null) {
+      navigate(PATH.LOGIN);
+    } else {
+      save();
+    }
   };
 
   return (
     <Button
-      className={styler('talk-vote-button', vote?.active && 'voted-button')}
+      className={styler('talk-vote-button', voted && 'voted-button')}
       shape="outline"
       onClick={handleVoteClick}
     >
@@ -49,7 +59,11 @@ function useMyVote(talkId: number, onChange: () => void) {
     onChange();
   };
 
-  useRequest(queryVote, { defaultParams: [{ talkId, ownerId: my!.id }], onSuccess: setVote });
+  useRequest(queryVote, {
+    defaultParams: [{ talkId, ownerId: my?.id ?? 0 }],
+    ready: my != null,
+    onSuccess: setVote,
+  });
   const { run: create } = useRequest(createVote, { manual: true, onSuccess: handleVoteChange });
   const { run: update } = useRequest(updateVote, { manual: true, onSuccess: handleVoteChange });
 
