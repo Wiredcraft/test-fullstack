@@ -16,13 +16,15 @@ export async function createTalkHandler(
   res.success(talk);
 }
 
-export async function queryTalksHandler(
-  req: Request<object, object, QueryTalksInput['body']>,
-  res: Response,
-) {
+export async function queryTalksHandler(req: Request<QueryTalksInput['body']>, res: Response) {
   const { user } = req;
-  if (user == null) throw new UnauthorizedError();
+  const { where, ...params } = req.params;
 
-  const { results, total } = await getAllTalks({}, req.body);
+  if (where?.my && user == null) throw new UnauthorizedError();
+
+  const { results, total } = await getAllTalks(
+    { ownerId: where?.my ? user?.id : undefined },
+    params,
+  );
   res.success({ results, total });
 }

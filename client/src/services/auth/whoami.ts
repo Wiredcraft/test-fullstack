@@ -1,8 +1,8 @@
 import { client } from '../client';
 
-export async function whoami() {
-  return client.get<{
-    id: number;
-    username: string;
-  }>('/auth');
+export interface Response {
+  id: number;
+  username: string;
 }
+
+export const whoami: Service<Response> = () => client.get('/auth');

@@ -15,6 +15,11 @@ export type CreateTalkInput = z.infer<typeof createTalkSchema>;
 
 export const queryTalksSchema = z.object({
   body: z.object({
+    where: z
+      .object({
+        my: z.boolean().optional(),
+      })
+      .optional(),
     skip: z.number().positive('Field `skip` should be positive').optional(),
     take: z.number().positive('Field `take` should be positive').optional(),
     orderBy: z

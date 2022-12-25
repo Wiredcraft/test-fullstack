@@ -27,10 +27,12 @@
   "dependencies": {
     "axios": "1.2.1",
     "clsx": "1.2.1",
+    "dayjs": "1.11.7",
     "es6-error": "4.1.1",
     "normalize.css": "8.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-error-boundary": "3.1.4",
     "react-router-dom": "6.5.0",
     "recoil": "0.7.6"
   },

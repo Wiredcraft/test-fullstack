@@ -1,0 +1,74 @@
+.talk-box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  padding: 8px 0;
+}
+
+.talk-vote-box {
+  flex: none;
+
+  margin-left: 8px;
+}
+
+.talk-vote-button {
+  box-sizing: border-box;
+  height: 64px;
+  width: 64px;
+
+  padding: 16px 0;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.talk-vote-button::before {
+  content: '';
+
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 4px);
+
+  margin: 0 auto;
+
+  box-sizing: border-box;
+  height: 8px;
+  width: 16px;
+  border-top: #ffffff;
+  border-right: 8px solid #ffffff;
+  border-left: 8px solid #ffffff;
+  border-bottom: 8px solid currentColor;
+
+  background: currentColor;
+}
+
+.talk-info-box {
+  flex: auto;
+
+  margin-left: 16px;
+}
+
+.talk-title {
+  margin: 0 0 8px;
+
+  color: var(--title-color);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.talk-description {
+  margin: 0;
+
+  font-size: 16px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.talk-info {
+  margin: 4px 0 0;
+}

@@ -7,7 +7,7 @@ export const mySelector = selector({
   get: () => whoami().catch(() => null),
 });
 
-export const myAtom = atom<PromiseValue<ReturnType<typeof whoami>> | null>({
+export const myAtom = atom({
   key: 'auth.whoami',
   default: mySelector,
 });

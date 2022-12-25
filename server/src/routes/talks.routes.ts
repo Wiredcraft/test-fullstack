@@ -11,8 +11,7 @@ const basePath = '/talks';
 
 router
   .route(basePath)
-  .all(deserializeUser, requireUser)
   .get(validateResource(queryTalksSchema), queryTalksHandler)
-  .post(validateResource(createTalkSchema), createTalkHandler);
+  .post(deserializeUser, requireUser, validateResource(createTalkSchema), createTalkHandler);
 
 export default router;

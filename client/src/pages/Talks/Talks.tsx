@@ -1,3 +1,11 @@
+import { Route, Routes } from 'react-router-dom';
+
+import { TalksList } from './TalksList';
+
 export function Talks() {
-  return <div>Talks Page</div>;
+  return (
+    <Routes>
+      <Route index element={<TalksList />} />
+    </Routes>
+  );
 }

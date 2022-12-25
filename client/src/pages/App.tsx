@@ -10,6 +10,7 @@ import { PATH } from '@/const';
 import { MainLayout } from '@/layouts/MainLayout';
 
 import '@/theme/reset.css';
+import '@/utils/dayjs';
 import 'normalize.css';
 
 const router = createBrowserRouter([
@@ -21,8 +22,11 @@ const router = createBrowserRouter([
     path: PATH.HOME,
     element: <MainLayout />,
     children: [
-      { index: true, element: <Navigate to={PATH.TALKS} /> },
-      { path: PATH.TALKS, element: <Talks /> },
+      { index: true, element: <Navigate to={PATH.TALKS} replace /> },
+      {
+        path: PATH.TALKS,
+        element: <Talks />,
+      },
       { path: '*', element: <NotFound /> },
     ],
   },

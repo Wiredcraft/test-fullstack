@@ -1,6 +1,9 @@
 .button {
+  position: relative;
+
   background: none;
   border: none;
+  color: inherit;
 }
 
 .button:hover {
@@ -9,10 +12,12 @@
 
 .filled-button {
   background: var(--primary-color);
-  color: #ffffff;
 }
 
 .outline-button {
-  color: #ffffff;
   border: 1px solid currentColor;
+}
+
+.link-button {
+  color: var(--primary-color);
 }

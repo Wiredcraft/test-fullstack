@@ -1,0 +1,23 @@
+.talks-list-box {
+  display: block;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+.talks-list-item-box {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+
+  margin: 12px 0;
+}
+
+.talks-item-order {
+  flex: none;
+
+  padding: 12px;
+  box-sizing: border-box;
+  width: 48px;
+}

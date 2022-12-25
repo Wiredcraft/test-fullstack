@@ -38,6 +38,10 @@ export class ClientError<T = any, R = any> {
       if (this.defaultAllowed) callbacks.onFinal?.(this);
     });
   }
+
+  preventDefault() {
+    this.defaultAllowed = false;
+  }
 }
 
 export function isClientError(error: unknown): error is ClientError {
