@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon --transpile-only src/app.ts"
+    "dev": "nodemon -V -T --logError src/app.ts"
   },
   "devDependencies": {
     "@types/express": "4.17.15",

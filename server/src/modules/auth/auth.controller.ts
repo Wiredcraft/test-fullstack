@@ -22,6 +22,12 @@ export async function createSessionHandler(
   if (user == null) throw new WrongCredentialsError();
 
   const accessToken = signAccessToken(user);
+  const validSession = await getSession({ userId: user.id, valid: true });
+  if (validSession != null) {
+    res.success({ accessToken, refreshToken: validSession.token });
+    return;
+  }
+
   const refreshToken = await signRefreshToken(user.id);
   res.success({ accessToken, refreshToken });
 }

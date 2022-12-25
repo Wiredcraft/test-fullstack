@@ -1,3 +1,5 @@
+import { randomUUID } from 'crypto';
+
 import { Prisma, Session, User } from '@prisma/client';
 
 import prisma from '../../utils/prisma';
@@ -6,8 +8,8 @@ import { signJwt, verifyJwt } from '../../utils/jwt';
 /*****************************************************************************
  * Session Services
  *****************************************************************************/
-export async function createSession(userId: User['id']) {
-  return prisma.session.create({ data: { user: { connect: { id: userId } } } });
+export async function createSession(data: Prisma.SessionCreateInput) {
+  return prisma.session.create({ data });
 }
 
 export async function getSession(where: Prisma.SessionWhereInput) {
@@ -56,13 +58,15 @@ export interface RefreshTokenPayload {
 }
 
 export async function signRefreshToken(userId: User['id']) {
-  const session = await createSession(userId);
+  const uuid = randomUUID();
 
   const refreshToken = signJwt(
-    { session: session.id },
+    { session: uuid },
     process.env.REFRESH_SECRET ?? 'refresh secret key',
     { expiresIn: process.env.REFRESH_EXPIRES ?? '1y' },
   );
+
+  await createSession({ id: uuid, token: refreshToken, user: { connect: { id: userId } } });
 
   return refreshToken;
 }
