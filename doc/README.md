@@ -159,7 +159,6 @@ As the access token will expired in a short period, the refresh token is designe
 
 Not implemented yet
 
-
 ## Something not Implemented
 
 - User Register (See: database [seed](/server/prisma/seed.ts) for initial users to login)
@@ -171,3 +170,13 @@ Not implemented yet
 - Professional CICD workflow
 
 - Unit Test
+
+## Reference
+
+### RESTFful API
+
+See [open api](lightning-talks-api.openapi.json)
+
+### Database Structure
+
+See [prisma.schema](/server/prisma/schema.prisma)
