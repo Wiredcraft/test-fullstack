@@ -1,7 +1,7 @@
 import { Prisma, User } from '@prisma/client';
 import md5 from 'md5';
 
-import { HTTPStatus } from '../../errors/enums/http-status';
+import { BadRequestError } from '../../errors/bad-request.error';
 import { HTTPError } from '../../errors/http.error';
 import prisma from '../../utils/prisma';
 
@@ -10,7 +10,7 @@ const select = {
   username: true,
 }; // Prisma.UserSelect
 
-export async function hasUser(where: Prisma.UserWhereInput, throwIfNot?: HTTPError) {
+export async function existsUser(where: Prisma.UserWhereInput, throwIfNot?: HTTPError) {
   const result = (await prisma.user.count({ where })) > 0;
 
   if (throwIfNot && !result) throw throwIfNot;
@@ -24,16 +24,13 @@ export async function getUser(where: Prisma.UserWhereInput) {
 
 export async function createUser(data: Prisma.UserCreateInput) {
   const { username, password, ...restData } = data;
-  await hasUser(
-    { username },
-    new HTTPError(HTTPStatus.BAD_REQUEST, 'The username exists, please try another name.'),
-  );
+  await existsUser({ username }, new BadRequestError('The username exists, please try another.'));
 
   return prisma.user.create({ data: { ...restData, username, password: md5(password) }, select });
 }
 
 export async function updateUser(id: number, data: Prisma.UserUpdateInput) {
-  await hasUser({ id }, new HTTPError(HTTPStatus.BAD_REQUEST, 'The user not exists.'));
+  await existsUser({ id }, new BadRequestError(`The User of id: \`${id}\` not exists.`));
 
   return prisma.user.update({ where: { id }, data, select });
 }

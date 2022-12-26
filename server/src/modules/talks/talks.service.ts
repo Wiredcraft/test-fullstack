@@ -1,5 +1,6 @@
 import { Prisma } from '@prisma/client';
 
+import { HTTPError } from '../../errors/http.error';
 import prisma from '../../utils/prisma';
 
 export async function getAllTalks(
@@ -24,6 +25,10 @@ export async function updateTalk(id: number, data: Prisma.TalkUpdateInput) {
   return prisma.talk.update({ where: { id }, data });
 }
 
-export async function existsTalk(where: Prisma.TalkWhereInput) {
-  return (await prisma.talk.count({ where })) > 0;
+export async function existsTalk(where: Prisma.TalkWhereInput, throwIfNot?: HTTPError) {
+  const result = (await prisma.talk.count({ where })) > 0;
+
+  if (throwIfNot && !result) throw throwIfNot;
+
+  return result;
 }

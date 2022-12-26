@@ -1,9 +1,7 @@
-import { randomUUID } from 'crypto';
-
 import { Prisma, Session, User } from '@prisma/client';
 
-import prisma from '../../utils/prisma';
 import { signJwt, verifyJwt } from '../../utils/jwt';
+import prisma from '../../utils/prisma';
 
 /*****************************************************************************
  * Session Services
@@ -12,8 +10,8 @@ export async function createSession(data: Prisma.SessionCreateInput) {
   return prisma.session.create({ data });
 }
 
-export async function getSession(where: Prisma.SessionWhereInput) {
-  return prisma.session.findFirst({ where });
+export async function getValidSession(where: Omit<Prisma.SessionWhereInput, 'valid'>) {
+  return prisma.session.findFirst({ where: { valid: true, ...where } });
 }
 
 export async function invalidSession(where: Prisma.SessionWhereUniqueInput) {
@@ -41,8 +39,8 @@ export async function invalidSession(where: Prisma.SessionWhereUniqueInput) {
  *****************************************************************************/
 export type AccessTokenPayload = Pick<User, 'id' | 'username'>;
 
-export function signAccessToken(user: AccessTokenPayload) {
-  const accessToken = signJwt(user, process.env.ACCESS_SECRET ?? 'access secret key', {
+export function signAccessToken(payload: AccessTokenPayload) {
+  const accessToken = signJwt(payload, process.env.ACCESS_SECRET ?? 'access secret key', {
     expiresIn: process.env.ACCESS_EXPIRES ?? '15m',
   });
 
@@ -57,16 +55,10 @@ export interface RefreshTokenPayload {
   session: Session['id'];
 }
 
-export async function signRefreshToken(userId: User['id']) {
-  const uuid = randomUUID();
-
-  const refreshToken = signJwt(
-    { session: uuid },
-    process.env.REFRESH_SECRET ?? 'refresh secret key',
-    { expiresIn: process.env.REFRESH_EXPIRES ?? '1y' },
-  );
-
-  await createSession({ id: uuid, token: refreshToken, user: { connect: { id: userId } } });
+export function signRefreshToken(payload: RefreshTokenPayload) {
+  const refreshToken = signJwt(payload, process.env.REFRESH_SECRET ?? 'refresh secret key', {
+    expiresIn: process.env.REFRESH_EXPIRES ?? '1y',
+  });
 
   return refreshToken;
 }

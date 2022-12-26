@@ -37,7 +37,7 @@ model Session {
   id String @id
 
   // fields
-  token String
+  token String  @unique
   valid Boolean @default(true)
 
   // relations
