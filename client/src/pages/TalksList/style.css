@@ -1,9 +1,16 @@
-.task-list-page {
+.talk-list-page {
   flex: auto;
   display: flex;
   flex-flow: column nowrap;
+
+  background: #ffffff;
 }
 
-.task-list {
+.talk-list {
   flex: auto;
+}
+
+.talk-empty {
+  padding: 0 32px;
+  line-height: 2;
 }

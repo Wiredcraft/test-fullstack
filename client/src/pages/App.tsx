@@ -13,6 +13,7 @@ import { MainLayout } from '@/layouts/MainLayout';
 import '@/theme/reset.css';
 import '@/utils/dayjs';
 import 'normalize.css';
+import { ProtectedRoute } from '@/components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,14 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to={PATH.TALKS} replace /> },
       { path: `${PATH.TALKS}`, element: <TalksList /> },
-      { path: `${PATH.TALKS_SUBMIT}`, element: <TalkSubmit /> },
+      {
+        path: `${PATH.TALKS_SUBMIT}`,
+        element: (
+          <ProtectedRoute>
+            <TalkSubmit />
+          </ProtectedRoute>
+        ),
+      },
       { path: '*', element: <NotFound /> },
     ],
   },

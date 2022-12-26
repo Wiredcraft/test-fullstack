@@ -16,6 +16,7 @@ const styler = createStyler(style);
 export function TalksList() {
   const params = useRecoilValue(talksFilterAtom);
   const { data: talks, refresh } = useRequest(queryTalks, { defaultParams: [params] });
+  const empty = talks?.total === 0;
 
   const handleListChange = () => {
     refresh();
@@ -27,12 +28,22 @@ export function TalksList() {
   };
 
   return (
-    <div className={styler('task-list-page')}>
-      <List
-        className={styler('task-list')}
-        talks={talks?.results ?? []}
-        onChange={handleListChange}
-      />
+    <div className={styler('talk-list-page')}>
+      {empty ? (
+        <p className={styler('talk-empty')}>
+          Would you want to be the first person to submit a talk?
+          <br />
+          Click the `+` button on the right bottom.
+          <br />
+          Enjoy!
+        </p>
+      ) : (
+        <List
+          className={styler('talk-list')}
+          talks={talks?.results ?? []}
+          onChange={handleListChange}
+        />
+      )}
 
       <FloatingButton onClick={handleSubmitClick}>Submit</FloatingButton>
     </div>

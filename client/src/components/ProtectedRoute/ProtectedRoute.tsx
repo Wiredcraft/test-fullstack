@@ -17,7 +17,7 @@ export function ProtectedRoute(props: Props): React.ReactElement {
   const user = useRecoilValue(myAtom);
 
   if (required || user) return children;
-  return <Navigate to={to} />;
+  return <Navigate to={to} replace />;
 }
 
 /**
