@@ -74,9 +74,9 @@ export async function queryVoteHandler(
     throw new UnauthorizedError();
   }
 
-  const { talkId, ownerId } = req.query;
+  const { talkId } = req.query;
   const vote = await getVote({
-    talkId_ownerId: { talkId: Number(talkId), ownerId: Number(ownerId) },
+    talkId_ownerId: { talkId: Number(talkId), ownerId: user.id },
   });
 
   res.success(vote);

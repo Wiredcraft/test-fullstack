@@ -26,7 +26,6 @@ export type UpdateVoteInput = z.infer<typeof updateVoteSchema>;
 export const queryVoteSchema = z.object({
   query: z.object({
     talkId: z.string({ required_error: 'Field `talkId` is required' }).regex(/\d+/),
-    ownerId: z.string({ required_error: 'Field `ownerId` is required' }).regex(/\d+/),
   }),
 });
 
