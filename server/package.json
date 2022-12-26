@@ -20,6 +20,7 @@
     "dev": "nodemon -V -T --logError src/app.ts",
     "lint": "eslint --ignore-path ../.gitignore",
     "migrate": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
     "migrate:reset": "prisma migrate reset -f",
     "start": "node dist/index.js"
   },

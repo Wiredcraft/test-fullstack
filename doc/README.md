@@ -30,14 +30,18 @@ yarn
 docker pull postgres:15
 
 # create environment variable file
-cd ./server
-cp .env.sample .env
+cp ./server/.env.sample ./server/.env
 # change the db config as you prefer
-vi .env
+vi ./server/.env
 
 # start db by docker compose
-cd ../
 yarn start:db
+
+cd ./server
+# deploy db tables and initl data with seed file.
+yarn migrate:deploy
+# deploy db tables and initl data with seed file and generate prisma types
+yarn migrate:dev
 ```
 
 ### 3. Start applications
@@ -157,6 +161,8 @@ Not implemented yet
 
 
 ## Something not Implemented
+
+- User Register (See: database [seed](/server/prisma/seed.ts) for initial users to login)
 
 - Refresh Access Token in Loop
 
