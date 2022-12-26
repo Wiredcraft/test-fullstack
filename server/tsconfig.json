@@ -99,9 +99,10 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": [
-    "src/**/*",
     "prisma/**/*",
-    "index.d.ts"
+    "src/**/*",
+    "index.ts",
+    // "index.d.ts"
   ],
   "exclude": [
     "node_modules/**/*",
