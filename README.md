@@ -1,4 +1,12 @@
-# Fullstack
+# Instruction of Implementation
+
+See the [doc](/doc/README.md)
+
+***
+
+# Below is the requirement of the project.
+
+## Fullstack
 
 ### Context
 
