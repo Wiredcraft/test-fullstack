@@ -31,6 +31,11 @@ export function TalkSubmit() {
     onSubmit: handleSubmit,
   });
 
+  const navigate = useNavigate();
+  const handleCancelClick = () => {
+    navigate(-1);
+  };
+
   return (
     <div className={styler('talk-submit-box')}>
       <form className={styler('submit-form')} onSubmit={formik.handleSubmit}>
@@ -51,12 +56,21 @@ export function TalkSubmit() {
           error={formik.touched.description ? formik.errors.description : ''}
         />
         <Button
-          className={styler('login-submit')}
+          className={styler('login-submit', 'form-action')}
           type="submit"
           shape="filled"
           disabled={submitting}
         >
           Submit
+        </Button>
+
+        <Button
+          type="button"
+          className={styler('login-submit', 'form-action')}
+          shape="outline"
+          onClick={handleCancelClick}
+        >
+          Cancel
         </Button>
       </form>
     </div>

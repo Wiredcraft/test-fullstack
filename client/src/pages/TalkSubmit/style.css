@@ -5,3 +5,7 @@
 .submit-form {
   width: 80%;
 }
+
+.form-action + .form-action {
+  margin-left: 16px;
+}
