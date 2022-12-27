@@ -33,7 +33,7 @@ export function TalkSubmit() {
 
   const navigate = useNavigate();
   const handleCancelClick = () => {
-    navigate(-1);
+    navigate(PATH.TALKS);
   };
 
   return (
