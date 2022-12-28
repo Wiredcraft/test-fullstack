@@ -38,11 +38,16 @@ vi ./server/.env
 yarn start:db
 
 cd ./server
-# deploy db tables and initl data with seed file.
+# deploy db tables and initl data with seed file, usually for production deply
 yarn migrate:deploy
-# deploy db tables and initl data with seed file and generate prisma types
-yarn migrate:dev
+# deploy db tables and initl data with seed file and generate prisma types, usually for development
+yarn migrate
 ```
+
+> Tips:
+>
+>   Once you changed prisma schema and run migrate in development, if you're using VSCode, you need restart ESLint and Typescript server.
+>   As it will generate new Types in Typescript, need to reload to avoid type lint error in your editor.
 
 ### 3. Start applications
 ```bash
