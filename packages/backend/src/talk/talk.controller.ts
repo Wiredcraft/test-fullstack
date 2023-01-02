@@ -36,14 +36,14 @@ export class TalkController {
       author: user.name,
       author_id: user.id,
       voted: 0,
-      created_time: 0,
+      created_time: Date.now(),
     });
     return new SimpleSuccessResponse();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    const result = TALKS.find((talk) => talk.id === parseInt(id));
+    const result = TALKS.find((talk) => talk.id === Number.parseInt(id, 10));
     if (result) {
       return new DataSuccessResponse(result);
     } else {
@@ -51,23 +51,26 @@ export class TalkController {
     }
   }
 
-  @Put(':id/vote')
+  @Put('/vote/:id')
   voteOne(@Headers('Authorization') token: string, @Param('id') id: string) {
     const user = resolveToken(token);
-    const talkId = parseInt(id);
-    const index = VOTES.findIndex((vote) => vote.talk_id === talkId);
-    if (index === -1) {
-      return new SimpleErrorResponse(500);
-    } else {
-      VOTES.push({
-        id: VOTES[VOTES.length - 1]['id'] + 1,
-        talk_id: parseInt(id),
-        user_id: user.id,
-        created_time: 0,
-      });
-      const talk = TALKS.find((talk) => talk.id === talkId);
-      talk.voted += 1;
-      return new SimpleSuccessResponse();
-    }
+    const talkId = Number.parseInt(id, 10);
+    // const index = VOTES.findIndex(
+    //   (vote) =>
+    //     vote.talk_id === talkId && Number.parseInt(user.id) === vote.user_id,
+    // );
+    // if (index !== -1) {
+    //   return new SimpleErrorResponse(500);
+    // } else {
+    VOTES.push({
+      id: VOTES[VOTES.length - 1]['id'] + 1,
+      talk_id: parseInt(id),
+      user_id: user.id,
+      created_time: Date.now(),
+    });
+    const talk = TALKS.find((talk) => talk.id === talkId);
+    talk.voted += 1;
+    return new SimpleSuccessResponse();
+    // }
   }
 }

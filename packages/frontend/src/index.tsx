@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import App from './app';
 
-// 局部更新
 if (module && module.hot) {
   module.hot.accept();
 }
@@ -11,4 +12,8 @@ if (!rootElement) {
   throw new Error('Root element not found in index.html');
 }
 
-ReactDOM.createRoot(rootElement).render(<App />);
+ReactDOM.createRoot(rootElement).render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+);

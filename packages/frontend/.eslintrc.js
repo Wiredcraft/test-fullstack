@@ -64,5 +64,7 @@ module.exports = {
     'import/no-import-module-exports': OFF,
     'unicorn/prefer-object-from-entries': OFF,
     'import/no-unresolved': OFF,
+    'unicorn/filename-case': OFF,
+    'no-param-reassign': OFF,
   },
 };

@@ -29,6 +29,6 @@ Authorization: Bear eyJuYW1lIjoiYWRtaW4iLCJpZCI6MX0=
 
 ###
 
-PUT http://localhost:3000/talk/1/vote
+PUT http://localhost:3000/talk/vote/1
 Content-Type: application/json
 Authorization: Bear eyJuYW1lIjoiYWRtaW4iLCJpZCI6MX0=

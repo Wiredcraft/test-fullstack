@@ -1,6 +1,10 @@
 import { Body, Controller, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { SimpleErrorResponse, SimpleSuccessResponse } from 'src/response.model';
+import {
+  DataSuccessResponse,
+  SimpleErrorResponse,
+  SimpleSuccessResponse,
+} from 'src/response.model';
 import { users as USERS } from 'src/test.data';
 
 @Controller('user')
@@ -18,8 +22,7 @@ export class UserController {
       const token = Buffer.from(
         JSON.stringify({ name: user.name, id: user.id }),
       ).toString('base64');
-      res.setHeader('Authorization', `Bear ${token}`);
-      return new SimpleSuccessResponse();
+      return new DataSuccessResponse(token);
     } else {
       return new SimpleErrorResponse(404);
     }

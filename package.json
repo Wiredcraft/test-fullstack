@@ -8,8 +8,8 @@
   "scripts": {
     "prepare": "husky install",
     "bootstrap": "lerna bootstrap",
-    "start:dev:fe": "lerna exec --scope frontend yarn start:dev",
-    "start:dev:be": "lerna exec --scope frontend yarn start:dev"
+    "start:dev:fe": "lerna exec --scope frontend npm run start:dev",
+    "start:dev:be": "lerna exec --scope backend npm run start:dev"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",

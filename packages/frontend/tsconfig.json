@@ -17,6 +17,8 @@
       "@components/*": ["src/components/*"],
       "@utils/*": ["src/utils/*"],
       "@pages/*": ["src/pages/*"],
+      "@redux/*": ["src/redux/*"],
+      "@models/*": ["src/models/*"],
       "@assets/*": ["assets/*"],
       "@src/*": ["src/*"]
     },

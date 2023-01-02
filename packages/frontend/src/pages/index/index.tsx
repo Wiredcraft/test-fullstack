@@ -1,14 +1,44 @@
+import { useCallback, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import TalksList from '@components/talksList';
+import { getTalksData } from '@redux/actions';
+import { useNavigate } from 'react-router-dom';
+
 function Index() {
+  const { data } = useSelector((store: any) => store.talks);
+  const { token } = useSelector((store: any) => store.user);
+  const navigate = useNavigate();
+  const handleNewClick = useCallback(() => {
+    if (!token) {
+      alert('Please Login!');
+    } else {
+      navigate('/new');
+    }
+  }, [navigate, token]);
+
+  const handleLoginClick = useCallback(() => {
+    navigate('/login');
+  }, [navigate]);
+
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    dispatch(getTalksData());
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <div className="max-w-sm mx-auto flex p-6 bg-white rounded-lg shadow-md">
-        <div className="ml-6 pt-1">
-          <h4 className="text-xl text-green-600 leading-tight">Hello World!</h4>
-          <p>
-            <a href="https://beian.miit.gov.cn/">粤ICP备2022032745号-1</a>
-          </p>
-        </div>
+      <div style={{ width: 200, display: 'flex', justifyContent: 'space-between' }}>
+        <button type="button" className="bg-btn" onClick={handleNewClick}>
+          New Talk
+        </button>
+        {!token && (
+          <button type="button" className="bg-btn" onClick={handleLoginClick}>
+            Login
+          </button>
+        )}
       </div>
+      <TalksList data={data} />
     </div>
   );
 }
