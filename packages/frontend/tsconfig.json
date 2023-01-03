@@ -28,5 +28,5 @@
     "noEmit": true,
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["./src/**/*", "global.d.ts"]
+  "include": ["./src/**/*", "global.d.ts", "setupTest.ts"]
 }
