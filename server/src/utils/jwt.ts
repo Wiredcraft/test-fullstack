@@ -11,10 +11,10 @@ export function signJwt<T extends string | object | Buffer>(
 }
 
 export function verifyJwt<T>(token: string, secret: string): T | null {
-  const publicKey = Buffer.from(secret, 'base64').toString('ascii');
+  const verifyKey = Buffer.from(secret, 'base64').toString('ascii');
 
   try {
-    return verify(token, publicKey, { complete: false }) as T;
+    return verify(token, verifyKey, { complete: false }) as T;
   } catch (e) {
     return null;
   }
