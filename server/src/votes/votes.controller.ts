@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  NotFoundException,
 } from '@nestjs/common';
 import { ApiTags, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { VoteEntity } from './entities/vote.entity';
@@ -33,8 +34,12 @@ export class VotesController {
 
   @Get(':id')
   @ApiOkResponse({ type: VoteEntity })
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.votesService.findOne(id);
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    const vote = await this.votesService.findOne(id);
+    if (!vote) {
+      throw new NotFoundException(`Vote with ${id} does not exist.`);
+    }
+    return vote;
   }
 
   @Patch(':id')

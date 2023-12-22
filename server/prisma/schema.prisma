@@ -12,7 +12,7 @@ datasource db {
 
 model Vote {
   id Int @id @default(autoincrement())
-  title String
+  title String @unique
   description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
