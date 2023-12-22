@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { VoteEntity } from './entities/vote.entity';
@@ -32,19 +33,22 @@ export class VotesController {
 
   @Get(':id')
   @ApiOkResponse({ type: VoteEntity })
-  findOne(@Param('id') id: string) {
-    return this.votesService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.votesService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: VoteEntity })
-  update(@Param('id') id: string, @Body() updateVoteDto: UpdateVoteDto) {
-    return this.votesService.update(+id, updateVoteDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateVoteDto: UpdateVoteDto,
+  ) {
+    return this.votesService.update(id, updateVoteDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: VoteEntity })
-  remove(@Param('id') id: string) {
-    return this.votesService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.votesService.remove(id);
   }
 }
