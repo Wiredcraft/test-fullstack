@@ -1,11 +1,11 @@
 import {
   Controller,
-  Get,
+  // Get,
   Post,
   Body,
-  Patch,
+  // Patch,
   Param,
-  Delete,
+  // Delete,
   ParseIntPipe,
   UseGuards,
 } from '@nestjs/common';
@@ -32,7 +32,7 @@ export class UsersController {
     return new UserEntity(await this.usersService.create(createUserDto));
   }
 
-  @Get()
+  // @Get()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity, isArray: true })
@@ -41,7 +41,7 @@ export class UsersController {
     return users.map((user) => new UserEntity(user));
   }
 
-  @Get(':id')
+  // @Get(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
@@ -49,7 +49,7 @@ export class UsersController {
     return new UserEntity(await this.usersService.findOne(id));
   }
 
-  @Patch(':id')
+  // @Patch(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiCreatedResponse({ type: UserEntity })
@@ -60,7 +60,7 @@ export class UsersController {
     return new UserEntity(await this.usersService.update(id, updateUserDto));
   }
 
-  @Delete(':id')
+  // @Delete(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: UserEntity })
