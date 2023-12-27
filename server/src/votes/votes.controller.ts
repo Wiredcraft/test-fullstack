@@ -3,7 +3,7 @@ import {
   Get,
   Post,
   Body,
-  // Patch,
+  Patch,
   Param,
   Delete,
   ParseIntPipe,
@@ -43,7 +43,7 @@ export class VotesController {
     return new VoteEntity(vote);
   }
 
-  // @Patch(':id')
+  @Patch(':id')
   @ApiOkResponse({ type: VoteEntity })
   async update(
     @Param('id', ParseIntPipe) id: number,
