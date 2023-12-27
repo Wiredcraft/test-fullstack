@@ -22,14 +22,15 @@ export class VotesController {
 
   @Post()
   @ApiCreatedResponse({ type: VoteEntity })
-  create(@Body() createVoteDto: CreateVoteDto) {
-    return this.votesService.create(createVoteDto);
+  async create(@Body() createVoteDto: CreateVoteDto) {
+    return new VoteEntity(await this.votesService.create(createVoteDto));
   }
 
   @Get()
   @ApiOkResponse({ type: VoteEntity, isArray: true })
-  findAll() {
-    return this.votesService.findAll();
+  async findAll() {
+    const votes = await this.votesService.findAll();
+    return votes.map((vote) => new VoteEntity(vote));
   }
 
   @Get(':id')
@@ -39,21 +40,21 @@ export class VotesController {
     if (!vote) {
       throw new NotFoundException(`Vote with ${id} does not exist.`);
     }
-    return vote;
+    return new VoteEntity(vote);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: VoteEntity })
-  update(
+  async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateVoteDto: UpdateVoteDto,
   ) {
-    return this.votesService.update(id, updateVoteDto);
+    return new VoteEntity(await this.votesService.update(id, updateVoteDto));
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: VoteEntity })
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.votesService.remove(id);
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    return new VoteEntity(await this.votesService.remove(id));
   }
 }

@@ -16,4 +16,16 @@ model Vote {
   description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  author User? @relation(fields: [authorId], references: [id])
+  authorId Int?
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  name String?
+  email String @unique
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  votes Vote[]
 }

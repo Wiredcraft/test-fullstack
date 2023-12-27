@@ -16,7 +16,12 @@ export class VotesService {
   }
 
   findOne(id: number) {
-    return this.prisma.vote.findUnique({ where: { id } });
+    return this.prisma.vote.findUnique({
+      where: { id },
+      include: {
+        author: true,
+      },
+    });
   }
 
   update(id: number, updateVoteDto: UpdateVoteDto) {
