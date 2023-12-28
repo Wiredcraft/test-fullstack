@@ -17,8 +17,8 @@ model Vote {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   likes Int @default(0)
-  author User? @relation(fields: [authorId], references: [id])
-  authorId Int?
+  author User @relation(fields: [authorId], references: [id])
+  authorId Int
 }
 
 model User {
