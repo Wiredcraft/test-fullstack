@@ -24,6 +24,9 @@ export class VoteEntity implements Vote {
   @ApiProperty({ required: false, type: UserEntity })
   author?: UserEntity;
 
+  @ApiProperty()
+  likes: number;
+
   constructor({ author, ...data }: Partial<VoteEntity>) {
     Object.assign(this, data);
     if (author) {

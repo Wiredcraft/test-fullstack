@@ -37,6 +37,7 @@ async function main() {
     where: { id: 1 },
     update: {
       authorId: user1.id,
+      likes: 2,
     },
     create: {
       title: 'Playstation 5',
@@ -49,6 +50,7 @@ async function main() {
     where: { id: 2 },
     update: {
       authorId: user1.id,
+      likes: 3,
     },
     create: {
       title: 'Xbox Series X',
@@ -61,6 +63,7 @@ async function main() {
     where: { id: 3 },
     update: {
       authorId: user2.id,
+      likes: 0,
     },
     create: {
       title: 'Nintendo Switch',
