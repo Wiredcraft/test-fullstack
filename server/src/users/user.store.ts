@@ -3,7 +3,7 @@ import { User } from '@prisma/client';
 
 export const UserStorage = {
   storage: new AsyncLocalStorage<User>(),
-  get() {
+  get(): User | null | undefined {
     return this.storage.getStore();
   },
   set(user: User) {

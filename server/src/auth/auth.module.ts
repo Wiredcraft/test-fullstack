@@ -5,7 +5,7 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from 'src/users/users.module';
-import { JwtStrategy } from './jwt.strategy';
+import { JwtAuthStrategy } from './jwt-auth.strategy';
 
 export const jwtSecret = 'pWP9h2ZI5LAkLoSKCRj';
 
@@ -15,11 +15,11 @@ export const jwtSecret = 'pWP9h2ZI5LAkLoSKCRj';
     PassportModule,
     JwtModule.register({
       secret: jwtSecret,
-      signOptions: { expiresIn: '5m' },
+      signOptions: { expiresIn: '1d' },
     }),
     UsersModule,
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtAuthStrategy],
 })
 export class AuthModule {}

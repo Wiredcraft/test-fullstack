@@ -16,17 +16,26 @@ model Vote {
   description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  likes Int @default(0)
+  likes Like[]
   author User @relation(fields: [authorId], references: [id])
   authorId Int
 }
 
 model User {
   id Int @id @default(autoincrement())
-  name String?
+  name String
   email String @unique
   password String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   votes Vote[]
+  likes Like[]
+}
+
+model Like {
+  id Int @id @default(autoincrement())
+  voteId Int
+  userId Int
+  vote Vote @relation(fields: [voteId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
