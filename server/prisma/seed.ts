@@ -33,6 +33,24 @@ async function main() {
     },
   });
 
+  const likes1 = await prisma.like.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      voteId: 1,
+      userId: 1,
+    },
+  });
+
+  const likes2 = await prisma.like.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      voteId: 1,
+      userId: 2,
+    },
+  });
+
   const vote1 = await prisma.vote.upsert({
     where: { id: 1 },
     update: {
@@ -69,7 +87,15 @@ async function main() {
     },
   });
 
-  console.log({ user1, user2, vote1, vote2, vote3 });
+  console.log({
+    user1,
+    user2,
+    likes1,
+    likes2,
+    vote1,
+    vote2,
+    vote3,
+  });
 }
 
 main()

@@ -10,7 +10,7 @@ export class VoteEntity implements Vote {
   title: string;
 
   @ApiProperty({ required: false, nullable: true })
-  description: string;
+  description: string | null;
 
   @ApiProperty()
   createdAt: Date;
@@ -18,11 +18,11 @@ export class VoteEntity implements Vote {
   @ApiProperty()
   updatedAt: Date;
 
-  @ApiProperty({ required: false, nullable: true })
-  authorId: number | null;
+  @ApiProperty()
+  authorId: number;
 
-  @ApiProperty({ required: false, type: UserEntity })
-  author?: UserEntity;
+  @ApiProperty({ type: UserEntity })
+  author: UserEntity;
 
   constructor({ author, ...data }: Partial<VoteEntity>) {
     Object.assign(this, data);

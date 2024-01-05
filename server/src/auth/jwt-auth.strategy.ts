@@ -3,9 +3,10 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { jwtSecret } from './auth.module';
 import { UsersService } from 'src/users/users.service';
+import { UserStorage } from 'src/users/user.store';
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
+export class JwtAuthStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor(private usersService: UsersService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -15,11 +16,10 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
 
   async validate(payload: { userId: number }) {
     const user = await this.usersService.findOne(payload.userId);
-
     if (!user) {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException(`user ${payload.userId} not found`);
     }
 
-    return user;
+    UserStorage.set(user);
   }
 }
