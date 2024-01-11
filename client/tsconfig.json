@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "sourceMap": true,
+    "module": "CommonJS",
+    "target": "ES5",
+    "lib": ["ES6", "DOM"],
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules"]
+}
