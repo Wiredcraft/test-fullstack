@@ -1,0 +1,6 @@
+.container {
+  height: 25px;
+  background-color: rgb(170, 90, 244);
+  display: flex;
+  justify-content: space-between;
+}
