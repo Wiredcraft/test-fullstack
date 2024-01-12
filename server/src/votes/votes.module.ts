@@ -2,12 +2,11 @@ import { Module } from '@nestjs/common';
 import { VotesService } from './votes.service';
 import { VotesController } from './votes.controller';
 import { PrismaModule } from 'src/prisma/prisma.module';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/users/users.service';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   controllers: [VotesController],
-  providers: [VotesService, JwtService, UsersService],
-  imports: [PrismaModule],
+  providers: [VotesService],
+  imports: [PrismaModule, JwtModule],
 })
 export class VotesModule {}
