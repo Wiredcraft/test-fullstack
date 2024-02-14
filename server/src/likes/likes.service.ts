@@ -5,15 +5,14 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserStorage } from 'src/users/user.store';
 import { CreateLikeDto } from './dto/create-like.dto';
 import { DeleteLikeDto } from './dto/delete-like.dto';
+import { UserEntity } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class LikesService {
   constructor(private prisma: PrismaService) {}
-  async create(createLikeDto: CreateLikeDto) {
-    const user = UserStorage.get();
+  async create(createLikeDto: CreateLikeDto, user: UserEntity) {
     if (!user) {
       throw new UnauthorizedException('user not logged in');
     }
@@ -37,8 +36,7 @@ export class LikesService {
     });
   }
 
-  async delete(deleteLikeDto: DeleteLikeDto) {
-    const user = UserStorage.get();
+  async delete(deleteLikeDto: DeleteLikeDto, user: UserEntity) {
     if (!user) {
       throw new UnauthorizedException('user not logged in');
     }

@@ -1,9 +1,10 @@
-import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
-import { JwtSoftGuard } from 'src/auth/jwt-soft.guard';
+import { Controller, Post, Body, Get, UseGuards, Req } from '@nestjs/common';
 import { ApiTags, ApiCreatedResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserEntity } from './entities/user.entity';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { CustomRequest } from 'src/interfaces/customRequest';
 
 @Controller('users')
 @ApiTags('users')
@@ -17,14 +18,11 @@ export class UsersController {
   }
 
   @Get('/myinfo')
-  @UseGuards(JwtSoftGuard)
+  @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiCreatedResponse({ type: UserEntity || null })
-  async getInfo() {
-    const user = this.usersService.getUserInfo();
-    if (user) {
-      return new UserEntity(user);
-    }
-    return null;
+  @ApiCreatedResponse({ type: UserEntity })
+  async getInfo(@Req() request: CustomRequest) {
+    const user = request.user;
+    return new UserEntity(user);
   }
 }

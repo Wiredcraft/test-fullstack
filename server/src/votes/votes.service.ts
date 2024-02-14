@@ -7,8 +7,8 @@ import {
 import { CreateVoteDto } from './dto/create-vote.dto';
 import { UpdateVoteDto } from './dto/update-vote.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserStorage } from 'src/users/user.store';
 import { Prisma } from '@prisma/client';
+import { UserEntity } from 'src/users/entities/user.entity';
 
 type VoteWithLikes = Prisma.VoteGetPayload<{
   include: { likes: true };
@@ -18,8 +18,7 @@ type VoteWithLikes = Prisma.VoteGetPayload<{
 export class VotesService {
   constructor(private prisma: PrismaService) {}
 
-  create(createVoteDto: CreateVoteDto) {
-    const user = UserStorage.get();
+  create(createVoteDto: CreateVoteDto, user: UserEntity) {
     if (!user) {
       throw new UnauthorizedException('user not logged in');
     }
@@ -31,9 +30,8 @@ export class VotesService {
     });
   }
 
-  computedVote(vote: VoteWithLikes) {
+  computedVote(vote: VoteWithLikes, user: UserEntity) {
     const likeCount = vote.likes.length;
-    const user = UserStorage.get();
     let liked = false;
     if (user) {
       liked = vote.likes.map((item) => item.userId).includes(user.id);
@@ -46,16 +44,16 @@ export class VotesService {
     };
   }
 
-  async findAll() {
+  async findAll(user: UserEntity) {
     const votes = await this.prisma.vote.findMany({
       include: {
         likes: true,
       },
     });
-    return votes.map((item) => this.computedVote(item));
+    return votes.map((item) => this.computedVote(item, user));
   }
 
-  async findOne(id: number) {
+  async findOne(id: number, user: UserEntity) {
     const vote = await this.prisma.vote.findUnique({
       where: { id },
       include: {
@@ -66,11 +64,11 @@ export class VotesService {
     if (!vote) {
       throw new NotFoundException(`vote ${id} not found`);
     }
-    return this.computedVote(vote);
+    return this.computedVote(vote, user);
   }
 
-  async update(id: number, updateVoteDto: UpdateVoteDto) {
-    if (!(await this.isVoteAuthor(id))) {
+  async update(id: number, updateVoteDto: UpdateVoteDto, user: UserEntity) {
+    if (!(await this.isVoteAuthor(id, user))) {
       throw new BadRequestException('user is not vote author');
     }
     return this.prisma.vote.update({
@@ -79,15 +77,14 @@ export class VotesService {
     });
   }
 
-  async remove(id: number) {
-    if (!(await this.isVoteAuthor(id))) {
+  async remove(id: number, user: UserEntity) {
+    if (!(await this.isVoteAuthor(id, user))) {
       throw new BadRequestException('user is not vote author');
     }
     return this.prisma.vote.delete({ where: { id } });
   }
 
-  async isVoteAuthor(voteId) {
-    const user = UserStorage.get();
+  async isVoteAuthor(voteId, user: UserEntity) {
     if (!user) {
       throw new UnauthorizedException('user not logged in');
     }

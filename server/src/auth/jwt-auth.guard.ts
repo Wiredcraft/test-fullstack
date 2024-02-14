@@ -1,5 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { JwtBaseGuard } from './jwt-base.guard';
 
 @Injectable()
-export class JwtAuthGuard extends AuthGuard('jwt') {}
+export class JwtAuthGuard extends JwtBaseGuard {
+  protected noValidTokenHandler() {
+    return {
+      pass: false,
+      errorMessage: 'need to login',
+    };
+  }
+}

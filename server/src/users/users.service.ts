@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserStorage } from 'src/users/user.store';
 import * as bcrypt from 'bcrypt';
 
 const roundsOfHashing = 10;
@@ -42,10 +41,5 @@ export class UsersService {
 
   remove(id: number) {
     return this.prisma.user.delete({ where: { id } });
-  }
-
-  getUserInfo() {
-    const user = UserStorage.get();
-    return user;
   }
 }

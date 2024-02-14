@@ -9,6 +9,7 @@ import {
   ParseIntPipe,
   NotFoundException,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -18,6 +19,7 @@ import {
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { JwtSoftGuard } from 'src/auth/jwt-soft.guard';
+import { CustomRequest } from 'src/interfaces/customRequest';
 import { VoteEntity } from './entities/vote.entity';
 import { VotesService } from './votes.service';
 import { CreateVoteDto } from './dto/create-vote.dto';
@@ -32,8 +34,11 @@ export class VotesController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiCreatedResponse({ type: VoteEntity })
-  async create(@Body() createVoteDto: CreateVoteDto) {
-    const vote = await this.votesService.create(createVoteDto);
+  async create(
+    @Body() createVoteDto: CreateVoteDto,
+    @Req() request: CustomRequest,
+  ) {
+    const vote = await this.votesService.create(createVoteDto, request.user);
     return new VoteEntity(vote);
   }
 
@@ -41,8 +46,8 @@ export class VotesController {
   @UseGuards(JwtSoftGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: VoteEntity, isArray: true })
-  async findAll() {
-    const votes = await this.votesService.findAll();
+  async findAll(@Req() request: CustomRequest) {
+    const votes = await this.votesService.findAll(request.user);
     return votes.map((vote) => new VoteEntity(vote));
   }
 
@@ -50,8 +55,11 @@ export class VotesController {
   @UseGuards(JwtSoftGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: VoteEntity })
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    const vote = await this.votesService.findOne(id);
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @Req() request: CustomRequest,
+  ) {
+    const vote = await this.votesService.findOne(id, request.user);
     if (!vote) {
       throw new NotFoundException(`Vote with ${id} does not exist.`);
     }
@@ -65,15 +73,21 @@ export class VotesController {
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateVoteDto: UpdateVoteDto,
+    @Req() request: CustomRequest,
   ) {
-    return new VoteEntity(await this.votesService.update(id, updateVoteDto));
+    return new VoteEntity(
+      await this.votesService.update(id, updateVoteDto, request.user),
+    );
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse({ type: VoteEntity })
-  async remove(@Param('id', ParseIntPipe) id: number) {
-    return new VoteEntity(await this.votesService.remove(id));
+  async remove(
+    @Param('id', ParseIntPipe) id: number,
+    @Req() request: CustomRequest,
+  ) {
+    return new VoteEntity(await this.votesService.remove(id, request.user));
   }
 }
