@@ -1,4 +1,5 @@
 .container {
+  padding: 2px 5px;
   height: 25px;
   background-color: rgb(170, 90, 244);
   display: flex;

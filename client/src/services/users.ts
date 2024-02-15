@@ -22,3 +22,17 @@ export const login = async (email: string, password: string) =>
     email,
     password,
   });
+
+type RegisterRes = {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+};
+export const register = async (name: string, email: string, password: string) =>
+  await customAxios.post<RegisterRes>("/users/register", {
+    name,
+    email,
+    password,
+  });

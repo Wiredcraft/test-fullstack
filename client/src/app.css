@@ -1,0 +1,5 @@
+:global(body) {
+  margin: 8px auto;
+  min-width: 796px;
+  width: 85%;
+}

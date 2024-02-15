@@ -1,6 +1,7 @@
+import { STORAGE_KEY } from "@/constants/common";
 import axios from "axios";
 
-const token = localStorage.getItem("TOKEN");
+const token = localStorage.getItem(STORAGE_KEY.TOKEN);
 
 const customAxios = axios.create({
   baseURL: "/api",
