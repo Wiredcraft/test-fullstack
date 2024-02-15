@@ -3,6 +3,7 @@ import Error from "./routes/error";
 import Root from "./routes/root";
 import Login from "./routes/login";
 import Register from "./routes/register";
+import User from "./routes/user";
 import "./app.css";
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/user",
+    element: <User />,
   },
 ]);
 
