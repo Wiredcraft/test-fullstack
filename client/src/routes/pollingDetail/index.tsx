@@ -1,11 +1,12 @@
-import Header from "@/components/header";
-import { useEffect } from "react";
 import { useUserStore } from "@/stores/userStore";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import Header from "@/components/header";
 import styles from "./index.module.css";
 
-export default function User() {
-  const user = useUserStore((state) => state.user);
+export default function PollingDetail() {
   const getMyUser = useUserStore((state) => state.getMyUser);
+  const { pollingId } = useParams();
 
   useEffect(() => {
     getMyUser();
@@ -15,8 +16,7 @@ export default function User() {
     <div>
       <Header />
       <div className={styles.container}>
-        <div>user: {user?.email}</div>
-        <div>name: {user?.name}</div>
+        <div>{pollingId}</div>
       </div>
     </div>
   );

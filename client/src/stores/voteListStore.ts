@@ -4,6 +4,7 @@ import { getVotes } from "@/services/votes";
 export type ListItem = {
   title: string;
   id: number;
+  liked: boolean;
 };
 
 type State = {
@@ -24,6 +25,7 @@ export const useListStore = create<State>((set) => ({
     const newList: ListItem[] = voteRes.map((item) => ({
       title: item.title,
       id: item.id,
+      liked: item.liked,
     }));
     set({ list: newList });
   },

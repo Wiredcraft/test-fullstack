@@ -2,3 +2,29 @@
   background-color: rgb(221 237 245);
   padding: 5px;
 }
+
+.titleWrapper {
+  display: flex;
+}
+
+.itemContainer {
+  padding: 5px;
+}
+
+.itemBtns {
+  display: flex;
+}
+
+.voteIconWrapper {
+  width: 14px;
+}
+
+.voteArrow {
+  width: 10px;
+  height: 10px;
+  padding: 3px 2px 6px;
+}
+
+.btnContainer {
+  height: 20px;
+}
