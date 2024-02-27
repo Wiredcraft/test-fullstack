@@ -1,0 +1,27 @@
+body {
+  margin: 8px auto;
+  min-width: 796px;
+  width: 85%;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+:global(.flex-center) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+:global(.pointer) {
+  cursor: pointer;
+}

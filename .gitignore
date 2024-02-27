@@ -1,0 +1,7 @@
+**/node_modules
+
+client/build
+
+server/dist
+
+**/yarn-error.log
