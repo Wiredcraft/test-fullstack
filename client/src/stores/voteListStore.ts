@@ -5,6 +5,7 @@ export type ListItem = {
   title: string;
   id: number;
   liked: boolean;
+  createdAt: string;
 };
 
 type State = {
@@ -26,6 +27,7 @@ export const useListStore = create<State>((set) => ({
       title: item.title,
       id: item.id,
       liked: item.liked,
+      createdAt: item.createdAt,
     }));
     set({ list: newList });
   },

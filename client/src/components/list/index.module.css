@@ -1,10 +1,18 @@
 .container {
-  background-color: rgb(221 237 245);
-  padding: 5px;
+  background-color: rgb(246, 246, 239);
+  padding: 10px 0;
+}
+
+.itemWrapper {
+  margin-bottom: 5px;
 }
 
 .titleWrapper {
   display: flex;
+  align-items: center;
+  height: 19px;
+  padding-left: 5px;
+  font-size: 14px;
 }
 
 .itemContainer {
@@ -15,16 +23,28 @@
   display: flex;
 }
 
+.indexWrapper {
+  width: 35px;
+  text-align: right;
+}
+
 .voteIconWrapper {
   width: 14px;
 }
 
 .voteArrow {
   width: 10px;
-  height: 10px;
-  padding: 3px 2px 6px;
 }
 
 .btnContainer {
-  height: 20px;
+  height: 12px;
+  padding-left: 19px;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  color: #828282;
+}
+
+.bar {
+  padding: 0 5px;
 }
