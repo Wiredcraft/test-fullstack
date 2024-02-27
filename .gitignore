@@ -3,3 +3,5 @@
 client/build
 
 server/dist
+
+**/yarn-error.log
