@@ -19,17 +19,13 @@ Polling is often needed for the organizers to understand what is more interestin
 5. The users should be able to submit new lighting talks anytime. The required information is the title and description, while the system should also save the submit time and user.
 6. After submitting a topic, the user should see an updated version of the list.
 
-#### Functionality
-
-* The frontend part should be a single page application rendered in the frontend and load data from an API \(not rendered from backend\).
-* If RESTful APIs, they should follow typical RESTful API design pattern.
-* Provide proper unit test.
-
 #### Tech stack
 
 * Use React for the frontend.
-* Do not use any scaffolding tool such as `create-react-app`, or any CSS framework, but try to use some JS libs such as `react-router`, and packing tools such as Webpack or Parcel etc.
-* Prefer TypeScript related backend frameworks. Use any DB for storing the data, or if you prefer, in-memory DBs could just work.
+* Feel free to use framework like Next.js (App route is preferered)
+* Prefer TypeScript related backend frameworks.
+* Use any Database for storing the data.
+* Provide proper unit test.
 
 #### Advanced requirements
 
